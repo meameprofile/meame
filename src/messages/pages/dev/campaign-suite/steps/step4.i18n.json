@@ -1,0 +1,42 @@
+{
+  "it-IT": {
+    "step4": {
+      "title": "Passo 4: Contenuto",
+      "description": "Dai vita al tuo layout. Clicca su 'Modifica Contenuto' per ogni sezione per aggiungere il testo persuasivo in tutte le lingue supportate.",
+      "emptyStateTitle": "Nessuna Sezione nel Layout",
+      "emptyStateDescription": "Torna al Passo 2 per aggiungere sezioni alla tua campagna.",
+      "editButtonText": "Modifica Contenuto",
+      "nextButtonText": "Finalizza e Continua"
+    }
+  },
+  "es-ES": {
+    "step4": {
+      "title": "Paso 4: Contenido",
+      "description": "Da vida a tu layout. Haz clic en 'Editar Contenido' en cada sección para añadir el texto persuasivo en todos los idiomas soportados.",
+      "emptyStateTitle": "No Hay Secciones en el Layout",
+      "emptyStateDescription": "Vuelve al Paso 2 para añadir secciones a tu campaña.",
+      "editButtonText": "Editar Contenido",
+      "nextButtonText": "Finalizar y Continuar"
+    }
+  },
+  "en-US": {
+    "step4": {
+      "title": "Step 4: Content",
+      "description": "Bring your layout to life. Click on 'Edit Content' for each section to add the persuasive text in all supported languages.",
+      "emptyStateTitle": "No Sections in Layout",
+      "emptyStateDescription": "Go back to Step 2 to add sections to your campaign.",
+      "editButtonText": "Edit Content",
+      "nextButtonText": "Finalize and Continue"
+    }
+  },
+  "pt-BR": {
+    "step4": {
+      "title": "Passo 4: Conteúdo",
+      "description": "Dê vida ao seu layout. Clique em 'Editar Conteúdo' para cada seção para adicionar o texto persuasivo em todos os idiomas suportados.",
+      "emptyStateTitle": "Nenhuma Seção no Layout",
+      "emptyStateDescription": "Volte ao Passo 2 para adicionar seções à sua campanha.",
+      "editButtonText": "Editar Conteúdo",
+      "nextButtonText": "Finalizar e Continuar"
+    }
+  }
+}

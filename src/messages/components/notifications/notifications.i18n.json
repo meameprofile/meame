@@ -1,0 +1,34 @@
+{
+  "it-IT": {
+    "notificationBell": {
+      "viewAllNotificationsLink": "Vedi tutte",
+      "notificationsLabel": "Notifiche",
+      "noNotificationsText": "Non hai notifiche.",
+      "loadingText": "Caricamento..."
+    }
+  },
+  "es-ES": {
+    "notificationBell": {
+      "viewAllNotificationsLink": "Ver todas",
+      "notificationsLabel": "Notificaciones",
+      "noNotificationsText": "No tienes notificaciones.",
+      "loadingText": "Cargando..."
+    }
+  },
+  "en-US": {
+    "notificationBell": {
+      "viewAllNotificationsLink": "View all",
+      "notificationsLabel": "Notifications",
+      "noNotificationsText": "You have no notifications.",
+      "loadingText": "Loading..."
+    }
+  },
+  "pt-BR": {
+    "notificationBell": {
+      "viewAllNotificationsLink": "Ver todas",
+      "notificationsLabel": "Notificações",
+      "noNotificationsText": "Você não tem notificações.",
+      "loadingText": "Carregando..."
+    }
+  }
+}

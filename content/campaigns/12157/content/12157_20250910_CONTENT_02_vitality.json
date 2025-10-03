@@ -1,0 +1,450 @@
+{
+  "it-IT": {
+    "scrollingBanner": {
+      "message": "Offerta speciale: Torna a sentirti al 100%. Le scorte sono limitate."
+    },
+    "hero": {
+      "title": "Quell'energia di una volta? È ancora dentro di te. Aiutala a risplendere.",
+      "subtitle": "La formula naturale con la precisione svizzera, creata per chi vuole vivere ogni giorno al massimo."
+    },
+    "socialProofLogos": {
+      "title": "Ingredienti Selezionati e Approvati",
+      "logos": [
+        {
+          "src": "/img/sections/social-proof-logos/logo-wellness-insider.svg",
+          "alt": "Logo di Wellness Insider"
+        },
+        {
+          "src": "/img/sections/social-proof-logos/logo-health-journal.svg",
+          "alt": "Logo di The Health Journal"
+        }
+      ]
+    },
+    "benefitsSection": {
+      "eyebrow": "Benefici Chiave",
+      "title": "I Benefici Che Puoi Sentire",
+      "subtitle": "Più di un semplice integratore, è un sistema completo per la tua vitalità quotidiana.",
+      "benefits": [
+        {
+          "icon": "ShieldCheck",
+          "title": "Comfort Articolare",
+          "description": "Supporto naturale per mantenere le articolazioni flessibili e confortevoli."
+        },
+        {
+          "icon": "Sparkles",
+          "title": "Azione Antiossidante",
+          "description": "Combatte lo stress ossidativo per proteggere le tue cellule e promuovere il benessere."
+        },
+        {
+          "icon": "Grape",
+          "title": "Benessere Digestivo",
+          "description": "Migliora la funzione digestiva e l'equilibrio intestinale per una sensazione di leggerezza."
+        },
+        {
+          "icon": "Rocket",
+          "title": "Assorbimento Potenziato",
+          "description": "La piperina assicura che il tuo corpo assorba e utilizzi ogni grammo di beneficio."
+        }
+      ]
+    },
+    "thumbnailCarousel": {
+      "thumbnails": [
+        {
+          "src": "/img/sections/thumbnail-carousel/carousel_lifestyle-activity.jpg",
+          "alt": "Donna vitale che gode di un'attività all'aperto"
+        },
+        {
+          "src": "/img/sections/thumbnail-carousel/carousel_ingredients-natural.jpg",
+          "alt": "Ingredienti naturali e freschi su un tavolo"
+        },
+        {
+          "src": "/img/sections/thumbnail-carousel/carousel_product-context.jpg",
+          "alt": "Primo piano del prodotto in un ambiente luminoso"
+        }
+      ],
+      "affiliateUrl": "https://example.com/order?lang=it",
+      "playButtonAriaLabel": "Guarda la presentazione del prodotto e ordina ora",
+      "playButtonTitle": "Icona di riproduzione"
+    },
+    "testimonialGrid": {
+      "title": "Storie Vere di Rinnovata Energia",
+      "testimonials": [
+        {
+          "quote": "Ho ripreso a fare le mie passeggiate mattutine senza quel fastidio al ginocchio. È una sensazione di libertà impagabile.",
+          "author": "Elena R.",
+          "location": "Milano, IT",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+        }
+      ]
+    },
+    "ingredientAnalysis": {
+      "title": "La Sinergia Intelligente della Natura",
+      "ingredients": [
+        {
+          "name": "Curcumina Pura",
+          "description": "Il nostro estratto standardizzato assicura la massima concentrazione del principio attivo."
+        },
+        {
+          "name": "Piperina (Bio-Potenziatore)",
+          "description": "L'alleato cruciale che sblocca l'assorbimento della curcumina."
+        },
+        {
+          "name": "Spirulina & Zafferano",
+          "description": "Un duo che arricchisce la formula con nutrienti essenziali per l'energia."
+        }
+      ]
+    },
+    "guaranteeSection": {
+      "title": "La Nostra Promessa di Qualità Svizzera",
+      "seals": [
+        {
+          "imageUrl": "/img/guarantee-section/seal_garantia-1.jpg",
+          "imageAlt": "Sigillo Soddisfatti o Rimborsati"
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Prezzo Originale",
+      "discountedPriceLabel": "Offerta Vitalità",
+      "nameInputLabel": "Nome",
+      "nameInputPlaceholder": "Il tuo nome completo",
+      "phoneInputLabel": "Telefono",
+      "phoneInputPlaceholder": "Il tuo numero di telefono",
+      "submitButtonText": "Sì, Rivoglio la Mia Energia!",
+      "submitButtonLoadingText": "Invio in corso..."
+    },
+    "faqAccordion": {
+      "title": "Le Tue Domande, le Nostre Risposte Chiare",
+      "faqs": [
+        {
+          "question": "Dopo quanto tempo si vedono i benefici?",
+          "answer": "Molti clienti notano un miglioramento nel benessere generale entro le prime 2-4 settimane di uso costante."
+        }
+      ]
+    },
+    "doubleScrollingBanner": { "testimonials": [], "logos": [] }
+  },
+  "es-ES": {
+    "scrollingBanner": {
+      "message": "Oferta especial: Vuelve a sentirte al 100%. El stock es limitado."
+    },
+    "hero": {
+      "title": "¿Esa energía de antes? Todavía está dentro de ti. Ayúdala a brillar.",
+      "subtitle": "La fórmula natural con precisión suiza, creada para quienes quieren vivir cada día al máximo."
+    },
+    "socialProofLogos": {
+      "title": "Ingredientes Seleccionados y Aprobados",
+      "logos": [
+        {
+          "src": "/img/sections/social-proof-logos/logo-wellness-insider.svg",
+          "alt": "Logo de Wellness Insider"
+        }
+      ]
+    },
+    "benefitsSection": {
+      "eyebrow": "Beneficios Clave",
+      "title": "Los Beneficios Que Puedes Sentir",
+      "subtitle": "Más que un simple suplemento, es un sistema completo para tu vitalidad diaria.",
+      "benefits": [
+        {
+          "icon": "ShieldCheck",
+          "title": "Confort Articular",
+          "description": "Apoyo natural para mantener las articulaciones flexibles y cómodas."
+        },
+        {
+          "icon": "Sparkles",
+          "title": "Acción Antioxidante",
+          "description": "Combate el estrés oxidativo para proteger tus células y promover el bienestar."
+        },
+        {
+          "icon": "Grape",
+          "title": "Bienestar Digestivo",
+          "description": "Mejora la función digestiva y el equilibrio intestinal para una sensación de ligereza."
+        },
+        {
+          "icon": "Rocket",
+          "title": "Absorción Potenciada",
+          "description": "La piperina asegura que tu cuerpo absorba y utilice cada gramo de beneficio."
+        }
+      ]
+    },
+    "thumbnailCarousel": {
+      "thumbnails": [
+        {
+          "src": "/img/sections/thumbnail-carousel/carousel_lifestyle-activity.jpg",
+          "alt": "Mujer vital disfrutando de una actividad al aire libre"
+        }
+      ],
+      "affiliateUrl": "https://example.com/order?lang=es",
+      "playButtonAriaLabel": "Ver presentación del producto y pedir ahora",
+      "playButtonTitle": "Icono de reproducción"
+    },
+    "testimonialGrid": {
+      "title": "Historias Reales de Energía Renovada",
+      "testimonials": [
+        {
+          "quote": "He vuelto a mis paseos matutinos sin esa molestia en la rodilla. Es una sensación de libertad impagable.",
+          "author": "Elena R.",
+          "location": "Madrid, ES",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+        }
+      ]
+    },
+    "ingredientAnalysis": {
+      "title": "La Sinergia Inteligente de la Naturaleza",
+      "ingredients": [
+        {
+          "name": "Cúrcuma Pura",
+          "description": "Nuestro extracto estandarizado asegura la máxima concentración del compuesto activo."
+        }
+      ]
+    },
+    "guaranteeSection": {
+      "title": "Nuestra Promesa de Calidad Suiza",
+      "seals": [
+        {
+          "imageUrl": "/img/guarantee-section/seal_garantia-1.jpg",
+          "imageAlt": "Sello Satisfecho o Reembolsado"
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Precio Original",
+      "discountedPriceLabel": "Oferta Vitalidad",
+      "nameInputLabel": "Nombre",
+      "nameInputPlaceholder": "Tu nombre completo",
+      "phoneInputLabel": "Teléfono",
+      "phoneInputPlaceholder": "Tu número de teléfono",
+      "submitButtonText": "¡Sí, Quiero Mi Energía de Vuelta!",
+      "submitButtonLoadingText": "Enviando..."
+    },
+    "faqAccordion": {
+      "title": "Tus Preguntas, Nuestras Respuestas Claras",
+      "faqs": [
+        {
+          "question": "¿Después de cuánto tiempo se notan los beneficios?",
+          "answer": "Muchos de nuestros clientes notan una mejora en el bienestar general dentro de las primeras 2-4 semanas de uso constante."
+        }
+      ]
+    },
+    "doubleScrollingBanner": { "testimonials": [], "logos": [] }
+  },
+  "en-US": {
+    "scrollingBanner": {
+      "message": "Special offer: Get back to feeling 100%. Stock is limited."
+    },
+    "hero": {
+      "title": "That energy you used to have? It's still inside you. Help it shine.",
+      "subtitle": "The natural formula with Swiss precision, for those who want to live every day to the fullest."
+    },
+    "socialProofLogos": {
+      "title": "Selected and Approved Ingredients",
+      "logos": [
+        {
+          "src": "/img/sections/social-proof-logos/logo-wellness-insider.svg",
+          "alt": "Wellness Insider Logo"
+        }
+      ]
+    },
+    "benefitsSection": {
+      "eyebrow": "Key Benefits",
+      "title": "The Benefits You Can Feel",
+      "subtitle": "More than just a supplement, it's a complete system for your daily vitality.",
+      "benefits": [
+        {
+          "icon": "ShieldCheck",
+          "title": "Joint Comfort",
+          "description": "Natural support to keep your joints flexible and comfortable."
+        },
+        {
+          "icon": "Sparkles",
+          "title": "Antioxidant Action",
+          "description": "Fights oxidative stress to protect your cells and promote well-being."
+        },
+        {
+          "icon": "Grape",
+          "title": "Digestive Wellness",
+          "description": "Improves digestive function and gut balance for a feeling of lightness."
+        },
+        {
+          "icon": "Rocket",
+          "title": "Enhanced Absorption",
+          "description": "Piperine ensures your body absorbs and utilizes every bit of benefit."
+        }
+      ]
+    },
+    "thumbnailCarousel": {
+      "thumbnails": [
+        {
+          "src": "/img/sections/thumbnail-carousel/carousel_lifestyle-activity.jpg",
+          "alt": "Vital woman enjoying an outdoor activity"
+        }
+      ],
+      "affiliateUrl": "https://example.com/order?lang=en",
+      "playButtonAriaLabel": "Watch product presentation and order now",
+      "playButtonTitle": "Play icon"
+    },
+    "testimonialGrid": {
+      "title": "True Stories of Renewed Energy",
+      "testimonials": [
+        {
+          "quote": "I'm back to my morning walks without that knee discomfort. It's a priceless feeling of freedom.",
+          "author": "Elena R.",
+          "location": "New York, US",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+        }
+      ]
+    },
+    "ingredientAnalysis": {
+      "title": "Nature's Intelligent Synergy",
+      "ingredients": [
+        {
+          "name": "Pure Curcumin",
+          "description": "Our standardized extract ensures the highest concentration of the active compound."
+        }
+      ]
+    },
+    "guaranteeSection": {
+      "title": "Our Swiss Quality Promise",
+      "seals": [
+        {
+          "imageUrl": "/img/guarantee-section/seal_garantia-1.jpg",
+          "imageAlt": "Satisfaction or Money Back Seal"
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Original Price",
+      "discountedPriceLabel": "Vitality Offer",
+      "nameInputLabel": "Name",
+      "nameInputPlaceholder": "Your full name",
+      "phoneInputLabel": "Phone",
+      "phoneInputPlaceholder": "Your phone number",
+      "submitButtonText": "Yes, I Want My Energy Back!",
+      "submitButtonLoadingText": "Submitting..."
+    },
+    "faqAccordion": {
+      "title": "Your Questions, Our Clear Answers",
+      "faqs": [
+        {
+          "question": "How long until I see the benefits?",
+          "answer": "Many of our customers notice an improvement in general well-being within the first 2-4 weeks of consistent use."
+        }
+      ]
+    },
+    "doubleScrollingBanner": { "testimonials": [], "logos": [] }
+  },
+  "pt-BR": {
+    "scrollingBanner": {
+      "message": "Oferta especial: Volte a se sentir 100%. O estoque é limitado."
+    },
+    "hero": {
+      "title": "Aquela energia de antes? Ainda está dentro de você. Ajude-a a brilhar.",
+      "subtitle": "A fórmula natural com precisão suíça, para quem quer viver cada dia ao máximo."
+    },
+    "socialProofLogos": {
+      "title": "Ingredientes Selecionados e Aprovados",
+      "logos": [
+        {
+          "src": "/img/sections/social-proof-logos/logo-wellness-insider.svg",
+          "alt": "Logo da Wellness Insider"
+        }
+      ]
+    },
+    "benefitsSection": {
+      "eyebrow": "Benefícios Chave",
+      "title": "Os Benefícios Que Você Pode Sentir",
+      "subtitle": "Mais que um simples suplemento, é um sistema completo para sua vitalidade diária.",
+      "benefits": [
+        {
+          "icon": "ShieldCheck",
+          "title": "Conforto Articular",
+          "description": "Apoio natural para manter as articulações flexíveis e confortáveis."
+        },
+        {
+          "icon": "Sparkles",
+          "title": "Ação Antioxidante",
+          "description": "Combate o estresse oxidativo para proteger suas células e promover o bem-estar."
+        },
+        {
+          "icon": "Grape",
+          "title": "Bem-estar Digestivo",
+          "description": "Melhora a função digestiva e o equilíbrio intestinal para uma sensação de leveza."
+        },
+        {
+          "icon": "Rocket",
+          "title": "Absorção Aprimorada",
+          "description": "A piperina garante que seu corpo absorva e utilize cada grama de benefício."
+        }
+      ]
+    },
+    "thumbnailCarousel": {
+      "thumbnails": [
+        {
+          "src": "/img/sections/thumbnail-carousel/carousel_lifestyle-activity.jpg",
+          "alt": "Mulher vital desfrutando de uma atividade ao ar livre"
+        }
+      ],
+      "affiliateUrl": "https://example.com/order?lang=pt",
+      "playButtonAriaLabel": "Ver apresentação do produto e encomendar agora",
+      "playButtonTitle": "Ícone de reprodução"
+    },
+    "testimonialGrid": {
+      "title": "Histórias Reais de Energia Renovada",
+      "testimonials": [
+        {
+          "quote": "Voltei às minhas caminhadas matinais sem aquele incômodo no joelho. É uma sensação de liberdade impagável.",
+          "author": "Elena R.",
+          "location": "São Paulo, BR",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+        }
+      ]
+    },
+    "ingredientAnalysis": {
+      "title": "A Sinergia Inteligente da Natureza",
+      "ingredients": [
+        {
+          "name": "Cúrcuma Pura",
+          "description": "Nosso extrato padronizado garante a máxima concentração do composto ativo."
+        }
+      ]
+    },
+    "guaranteeSection": {
+      "title": "Nossa Promessa de Qualidade Suíça",
+      "seals": [
+        {
+          "imageUrl": "/img/guarantee-section/seal_garantia-1.jpg",
+          "imageAlt": "Selo de Satisfação ou Dinheiro de Volta"
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Preço Original",
+      "discountedPriceLabel": "Oferta Vitalidade",
+      "nameInputLabel": "Nome",
+      "nameInputPlaceholder": "Seu nome completo",
+      "phoneInputLabel": "Telefone",
+      "phoneInputPlaceholder": "Seu número de telefone",
+      "submitButtonText": "Sim, Quero Minha Energia de Volta!",
+      "submitButtonLoadingText": "Enviando..."
+    },
+    "faqAccordion": {
+      "title": "Suas Perguntas, Nossas Respostas Claras",
+      "faqs": [
+        {
+          "question": "Em quanto tempo se notam os benefícios?",
+          "answer": "Muitos de nossos clientes notam uma melhora no bem-estar geral nas primeiras 2-4 semanas de uso consistente."
+        }
+      ]
+    },
+    "doubleScrollingBanner": { "testimonials": [], "logos": [] }
+  }
+}

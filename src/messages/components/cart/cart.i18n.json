@@ -1,0 +1,78 @@
+{
+  "it-IT": {
+    "cart": {
+      "triggerAriaLabel": "Vedi carrello, {{count}} articoli",
+      "sheetTitle": "Il Tuo Carrello",
+      "emptyStateText": "Il tuo carrello è vuoto.",
+      "emptyStateButton": "Inizia lo Shopping",
+      "subtotalLabel": "Subtotale",
+      "checkoutButton": "Procedi al Checkout",
+      "continueShoppingButton": "Continua lo Shopping",
+      "errors": {
+        "addItemFailed": "Impossibile aggiungere l'articolo al carrello.",
+        "removeItemFailed": "Impossibile rimuovere l'articolo dal carrello.",
+        "updateItemFailed": "Impossibile aggiornare la quantità dell'articolo.",
+        "createCartFailed": "Impossibile creare un nuovo carrello.",
+        "emptyCart": "Il tuo carrello è vuoto e non puoi procedere al pagamento.",
+        "checkoutFailed": "Impossibile avviare il processo di pagamento."
+      }
+    }
+  },
+  "es-ES": {
+    "cart": {
+      "triggerAriaLabel": "Ver carrito, {{count}} artículos",
+      "sheetTitle": "Tu Carrito",
+      "emptyStateText": "Tu carrito está vacío.",
+      "emptyStateButton": "Empezar a Comprar",
+      "subtotalLabel": "Subtotal",
+      "checkoutButton": "Proceder al Pago",
+      "continueShoppingButton": "Seguir Comprando",
+      "errors": {
+        "addItemFailed": "No se pudo añadir el artículo al carrito.",
+        "removeItemFailed": "No se pudo eliminar el artículo del carrito.",
+        "updateItemFailed": "No se pudo actualizar la cantidad del artículo.",
+        "createCartFailed": "No se pudo crear un nuevo carrito.",
+        "emptyCart": "Tu carrito está vacío y no puedes proceder al pago.",
+        "checkoutFailed": "No se pudo iniciar el proceso de pago."
+      }
+    }
+  },
+  "en-US": {
+    "cart": {
+      "triggerAriaLabel": "View cart, {{count}} items",
+      "sheetTitle": "Your Cart",
+      "emptyStateText": "Your cart is empty.",
+      "emptyStateButton": "Start Shopping",
+      "subtotalLabel": "Subtotal",
+      "checkoutButton": "Proceed to Checkout",
+      "continueShoppingButton": "Continue Shopping",
+      "errors": {
+        "addItemFailed": "Could not add item to cart.",
+        "removeItemFailed": "Could not remove item from cart.",
+        "updateItemFailed": "Could not update item quantity.",
+        "createCartFailed": "Could not create a new cart.",
+        "emptyCart": "Your cart is empty and you cannot proceed to checkout.",
+        "checkoutFailed": "Could not start the payment process."
+      }
+    }
+  },
+  "pt-BR": {
+    "cart": {
+      "triggerAriaLabel": "Ver carrinho, {{count}} itens",
+      "sheetTitle": "Seu Carrinho",
+      "emptyStateText": "Seu carrinho está vazio.",
+      "emptyStateButton": "Começar a Comprar",
+      "subtotalLabel": "Subtotal",
+      "checkoutButton": "Finalizar Compra",
+      "continueShoppingButton": "Continuar Comprando",
+      "errors": {
+        "addItemFailed": "Não foi possível adicionar o item ao carrinho.",
+        "removeItemFailed": "Não foi possível remover o item do carrinho.",
+        "updateItemFailed": "Não foi possível atualizar a quantidade do item.",
+        "createCartFailed": "Não foi possível criar um novo carrinho.",
+        "emptyCart": "Seu carrinho está vazio e você não pode prosseguir para o checkout.",
+        "checkoutFailed": "Não foi possível iniciar o processo de pagamento."
+      }
+    }
+  }
+}

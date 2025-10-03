@@ -1,0 +1,70 @@
+{
+  "it-IT": {
+    "metadata": {
+      "title": "Global Fitwell",
+      "description": "Il futuro del benessere. Tecnologia e scienza per il tuo potenziale."
+    },
+    "toggleTheme": {
+      "light": "Chiaro",
+      "dark": "Scuro",
+      "system": "Sistema",
+      "toggleAriaLabel": "Attiva/disattiva tema"
+    },
+    "validationError": {
+      "title": "Errore di Validazione Dati per la Sezione: '{{sectionName}}'",
+      "description": "I dati forniti dal CMS o dal file i18n non corrispondono al contratto (schema) richiesto da questo componente. L'app non si bloccherà in produzione, ma questa sezione non verrà renderizzata. Controlla la console per i dettagli tecnici.",
+      "detailsLabel": "Vedi Dettagli Tecnici dell'Errore"
+    }
+  },
+  "es-ES": {
+    "metadata": {
+      "title": "Global Fitwell",
+      "description": "El futuro del bienestar. Tecnología y ciencia para tu potencial."
+    },
+    "toggleTheme": {
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema",
+      "toggleAriaLabel": "Alternar tema"
+    },
+    "validationError": {
+      "title": "Error de Validación de Datos para la Sección: '{{sectionName}}'",
+      "description": "Los datos proporcionados desde el CMS o el archivo i18n no coinciden con el contrato (schema) que este componente requiere. La aplicación no se romperá en producción, pero esta sección no se renderizará. Revisa la consola para detalles técnicos.",
+      "detailsLabel": "Ver Detalles Técnicos del Error"
+    }
+  },
+  "en-US": {
+    "metadata": {
+      "title": "Global Fitwell",
+      "description": "The future of wellness. Technology and science for your potential."
+    },
+    "toggleTheme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System",
+      "toggleAriaLabel": "Toggle theme"
+    },
+    "validationError": {
+      "title": "Data Validation Error for Section: '{{sectionName}}'",
+      "description": "The data provided from the CMS or i18n file does not match the contract (schema) this component requires. The app will not crash in production, but this section will not render. Check the console for technical details.",
+      "detailsLabel": "View Technical Error Details"
+    }
+  },
+  "pt-BR": {
+    "metadata": {
+      "title": "Global Fitwell",
+      "description": "O futuro do bem-estar. Tecnologia e ciência para o seu potencial."
+    },
+    "toggleTheme": {
+      "light": "Claro",
+      "dark": "Escuro",
+      "system": "Sistema",
+      "toggleAriaLabel": "Alternar tema"
+    },
+    "validationError": {
+      "title": "Erro de Validação de Dados para a Seção: '{{sectionName}}'",
+      "description": "Os dados fornecidos pelo CMS ou arquivo i18n não correspondem ao contrato (schema) que este componente exige. O aplicativo não irá quebrar em produção, mas esta seção não será renderizada. Verifique o console para detalhes técnicos.",
+      "detailsLabel": "Ver Detalhes Técnicos do Erro"
+    }
+  }
+}

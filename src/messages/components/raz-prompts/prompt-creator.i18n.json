@@ -1,0 +1,286 @@
+{
+  "it-IT": {
+    "promptCreator": {
+      "titleLabel": "Titolo Descrittivo",
+      "titlePlaceholder": "Es. Immagine di anteprima per Header Standard",
+      "formDescription": "Definisci gli elementi centrali del tuo genoma creativo. Questo genoma verrà archiviato e potrà essere utilizzato per generare o collegare asset visivi.",
+      "promptTextLabel": "Testo del Prompt",
+      "promptTextPlaceholder": "Incolla qui il prompt completo...",
+      "enhanceAILabel": "Perfeziona con IA",
+      "enhanceAIDescription": "Consenti alla nostra IA di perfezionare e ottimizzare il tuo prompt per ottenere risultati migliori e più coerenti.",
+      "tagsGroupLabel": "Tassonomia SESA (Filtri Strutturati)",
+      "parametersGroupLabel": "Parametri di Generazione Immagine",
+      "keywordsLabel": "Parole Chiave (per la ricerca)",
+      "keywordsPlaceholder": "header, ui, preview, cinematic...",
+      "keywordsDescription": "Separate da virgole. Saranno usate per trovare questo prompt più tardi.",
+      "submitButtonText": "Crea Voce e Ottieni ID",
+      "submitButtonLoadingText": "Creazione in corso...",
+      "sesaLabels": {
+        "ai": "IA",
+        "sty": "Stile",
+        "fmt": "Formato",
+        "typ": "Tipo",
+        "sbj": "Soggetto",
+        "styleTypeLabel": "Tipo di Stile",
+        "styleTypePlaceholder": "Scegli tipo...",
+        "aspectRatioLabel": "Proporzioni",
+        "aspectRatioPlaceholder": "Scegli proporzioni..."
+      },
+      "sesaOptions": {
+        "ai": [
+          { "value": "ideo", "label": "Ideogram" },
+          { "value": "mj", "label": "Midjourney" },
+          { "value": "sdxl", "label": "Stable Diffusion" }
+        ],
+        "sty": [
+          { "value": "pht", "label": "Fotorealistico" },
+          { "value": "cin", "label": "Cinematografico" },
+          { "value": "ill", "label": "Illustrazione" }
+        ],
+        "fmt": [
+          { "value": "1x1", "label": "1:1 (Quadrato)" },
+          { "value": "16x9", "label": "16:9 (Orizzontale)" },
+          { "value": "9x16", "label": "9:16 (Verticale)" }
+        ],
+        "typ": [
+          { "value": "ui", "label": "Interfaccia Utente" },
+          { "value": "pht", "label": "Foto" },
+          { "value": "abs", "label": "Astratto" }
+        ],
+        "sbj": [
+          { "value": "abs", "label": "Astratto" },
+          { "value": "wom", "label": "Donna" },
+          { "value": "man", "label": "Uomo" },
+          { "value": "lsc", "label": "Paesaggio" }
+        ]
+      },
+      "parameterOptions": {
+        "styleType": [
+          { "value": "REALISTIC", "label": "Realistico" },
+          { "value": "DESIGN", "label": "Design" },
+          { "value": "FICTION", "label": "Fiction" },
+          { "value": "GENERAL", "label": "Generale" },
+          { "value": "AUTO", "label": "Auto" }
+        ],
+        "aspectRatio": [
+          { "value": "16x9", "label": "16:9 (Orizzontale)" },
+          { "value": "9x16", "label": "9:16 (Verticale)" },
+          { "value": "1x1", "label": "1:1 (Quadrato)" }
+        ]
+      }
+    }
+  },
+  "es-ES": {
+    "promptCreator": {
+      "titleLabel": "Título Descriptivo",
+      "titlePlaceholder": "Ej: Imagen de vista previa para Encabezado Estándar",
+      "formDescription": "Define los elementos centrales de tu genoma creativo. Este genoma será archivado y podrá ser usado para generar o vincular activos visuales.",
+      "promptTextLabel": "Texto del Prompt",
+      "promptTextPlaceholder": "Pega aquí el prompt completo...",
+      "enhanceAILabel": "Perfeccionar con IA",
+      "enhanceAIDescription": "Permite que nuestra IA refine y optimice tu prompt para obtener mejores y más consistentes resultados.",
+      "tagsGroupLabel": "Taxonomía SESA (Filtros Estructurados)",
+      "parametersGroupLabel": "Parámetros de Generación de Imagen",
+      "keywordsLabel": "Palabras Clave (para búsqueda)",
+      "keywordsPlaceholder": "encabezado, ui, vista previa, cinemático...",
+      "keywordsDescription": "Separadas por comas. Se usarán para encontrar este prompt más tarde.",
+      "submitButtonText": "Crear Entrada y Obtener ID",
+      "submitButtonLoadingText": "Creando...",
+      "sesaLabels": {
+        "ai": "IA",
+        "sty": "Estilo",
+        "fmt": "Formato",
+        "typ": "Tipo",
+        "sbj": "Sujeto",
+        "styleTypeLabel": "Tipo de Estilo",
+        "styleTypePlaceholder": "Elige tipo...",
+        "aspectRatioLabel": "Relación de Aspecto",
+        "aspectRatioPlaceholder": "Elige relación..."
+      },
+      "sesaOptions": {
+        "ai": [
+          { "value": "ideo", "label": "Ideogram" },
+          { "value": "mj", "label": "Midjourney" },
+          { "value": "sdxl", "label": "Stable Diffusion" }
+        ],
+        "sty": [
+          { "value": "pht", "label": "Fotorrealista" },
+          { "value": "cin", "label": "Cinemático" },
+          { "value": "ill", "label": "Ilustración" }
+        ],
+        "fmt": [
+          { "value": "1x1", "label": "1:1 (Cuadrado)" },
+          { "value": "16x9", "label": "16:9 (Horizontal)" },
+          { "value": "9x16", "label": "9:16 (Vertical)" }
+        ],
+        "typ": [
+          { "value": "ui", "label": "Interfaz de Usuario" },
+          { "value": "pht", "label": "Foto" },
+          { "value": "abs", "label": "Abstracto" }
+        ],
+        "sbj": [
+          { "value": "abs", "label": "Abstracto" },
+          { "value": "wom", "label": "Mujer" },
+          { "value": "man", "label": "Hombre" },
+          { "value": "lsc", "label": "Paisaje" }
+        ]
+      },
+      "parameterOptions": {
+        "styleType": [
+          { "value": "REALISTIC", "label": "Realista" },
+          { "value": "DESIGN", "label": "Diseño" },
+          { "value": "FICTION", "label": "Ficción" },
+          { "value": "GENERAL", "label": "General" },
+          { "value": "AUTO", "label": "Auto" }
+        ],
+        "aspectRatio": [
+          { "value": "16x9", "label": "16:9 (Horizontal)" },
+          { "value": "9x16", "label": "9:16 (Vertical)" },
+          { "value": "1x1", "label": "1:1 (Cuadrado)" }
+        ]
+      }
+    }
+  },
+  "en-US": {
+    "promptCreator": {
+      "titleLabel": "Descriptive Title",
+      "titlePlaceholder": "E.g., Preview image for Standard Header",
+      "formDescription": "Define the core elements of your creative genome. This genome will be archived and can be used to generate or link visual assets.",
+      "promptTextLabel": "Prompt Text",
+      "promptTextPlaceholder": "Paste the full prompt here...",
+      "enhanceAILabel": "Enhance with AI",
+      "enhanceAIDescription": "Let our AI refine and optimize your prompt for better and more consistent results.",
+      "tagsGroupLabel": "SESA Taxonomy (Structured Filters)",
+      "parametersGroupLabel": "Image Generation Parameters",
+      "keywordsLabel": "Keywords (for search)",
+      "keywordsPlaceholder": "header, ui, preview, cinematic...",
+      "keywordsDescription": "Separated by commas. They will be used to find this prompt later.",
+      "submitButtonText": "Create Entry & Get ID",
+      "submitButtonLoadingText": "Creating...",
+      "sesaLabels": {
+        "ai": "AI",
+        "sty": "Style",
+        "fmt": "Format",
+        "typ": "Type",
+        "sbj": "Subject",
+        "styleTypeLabel": "Style Type",
+        "styleTypePlaceholder": "Choose type...",
+        "aspectRatioLabel": "Aspect Ratio",
+        "aspectRatioPlaceholder": "Choose ratio..."
+      },
+      "sesaOptions": {
+        "ai": [
+          { "value": "ideo", "label": "Ideogram" },
+          { "value": "mj", "label": "Midjourney" },
+          { "value": "sdxl", "label": "Stable Diffusion" }
+        ],
+        "sty": [
+          { "value": "pht", "label": "Photorealistic" },
+          { "value": "cin", "label": "Cinematic" },
+          { "value": "ill", "label": "Illustration" }
+        ],
+        "fmt": [
+          { "value": "1x1", "label": "1:1 (Square)" },
+          { "value": "16x9", "label": "16:9 (Landscape)" },
+          { "value": "9x16", "label": "9:16 (Portrait)" }
+        ],
+        "typ": [
+          { "value": "ui", "label": "User Interface" },
+          { "value": "pht", "label": "Photo" },
+          { "value": "abs", "label": "Abstract" }
+        ],
+        "sbj": [
+          { "value": "abs", "label": "Abstract" },
+          { "value": "wom", "label": "Woman" },
+          { "value": "man", "label": "Man" },
+          { "value": "lsc", "label": "Landscape" }
+        ]
+      },
+      "parameterOptions": {
+        "styleType": [
+          { "value": "REALISTIC", "label": "Realistic" },
+          { "value": "DESIGN", "label": "Design" },
+          { "value": "FICTION", "label": "Fiction" },
+          { "value": "GENERAL", "label": "General" },
+          { "value": "AUTO", "label": "Auto" }
+        ],
+        "aspectRatio": [
+          { "value": "16x9", "label": "16:9 (Landscape)" },
+          { "value": "9x16", "label": "9:16 (Portrait)" },
+          { "value": "1x1", "label": "1:1 (Square)" }
+        ]
+      }
+    }
+  },
+  "pt-BR": {
+    "promptCreator": {
+      "titleLabel": "Título Descritivo",
+      "titlePlaceholder": "Ex: Imagem de pré-visualização para Cabeçalho Padrão",
+      "formDescription": "Defina os elementos centrais do seu genoma criativo. Este genoma será arquivado e pode ser usado para gerar ou vincular ativos visuais.",
+      "promptTextLabel": "Texto do Prompt",
+      "promptTextPlaceholder": "Cole o prompt completo aqui...",
+      "enhanceAILabel": "Aprimorar com IA",
+      "enhanceAIDescription": "Permita que nossa IA refine e otimize seu prompt para obter resultados melhores e mais consistentes.",
+      "tagsGroupLabel": "Taxonomia SESA (Filtros Estruturados)",
+      "parametersGroupLabel": "Parâmetros de Geração de Imagem",
+      "keywordsLabel": "Palavras-chave (para busca)",
+      "keywordsPlaceholder": "cabeçalho, ui, pré-visualização, cinemático...",
+      "keywordsDescription": "Separadas por vírgulas. Serão usadas para encontrar este prompt mais tarde.",
+      "submitButtonText": "Criar Entrada e Obter ID",
+      "submitButtonLoadingText": "Criando...",
+      "sesaLabels": {
+        "ai": "IA",
+        "sty": "Estilo",
+        "fmt": "Formato",
+        "typ": "Tipo",
+        "sbj": "Assunto",
+        "styleTypeLabel": "Tipo de Estilo",
+        "styleTypePlaceholder": "Escolha o tipo...",
+        "aspectRatioLabel": "Proporção da Imagem",
+        "aspectRatioPlaceholder": "Escolha a proporção..."
+      },
+      "sesaOptions": {
+        "ai": [
+          { "value": "ideo", "label": "Ideogram" },
+          { "value": "mj", "label": "Midjourney" },
+          { "value": "sdxl", "label": "Stable Diffusion" }
+        ],
+        "sty": [
+          { "value": "pht", "label": "Fotorrealista" },
+          { "value": "cin", "label": "Cinematográfico" },
+          { "value": "ill", "label": "Ilustração" }
+        ],
+        "fmt": [
+          { "value": "1x1", "label": "1:1 (Quadrado)" },
+          { "value": "16x9", "label": "16:9 (Paisagem)" },
+          { "value": "9x16", "label": "9:16 (Retrato)" }
+        ],
+        "typ": [
+          { "value": "ui", "label": "Interface de Usuário" },
+          { "value": "pht", "label": "Foto" },
+          { "value": "abs", "label": "Abstrato" }
+        ],
+        "sbj": [
+          { "value": "abs", "label": "Abstrato" },
+          { "value": "wom", "label": "Mulher" },
+          { "value": "man", "label": "Homem" },
+          { "value": "lsc", "label": "Paisagem" }
+        ]
+      },
+      "parameterOptions": {
+        "styleType": [
+          { "value": "REALISTIC", "label": "Realista" },
+          { "value": "DESIGN", "label": "Design" },
+          { "value": "FICTION", "label": "Ficção" },
+          { "value": "GENERAL", "label": "Geral" },
+          { "value": "AUTO", "label": "Auto" }
+        ],
+        "aspectRatio": [
+          { "value": "16x9", "label": "16:9 (Paisagem)" },
+          { "value": "9x16", "label": "9:16 (Retrato)" },
+          { "value": "1x1", "label": "1:1 (Quadrado)" }
+        ]
+      }
+    }
+  }
+}

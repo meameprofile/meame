@@ -1,0 +1,38 @@
+{
+  "it-IT": {
+    "devCampaignSimulatorPage": {
+      "title": "Simulatore di Campagne",
+      "subtitle": "Seleziona una variante di campagna per visualizzare l'anteprima della landing page.",
+      "campaignLabel": "Campagna",
+      "variantLabel": "Variante",
+      "descriptionLabel": "Descrizione"
+    }
+  },
+  "es-ES": {
+    "devCampaignSimulatorPage": {
+      "title": "Simulador de Campañas",
+      "subtitle": "Seleccione una variante de campaña para previsualizar la landing page.",
+      "campaignLabel": "Campaña",
+      "variantLabel": "Variante",
+      "descriptionLabel": "Descripción"
+    }
+  },
+  "en-US": {
+    "devCampaignSimulatorPage": {
+      "title": "Campaign Simulator",
+      "subtitle": "Select a campaign variant to preview the landing page.",
+      "campaignLabel": "Campaign",
+      "variantLabel": "Variant",
+      "descriptionLabel": "Description"
+    }
+  },
+  "pt-BR": {
+    "devCampaignSimulatorPage": {
+      "title": "Simulador de Campanhas",
+      "subtitle": "Selecione uma variante de campanha para pré-visualizar a landing page.",
+      "campaignLabel": "Campanha",
+      "variantLabel": "Variante",
+      "descriptionLabel": "Descrição"
+    }
+  }
+}

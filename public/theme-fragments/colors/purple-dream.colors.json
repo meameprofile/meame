@@ -1,0 +1,38 @@
+{
+  "colors": {
+    "background": "280 20% 98%",
+    "foreground": "280 10% 10%",
+    "card": "0 0% 100%",
+    "cardForeground": "280 10% 10%",
+    "popover": "0 0% 100%",
+    "popoverForeground": "280 10% 10%",
+    "primary": "280 70% 50%",
+    "primaryForeground": "0 0% 98%",
+    "secondary": "280 20% 90%",
+    "secondaryForeground": "280 10% 20%",
+    "muted": "280 20% 95%",
+    "mutedForeground": "280 5% 50%",
+    "accent": "320 80% 50%",
+    "accentForeground": "0 0% 98%",
+    "destructive": "0 84% 60%",
+    "destructiveForeground": "0 0% 98%",
+    "dark": {
+      "background": "280 15% 10%",
+      "foreground": "280 10% 90%",
+      "card": "280 15% 15%",
+      "cardForeground": "280 10% 90%",
+      "popover": "280 15% 15%",
+      "popoverForeground": "280 10% 90%",
+      "primary": "280 70% 70%",
+      "primaryForeground": "0 0% 10%",
+      "secondary": "280 15% 20%",
+      "secondaryForeground": "280 10% 80%",
+      "muted": "280 15% 20%",
+      "mutedForeground": "280 5% 60%",
+      "accent": "320 80% 70%",
+      "accentForeground": "0 0% 10%",
+      "destructive": "0 72% 50%",
+      "destructiveForeground": "0 0% 98%"
+    }
+  }
+}

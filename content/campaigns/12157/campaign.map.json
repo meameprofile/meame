@@ -1,0 +1,43 @@
+{
+  "productId": "12157",
+  "campaignName": "Curcumin Spirulina Saffron",
+  "description": "Manifiesto de Mapeo v5.0. Utiliza la Nomenclatura Estructurada de Trazos (NET) en la clave 'theme'.",
+  "variants": {
+    "01": {
+      "name": "Scientific",
+      "description": "Ángulo de marketing enfocado en la ciencia, credibilidad y datos.",
+      "content": "./content/12157_20250910_CONTENT_01_scientific.json",
+      "theme": "cp-scientific.ft-default-sans.rd-sharp",
+      "variantSlug": "scientific",
+      "seoKeywordSlug": "benessere-evidenza-scientifica",
+      "themeOverrides": {}
+    },
+    "02": {
+      "name": "Vitality",
+      "description": "Ángulo de marketing enfocado en la emoción, energía y aspiración.",
+      "content": "./content/12157_20250910_CONTENT_02_vitality.json",
+      "theme": "cp-vitality.ft-poppins-inter.rd-soft",
+      "variantSlug": "vitality",
+      "seoKeywordSlug": "energia-e-benessere-naturale",
+      "themeOverrides": {}
+    },
+    "03": {
+      "name": "Nature",
+      "description": "Ángulo enfocado en la exclusividad, el misterio y la potencia natural.",
+      "content": "./content/campaigns/12157/content/12157_20250910_CONTENT_03_nature.json",
+      "theme": "cp-nature.ft-poppins-inter.rd-default",
+      "variantSlug": "nature",
+      "seoKeywordSlug": "segreto-potenza-naturale",
+      "themeOverrides": {}
+    },
+    "04": {
+      "name": "Metabolism",
+      "description": "Ángulo enfocado en el apoyo a la gestión del peso y el metabolismo.",
+      "content": "./content/12157_20250910_CONTENT_04_metabolism.json",
+      "theme": "cp-metabolism.ft-default-sans.rd-default",
+      "variantSlug": "metabolism",
+      "seoKeywordSlug": "supporto-metabolismo-intelligente",
+      "themeOverrides": {}
+    }
+  }
+}

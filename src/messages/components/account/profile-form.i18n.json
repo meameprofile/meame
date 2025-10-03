@@ -1,0 +1,46 @@
+{
+  "it-IT": {
+    "profileForm": {
+      "title": "Profilo Pubblico",
+      "description": "Queste informazioni potrebbero essere visibili ad altri utenti.",
+      "emailLabel": "Email",
+      "fullNameLabel": "Nome Completo",
+      "saveButtonText": "Salva Modifiche",
+      "successToast": "Profilo aggiornato con successo!",
+      "errorToastTitle": "Errore nell'aggiornamento del profilo"
+    }
+  },
+  "es-ES": {
+    "profileForm": {
+      "title": "Perfil Público",
+      "description": "Esta información podría ser visible para otros usuarios.",
+      "emailLabel": "Email",
+      "fullNameLabel": "Nombre Completo",
+      "saveButtonText": "Guardar Cambios",
+      "successToast": "¡Perfil actualizado con éxito!",
+      "errorToastTitle": "Error al actualizar el perfil"
+    }
+  },
+  "en-US": {
+    "profileForm": {
+      "title": "Public Profile",
+      "description": "This information may be visible to other users.",
+      "emailLabel": "Email",
+      "fullNameLabel": "Full Name",
+      "saveButtonText": "Save Changes",
+      "successToast": "Profile updated successfully!",
+      "errorToastTitle": "Error updating profile"
+    }
+  },
+  "pt-BR": {
+    "profileForm": {
+      "title": "Perfil Público",
+      "description": "Esta informação pode ser visível para outros usuários.",
+      "emailLabel": "Email",
+      "fullNameLabel": "Nome Completo",
+      "saveButtonText": "Salvar Alterações",
+      "successToast": "Perfil atualizado com sucesso!",
+      "errorToastTitle": "Erro ao atualizar o perfil"
+    }
+  }
+}

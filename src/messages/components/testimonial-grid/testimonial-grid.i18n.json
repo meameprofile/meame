@@ -1,0 +1,102 @@
+{
+  "it-IT": {
+    "testimonialGrid": {
+      "title": "Storie Vere dai Nostri Clienti",
+      "testimonials": [
+        {
+          "quote": "Ho ripreso a fare le mie passeggiate mattutine senza quel fastidio al ginocchio. È una sensazione di libertà impagabile.",
+          "author": "Elena R.",
+          "location": "Milano, IT",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+        },
+        {
+          "quote": "Incredibile! La qualità e l'attenzione ai dettagli sono di un altro livello. Lo consiglio vivamente a chiunque.",
+          "author": "Marco Conti",
+          "location": "Roma, IT",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_marco-c.jpg"
+        },
+        {
+          "quote": "All'inizio ero scettico, ma i risultati parlano da soli. Ha superato di gran lunga le mie aspettative.",
+          "author": "Giulia Ferrari",
+          "location": "Napoli, IT",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_giulia-f.jpg"
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "testimonialGrid": {
+      "title": "Historias Reales de Nuestros Clientes",
+      "testimonials": [
+        {
+          "quote": "He vuelto a mis paseos matutinos sin esa molestia en la rodilla. Es una sensación de libertad impagable.",
+          "author": "Elena R.",
+          "location": "Madrid, ES",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+        },
+        {
+          "quote": "¡Increíble! La calidad y la atención al detalle están en otro nivel. Lo recomiendo encarecidamente a cualquiera.",
+          "author": "Carlos Gómez",
+          "location": "Barcelona, ES",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_marco-c.jpg"
+        },
+        {
+          "quote": "Al principio era escéptica, pero los resultados hablan por sí solos. Superó con creces mis expectativas.",
+          "author": "Sofía López",
+          "location": "Valencia, ES",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_giulia-f.jpg"
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "testimonialGrid": {
+      "title": "Real Stories From Our Customers",
+      "testimonials": [
+        {
+          "quote": "I'm back to my morning walks without that knee discomfort. It's a priceless feeling of freedom.",
+          "author": "Elena R.",
+          "location": "New York, US",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+        },
+        {
+          "quote": "Amazing! The quality and attention to detail are next level. I highly recommend it to anyone.",
+          "author": "John Smith",
+          "location": "London, UK",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_marco-c.jpg"
+        },
+        {
+          "quote": "I was skeptical at first, but the results speak for themselves. It far exceeded my expectations.",
+          "author": "Emily Johnson",
+          "location": "Sydney, AU",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_giulia-f.jpg"
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "testimonialGrid": {
+      "title": "Histórias Reais de Nossos Clientes",
+      "testimonials": [
+        {
+          "quote": "Voltei às minhas caminhadas matinais sem aquele incômodo no joelho. É uma sensação de liberdade impagável.",
+          "author": "Elena R.",
+          "location": "São Paulo, BR",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+        },
+        {
+          "quote": "Incrível! A qualidade e a atenção aos detalhes estão em outro nível. Recomendo fortemente a qualquer um.",
+          "author": "Lucas Silva",
+          "location": "Rio de Janeiro, BR",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_marco-c.jpg"
+        },
+        {
+          "quote": "Eu estava cética no início, mas os resultados falam por si. Superou em muito as minhas expectativas.",
+          "author": "Juliana Costa",
+          "location": "Belo Horizonte, BR",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_giulia-f.jpg"
+        }
+      ]
+    }
+  }
+}

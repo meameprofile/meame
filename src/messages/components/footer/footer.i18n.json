@@ -1,0 +1,182 @@
+{
+  "it-IT": {
+    "footer": {
+      "logoName": "Global Fitwell",
+      "newsletter": {
+        "title": "Rimani Aggiornato con Global Fitwell",
+        "description": "Ottieni consigli esclusivi sul benessere, approfondimenti scientifici e offerte speciali direttamente nella tua casella di posta.",
+        "placeholder": "La tua migliore email",
+        "buttonText": "Iscriviti Ora",
+        "buttonAriaLabel": "Invia la tua email per iscriverti alla newsletter"
+      },
+      "linkColumns": [
+        {
+          "title": "Azienda",
+          "links": [
+            { "label": "Chi Siamo", "href": "/it-IT/about" },
+            { "label": "Blog / Notizie", "href": "/it-IT/news" }
+          ]
+        },
+        { "title": "Risorse", "links": [{ "label": "FAQ", "href": "#" }] },
+        {
+          "title": "Legale",
+          "links": [
+            { "label": "Termini di Servizio", "href": "/it-IT/terms" },
+            { "label": "Politica sulla Privacy", "href": "/it-IT/privacy" },
+            { "label": "Politica sui Cookie", "href": "/it-IT/cookies" }
+          ]
+        }
+      ],
+      "socialLinks": [
+        { "name": "X (Twitter)", "url": "https://x.com", "icon": "Twitter" },
+        {
+          "name": "Instagram",
+          "url": "https://instagram.com",
+          "icon": "Instagram"
+        },
+        { "name": "Youtube", "url": "https://youtube.com", "icon": "Youtube" }
+      ],
+      "copyright": "© 2025 Global Fitwell. Tutti i diritti riservati.",
+      "disclaimer": "Le informazioni fornite su questo sito sono solo a scopo informativo. I prodotti qui presentati non sono destinati a diagnosticare, trattare, curare o prevenire alcuna malattia.",
+      "developerLink": {
+        "label": "Sviluppato da RaZ Podestá - MetaShark Tech",
+        "href": "https://metashark.tech"
+      }
+    }
+  },
+  "es-ES": {
+    "footer": {
+      "logoName": "Global Fitwell",
+      "newsletter": {
+        "title": "Mantente Actualizado con Global Fitwell",
+        "description": "Recibe consejos exclusivos de bienestar, investigaciones científicas y ofertas especiales directamente en tu bandeja de entrada.",
+        "placeholder": "Tu mejor email",
+        "buttonText": "Suscribirse Ahora",
+        "buttonAriaLabel": "Enviar tu correo electrónico para suscribirte al boletín"
+      },
+      "linkColumns": [
+        {
+          "title": "Empresa",
+          "links": [
+            { "label": "Sobre Nosotros", "href": "/es-ES/about" },
+            { "label": "Blog / Noticias", "href": "/es-ES/news" }
+          ]
+        },
+        { "title": "Recursos", "links": [{ "label": "FAQ", "href": "#" }] },
+        {
+          "title": "Legal",
+          "links": [
+            { "label": "Términos de Servicio", "href": "/es-ES/terms" },
+            { "label": "Política de Privacidad", "href": "/es-ES/privacy" },
+            { "label": "Política de Cookies", "href": "/es-ES/cookies" }
+          ]
+        }
+      ],
+      "socialLinks": [
+        { "name": "X (Twitter)", "url": "https://x.com", "icon": "Twitter" },
+        {
+          "name": "Instagram",
+          "url": "https://instagram.com",
+          "icon": "Instagram"
+        },
+        { "name": "Youtube", "url": "https://youtube.com", "icon": "Youtube" }
+      ],
+      "copyright": "© 2025 Global Fitwell. Todos los derechos reservados.",
+      "disclaimer": "La información proporcionada en este sitio es solo para fines informativos. Los productos aquí presentados no están destinados a diagnosticar, tratar, curar o prevenir ninguna enfermedad.",
+      "developerLink": {
+        "label": "Desarrollado por RaZ Podestá - MetaShark Tech",
+        "href": "https://metashark.tech"
+      }
+    }
+  },
+  "en-US": {
+    "footer": {
+      "logoName": "Global Fitwell",
+      "newsletter": {
+        "title": "Stay Updated with Global Fitwell",
+        "description": "Get exclusive wellness tips, scientific research insights, and special offers delivered directly to your inbox.",
+        "placeholder": "Your best email",
+        "buttonText": "Subscribe Now",
+        "buttonAriaLabel": "Submit your email to subscribe to the newsletter"
+      },
+      "linkColumns": [
+        {
+          "title": "Company",
+          "links": [
+            { "label": "About Us", "href": "/en-US/about" },
+            { "label": "Blog / News", "href": "/en-US/news" }
+          ]
+        },
+        { "title": "Resources", "links": [{ "label": "FAQ", "href": "#" }] },
+        {
+          "title": "Legal",
+          "links": [
+            { "label": "Terms of Service", "href": "/en-US/terms" },
+            { "label": "Privacy Policy", "href": "/en-US/privacy" },
+            { "label": "Cookie Policy", "href": "/en-US/cookies" }
+          ]
+        }
+      ],
+      "socialLinks": [
+        { "name": "X (Twitter)", "url": "https://x.com", "icon": "Twitter" },
+        {
+          "name": "Instagram",
+          "url": "https://instagram.com",
+          "icon": "Instagram"
+        },
+        { "name": "Youtube", "url": "https://youtube.com", "icon": "Youtube" }
+      ],
+      "copyright": "© 2025 Global Fitwell. All rights reserved.",
+      "disclaimer": "The information provided on this site is for informational purposes only. The products featured here are not intended to diagnose, treat, cure, or prevent any disease.",
+      "developerLink": {
+        "label": "Developed by RaZ Podestá - MetaShark Tech",
+        "href": "https://metashark.tech"
+      }
+    }
+  },
+  "pt-BR": {
+    "footer": {
+      "logoName": "Global Fitwell",
+      "newsletter": {
+        "title": "Mantenha-se Atualizado com a Global Fitwell",
+        "description": "Receba dicas exclusivas de bem-estar, insights de pesquisas científicas e ofertas especiais diretamente na sua caixa de entrada.",
+        "placeholder": "Seu melhor e-mail",
+        "buttonText": "Inscreva-se Agora",
+        "buttonAriaLabel": "Envie seu e-mail para se inscrever na newsletter"
+      },
+      "linkColumns": [
+        {
+          "title": "Empresa",
+          "links": [
+            { "label": "Sobre Nós", "href": "/pt-BR/about" },
+            { "label": "Blog / Notícias", "href": "/pt-BR/news" }
+          ]
+        },
+        { "title": "Recursos", "links": [{ "label": "FAQ", "href": "#" }] },
+        {
+          "title": "Legal",
+          "links": [
+            { "label": "Termos de Serviço", "href": "/pt-BR/terms" },
+            { "label": "Política de Privacidade", "href": "/pt-BR/privacy" },
+            { "label": "Política de Cookies", "href": "/pt-BR/cookies" }
+          ]
+        }
+      ],
+      "socialLinks": [
+        { "name": "X (Twitter)", "url": "https://x.com", "icon": "Twitter" },
+        {
+          "name": "Instagram",
+          "url": "https://instagram.com",
+          "icon": "Instagram"
+        },
+        { "name": "Youtube", "url": "https://youtube.com", "icon": "Youtube" }
+      ],
+      "copyright": "© 2025 Global Fitwell. Todos os direitos reservados.",
+      "disclaimer": "As informações fornecidas neste site são apenas para fins informativos. Os produtos aqui apresentados não se destinam a diagnosticar, tratar, curar ou prevenir qualquer doença.",
+      "developerLink": {
+        "label": "Desenvolvido por RaZ Podestá - MetaShark Tech",
+        "href": "https://metashark.tech"
+      }
+    }
+  }
+}

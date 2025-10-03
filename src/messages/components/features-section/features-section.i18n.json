@@ -1,0 +1,80 @@
+{
+  "it-IT": {
+    "featuresSection": {
+      "eyebrow": "Caratteristiche",
+      "title": "Cosa Ci Rende Diversi",
+      "subtitle": "Progettato per la velocità, la scalabilità e un'esperienza di sviluppo che ti consente di concentrarti su ciò che conta: creare.",
+      "features": [
+        {
+          "icon": "TabletSmartphone",
+          "title": "Mobile-First",
+          "description": "Ogni componente è progettato prima per il mobile, garantendo un'esperienza perfetta su tutti i dispositivi."
+        },
+        {
+          "icon": "BadgeCheck",
+          "title": "Prova Sociale Integrata",
+          "description": "Componenti pronti all'uso per testimonianze e loghi per costruire fiducia e credibilità istantaneamente."
+        },
+        {
+          "icon": "Goal",
+          "title": "Contenuto Orientato",
+          "description": "L'architettura i18n ti permette di adattare il tuo messaggio per diversi mercati e segmenti di pubblico."
+        },
+        {
+          "icon": "PictureInPicture",
+          "title": "Immagini Forti",
+          "description": "Supporto per immagini ottimizzate con Next.js per garantire tempi di caricamento rapidi e un impatto visivo elevato."
+        },
+        {
+          "icon": "MousePointerClick",
+          "title": "CTA Chiari",
+          "description": "Componenti di pulsanti e moduli progettati per guidare l'utente verso l'azione, massimizzando le conversioni."
+        },
+        {
+          "icon": "Newspaper",
+          "title": "Titoli Chiari",
+          "description": "Struttura semantica e gerarchia tipografica per garantire che i tuoi messaggi principali siano sempre in primo piano."
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "featuresSection": {
+      "eyebrow": "Características",
+      "title": "Qué Nos Hace Diferentes",
+      "subtitle": "Diseñado para la velocidad, la escalabilidad y una experiencia de desarrollador que te permite centrarte en lo que importa: crear.",
+      "features": [
+        {
+          "icon": "TabletSmartphone",
+          "title": "Mobile-First",
+          "description": "Cada componente se diseña primero para móvil, garantizando una experiencia perfecta en todos los dispositivos."
+        },
+        {
+          "icon": "BadgeCheck",
+          "title": "Prueba Social Integrada",
+          "description": "Componentes listos para usar para testimonios y logos para construir confianza y credibilidad al instante."
+        },
+        {
+          "icon": "Goal",
+          "title": "Contenido Dirigido",
+          "description": "La arquitectura i18n te permite adaptar tu mensaje para diferentes mercados y segmentos de audiencia."
+        },
+        {
+          "icon": "PictureInPicture",
+          "title": "Visuales Fuertes",
+          "description": "Soporte para imágenes optimizadas con Next.js para garantizar tiempos de carga rápidos y un alto impacto visual."
+        },
+        {
+          "icon": "MousePointerClick",
+          "title": "CTA Claros",
+          "description": "Componentes de botones y formularios diseñados para guiar al usuario a la acción, maximizando las conversiones."
+        },
+        {
+          "icon": "Newspaper",
+          "title": "Titulares Claros",
+          "description": "Estructura semántica y jerarquía tipográfica para asegurar que tus mensajes principales estén siempre al frente."
+        }
+      ]
+    }
+  }
+}

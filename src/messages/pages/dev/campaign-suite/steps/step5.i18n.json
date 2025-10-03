@@ -1,0 +1,166 @@
+{
+  "it-IT": {
+    "step5": {
+      "title": "Passo 5: Gestione e Pubblicazione",
+      "description": "Sei all'ultimo passo. Rivedi la configurazione e scegli l'azione finale per la tua nuova variante di campagna.",
+      "summaryTitle": "Riepilogo della Configurazione",
+      "summaryPlaceholder": "Anteprima della configurazione della campagna...",
+      "checklistTitle": "Checklist di Pre-lancio",
+      "artifactHistory": {
+        "title": "Storico degli Artefatti",
+        "loadingHistoryText": "Caricamento dello storico...",
+        "emptyStateText": "Ancora non sono state generate esportazioni per questa bozza.",
+        "downloadButtonText": "Scarica",
+        "downloadingButtonText": "Scaricando...",
+        "errorLoadingHistory": "Errore nel caricamento dello storico",
+        "errorDownloading": "Errore nel download"
+      },
+      "publishButtonText": "Pubblica sul Sito",
+      "packageButtonText": "Esporta come .zip",
+      "deleteButtonText": "Elimina Bozze",
+      "templateButtonText": "Salva come Template",
+      "deleteDialog": {
+        "title": "Sei assolutamente sicuro?",
+        "description": "Questa azione è irreversibile. Per confermare, digita il nome della variante e la frase di conferma.",
+        "cancelButton": "Annulla",
+        "confirmButton": "Sì, Elimina Permanentemente",
+        "draftNameLabel": "Nome della Variante",
+        "confirmationTextLabel": "Digita 'autorizzo delete' per confermare",
+        "confirmationTextPlaceholder": "autorizzo delete"
+      },
+      "templateDialog": {
+        "title": "Salva come Template",
+        "description": "Salva la configurazione attuale come un template riutilizzabile per future campagne.",
+        "nameLabel": "Nome del Template",
+        "namePlaceholder": "Es. Template di Vendita Diretta...",
+        "descriptionLabel": "Descrizione",
+        "descriptionPlaceholder": "Per campagne con focus su...",
+        "saveButton": "Salva Template",
+        "cancelButton": "Annulla"
+      }
+    }
+  },
+  "es-ES": {
+    "step5": {
+      "title": "Paso 5: Gestión y Publicación",
+      "description": "Estás en el último paso. Revisa la configuración y elige la acción final para tu nueva variante de campaña.",
+      "summaryTitle": "Resumen de la Configuración",
+      "summaryPlaceholder": "Vista previa de la configuración de la campaña...",
+      "checklistTitle": "Checklist de Prelanzamiento",
+      "artifactHistory": {
+        "title": "Historial de Artefactos",
+        "loadingHistoryText": "Cargando historial...",
+        "emptyStateText": "Aún no se han generado exportaciones para este borrador.",
+        "downloadButtonText": "Descargar",
+        "downloadingButtonText": "Descargando...",
+        "errorLoadingHistory": "Error al cargar el historial",
+        "errorDownloading": "Error en la descarga"
+      },
+      "publishButtonText": "Publicar en el Sitio",
+      "packageButtonText": "Exportar como .zip",
+      "deleteButtonText": "Eliminar Borrador",
+      "templateButtonText": "Guardar como Plantilla",
+      "deleteDialog": {
+        "title": "¿Estás absolutamente seguro?",
+        "description": "Esta acción es irreversible. Para confirmar, escribe el nombre de la variante y la frase de confirmación.",
+        "cancelButton": "Cancelar",
+        "confirmButton": "Sí, Eliminar Permanentemente",
+        "draftNameLabel": "Nombre de la Variante",
+        "confirmationTextLabel": "Escribe 'autorizo delete' para confirmar",
+        "confirmationTextPlaceholder": "autorizo delete"
+      },
+      "templateDialog": {
+        "title": "Guardar como Plantilla",
+        "description": "Guarda la configuración actual como una plantilla reutilizable para futuras campañas.",
+        "nameLabel": "Nombre de la Plantilla",
+        "namePlaceholder": "Ej. Plantilla de Venta Directa...",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Para campañas con enfoque en...",
+        "saveButton": "Guardar Plantilla",
+        "cancelButton": "Cancelar"
+      }
+    }
+  },
+  "en-US": {
+    "step5": {
+      "title": "Step 5: Management & Publishing",
+      "description": "You're at the final step. Review the configuration and choose the final action for your new campaign variant.",
+      "summaryTitle": "Configuration Summary",
+      "summaryPlaceholder": "Preview of the campaign configuration...",
+      "checklistTitle": "Pre-launch Checklist",
+      "artifactHistory": {
+        "title": "Artifact History",
+        "loadingHistoryText": "Loading history...",
+        "emptyStateText": "No exports have been generated for this draft yet.",
+        "downloadButtonText": "Download",
+        "downloadingButtonText": "Downloading...",
+        "errorLoadingHistory": "Error loading history",
+        "errorDownloading": "Download error"
+      },
+      "publishButtonText": "Publish to Site",
+      "packageButtonText": "Export as .zip",
+      "deleteButtonText": "Delete Draft",
+      "templateButtonText": "Save as Template",
+      "deleteDialog": {
+        "title": "Are you absolutely sure?",
+        "description": "This action is irreversible. To confirm, type the variant name and the confirmation phrase.",
+        "cancelButton": "Cancel",
+        "confirmButton": "Yes, Permanently Delete",
+        "draftNameLabel": "Variant Name",
+        "confirmationTextLabel": "Type 'authorize delete' to confirm",
+        "confirmationTextPlaceholder": "authorize delete"
+      },
+      "templateDialog": {
+        "title": "Save as Template",
+        "description": "Save the current configuration as a reusable template for future campaigns.",
+        "nameLabel": "Template Name",
+        "namePlaceholder": "E.g., Direct Sale Template...",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "For campaigns focused on...",
+        "saveButton": "Save Template",
+        "cancelButton": "Cancel"
+      }
+    }
+  },
+  "pt-BR": {
+    "step5": {
+      "title": "Passo 5: Gerenciamento e Publicação",
+      "description": "Você está no último passo. Revise a configuração e escolha a ação final para sua nova variante de campanha.",
+      "summaryTitle": "Resumo da Configuração",
+      "summaryPlaceholder": "Pré-visualização da configuração da campanha...",
+      "checklistTitle": "Checklist de Pré-lançamento",
+      "artifactHistory": {
+        "title": "Histórico de Artefatos",
+        "loadingHistoryText": "Carregando histórico...",
+        "emptyStateText": "Nenhuma exportação foi gerada para este rascunho ainda.",
+        "downloadButtonText": "Baixar",
+        "downloadingButtonText": "Baixando...",
+        "errorLoadingHistory": "Erro ao carregar o histórico",
+        "errorDownloading": "Erro no download"
+      },
+      "publishButtonText": "Publicar no Site",
+      "packageButtonText": "Exportar como .zip",
+      "deleteButtonText": "Excluir Rascunho",
+      "templateButtonText": "Salvar como Modelo",
+      "deleteDialog": {
+        "title": "Você tem certeza absoluta?",
+        "description": "Esta ação é irreversível. Para confirmar, digite o nome da variante e a frase de confirmação.",
+        "cancelButton": "Cancelar",
+        "confirmButton": "Sim, Excluir Permanentemente",
+        "draftNameLabel": "Nome da Variante",
+        "confirmationTextLabel": "Digite 'autorizo delete' para confirmar",
+        "confirmationTextPlaceholder": "autorizo delete"
+      },
+      "templateDialog": {
+        "title": "Salvar como Modelo",
+        "description": "Salve a configuração atual como um modelo reutilizável para futuras campanhas.",
+        "nameLabel": "Nome do Modelo",
+        "namePlaceholder": "Ex: Modelo de Venda Direta...",
+        "descriptionLabel": "Descrição",
+        "descriptionPlaceholder": "Para campanhas com foco em...",
+        "saveButton": "Salvar Modelo",
+        "cancelButton": "Cancelar"
+      }
+    }
+  }
+}

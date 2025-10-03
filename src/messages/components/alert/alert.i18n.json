@@ -1,0 +1,26 @@
+{
+  "it-IT": {
+    "alert": {
+      "title": "Allerta",
+      "description": "Questo è un componente di allerta per notifiche importanti."
+    }
+  },
+  "es-ES": {
+    "alert": {
+      "title": "Alerta",
+      "description": "Este es un componente de alerta para notificaciones importantes."
+    }
+  },
+  "en-US": {
+    "alert": {
+      "title": "Alert",
+      "description": "This is an alert component for important notifications."
+    }
+  },
+  "pt-BR": {
+    "alert": {
+      "title": "Alerta",
+      "description": "Este é um componente de alerta para notificações importantes."
+    }
+  }
+}

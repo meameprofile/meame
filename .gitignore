@@ -1,0 +1,86 @@
+# .gitignore
+# ==============================================================================
+# Manifiesto de Archivos Ignorados para Curcumin Simplex v1.0
+#
+# Este archivo es la SSoT que define qué archivos y directorios deben ser
+# excluidos del control de versiones de Git. Está optimizado para un flujo de
+# trabajo con Node.js, Next.js, pnpm y despliegues en Vercel.
+# ==============================================================================
+
+# 1. Dependencias y Artefactos del Gestor de Paquetes
+# ------------------------------------------------------------------------------
+# El directorio node_modules contiene todas las dependencias instaladas.
+# Nunca debe ser versionado. El archivo pnpm-lock.yaml SÍ debe ser versionado.
+node_modules/
+vendor
+
+# 2. Artefactos de Build y Caching (Next.js / Vercel)
+# ------------------------------------------------------------------------------
+# Directorios generados durante los procesos de desarrollo, build y despliegue.
+# Contienen la aplicación compilada y cachés, son efímeros.
+.next/
+out/
+build/
+.vercel/
+
+# 3. Archivos de Log y Debugging
+# ------------------------------------------------------------------------------
+# Archivos generados para depuración o por herramientas en tiempo de ejecución.
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 4. Variables de Entorno y Secretos
+# ------------------------------------------------------------------------------
+# CRÍTICO PARA LA SEGURIDAD: Estos archivos contienen secretos y configuración
+# específica del entorno. NUNCA deben ser versionados.
+.env
+.env.*
+.env.local
+.env.*.local
+.env.sentry-build-plugin
+
+# 5. Reportes y Caches de Herramientas de Testing
+# ------------------------------------------------------------------------------
+# Artefactos generados por Playwright y Vitest.
+coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# 6. Documentación de Desarrollo y Reportes del Proyecto (Petición Específica)
+# ------------------------------------------------------------------------------
+# Se excluyen los manifiestos de desarrollo y los reportes de snapshot.
+.docs/
+snapshot-reports/
+reports
+
+# 7. Archivos de Sistema Operativo y Editor de Código
+# ------------------------------------------------------------------------------
+# Archivos de metadatos generados por el SO o editores que son específicos
+# de la máquina de cada desarrollador.
+.DS_Store
+Thumbs.db
+.vscode/ # Ignorar configuración local, excepto lo que se quiera compartir (ej. .vscode/settings.json)
+!.vscode/settings.json # Ejemplo de excepción
+
+# 8. Activos Estáticos (Imágenes, PDFs, etc.) - NOTA IMPORTANTE
+# ------------------------------------------------------------------------------
+# NO se debe ignorar globalmente los activos como *.jpg, *.png, *.pdf.
+# Los archivos en el directorio /public DEBEN ser versionados para que se
+# desplieguen correctamente en Vercel.
+#
+# Descomente las siguientes líneas SOLO si tiene casos de uso muy específicos
+# donde se generan imágenes o PDFs localmente que NO deben ir a producción.
+#
+# *.png
+# *.jpg
+# *.jpeg
+# *.gif
+# *.webp
+# *.svg
+*.pdf
+
+# .gitignore

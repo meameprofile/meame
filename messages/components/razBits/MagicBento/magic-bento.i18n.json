@@ -1,0 +1,198 @@
+{
+  "it-IT": {
+    "magicBento": {
+      "config": {
+        "textAutoHide": true,
+        "enableStars": true,
+        "enableSpotlight": true,
+        "enableBorderGlow": true,
+        "enableTilt": true,
+        "glowColor": "accent",
+        "disableAnimations": false,
+        "spotlightRadius": 300,
+        "particleCount": 12,
+        "clickEffect": true,
+        "enableMagnetism": true
+      },
+      "cards": [
+        {
+          "title": "Analisi Avanzata",
+          "description": "Traccia il comportamento degli utenti con precisione.",
+          "label": "Intuizioni"
+        },
+        {
+          "title": "Dashboard Unificata",
+          "description": "Una vista centralizzata di tutti i tuoi dati.",
+          "label": "Panoramica"
+        },
+        {
+          "title": "Collaborazione",
+          "description": "Lavora in team senza interruzioni.",
+          "label": "Squadra"
+        },
+        {
+          "title": "Automazione",
+          "description": "Semplifica i flussi di lavoro complessi.",
+          "label": "Efficienza"
+        },
+        {
+          "title": "Integrazione",
+          "description": "Connetti i tuoi strumenti preferiti.",
+          "label": "Connettività"
+        },
+        {
+          "title": "Sicurezza",
+          "description": "Protezione di livello enterprise per i tuoi dati.",
+          "label": "Protezione"
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "magicBento": {
+      "config": {
+        "textAutoHide": true,
+        "enableStars": true,
+        "enableSpotlight": true,
+        "enableBorderGlow": true,
+        "enableTilt": true,
+        "glowColor": "primary",
+        "disableAnimations": false,
+        "spotlightRadius": 300,
+        "particleCount": 12,
+        "clickEffect": true,
+        "enableMagnetism": true
+      },
+      "cards": [
+        {
+          "title": "Análisis Avanzado",
+          "description": "Rastrea el comportamiento del usuario con precisión.",
+          "label": "Insights"
+        },
+        {
+          "title": "Dashboard Unificado",
+          "description": "Una vista centralizada de todos tus datos.",
+          "label": "Visión General"
+        },
+        {
+          "title": "Colaboración",
+          "description": "Trabaja en equipo sin interrupciones.",
+          "label": "Equipo"
+        },
+        {
+          "title": "Automatización",
+          "description": "Simplifica los flujos de trabajo complejos.",
+          "label": "Eficiencia"
+        },
+        {
+          "title": "Integración",
+          "description": "Conecta tus herramientas favoritas.",
+          "label": "Conectividad"
+        },
+        {
+          "title": "Seguridad",
+          "description": "Protección a nivel empresarial para tus datos.",
+          "label": "Protección"
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "magicBento": {
+      "config": {
+        "textAutoHide": true,
+        "enableStars": true,
+        "enableSpotlight": true,
+        "enableBorderGlow": true,
+        "enableTilt": true,
+        "glowColor": "primary",
+        "disableAnimations": false,
+        "spotlightRadius": 300,
+        "particleCount": 12,
+        "clickEffect": true,
+        "enableMagnetism": true
+      },
+      "cards": [
+        {
+          "title": "Advanced Analytics",
+          "description": "Track user behavior with precision.",
+          "label": "Insights"
+        },
+        {
+          "title": "Unified Dashboard",
+          "description": "A centralized view of all your data.",
+          "label": "Overview"
+        },
+        {
+          "title": "Collaboration",
+          "description": "Work seamlessly with your team.",
+          "label": "Team"
+        },
+        {
+          "title": "Automation",
+          "description": "Simplify complex workflows.",
+          "label": "Efficiency"
+        },
+        {
+          "title": "Integration",
+          "description": "Connect your favorite tools.",
+          "label": "Connectivity"
+        },
+        {
+          "title": "Security",
+          "description": "Enterprise-grade protection for your data.",
+          "label": "Protection"
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "magicBento": {
+      "config": {
+        "textAutoHide": true,
+        "enableStars": true,
+        "enableSpotlight": true,
+        "enableBorderGlow": true,
+        "enableTilt": true,
+        "glowColor": "primary",
+        "disableAnimations": false,
+        "spotlightRadius": 300,
+        "particleCount": 12,
+        "clickEffect": true,
+        "enableMagnetism": true
+      },
+      "cards": [
+        {
+          "title": "Análise Avançada",
+          "description": "Rastreie o comportamento do usuário com precisão.",
+          "label": "Insights"
+        },
+        {
+          "title": "Dashboard Unificado",
+          "description": "Uma visão centralizada de todos os seus dados.",
+          "label": "Visão Geral"
+        },
+        {
+          "title": "Colaboração",
+          "description": "Trabalhe perfeitamente com sua equipe.",
+          "label": "Equipe"
+        },
+        {
+          "title": "Automação",
+          "description": "Simplifique fluxos de trabalho complexos.",
+          "label": "Eficiência"
+        },
+        {
+          "title": "Integração",
+          "description": "Conecte suas ferramentas favoritas.",
+          "label": "Conectividade"
+        },
+        {
+          "title": "Segurança",
+          "description": "Proteção de nível empresarial para seus dados.",
+          "label": "Proteção"
+        }
+      ]
+    }
+  }
+}

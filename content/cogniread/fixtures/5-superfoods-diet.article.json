@@ -1,0 +1,36 @@
+{
+  "articleId": "clxzyw1v20000cde4g7h8jklm",
+  "status": "published",
+  "createdAt": "2025-09-15T10:00:00.000Z",
+  "updatedAt": "2025-09-15T10:00:00.000Z",
+  "studyDna": {
+    "originalTitle": "Benefits of Superfoods for General Well-being: A Narrative Review",
+    "authors": ["Dr. Sophia Rossi"],
+    "institution": "Global Nutrition Institute",
+    "publication": "Journal of Holistic Health",
+    "publicationDate": "2024-03-01T00:00:00.000Z",
+    "doi": "https://doi.org/10.1234/jhh.2024.123",
+    "fundingSource": "Self-funded",
+    "objective": "To review the current scientific literature on common superfoods and their general health benefits.",
+    "studyType": "Narrative Review",
+    "methodologySummary": "Review of peer-reviewed articles from PubMed and Scopus databases published between 2010-2023. Key themes were extracted and synthesized.",
+    "mainResults": "Superfoods such as berries, nuts, and leafy greens consistently show high antioxidant and anti-inflammatory properties, contributing to improved cardiovascular health and cognitive function.",
+    "authorsConclusion": "Integrating a variety of superfoods into a balanced diet can significantly enhance overall health and prevent chronic diseases.",
+    "limitations": [
+      "Reliance on observational studies.",
+      "Variability in nutrient content due to sourcing.",
+      "Lack of long-term interventional studies."
+    ]
+  },
+  "content": {
+    "es-ES": {
+      "title": "5 Superalimentos Esenciales para Añadir a Tu Dieta Diaria",
+      "slug": "5-superalimentos-esenciales-dieta",
+      "summary": "Potencia tu salud con estos concentrados de nutrientes que la naturaleza nos ofrece.",
+      "body": "En un mundo lleno de dietas complejas y suplementos, a veces la solución más potente se encuentra en los alimentos simples y naturales..."
+    }
+  },
+  "baviHeroImageId": "webvork/backgrounds/hero_abstract_wellness_1_qwea45",
+  "relatedPromptIds": [],
+  "tags": ["nutricion", "bienestar", "dieta", "superalimentos"]
+}

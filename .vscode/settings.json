@@ -1,0 +1,9 @@
+// .vscode/settings.json
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/package.json"],
+      "url": "https://json.schemastore.org/pnpm-workspace.json"
+    }
+  ]
+}

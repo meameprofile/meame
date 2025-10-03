@@ -1,0 +1,34 @@
+{
+  "it-IT": {
+    "devHeader": {
+      "title": "Centro di Comando",
+      "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+      "logoAlt": "Logo di Global Fitwell",
+      "homeLinkAriaLabel": "Torna alla dashboard del Developer Command Center"
+    }
+  },
+  "es-ES": {
+    "devHeader": {
+      "title": "Centro de Mando",
+      "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+      "logoAlt": "Logo de Global Fitwell",
+      "homeLinkAriaLabel": "Volver al panel del Developer Command Center"
+    }
+  },
+  "en-US": {
+    "devHeader": {
+      "title": "Command Center",
+      "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+      "logoAlt": "Global Fitwell Logo",
+      "homeLinkAriaLabel": "Back to the Developer Command Center dashboard"
+    }
+  },
+  "pt-BR": {
+    "devHeader": {
+      "title": "Centro de Comando",
+      "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+      "logoAlt": "Logo da Global Fitwell",
+      "homeLinkAriaLabel": "Voltar ao painel do Developer Command Center"
+    }
+  }
+}

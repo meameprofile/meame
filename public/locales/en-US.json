@@ -1,0 +1,1366 @@
+{
+  "metadata": {
+    "title": "Global Fitwell",
+    "description": "The future of wellness. Technology and science for your potential."
+  },
+  "storePage": {
+    "title": "Our Wellness Store",
+    "subtitle": "A curated selection of products to boost your health and performance.",
+    "filters": {
+      "searchLabel": "Search",
+      "searchPlaceholder": "Search products...",
+      "categoryTitle": "Categories",
+      "priceTitle": "Price Range",
+      "tagsTitle": "Tags",
+      "stockTitle": "Availability",
+      "inStockLabel": "In stock only"
+    },
+    "bestsellerLabel": "Bestseller",
+    "addToCartButton": "Add to Cart",
+    "viewDetailsButton": "View Details",
+    "products": [
+      "prod_kband_pro",
+      "prod_vp_filter",
+      "prod_nb_pods",
+      "prod_rg_mat",
+      "prod_eg_blend",
+      "prod_ha_bottle"
+    ]
+  },
+  "notFoundPage": {
+    "title": "Page Not Found",
+    "description": "Sorry, we couldn’t find the page you’re looking for.",
+    "buttonText": "Go Back Home"
+  },
+  "selectLanguage": {
+    "title": "Select Your Language",
+    "subtitle": "Choose your preferred language to continue.",
+    "languages": {
+      "it-IT": "Italian",
+      "es-ES": "Spanish",
+      "en-US": "English",
+      "pt-BR": "Portuguese"
+    }
+  },
+  "aboutPage": {
+    "title": "About Us",
+    "subtitle": "Our mission is to enhance global wellness through science and innovation.",
+    "content": [
+      {
+        "type": "p",
+        "text": "Global Fitwell was born from the belief that everyone deserves access to wellness solutions that are safe, effective, and based on scientific evidence. Our team consists of nutrition experts, scientists, and fitness enthusiasts dedicated to researching and developing products that make a real difference in people's lives."
+      },
+      {
+        "type": "h2",
+        "text": "Our Commitment"
+      },
+      {
+        "type": "p",
+        "text": "We are committed to transparency, quality, and sustainability in everything we do. From sourcing the purest ingredients to conducting rigorous third-party lab testing, our priority is your trust and your results."
+      }
+    ]
+  },
+  "privacyPage": {
+    "title": "Privacy Policy",
+    "subtitle": "Your trust and data protection are our highest priority.",
+    "content": [
+      {
+        "type": "h2",
+        "text": "1. Information Collection"
+      },
+      {
+        "type": "p",
+        "text": "We collect information you provide directly to us, such as your name and email when you subscribe to our newsletter or fill out a contact form. We also collect technical data automatically via cookies, such as your IP address and browser type, to enhance your experience."
+      },
+      {
+        "type": "h2",
+        "text": "2. Use of Information"
+      },
+      {
+        "type": "p",
+        "text": "We use your information to process orders, personalize your experience, and communicate with you about our products and offers. We will never share your personal data with unaffiliated third parties without your explicit consent, except as required by law."
+      }
+    ]
+  },
+  "termsPage": {
+    "title": "Terms of Service",
+    "subtitle": "By using our website, you agree to the following terms and conditions.",
+    "content": [
+      {
+        "type": "h2",
+        "text": "1. Use of the Site"
+      },
+      {
+        "type": "p",
+        "text": "This website and its content are for your personal, non-commercial use. You may not modify, copy, distribute, or sell any information obtained from this site. Access is permitted only to adults of legal age."
+      },
+      {
+        "type": "h2",
+        "text": "2. Intellectual Property"
+      },
+      {
+        "type": "p",
+        "text": "All content, including text, graphics, logos, and images, is the property of Global Fitwell and is protected by international copyright laws."
+      }
+    ]
+  },
+  "cookiesPage": {
+    "title": "Cookie Policy",
+    "subtitle": "How we use cookies to improve your experience.",
+    "content": [
+      {
+        "type": "h2",
+        "text": "1. What are cookies?"
+      },
+      {
+        "type": "p",
+        "text": "Cookies are small text files stored on your device when you visit a website. They help us remember your preferences, understand how you use our site, and customize content and advertising."
+      },
+      {
+        "type": "h2",
+        "text": "2. Types of Cookies We Use"
+      },
+      {
+        "type": "p",
+        "text": "We use essential cookies for site functionality, performance cookies to analyze traffic, and functional cookies to remember your choices. We also use marketing cookies to show you relevant ads."
+      }
+    ]
+  },
+  "devDashboardPage": {
+    "pageHeader": {
+      "title": "Developer Command Center",
+      "subtitle": "Tools forged to master the entire elite development lifecycle."
+    },
+    "magicBento": {
+      "config": {
+        "textAutoHide": true,
+        "enableStars": true,
+        "enableSpotlight": true,
+        "enableBorderGlow": true,
+        "disableAnimations": false,
+        "spotlightRadius": 300,
+        "particleCount": 12,
+        "enableTilt": true,
+        "glowColor": "primary",
+        "clickEffect": true,
+        "enableMagnetism": true
+      },
+      "cards": [
+        {
+          "title": "The Forge (SDC)",
+          "description": "Forge high-conversion campaigns.",
+          "label": "Creativity"
+        },
+        {
+          "title": "The Armory (BAVI)",
+          "description": "The SSoT for all visual assets.",
+          "label": "Assets"
+        },
+        {
+          "title": "The Vault (RaZPrompts)",
+          "description": "Catalog the creative DNA of your assets.",
+          "label": "Genome"
+        },
+        {
+          "title": "The Engine (CogniRead)",
+          "description": "Transform science into authority.",
+          "label": "Credibility"
+        },
+        {
+          "title": "The Nervous System (Nos3)",
+          "description": "See through the user's eyes.",
+          "label": "UX"
+        },
+        {
+          "title": "The Lab",
+          "description": "Stress-test for every component.",
+          "label": "Resilience"
+        }
+      ]
+    }
+  },
+  "devLoginPage": {
+    "title": "DCC Access",
+    "subtitle": "Enter your credentials to access the development suite.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordLink": "Forgot your password?",
+    "buttonText": "Sign In",
+    "buttonLoadingText": "Signing in...",
+    "signUpPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "footerHtml": "This is a restricted access area for developers and administrators.",
+    "backgroundImageAssetId": "i-bkg-login-abstract-01",
+    "forgotPassword": {
+      "modalTitle": "Recover Your Password",
+      "modalDescription": "Enter your email address and we will send you a link to reset your password.",
+      "submitButton": "Send Recovery Link",
+      "submitButtonLoading": "Sending...",
+      "cancelButton": "Cancel",
+      "successToastTitle": "Recovery Link Sent",
+      "successToastDescription": "Check your inbox for instructions."
+    },
+    "lastSignIn": {
+      "title": "Last Signed In:",
+      "location": "from {{location}}",
+      "ip": "IP: {{ip}}"
+    },
+    "showPasswordAriaLabel": "Show password",
+    "hidePasswordAriaLabel": "Hide password"
+  },
+  "devTestPage": {
+    "title": "Component Resilience Showcase",
+    "subtitle": "All system components rendered with real SSoT data to ensure stability.",
+    "selectThemeLabel": "Select Campaign Theme",
+    "noContentWarning": "Content not found for this component in the dictionary.",
+    "fallbackHeroTitle": "Fallback Title",
+    "fallbackHeroSubtitle": "Fallback subtitle for the Hero component.",
+    "fallbackBenefitsTitle": "Fallback Benefits",
+    "fallbackBenefitsSubtitle": "Fallback subtitle for benefits.",
+    "fallbackBenefit1": "Benefit 1",
+    "fallbackBenefit2": "Benefit 2",
+    "fallbackBenefit3": "Benefit 3",
+    "fallbackAccordionQuestion": "Fallback Question?",
+    "fallbackAccordionAnswer": "Fallback answer.",
+    "fallbackOrderNameLabel": "Name",
+    "fallbackOrderNamePlaceholder": "Full Name",
+    "fallbackOrderPhoneLabel": "Phone",
+    "fallbackOrderPhonePlaceholder": "Phone Number",
+    "fallbackOrderSubmitText": "Submit",
+    "fallbackOrderLoadingText": "Submitting..."
+  },
+  "campaignSuitePage": {
+    "title": "The Creative Forge (SDC)",
+    "subtitle": "The epicenter of the ecosystem. Forge raw strategy into high-conversion campaigns.",
+    "templateCopySuffix": " (Copy)",
+    "preview": {
+      "loadingTheme": "Loading theme...",
+      "errorLoadingTheme": "Error loading theme"
+    },
+    "stepper": {
+      "identificationTitle": "Identification",
+      "structureTitle": "Structure",
+      "layoutTitle": "Layout",
+      "themeTitle": "Theme",
+      "contentTitle": "Content",
+      "managementTitle": "Management"
+    }
+  },
+  "baviHomePage": {
+    "title": "BAVI: Integrated Visual Asset Library",
+    "subtitle": "The operations center for managing, optimizing, and indexing all ecosystem assets.",
+    "ingestCardTitle": "Ingest New Assets",
+    "ingestCardDescription": "Upload a new asset. It will be automatically optimized and prepared for indexing in the manifest.",
+    "aiBoilerCardTitle": "AI Boiler (Coming Soon)",
+    "aiBoilerCardDescription": "Generate variations, remove backgrounds, and create synthetic assets with AI."
+  },
+  "assetExplorer": {
+    "title": "BAVI Asset Explorer",
+    "description": "Search, filter, and manage visual assets uploaded to BAVI.",
+    "searchPlaceholder": "Search by ID, keywords...",
+    "searchButton": "Search",
+    "filterByAILabel": "Filter by AI",
+    "allAIsOption": "All AIs",
+    "loadingAssets": "Loading assets...",
+    "noAssetsFoundTitle": "No assets found.",
+    "noAssetsFoundDescription": "Try adjusting your search or filters.",
+    "previousPageButton": "Previous",
+    "nextPageButton": "Next",
+    "pageInfo": "Page {{currentPage}} of {{totalPages}}",
+    "viewDetailsButton": "View Details",
+    "selectAssetButton": "Select"
+  },
+  "razPromptsHomePage": {
+    "title": "RaZPrompts: Generative Knowledge Vault",
+    "subtitle": "The laboratory to create, catalog, and version the genome of your visual assets.",
+    "createPromptTab": "Create Prompt",
+    "viewVaultTab": "View Vault"
+  },
+  "cinematicDemoPage": {
+    "pageHeader": {
+      "title": "\"Aether\" Engine Sandbox",
+      "subtitle": "Isolated development environment for the cinematic renderer."
+    },
+    "loadingText": "Loading Cinematic Renderer..."
+  },
+  "cogniReadDashboard": {
+    "pageHeader": {
+      "title": "CogniRead: Scientific Knowledge Management",
+      "subtitle": "Global Fitwell's credibility engine. Manage all scientific study analyses here."
+    },
+    "newArticleButton": "New Study Analysis",
+    "articlesListTitle": "Article Library",
+    "articlesListDescription": "All analyzed articles, both draft and published, are listed here."
+  },
+  "nos3Dashboard": {
+    "pageHeader": {
+      "title": "Nos3 Session Vault",
+      "subtitle": "Explore, replay, and analyze user interactions recorded on the site."
+    },
+    "tableHeaders": {
+      "sessionId": "Session ID",
+      "startTime": "Start Time",
+      "actions": "Actions"
+    },
+    "reproduceButton": "Replay",
+    "emptyStateTitle": "No recordings",
+    "emptyStateDescription": "No user sessions have been recorded yet."
+  },
+  "header": {
+    "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+    "logoAlt": "Global Fitwell Logo",
+    "navLinks": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Store",
+        "href": "/store"
+      },
+      {
+        "label": "About Us",
+        "href": "/about"
+      }
+    ],
+    "signUpButton": {
+      "label": "Sign Up"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Stay Updated with Global Fitwell",
+      "description": "Get exclusive wellness tips, scientific research insights, and special offers delivered directly to your inbox.",
+      "placeholder": "Your best email",
+      "buttonText": "Subscribe Now",
+      "buttonAriaLabel": "Submit your email to subscribe to the newsletter"
+    },
+    "linkColumns": [
+      {
+        "title": "Company",
+        "links": [
+          {
+            "label": "About Us",
+            "href": "/en-US/about"
+          },
+          {
+            "label": "Blog / News",
+            "href": "/en-US/news"
+          }
+        ]
+      },
+      {
+        "title": "Resources",
+        "links": [
+          {
+            "label": "FAQ",
+            "href": "#"
+          }
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          {
+            "label": "Terms of Service",
+            "href": "/en-US/terms"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "/en-US/privacy"
+          },
+          {
+            "label": "Cookie Policy",
+            "href": "/en-US/cookies"
+          }
+        ]
+      }
+    ],
+    "socialLinks": [
+      {
+        "name": "X (Twitter)",
+        "icon": "Twitter",
+        "url": "https://x.com"
+      },
+      {
+        "name": "Instagram",
+        "icon": "Instagram",
+        "url": "https://instagram.com"
+      },
+      {
+        "name": "Youtube",
+        "icon": "Youtube",
+        "url": "https://youtube.com"
+      }
+    ],
+    "copyright": "© 2025 Global Fitwell. All rights reserved.",
+    "disclaimer": "The information provided on this site is for informational purposes only. The products featured here are not intended to diagnose, treat, cure, or prevent any disease.",
+    "developerLink": {
+      "label": "Developed by RaZ Podestá - MetaShark Tech",
+      "href": "https://metashark.tech"
+    }
+  },
+  "cookieConsentBanner": {
+    "message": "We use cookies to enhance your experience.",
+    "acceptButtonText": "Accept",
+    "rejectButtonText": "Decline",
+    "policyLinkText": "Read our cookie policy",
+    "policyLinkHref": "/en-US/cookies"
+  },
+  "devHeader": {
+    "title": "Command Center",
+    "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+    "logoAlt": "Global Fitwell Logo",
+    "homeLinkAriaLabel": "Back to the Developer Command Center dashboard"
+  },
+  "devHomepageHeader": {
+    "homeLink": "Home",
+    "aboutLink": "About Us",
+    "storeLink": "Store",
+    "blogLink": "Blog",
+    "devMenuLabel": "Dev Menu"
+  },
+  "devRouteMenu": {
+    "devMenuLabel": "Dev Tools",
+    "devToolsGroup": "DEV TOOLS",
+    "campaignPagesGroup": "CAMPAIGN PAGES",
+    "portalPagesGroup": "PORTAL PAGES",
+    "legalPagesGroup": "LEGAL PAGES",
+    "home": "Homepage",
+    "store": "Store",
+    "news": "News",
+    "about": "About Us",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "notFound": "404 Page",
+    "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campaign (ID 12157)",
+    "devDashboard": "Dev Dashboard",
+    "devLogin": "Login Page",
+    "devTestPage": "Test Page",
+    "devComponentShowcase": "Component Showcase",
+    "devCampaignSuiteCreate": "Design Suite"
+  },
+  "toggleTheme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggleAriaLabel": "Toggle theme"
+  },
+  "languageSwitcher": {
+    "ariaLabel": "Select language",
+    "languages": {
+      "it-IT": "Italian",
+      "es-ES": "Spanish",
+      "en-US": "English",
+      "pt-BR": "Portuguese"
+    }
+  },
+  "cart": {
+    "triggerAriaLabel": "View cart, {{count}} items",
+    "sheetTitle": "Your Cart",
+    "emptyStateText": "Your cart is empty.",
+    "emptyStateButton": "Start Shopping",
+    "subtotalLabel": "Subtotal",
+    "checkoutButton": "Proceed to Checkout",
+    "continueShoppingButton": "Continue Shopping",
+    "errors": {
+      "addItemFailed": "Could not add item to cart.",
+      "removeItemFailed": "Could not remove item from cart.",
+      "updateItemFailed": "Could not update item quantity.",
+      "createCartFailed": "Could not create a new cart.",
+      "emptyCart": "Your cart is empty and you cannot proceed to checkout.",
+      "checkoutFailed": "Could not start the payment process."
+    }
+  },
+  "userNav": {
+    "loginButton": "Sign In",
+    "sessionLabel": "Signed in as",
+    "logoutButton": "Log Out",
+    "viewAllNotificationsLink": "View all",
+    "notificationsLabel": "Notifications",
+    "noNotificationsText": "You have no notifications.",
+    "loadingText": "Loading..."
+  },
+  "oAuthButtons": {
+    "google": "Continue with Google",
+    "apple": "Continue with Apple (Coming Soon)",
+    "facebook": "Continue with Facebook (Coming Soon)"
+  },
+  "notificationBell": {
+    "viewAllNotificationsLink": "View all",
+    "notificationsLabel": "Notifications",
+    "noNotificationsText": "You have no notifications.",
+    "loadingText": "Loading..."
+  },
+  "validationError": {
+    "title": "Data Validation Error for Section: '{{sectionName}}'",
+    "description": "The data provided from the CMS or i18n file does not match the contract (schema) this component requires. The app will not crash in production, but this section will not render. Check the console for technical details.",
+    "detailsLabel": "View Technical Error Details"
+  },
+  "suiteStyleComposer": {
+    "customizeButton": "Customize Styles",
+    "composerTitle": "Suite Style Composer",
+    "composerDescription": "Finely adjust the suite's design tokens in real-time.",
+    "composerColorsTab": "Colors",
+    "composerTypographyTab": "Typography",
+    "composerGeometryTab": "Geometry",
+    "composerSaveButton": "Apply & Save",
+    "composerCancelButton": "Cancel",
+    "selectThemeLabel": "Select Color Theme",
+    "selectFontLabel": "Select Typography",
+    "selectRadiusLabel": "Select Geometry",
+    "defaultPresetName": "Default",
+    "colorFilterPlaceholder": "Choose color...",
+    "fontFilterPlaceholder": "Choose font...",
+    "radiusFilterPlaceholder": "Choose radius...",
+    "fontSizeLabel": "Font Size",
+    "fontWeightLabel": "Font Weight",
+    "lineHeightLabel": "Line Height",
+    "letterSpacingLabel": "Letter Spacing",
+    "borderRadiusLabel": "Border Radius",
+    "borderWidthLabel": "Border Width",
+    "baseSpacingUnitLabel": "Base Spacing Unit",
+    "inputHeightLabel": "Input Height"
+  },
+  "componentCanvasHeader": {
+    "description": "Isolated component visualization."
+  },
+  "componentCanvas": {
+    "errorNoComponentTitle": "No Component Selected",
+    "errorNoComponentDescription": "Please select a component from the developer dashboard to preview it here.",
+    "errorNoComponentLink": "Back to dashboard",
+    "errorLoadingTitle": "Component Load Error",
+    "errorLoadingDescription": "Could not load the component",
+    "metadataPanelPropsLabel": "Applied Mock Props"
+  },
+  "shareButton": {
+    "buttonLabel": "Share",
+    "popoverTitle": "Share via",
+    "copyLinkAction": "Copy link",
+    "copySuccessToast": "Link copied to clipboard!"
+  },
+  "alert": {
+    "title": "Alert",
+    "description": "This is an alert component for important notifications."
+  },
+  "alertDialog": {
+    "title": "Edit Profile",
+    "description": "Make changes to your profile here. Click save when you're done.",
+    "footerButton": "Save Changes"
+  },
+  "profileForm": {
+    "title": "Public Profile",
+    "description": "This information may be visible to other users.",
+    "emailLabel": "Email",
+    "fullNameLabel": "Full Name",
+    "saveButtonText": "Save Changes",
+    "successToast": "Profile updated successfully!",
+    "errorToastTitle": "Error updating profile"
+  },
+  "benefitsSection": {
+    "eyebrow": "Benefits",
+    "title": "Your Shortcut to Success",
+    "subtitle": "A landing page architecture designed for maximum conversion and an elite Developer Experience. Build faster, convert more.",
+    "benefits": [
+      {
+        "icon": "Blocks",
+        "title": "Build Brand Trust",
+        "description": "A professional and evidence-based presentation that builds instant credibility with your audience."
+      },
+      {
+        "icon": "LineChart",
+        "title": "More Qualified Leads",
+        "description": "An optimized conversion path that guides the user intuitively, increasing the quality and quantity of leads."
+      },
+      {
+        "icon": "Wallet",
+        "title": "Higher Conversions",
+        "description": "Every element is designed with a single purpose: to turn visitors into customers, maximizing your ROI."
+      },
+      {
+        "icon": "Sparkle",
+        "title": "Test Marketing Ideas",
+        "description": "The modular architecture allows you to quickly test different angles and messages to find the winning formula."
+      }
+    ]
+  },
+  "communitySection": {
+    "iconName": "MessageSquare",
+    "title": "Ready to join our <span class='text-primary'>Community?</span>",
+    "description": "Join our vibrant community! Connect, share, and grow with like-minded enthusiasts. Click to dive in! 🚀",
+    "buttonLabel": "Join Now",
+    "buttonHref": "https://example.com/discord/en"
+  },
+  "contactSection": {
+    "eyebrow": "Contact",
+    "title": "Connect with Us",
+    "description": "Have a question or a project in mind? Fill out the form or use the contact information below. We'd love to hear from you.",
+    "contactInfo": [
+      {
+        "iconName": "Mail",
+        "label": "Email",
+        "value": "support@globalfitwell.com"
+      },
+      {
+        "iconName": "Phone",
+        "label": "Phone",
+        "value": "+1 (555) 123-4567"
+      },
+      {
+        "iconName": "Building",
+        "label": "Office",
+        "value": "123 Main Street, New York, USA"
+      }
+    ],
+    "form": {
+      "firstNameLabel": "First Name",
+      "firstNamePlaceholder": "John",
+      "lastNameLabel": "Last Name",
+      "lastNamePlaceholder": "Doe",
+      "emailLabel": "Email",
+      "emailPlaceholder": "john.doe@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "subjectOptions": ["Web Development", "Digital Marketing", "Other"],
+      "messageLabel": "Message",
+      "messagePlaceholder": "Your message...",
+      "submitButtonText": "Send Message"
+    }
+  },
+  "faqAccordion": {
+    "title": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "question": "Is this template free?",
+        "answer": "Yes. It is a free Next.js Shadcn template."
+      },
+      {
+        "question": "How can I customize the style?",
+        "answer": "You can customize colors and fonts directly in the `app/globals.css` file using Tailwind CSS v4 theme variables."
+      }
+    ]
+  },
+  "featuredArticlesCarousel": {
+    "eyebrow": "Featured",
+    "title": "In-depth Insights from Our Team",
+    "articles": [
+      {
+        "slug": "functional-training-guide",
+        "title": "Functional Training: The Ultimate Guide",
+        "category": "Fitness",
+        "imageUrl": "/img/sections/news-grid/functional-training.jpg",
+        "imageAlt": "A person performing a goblet squat with a kettlebell.",
+        "author": "Global Fitwell Team",
+        "readTime": 8
+      },
+      {
+        "slug": "5-superfoods-diet",
+        "title": "5 Superfoods You Should Add to Your Diet",
+        "category": "Nutrition",
+        "imageUrl": "/img/sections/news-grid/superfoods.jpg",
+        "imageAlt": "A colorful bowl of superfoods.",
+        "author": "Dr. Sophia Rossi",
+        "readTime": 5
+      },
+      {
+        "slug": "mindfulness-stress-reduction",
+        "title": "Mindfulness and Stress Reduction",
+        "category": "Mental Wellness",
+        "imageUrl": "/img/sections/news-grid/mindfulness.jpg",
+        "imageAlt": "A person meditating serenely.",
+        "author": "Global Fitwell Team",
+        "readTime": 6
+      }
+    ]
+  },
+  "hero": {
+    "title": "Your Path to Wellness Starts Here",
+    "subtitle": "Discover science-backed solutions to unlock your full potential.",
+    "backgroundImageAssetId": "i-bkg-hero-abstract-01"
+  },
+  "heroNews": {
+    "mainTitle": "The Future of Wellness is Now",
+    "featuredArticle": {
+      "tag": "Featured Story",
+      "title": "The Mind-Muscle Connection: Neuroscience Applied to Training",
+      "author": "Dr. Elena Rios",
+      "readTime": 6
+    }
+  },
+  "newsGrid": {
+    "title": "Latest News & Articles",
+    "subtitle": "Explore our latest articles on wellness, nutrition, and performance."
+  },
+  "orderSection": {
+    "originalPrice": 78,
+    "discountedPrice": 39,
+    "originalPriceLabel": "Retail Price",
+    "discountedPriceLabel": "Special Offer Price",
+    "nameInputLabel": "Full Name",
+    "nameInputPlaceholder": "e.g., John Doe",
+    "phoneInputLabel": "Phone",
+    "phoneInputPlaceholder": "Your number for confirmation",
+    "submitButtonText": "Order Now with 50% Discount",
+    "submitButtonLoadingText": "Submitting..."
+  },
+  "pricingSection": {
+    "eyebrow": "Pricing",
+    "title": "Get Unlimited Access",
+    "subtitle": "Choose the plan that best suits your needs and start building today.",
+    "currency": "USD",
+    "plans": [
+      {
+        "title": "Free",
+        "isPopular": false,
+        "price": 0,
+        "priceSuffix": "/month",
+        "description": "Perfect for personal projects and exploring the platform.",
+        "buttonText": "Start Free Trial",
+        "benefitList": [
+          "1 team member",
+          "1 GB storage",
+          "Up to 2 pages",
+          "Community support"
+        ]
+      },
+      {
+        "title": "Premium",
+        "isPopular": true,
+        "price": 50,
+        "priceSuffix": "/month",
+        "description": "The best choice for growing teams and businesses.",
+        "buttonText": "Get Started",
+        "benefitList": [
+          "4 team members",
+          "8 GB storage",
+          "Up to 6 pages",
+          "Priority support"
+        ]
+      },
+      {
+        "title": "Enterprise",
+        "isPopular": false,
+        "price": 135,
+        "priceSuffix": "/month",
+        "description": "Tailored solutions for large organizations.",
+        "buttonText": "Contact Us",
+        "benefitList": [
+          "10 team members",
+          "20 GB storage",
+          "Up to 10 pages",
+          "Phone & email support"
+        ]
+      }
+    ]
+  },
+  "productShowcase": {
+    "title": "Tools for Your Wellness Journey",
+    "products": [
+      {
+        "name": "KineticBand Pro",
+        "description": "Activity monitoring with bio-sensors.",
+        "imageUrl": "/img/products/kineticband.png"
+      },
+      {
+        "name": "VitaPure Filter",
+        "description": "Smart water purification system.",
+        "imageUrl": "/img/products/vitapure.png"
+      },
+      {
+        "name": "NeuroBoost Pods",
+        "description": "Nootropic supplement for mental focus.",
+        "imageUrl": "/img/products/neuroboost.png"
+      }
+    ]
+  },
+  "scrollingBanner": {
+    "message": "Welcome to the Command Center ✨ | Forged Components: <strong>45</strong> | Active Campaigns: <strong>3</strong> | Domain: <strong>Production</strong>",
+    "iconName": "Sparkles"
+  },
+  "socialProofLogos": {
+    "title": "Trusted by leading wellness authorities",
+    "logos": [
+      {
+        "assetId": "i-sybl-wellness-insider-01",
+        "alt": "Wellness Insider Logo"
+      },
+      {
+        "assetId": "i-sybl-health-journal-01",
+        "alt": "The Health Journal Logo"
+      },
+      {
+        "assetId": "i-sybl-bio-innovate-01",
+        "alt": "Bio-Innovate Forum Logo"
+      },
+      {
+        "assetId": "i-sybl-nutrition-council-01",
+        "alt": "Nutrition Council Logo"
+      }
+    ]
+  },
+  "sponsorsSection": {
+    "title": "Our Platinum Sponsors",
+    "sponsors": [
+      {
+        "icon": "Crown",
+        "name": "Acmebrand"
+      },
+      {
+        "icon": "Vegan",
+        "name": "Acmelogo"
+      },
+      {
+        "icon": "Ghost",
+        "name": "Acmesponsor"
+      },
+      {
+        "icon": "Puzzle",
+        "name": "Acmeipsum"
+      },
+      {
+        "icon": "Squirrel",
+        "name": "Acme"
+      },
+      {
+        "icon": "Cookie",
+        "name": "Accmee"
+      },
+      {
+        "icon": "Drama",
+        "name": "Acmetech"
+      }
+    ]
+  },
+  "teamSection": {
+    "eyebrow": "Team",
+    "title": "The Company Dream Team",
+    "members": [
+      {
+        "imageUrl": "/pravatar/58",
+        "firstName": "Leo",
+        "lastName": "Miranda",
+        "positions": ["Frontend Developer", "Creator Of This Website"],
+        "socialNetworks": [
+          {
+            "name": "LinkedIn",
+            "url": "https://linkedin.com",
+            "icon": "Linkedin"
+          },
+          {
+            "name": "Github",
+            "url": "https://github.com",
+            "icon": "Github"
+          },
+          {
+            "name": "X",
+            "url": "https://x.com",
+            "icon": "Twitter"
+          }
+        ]
+      }
+    ]
+  },
+  "testimonialGrid": {
+    "title": "Real Stories From Our Customers",
+    "testimonials": [
+      {
+        "quote": "I'm back to my morning walks without that knee discomfort. It's a priceless feeling of freedom.",
+        "author": "Elena R.",
+        "location": "New York, US",
+        "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+      },
+      {
+        "quote": "Amazing! The quality and attention to detail are next level. I highly recommend it to anyone.",
+        "author": "John Smith",
+        "location": "London, UK",
+        "imageSrc": "/img/sections/testimonial-grid/avatar_marco-c.jpg"
+      },
+      {
+        "quote": "I was skeptical at first, but the results speak for themselves. It far exceeded my expectations.",
+        "author": "Emily Johnson",
+        "location": "Sydney, AU",
+        "imageSrc": "/img/sections/testimonial-grid/avatar_giulia-f.jpg"
+      }
+    ]
+  },
+  "commentSection": {
+    "title": "Comments",
+    "form": {
+      "placeholder": "Add your comment...",
+      "minCharactersError": "Comment must be at least 3 characters long.",
+      "publishButton": "Post Comment",
+      "publishButtonLoading": "Posting...",
+      "authRequiredMessage": "You must ",
+      "loginLinkText": "log in",
+      "loginPrompt": "To join the conversation, please ",
+      "loginPromptSuffix": " to comment.",
+      "loginLink": "log in"
+    },
+    "list": {
+      "emptyState": "No comments yet. Be the first to participate!"
+    },
+    "toast": {
+      "success": "Comment posted successfully!",
+      "errorTitle": "Error posting comment",
+      "authError": "You must be logged in to comment."
+    }
+  },
+  "baviUploader": {
+    "dropzoneDefault": "Drag a file here, or click to select.",
+    "metadataFormTitle": "BAVI Indexing Metadata",
+    "assetIdLabel": "Asset ID (SNIA)",
+    "assetIdPlaceholder": "i-category-descriptor-01",
+    "keywordsLabel": "Keywords (for search, comma-separated)",
+    "keywordsPlaceholder": "woman, smile, park, cinematic...",
+    "altTextLabel": "Alt Text (Accessibility)",
+    "altTextPlaceholder": "A clear and concise description of the image...",
+    "promptIdLabel": "Source Prompt ID (Optional)",
+    "promptIdPlaceholder": "Paste the ID from RaZPrompts here...",
+    "submitButtonText": "Upload and Register in BAVI",
+    "selectFromBaviButton": "Select from BAVI",
+    "assetSelectorModalTitle": "Select an Asset from the Library",
+    "assetSelectorModalDescription": "Search, filter, and choose an existing asset for your campaign."
+  },
+  "promptCreator": {
+    "titleLabel": "Descriptive Title",
+    "titlePlaceholder": "E.g., Preview image for Standard Header",
+    "formDescription": "Define the core elements of your creative genome. This genome will be archived and can be used to generate or link visual assets.",
+    "promptTextLabel": "Prompt Text",
+    "promptTextPlaceholder": "Paste the full prompt here...",
+    "enhanceAILabel": "Enhance with AI",
+    "enhanceAIDescription": "Let our AI refine and optimize your prompt for better and more consistent results.",
+    "tagsGroupLabel": "SESA Taxonomy (Structured Filters)",
+    "parametersGroupLabel": "Image Generation Parameters",
+    "keywordsLabel": "Keywords (for search)",
+    "keywordsPlaceholder": "header, ui, preview, cinematic...",
+    "keywordsDescription": "Separated by commas. They will be used to find this prompt later.",
+    "submitButtonText": "Create Entry & Get ID",
+    "submitButtonLoadingText": "Creating...",
+    "sesaLabels": {
+      "ai": "AI",
+      "sty": "Style",
+      "fmt": "Format",
+      "typ": "Type",
+      "sbj": "Subject",
+      "styleTypeLabel": "Style Type",
+      "styleTypePlaceholder": "Choose type...",
+      "aspectRatioLabel": "Aspect Ratio",
+      "aspectRatioPlaceholder": "Choose ratio..."
+    },
+    "sesaOptions": {
+      "ai": [
+        {
+          "value": "ideo",
+          "label": "Ideogram"
+        },
+        {
+          "value": "mj",
+          "label": "Midjourney"
+        },
+        {
+          "value": "sdxl",
+          "label": "Stable Diffusion"
+        }
+      ],
+      "sty": [
+        {
+          "value": "pht",
+          "label": "Photorealistic"
+        },
+        {
+          "value": "cin",
+          "label": "Cinematic"
+        },
+        {
+          "value": "ill",
+          "label": "Illustration"
+        }
+      ],
+      "fmt": [
+        {
+          "value": "1x1",
+          "label": "1:1 (Square)"
+        },
+        {
+          "value": "16x9",
+          "label": "16:9 (Landscape)"
+        },
+        {
+          "value": "9x16",
+          "label": "9:16 (Portrait)"
+        }
+      ],
+      "typ": [
+        {
+          "value": "ui",
+          "label": "User Interface"
+        },
+        {
+          "value": "pht",
+          "label": "Photo"
+        },
+        {
+          "value": "abs",
+          "label": "Abstract"
+        }
+      ],
+      "sbj": [
+        {
+          "value": "abs",
+          "label": "Abstract"
+        },
+        {
+          "value": "wom",
+          "label": "Woman"
+        },
+        {
+          "value": "man",
+          "label": "Man"
+        },
+        {
+          "value": "lsc",
+          "label": "Landscape"
+        }
+      ]
+    },
+    "parameterOptions": {
+      "styleType": [
+        {
+          "value": "REALISTIC",
+          "label": "Realistic"
+        },
+        {
+          "value": "DESIGN",
+          "label": "Design"
+        },
+        {
+          "value": "FICTION",
+          "label": "Fiction"
+        },
+        {
+          "value": "GENERAL",
+          "label": "General"
+        },
+        {
+          "value": "AUTO",
+          "label": "Auto"
+        }
+      ],
+      "aspectRatio": [
+        {
+          "value": "16x9",
+          "label": "16:9 (Landscape)"
+        },
+        {
+          "value": "9x16",
+          "label": "9:16 (Portrait)"
+        },
+        {
+          "value": "1x1",
+          "label": "1:1 (Square)"
+        }
+      ]
+    }
+  },
+  "promptVault": {
+    "title": "Prompt Vault",
+    "description": "Explore and manage your generative prompts.",
+    "searchPlaceholder": "Search by title, text, or keywords...",
+    "searchButton": "Search",
+    "filterByAILabel": "Filter by AI",
+    "allAIsOption": "All AIs",
+    "loadingPrompts": "Loading prompts...",
+    "noPromptsFound": "No prompts found matching your search.",
+    "previousPageButton": "Previous",
+    "nextPageButton": "Next",
+    "pageInfo": "Page {{currentPage}} of {{totalPages}}",
+    "viewDetailsButton": "View Details",
+    "noImageYet": "No image yet"
+  },
+  "orderConfirmationEmail": {
+    "previewText": "Confirmation of your Global Fitwell order #{{orderId}}",
+    "title": "Thank you for your order!",
+    "greeting": "Hi, we have received your order **#{{orderId}}**. You will receive another notification when your order is shipped.",
+    "summaryLabel": "Order Summary:",
+    "totalLabel": "Total",
+    "footerText": "If you have any questions about your order, please reply to this email or contact our support."
+  },
+  "devCampaignSimulatorPage": {
+    "title": "Campaign Simulator",
+    "subtitle": "Select a campaign variant to preview the landing page.",
+    "campaignLabel": "Campaign",
+    "variantLabel": "Variant",
+    "descriptionLabel": "Description"
+  },
+  "5-superfoods-diet": {
+    "title": "5 Essential Superfoods to Add to Your Daily Diet",
+    "subtitle": "Boost your health with these nutrient powerhouses that nature offers.",
+    "author": "Dr. Sophia Rossi",
+    "publishedDate": "September 15, 2025",
+    "readTime": 5,
+    "category": "Nutrition",
+    "featuredImageUrl": "/img/news/superfoods.jpg",
+    "featuredImageAlt": "A colorful bowl of superfoods, including berries and nuts.",
+    "content": [
+      {
+        "type": "p",
+        "text": "In a world full of complex diets and supplements, sometimes the most powerful solution lies in simple, natural foods. Superfoods are nutrient-dense foods considered to be particularly beneficial for health and well-being. Here are five of our favorites that you can easily integrate into your routine."
+      },
+      {
+        "type": "h2",
+        "text": "1. Goji Berries: The Antioxidant Powerhouse"
+      },
+      {
+        "type": "p",
+        "text": "These small red berries are a powerhouse of antioxidants, vitamins, and minerals. They help fight free radicals, support vision, and can boost the immune system. Add them to your morning yogurt or smoothie."
+      }
+    ]
+  },
+  "kineticband-pro": {
+    "productData": {
+      "id": "prod_kband_pro",
+      "name": "KineticBand Pro",
+      "slug": "kineticband-pro",
+      "price": 89.99,
+      "currency": "USD",
+      "isBestseller": true,
+      "imageUrl": "/img/products/kineticband.jpg",
+      "inventory": {
+        "total": 20,
+        "available": 15,
+        "reserved": 0
+      },
+      "logistics": {
+        "deliveryTime": "2-4 business days"
+      },
+      "producerInfo": {
+        "name": "Webvork",
+        "checkoutUrl": "https://it4.curcumacomplex.com/order.php"
+      },
+      "categorization": {
+        "primary": "Performance",
+        "secondary": ["recovery", "strength"]
+      },
+      "targetProfile": {
+        "userType": "Athletes",
+        "ageRange": "18-45"
+      },
+      "rating": 4.8
+    },
+    "galleryImages": [
+      {
+        "src": "/img/products/kineticband-gallery-1.png",
+        "alt": "KineticBand Pro in use"
+      },
+      {
+        "src": "/img/products/kineticband-gallery-2.png",
+        "alt": "Detail of the KineticBand Pro material"
+      }
+    ],
+    "description": [
+      {
+        "type": "p",
+        "text": "The KineticBand Pro is designed for elite athletes looking to maximize their potential. Made with durable materials and an ergonomic design, it offers progressive resistance to improve strength, speed, and agility."
+      },
+      {
+        "type": "h2",
+        "text": "Main Features"
+      }
+    ],
+    "addToCartButton": "Add to Cart",
+    "quantityLabel": "Quantity",
+    "relatedProductsTitle": "You Might Also Like",
+    "stockStatus": {
+      "available": "Available ({{count}} in stock)",
+      "unavailable": "Currently unavailable"
+    },
+    "shareButton": {
+      "buttonLabel": "Share",
+      "popoverTitle": "Share via",
+      "copyLinkAction": "Copy link",
+      "copySuccessToast": "Link copied to clipboard!"
+    }
+  },
+  "cognireadEditor": {
+    "pageHeader": {
+      "createTitle": "New Study Analysis",
+      "createSubtitle": "Fill in the scientific study's DNA to register it in CogniRead.",
+      "editTitle": "Edit Study Analysis",
+      "editSubtitle": "Update the scientific study's details and its multilingual content."
+    },
+    "tabs": {
+      "dna": "Study DNA",
+      "content": "Multilingual Content",
+      "ecosystem": "Ecosystem"
+    },
+    "studyDnaTab": {
+      "extractor": {
+        "accordionTitle": "StudyDNA AI Extractor",
+        "title": "AI-Assisted Extraction",
+        "description": "Paste the full text of the abstract or study below. Our AI will analyze and extract the structured information.",
+        "textAreaLabel": "Scientific Study Text",
+        "textAreaPlaceholder": "Paste the full text or abstract here...",
+        "modelSelectLabel": "AI Model",
+        "extractButton": "Extract with AI",
+        "extractButtonLoading": "Extracting..."
+      }
+    },
+    "contentTab": {
+      "titleLabel": "Article Title",
+      "titlePlaceholder": "The title that will be displayed on the blog...",
+      "slugLabel": "Slug (URL)",
+      "slugPlaceholder": "example-of-a-friendly-slug",
+      "summaryLabel": "Summary (for previews)",
+      "summaryPlaceholder": "A short and engaging summary for blog cards...",
+      "bodyLabel": "Article Body (Markdown)",
+      "bodyPlaceholder": "Write the full content of the article here."
+    },
+    "ecosystemTab": {
+      "heroImageTitle": "Featured Image (BAVI)",
+      "heroImageDescription": "Select the main image for this article.",
+      "noImageSelected": "No image selected",
+      "selectFromBaviButton": "Select from BAVI",
+      "loadingBaviButton": "Loading BAVI...",
+      "relatedPromptsTitle": "Related Prompts (RaZPrompts)",
+      "relatedPromptsDescription": "Link the prompts used to generate ideas or assets. (Future)"
+    },
+    "saveButton": "Save Article Changes",
+    "saveButtonLoading": "Saving...",
+    "articleNotFoundError": "Article not found."
+  },
+  "step0": {
+    "title": "Step 0: Identification",
+    "description": "This is the foundational step. The information here defines your campaign's identity and strategy.",
+    "baseCampaignLabel": "Base Campaign",
+    "baseCampaignPlaceholder": "Select a product",
+    "baseCampaignDescription": "Select the base product for this new variant.",
+    "variantNameLabel": "Variant Name",
+    "variantNamePlaceholder": "E.g., 'Vitality', 'Scientific Approach'",
+    "seoKeywordsLabel": "SEO Keywords",
+    "seoKeywordsPlaceholder": "E.g., 'wellness, energy, natural'",
+    "seoKeywordsDescription": "Separated by commas. They will be used to generate the URL.",
+    "producerLabel": "Producer / Network",
+    "producerPlaceholder": "Select a producer",
+    "campaignTypeLabel": "Campaign Type",
+    "campaignTypePlaceholder": "Select a type",
+    "passportStampLabel": "Passport Approved"
+  },
+  "step1": {
+    "title": "Step 1: Page Structure",
+    "description": "Define the basic framework. Including a header or footer is a key strategic decision.",
+    "headerSwitchLabel": "Include Header?",
+    "footerSwitchLabel": "Include Footer?",
+    "headerGalleryTitle": "Select a Header Style",
+    "footerGalleryTitle": "Select a Footer Style",
+    "selectedLabel": "Selected",
+    "galleryDescriptions": {
+      "StandardHeader": "Standard header with logo, navigation, and CTA.",
+      "MinimalHeader": "Minimalist header with logo only.",
+      "StandardFooter": "Complete footer with links and newsletter.",
+      "BenefitsSection": "Showcases key benefits in cards with icons."
+    }
+  },
+  "step2": {
+    "title": "Step 2: Layout Composition",
+    "description": "Build the visual narrative of your page. Drag sections from the library to the canvas and reorder them to define the user's journey.",
+    "libraryTitle": "Section Library",
+    "canvasTitle": "Campaign Layout",
+    "addSectionButtonText": "Add",
+    "emptyLibraryText": "All sections have been added.",
+    "emptyCanvasText": "Drag or add sections here to build your layout.",
+    "nextButtonText": "Save Layout & Continue"
+  },
+  "step3": {
+    "title": "Step 3: Visual Theme",
+    "description": "Define the personality of your campaign. Your choices here will be instantly reflected in the live preview.",
+    "themeSelectorTitle": "Select Theme Fragments",
+    "colorsLabel": "Color Palette",
+    "fontsLabel": "Typography",
+    "radiiLabel": "Geometry (Radii)",
+    "colorsPlaceholder": "Choose a palette...",
+    "fontsPlaceholder": "Choose a font set...",
+    "radiiPlaceholder": "Choose a radius style...",
+    "nextButtonText": "Save Theme & Continue",
+    "composerTitle": "Theme Composer",
+    "composerDescription": "Select and preview your theme components. Changes will be reflected in real-time.",
+    "composerColorsTab": "Colors",
+    "composerTypographyTab": "Typography",
+    "composerGeometryTab": "Geometry",
+    "composerSaveButton": "Apply & Save Theme",
+    "composerCancelButton": "Cancel",
+    "createNewPaletteButton": "Create New Palette",
+    "createNewFontSetButton": "Create New Font Set",
+    "createNewRadiusStyleButton": "Create New Radius Style",
+    "placeholderFontsNone": "No font sets available",
+    "placeholderRadiiNone": "No radius styles available"
+  },
+  "step4": {
+    "title": "Step 4: Content",
+    "description": "Bring your layout to life. Click on 'Edit Content' for each section to add the persuasive text in all supported languages.",
+    "emptyStateTitle": "No Sections in Layout",
+    "emptyStateDescription": "Go back to Step 2 to add sections to your campaign.",
+    "editButtonText": "Edit Content",
+    "nextButtonText": "Finalize and Continue"
+  },
+  "step5": {
+    "title": "Step 5: Management & Publishing",
+    "description": "You're at the final step. Review the configuration and choose the final action for your new campaign variant.",
+    "summaryTitle": "Configuration Summary",
+    "summaryPlaceholder": "Preview of the campaign configuration...",
+    "checklistTitle": "Pre-launch Checklist",
+    "artifactHistory": {
+      "title": "Artifact History",
+      "loadingHistoryText": "Loading history...",
+      "emptyStateText": "No exports have been generated for this draft yet.",
+      "downloadButtonText": "Download",
+      "downloadingButtonText": "Downloading...",
+      "errorLoadingHistory": "Error loading history",
+      "errorDownloading": "Download error"
+    },
+    "publishButtonText": "Publish to Site",
+    "packageButtonText": "Export as .zip",
+    "deleteButtonText": "Delete Draft",
+    "templateButtonText": "Save as Template",
+    "deleteDialog": {
+      "title": "Are you absolutely sure?",
+      "description": "This action is irreversible. To confirm, type the variant name and the confirmation phrase.",
+      "cancelButton": "Cancel",
+      "confirmButton": "Yes, Permanently Delete",
+      "draftNameLabel": "Variant Name",
+      "confirmationTextLabel": "Type 'authorize delete' to confirm",
+      "confirmationTextPlaceholder": "authorize delete"
+    },
+    "templateDialog": {
+      "title": "Save as Template",
+      "description": "Save the current configuration as a reusable template for future campaigns.",
+      "nameLabel": "Template Name",
+      "namePlaceholder": "E.g., Direct Sale Template...",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "For campaigns focused on...",
+      "saveButton": "Save Template",
+      "cancelButton": "Cancel"
+    }
+  },
+  "routeTester": {
+    "devToolsGroup": "DEV TOOLS",
+    "campaignPagesGroup": "CAMPAIGN PAGES",
+    "legalPagesGroup": "LEGAL PAGES",
+    "campaignDesignSuite": "Campaign Design Suite",
+    "bridgePage": "Bridge Page",
+    "reviewPage": "Review Page",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "changeLanguage": "Change language",
+    "currentLanguageIs": "Current language is"
+  },
+  "checkoutForm": {
+    "title": "Complete Purchase",
+    "payButton": "Pay Now",
+    "processingButton": "Processing Payment...",
+    "unexpectedError": "An unexpected error occurred. Please try again."
+  }
+}

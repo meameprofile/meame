@@ -1,0 +1,78 @@
+{
+  "it-IT": {
+    "step0": {
+      "title": "Passo 0: Identificazione",
+      "description": "Questo è il passo fondazionale. Le informazioni qui definiscono l'identità e la strategia della tua campagna.",
+      "baseCampaignLabel": "Campagna Base",
+      "baseCampaignPlaceholder": "Seleziona un prodotto",
+      "baseCampaignDescription": "Seleziona il prodotto base per questa nuova variante.",
+      "variantNameLabel": "Nome Variante",
+      "variantNamePlaceholder": "Es. 'Vitalità', 'Approccio Scientifico'",
+      "seoKeywordsLabel": "Parole Chiave SEO",
+      "seoKeywordsPlaceholder": "Es. 'benessere, energia, naturale'",
+      "seoKeywordsDescription": "Separate da virgole. Verranno usate per generare l'URL.",
+      "producerLabel": "Produttore / Rete",
+      "producerPlaceholder": "Seleziona un produttore",
+      "campaignTypeLabel": "Tipo di Campagna",
+      "campaignTypePlaceholder": "Seleziona un tipo",
+      "passportStampLabel": "Passaporto Approvato"
+    }
+  },
+  "es-ES": {
+    "step0": {
+      "title": "Paso 0: Identificación",
+      "description": "Este es el paso fundacional. La información aquí define la identidad y estrategia de tu campaña.",
+      "baseCampaignLabel": "Campaña Base",
+      "baseCampaignPlaceholder": "Selecciona un producto",
+      "baseCampaignDescription": "Selecciona el producto base para esta nueva variante.",
+      "variantNameLabel": "Nombre de la Variante",
+      "variantNamePlaceholder": "Ej. 'Vitalidad', 'Enfoque Científico'",
+      "seoKeywordsLabel": "Palabras Clave SEO",
+      "seoKeywordsPlaceholder": "Ej. 'bienestar, energía, natural'",
+      "seoKeywordsDescription": "Separadas por comas. Se usarán para generar la URL.",
+      "producerLabel": "Productor / Red",
+      "producerPlaceholder": "Selecciona un productor",
+      "campaignTypeLabel": "Tipo de Campaña",
+      "campaignTypePlaceholder": "Selecciona un tipo",
+      "passportStampLabel": "Pasaporte Aprobado"
+    }
+  },
+  "en-US": {
+    "step0": {
+      "title": "Step 0: Identification",
+      "description": "This is the foundational step. The information here defines your campaign's identity and strategy.",
+      "baseCampaignLabel": "Base Campaign",
+      "baseCampaignPlaceholder": "Select a product",
+      "baseCampaignDescription": "Select the base product for this new variant.",
+      "variantNameLabel": "Variant Name",
+      "variantNamePlaceholder": "E.g., 'Vitality', 'Scientific Approach'",
+      "seoKeywordsLabel": "SEO Keywords",
+      "seoKeywordsPlaceholder": "E.g., 'wellness, energy, natural'",
+      "seoKeywordsDescription": "Separated by commas. They will be used to generate the URL.",
+      "producerLabel": "Producer / Network",
+      "producerPlaceholder": "Select a producer",
+      "campaignTypeLabel": "Campaign Type",
+      "campaignTypePlaceholder": "Select a type",
+      "passportStampLabel": "Passport Approved"
+    }
+  },
+  "pt-BR": {
+    "step0": {
+      "title": "Passo 0: Identificação",
+      "description": "Este é o passo fundamental. As informações aqui definem a identidade e a estratégia da sua campanha.",
+      "baseCampaignLabel": "Campanha Base",
+      "baseCampaignPlaceholder": "Selecione um produto",
+      "baseCampaignDescription": "Selecione o produto base para esta nova variante.",
+      "variantNameLabel": "Nome da Variante",
+      "variantNamePlaceholder": "Ex: 'Vitalidade', 'Foco Científico'",
+      "seoKeywordsLabel": "Palavras-chave de SEO",
+      "seoKeywordsPlaceholder": "Ex: 'bem-estar, energia, natural'",
+      "keywordsDescription": "Separadas por vírgulas. Serão usadas para gerar a URL.",
+      "producerLabel": "Produtor / Rede",
+      "producerPlaceholder": "Selecione um produtor",
+      "campaignTypeLabel": "Tipo de Campanha",
+      "campaignTypePlaceholder": "Selecione um tipo",
+      "passportStampLabel": "Passaporte Aprovado"
+    }
+  }
+}

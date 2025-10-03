@@ -1,0 +1,58 @@
+{
+  "it-IT": {
+    "sponsorsSection": {
+      "title": "I Nostri Sponsor Platinum",
+      "sponsors": [
+        { "icon": "Crown", "name": "Acmebrand" },
+        { "icon": "Vegan", "name": "Acmelogo" },
+        { "icon": "Ghost", "name": "Acmesponsor" },
+        { "icon": "Puzzle", "name": "Acmeipsum" },
+        { "icon": "Squirrel", "name": "Acme" },
+        { "icon": "Cookie", "name": "Accmee" },
+        { "icon": "Drama", "name": "Acmetech" }
+      ]
+    }
+  },
+  "es-ES": {
+    "sponsorsSection": {
+      "title": "Nuestros Patrocinadores Platino",
+      "sponsors": [
+        { "icon": "Crown", "name": "Acmebrand" },
+        { "icon": "Vegan", "name": "Acmelogo" },
+        { "icon": "Ghost", "name": "Acmesponsor" },
+        { "icon": "Puzzle", "name": "Acmeipsum" },
+        { "icon": "Squirrel", "name": "Acme" },
+        { "icon": "Cookie", "name": "Accmee" },
+        { "icon": "Drama", "name": "Acmetech" }
+      ]
+    }
+  },
+  "en-US": {
+    "sponsorsSection": {
+      "title": "Our Platinum Sponsors",
+      "sponsors": [
+        { "icon": "Crown", "name": "Acmebrand" },
+        { "icon": "Vegan", "name": "Acmelogo" },
+        { "icon": "Ghost", "name": "Acmesponsor" },
+        { "icon": "Puzzle", "name": "Acmeipsum" },
+        { "icon": "Squirrel", "name": "Acme" },
+        { "icon": "Cookie", "name": "Accmee" },
+        { "icon": "Drama", "name": "Acmetech" }
+      ]
+    }
+  },
+  "pt-BR": {
+    "sponsorsSection": {
+      "title": "Nossos Patrocinadores Platinum",
+      "sponsors": [
+        { "icon": "Crown", "name": "Acmebrand" },
+        { "icon": "Vegan", "name": "Acmelogo" },
+        { "icon": "Ghost", "name": "Acmesponsor" },
+        { "icon": "Puzzle", "name": "Acmeipsum" },
+        { "icon": "Squirrel", "name": "Acme" },
+        { "icon": "Cookie", "name": "Accmee" },
+        { "icon": "Drama", "name": "Acmetech" }
+      ]
+    }
+  }
+}

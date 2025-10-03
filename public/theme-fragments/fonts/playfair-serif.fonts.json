@@ -1,0 +1,10 @@
+{
+  "fonts": {
+    "sans": "'Inter', sans-serif",
+    "serif": "'Playfair Display', serif",
+    "--font-weight-normal": "400",
+    "--font-weight-bold": "700",
+    "--text-xl": "1.25rem",
+    "--text-2xl": "1.875rem"
+  }
+}

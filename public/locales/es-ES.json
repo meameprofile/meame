@@ -1,0 +1,1471 @@
+{
+  "metadata": {
+    "title": "Global Fitwell",
+    "description": "El futuro del bienestar. Tecnología y ciencia para tu potencial."
+  },
+  "storePage": {
+    "title": "Nuestra Tienda de Bienestar",
+    "subtitle": "Una selección curada de productos para potenciar tu salud y rendimiento.",
+    "filters": {
+      "searchLabel": "Buscar",
+      "searchPlaceholder": "Buscar productos...",
+      "categoryTitle": "Categorías",
+      "priceTitle": "Rango de Precios",
+      "tagsTitle": "Etiquetas",
+      "stockTitle": "Disponibilidad",
+      "inStockLabel": "Solo en stock"
+    },
+    "bestsellerLabel": "Más Vendido",
+    "addToCartButton": "Añadir al Carrito",
+    "viewDetailsButton": "Ver Detalles",
+    "products": [
+      "prod_kband_pro",
+      "prod_vp_filter",
+      "prod_nb_pods",
+      "prod_rg_mat",
+      "prod_eg_blend",
+      "prod_ha_bottle"
+    ]
+  },
+  "notFoundPage": {
+    "title": "Página No Encontrada",
+    "description": "Lo sentimos, no pudimos encontrar la página que estás buscando.",
+    "buttonText": "Volver al Inicio"
+  },
+  "selectLanguage": {
+    "title": "Selecciona tu idioma",
+    "subtitle": "Elige tu idioma preferido para continuar.",
+    "languages": {
+      "it-IT": "Italiano",
+      "es-ES": "Español",
+      "en-US": "Inglés",
+      "pt-BR": "Portugués"
+    }
+  },
+  "aboutPage": {
+    "title": "Sobre Nosotros",
+    "subtitle": "Nuestra misión es potenciar el bienestar global a través de la ciencia y la innovación.",
+    "content": [
+      {
+        "type": "p",
+        "text": "Global Fitwell nació de la creencia de que todos merecen acceso a soluciones de bienestar que sean seguras, efectivas y basadas en evidencia científica. Nuestro equipo está formado por expertos en nutrición, científicos y entusiastas del fitness dedicados a investigar y desarrollar productos que marquen una diferencia real en la vida de las personas."
+      },
+      {
+        "type": "h2",
+        "text": "Nuestro Compromiso"
+      },
+      {
+        "type": "p",
+        "text": "Nos comprometemos con la transparencia, la calidad y la sostenibilidad en todo lo que hacemos. Desde la obtención de los ingredientes más puros hasta la realización de pruebas rigurosas en laboratorios de terceros, nuestra prioridad es tu confianza y tus resultados."
+      }
+    ]
+  },
+  "privacyPage": {
+    "title": "Política de Privacidad",
+    "subtitle": "Tu confianza y la protección de tus datos son nuestra máxima prioridad.",
+    "content": [
+      {
+        "type": "h2",
+        "text": "1. Recopilación de Información"
+      },
+      {
+        "type": "p",
+        "text": "Recopilamos información que nos proporcionas directamente, como tu nombre y correo electrónico cuando te suscribes a nuestro boletín o rellenas un formulario de contacto. También recopilamos datos técnicos automáticamente a través de cookies, como tu dirección IP y tipo de navegador, para mejorar tu experiencia."
+      },
+      {
+        "type": "h2",
+        "text": "2. Uso de la Información"
+      },
+      {
+        "type": "p",
+        "text": "Utilizamos tu información para procesar pedidos, personalizar tu experiencia y comunicarnos contigo sobre nuestros productos y ofertas. Nunca compartiremos tus datos personales con terceros no afiliados sin tu consentimiento explícito, salvo por obligación legal."
+      }
+    ]
+  },
+  "termsPage": {
+    "title": "Términos de Servicio",
+    "subtitle": "Al utilizar nuestro sitio web, aceptas los siguientes términos y condiciones.",
+    "content": [
+      {
+        "type": "h2",
+        "text": "1. Uso del Sitio"
+      },
+      {
+        "type": "p",
+        "text": "Este sitio web y su contenido son para tu uso personal y no comercial. No puedes modificar, copiar, distribuir o vender ninguna información obtenida de este sitio. El acceso está permitido solo a mayores de edad."
+      },
+      {
+        "type": "h2",
+        "text": "2. Propiedad Intelectual"
+      },
+      {
+        "type": "p",
+        "text": "Todo el contenido, incluyendo texto, gráficos, logos e imágenes, es propiedad de Global Fitwell y está protegido por las leyes internacionales de derechos de autor."
+      }
+    ]
+  },
+  "cookiesPage": {
+    "title": "Política de Cookies",
+    "subtitle": "Cómo utilizamos las cookies para mejorar tu experiencia.",
+    "content": [
+      {
+        "type": "h2",
+        "text": "1. ¿Qué son las cookies?"
+      },
+      {
+        "type": "p",
+        "text": "Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Nos ayudan a recordar tus preferencias, entender cómo usas nuestro sitio y personalizar el contenido y la publicidad."
+      },
+      {
+        "type": "h2",
+        "text": "2. Tipos de Cookies que Usamos"
+      },
+      {
+        "type": "p",
+        "text": "Usamos cookies esenciales para el funcionamiento del sitio, cookies de rendimiento para analizar el tráfico y cookies funcionales para recordar tus elecciones. También usamos cookies de marketing para mostrarte anuncios relevantes."
+      }
+    ]
+  },
+  "devDashboardPage": {
+    "pageHeader": {
+      "title": "Centro de Comando del Desarrollador",
+      "subtitle": "Herramientas forjadas para dominar el ciclo de vida completo del desarrollo de élite."
+    },
+    "magicBento": {
+      "config": {
+        "textAutoHide": true,
+        "enableStars": true,
+        "enableSpotlight": true,
+        "enableBorderGlow": true,
+        "disableAnimations": false,
+        "spotlightRadius": 300,
+        "particleCount": 12,
+        "enableTilt": true,
+        "glowColor": "primary",
+        "clickEffect": true,
+        "enableMagnetism": true
+      },
+      "cards": [
+        {
+          "title": "La Forja (SDC)",
+          "description": "Forja campañas de alta conversión.",
+          "label": "Creatividad"
+        },
+        {
+          "title": "El Arsenal (BAVI)",
+          "description": "La SSoT para todos los activos visuales.",
+          "label": "Activos"
+        },
+        {
+          "title": "La Bóveda (RaZPrompts)",
+          "description": "Cataloga el ADN creativo de tus activos.",
+          "label": "Genoma"
+        },
+        {
+          "title": "El Motor (CogniRead)",
+          "description": "Transforma la ciencia en autoridad.",
+          "label": "Credibilidad"
+        },
+        {
+          "title": "El Sistema Nervioso (Nos3)",
+          "description": "Mira a través de los ojos del usuario.",
+          "label": "UX"
+        },
+        {
+          "title": "El Laboratorio",
+          "description": "Stress-test para cada componente.",
+          "label": "Resiliencia"
+        }
+      ]
+    }
+  },
+  "devLoginPage": {
+    "title": "Acceso al DCC",
+    "subtitle": "Introduce tus credenciales para acceder a la suite de desarrollo.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordLink": "¿Olvidaste tu contraseña?",
+    "buttonText": "Iniciar Sesión",
+    "buttonLoadingText": "Iniciando sesión...",
+    "signUpPrompt": "¿No tienes una cuenta?",
+    "signUpLink": "Regístrate",
+    "footerHtml": "Esta es una zona de acceso restringido para desarrolladores y administradores.",
+    "backgroundImageAssetId": "i-bkg-login-abstract-01",
+    "forgotPassword": {
+      "modalTitle": "Recupera tu Contraseña",
+      "modalDescription": "Introduce tu dirección de email y te enviaremos un enlace para restablecer tu contraseña.",
+      "submitButton": "Enviar Enlace de Recuperación",
+      "submitButtonLoading": "Enviando...",
+      "cancelButton": "Cancelar",
+      "successToastTitle": "Enlace de Recuperación Enviado",
+      "successToastDescription": "Revisa tu bandeja de entrada para las instrucciones."
+    },
+    "lastSignIn": {
+      "title": "Último Acceso:",
+      "location": "desde {{location}}",
+      "ip": "IP: {{ip}}"
+    },
+    "showPasswordAriaLabel": "Mostrar contraseña",
+    "hidePasswordAriaLabel": "Ocultar contraseña"
+  },
+  "devTestPage": {
+    "title": "Vitrina de Resiliencia de Componentes",
+    "subtitle": "Todos los componentes del sistema renderizados con datos SSoT reales para garantizar la estabilidad.",
+    "selectThemeLabel": "Seleccionar Tema de Campaña",
+    "noContentWarning": "Contenido no encontrado para este componente en el diccionario.",
+    "fallbackHeroTitle": "Título de Fallback",
+    "fallbackHeroSubtitle": "Subtítulo de fallback para el componente Hero.",
+    "fallbackBenefitsTitle": "Beneficios de Fallback",
+    "fallbackBenefitsSubtitle": "Subtítulo de fallback para beneficios.",
+    "fallbackBenefit1": "Beneficio 1",
+    "fallbackBenefit2": "Beneficio 2",
+    "fallbackBenefit3": "Beneficio 3",
+    "fallbackAccordionQuestion": "¿Pregunta de Fallback?",
+    "fallbackAccordionAnswer": "Respuesta de fallback.",
+    "fallbackOrderNameLabel": "Nombre",
+    "fallbackOrderNamePlaceholder": "Nombre Completo",
+    "fallbackOrderPhoneLabel": "Teléfono",
+    "fallbackOrderPhonePlaceholder": "Número de Teléfono",
+    "fallbackOrderSubmitText": "Enviar",
+    "fallbackOrderLoadingText": "Enviando..."
+  },
+  "campaignSuitePage": {
+    "title": "La Forja Creativa (SDC)",
+    "subtitle": "El epicentro del ecosistema. Forja la estrategia en bruto en campañas de alta conversión.",
+    "templateCopySuffix": " (Copia)",
+    "preview": {
+      "loadingTheme": "Cargando tema...",
+      "errorLoadingTheme": "Error al cargar el tema"
+    },
+    "stepper": {
+      "identificationTitle": "Identificación",
+      "structureTitle": "Estructura",
+      "layoutTitle": "Layout",
+      "themeTitle": "Tema",
+      "contentTitle": "Contenido",
+      "managementTitle": "Gestión"
+    }
+  },
+  "baviHomePage": {
+    "title": "BAVI: Biblioteca de Activos Visuales Integrada",
+    "subtitle": "La central de operaciones para la gestión, optimización e indexación de todos los activos del ecosistema.",
+    "ingestCardTitle": "Ingesta de Nuevos Activos",
+    "ingestCardDescription": "Sube un nuevo activo. Se optimizará automáticamente y se preparará para su indexación en el manifiesto.",
+    "aiBoilerCardTitle": "Boiler de IA (Próximamente)",
+    "aiBoilerCardDescription": "Genera variaciones, elimina fondos y crea activos sintéticos con IA."
+  },
+  "assetExplorer": {
+    "title": "Explorador de Activos BAVI",
+    "description": "Busca, filtra y gestiona los activos visuales cargados en la BAVI.",
+    "searchPlaceholder": "Buscar por ID, palabras clave...",
+    "searchButton": "Buscar",
+    "filterByAILabel": "Filtrar por IA",
+    "allAIsOption": "Todas las IAs",
+    "loadingAssets": "Cargando activos...",
+    "noAssetsFoundTitle": "No se encontraron activos.",
+    "noAssetsFoundDescription": "Intenta ajustar tu búsqueda o filtros.",
+    "previousPageButton": "Anterior",
+    "nextPageButton": "Siguiente",
+    "pageInfo": "Página {{currentPage}} de {{totalPages}}",
+    "viewDetailsButton": "Ver Detalles",
+    "selectAssetButton": "Seleccionar"
+  },
+  "razPromptsHomePage": {
+    "title": "RaZPrompts: Bóveda de Conocimiento Generativo",
+    "subtitle": "El laboratorio para crear, catalogar y versionar el genoma de tus activos visuales.",
+    "createPromptTab": "Crear Prompt",
+    "viewVaultTab": "Ver Bóveda"
+  },
+  "cinematicDemoPage": {
+    "pageHeader": {
+      "title": "Sandbox del Motor \"Aether\"",
+      "subtitle": "Entorno de desarrollo aislado para el renderizador cinematográfico."
+    },
+    "loadingText": "Cargando Renderizador Cinematográfico..."
+  },
+  "cogniReadDashboard": {
+    "pageHeader": {
+      "title": "CogniRead: Gestión del Conocimiento Científico",
+      "subtitle": "El motor de credibilidad de Global Fitwell. Gestiona aquí todos los análisis de estudios científicos."
+    },
+    "newArticleButton": "Nuevo Análisis de Estudio",
+    "articlesListTitle": "Biblioteca de Artículos",
+    "articlesListDescription": "Aquí se listan todos los artículos analizados, tanto en borrador como publicados."
+  },
+  "nos3Dashboard": {
+    "pageHeader": {
+      "title": "Bóveda de Sesiones Nos3",
+      "subtitle": "Explora, reproduce y analiza las interacciones de los usuarios registradas en el sitio."
+    },
+    "tableHeaders": {
+      "sessionId": "ID de Sesión",
+      "startTime": "Hora de Inicio",
+      "actions": "Acciones"
+    },
+    "reproduceButton": "Reproducir",
+    "emptyStateTitle": "No hay grabaciones",
+    "emptyStateDescription": "Aún no se han grabado sesiones de usuario."
+  },
+  "header": {
+    "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+    "logoAlt": "Logo de Global Fitwell",
+    "navLinks": [
+      {
+        "label": "Inicio",
+        "href": "/"
+      },
+      {
+        "label": "Tienda",
+        "href": "/store"
+      },
+      {
+        "label": "Sobre Nosotros",
+        "href": "/about"
+      }
+    ],
+    "signUpButton": {
+      "label": "Registrarse"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Mantente Actualizado con Global Fitwell",
+      "description": "Recibe consejos exclusivos de bienestar, investigaciones científicas y ofertas especiales directamente en tu bandeja de entrada.",
+      "placeholder": "Tu mejor email",
+      "buttonText": "Suscribirse Ahora",
+      "buttonAriaLabel": "Enviar tu correo electrónico para suscribirte al boletín"
+    },
+    "linkColumns": [
+      {
+        "title": "Empresa",
+        "links": [
+          {
+            "label": "Sobre Nosotros",
+            "href": "/es-ES/about"
+          },
+          {
+            "label": "Blog / Noticias",
+            "href": "/es-ES/news"
+          }
+        ]
+      },
+      {
+        "title": "Recursos",
+        "links": [
+          {
+            "label": "FAQ",
+            "href": "#"
+          }
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          {
+            "label": "Términos de Servicio",
+            "href": "/es-ES/terms"
+          },
+          {
+            "label": "Política de Privacidad",
+            "href": "/es-ES/privacy"
+          },
+          {
+            "label": "Política de Cookies",
+            "href": "/es-ES/cookies"
+          }
+        ]
+      }
+    ],
+    "socialLinks": [
+      {
+        "name": "X (Twitter)",
+        "icon": "Twitter",
+        "url": "https://x.com"
+      },
+      {
+        "name": "Instagram",
+        "icon": "Instagram",
+        "url": "https://instagram.com"
+      },
+      {
+        "name": "Youtube",
+        "icon": "Youtube",
+        "url": "https://youtube.com"
+      }
+    ],
+    "copyright": "© 2025 Global Fitwell. Todos los derechos reservados.",
+    "disclaimer": "La información proporcionada en este sitio es solo para fines informativos. Los productos aquí presentados no están destinados a diagnosticar, tratar, curar o prevenir ninguna enfermedad.",
+    "developerLink": {
+      "label": "Desarrollado por RaZ Podestá - MetaShark Tech",
+      "href": "https://metashark.tech"
+    }
+  },
+  "cookieConsentBanner": {
+    "message": "Usamos cookies para mejorar tu experiencia.",
+    "acceptButtonText": "Aceptar",
+    "rejectButtonText": "Rechazar",
+    "policyLinkText": "Lee nuestra política de cookies",
+    "policyLinkHref": "/es-ES/cookies"
+  },
+  "devHeader": {
+    "title": "Centro de Mando",
+    "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+    "logoAlt": "Logo de Global Fitwell",
+    "homeLinkAriaLabel": "Volver al panel del Developer Command Center"
+  },
+  "devHomepageHeader": {
+    "homeLink": "Inicio",
+    "aboutLink": "Sobre Nosotros",
+    "storeLink": "Tienda",
+    "blogLink": "Blog",
+    "devMenuLabel": "Menú Dev"
+  },
+  "devRouteMenu": {
+    "devMenuLabel": "Herramientas Dev",
+    "devToolsGroup": "HERRAMIENTAS DEV",
+    "campaignPagesGroup": "PÁGINAS DE CAMPAÑA",
+    "portalPagesGroup": "PÁGINAS DEL PORTAL",
+    "legalPagesGroup": "PÁGINAS LEGALES",
+    "home": "Página de Inicio",
+    "store": "Tienda",
+    "news": "Noticias",
+    "about": "Sobre Nosotros",
+    "terms": "Términos",
+    "privacy": "Privacidad",
+    "cookies": "Cookies",
+    "notFound": "Página 404",
+    "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campaña (ID 12157)",
+    "devDashboard": "Dashboard Desarrollo",
+    "devLogin": "Página de Login",
+    "devTestPage": "Página de Prueba",
+    "devComponentShowcase": "Vitrina de Componentes",
+    "devCampaignSuiteCreate": "Suite de Diseño"
+  },
+  "toggleTheme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema",
+    "toggleAriaLabel": "Alternar tema"
+  },
+  "languageSwitcher": {
+    "ariaLabel": "Seleccionar idioma",
+    "languages": {
+      "it-IT": "Italiano",
+      "es-ES": "Español",
+      "en-US": "Inglés",
+      "pt-BR": "Portugués"
+    }
+  },
+  "cart": {
+    "triggerAriaLabel": "Ver carrito, {{count}} artículos",
+    "sheetTitle": "Tu Carrito",
+    "emptyStateText": "Tu carrito está vacío.",
+    "emptyStateButton": "Empezar a Comprar",
+    "subtotalLabel": "Subtotal",
+    "checkoutButton": "Proceder al Pago",
+    "continueShoppingButton": "Seguir Comprando",
+    "errors": {
+      "addItemFailed": "No se pudo añadir el artículo al carrito.",
+      "removeItemFailed": "No se pudo eliminar el artículo del carrito.",
+      "updateItemFailed": "No se pudo actualizar la cantidad del artículo.",
+      "createCartFailed": "No se pudo crear un nuevo carrito.",
+      "emptyCart": "Tu carrito está vacío y no puedes proceder al pago.",
+      "checkoutFailed": "No se pudo iniciar el proceso de pago."
+    }
+  },
+  "userNav": {
+    "loginButton": "Iniciar Sesión",
+    "sessionLabel": "Sesión iniciada como",
+    "logoutButton": "Cerrar Sesión",
+    "viewAllNotificationsLink": "Ver todas",
+    "notificationsLabel": "Notificaciones",
+    "noNotificationsText": "No tienes notificaciones.",
+    "loadingText": "Cargando..."
+  },
+  "oAuthButtons": {
+    "google": "Continuar con Google",
+    "apple": "Continuar con Apple (Próximamente)",
+    "facebook": "Continuar con Facebook (Próximamente)"
+  },
+  "notificationBell": {
+    "viewAllNotificationsLink": "Ver todas",
+    "notificationsLabel": "Notificaciones",
+    "noNotificationsText": "No tienes notificaciones.",
+    "loadingText": "Cargando..."
+  },
+  "validationError": {
+    "title": "Error de Validación de Datos para la Sección: '{{sectionName}}'",
+    "description": "Los datos proporcionados desde el CMS o el archivo i18n no coinciden con el contrato (schema) que este componente requiere. La aplicación no se romperá en producción, pero esta sección no se renderizará. Revisa la consola para detalles técnicos.",
+    "detailsLabel": "Ver Detalles Técnicos del Error"
+  },
+  "suiteStyleComposer": {
+    "customizeButton": "Personalizar Estilos",
+    "composerTitle": "Compositor de Estilos de Suite",
+    "composerDescription": "Ajusta finamente los tokens de diseño de la suite en tiempo real.",
+    "composerColorsTab": "Colores",
+    "composerTypographyTab": "Tipografía",
+    "composerGeometryTab": "Geometría",
+    "composerSaveButton": "Aplicar y Guardar",
+    "composerCancelButton": "Cancelar",
+    "selectThemeLabel": "Seleccionar Tema Color",
+    "selectFontLabel": "Seleccionar Tipografía",
+    "selectRadiusLabel": "Seleccionar Geometría",
+    "defaultPresetName": "Por Defecto",
+    "colorFilterPlaceholder": "Elige color...",
+    "fontFilterPlaceholder": "Elige fuente...",
+    "radiusFilterPlaceholder": "Elige radio...",
+    "fontSizeLabel": "Tamaño de Fuente",
+    "fontWeightLabel": "Grosor de Fuente",
+    "lineHeightLabel": "Altura de Línea",
+    "letterSpacingLabel": "Espaciado de Letras",
+    "borderRadiusLabel": "Radio de Borde",
+    "borderWidthLabel": "Grosor de Borde",
+    "baseSpacingUnitLabel": "Unidad de Espaciado Base",
+    "inputHeightLabel": "Altura de Inputs"
+  },
+  "componentCanvasHeader": {
+    "description": "Visualización de componente aislado."
+  },
+  "componentCanvas": {
+    "errorNoComponentTitle": "Ningún Componente Seleccionado",
+    "errorNoComponentDescription": "Por favor, selecciona un componente del dashboard de desarrollo para previsualizarlo aquí.",
+    "errorNoComponentLink": "Volver al dashboard",
+    "errorLoadingTitle": "Error de Carga del Componente",
+    "errorLoadingDescription": "No se pudo cargar el componente",
+    "metadataPanelPropsLabel": "Props de Mock Aplicadas"
+  },
+  "shareButton": {
+    "buttonLabel": "Compartir",
+    "popoverTitle": "Compartir vía",
+    "copyLinkAction": "Copiar enlace",
+    "copySuccessToast": "¡Enlace copiado al portapapeles!"
+  },
+  "alert": {
+    "title": "Alerta",
+    "description": "Este es un componente de alerta para notificaciones importantes."
+  },
+  "alertDialog": {
+    "title": "Editar Perfil",
+    "description": "Realiza cambios en tu perfil aquí. Haz clic en guardar cuando hayas terminado.",
+    "footerButton": "Guardar Cambios"
+  },
+  "profileForm": {
+    "title": "Perfil Público",
+    "description": "Esta información podría ser visible para otros usuarios.",
+    "emailLabel": "Email",
+    "fullNameLabel": "Nombre Completo",
+    "saveButtonText": "Guardar Cambios",
+    "successToast": "¡Perfil actualizado con éxito!",
+    "errorToastTitle": "Error al actualizar el perfil"
+  },
+  "benefitsSection": {
+    "eyebrow": "Beneficios",
+    "title": "Tu Atajo hacia el Éxito",
+    "subtitle": "Una arquitectura de landing page diseñada para la máxima conversión y una Developer Experience de élite. Construye más rápido, convierte más.",
+    "benefits": [
+      {
+        "icon": "Blocks",
+        "title": "Construye Confianza de Marca",
+        "description": "Una presentación profesional y basada en evidencia que genera credibilidad instantánea con tu audiencia."
+      },
+      {
+        "icon": "LineChart",
+        "title": "Más Leads Cualificados",
+        "description": "Un camino de conversión optimizado que guía al usuario de forma intuitiva, aumentando la calidad y cantidad de los leads."
+      },
+      {
+        "icon": "Wallet",
+        "title": "Conversiones Más Altas",
+        "description": "Cada elemento está diseñado con un único propósito: transformar visitantes en clientes, maximizando tu ROI."
+      },
+      {
+        "icon": "Sparkle",
+        "title": "Testea Ideas de Marketing",
+        "description": "La arquitectura modular te permite probar rápidamente diferentes ángulos y mensajes para encontrar la fórmula ganadora."
+      }
+    ]
+  },
+  "communitySection": {
+    "iconName": "MessageSquare",
+    "title": "¿Listo para unirte a nuestra <span class='text-primary'>Comunidad?</span>",
+    "description": "¡Únete a nuestra vibrante comunidad! Conecta, comparte y crece con entusiastas de ideas afines. ¡Haz clic para sumergirte! 🚀",
+    "buttonLabel": "Unirse Ahora",
+    "buttonHref": "https://example.com/discord/es"
+  },
+  "contactSection": {
+    "eyebrow": "Contacto",
+    "title": "Conecta con Nosotros",
+    "description": "¿Tienes una pregunta o un proyecto en mente? Rellena el formulario o utiliza la información de contacto a continuación. Nos encantará saber de ti.",
+    "contactInfo": [
+      {
+        "iconName": "Mail",
+        "label": "Email",
+        "value": "soporte@globalfitwell.com"
+      },
+      {
+        "iconName": "Phone",
+        "label": "Teléfono",
+        "value": "+34 912 345 678"
+      },
+      {
+        "iconName": "Building",
+        "label": "Oficina",
+        "value": "Calle Principal 1, Madrid, ES"
+      }
+    ],
+    "form": {
+      "firstNameLabel": "Nombre",
+      "firstNamePlaceholder": "Juan",
+      "lastNameLabel": "Apellido",
+      "lastNamePlaceholder": "Pérez",
+      "emailLabel": "Email",
+      "emailPlaceholder": "juan.perez@example.com",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "Selecciona un asunto",
+      "subjectOptions": ["Desarrollo Web", "Marketing Digital", "Otro"],
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Tu mensaje...",
+      "submitButtonText": "Enviar Mensaje"
+    }
+  },
+  "faqAccordion": {
+    "title": "Preguntas Frecuentes",
+    "faqs": [
+      {
+        "question": "¿Esta plantilla es gratuita?",
+        "answer": "Sí. Es una plantilla gratuita de NextJS Shadcn."
+      },
+      {
+        "question": "¿Cómo puedo personalizar el estilo?",
+        "answer": "Puedes personalizar los colores y las fuentes directamente en el archivo `app/globals.css` usando las variables de tema de Tailwind CSS v4."
+      }
+    ]
+  },
+  "featuredArticlesCarousel": {
+    "eyebrow": "Destacados",
+    "title": "Análisis Profundos de Nuestro Equipo",
+    "articles": [
+      {
+        "slug": "guida-entrenamiento-funcional",
+        "title": "Entrenamiento Funcional: La Guía Definitiva",
+        "category": "Fitness",
+        "imageUrl": "/img/sections/news-grid/functional-training.jpg",
+        "imageAlt": "Una persona realizando una sentadilla goblet con una pesa rusa.",
+        "author": "Equipo Global Fitwell",
+        "readTime": 8
+      },
+      {
+        "slug": "5-superalimentos-dieta",
+        "title": "5 Superalimentos que Deberías Incluir en Tu Dieta",
+        "category": "Nutrición",
+        "imageUrl": "/img/sections/news-grid/superfoods.jpg",
+        "imageAlt": "Un bol colorido de superalimentos.",
+        "author": "Dra. Sofía Rossi",
+        "readTime": 5
+      },
+      {
+        "slug": "mindfulness-reduccion-estres",
+        "title": "Mindfulness y Reducción del Estrés",
+        "category": "Bienestar Mental",
+        "imageUrl": "/img/sections/news-grid/mindfulness.jpg",
+        "imageAlt": "Una persona meditando serenamente.",
+        "author": "Equipo Global Fitwell",
+        "readTime": 6
+      }
+    ]
+  },
+  "featuresSection": {
+    "eyebrow": "Características",
+    "title": "Qué Nos Hace Diferentes",
+    "subtitle": "Diseñado para la velocidad, la escalabilidad y una experiencia de desarrollador que te permite centrarte en lo que importa: crear.",
+    "features": [
+      {
+        "icon": "TabletSmartphone",
+        "title": "Mobile-First",
+        "description": "Cada componente se diseña primero para móvil, garantizando una experiencia perfecta en todos los dispositivos."
+      },
+      {
+        "icon": "BadgeCheck",
+        "title": "Prueba Social Integrada",
+        "description": "Componentes listos para usar para testimonios y logos para construir confianza y credibilidad al instante."
+      },
+      {
+        "icon": "Goal",
+        "title": "Contenido Dirigido",
+        "description": "La arquitectura i18n te permite adaptar tu mensaje para diferentes mercados y segmentos de audiencia."
+      },
+      {
+        "icon": "PictureInPicture",
+        "title": "Visuales Fuertes",
+        "description": "Soporte para imágenes optimizadas con Next.js para garantizar tiempos de carga rápidos y un alto impacto visual."
+      },
+      {
+        "icon": "MousePointerClick",
+        "title": "CTA Claros",
+        "description": "Componentes de botones y formularios diseñados para guiar al usuario a la acción, maximizando las conversiones."
+      },
+      {
+        "icon": "Newspaper",
+        "title": "Titulares Claros",
+        "description": "Estructura semántica y jerarquía tipográfica para asegurar que tus mensajes principales estén siempre al frente."
+      }
+    ]
+  },
+  "hero": {
+    "title": "Tu Camino Hacia el Bienestar Comienza Aquí",
+    "subtitle": "Descubre soluciones basadas en la ciencia para desbloquear tu máximo potencial.",
+    "backgroundImageAssetId": "i-bkg-hero-abstract-01"
+  },
+  "heroNews": {
+    "mainTitle": "El Futuro del Bienestar es Hoy",
+    "featuredArticle": {
+      "tag": "Noticia Destacada",
+      "title": "La Conexión Mente-Músculo: Neurociencia Aplicada al Entrenamiento",
+      "author": "Dra. Elena Ríos",
+      "readTime": 6
+    }
+  },
+  "newsGrid": {
+    "title": "Últimas Noticias y Artículos",
+    "subtitle": "Explora nuestros últimos artículos sobre bienestar, nutrición y rendimiento."
+  },
+  "orderSection": {
+    "originalPrice": 78,
+    "discountedPrice": 39,
+    "originalPriceLabel": "Precio de Venta al Público",
+    "discountedPriceLabel": "Precio Oferta Especial",
+    "nameInputLabel": "Nombre y Apellido",
+    "nameInputPlaceholder": "Ej. Juan Pérez",
+    "phoneInputLabel": "Teléfono",
+    "phoneInputPlaceholder": "Tu número para la confirmación",
+    "submitButtonText": "Pedir Ahora con 50% de Descuento",
+    "submitButtonLoadingText": "Enviando..."
+  },
+  "pricingSection": {
+    "eyebrow": "Precios",
+    "title": "Obtén Acceso Ilimitado",
+    "subtitle": "Elige el plan que mejor se adapte a tus necesidades y empieza a construir hoy.",
+    "currency": "EUR",
+    "plans": [
+      {
+        "title": "Gratis",
+        "isPopular": false,
+        "price": 0,
+        "priceSuffix": "/mes",
+        "description": "Perfecto para proyectos personales y para explorar la plataforma.",
+        "buttonText": "Empezar Prueba Gratis",
+        "benefitList": [
+          "1 miembro de equipo",
+          "1 GB de almacenamiento",
+          "Hasta 2 páginas",
+          "Soporte de la comunidad"
+        ]
+      },
+      {
+        "title": "Premium",
+        "isPopular": true,
+        "price": 45,
+        "priceSuffix": "/mes",
+        "description": "La mejor opción para equipos y empresas en crecimiento.",
+        "buttonText": "Empezar Ahora",
+        "benefitList": [
+          "4 miembros de equipo",
+          "8 GB de almacenamiento",
+          "Hasta 6 páginas",
+          "Soporte prioritario"
+        ]
+      },
+      {
+        "title": "Enterprise",
+        "isPopular": false,
+        "price": 120,
+        "priceSuffix": "/mes",
+        "description": "Soluciones a medida para grandes organizaciones.",
+        "buttonText": "Contáctanos",
+        "benefitList": [
+          "10 miembros de equipo",
+          "20 GB de almacenamiento",
+          "Hasta 10 páginas",
+          "Soporte por teléfono y email"
+        ]
+      }
+    ]
+  },
+  "productShowcase": {
+    "title": "Herramientas para Tu Viaje de Bienestar",
+    "products": [
+      {
+        "name": "KineticBand Pro",
+        "description": "Monitoreo de actividad con bio-sensores.",
+        "imageUrl": "/img/products/kineticband.png"
+      },
+      {
+        "name": "VitaPure Filter",
+        "description": "Sistema de purificación de agua inteligente.",
+        "imageUrl": "/img/products/vitapure.png"
+      },
+      {
+        "name": "NeuroBoost Pods",
+        "description": "Suplemento nootrópico para enfoque mental.",
+        "imageUrl": "/img/products/neuroboost.png"
+      }
+    ]
+  },
+  "scrollingBanner": {
+    "message": "Bienvenido al Centro de Mando ✨ | Componentes Forjados: <strong>45</strong> | Campañas Activas: <strong>3</strong> | Dominio: <strong>Producción</strong>",
+    "iconName": "Sparkles"
+  },
+  "servicesSection": {
+    "eyebrow": "Servicios",
+    "title": "Haz Crecer Tu Negocio",
+    "subtitle": "Desde marketing y ventas hasta operaciones y estrategia, tenemos la experiencia para ayudarte a alcanzar tus metas.",
+    "proLabel": "PRO",
+    "services": [
+      {
+        "title": "Integración de Dominio Personalizado",
+        "description": "Usa tu propio dominio para fortalecer tu marca y credibilidad en línea.",
+        "isPro": false
+      },
+      {
+        "title": "Integraciones de Redes Sociales",
+        "description": "Conecta tus perfiles sociales para amplificar tu alcance y engagement.",
+        "isPro": false
+      },
+      {
+        "title": "Integraciones de Email Marketing",
+        "description": "Sincroniza con tus herramientas de email marketing favoritas para nutrir a tus leads.",
+        "isPro": false
+      },
+      {
+        "title": "Optimización SEO",
+        "description": "Mejora tu ranking en los motores de búsqueda y atrae tráfico orgánico cualificado.",
+        "isPro": true
+      }
+    ]
+  },
+  "socialProofLogos": {
+    "title": "Con la confianza de las principales autoridades del bienestar",
+    "logos": [
+      {
+        "assetId": "i-sybl-wellness-insider-01",
+        "alt": "Logo de Wellness Insider"
+      },
+      {
+        "assetId": "i-sybl-health-journal-01",
+        "alt": "Logo de The Health Journal"
+      },
+      {
+        "assetId": "i-sybl-bio-innovate-01",
+        "alt": "Logo de Bio-Innovate Forum"
+      },
+      {
+        "assetId": "i-sybl-nutrition-council-01",
+        "alt": "Logo del Nutrition Council"
+      }
+    ]
+  },
+  "sponsorsSection": {
+    "title": "Nuestros Patrocinadores Platino",
+    "sponsors": [
+      {
+        "icon": "Crown",
+        "name": "Acmebrand"
+      },
+      {
+        "icon": "Vegan",
+        "name": "Acmelogo"
+      },
+      {
+        "icon": "Ghost",
+        "name": "Acmesponsor"
+      },
+      {
+        "icon": "Puzzle",
+        "name": "Acmeipsum"
+      },
+      {
+        "icon": "Squirrel",
+        "name": "Acme"
+      },
+      {
+        "icon": "Cookie",
+        "name": "Accmee"
+      },
+      {
+        "icon": "Drama",
+        "name": "Acmetech"
+      }
+    ]
+  },
+  "teamSection": {
+    "eyebrow": "Equipo",
+    "title": "El Dream Team de la Compañía",
+    "members": [
+      {
+        "imageUrl": "/pravatar/58",
+        "firstName": "Leo",
+        "lastName": "Miranda",
+        "positions": ["Desarrollador Frontend", "Creador de Este Sitio Web"],
+        "socialNetworks": [
+          {
+            "name": "LinkedIn",
+            "url": "https://linkedin.com",
+            "icon": "Linkedin"
+          },
+          {
+            "name": "Github",
+            "url": "https://github.com",
+            "icon": "Github"
+          },
+          {
+            "name": "X",
+            "url": "https://x.com",
+            "icon": "Twitter"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/unsplash/woman-portrait",
+        "firstName": "Elizabeth",
+        "lastName": "Moore",
+        "positions": ["Diseñadora UI/UX"],
+        "socialNetworks": [
+          {
+            "name": "LinkedIn",
+            "url": "https://linkedin.com",
+            "icon": "Linkedin"
+          }
+        ]
+      }
+    ]
+  },
+  "testimonialCarouselSection": {
+    "eyebrow": "Testimonios",
+    "title": "Escucha lo que Dicen Nuestros Más de 1000 Clientes",
+    "reviews": [
+      {
+        "image": "/img/avatars/avatar1.png",
+        "name": "Juan Pérez",
+        "userName": "@juan_p",
+        "comment": "¡Esta landing page es increíble!",
+        "rating": 5
+      },
+      {
+        "image": "/img/avatars/avatar2.png",
+        "name": "Ana García",
+        "userName": "@ana_g",
+        "comment": "Una experiencia de usuario asombrosa, muy fácil de usar y visualmente impactante. ¡Muy recomendado!",
+        "rating": 5
+      },
+      {
+        "image": "/img/avatars/avatar3.png",
+        "name": "Carlos Rodríguez",
+        "userName": "@carlos_r",
+        "comment": "El diseño es limpio y moderno. Me ayudó a lanzar mi proyecto en tiempo récord. ¡Gran trabajo!",
+        "rating": 4
+      }
+    ]
+  },
+  "testimonialGrid": {
+    "title": "Historias Reales de Nuestros Clientes",
+    "testimonials": [
+      {
+        "quote": "He vuelto a mis paseos matutinos sin esa molestia en la rodilla. Es una sensación de libertad impagable.",
+        "author": "Elena R.",
+        "location": "Madrid, ES",
+        "imageSrc": "/img/sections/testimonial-grid/avatar_elena-r.jpg"
+      },
+      {
+        "quote": "¡Increíble! La calidad y la atención al detalle están en otro nivel. Lo recomiendo encarecidamente a cualquiera.",
+        "author": "Carlos Gómez",
+        "location": "Barcelona, ES",
+        "imageSrc": "/img/sections/testimonial-grid/avatar_marco-c.jpg"
+      },
+      {
+        "quote": "Al principio era escéptica, pero los resultados hablan por sí solos. Superó con creces mis expectativas.",
+        "author": "Sofía López",
+        "location": "Valencia, ES",
+        "imageSrc": "/img/sections/testimonial-grid/avatar_giulia-f.jpg"
+      }
+    ]
+  },
+  "commentSection": {
+    "title": "Comentarios",
+    "form": {
+      "placeholder": "Añade tu comentario...",
+      "minCharactersError": "El comentario debe tener al menos 3 caracteres.",
+      "publishButton": "Publicar Comentario",
+      "publishButtonLoading": "Publicando...",
+      "authRequiredMessage": "Debes ",
+      "loginLinkText": "iniciar sesión",
+      "loginPrompt": "Para unirte a la conversación, por favor ",
+      "loginPromptSuffix": " para comentar.",
+      "loginLink": "inicia sesión"
+    },
+    "list": {
+      "emptyState": "Aún no hay comentarios. ¡Sé el primero en participar!"
+    },
+    "toast": {
+      "success": "¡Comentario publicado con éxito!",
+      "errorTitle": "Error al publicar",
+      "authError": "Debes iniciar sesión para comentar."
+    }
+  },
+  "baviUploader": {
+    "dropzoneDefault": "Arrastra un archivo aquí, o haz clic para seleccionar.",
+    "metadataFormTitle": "Metadatos de Indexación BAVI",
+    "assetIdLabel": "Asset ID (SNIA)",
+    "assetIdPlaceholder": "i-categoría-descriptor-01",
+    "keywordsLabel": "Palabras Clave (para búsqueda, separadas por coma)",
+    "keywordsPlaceholder": "mujer, sonrisa, parque, cinemático...",
+    "altTextLabel": "Texto Alternativo (Accesibilidad)",
+    "altTextPlaceholder": "Una descripción clara y concisa de la imagen...",
+    "promptIdLabel": "ID de Prompt de Origen (Opcional)",
+    "promptIdPlaceholder": "Pega aquí el ID desde RaZPrompts...",
+    "submitButtonText": "Subir y Registrar en BAVI",
+    "selectFromBaviButton": "Seleccionar de la BAVI",
+    "assetSelectorModalTitle": "Seleccionar un Activo de la Biblioteca",
+    "assetSelectorModalDescription": "Busca, filtra y elige un activo existente para tu campaña."
+  },
+  "promptCreator": {
+    "titleLabel": "Título Descriptivo",
+    "titlePlaceholder": "Ej: Imagen de vista previa para Encabezado Estándar",
+    "formDescription": "Define los elementos centrales de tu genoma creativo. Este genoma será archivado y podrá ser usado para generar o vincular activos visuales.",
+    "promptTextLabel": "Texto del Prompt",
+    "promptTextPlaceholder": "Pega aquí el prompt completo...",
+    "enhanceAILabel": "Perfeccionar con IA",
+    "enhanceAIDescription": "Permite que nuestra IA refine y optimice tu prompt para obtener mejores y más consistentes resultados.",
+    "tagsGroupLabel": "Taxonomía SESA (Filtros Estructurados)",
+    "parametersGroupLabel": "Parámetros de Generación de Imagen",
+    "keywordsLabel": "Palabras Clave (para búsqueda)",
+    "keywordsPlaceholder": "encabezado, ui, vista previa, cinemático...",
+    "keywordsDescription": "Separadas por comas. Se usarán para encontrar este prompt más tarde.",
+    "submitButtonText": "Crear Entrada y Obtener ID",
+    "submitButtonLoadingText": "Creando...",
+    "sesaLabels": {
+      "ai": "IA",
+      "sty": "Estilo",
+      "fmt": "Formato",
+      "typ": "Tipo",
+      "sbj": "Sujeto",
+      "styleTypeLabel": "Tipo de Estilo",
+      "styleTypePlaceholder": "Elige tipo...",
+      "aspectRatioLabel": "Relación de Aspecto",
+      "aspectRatioPlaceholder": "Elige relación..."
+    },
+    "sesaOptions": {
+      "ai": [
+        {
+          "value": "ideo",
+          "label": "Ideogram"
+        },
+        {
+          "value": "mj",
+          "label": "Midjourney"
+        },
+        {
+          "value": "sdxl",
+          "label": "Stable Diffusion"
+        }
+      ],
+      "sty": [
+        {
+          "value": "pht",
+          "label": "Fotorrealista"
+        },
+        {
+          "value": "cin",
+          "label": "Cinemático"
+        },
+        {
+          "value": "ill",
+          "label": "Ilustración"
+        }
+      ],
+      "fmt": [
+        {
+          "value": "1x1",
+          "label": "1:1 (Cuadrado)"
+        },
+        {
+          "value": "16x9",
+          "label": "16:9 (Horizontal)"
+        },
+        {
+          "value": "9x16",
+          "label": "9:16 (Vertical)"
+        }
+      ],
+      "typ": [
+        {
+          "value": "ui",
+          "label": "Interfaz de Usuario"
+        },
+        {
+          "value": "pht",
+          "label": "Foto"
+        },
+        {
+          "value": "abs",
+          "label": "Abstracto"
+        }
+      ],
+      "sbj": [
+        {
+          "value": "abs",
+          "label": "Abstracto"
+        },
+        {
+          "value": "wom",
+          "label": "Mujer"
+        },
+        {
+          "value": "man",
+          "label": "Hombre"
+        },
+        {
+          "value": "lsc",
+          "label": "Paisaje"
+        }
+      ]
+    },
+    "parameterOptions": {
+      "styleType": [
+        {
+          "value": "REALISTIC",
+          "label": "Realista"
+        },
+        {
+          "value": "DESIGN",
+          "label": "Diseño"
+        },
+        {
+          "value": "FICTION",
+          "label": "Ficción"
+        },
+        {
+          "value": "GENERAL",
+          "label": "General"
+        },
+        {
+          "value": "AUTO",
+          "label": "Auto"
+        }
+      ],
+      "aspectRatio": [
+        {
+          "value": "16x9",
+          "label": "16:9 (Horizontal)"
+        },
+        {
+          "value": "9x16",
+          "label": "9:16 (Vertical)"
+        },
+        {
+          "value": "1x1",
+          "label": "1:1 (Cuadrado)"
+        }
+      ]
+    }
+  },
+  "promptVault": {
+    "title": "Bóveda de Prompts",
+    "description": "Explora y gestiona tus prompts generativos.",
+    "searchPlaceholder": "Buscar por título, texto o palabras clave...",
+    "searchButton": "Buscar",
+    "filterByAILabel": "Filtrar por IA",
+    "allAIsOption": "Todas las IAs",
+    "loadingPrompts": "Cargando prompts...",
+    "noPromptsFound": "No se encontraron prompts que coincidan con tu búsqueda.",
+    "previousPageButton": "Anterior",
+    "nextPageButton": "Siguiente",
+    "pageInfo": "Página {{currentPage}} de {{totalPages}}",
+    "viewDetailsButton": "Ver Detalles",
+    "noImageYet": "Sin imagen todavía"
+  },
+  "orderConfirmationEmail": {
+    "previewText": "Confirmación de tu pedido de Global Fitwell #{{orderId}}",
+    "title": "¡Gracias por tu pedido!",
+    "greeting": "Hola, hemos recibido tu pedido **#{{orderId}}**. Recibirás otra notificación cuando tu pedido sea enviado.",
+    "summaryLabel": "Resumen del Pedido:",
+    "totalLabel": "Total",
+    "footerText": "Si tienes alguna pregunta sobre tu pedido, responde a este correo o contacta a nuestro soporte."
+  },
+  "devCampaignSimulatorPage": {
+    "title": "Simulador de Campañas",
+    "subtitle": "Seleccione una variante de campaña para previsualizar la landing page.",
+    "campaignLabel": "Campaña",
+    "variantLabel": "Variante",
+    "descriptionLabel": "Descripción"
+  },
+  "5-superalimentos-dieta": {
+    "title": "5 Superalimentos Esenciales para Añadir a Tu Dieta Diaria",
+    "subtitle": "Potencia tu salud con estos concentrados de nutrientes que la naturaleza nos ofrece.",
+    "author": "Dra. Sofía Rossi",
+    "publishedDate": "15 de Septiembre de 2025",
+    "readTime": 5,
+    "category": "Nutrición",
+    "featuredImageUrl": "/img/news/superfoods.jpg",
+    "featuredImageAlt": "Un bol colorido de superalimentos, incluyendo bayas y frutos secos.",
+    "content": [
+      {
+        "type": "p",
+        "text": "En un mundo lleno de dietas complejas y suplementos, a veces la solución más potente se encuentra en los alimentos simples y naturales. Los superalimentos son alimentos densos en nutrientes considerados especialmente beneficiosos para la salud y el bienestar. Aquí tienes cinco de nuestros favoritos que puedes integrar fácilmente en tu rutina."
+      },
+      {
+        "type": "h2",
+        "text": "1. Bayas de Goji: El Antioxidante Poderoso"
+      },
+      {
+        "type": "p",
+        "text": "Estas pequeñas bayas rojas son una potencia de antioxidantes, vitaminas y minerales. Ayudan a combatir los radicales libres, apoyan la visión y pueden mejorar el sistema inmunológico. Añádelas a tu yogur o batido matutino."
+      }
+    ]
+  },
+  "kineticband-pro": {
+    "productData": {
+      "id": "prod_kband_pro",
+      "name": "KineticBand Pro",
+      "slug": "kineticband-pro",
+      "price": 89.99,
+      "currency": "EUR",
+      "isBestseller": true,
+      "imageUrl": "/img/products/kineticband.jpg",
+      "inventory": {
+        "total": 20,
+        "available": 15,
+        "reserved": 0
+      },
+      "logistics": {
+        "deliveryTime": "2-4 días hábiles"
+      },
+      "producerInfo": {
+        "name": "Webvork",
+        "checkoutUrl": "https://it4.curcumacomplex.com/order.php"
+      },
+      "categorization": {
+        "primary": "Rendimiento",
+        "secondary": ["recuperacion", "fuerza"]
+      },
+      "targetProfile": {
+        "userType": "Atletas",
+        "ageRange": "18-45"
+      },
+      "rating": 4.8
+    },
+    "galleryImages": [
+      {
+        "src": "/img/products/kineticband-gallery-1.png",
+        "alt": "KineticBand Pro en uso"
+      },
+      {
+        "src": "/img/products/kineticband-gallery-2.png",
+        "alt": "Detalle del material de KineticBand Pro"
+      }
+    ],
+    "description": [
+      {
+        "type": "p",
+        "text": "La KineticBand Pro está diseñada para atletas de élite que buscan maximizar su potencial. Fabricada con materiales resistentes y un diseño ergonómico, ofrece una resistencia progresiva para mejorar la fuerza, velocidad y agilidad."
+      },
+      {
+        "type": "h2",
+        "text": "Características Principales"
+      }
+    ],
+    "addToCartButton": "Añadir al Carrito",
+    "quantityLabel": "Cantidad",
+    "relatedProductsTitle": "También te podría gustar",
+    "stockStatus": {
+      "available": "Disponible ({{count}} en almacén)",
+      "unavailable": "Actualmente no disponible"
+    },
+    "shareButton": {
+      "buttonLabel": "Compartir",
+      "popoverTitle": "Compartir vía",
+      "copyLinkAction": "Copiar enlace",
+      "copySuccessToast": "¡Enlace copiado al portapapeles!"
+    }
+  },
+  "cognireadEditor": {
+    "pageHeader": {
+      "createTitle": "Nuevo Análisis de Estudio",
+      "createSubtitle": "Rellena el ADN del estudio científico para registrarlo en CogniRead.",
+      "editTitle": "Editar Análisis de Estudio",
+      "editSubtitle": "Actualiza los detalles del estudio científico y su contenido multilingüe."
+    },
+    "tabs": {
+      "dna": "ADN del Estudio",
+      "content": "Contenido Multilingüe",
+      "ecosystem": "Ecosistema"
+    },
+    "studyDnaTab": {
+      "extractor": {
+        "accordionTitle": "Extractor IA de StudyDNA",
+        "title": "Extracción Asistida por IA",
+        "description": "Pega el texto completo del abstract o del estudio a continuación. Nuestra IA analizará y extraerá la información estructurada.",
+        "textAreaLabel": "Texto del Estudio Científico",
+        "textAreaPlaceholder": "Pega el texto completo o el abstract aquí...",
+        "modelSelectLabel": "Modelo de IA",
+        "extractButton": "Extraer con IA",
+        "extractButtonLoading": "Extrayendo..."
+      }
+    },
+    "contentTab": {
+      "titleLabel": "Título del Artículo",
+      "titlePlaceholder": "El título que se mostrará en el blog...",
+      "slugLabel": "Slug (URL)",
+      "slugPlaceholder": "ejemplo-de-slug-amigable",
+      "summaryLabel": "Resumen (para vistas previas)",
+      "summaryPlaceholder": "Un resumen corto y atractivo...",
+      "bodyLabel": "Cuerpo del Artículo (Markdown)",
+      "bodyPlaceholder": "Escribe el contenido completo del artículo aquí."
+    },
+    "ecosystemTab": {
+      "heroImageTitle": "Imagen Destacada (BAVI)",
+      "heroImageDescription": "Selecciona la imagen principal para este artículo.",
+      "noImageSelected": "Ninguna imagen seleccionada",
+      "selectFromBaviButton": "Seleccionar de la BAVI",
+      "loadingBaviButton": "Cargando BAVI...",
+      "relatedPromptsTitle": "Prompts Relacionados (RaZPrompts)",
+      "relatedPromptsDescription": "Vincula los prompts que se usaron para generar ideas o activos. (Futuro)"
+    },
+    "saveButton": "Guardar Cambios en el Artículo",
+    "saveButtonLoading": "Guardando...",
+    "articleNotFoundError": "Artículo no encontrado."
+  },
+  "step0": {
+    "title": "Paso 0: Identificación",
+    "description": "Este es el paso fundacional. La información aquí define la identidad y estrategia de tu campaña.",
+    "baseCampaignLabel": "Campaña Base",
+    "baseCampaignPlaceholder": "Selecciona un producto",
+    "baseCampaignDescription": "Selecciona el producto base para esta nueva variante.",
+    "variantNameLabel": "Nombre de la Variante",
+    "variantNamePlaceholder": "Ej. 'Vitalidad', 'Enfoque Científico'",
+    "seoKeywordsLabel": "Palabras Clave SEO",
+    "seoKeywordsPlaceholder": "Ej. 'bienestar, energía, natural'",
+    "seoKeywordsDescription": "Separadas por comas. Se usarán para generar la URL.",
+    "producerLabel": "Productor / Red",
+    "producerPlaceholder": "Selecciona un productor",
+    "campaignTypeLabel": "Tipo de Campaña",
+    "campaignTypePlaceholder": "Selecciona un tipo",
+    "passportStampLabel": "Pasaporte Aprobado"
+  },
+  "step1": {
+    "title": "Paso 1: Estructura de la Página",
+    "description": "Define el marco básico. Incluir un encabezado o un pie de página es una decisión estratégica clave.",
+    "headerSwitchLabel": "¿Incluir Encabezado (Header)?",
+    "footerSwitchLabel": "¿Incluir Pie de Página (Footer)?",
+    "headerGalleryTitle": "Selecciona un Estilo de Encabezado",
+    "footerGalleryTitle": "Selecciona un Estilo de Pie de Página",
+    "selectedLabel": "Seleccionado",
+    "galleryDescriptions": {
+      "StandardHeader": "Cabecera estándar con logo, navegación y CTA.",
+      "MinimalHeader": "Cabecera minimalista solo con logo.",
+      "StandardFooter": "Pie de página completo con enlaces y newsletter.",
+      "BenefitsSection": "Muestra los beneficios clave en tarjetas con iconos."
+    }
+  },
+  "step2": {
+    "title": "Paso 2: Composición del Layout",
+    "description": "Construye la narrativa visual de tu página. Arrastra las secciones desde la biblioteca al lienzo y reordénalas para definir el flujo del usuario.",
+    "libraryTitle": "Biblioteca de Secciones",
+    "canvasTitle": "Layout de la Campaña",
+    "addSectionButtonText": "Añadir",
+    "emptyLibraryText": "Todas las secciones han sido añadidas.",
+    "emptyCanvasText": "Arrastra o añade secciones aquí para construir tu layout.",
+    "nextButtonText": "Guardar Layout y Continuar"
+  },
+  "step3": {
+    "title": "Paso 3: Tema Visual",
+    "description": "Define la personalidad de tu campaña. Tus elecciones aquí se reflejarán instantáneamente en la vista previa en vivo.",
+    "themeSelectorTitle": "Selecciona los Fragmentos de Tema",
+    "colorsLabel": "Paleta de Colores",
+    "fontsLabel": "Tipografía",
+    "radiiLabel": "Geometría (Radios)",
+    "colorsPlaceholder": "Elige una paleta...",
+    "fontsPlaceholder": "Elige un set de fuentes...",
+    "radiiPlaceholder": "Elige un estilo de radio...",
+    "nextButtonText": "Guardar Tema y Continuar",
+    "composerTitle": "Compositor de Temas",
+    "composerDescription": "Selecciona y previsualiza los componentes de tu tema. Tus cambios se reflejarán en tiempo real.",
+    "composerColorsTab": "Colores",
+    "composerTypographyTab": "Tipografía",
+    "composerGeometryTab": "Geometría",
+    "composerSaveButton": "Aplicar y Guardar Tema",
+    "composerCancelButton": "Cancelar",
+    "createNewPaletteButton": "Crear Nueva Paleta",
+    "createNewFontSetButton": "Crear Nuevo Set de Fuentes",
+    "createNewRadiusStyleButton": "Crear Nuevo Estilo de Radio",
+    "placeholderFontsNone": "Ningún set de fuentes disponible",
+    "placeholderRadiiNone": "Ningún estilo de radio disponible"
+  },
+  "step4": {
+    "title": "Paso 4: Contenido",
+    "description": "Da vida a tu layout. Haz clic en 'Editar Contenido' en cada sección para añadir el texto persuasivo en todos los idiomas soportados.",
+    "emptyStateTitle": "No Hay Secciones en el Layout",
+    "emptyStateDescription": "Vuelve al Paso 2 para añadir secciones a tu campaña.",
+    "editButtonText": "Editar Contenido",
+    "nextButtonText": "Finalizar y Continuar"
+  },
+  "step5": {
+    "title": "Paso 5: Gestión y Publicación",
+    "description": "Estás en el último paso. Revisa la configuración y elige la acción final para tu nueva variante de campaña.",
+    "summaryTitle": "Resumen de la Configuración",
+    "summaryPlaceholder": "Vista previa de la configuración de la campaña...",
+    "checklistTitle": "Checklist de Prelanzamiento",
+    "artifactHistory": {
+      "title": "Historial de Artefactos",
+      "loadingHistoryText": "Cargando historial...",
+      "emptyStateText": "Aún no se han generado exportaciones para este borrador.",
+      "downloadButtonText": "Descargar",
+      "downloadingButtonText": "Descargando...",
+      "errorLoadingHistory": "Error al cargar el historial",
+      "errorDownloading": "Error en la descarga"
+    },
+    "publishButtonText": "Publicar en el Sitio",
+    "packageButtonText": "Exportar como .zip",
+    "deleteButtonText": "Eliminar Borrador",
+    "templateButtonText": "Guardar como Plantilla",
+    "deleteDialog": {
+      "title": "¿Estás absolutamente seguro?",
+      "description": "Esta acción es irreversible. Para confirmar, escribe el nombre de la variante y la frase de confirmación.",
+      "cancelButton": "Cancelar",
+      "confirmButton": "Sí, Eliminar Permanentemente",
+      "draftNameLabel": "Nombre de la Variante",
+      "confirmationTextLabel": "Escribe 'autorizo delete' para confirmar",
+      "confirmationTextPlaceholder": "autorizo delete"
+    },
+    "templateDialog": {
+      "title": "Guardar como Plantilla",
+      "description": "Guarda la configuración actual como una plantilla reutilizable para futuras campañas.",
+      "nameLabel": "Nombre de la Plantilla",
+      "namePlaceholder": "Ej. Plantilla de Venta Directa...",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Para campañas con enfoque en...",
+      "saveButton": "Guardar Plantilla",
+      "cancelButton": "Cancelar"
+    }
+  },
+  "routeTester": {
+    "devToolsGroup": "HERRAMIENTAS DEV",
+    "campaignPagesGroup": "PÁGINAS DE CAMPAÑA",
+    "legalPagesGroup": "PÁGINAS LEGALES",
+    "campaignDesignSuite": "Suite de Diseño de Campaña",
+    "bridgePage": "Página Bridge",
+    "reviewPage": "Página de Revisión",
+    "terms": "Términos",
+    "privacy": "Privacidad",
+    "cookies": "Cookies",
+    "changeLanguage": "Cambiar idioma",
+    "currentLanguageIs": "El idioma actual es"
+  },
+  "checkoutForm": {
+    "title": "Finalizar Compra",
+    "payButton": "Pagar Ahora",
+    "processingButton": "Procesando Pago...",
+    "unexpectedError": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+  }
+}

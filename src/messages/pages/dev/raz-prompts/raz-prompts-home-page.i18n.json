@@ -1,0 +1,34 @@
+{
+  "it-IT": {
+    "razPromptsHomePage": {
+      "title": "RaZPrompts: Bóveda di Conoscenza Generativa",
+      "subtitle": "Il laboratorio per creare, catalogare e versionare il genoma dei tuoi asset visivi.",
+      "createPromptTab": "Crea Prompt",
+      "viewVaultTab": "Vedi Bóveda"
+    }
+  },
+  "es-ES": {
+    "razPromptsHomePage": {
+      "title": "RaZPrompts: Bóveda de Conocimiento Generativo",
+      "subtitle": "El laboratorio para crear, catalogar y versionar el genoma de tus activos visuales.",
+      "createPromptTab": "Crear Prompt",
+      "viewVaultTab": "Ver Bóveda"
+    }
+  },
+  "en-US": {
+    "razPromptsHomePage": {
+      "title": "RaZPrompts: Generative Knowledge Vault",
+      "subtitle": "The laboratory to create, catalog, and version the genome of your visual assets.",
+      "createPromptTab": "Create Prompt",
+      "viewVaultTab": "View Vault"
+    }
+  },
+  "pt-BR": {
+    "razPromptsHomePage": {
+      "title": "RaZPrompts: Cofre de Conhecimento Generativo",
+      "subtitle": "O laboratório para criar, catalogar e versionar o genoma de seus ativos visuais.",
+      "createPromptTab": "Criar Prompt",
+      "viewVaultTab": "Ver Cofre"
+    }
+  }
+}

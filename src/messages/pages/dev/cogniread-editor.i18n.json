@@ -1,0 +1,198 @@
+{
+  "it-IT": {
+    "cognireadEditor": {
+      "pageHeader": {
+        "createTitle": "Nuova Analisi di Studio",
+        "createSubtitle": "Compila il DNA dello studio scientifico per registrarlo in CogniRead.",
+        "editTitle": "Modifica Analisi di Studio",
+        "editSubtitle": "Aggiorna i dettagli dello studio scientifico e il suo contenuto multilingue."
+      },
+      "tabs": {
+        "dna": "ADN dello Studio",
+        "content": "Contenuto Multilingue",
+        "ecosystem": "Ecosistema"
+      },
+      "studyDnaTab": {
+        "extractor": {
+          "accordionTitle": "Estrattore IA di StudyDNA",
+          "title": "Estrazione Assistita da IA",
+          "description": "Incolla il testo completo dell'abstract o dello studio qui sotto. La nostra IA analizzerà ed estrarrà le informazioni strutturate.",
+          "textAreaLabel": "Testo dello Studio Scientifico",
+          "textAreaPlaceholder": "Incolla qui il testo completo o l'abstract...",
+          "modelSelectLabel": "Modello IA",
+          "extractButton": "Estrai con IA",
+          "extractButtonLoading": "Estrazione..."
+        }
+      },
+      "contentTab": {
+        "titleLabel": "Titolo dell'Articolo",
+        "titlePlaceholder": "Il titolo che verrà mostrato nel blog...",
+        "slugLabel": "Slug (URL)",
+        "slugPlaceholder": "esempio-di-slug-amichevole",
+        "summaryLabel": "Riassunto (per anteprime)",
+        "summaryPlaceholder": "Un riassunto breve e accattivante...",
+        "bodyLabel": "Corpo dell'Articolo (Markdown)",
+        "bodyPlaceholder": "Scrivi il contenuto completo dell'articolo qui."
+      },
+      "ecosystemTab": {
+        "heroImageTitle": "Immagine Principale (BAVI)",
+        "heroImageDescription": "Seleziona l'immagine principale per questo articolo.",
+        "noImageSelected": "Nessuna immagine selezionata",
+        "selectFromBaviButton": "Seleziona dalla BAVI",
+        "loadingBaviButton": "Caricamento BAVI...",
+        "relatedPromptsTitle": "Prompt Correlati (RaZPrompts)",
+        "relatedPromptsDescription": "Collega i prompt utilizzati per generare idee o asset. (Futuro)"
+      },
+      "saveButton": "Salva Modifiche all'Articolo",
+      "saveButtonLoading": "Salvataggio in corso...",
+      "articleNotFoundError": "Articolo non trovato."
+    }
+  },
+  "es-ES": {
+    "cognireadEditor": {
+      "pageHeader": {
+        "createTitle": "Nuevo Análisis de Estudio",
+        "createSubtitle": "Rellena el ADN del estudio científico para registrarlo en CogniRead.",
+        "editTitle": "Editar Análisis de Estudio",
+        "editSubtitle": "Actualiza los detalles del estudio científico y su contenido multilingüe."
+      },
+      "tabs": {
+        "dna": "ADN del Estudio",
+        "content": "Contenido Multilingüe",
+        "ecosystem": "Ecosistema"
+      },
+      "studyDnaTab": {
+        "extractor": {
+          "accordionTitle": "Extractor IA de StudyDNA",
+          "title": "Extracción Asistida por IA",
+          "description": "Pega el texto completo del abstract o del estudio a continuación. Nuestra IA analizará y extraerá la información estructurada.",
+          "textAreaLabel": "Texto del Estudio Científico",
+          "textAreaPlaceholder": "Pega el texto completo o el abstract aquí...",
+          "modelSelectLabel": "Modelo de IA",
+          "extractButton": "Extraer con IA",
+          "extractButtonLoading": "Extrayendo..."
+        }
+      },
+      "contentTab": {
+        "titleLabel": "Título del Artículo",
+        "titlePlaceholder": "El título que se mostrará en el blog...",
+        "slugLabel": "Slug (URL)",
+        "slugPlaceholder": "ejemplo-de-slug-amigable",
+        "summaryLabel": "Resumen (para vistas previas)",
+        "summaryPlaceholder": "Un resumen corto y atractivo...",
+        "bodyLabel": "Cuerpo del Artículo (Markdown)",
+        "bodyPlaceholder": "Escribe el contenido completo del artículo aquí."
+      },
+      "ecosystemTab": {
+        "heroImageTitle": "Imagen Destacada (BAVI)",
+        "heroImageDescription": "Selecciona la imagen principal para este artículo.",
+        "noImageSelected": "Ninguna imagen seleccionada",
+        "selectFromBaviButton": "Seleccionar de la BAVI",
+        "loadingBaviButton": "Cargando BAVI...",
+        "relatedPromptsTitle": "Prompts Relacionados (RaZPrompts)",
+        "relatedPromptsDescription": "Vincula los prompts que se usaron para generar ideas o activos. (Futuro)"
+      },
+      "saveButton": "Guardar Cambios en el Artículo",
+      "saveButtonLoading": "Guardando...",
+      "articleNotFoundError": "Artículo no encontrado."
+    }
+  },
+  "en-US": {
+    "cognireadEditor": {
+      "pageHeader": {
+        "createTitle": "New Study Analysis",
+        "createSubtitle": "Fill in the scientific study's DNA to register it in CogniRead.",
+        "editTitle": "Edit Study Analysis",
+        "editSubtitle": "Update the scientific study's details and its multilingual content."
+      },
+      "tabs": {
+        "dna": "Study DNA",
+        "content": "Multilingual Content",
+        "ecosystem": "Ecosystem"
+      },
+      "studyDnaTab": {
+        "extractor": {
+          "accordionTitle": "StudyDNA AI Extractor",
+          "title": "AI-Assisted Extraction",
+          "description": "Paste the full text of the abstract or study below. Our AI will analyze and extract the structured information.",
+          "textAreaLabel": "Scientific Study Text",
+          "textAreaPlaceholder": "Paste the full text or abstract here...",
+          "modelSelectLabel": "AI Model",
+          "extractButton": "Extract with AI",
+          "extractButtonLoading": "Extracting..."
+        }
+      },
+      "contentTab": {
+        "titleLabel": "Article Title",
+        "titlePlaceholder": "The title that will be displayed on the blog...",
+        "slugLabel": "Slug (URL)",
+        "slugPlaceholder": "example-of-a-friendly-slug",
+        "summaryLabel": "Summary (for previews)",
+        "summaryPlaceholder": "A short and engaging summary for blog cards...",
+        "bodyLabel": "Article Body (Markdown)",
+        "bodyPlaceholder": "Write the full content of the article here."
+      },
+      "ecosystemTab": {
+        "heroImageTitle": "Featured Image (BAVI)",
+        "heroImageDescription": "Select the main image for this article.",
+        "noImageSelected": "No image selected",
+        "selectFromBaviButton": "Select from BAVI",
+        "loadingBaviButton": "Loading BAVI...",
+        "relatedPromptsTitle": "Related Prompts (RaZPrompts)",
+        "relatedPromptsDescription": "Link the prompts used to generate ideas or assets. (Future)"
+      },
+      "saveButton": "Save Article Changes",
+      "saveButtonLoading": "Saving...",
+      "articleNotFoundError": "Article not found."
+    }
+  },
+  "pt-BR": {
+    "cognireadEditor": {
+      "pageHeader": {
+        "createTitle": "Nova Análise de Estudo",
+        "createSubtitle": "Preencha o DNA do estudo científico para registrá-lo no CogniRead.",
+        "editTitle": "Editar Análise de Estudo",
+        "editSubtitle": "Atualize os detalhes do estudo científico e seu conteúdo multilíngue."
+      },
+      "tabs": {
+        "dna": "DNA do Estudo",
+        "content": "Conteúdo Multilíngue",
+        "ecosystem": "Ecossistema"
+      },
+      "studyDnaTab": {
+        "extractor": {
+          "accordionTitle": "Extrator de IA de StudyDNA",
+          "title": "Extração Assistida por IA",
+          "description": "Cole o texto completo do resumo ou do estudo abaixo. Nossa IA analisará e extrairá as informações estruturadas.",
+          "textAreaLabel": "Texto do Estudo Científico",
+          "textAreaPlaceholder": "Cole o texto completo ou o resumo aqui...",
+          "modelSelectLabel": "Modelo de IA",
+          "extractButton": "Extrair com IA",
+          "extractButtonLoading": "Extraindo..."
+        }
+      },
+      "contentTab": {
+        "titleLabel": "Título do Artigo",
+        "titlePlaceholder": "O título que será exibido no blog...",
+        "slugLabel": "Slug (URL)",
+        "slugPlaceholder": "exemplo-de-slug-amigavel",
+        "summaryLabel": "Resumo (para pré-visualizações)",
+        "summaryPlaceholder": "Um resumo curto e envolvente...",
+        "bodyLabel": "Corpo do Artigo (Markdown)",
+        "bodyPlaceholder": "Escreva o conteúdo completo do artigo aqui."
+      },
+      "ecosystemTab": {
+        "heroImageTitle": "Imagem de Destaque (BAVI)",
+        "heroImageDescription": "Selecione a imagem principal para este artigo.",
+        "noImageSelected": "Nenhuma imagem selecionada",
+        "selectFromBaviButton": "Selecionar da BAVI",
+        "loadingBaviButton": "Carregando BAVI...",
+        "relatedPromptsTitle": "Prompts Relacionados (RaZPrompts)",
+        "relatedPromptsDescription": "Vincule os prompts usados para gerar ideias ou ativos. (Futuro)"
+      },
+      "saveButton": "Salvar Alterações no Artigo",
+      "saveButtonLoading": "Salvando...",
+      "articleNotFoundError": "Artigo não encontrado."
+    }
+  }
+}

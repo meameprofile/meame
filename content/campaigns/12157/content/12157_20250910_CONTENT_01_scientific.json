@@ -1,0 +1,414 @@
+{
+  "it-IT": {
+    "scrollingBanner": {
+      "message": "Qualità Svizzera certificata. Il tuo benessere merita precisione, non promesse."
+    },
+    "hero": {
+      "title": "Benessere Basato sull'Evidenza Scientifica.",
+      "subtitle": "Una formula sinergica sviluppata con standard svizzeri per supportare in modo intelligente la tua salute a lungo termine. Senza promesse esagerate, solo risultati."
+    },
+    "ingredientAnalysis": {
+      "title": "Analisi Dettagliata della Formula",
+      "ingredients": [
+        {
+          "name": "Curcumina (Standardizzata)",
+          "description": "Garantisce la massima potenza antiossidante, come dimostrato da numerosi studi."
+        },
+        {
+          "name": "Piperina (BioPerine®)",
+          "description": "Un bio-potenziatore clinicamente testato che aumenta l'assorbimento fino al 2000%."
+        },
+        {
+          "name": "Complesso Sinergico",
+          "description": "Spirulina, Zenzero e Zafferano per massimizzare i benefici generali della formula."
+        }
+      ]
+    },
+    "benefitsSection": {
+      "eyebrow": "Efficacia Provata",
+      "title": "Risultati Supportati dalla Scienza",
+      "subtitle": "Ogni ingrediente è selezionato per le sue proprietà documentate e la sua comprovata efficacia.",
+      "benefits": [
+        {
+          "icon": "FlaskConical",
+          "title": "Protezione Cellulare",
+          "description": "Azione antiossidante documentata per la salvaguardia delle cellule dallo stress ossidativo."
+        },
+        {
+          "icon": "Bone",
+          "title": "Salute Articolare",
+          "description": "Supporto scientificamente validato per mantenere la funzionalità e il comfort delle articolazioni."
+        },
+        {
+          "icon": "Rocket",
+          "title": "Massima Biodisponibilità",
+          "description": "La nostra formula garantisce un assorbimento superiore per un'efficacia che puoi misurare."
+        },
+        {
+          "icon": "TestTube2",
+          "title": "Purezza Testata",
+          "description": "Ingredienti puri e testati in laboratorio di terze parti per garantire la massima qualità e sicurezza."
+        }
+      ]
+    },
+    "guaranteeSection": {
+      "title": "La Nostra Garanzia di Qualità e Trasparenza",
+      "seals": [
+        {
+          "imageUrl": "/img/guarantee-section/seal_garantia-1.jpg",
+          "imageAlt": "Sigillo Qualità Svizzera"
+        }
+      ]
+    },
+    "testimonialGrid": {
+      "title": "Cosa Dicono i Professionisti",
+      "testimonials": [
+        {
+          "quote": "Apprezzo la trasparenza della formula e l'inclusione di BioPerine®. È una scelta intelligente per chi cerca un integratore efficace.",
+          "author": "Dr. A. Bianchi",
+          "location": "Nutrizionista, Milano",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_doctor-a.jpg"
+        }
+      ]
+    },
+    "faqAccordion": {
+      "title": "Domande Tecniche Frequenti",
+      "faqs": [
+        {
+          "question": "Perché la piperina è così importante?",
+          "answer": "La curcumina da sola ha una bassa biodisponibilità. La piperina inibisce alcuni enzimi, permettendo alla curcumina di essere assorbita in modo significativamente maggiore."
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Valore al Pubblico",
+      "discountedPriceLabel": "Prezzo per i Nostri Lettori",
+      "nameInputLabel": "Nome e Cognome",
+      "nameInputPlaceholder": "Inserisci nome e cognome",
+      "phoneInputLabel": "Telefono",
+      "phoneInputPlaceholder": "Numero per la conferma",
+      "submitButtonText": "Richiedi la Tua Fornitura",
+      "submitButtonLoadingText": "Elaborazione..."
+    },
+    "socialProofLogos": {
+      "title": "Standard di Produzione Certificati",
+      "logos": [
+        {
+          "src": "/img/sections/social-proof-logos/logo-gmp.svg",
+          "alt": "Logo GMP Certified"
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "scrollingBanner": {
+      "message": "Calidad Suiza certificada. Su bienestar merece precisión, no promesas."
+    },
+    "hero": {
+      "title": "Bienestar Basado en Evidencia Científica.",
+      "subtitle": "Una fórmula sinérgica desarrollada con estándares suizos para apoyar inteligentemente su salud a largo plazo. Sin promesas exageradas, solo resultados."
+    },
+    "ingredientAnalysis": {
+      "title": "Análisis Detallado de la Fórmula",
+      "ingredients": [
+        {
+          "name": "Curcumina (Estandarizada)",
+          "description": "Garantiza la máxima potencia antioxidante, como demuestran numerosos estudios."
+        },
+        {
+          "name": "Piperina (BioPerine®)",
+          "description": "Un biopotenciador clínicamente probado que aumenta la absorción hasta en un 2000%."
+        },
+        {
+          "name": "Complejo Sinérgico",
+          "description": "Espirulina, Jengibre y Azafrán para maximizar los beneficios generales de la fórmula."
+        }
+      ]
+    },
+    "benefitsSection": {
+      "eyebrow": "Eficacia Probada",
+      "title": "Resultados Respaldados por la Ciencia",
+      "subtitle": "Cada ingrediente es seleccionado por sus propiedades documentadas y su eficacia probada.",
+      "benefits": [
+        {
+          "icon": "FlaskConical",
+          "title": "Protección Celular",
+          "description": "Acción antioxidante documentada para la protección de las células contra el estrés oxidativo."
+        },
+        {
+          "icon": "Bone",
+          "title": "Salud Articular",
+          "description": "Soporte científicamente validado para mantener la funcionalidad y el confort de las articulaciones."
+        },
+        {
+          "icon": "Rocket",
+          "title": "Máxima Biodisponibilidad",
+          "description": "Nuestra fórmula garantiza una absorción superior para una eficacia que puedes medir."
+        },
+        {
+          "icon": "TestTube2",
+          "title": "Pureza Testada",
+          "description": "Ingredientes puros y probados en laboratorios de terceros para garantizar la máxima calidad y seguridad."
+        }
+      ]
+    },
+    "guaranteeSection": {
+      "title": "Nuestra Garantía de Calidad y Transparencia",
+      "seals": [
+        {
+          "imageUrl": "/img/guarantee-section/seal_garantia-1.jpg",
+          "imageAlt": "Sello de Calidad Suiza"
+        }
+      ]
+    },
+    "testimonialGrid": {
+      "title": "Lo que Dicen los Profesionales",
+      "testimonials": [
+        {
+          "quote": "Valoro la transparencia de la fórmula y la inclusión de BioPerine®. Es una elección inteligente para quien busca un suplemento eficaz.",
+          "author": "Dr. A. Bianchi",
+          "location": "Nutricionista, Milán",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_doctor-a.jpg"
+        }
+      ]
+    },
+    "faqAccordion": {
+      "title": "Preguntas Técnicas Frecuentes",
+      "faqs": [
+        {
+          "question": "¿Por qué es tan importante la piperina?",
+          "answer": "La curcumina por sí sola tiene una baja biodisponibilidad. La piperina inhibe ciertas enzimas, permitiendo que la curcumina sea absorbida de manera significativamente mayor."
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Valor al Público",
+      "discountedPriceLabel": "Precio para Nuestros Lectores",
+      "nameInputLabel": "Nombre y Apellido",
+      "nameInputPlaceholder": "Ingrese nombre y apellido",
+      "phoneInputLabel": "Teléfono",
+      "phoneInputPlaceholder": "Número para confirmación",
+      "submitButtonText": "Solicite su Suministro",
+      "submitButtonLoadingText": "Procesando..."
+    },
+    "socialProofLogos": {
+      "title": "Estándares de Producción Certificados",
+      "logos": [
+        {
+          "src": "/img/sections/social-proof-logos/logo-gmp.svg",
+          "alt": "Logo Certificado GMP"
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "scrollingBanner": {
+      "message": "Certified Swiss Quality. Your well-being deserves precision, not promises."
+    },
+    "hero": {
+      "title": "Wellness Based on Scientific Evidence.",
+      "subtitle": "A synergistic formula developed with Swiss standards to intelligently support your long-term health. No exaggerated promises, just results."
+    },
+    "ingredientAnalysis": {
+      "title": "Detailed Formula Analysis",
+      "ingredients": [
+        {
+          "name": "Curcumin (Standardized)",
+          "description": "Ensures maximum antioxidant power, as demonstrated by numerous studies."
+        },
+        {
+          "name": "Piperine (BioPerine®)",
+          "description": "A clinically tested bio-enhancer that increases absorption by up to 2000%."
+        },
+        {
+          "name": "Synergistic Complex",
+          "description": "Spirulina, Ginger, and Saffron to maximize the formula's overall benefits."
+        }
+      ]
+    },
+    "benefitsSection": {
+      "eyebrow": "Proven Efficacy",
+      "title": "Results Backed by Science",
+      "subtitle": "Each ingredient is selected for its documented properties and proven effectiveness.",
+      "benefits": [
+        {
+          "icon": "FlaskConical",
+          "title": "Cellular Protection",
+          "description": "Documented antioxidant action to safeguard cells from oxidative stress."
+        },
+        {
+          "icon": "Bone",
+          "title": "Joint Health",
+          "description": "Scientifically validated support to maintain joint function and comfort."
+        },
+        {
+          "icon": "Rocket",
+          "title": "Maximum Bioavailability",
+          "description": "Our formula ensures superior absorption for an efficacy you can measure."
+        },
+        {
+          "icon": "TestTube2",
+          "title": "Tested Purity",
+          "description": "Pure ingredients tested in third-party labs to ensure maximum quality and safety."
+        }
+      ]
+    },
+    "guaranteeSection": {
+      "title": "Our Guarantee of Quality and Transparency",
+      "seals": [
+        {
+          "imageUrl": "/img/guarantee-section/seal_garantia-1.jpg",
+          "imageAlt": "Swiss Quality Seal"
+        }
+      ]
+    },
+    "testimonialGrid": {
+      "title": "What Professionals Say",
+      "testimonials": [
+        {
+          "quote": "I appreciate the formula's transparency and the inclusion of BioPerine®. It's a smart choice for anyone seeking an effective supplement.",
+          "author": "Dr. A. Bianchi",
+          "location": "Nutritionist, Milan",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_doctor-a.jpg"
+        }
+      ]
+    },
+    "faqAccordion": {
+      "title": "Frequent Technical Questions",
+      "faqs": [
+        {
+          "question": "Why is piperine so important?",
+          "answer": "Curcumin alone has low bioavailability. Piperine inhibits certain enzymes, allowing curcumin to be absorbed significantly more."
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Retail Value",
+      "discountedPriceLabel": "Price for Our Readers",
+      "nameInputLabel": "Full Name",
+      "nameInputPlaceholder": "Enter your full name",
+      "phoneInputLabel": "Phone",
+      "phoneInputPlaceholder": "Number for confirmation",
+      "submitButtonText": "Request Your Supply",
+      "submitButtonLoadingText": "Processing..."
+    },
+    "socialProofLogos": {
+      "title": "Certified Production Standards",
+      "logos": [
+        {
+          "src": "/img/sections/social-proof-logos/logo-gmp.svg",
+          "alt": "GMP Certified Logo"
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "scrollingBanner": {
+      "message": "Qualidade Suíça certificada. Seu bem-estar merece precisão, não promessas."
+    },
+    "hero": {
+      "title": "Bem-estar Baseado em Evidência Científica.",
+      "subtitle": "Uma fórmula sinérgica desenvolvida com padrões suíços para apoiar inteligentemente sua saúde a longo prazo. Sem promessas exageradas, apenas resultados."
+    },
+    "ingredientAnalysis": {
+      "title": "Análise Detalhada da Fórmula",
+      "ingredients": [
+        {
+          "name": "Curcumina (Padronizada)",
+          "description": "Garante o máximo poder antioxidante, como demonstrado por numerosos estudos."
+        },
+        {
+          "name": "Piperina (BioPerine®)",
+          "description": "Um biopotenciador clinicamente testado que aumenta a absorção em até 2000%."
+        },
+        {
+          "name": "Complexo Sinérgico",
+          "description": "Spirulina, Gengibre e Açafrão para maximizar os benefícios gerais da fórmula."
+        }
+      ]
+    },
+    "benefitsSection": {
+      "eyebrow": "Eficácia Comprovada",
+      "title": "Resultados Apoiados pela Ciência",
+      "subtitle": "Cada ingrediente é selecionado por suas propriedades documentadas e sua eficácia comprovada.",
+      "benefits": [
+        {
+          "icon": "FlaskConical",
+          "title": "Proteção Celular",
+          "description": "Ação antioxidante documentada para proteger as células do estresse oxidativo."
+        },
+        {
+          "icon": "Bone",
+          "title": "Saúde Articular",
+          "description": "Suporte cientificamente validado para manter a função e o conforto das articulações."
+        },
+        {
+          "icon": "Rocket",
+          "title": "Máxima Biodisponibilidade",
+          "description": "Nossa fórmula garante absorção superior para uma eficácia que você pode medir."
+        },
+        {
+          "icon": "TestTube2",
+          "title": "Pureza Testada",
+          "description": "Ingredientes puros e testados em laboratórios de terceiros para garantir a máxima qualidade e segurança."
+        }
+      ]
+    },
+    "guaranteeSection": {
+      "title": "Nossa Garantia de Qualidade e Transparência",
+      "seals": [
+        {
+          "imageUrl": "/img/guarantee-section/seal_garantia-1.jpg",
+          "imageAlt": "Selo de Qualidade Suíça"
+        }
+      ]
+    },
+    "testimonialGrid": {
+      "title": "O que Dizem os Profissionais",
+      "testimonials": [
+        {
+          "quote": "Aprecio a transparência da fórmula e a inclusão de BioPerine®. É uma escolha inteligente para quem busca um suplemento eficaz.",
+          "author": "Dr. A. Bianchi",
+          "location": "Nutricionista, Milão",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_doctor-a.jpg"
+        }
+      ]
+    },
+    "faqAccordion": {
+      "title": "Perguntas Técnicas Frequentes",
+      "faqs": [
+        {
+          "question": "Por que a piperina é tão importante?",
+          "answer": "A curcumina sozinha tem baixa biodisponibilidade. A piperina inibe certas enzimas, permitindo que a curcumina seja absorvida de forma significativamente maior."
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Valor de Varejo",
+      "discountedPriceLabel": "Preço para Nossos Leitores",
+      "nameInputLabel": "Nome Completo",
+      "nameInputPlaceholder": "Digite seu nome completo",
+      "phoneInputLabel": "Telefone",
+      "phoneInputPlaceholder": "Número para confirmação",
+      "submitButtonText": "Solicite Seu Suprimento",
+      "submitButtonLoadingText": "Processando..."
+    },
+    "socialProofLogos": {
+      "title": "Padrões de Produção Certificados",
+      "logos": [
+        {
+          "src": "/img/sections/social-proof-logos/logo-gmp.svg",
+          "alt": "Logo Certificado GMP"
+        }
+      ]
+    }
+  }
+}

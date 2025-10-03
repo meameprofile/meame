@@ -1,0 +1,58 @@
+{
+  "it-IT": {
+    "header": {
+      "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+      "logoAlt": "Logo di Global Fitwell",
+      "navLinks": [
+        { "label": "Home", "href": "/" },
+        { "label": "Negozio", "href": "/store" },
+        { "label": "Chi Siamo", "href": "/about" }
+      ],
+      "signUpButton": {
+        "label": "Registrati"
+      }
+    }
+  },
+  "es-ES": {
+    "header": {
+      "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+      "logoAlt": "Logo de Global Fitwell",
+      "navLinks": [
+        { "label": "Inicio", "href": "/" },
+        { "label": "Tienda", "href": "/store" },
+        { "label": "Sobre Nosotros", "href": "/about" }
+      ],
+      "signUpButton": {
+        "label": "Registrarse"
+      }
+    }
+  },
+  "en-US": {
+    "header": {
+      "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+      "logoAlt": "Global Fitwell Logo",
+      "navLinks": [
+        { "label": "Home", "href": "/" },
+        { "label": "Store", "href": "/store" },
+        { "label": "About Us", "href": "/about" }
+      ],
+      "signUpButton": {
+        "label": "Sign Up"
+      }
+    }
+  },
+  "pt-BR": {
+    "header": {
+      "logoUrl": "/img/layout/header/globalfitwell-logo-v2.svg",
+      "logoAlt": "Logo da Global Fitwell",
+      "navLinks": [
+        { "label": "Início", "href": "/" },
+        { "label": "Loja", "href": "/store" },
+        { "label": "Sobre Nós", "href": "/about" }
+      ],
+      "signUpButton": {
+        "label": "Cadastre-se"
+      }
+    }
+  }
+}

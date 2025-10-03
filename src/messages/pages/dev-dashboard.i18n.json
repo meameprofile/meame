@@ -1,0 +1,138 @@
+{
+  "it-IT": {
+    "devDashboardPage": {
+      "pageHeader": {
+        "title": "Developer Command Center",
+        "subtitle": "Strumenti per lo sviluppo e la simulazione delle campagne.",
+        "lightRays": {
+          "raysColor": "primary",
+          "raysOrigin": "top-center",
+          "raysSpeed": 0.8,
+          "lightSpread": 0.5,
+          "rayLength": 1.1,
+          "mouseInfluence": 0.05
+        }
+      },
+      "tools": {
+        "campaignDesignSuite": {
+          "name": "Suite di Progettazione",
+          "description": "Crea, configura e genera asset di campagna validati."
+        },
+        "bavi": {
+          "name": "BAVI - Biblioteca Asset",
+          "description": "Gestisci, indicizza e servi tutti gli asset visivi dell'ecosistema."
+        },
+        "razPrompts": {
+          "name": "RaZPrompts - Bóveda",
+          "description": "Il genoma dei tuoi asset. Crea, cataloga e versiona i tuoi prompt."
+        },
+        "resilienceShowcase": {
+          "name": "Vetrina di Resilienza",
+          "description": "Renderizza tutti i componenti per verificare la stabilità e la compatibilità."
+        }
+      }
+    }
+  },
+  "es-ES": {
+    "devDashboardPage": {
+      "pageHeader": {
+        "title": "Centro de Comando del Desarrollador",
+        "subtitle": "Herramientas para el desarrollo y simulación de campañas.",
+        "lightRays": {
+          "raysColor": "primary",
+          "raysOrigin": "top-center",
+          "raysSpeed": 0.8,
+          "lightSpread": 0.5,
+          "rayLength": 1.1,
+          "mouseInfluence": 0.05
+        }
+      },
+      "tools": {
+        "campaignDesignSuite": {
+          "name": "Suite de Diseño",
+          "description": "Crea, configura y genera activos de campaña validados."
+        },
+        "bavi": {
+          "name": "BAVI - Biblioteca de Activos",
+          "description": "Gestiona, indexa y sirve todos los activos visuales del ecosistema."
+        },
+        "razPrompts": {
+          "name": "RaZPrompts - Bóveda",
+          "description": "El genoma de tus activos. Crea, cataloga y versiona tus prompts."
+        },
+        "resilienceShowcase": {
+          "name": "Vitrina de Resiliencia",
+          "description": "Renderiza todos los componentes para verificar la estabilidad y compatibilidad."
+        }
+      }
+    }
+  },
+  "en-US": {
+    "devDashboardPage": {
+      "pageHeader": {
+        "title": "Developer Command Center",
+        "subtitle": "Tools for campaign development and simulation.",
+        "lightRays": {
+          "raysColor": "primary",
+          "raysOrigin": "top-center",
+          "raysSpeed": 0.8,
+          "lightSpread": 0.5,
+          "rayLength": 1.1,
+          "mouseInfluence": 0.05
+        }
+      },
+      "tools": {
+        "campaignDesignSuite": {
+          "name": "Design Suite",
+          "description": "Create, configure, and generate validated campaign assets."
+        },
+        "bavi": {
+          "name": "BAVI - Asset Library",
+          "description": "Manage, index, and serve all visual assets of the ecosystem."
+        },
+        "razPrompts": {
+          "name": "RaZPrompts - Vault",
+          "description": "The genome of your assets. Create, catalog, and version your prompts."
+        },
+        "resilienceShowcase": {
+          "name": "Resilience Showcase",
+          "description": "Renders all components to verify stability and data compatibility."
+        }
+      }
+    }
+  },
+  "pt-BR": {
+    "devDashboardPage": {
+      "pageHeader": {
+        "title": "Centro de Comando do Desenvolvedor",
+        "subtitle": "Ferramentas para o desenvolvimento e simulação de campanhas.",
+        "lightRays": {
+          "raysColor": "primary",
+          "raysOrigin": "top-center",
+          "raysSpeed": 0.8,
+          "lightSpread": 0.5,
+          "rayLength": 1.1,
+          "mouseInfluence": 0.05
+        }
+      },
+      "tools": {
+        "campaignDesignSuite": {
+          "name": "Suite de Design",
+          "description": "Crie, configure e gere ativos de campanha validados."
+        },
+        "bavi": {
+          "name": "BAVI - Biblioteca de Ativos",
+          "description": "Gerencie, indexe e sirva todos os ativos visuais do ecossistema."
+        },
+        "razPrompts": {
+          "name": "RaZPrompts - Cofre",
+          "description": "O genoma dos seus ativos. Crie, catalogue e versione seus prompts."
+        },
+        "resilienceShowcase": {
+          "name": "Vitrine de Resiliência",
+          "description": "Renderiza todos os componentes para verificar a estabilidade e a compatibilidade dos dados."
+        }
+      }
+    }
+  }
+}

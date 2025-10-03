@@ -1,0 +1,210 @@
+{
+  "it-IT": {
+    "pricingSection": {
+      "eyebrow": "Prezzi",
+      "title": "Ottieni Accesso Illimitato",
+      "subtitle": "Scegli il piano che meglio si adatta alle tue esigenze e inizia a costruire oggi.",
+      "currency": "EUR",
+      "plans": [
+        {
+          "title": "Gratuito",
+          "isPopular": false,
+          "price": 0,
+          "priceSuffix": "/mese",
+          "description": "Perfetto per progetti personali e per esplorare la piattaforma.",
+          "buttonText": "Inizia la Prova Gratuita",
+          "benefitList": [
+            "1 membro del team",
+            "1 GB di storage",
+            "Fino a 2 pagine",
+            "Supporto della community"
+          ]
+        },
+        {
+          "title": "Premium",
+          "isPopular": true,
+          "price": 45,
+          "priceSuffix": "/mese",
+          "description": "La scelta migliore per team e aziende in crescita.",
+          "buttonText": "Inizia Ora",
+          "benefitList": [
+            "4 membri del team",
+            "8 GB di storage",
+            "Fino a 6 pagine",
+            "Supporto prioritario"
+          ]
+        },
+        {
+          "title": "Enterprise",
+          "isPopular": false,
+          "price": 120,
+          "priceSuffix": "/mese",
+          "description": "Soluzioni su misura per le grandi organizzazioni.",
+          "buttonText": "Contattaci",
+          "benefitList": [
+            "10 membri del team",
+            "20 GB di storage",
+            "Fino a 10 pagine",
+            "Supporto telefonico & email"
+          ]
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "pricingSection": {
+      "eyebrow": "Precios",
+      "title": "Obtén Acceso Ilimitado",
+      "subtitle": "Elige el plan que mejor se adapte a tus necesidades y empieza a construir hoy.",
+      "currency": "EUR",
+      "plans": [
+        {
+          "title": "Gratis",
+          "isPopular": false,
+          "price": 0,
+          "priceSuffix": "/mes",
+          "description": "Perfecto para proyectos personales y para explorar la plataforma.",
+          "buttonText": "Empezar Prueba Gratis",
+          "benefitList": [
+            "1 miembro de equipo",
+            "1 GB de almacenamiento",
+            "Hasta 2 páginas",
+            "Soporte de la comunidad"
+          ]
+        },
+        {
+          "title": "Premium",
+          "isPopular": true,
+          "price": 45,
+          "priceSuffix": "/mes",
+          "description": "La mejor opción para equipos y empresas en crecimiento.",
+          "buttonText": "Empezar Ahora",
+          "benefitList": [
+            "4 miembros de equipo",
+            "8 GB de almacenamiento",
+            "Hasta 6 páginas",
+            "Soporte prioritario"
+          ]
+        },
+        {
+          "title": "Enterprise",
+          "isPopular": false,
+          "price": 120,
+          "priceSuffix": "/mes",
+          "description": "Soluciones a medida para grandes organizaciones.",
+          "buttonText": "Contáctanos",
+          "benefitList": [
+            "10 miembros de equipo",
+            "20 GB de almacenamiento",
+            "Hasta 10 páginas",
+            "Soporte por teléfono y email"
+          ]
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "pricingSection": {
+      "eyebrow": "Pricing",
+      "title": "Get Unlimited Access",
+      "subtitle": "Choose the plan that best suits your needs and start building today.",
+      "currency": "USD",
+      "plans": [
+        {
+          "title": "Free",
+          "isPopular": false,
+          "price": 0,
+          "priceSuffix": "/month",
+          "description": "Perfect for personal projects and exploring the platform.",
+          "buttonText": "Start Free Trial",
+          "benefitList": [
+            "1 team member",
+            "1 GB storage",
+            "Up to 2 pages",
+            "Community support"
+          ]
+        },
+        {
+          "title": "Premium",
+          "isPopular": true,
+          "price": 50,
+          "priceSuffix": "/month",
+          "description": "The best choice for growing teams and businesses.",
+          "buttonText": "Get Started",
+          "benefitList": [
+            "4 team members",
+            "8 GB storage",
+            "Up to 6 pages",
+            "Priority support"
+          ]
+        },
+        {
+          "title": "Enterprise",
+          "isPopular": false,
+          "price": 135,
+          "priceSuffix": "/month",
+          "description": "Tailored solutions for large organizations.",
+          "buttonText": "Contact Us",
+          "benefitList": [
+            "10 team members",
+            "20 GB storage",
+            "Up to 10 pages",
+            "Phone & email support"
+          ]
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "pricingSection": {
+      "eyebrow": "Preços",
+      "title": "Obtenha Acesso Ilimitado",
+      "subtitle": "Escolha o plano que melhor se adapta às suas necessidades e comece a construir hoje.",
+      "currency": "BRL",
+      "plans": [
+        {
+          "title": "Grátis",
+          "isPopular": false,
+          "price": 0,
+          "priceSuffix": "/mês",
+          "description": "Perfeito para projetos pessoais e para explorar a plataforma.",
+          "buttonText": "Começar Teste Grátis",
+          "benefitList": [
+            "1 membro da equipe",
+            "1 GB de armazenamento",
+            "Até 2 páginas",
+            "Suporte da comunidade"
+          ]
+        },
+        {
+          "title": "Premium",
+          "isPopular": true,
+          "price": 250,
+          "priceSuffix": "/mês",
+          "description": "A melhor escolha para equipes e empresas em crescimento.",
+          "buttonText": "Comece Agora",
+          "benefitList": [
+            "4 membros da equipe",
+            "8 GB de armazenamento",
+            "Até 6 páginas",
+            "Suporte prioritário"
+          ]
+        },
+        {
+          "title": "Enterprise",
+          "isPopular": false,
+          "price": 700,
+          "priceSuffix": "/mês",
+          "description": "Soluções personalizadas para grandes organizações.",
+          "buttonText": "Fale Conosco",
+          "benefitList": [
+            "10 membros da equipe",
+            "20 GB de armazenamento",
+            "Até 10 páginas",
+            "Suporte por telefone e email"
+          ]
+        }
+      ]
+    }
+  }
+}

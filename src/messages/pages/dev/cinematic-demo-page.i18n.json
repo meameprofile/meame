@@ -1,0 +1,38 @@
+{
+  "it-IT": {
+    "cinematicDemoPage": {
+      "pageHeader": {
+        "title": "Sandbox del Motore \"Aether\"",
+        "subtitle": "Ambiente di sviluppo isolato per il renderer cinematografico."
+      },
+      "loadingText": "Caricamento del Renderer Cinematografico..."
+    }
+  },
+  "es-ES": {
+    "cinematicDemoPage": {
+      "pageHeader": {
+        "title": "Sandbox del Motor \"Aether\"",
+        "subtitle": "Entorno de desarrollo aislado para el renderizador cinematográfico."
+      },
+      "loadingText": "Cargando Renderizador Cinematográfico..."
+    }
+  },
+  "en-US": {
+    "cinematicDemoPage": {
+      "pageHeader": {
+        "title": "\"Aether\" Engine Sandbox",
+        "subtitle": "Isolated development environment for the cinematic renderer."
+      },
+      "loadingText": "Loading Cinematic Renderer..."
+    }
+  },
+  "pt-BR": {
+    "cinematicDemoPage": {
+      "pageHeader": {
+        "title": "Sandbox do Motor \"Aether\"",
+        "subtitle": "Ambiente de desenvolvimento isolado para o renderizador cinematográfico."
+      },
+      "loadingText": "Carregando Renderizador Cinematográfico..."
+    }
+  }
+}

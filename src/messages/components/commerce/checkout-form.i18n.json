@@ -1,0 +1,34 @@
+{
+  "it-IT": {
+    "checkoutForm": {
+      "title": "Finalizza Acquisto",
+      "payButton": "Paga Adesso",
+      "processingButton": "Elaborazione Pagamento...",
+      "unexpectedError": "Si è verificato un errore inaspettato. Per favore, riprova."
+    }
+  },
+  "es-ES": {
+    "checkoutForm": {
+      "title": "Finalizar Compra",
+      "payButton": "Pagar Ahora",
+      "processingButton": "Procesando Pago...",
+      "unexpectedError": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+    }
+  },
+  "en-US": {
+    "checkoutForm": {
+      "title": "Complete Purchase",
+      "payButton": "Pay Now",
+      "processingButton": "Processing Payment...",
+      "unexpectedError": "An unexpected error occurred. Please try again."
+    }
+  },
+  "pt-BR": {
+    "checkoutForm": {
+      "title": "Finalizar Compra",
+      "payButton": "Pagar Agora",
+      "processingButton": "Processando Pagamento...",
+      "unexpectedError": "Ocorreu um erro inesperado. Por favor, tente novamente."
+    }
+  }
+}

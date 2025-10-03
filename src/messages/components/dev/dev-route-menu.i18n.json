@@ -1,0 +1,94 @@
+{
+  "it-IT": {
+    "devRouteMenu": {
+      "devMenuLabel": "Strumenti Dev",
+      "devToolsGroup": "STRUMENTI DEV",
+      "campaignPagesGroup": "PAGINE CAMPAGNA",
+      "portalPagesGroup": "PAGINE PORTALE",
+      "legalPagesGroup": "PAGINE LEGALI",
+      "home": "Homepage",
+      "store": "Negozio",
+      "news": "Notizie",
+      "about": "Chi Siamo",
+      "terms": "Termini",
+      "privacy": "Privacy",
+      "cookies": "Cookies",
+      "notFound": "Pagina 404",
+      "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campagna (ID 12157)",
+      "devDashboard": "Dashboard Sviluppo",
+      "devLogin": "Pagina di Login",
+      "devTestPage": "Pagina di Test",
+      "devComponentShowcase": "Vetrina Componenti",
+      "devCampaignSuiteCreate": "Suite di Progettazione"
+    }
+  },
+  "es-ES": {
+    "devRouteMenu": {
+      "devMenuLabel": "Herramientas Dev",
+      "devToolsGroup": "HERRAMIENTAS DEV",
+      "campaignPagesGroup": "PÁGINAS DE CAMPAÑA",
+      "portalPagesGroup": "PÁGINAS DEL PORTAL",
+      "legalPagesGroup": "PÁGINAS LEGALES",
+      "home": "Página de Inicio",
+      "store": "Tienda",
+      "news": "Noticias",
+      "about": "Sobre Nosotros",
+      "terms": "Términos",
+      "privacy": "Privacidad",
+      "cookies": "Cookies",
+      "notFound": "Página 404",
+      "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campaña (ID 12157)",
+      "devDashboard": "Dashboard Desarrollo",
+      "devLogin": "Página de Login",
+      "devTestPage": "Página de Prueba",
+      "devComponentShowcase": "Vitrina de Componentes",
+      "devCampaignSuiteCreate": "Suite de Diseño"
+    }
+  },
+  "en-US": {
+    "devRouteMenu": {
+      "devMenuLabel": "Dev Tools",
+      "devToolsGroup": "DEV TOOLS",
+      "campaignPagesGroup": "CAMPAIGN PAGES",
+      "portalPagesGroup": "PORTAL PAGES",
+      "legalPagesGroup": "LEGAL PAGES",
+      "home": "Homepage",
+      "store": "Store",
+      "news": "News",
+      "about": "About Us",
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "cookies": "Cookies",
+      "notFound": "404 Page",
+      "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campaign (ID 12157)",
+      "devDashboard": "Dev Dashboard",
+      "devLogin": "Login Page",
+      "devTestPage": "Test Page",
+      "devComponentShowcase": "Component Showcase",
+      "devCampaignSuiteCreate": "Design Suite"
+    }
+  },
+  "pt-BR": {
+    "devRouteMenu": {
+      "devMenuLabel": "Ferramentas Dev",
+      "devToolsGroup": "FERRAMENTAS DEV",
+      "campaignPagesGroup": "PÁGINAS DE CAMPANHA",
+      "portalPagesGroup": "PÁGINAS DO PORTAL",
+      "legalPagesGroup": "PÁGINAS LEGAIS",
+      "home": "Página Inicial",
+      "store": "Loja",
+      "news": "Notícias",
+      "about": "Sobre Nós",
+      "terms": "Termos",
+      "privacy": "Privacidade",
+      "cookies": "Cookies",
+      "notFound": "Página 404",
+      "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campanha (ID 12157)",
+      "devDashboard": "Dashboard de Desenvolvimento",
+      "devLogin": "Página de Login",
+      "devTestPage": "Página de Teste",
+      "devComponentShowcase": "Mostruário de Componentes",
+      "devCampaignSuiteCreate": "Suite de Design"
+    }
+  }
+}

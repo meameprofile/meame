@@ -1,0 +1,66 @@
+{
+  "it-IT": {
+    "nos3Dashboard": {
+      "pageHeader": {
+        "title": "Bóveda di Sessioni Nos3",
+        "subtitle": "Esplora, riproduci e analizza le interazioni degli utenti registrate nel sito."
+      },
+      "tableHeaders": {
+        "sessionId": "ID Sessione",
+        "startTime": "Ora Inizio",
+        "actions": "Azioni"
+      },
+      "reproduceButton": "Riproduci",
+      "emptyStateTitle": "Nessuna registrazione",
+      "emptyStateDescription": "Ancora nessuna sessione utente è stata registrata."
+    }
+  },
+  "es-ES": {
+    "nos3Dashboard": {
+      "pageHeader": {
+        "title": "Bóveda de Sesiones Nos3",
+        "subtitle": "Explora, reproduce y analiza las interacciones de los usuarios registradas en el sitio."
+      },
+      "tableHeaders": {
+        "sessionId": "ID de Sesión",
+        "startTime": "Hora de Inicio",
+        "actions": "Acciones"
+      },
+      "reproduceButton": "Reproducir",
+      "emptyStateTitle": "No hay grabaciones",
+      "emptyStateDescription": "Aún no se han grabado sesiones de usuario."
+    }
+  },
+  "en-US": {
+    "nos3Dashboard": {
+      "pageHeader": {
+        "title": "Nos3 Session Vault",
+        "subtitle": "Explore, replay, and analyze user interactions recorded on the site."
+      },
+      "tableHeaders": {
+        "sessionId": "Session ID",
+        "startTime": "Start Time",
+        "actions": "Actions"
+      },
+      "reproduceButton": "Replay",
+      "emptyStateTitle": "No recordings",
+      "emptyStateDescription": "No user sessions have been recorded yet."
+    }
+  },
+  "pt-BR": {
+    "nos3Dashboard": {
+      "pageHeader": {
+        "title": "Cofre de Sessões Nos3",
+        "subtitle": "Explore, reproduza e analise as interações dos usuários registradas no site."
+      },
+      "tableHeaders": {
+        "sessionId": "ID da Sessão",
+        "startTime": "Hora de Início",
+        "actions": "Ações"
+      },
+      "reproduceButton": "Reproduzir",
+      "emptyStateTitle": "Nenhuma gravação",
+      "emptyStateDescription": "Nenhuma sessão de usuário foi gravada ainda."
+    }
+  }
+}

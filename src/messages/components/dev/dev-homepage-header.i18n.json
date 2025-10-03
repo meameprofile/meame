@@ -1,0 +1,38 @@
+{
+  "es-ES": {
+    "devHomepageHeader": {
+      "homeLink": "Inicio",
+      "aboutLink": "Sobre Nosotros",
+      "storeLink": "Tienda",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menú Dev"
+    }
+  },
+  "it-IT": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "Chi Siamo",
+      "storeLink": "Negozio",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menù Dev"
+    }
+  },
+  "en-US": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "pt-BR": {
+    "devHomepageHeader": {
+      "homeLink": "Início",
+      "aboutLink": "Sobre Nós",
+      "storeLink": "Loja",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menu Dev"
+    }
+  }
+}

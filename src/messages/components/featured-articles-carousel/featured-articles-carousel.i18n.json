@@ -1,0 +1,142 @@
+{
+  "it-IT": {
+    "featuredArticlesCarousel": {
+      "eyebrow": "In Evidenza",
+      "title": "Approfondimenti dal Nostro Team",
+      "articles": [
+        {
+          "slug": "guida-allenamento-funzionale",
+          "category": "Fitness",
+          "title": "Allenamento Funzionale: La Guida Definitiva",
+          "imageUrl": "/img/sections/news-grid/functional-training.jpg",
+          "imageAlt": "Una persona che esegue uno squat con kettlebell in una palestra luminosa.",
+          "author": "Team Global Fitwell",
+          "readTime": 8
+        },
+        {
+          "slug": "5-supercibi-dieta",
+          "category": "Nutrizione",
+          "title": "5 Superfood da Aggiungere alla Tua Dieta",
+          "imageUrl": "/img/sections/news-grid/superfoods.jpg",
+          "imageAlt": "Una ciotola colorata di superfood.",
+          "author": "Dott.ssa Sofia Rossi",
+          "readTime": 5
+        },
+        {
+          "slug": "mindfulness-riduzione-stress",
+          "category": "Benessere Mentale",
+          "title": "Mindfulness e Riduzione dello Stress",
+          "imageUrl": "/img/sections/news-grid/mindfulness.jpg",
+          "imageAlt": "Una persona che medita serenamente.",
+          "author": "Team Global Fitwell",
+          "readTime": 6
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "featuredArticlesCarousel": {
+      "eyebrow": "Destacados",
+      "title": "Análisis Profundos de Nuestro Equipo",
+      "articles": [
+        {
+          "slug": "guida-entrenamiento-funcional",
+          "category": "Fitness",
+          "title": "Entrenamiento Funcional: La Guía Definitiva",
+          "imageUrl": "/img/sections/news-grid/functional-training.jpg",
+          "imageAlt": "Una persona realizando una sentadilla goblet con una pesa rusa.",
+          "author": "Equipo Global Fitwell",
+          "readTime": 8
+        },
+        {
+          "slug": "5-superalimentos-dieta",
+          "category": "Nutrición",
+          "title": "5 Superalimentos que Deberías Incluir en Tu Dieta",
+          "imageUrl": "/img/sections/news-grid/superfoods.jpg",
+          "imageAlt": "Un bol colorido de superalimentos.",
+          "author": "Dra. Sofía Rossi",
+          "readTime": 5
+        },
+        {
+          "slug": "mindfulness-reduccion-estres",
+          "category": "Bienestar Mental",
+          "title": "Mindfulness y Reducción del Estrés",
+          "imageUrl": "/img/sections/news-grid/mindfulness.jpg",
+          "imageAlt": "Una persona meditando serenamente.",
+          "author": "Equipo Global Fitwell",
+          "readTime": 6
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "featuredArticlesCarousel": {
+      "eyebrow": "Featured",
+      "title": "In-depth Insights from Our Team",
+      "articles": [
+        {
+          "slug": "functional-training-guide",
+          "category": "Fitness",
+          "title": "Functional Training: The Ultimate Guide",
+          "imageUrl": "/img/sections/news-grid/functional-training.jpg",
+          "imageAlt": "A person performing a goblet squat with a kettlebell.",
+          "author": "Global Fitwell Team",
+          "readTime": 8
+        },
+        {
+          "slug": "5-superfoods-diet",
+          "category": "Nutrition",
+          "title": "5 Superfoods You Should Add to Your Diet",
+          "imageUrl": "/img/sections/news-grid/superfoods.jpg",
+          "imageAlt": "A colorful bowl of superfoods.",
+          "author": "Dr. Sophia Rossi",
+          "readTime": 5
+        },
+        {
+          "slug": "mindfulness-stress-reduction",
+          "category": "Mental Wellness",
+          "title": "Mindfulness and Stress Reduction",
+          "imageUrl": "/img/sections/news-grid/mindfulness.jpg",
+          "imageAlt": "A person meditating serenely.",
+          "author": "Global Fitwell Team",
+          "readTime": 6
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "featuredArticlesCarousel": {
+      "eyebrow": "Destaques",
+      "title": "Análises Aprofundadas da Nossa Equipe",
+      "articles": [
+        {
+          "slug": "guia-treinamento-funcional",
+          "category": "Fitness",
+          "title": "Treinamento Funcional: O Guia Definitivo",
+          "imageUrl": "/img/sections/news-grid/functional-training.jpg",
+          "imageAlt": "Uma pessoa realizando um agachamento goblet com um kettlebell.",
+          "author": "Equipe Global Fitwell",
+          "readTime": 8
+        },
+        {
+          "slug": "5-superalimentos-dieta",
+          "category": "Nutrição",
+          "title": "5 Superalimentos que Você Deve Adicionar à Sua Dieta",
+          "imageUrl": "/img/sections/news-grid/superfoods.jpg",
+          "imageAlt": "Uma tigela colorida de superalimentos.",
+          "author": "Dra. Sofia Rossi",
+          "readTime": 5
+        },
+        {
+          "slug": "mindfulness-reducao-estresse",
+          "category": "Bem-estar Mental",
+          "title": "Mindfulness e Redução de Estresse",
+          "imageUrl": "/img/sections/news-grid/mindfulness.jpg",
+          "imageAlt": "Uma pessoa meditando serenamente.",
+          "author": "Equipe Global Fitwell",
+          "readTime": 6
+        }
+      ]
+    }
+  }
+}

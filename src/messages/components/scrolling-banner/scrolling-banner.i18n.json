@@ -1,0 +1,26 @@
+{
+  "it-IT": {
+    "scrollingBanner": {
+      "iconName": "Sparkles",
+      "message": "Benvenuto nel Centro di Comando ✨ | Componenti Forgiati: <strong>45</strong> | Campagne Attive: <strong>3</strong> | Dominio: <strong>Produzione</strong>"
+    }
+  },
+  "es-ES": {
+    "scrollingBanner": {
+      "iconName": "Sparkles",
+      "message": "Bienvenido al Centro de Mando ✨ | Componentes Forjados: <strong>45</strong> | Campañas Activas: <strong>3</strong> | Dominio: <strong>Producción</strong>"
+    }
+  },
+  "en-US": {
+    "scrollingBanner": {
+      "iconName": "Sparkles",
+      "message": "Welcome to the Command Center ✨ | Forged Components: <strong>45</strong> | Active Campaigns: <strong>3</strong> | Domain: <strong>Production</strong>"
+    }
+  },
+  "pt-BR": {
+    "scrollingBanner": {
+      "iconName": "Sparkles",
+      "message": "Bem-vindo ao Centro de Comando ✨ | Componentes Forjados: <strong>45</strong> | Campanhas Ativas: <strong>3</strong> | Domínio: <strong>Produção</strong>"
+    }
+  }
+}

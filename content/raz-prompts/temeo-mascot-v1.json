@@ -1,0 +1,41 @@
+{
+  "promptId": "clxzyghij0002klmn9012opqr",
+  "userId": "ee9f7536-1217-4f92-9dc7-d95922ce56df",
+  "workspaceId": "4df72b1f-627a-47e9-b93d-f6e083068000",
+  "title": "Mascota IA TEMEO - Concepto 01",
+  "status": "pending_generation",
+  "aiService": "ideogram",
+  "keywords": [
+    "temeo",
+    "ia",
+    "mascota",
+    "robot",
+    "personaje",
+    "3d",
+    "futurista",
+    "ciberpunk-suave",
+    "holograma"
+  ],
+  "versions": [
+    {
+      "version": 1,
+      "basePromptText": "Una encantadora e inteligente mascota robot llamada TEMEO, estilo personaje 3D de Pixar. El robot tiene un cuerpo elegante y minimalista de cromo pulido y blanco, con circuitos internos que brillan con una luz azul neón. Su cabeza es una pantalla lisa con grandes ojos digitales, amigables y expresivos. El personaje interactúa juguetonamente con flujos de datos holográficos y formas geométricas luminosas que flotan a su alrededor. El fondo es oscuro y minimalista, destacando al personaje.",
+      "fullPromptText": "Una encantadora e inteligente mascota robot llamada TEMEO, estilo personaje 3D de Pixar. El robot tiene un cuerpo elegante y minimalista de cromo pulido y blanco, con circuitos internos que brillan con una luz azul neón. Su cabeza es una pantalla lisa con grandes ojos digitales, amigables y expresivos. El personaje interactúa juguetonamente con flujos de datos holográficos y formas geométricas luminosas que flotan a su alrededor. El fondo es oscuro y minimalista, destacando al personaje. 3d render, cinematic, photorealistic, aspect ratio 1x1",
+      "parameters": {
+        "styleType": "DESIGN",
+        "aspectRatio": "1x1"
+      },
+      "createdAt": "2025-10-01T18:00:00.000Z"
+    }
+  ],
+  "tags": {
+    "ai": "ideo",
+    "sty": "ill",
+    "fmt": "1x1",
+    "typ": "chr",
+    "sbj": "rob"
+  },
+  "baviAssetIds": [],
+  "createdAt": "2025-10-01T18:00:00.000Z",
+  "updatedAt": "2025-10-01T18:00:00.000Z"
+}

@@ -1,0 +1,74 @@
+{
+  "it-IT": {
+    "termsPage": {
+      "title": "Termini di Servizio",
+      "subtitle": "Utilizzando il nostro sito web, accettate i seguenti termini e condizioni.",
+      "content": [
+        { "type": "h2", "text": "1. Uso del Sito" },
+        {
+          "type": "p",
+          "text": "Questo sito web e i suoi contenuti sono per vostro uso personale e non commerciale. Non potete modificare, copiare, distribuire o vendere alcuna informazione ottenuta da questo sito. L'accesso è consentito solo a persone maggiorenni."
+        },
+        { "type": "h2", "text": "2. Proprietà Intellettuale" },
+        {
+          "type": "p",
+          "text": "Tutti i contenuti, inclusi testi, grafiche, loghi e immagini, sono di proprietà di Global Fitwell e sono protetti dalle leggi internazionali sul copyright."
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "termsPage": {
+      "title": "Términos de Servicio",
+      "subtitle": "Al utilizar nuestro sitio web, aceptas los siguientes términos y condiciones.",
+      "content": [
+        { "type": "h2", "text": "1. Uso del Sitio" },
+        {
+          "type": "p",
+          "text": "Este sitio web y su contenido son para tu uso personal y no comercial. No puedes modificar, copiar, distribuir o vender ninguna información obtenida de este sitio. El acceso está permitido solo a mayores de edad."
+        },
+        { "type": "h2", "text": "2. Propiedad Intelectual" },
+        {
+          "type": "p",
+          "text": "Todo el contenido, incluyendo texto, gráficos, logos e imágenes, es propiedad de Global Fitwell y está protegido por las leyes internacionales de derechos de autor."
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "termsPage": {
+      "title": "Terms of Service",
+      "subtitle": "By using our website, you agree to the following terms and conditions.",
+      "content": [
+        { "type": "h2", "text": "1. Use of the Site" },
+        {
+          "type": "p",
+          "text": "This website and its content are for your personal, non-commercial use. You may not modify, copy, distribute, or sell any information obtained from this site. Access is permitted only to adults of legal age."
+        },
+        { "type": "h2", "text": "2. Intellectual Property" },
+        {
+          "type": "p",
+          "text": "All content, including text, graphics, logos, and images, is the property of Global Fitwell and is protected by international copyright laws."
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "termsPage": {
+      "title": "Termos de Serviço",
+      "subtitle": "Ao utilizar nosso site, você concorda com os seguintes termos e condições.",
+      "content": [
+        { "type": "h2", "text": "1. Uso do Site" },
+        {
+          "type": "p",
+          "text": "Este site e seu conteúdo são para seu uso pessoal e não comercial. Você não pode modificar, copiar, distribuir ou vender qualquer informação obtida deste site. O acesso é permitido apenas a maiores de idade."
+        },
+        { "type": "h2", "text": "2. Propriedade Intelectual" },
+        {
+          "type": "p",
+          "text": "Todo o conteúdo, incluindo texto, gráficos, logotipos e imagens, é propriedade da Global Fitwell e está protegido pelas leis internacionais de direitos autorais."
+        }
+      ]
+    }
+  }
+}

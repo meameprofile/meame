@@ -1,0 +1,60 @@
+{
+  "it-IT": {
+    "testimonialCarouselSection": {
+      "eyebrow": "Testimonianze",
+      "title": "Ascolta Cosa Dicono i Nostri 1000+ Clienti",
+      "reviews": [
+        {
+          "image": "/img/avatars/avatar1.png",
+          "name": "Giovanni Rossi",
+          "userName": "@giovanni_r",
+          "comment": "Questa landing page è fantastica!",
+          "rating": 5
+        },
+        {
+          "image": "/img/avatars/avatar2.png",
+          "name": "Laura Bianchi",
+          "userName": "@laura_b",
+          "comment": "Un'esperienza utente incredibile, molto facile da usare e visivamente sbalorditiva. Altamente raccomandato!",
+          "rating": 5
+        },
+        {
+          "image": "/img/avatars/avatar3.png",
+          "name": "Marco Verdi",
+          "userName": "@marco_v",
+          "comment": "Il design è pulito e moderno. Mi ha aiutato a lanciare il mio progetto in tempi record. Ottimo lavoro!",
+          "rating": 4
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "testimonialCarouselSection": {
+      "eyebrow": "Testimonios",
+      "title": "Escucha lo que Dicen Nuestros Más de 1000 Clientes",
+      "reviews": [
+        {
+          "image": "/img/avatars/avatar1.png",
+          "name": "Juan Pérez",
+          "userName": "@juan_p",
+          "comment": "¡Esta landing page es increíble!",
+          "rating": 5
+        },
+        {
+          "image": "/img/avatars/avatar2.png",
+          "name": "Ana García",
+          "userName": "@ana_g",
+          "comment": "Una experiencia de usuario asombrosa, muy fácil de usar y visualmente impactante. ¡Muy recomendado!",
+          "rating": 5
+        },
+        {
+          "image": "/img/avatars/avatar3.png",
+          "name": "Carlos Rodríguez",
+          "userName": "@carlos_r",
+          "comment": "El diseño es limpio y moderno. Me ayudó a lanzar mi proyecto en tiempo récord. ¡Gran trabajo!",
+          "rating": 4
+        }
+      ]
+    }
+  }
+}

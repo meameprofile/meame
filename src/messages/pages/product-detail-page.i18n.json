@@ -1,0 +1,222 @@
+{
+  "it-IT": {
+    "kineticband-pro": {
+      "productData": {
+        "id": "prod_kband_pro",
+        "name": "KineticBand Pro",
+        "slug": "kineticband-pro",
+        "price": 89.99,
+        "currency": "EUR",
+        "isBestseller": true,
+        "imageUrl": "/img/products/kineticband.jpg",
+        "inventory": { "total": 20, "available": 15, "reserved": 0 },
+        "logistics": { "deliveryTime": "2-4 giorni lavorativi" },
+        "producerInfo": {
+          "name": "Webvork",
+          "checkoutUrl": "https://it4.curcumacomplex.com/order.php"
+        },
+        "categorization": {
+          "primary": "Prestazione",
+          "secondary": ["recupero", "forza"]
+        },
+        "targetProfile": { "userType": "Atleti", "ageRange": "18-45" },
+        "rating": 4.8
+      },
+      "galleryImages": [
+        {
+          "src": "/img/products/kineticband-gallery-1.png",
+          "alt": "KineticBand Pro in uso"
+        },
+        {
+          "src": "/img/products/kineticband-gallery-2.png",
+          "alt": "Dettaglio del materiale di KineticBand Pro"
+        }
+      ],
+      "description": [
+        {
+          "type": "p",
+          "text": "La KineticBand Pro è progettata per atleti d'élite che cercano di massimizzare il loro potenziale. Realizzata con materiali resistenti e un design ergonomico, offre una resistenza progressiva per migliorare forza, velocità e agilità."
+        },
+        { "type": "h2", "text": "Caratteristiche Principali" }
+      ],
+      "addToCartButton": "Aggiungi al Carrello",
+      "quantityLabel": "Quantità",
+      "relatedProductsTitle": "Potrebbe Piacerti Anche",
+      "stockStatus": {
+        "available": "Disponibile ({{count}} in magazzino)",
+        "unavailable": "Attualmente non disponibile"
+      },
+      "shareButton": {
+        "buttonLabel": "Condividi",
+        "popoverTitle": "Condividi tramite",
+        "copyLinkAction": "Copia link",
+        "copySuccessToast": "Link copiato negli appunti!"
+      }
+    }
+  },
+  "es-ES": {
+    "kineticband-pro": {
+      "productData": {
+        "id": "prod_kband_pro",
+        "name": "KineticBand Pro",
+        "slug": "kineticband-pro",
+        "price": 89.99,
+        "currency": "EUR",
+        "isBestseller": true,
+        "imageUrl": "/img/products/kineticband.jpg",
+        "inventory": { "total": 20, "available": 15, "reserved": 0 },
+        "logistics": { "deliveryTime": "2-4 días hábiles" },
+        "producerInfo": {
+          "name": "Webvork",
+          "checkoutUrl": "https://it4.curcumacomplex.com/order.php"
+        },
+        "categorization": {
+          "primary": "Rendimiento",
+          "secondary": ["recuperacion", "fuerza"]
+        },
+        "targetProfile": { "userType": "Atletas", "ageRange": "18-45" },
+        "rating": 4.8
+      },
+      "galleryImages": [
+        {
+          "src": "/img/products/kineticband-gallery-1.png",
+          "alt": "KineticBand Pro en uso"
+        },
+        {
+          "src": "/img/products/kineticband-gallery-2.png",
+          "alt": "Detalle del material de KineticBand Pro"
+        }
+      ],
+      "description": [
+        {
+          "type": "p",
+          "text": "La KineticBand Pro está diseñada para atletas de élite que buscan maximizar su potencial. Fabricada con materiales resistentes y un diseño ergonómico, ofrece una resistencia progresiva para mejorar la fuerza, velocidad y agilidad."
+        },
+        { "type": "h2", "text": "Características Principales" }
+      ],
+      "addToCartButton": "Añadir al Carrito",
+      "quantityLabel": "Cantidad",
+      "relatedProductsTitle": "También te podría gustar",
+      "stockStatus": {
+        "available": "Disponible ({{count}} en almacén)",
+        "unavailable": "Actualmente no disponible"
+      },
+      "shareButton": {
+        "buttonLabel": "Compartir",
+        "popoverTitle": "Compartir vía",
+        "copyLinkAction": "Copiar enlace",
+        "copySuccessToast": "¡Enlace copiado al portapapeles!"
+      }
+    }
+  },
+  "en-US": {
+    "kineticband-pro": {
+      "productData": {
+        "id": "prod_kband_pro",
+        "name": "KineticBand Pro",
+        "slug": "kineticband-pro",
+        "price": 89.99,
+        "currency": "USD",
+        "isBestseller": true,
+        "imageUrl": "/img/products/kineticband.jpg",
+        "inventory": { "total": 20, "available": 15, "reserved": 0 },
+        "logistics": { "deliveryTime": "2-4 business days" },
+        "producerInfo": {
+          "name": "Webvork",
+          "checkoutUrl": "https://it4.curcumacomplex.com/order.php"
+        },
+        "categorization": {
+          "primary": "Performance",
+          "secondary": ["recovery", "strength"]
+        },
+        "targetProfile": { "userType": "Athletes", "ageRange": "18-45" },
+        "rating": 4.8
+      },
+      "galleryImages": [
+        {
+          "src": "/img/products/kineticband-gallery-1.png",
+          "alt": "KineticBand Pro in use"
+        },
+        {
+          "src": "/img/products/kineticband-gallery-2.png",
+          "alt": "Detail of the KineticBand Pro material"
+        }
+      ],
+      "description": [
+        {
+          "type": "p",
+          "text": "The KineticBand Pro is designed for elite athletes looking to maximize their potential. Made with durable materials and an ergonomic design, it offers progressive resistance to improve strength, speed, and agility."
+        },
+        { "type": "h2", "text": "Main Features" }
+      ],
+      "addToCartButton": "Add to Cart",
+      "quantityLabel": "Quantity",
+      "relatedProductsTitle": "You Might Also Like",
+      "stockStatus": {
+        "available": "Available ({{count}} in stock)",
+        "unavailable": "Currently unavailable"
+      },
+      "shareButton": {
+        "buttonLabel": "Share",
+        "popoverTitle": "Share via",
+        "copyLinkAction": "Copy link",
+        "copySuccessToast": "Link copied to clipboard!"
+      }
+    }
+  },
+  "pt-BR": {
+    "kineticband-pro": {
+      "productData": {
+        "id": "prod_kband_pro",
+        "name": "KineticBand Pro",
+        "slug": "kineticband-pro",
+        "price": 450,
+        "currency": "BRL",
+        "isBestseller": true,
+        "imageUrl": "/img/products/kineticband.jpg",
+        "inventory": { "total": 20, "available": 15, "reserved": 0 },
+        "logistics": { "deliveryTime": "2-4 dias úteis" },
+        "producerInfo": {
+          "name": "Webvork",
+          "checkoutUrl": "https://it4.curcumacomplex.com/order.php"
+        },
+        "categorization": {
+          "primary": "Desempenho",
+          "secondary": ["recuperacao", "forca"]
+        },
+        "targetProfile": { "userType": "Atletas", "ageRange": "18-45" },
+        "rating": 4.8
+      },
+      "galleryImages": [
+        {
+          "src": "/img/products/kineticband-gallery-1.png",
+          "alt": "KineticBand Pro em uso"
+        },
+        {
+          "src": "/img/products/kineticband-gallery-2.png",
+          "alt": "Detalhe do material da KineticBand Pro"
+        }
+      ],
+      "description": [
+        {
+          "type": "p",
+          "text": "A KineticBand Pro é projetada para atletas de elite que buscam maximizar seu potencial. Feita com materiais duráveis e um design ergonômômico, oferece resistência progressiva para melhorar a força, velocidade e agilidade."
+        },
+        { "type": "h2", "text": "Principais Características" }
+      ],
+      "addToCartButton": "Adicionar ao Carrinho",
+      "quantityLabel": "Quantidade",
+      "relatedProductsTitle": "Você Também Pode Gostar",
+      "stockStatus": {
+        "available": "Disponível ({{count}} em estoque)",
+        "unavailable": "Atualmente indisponível"
+      },
+      "shareButton": {
+        "buttonLabel": "Compartilhar",
+        "popoverTitle": "Compartilhar via",
+        "copyLinkAction": "Copiar link",
+        "copySuccessToast": "Link copiado para a área de transferência!"
+      }
+    }
+  }
+}

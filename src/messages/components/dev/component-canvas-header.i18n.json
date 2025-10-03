@@ -1,0 +1,22 @@
+{
+  "it-IT": {
+    "componentCanvasHeader": {
+      "description": "Visualizzazione isolata del componente."
+    }
+  },
+  "es-ES": {
+    "componentCanvasHeader": {
+      "description": "Visualización de componente aislado."
+    }
+  },
+  "en-US": {
+    "componentCanvasHeader": {
+      "description": "Isolated component visualization."
+    }
+  },
+  "pt-BR": {
+    "componentCanvasHeader": {
+      "description": "Visualização isolada do componente."
+    }
+  }
+}

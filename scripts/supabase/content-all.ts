@@ -1,0 +1,136 @@
+// pnpm tsx scripts/run-with-env.ts scripts/supabase/content-all.ts
+/**
+ * @file content-all.ts
+ * @description Guardián de Contenido Holístico para Supabase. Realiza un volcado completo
+ *              de todas las tablas públicas y genera un informe de diagnóstico maestro.
+ * @version 2.0.0 (Type-Safe & AI-Consumable)
+ * @author L.I.A. Legacy
+ */
+import { promises as fs } from "fs";
+import * as path from "path";
+import { z } from "zod";
+import { createScriptClient } from "../_utils/supabaseClient";
+import { scriptLogger } from "../_utils/logger";
+import type { ScriptActionResult } from "../_utils/types";
+
+// --- SSoT de Contratos de Datos ---
+const TableNameSchema = z.object({ table_name: z.string() });
+const RpcResponseSchema = z.array(TableNameSchema);
+
+interface Report {
+  reportMetadata: {
+    script: string;
+    purpose: string;
+    generatedAt: string;
+  };
+  instructionsForAI: string[];
+  dumpStatus: "SUCCESS" | "FAILED";
+  data: Record<
+    string,
+    { count: number; records: unknown[] } | { error: string }
+  >;
+  summary: string;
+}
+
+async function diagnoseSupabaseContentAll(): Promise<
+  ScriptActionResult<string>
+> {
+  const traceId = scriptLogger.startTrace(`diagnoseContent:all_v2.0`);
+  scriptLogger.startGroup(
+    `💾 Realizando volcado de contenido completo de Supabase...`
+  );
+
+  const reportDir = path.resolve(process.cwd(), "reports", "supabase");
+  const reportPath = path.resolve(reportDir, `content-all-diagnostics.json`); // <-- NOMBRE DE REPORTE ACTUALIZADO
+
+  const report: Report = {
+    reportMetadata: {
+      script: `scripts/supabase/content-all.ts`, // <-- NOMBRE DE SCRIPT ACTUALIZADO
+      purpose:
+        "Volcado de contenido COMPLETO de todas las tablas públicas de Supabase.",
+      generatedAt: new Date().toISOString(),
+    },
+    instructionsForAI: [
+      "Este es un informe de volcado de contenido completo de la base de datos.",
+      "La sección 'data' contiene una clave por cada tabla pública encontrada.",
+      "Para cada tabla, se proporciona un 'count' del total de registros y un array 'records' con los datos completos.",
+      "Utiliza esta información como una SSoT del estado de los datos para análisis y depuración.",
+    ],
+    dumpStatus: "FAILED",
+    data: {},
+    summary: "",
+  };
+
+  try {
+    const supabase = createScriptClient();
+    scriptLogger.info(`Invocando RPC 'get_public_table_names'...`);
+
+    const { data: rpcData, error: rpcError } = await supabase.rpc(
+      "get_public_table_names"
+    );
+    if (rpcError)
+      throw new Error(
+        `Fallo en RPC 'get_public_table_names': ${rpcError.message}`
+      );
+
+    // --- Guardián de Resiliencia de Datos ---
+    const validation = RpcResponseSchema.safeParse(rpcData);
+    if (!validation.success) {
+      throw new Error(
+        `La respuesta de la RPC 'get_public_table_names' no cumple con el schema esperado.`
+      );
+    }
+    const tablesData = validation.data;
+    // --- Fin del Guardián ---
+
+    const tableNames = tablesData.map((t) => t.table_name);
+    scriptLogger.info(
+      `Se encontraron ${tableNames.length} tablas públicas para volcar.`
+    );
+
+    for (const tableName of tableNames) {
+      scriptLogger.trace(`Volcando contenido de la tabla: '${tableName}'...`);
+      const { data: tableData, error: tableError } = await supabase
+        .from(tableName)
+        .select("*");
+
+      if (tableError) {
+        report.data[tableName] = { error: tableError.message };
+        scriptLogger.warn(
+          `Error al leer la tabla '${tableName}': ${tableError.message}`
+        );
+      } else {
+        report.data[tableName] = {
+          count: tableData.length,
+          records: tableData,
+        };
+      }
+    }
+
+    report.dumpStatus = "SUCCESS";
+    report.summary = `Volcado de contenido completado. Se procesaron ${tableNames.length} tablas.`;
+    scriptLogger.success(report.summary);
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
+    report.summary = `Volcado de contenido fallido: ${errorMessage}`;
+    scriptLogger.error(report.summary, { traceId });
+  } finally {
+    await fs.mkdir(reportDir, { recursive: true });
+    await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
+    scriptLogger.info(
+      `Informe de volcado de contenido guardado en: ${path.relative(process.cwd(), reportPath)}`
+    );
+    scriptLogger.endGroup();
+    scriptLogger.endTrace(traceId);
+    if (report.dumpStatus === "FAILED") process.exit(1);
+  }
+
+  if (report.dumpStatus === "SUCCESS") {
+    return { success: true, data: report.summary };
+  } else {
+    return { success: false, error: report.summary };
+  }
+}
+
+diagnoseSupabaseContentAll();

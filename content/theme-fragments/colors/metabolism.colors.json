@@ -1,0 +1,9 @@
+{
+  "colors": {
+    "background": "0 0% 100%",
+    "foreground": "210 15% 30%",
+    "primary": "160 80% 45%",
+    "secondary": "210 20% 96%",
+    "accent": "5 90% 65%"
+  }
+}

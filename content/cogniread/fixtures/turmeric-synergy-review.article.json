@@ -1,0 +1,56 @@
+{
+  "articleId": "clxzyw4v50003cde4jklmnop",
+  "status": "published",
+  "createdAt": "2025-09-22T10:00:00.000Z",
+  "updatedAt": "2025-09-22T14:30:00.000Z",
+  "studyDna": {
+    "originalTitle": "Exploring synergistic benefits and clinical efficacy of turmeric in management of inflammatory and chronic diseases: A traditional Chinese medicine based review",
+    "authors": ["Divya Jain", "Kuldeep Singh"],
+    "institution": "Uttaranchal University & GLA University, India",
+    "publication": "Pharmacological Research - Modern Chinese Medicine",
+    "publicationDate": "2025-01-03T00:00:00.000Z",
+    "doi": "https://doi.org/10.1016/j.prmcm.2025.100572",
+    "fundingSource": "No especificado en el artículo.",
+    "objective": "Explorar los efectos terapéuticos de la cúrcuma y la Medicina Tradicional China (MTC) en el manejo de enfermedades inflamatorias y crónicas...",
+    "studyType": "Artículo de revisión (Review)",
+    "methodologySummary": "Revisión de la literatura científica publicada entre 2000 y 2024...",
+    "mainResults": "La revisión encontró evidencia significativa que respalda los efectos antiinflamatorios de la cúrcuma...",
+    "authorsConclusion": "La cúrcuma y la MTC tienen un potencial significativo en el manejo de enfermedades inflamatorias...",
+    "limitations": ["Variabilidad en los diseños de los estudios analizados."]
+  },
+  "content": {
+    "es-ES": {
+      "title": "Cúrcuma: El Poder Ancestral y la Ciencia Moderna Detrás de la Raíz Dorada",
+      "slug": "curcuma-poder-ancestral-ciencia-moderna-raiz-dorada",
+      "summary": "Una revisión exhaustiva de 85 estudios científicos revela cómo la cúrcuma modula la inflamación a nivel molecular...",
+      "body": "La cúrcuma (Curcuma longa), esa especia de color dorado intenso que da vida al curry..."
+    },
+    "en-US": {
+      "title": "Turmeric: The Ancient Power and Modern Science Behind the Golden Root",
+      "slug": "turmeric-ancient-power-modern-science-golden-root",
+      "summary": "A comprehensive review of 85 scientific studies reveals how turmeric modulates inflammation at a molecular level...",
+      "body": "Turmeric (Curcuma longa), the intensely golden spice that gives curry its vibrant color..."
+    },
+    "it-IT": {
+      "title": "Curcuma: Il Potere Ancestrale e la Scienza Moderna Dietro la Radice d'Oro",
+      "slug": "curcuma-potere-ancestrale-scienza-moderna-radice-oro",
+      "summary": "Una revisione completa di 85 studi scientifici rivela come la curcuma modula l'infiammazione a livello molecolare...",
+      "body": "La curcuma (Curcuma longa), quella spezia dal colore dorato intenso che dà vita al curry..."
+    },
+    "pt-BR": {
+      "title": "Cúrcuma: O Poder Ancestral e a Ciência Moderna por Trás da Raiz Dourada",
+      "slug": "curcuma-poder-ancestral-ciencia-moderna-raiz-dourada",
+      "summary": "Uma revisão abrangente de 85 estudos científicos revela como a cúrcuma modula a inflamação a nível molecular...",
+      "body": "A cúrcuma (Curcuma longa), a especiaria de cor dourada intensa que dá vida ao caril..."
+    }
+  },
+  "baviHeroImageId": "webvork/assets/i-ing-turmeric-synergy-01/v1-original",
+  "relatedPromptIds": ["clxzyw5v60004cde4lmnopqr"],
+  "tags": [
+    "curcuma",
+    "sinergia",
+    "medicina-tradicional",
+    "anti-inflamatorio",
+    "suplementos"
+  ]
+}

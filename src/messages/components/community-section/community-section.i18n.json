@@ -1,0 +1,38 @@
+{
+  "it-IT": {
+    "communitySection": {
+      "iconName": "MessageSquare",
+      "title": "Pronto a unirti alla nostra <span class='text-primary'>Community?</span>",
+      "description": "Unisciti alla nostra vibrante community! Connettiti, condividi e cresci con appassionati che la pensano come te. Clicca per tuffarti! 🚀",
+      "buttonLabel": "Unisciti Ora",
+      "buttonHref": "https://example.com/discord/it"
+    }
+  },
+  "es-ES": {
+    "communitySection": {
+      "iconName": "MessageSquare",
+      "title": "¿Listo para unirte a nuestra <span class='text-primary'>Comunidad?</span>",
+      "description": "¡Únete a nuestra vibrante comunidad! Conecta, comparte y crece con entusiastas de ideas afines. ¡Haz clic para sumergirte! 🚀",
+      "buttonLabel": "Unirse Ahora",
+      "buttonHref": "https://example.com/discord/es"
+    }
+  },
+  "en-US": {
+    "communitySection": {
+      "iconName": "MessageSquare",
+      "title": "Ready to join our <span class='text-primary'>Community?</span>",
+      "description": "Join our vibrant community! Connect, share, and grow with like-minded enthusiasts. Click to dive in! 🚀",
+      "buttonLabel": "Join Now",
+      "buttonHref": "https://example.com/discord/en"
+    }
+  },
+  "pt-BR": {
+    "communitySection": {
+      "iconName": "MessageSquare",
+      "title": "Pronto para se juntar à nossa <span class='text-primary'>Comunidade?</span>",
+      "description": "Junte-se à nossa vibrante comunidade! Conecte-se, compartilhe e cresça com entusiastas que pensam como você. Clique para mergulhar! 🚀",
+      "buttonLabel": "Junte-se Agora",
+      "buttonHref": "https://example.com/discord/pt"
+    }
+  }
+}

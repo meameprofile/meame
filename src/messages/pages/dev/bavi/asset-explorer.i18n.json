@@ -1,0 +1,74 @@
+{
+  "it-IT": {
+    "assetExplorer": {
+      "title": "Esploratore di Attivi BAVI",
+      "description": "Cerca, filtra e gestisci gli asset visuali caricati nella BAVI.",
+      "searchPlaceholder": "Cerca per ID, parole chiave...",
+      "searchButton": "Cerca",
+      "filterByAILabel": "Filtra per IA",
+      "allAIsOption": "Tutte le IAs",
+      "loadingAssets": "Caricando attivi...",
+      "noAssetsFoundTitle": "Nessun attivo trovato.",
+      "noAssetsFoundDescription": "Prova a regolare la tua ricerca o i filtri.",
+      "previousPageButton": "Precedente",
+      "nextPageButton": "Successivo",
+      "pageInfo": "Pagina {{currentPage}} di {{totalPages}}",
+      "viewDetailsButton": "Vedi Dettagli",
+      "selectAssetButton": "Seleziona"
+    }
+  },
+  "es-ES": {
+    "assetExplorer": {
+      "title": "Explorador de Activos BAVI",
+      "description": "Busca, filtra y gestiona los activos visuales cargados en la BAVI.",
+      "searchPlaceholder": "Buscar por ID, palabras clave...",
+      "searchButton": "Buscar",
+      "filterByAILabel": "Filtrar por IA",
+      "allAIsOption": "Todas las IAs",
+      "loadingAssets": "Cargando activos...",
+      "noAssetsFoundTitle": "No se encontraron activos.",
+      "noAssetsFoundDescription": "Intenta ajustar tu búsqueda o filtros.",
+      "previousPageButton": "Anterior",
+      "nextPageButton": "Siguiente",
+      "pageInfo": "Página {{currentPage}} de {{totalPages}}",
+      "viewDetailsButton": "Ver Detalles",
+      "selectAssetButton": "Seleccionar"
+    }
+  },
+  "en-US": {
+    "assetExplorer": {
+      "title": "BAVI Asset Explorer",
+      "description": "Search, filter, and manage visual assets uploaded to BAVI.",
+      "searchPlaceholder": "Search by ID, keywords...",
+      "searchButton": "Search",
+      "filterByAILabel": "Filter by AI",
+      "allAIsOption": "All AIs",
+      "loadingAssets": "Loading assets...",
+      "noAssetsFoundTitle": "No assets found.",
+      "noAssetsFoundDescription": "Try adjusting your search or filters.",
+      "previousPageButton": "Previous",
+      "nextPageButton": "Next",
+      "pageInfo": "Page {{currentPage}} of {{totalPages}}",
+      "viewDetailsButton": "View Details",
+      "selectAssetButton": "Select"
+    }
+  },
+  "pt-BR": {
+    "assetExplorer": {
+      "title": "Explorador de Ativos BAVI",
+      "description": "Pesquise, filtre e gerencie os ativos visuais carregados na BAVI.",
+      "searchPlaceholder": "Pesquisar por ID, palavras-chave...",
+      "searchButton": "Pesquisar",
+      "filterByAILabel": "Filtrar por IA",
+      "allAIsOption": "Todas as IAs",
+      "loadingAssets": "Carregando ativos...",
+      "noAssetsFoundTitle": "Nenhum ativo encontrado.",
+      "noAssetsFoundDescription": "Tente ajustar sua pesquisa ou filtros.",
+      "previousPageButton": "Anterior",
+      "nextPageButton": "Próximo",
+      "pageInfo": "Página {{currentPage}} de {{totalPages}}",
+      "viewDetailsButton": "Ver Detalhes",
+      "selectAssetButton": "Selecionar"
+    }
+  }
+}

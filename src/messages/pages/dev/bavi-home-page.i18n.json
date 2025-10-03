@@ -1,0 +1,42 @@
+{
+  "it-IT": {
+    "baviHomePage": {
+      "title": "BAVI: Biblioteca de Ativos Visuais Integrada",
+      "subtitle": "La centrale operativa per la gestione, l'ottimizzazione e l'indicizzazione di tutti gli asset dell'ecosistema.",
+      "ingestCardTitle": "Ingestione di Nuovi Asset",
+      "ingestCardDescription": "Carica un nuovo asset. Verrà ottimizzato automaticamente e preparato per l'indicizzazione nel manifesto.",
+      "aiBoilerCardTitle": "Boiler di IA (Prossimamente)",
+      "aiBoilerCardDescription": "Genera variazioni, rimuovi sfondi e crea asset sintetici con l'IA."
+    }
+  },
+  "es-ES": {
+    "baviHomePage": {
+      "title": "BAVI: Biblioteca de Activos Visuales Integrada",
+      "subtitle": "La central de operaciones para la gestión, optimización e indexación de todos los activos del ecosistema.",
+      "ingestCardTitle": "Ingesta de Nuevos Activos",
+      "ingestCardDescription": "Sube un nuevo activo. Se optimizará automáticamente y se preparará para su indexación en el manifiesto.",
+      "aiBoilerCardTitle": "Boiler de IA (Próximamente)",
+      "aiBoilerCardDescription": "Genera variaciones, elimina fondos y crea activos sintéticos con IA."
+    }
+  },
+  "en-US": {
+    "baviHomePage": {
+      "title": "BAVI: Integrated Visual Asset Library",
+      "subtitle": "The operations center for managing, optimizing, and indexing all ecosystem assets.",
+      "ingestCardTitle": "Ingest New Assets",
+      "ingestCardDescription": "Upload a new asset. It will be automatically optimized and prepared for indexing in the manifest.",
+      "aiBoilerCardTitle": "AI Boiler (Coming Soon)",
+      "aiBoilerCardDescription": "Generate variations, remove backgrounds, and create synthetic assets with AI."
+    }
+  },
+  "pt-BR": {
+    "baviHomePage": {
+      "title": "BAVI: Biblioteca de Ativos Visuais Integrada",
+      "subtitle": "A central de operações para o gerenciamento, otimização e indexação de todos os ativos do ecossistema.",
+      "ingestCardTitle": "Ingestão de Novos Ativos",
+      "ingestCardDescription": "Faça o upload de um novo ativo. Ele será otimizado automaticamente e preparado para indexação no manifesto.",
+      "aiBoilerCardTitle": "Boiler de IA (Em Breve)",
+      "aiBoilerCardDescription": "Gere variações, remova fundos e crie ativos sintéticos com IA."
+    }
+  }
+}

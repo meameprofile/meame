@@ -1,0 +1,42 @@
+{
+  "it-IT": {
+    "orderConfirmationEmail": {
+      "previewText": "Conferma del tuo ordine Global Fitwell #{{orderId}}",
+      "title": "Grazie per il tuo ordine!",
+      "greeting": "Ciao, abbiamo ricevuto il tuo ordine **#{{orderId}}**. Riceverai un'altra notifica quando il tuo ordine verrà spedito.",
+      "summaryLabel": "Riepilogo Ordine:",
+      "totalLabel": "Totale",
+      "footerText": "Se hai domande sul tuo ordine, rispondi a questa email o contatta il nostro supporto."
+    }
+  },
+  "es-ES": {
+    "orderConfirmationEmail": {
+      "previewText": "Confirmación de tu pedido de Global Fitwell #{{orderId}}",
+      "title": "¡Gracias por tu pedido!",
+      "greeting": "Hola, hemos recibido tu pedido **#{{orderId}}**. Recibirás otra notificación cuando tu pedido sea enviado.",
+      "summaryLabel": "Resumen del Pedido:",
+      "totalLabel": "Total",
+      "footerText": "Si tienes alguna pregunta sobre tu pedido, responde a este correo o contacta a nuestro soporte."
+    }
+  },
+  "en-US": {
+    "orderConfirmationEmail": {
+      "previewText": "Confirmation of your Global Fitwell order #{{orderId}}",
+      "title": "Thank you for your order!",
+      "greeting": "Hi, we have received your order **#{{orderId}}**. You will receive another notification when your order is shipped.",
+      "summaryLabel": "Order Summary:",
+      "totalLabel": "Total",
+      "footerText": "If you have any questions about your order, please reply to this email or contact our support."
+    }
+  },
+  "pt-BR": {
+    "orderConfirmationEmail": {
+      "previewText": "Confirmação do seu pedido Global Fitwell #{{orderId}}",
+      "title": "Obrigado pelo seu pedido!",
+      "greeting": "Olá, recebemos seu pedido **#{{orderId}}**. Você receberá outra notificação quando seu pedido for enviado.",
+      "summaryLabel": "Resumo do Pedido:",
+      "totalLabel": "Total",
+      "footerText": "Se tiver alguma dúvida sobre o seu pedido, responda a este e-mail ou entre em contato com nosso suporte."
+    }
+  }
+}

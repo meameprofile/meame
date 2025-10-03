@@ -1,0 +1,74 @@
+{
+  "it-IT": {
+    "privacyPage": {
+      "title": "Informativa sulla Privacy",
+      "subtitle": "La vostra fiducia e la protezione dei vostri dati sono la nostra massima priorità.",
+      "content": [
+        { "type": "h2", "text": "1. Raccolta delle Informazioni" },
+        {
+          "type": "p",
+          "text": "Raccogliamo le informazioni che ci fornite direttamente, come il vostro nome e indirizzo email quando vi iscrivete alla nostra newsletter o compilate un modulo di contatto. Raccogliamo anche dati tecnici automaticamente tramite cookie, come il vostro indirizzo IP e il tipo di browser, per migliorare la vostra esperienza."
+        },
+        { "type": "h2", "text": "2. Utilizzo delle Informazioni" },
+        {
+          "type": "p",
+          "text": "Utilizziamo le vostre informazioni per elaborare gli ordini, personalizzare la vostra esperienza e comunicare con voi riguardo ai nostri prodotti e offerte. Non condivideremo mai i vostri dati personali con terze parti non affiliate senza il vostro esplicito consenso, salvo per obblighi di legge."
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "privacyPage": {
+      "title": "Política de Privacidad",
+      "subtitle": "Tu confianza y la protección de tus datos son nuestra máxima prioridad.",
+      "content": [
+        { "type": "h2", "text": "1. Recopilación de Información" },
+        {
+          "type": "p",
+          "text": "Recopilamos información que nos proporcionas directamente, como tu nombre y correo electrónico cuando te suscribes a nuestro boletín o rellenas un formulario de contacto. También recopilamos datos técnicos automáticamente a través de cookies, como tu dirección IP y tipo de navegador, para mejorar tu experiencia."
+        },
+        { "type": "h2", "text": "2. Uso de la Información" },
+        {
+          "type": "p",
+          "text": "Utilizamos tu información para procesar pedidos, personalizar tu experiencia y comunicarnos contigo sobre nuestros productos y ofertas. Nunca compartiremos tus datos personales con terceros no afiliados sin tu consentimiento explícito, salvo por obligación legal."
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "privacyPage": {
+      "title": "Privacy Policy",
+      "subtitle": "Your trust and data protection are our highest priority.",
+      "content": [
+        { "type": "h2", "text": "1. Information Collection" },
+        {
+          "type": "p",
+          "text": "We collect information you provide directly to us, such as your name and email when you subscribe to our newsletter or fill out a contact form. We also collect technical data automatically via cookies, such as your IP address and browser type, to enhance your experience."
+        },
+        { "type": "h2", "text": "2. Use of Information" },
+        {
+          "type": "p",
+          "text": "We use your information to process orders, personalize your experience, and communicate with you about our products and offers. We will never share your personal data with unaffiliated third parties without your explicit consent, except as required by law."
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "privacyPage": {
+      "title": "Política de Privacidade",
+      "subtitle": "Sua confiança e a proteção de seus dados são nossa maior prioridade.",
+      "content": [
+        { "type": "h2", "text": "1. Coleta de Informações" },
+        {
+          "type": "p",
+          "text": "Coletamos informações que você nos fornece diretamente, como seu nome e e-mail ao se inscrever em nossa newsletter ou preencher um formulário de contato. Também coletamos dados técnicos automaticamente via cookies, como seu endereço IP e tipo de navegador, para aprimorar sua experiência."
+        },
+        { "type": "h2", "text": "2. Uso das Informações" },
+        {
+          "type": "p",
+          "text": "Usamos suas informações para processar pedidos, personalizar sua experiência e nos comunicar com você sobre nossos produtos e ofertas. Nunca compartilharemos seus dados pessoais com terceiros não afiliados sem seu consentimento explícito, exceto quando exigido por lei."
+        }
+      ]
+    }
+  }
+}

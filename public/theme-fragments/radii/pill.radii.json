@@ -1,0 +1,8 @@
+{
+  "geometry": {
+    "--radius": "9999px",
+    "--border-width": "2px",
+    "--space": "0.5rem",
+    "--input-height": "3rem"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "geometry": {
+    "--radius": "0.75rem",
+    "--border-width": "1px",
+    "--space": "0.25rem",
+    "--input-height": "2.75rem",
+    "--border": "20 5.9% 90%",
+    "--input": "20 5.9% 90%",
+    "--ring": "24.6 95% 53.1%"
+  }
+}

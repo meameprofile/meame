@@ -1,0 +1,49 @@
+# .prettierignore
+#
+# Manifiesto de Ignorados para Prettier.
+# SSoT para definir qué archivos y directorios DEBEN ser ignorados
+# por el formateador de código para mantener la integridad del build y la velocidad.
+
+# Dependencias
+node_modules
+.pnpm-store
+
+# Artefactos de Build y Despliegue
+.next/
+out/
+build/
+dist/
+
+# Caches y Logs
+.i18n-cache/
+.eslintcache
+.npm
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Archivos de Entorno (nunca deben ser formateados)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.sentry-build-plugin
+
+# Reportes y Snapshots (generados automáticamente)
+/snapshot-reports/
+/mongodb/reports/
+/supabase/reports/
+/cloudinary/reports/
+
+# Metadatos de Editor y SO
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store

@@ -1,0 +1,58 @@
+{
+  "it-IT": {
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Prezzo di Listino",
+      "discountedPriceLabel": "Prezzo Offerta Speciale",
+      "nameInputLabel": "Nome e Cognome",
+      "nameInputPlaceholder": "Es. Mario Rossi",
+      "phoneInputLabel": "Telefono",
+      "phoneInputPlaceholder": "Il tuo numero per la conferma",
+      "submitButtonText": "Ordina Ora con Sconto del 50%",
+      "submitButtonLoadingText": "Invio in corso..."
+    }
+  },
+  "es-ES": {
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Precio de Venta al Público",
+      "discountedPriceLabel": "Precio Oferta Especial",
+      "nameInputLabel": "Nombre y Apellido",
+      "nameInputPlaceholder": "Ej. Juan Pérez",
+      "phoneInputLabel": "Teléfono",
+      "phoneInputPlaceholder": "Tu número para la confirmación",
+      "submitButtonText": "Pedir Ahora con 50% de Descuento",
+      "submitButtonLoadingText": "Enviando..."
+    }
+  },
+  "en-US": {
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Retail Price",
+      "discountedPriceLabel": "Special Offer Price",
+      "nameInputLabel": "Full Name",
+      "nameInputPlaceholder": "e.g., John Doe",
+      "phoneInputLabel": "Phone",
+      "phoneInputPlaceholder": "Your number for confirmation",
+      "submitButtonText": "Order Now with 50% Discount",
+      "submitButtonLoadingText": "Submitting..."
+    }
+  },
+  "pt-BR": {
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Preço de Varejo",
+      "discountedPriceLabel": "Preço da Oferta Especial",
+      "nameInputLabel": "Nome Completo",
+      "nameInputPlaceholder": "Ex. João da Silva",
+      "phoneInputLabel": "Telefone",
+      "phoneInputPlaceholder": "Seu número para confirmação",
+      "submitButtonText": "Peça Agora com 50% de Desconto",
+      "submitButtonLoadingText": "Enviando..."
+    }
+  }
+}

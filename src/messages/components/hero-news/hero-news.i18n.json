@@ -1,0 +1,46 @@
+{
+  "es-ES": {
+    "heroNews": {
+      "mainTitle": "El Futuro del Bienestar es Hoy",
+      "featuredArticle": {
+        "tag": "Noticia Destacada",
+        "title": "La Conexión Mente-Músculo: Neurociencia Aplicada al Entrenamiento",
+        "author": "Dra. Elena Ríos",
+        "readTime": 6
+      }
+    }
+  },
+  "en-US": {
+    "heroNews": {
+      "mainTitle": "The Future of Wellness is Now",
+      "featuredArticle": {
+        "tag": "Featured Story",
+        "title": "The Mind-Muscle Connection: Neuroscience Applied to Training",
+        "author": "Dr. Elena Rios",
+        "readTime": 6
+      }
+    }
+  },
+  "pt-BR": {
+    "heroNews": {
+      "mainTitle": "O Futuro do Bem-Estar é Hoje",
+      "featuredArticle": {
+        "tag": "Notícia em Destaque",
+        "title": "A Conexão Mente-Músculo: Neurociência Aplicada ao Treinamento",
+        "author": "Dra. Elena Ríos",
+        "readTime": 6
+      }
+    }
+  },
+  "it-IT": {
+    "heroNews": {
+      "mainTitle": "Il Futuro del Benessere è Oggi",
+      "featuredArticle": {
+        "tag": "Storia in Evidenza",
+        "title": "La Connessione Mente-Muscolo: Neuroscienze Applicate all'Allenamento",
+        "author": "Dott.ssa Elena Ríos",
+        "readTime": 6
+      }
+    }
+  }
+}

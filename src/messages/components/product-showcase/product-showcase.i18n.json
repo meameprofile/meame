@@ -1,0 +1,90 @@
+{
+  "es-ES": {
+    "productShowcase": {
+      "title": "Herramientas para Tu Viaje de Bienestar",
+      "products": [
+        {
+          "name": "KineticBand Pro",
+          "description": "Monitoreo de actividad con bio-sensores.",
+          "imageUrl": "/img/products/kineticband.png"
+        },
+        {
+          "name": "VitaPure Filter",
+          "description": "Sistema de purificación de agua inteligente.",
+          "imageUrl": "/img/products/vitapure.png"
+        },
+        {
+          "name": "NeuroBoost Pods",
+          "description": "Suplemento nootrópico para enfoque mental.",
+          "imageUrl": "/img/products/neuroboost.png"
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "productShowcase": {
+      "title": "Tools for Your Wellness Journey",
+      "products": [
+        {
+          "name": "KineticBand Pro",
+          "description": "Activity monitoring with bio-sensors.",
+          "imageUrl": "/img/products/kineticband.png"
+        },
+        {
+          "name": "VitaPure Filter",
+          "description": "Smart water purification system.",
+          "imageUrl": "/img/products/vitapure.png"
+        },
+        {
+          "name": "NeuroBoost Pods",
+          "description": "Nootropic supplement for mental focus.",
+          "imageUrl": "/img/products/neuroboost.png"
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "productShowcase": {
+      "title": "Ferramentas para Sua Jornada de Bem-Estar",
+      "products": [
+        {
+          "name": "KineticBand Pro",
+          "description": "Monitoramento de atividade com biossensores.",
+          "imageUrl": "/img/products/kineticband.png"
+        },
+        {
+          "name": "VitaPure Filter",
+          "description": "Sistema de purificação de água inteligente.",
+          "imageUrl": "/img/products/vitapure.png"
+        },
+        {
+          "name": "NeuroBoost Pods",
+          "description": "Suplemento nootrópico para foco mental.",
+          "imageUrl": "/img/products/neuroboost.png"
+        }
+      ]
+    }
+  },
+  "it-IT": {
+    "productShowcase": {
+      "title": "Strumenti per il Tuo Viaggio di Benessere",
+      "products": [
+        {
+          "name": "KineticBand Pro",
+          "description": "Monitoraggio dell'attività con bio-sensori.",
+          "imageUrl": "/img/products/kineticband.png"
+        },
+        {
+          "name": "VitaPure Filter",
+          "description": "Sistema di purificazione dell'acqua intelligente.",
+          "imageUrl": "/img/products/vitapure.png"
+        },
+        {
+          "name": "NeuroBoost Pods",
+          "description": "Supplemento nootropico per la concentrazione mentale.",
+          "imageUrl": "/img/products/neuroboost.png"
+        }
+      ]
+    }
+  }
+}

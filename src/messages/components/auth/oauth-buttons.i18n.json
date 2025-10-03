@@ -1,0 +1,30 @@
+{
+  "it-IT": {
+    "oAuthButtons": {
+      "google": "Continua con Google",
+      "apple": "Continua con Apple (Prossimamente)",
+      "facebook": "Continua con Facebook (Prossimamente)"
+    }
+  },
+  "es-ES": {
+    "oAuthButtons": {
+      "google": "Continuar con Google",
+      "apple": "Continuar con Apple (Próximamente)",
+      "facebook": "Continuar con Facebook (Próximamente)"
+    }
+  },
+  "en-US": {
+    "oAuthButtons": {
+      "google": "Continue with Google",
+      "apple": "Continue with Apple (Coming Soon)",
+      "facebook": "Continue with Facebook (Coming Soon)"
+    }
+  },
+  "pt-BR": {
+    "oAuthButtons": {
+      "google": "Continuar com o Google",
+      "apple": "Continuar com a Apple (Em Breve)",
+      "facebook": "Continuar com o Facebook (Em Breve)"
+    }
+  }
+}

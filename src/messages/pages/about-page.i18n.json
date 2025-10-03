@@ -1,0 +1,70 @@
+{
+  "it-IT": {
+    "aboutPage": {
+      "title": "Chi Siamo",
+      "subtitle": "La nostra missione è migliorare il benessere globale attraverso la scienza e l'innovazione.",
+      "content": [
+        {
+          "type": "p",
+          "text": "Global Fitwell nasce dalla convinzione che tutti meritino l'accesso a soluzioni di benessere sicure, efficaci e basate su prove scientifiche. Il nostro team è composto da esperti di nutrizione, scienziati e appassionati di fitness dedicati alla ricerca e allo sviluppo di prodotti che fanno una vera differenza nella vita delle persone."
+        },
+        { "type": "h2", "text": "Il Nostro Impegno" },
+        {
+          "type": "p",
+          "text": "Ci impegniamo per la trasparenza, la qualità e la sostenibilità in tutto ciò che facciamo. Dall'approvvigionamento degli ingredienti più puri alla conduzione di rigorosi test di laboratorio di terze parti, la nostra priorità è la vostra fiducia e i vostri risultati."
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "aboutPage": {
+      "title": "Sobre Nosotros",
+      "subtitle": "Nuestra misión es potenciar el bienestar global a través de la ciencia y la innovación.",
+      "content": [
+        {
+          "type": "p",
+          "text": "Global Fitwell nació de la creencia de que todos merecen acceso a soluciones de bienestar que sean seguras, efectivas y basadas en evidencia científica. Nuestro equipo está formado por expertos en nutrición, científicos y entusiastas del fitness dedicados a investigar y desarrollar productos que marquen una diferencia real en la vida de las personas."
+        },
+        { "type": "h2", "text": "Nuestro Compromiso" },
+        {
+          "type": "p",
+          "text": "Nos comprometemos con la transparencia, la calidad y la sostenibilidad en todo lo que hacemos. Desde la obtención de los ingredientes más puros hasta la realización de pruebas rigurosas en laboratorios de terceros, nuestra prioridad es tu confianza y tus resultados."
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "aboutPage": {
+      "title": "About Us",
+      "subtitle": "Our mission is to enhance global wellness through science and innovation.",
+      "content": [
+        {
+          "type": "p",
+          "text": "Global Fitwell was born from the belief that everyone deserves access to wellness solutions that are safe, effective, and based on scientific evidence. Our team consists of nutrition experts, scientists, and fitness enthusiasts dedicated to researching and developing products that make a real difference in people's lives."
+        },
+        { "type": "h2", "text": "Our Commitment" },
+        {
+          "type": "p",
+          "text": "We are committed to transparency, quality, and sustainability in everything we do. From sourcing the purest ingredients to conducting rigorous third-party lab testing, our priority is your trust and your results."
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "aboutPage": {
+      "title": "Sobre Nós",
+      "subtitle": "Nossa missão é potenciar o bem-estar global através da ciência e da inovação.",
+      "content": [
+        {
+          "type": "p",
+          "text": "A Global Fitwell nasceu da crença de que todos merecem acesso a soluções de bem-estar que sejam seguras, eficazes e baseadas em evidências científicas. Nossa equipe é formada por especialistas em nutrição, cientistas e entusiastas do fitness dedicados a pesquisar e desenvolver produtos que fazem uma diferença real na vida das pessoas."
+        },
+        { "type": "h2", "text": "Nosso Compromisso" },
+        {
+          "type": "p",
+          "text": "Estamos comprometidos com a transparência, a qualidade e a sustentabilidade em tudo o que fazemos. Desde a obtenção dos ingredientes mais puros até a realização de testes rigorosos em laboratórios terceirizados, nossa prioridade é a sua confiança e os seus resultados."
+        }
+      ]
+    }
+  }
+}

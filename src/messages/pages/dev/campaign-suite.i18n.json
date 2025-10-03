@@ -1,0 +1,78 @@
+{
+  "it-IT": {
+    "campaignSuitePage": {
+      "title": "La Fucina Creativa (SDC)",
+      "subtitle": "L'epicentro dell'ecosistema. Forgia la strategia grezza in campagne ad alta conversione.",
+      "templateCopySuffix": " (Copia)",
+      "preview": {
+        "loadingTheme": "Caricamento del tema...",
+        "errorLoadingTheme": "Errore nel caricamento del tema"
+      },
+      "stepper": {
+        "identificationTitle": "Identificazione",
+        "structureTitle": "Struttura",
+        "layoutTitle": "Layout",
+        "themeTitle": "Tema",
+        "contentTitle": "Contenuto",
+        "managementTitle": "Gestione"
+      }
+    }
+  },
+  "es-ES": {
+    "campaignSuitePage": {
+      "title": "La Forja Creativa (SDC)",
+      "subtitle": "El epicentro del ecosistema. Forja la estrategia en bruto en campañas de alta conversión.",
+      "templateCopySuffix": " (Copia)",
+      "preview": {
+        "loadingTheme": "Cargando tema...",
+        "errorLoadingTheme": "Error al cargar el tema"
+      },
+      "stepper": {
+        "identificationTitle": "Identificación",
+        "structureTitle": "Estructura",
+        "layoutTitle": "Layout",
+        "themeTitle": "Tema",
+        "contentTitle": "Contenido",
+        "managementTitle": "Gestión"
+      }
+    }
+  },
+  "en-US": {
+    "campaignSuitePage": {
+      "title": "The Creative Forge (SDC)",
+      "subtitle": "The epicenter of the ecosystem. Forge raw strategy into high-conversion campaigns.",
+      "templateCopySuffix": " (Copy)",
+      "preview": {
+        "loadingTheme": "Loading theme...",
+        "errorLoadingTheme": "Error loading theme"
+      },
+      "stepper": {
+        "identificationTitle": "Identification",
+        "structureTitle": "Structure",
+        "layoutTitle": "Layout",
+        "themeTitle": "Theme",
+        "contentTitle": "Content",
+        "managementTitle": "Management"
+      }
+    }
+  },
+  "pt-BR": {
+    "campaignSuitePage": {
+      "title": "A Forja Criativa (SDC)",
+      "subtitle": "O epicentro do ecossistema. Forje a estratégia bruta em campanhas de alta conversão.",
+      "templateCopySuffix": " (Cópia)",
+      "preview": {
+        "loadingTheme": "Carregando tema...",
+        "errorLoadingTheme": "Erro ao carregar o tema"
+      },
+      "stepper": {
+        "identificationTitle": "Identificação",
+        "structureTitle": "Estrutura",
+        "layoutTitle": "Layout",
+        "themeTitle": "Tema",
+        "contentTitle": "Conteúdo",
+        "managementTitle": "Gerenciamento"
+      }
+    }
+  }
+}

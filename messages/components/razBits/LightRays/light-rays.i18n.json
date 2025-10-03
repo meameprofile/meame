@@ -1,0 +1,66 @@
+{
+  "it-IT": {
+    "lightRays": {
+      "raysColor": "accent",
+      "raysOrigin": "top-center",
+      "raysSpeed": 1.2,
+      "lightSpread": 0.7,
+      "rayLength": 1.5,
+      "pulsating": false,
+      "fadeDistance": 1.0,
+      "saturation": 1.0,
+      "followMouse": true,
+      "mouseInfluence": 0.08,
+      "noiseAmount": 0.05,
+      "distortion": 0.02
+    }
+  },
+  "es-ES": {
+    "lightRays": {
+      "raysColor": "primary",
+      "raysOrigin": "bottom-center",
+      "raysSpeed": 1.0,
+      "lightSpread": 1.0,
+      "rayLength": 1.2,
+      "pulsating": false,
+      "fadeDistance": 1.0,
+      "saturation": 1.0,
+      "followMouse": true,
+      "mouseInfluence": 0.1,
+      "noiseAmount": 0.1,
+      "distortion": 0.05
+    }
+  },
+  "en-US": {
+    "lightRays": {
+      "raysColor": "primary",
+      "raysOrigin": "top-center",
+      "raysSpeed": 1.5,
+      "lightSpread": 0.8,
+      "rayLength": 1.2,
+      "pulsating": false,
+      "fadeDistance": 1.0,
+      "saturation": 1.0,
+      "followMouse": true,
+      "mouseInfluence": 0.1,
+      "noiseAmount": 0.1,
+      "distortion": 0.05
+    }
+  },
+  "pt-BR": {
+    "lightRays": {
+      "raysColor": "primary",
+      "raysOrigin": "top-center",
+      "raysSpeed": 1.5,
+      "lightSpread": 0.8,
+      "rayLength": 1.2,
+      "pulsating": false,
+      "fadeDistance": 1.0,
+      "saturation": 1.0,
+      "followMouse": true,
+      "mouseInfluence": 0.1,
+      "noiseAmount": 0.1,
+      "distortion": 0.05
+    }
+  }
+}

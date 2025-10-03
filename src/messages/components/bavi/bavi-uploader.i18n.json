@@ -1,0 +1,74 @@
+{
+  "it-IT": {
+    "baviUploader": {
+      "dropzoneDefault": "Trascina un file qui, o clicca per selezionare.",
+      "metadataFormTitle": "Metadati di Indicizzazione BAVI",
+      "assetIdLabel": "Asset ID (SNIA)",
+      "assetIdPlaceholder": "i-categoria-descrittore-01",
+      "keywordsLabel": "Parole Chiave (per la ricerca, separate da virgola)",
+      "keywordsPlaceholder": "donna, sorriso, parco, cinematico...",
+      "altTextLabel": "Testo Alternativo (Accessibilità)",
+      "altTextPlaceholder": "Una descrizione chiara e concisa dell'immagine...",
+      "promptIdLabel": "ID Prompt di Origine (Opzionale)",
+      "promptIdPlaceholder": "Incolla qui l'ID da RaZPrompts...",
+      "submitButtonText": "Carica e Registra in BAVI",
+      "selectFromBaviButton": "Seleziona dalla BAVI",
+      "assetSelectorModalTitle": "Seleziona un Asset dalla Biblioteca",
+      "assetSelectorModalDescription": "Cerca, filtra e scegli un asset esistente per la tua campagna."
+    }
+  },
+  "es-ES": {
+    "baviUploader": {
+      "dropzoneDefault": "Arrastra un archivo aquí, o haz clic para seleccionar.",
+      "metadataFormTitle": "Metadatos de Indexación BAVI",
+      "assetIdLabel": "Asset ID (SNIA)",
+      "assetIdPlaceholder": "i-categoría-descriptor-01",
+      "keywordsLabel": "Palabras Clave (para búsqueda, separadas por coma)",
+      "keywordsPlaceholder": "mujer, sonrisa, parque, cinemático...",
+      "altTextLabel": "Texto Alternativo (Accesibilidad)",
+      "altTextPlaceholder": "Una descripción clara y concisa de la imagen...",
+      "promptIdLabel": "ID de Prompt de Origen (Opcional)",
+      "promptIdPlaceholder": "Pega aquí el ID desde RaZPrompts...",
+      "submitButtonText": "Subir y Registrar en BAVI",
+      "selectFromBaviButton": "Seleccionar de la BAVI",
+      "assetSelectorModalTitle": "Seleccionar un Activo de la Biblioteca",
+      "assetSelectorModalDescription": "Busca, filtra y elige un activo existente para tu campaña."
+    }
+  },
+  "en-US": {
+    "baviUploader": {
+      "dropzoneDefault": "Drag a file here, or click to select.",
+      "metadataFormTitle": "BAVI Indexing Metadata",
+      "assetIdLabel": "Asset ID (SNIA)",
+      "assetIdPlaceholder": "i-category-descriptor-01",
+      "keywordsLabel": "Keywords (for search, comma-separated)",
+      "keywordsPlaceholder": "woman, smile, park, cinematic...",
+      "altTextLabel": "Alt Text (Accessibility)",
+      "altTextPlaceholder": "A clear and concise description of the image...",
+      "promptIdLabel": "Source Prompt ID (Optional)",
+      "promptIdPlaceholder": "Paste the ID from RaZPrompts here...",
+      "submitButtonText": "Upload and Register in BAVI",
+      "selectFromBaviButton": "Select from BAVI",
+      "assetSelectorModalTitle": "Select an Asset from the Library",
+      "assetSelectorModalDescription": "Search, filter, and choose an existing asset for your campaign."
+    }
+  },
+  "pt-BR": {
+    "baviUploader": {
+      "dropzoneDefault": "Arraste um arquivo aqui, ou clique para selecionar.",
+      "metadataFormTitle": "Metadados de Indexação BAVI",
+      "assetIdLabel": "Asset ID (SNIA)",
+      "assetIdPlaceholder": "i-categoria-descritor-01",
+      "keywordsLabel": "Palavras-chave (para busca, separadas por vírgula)",
+      "keywordsPlaceholder": "mulher, sorriso, parque, cinemático...",
+      "altTextLabel": "Texto Alternativo (Acessibilidade)",
+      "altTextPlaceholder": "Uma descrição clara e concisa da imagem...",
+      "promptIdLabel": "ID do Prompt de Origem (Opcional)",
+      "promptIdPlaceholder": "Cole aqui o ID do RaZPrompts...",
+      "submitButtonText": "Carregar e Registrar na BAVI",
+      "selectFromBaviButton": "Selecionar da BAVI",
+      "assetSelectorModalTitle": "Selecionar um Ativo da Biblioteca",
+      "assetSelectorModalDescription": "Pesquise, filtre e escolha um ativo existente para sua campanha."
+    }
+  }
+}

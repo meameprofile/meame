@@ -1,0 +1,20 @@
+{
+  "colors": {
+    "background": "30 50% 98%",
+    "foreground": "30 10% 20%",
+    "card": "30 50% 96%",
+    "cardForeground": "30 10% 20%",
+    "popover": "30 50% 98%",
+    "popoverForeground": "30 10% 20%",
+    "primary": "43 96% 54%",
+    "primaryForeground": "30 10% 20%",
+    "secondary": "140 45% 95%",
+    "secondaryForeground": "140 25% 30%",
+    "muted": "30 30% 94%",
+    "mutedForeground": "30 5% 50%",
+    "accent": "160 80% 40%",
+    "accentForeground": "0 0% 100%",
+    "destructive": "0 84% 60%",
+    "destructiveForeground": "0 0% 100%"
+  }
+}

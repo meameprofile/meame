@@ -1,0 +1,160 @@
+{
+  "assets": [
+    {
+      "assetId": "i-prv-standard-header-01",
+      "status": "active",
+      "provider": "cloudinary",
+      "description": "Activo de previsualización para el componente de UI StandardHeader, utilizado en la galería de la SDC.",
+      "tags": {
+        "aiEngine": "ideo",
+        "visualStyle": "pht",
+        "aspectRatio": "16x9",
+        "assetType": "ui",
+        "subject": "abstract"
+      },
+      "variants": [
+        {
+          "versionId": "v1-orig",
+          "publicId": "webvork/assets/i-prv-standard-header-01/v1-original",
+          "state": "orig",
+          "dimensions": { "width": 1024, "height": 576 }
+        }
+      ],
+      "metadata": {
+        "altText": {
+          "it-IT": "Anteprima di un'intestazione di sito web standard e pulita.",
+          "es-ES": "Vista previa de un encabezado de sitio web estándar y limpio.",
+          "en-US": "Preview of a standard, clean website header.",
+          "pt-BR": "Pré-visualização de um cabeçalho de site padrão e limpo."
+        }
+      },
+      "promptId": "prompt-001",
+      "createdAt": "2025-09-28T10:00:00.000Z",
+      "updatedAt": "2025-09-28T10:00:00.000Z"
+    },
+    {
+      "assetId": "i-sybl-wellness-insider-01",
+      "status": "active",
+      "provider": "cloudinary",
+      "description": "Logo para la marca ficticia 'Wellness Insider', utilizado como prueba social.",
+      "tags": { "assetType": "ui", "subject": "logo" },
+      "variants": [
+        {
+          "versionId": "v1-orig",
+          "publicId": "webvork/logos/wellness-insider-logo_e2ztp3",
+          "state": "orig",
+          "dimensions": { "width": 200, "height": 50 }
+        }
+      ],
+      "metadata": {
+        "altText": { "es-ES": "Logo de Wellness Insider" }
+      },
+      "createdAt": "2025-09-27T11:00:00.000Z",
+      "updatedAt": "2025-09-27T11:00:00.000Z"
+    },
+    {
+      "assetId": "i-sybl-health-journal-01",
+      "status": "active",
+      "provider": "cloudinary",
+      "description": "Logo para la marca ficticia 'The Health Journal', utilizado como prueba social.",
+      "tags": { "assetType": "ui", "subject": "logo" },
+      "variants": [
+        {
+          "versionId": "v1-orig",
+          "publicId": "webvork/logos/health-journal-logo_wryh8c",
+          "state": "orig",
+          "dimensions": { "width": 200, "height": 50 }
+        }
+      ],
+      "metadata": {
+        "altText": { "es-ES": "Logo de The Health Journal" }
+      },
+      "createdAt": "2025-09-27T11:05:00.000Z",
+      "updatedAt": "2025-09-27T11:05:00.000Z"
+    },
+    {
+      "assetId": "i-sybl-bio-innovate-01",
+      "status": "active",
+      "provider": "cloudinary",
+      "description": "Logo para la marca ficticia 'Bio-Innovate Forum', utilizado como prueba social.",
+      "tags": { "assetType": "ui", "subject": "logo" },
+      "variants": [
+        {
+          "versionId": "v1-orig",
+          "publicId": "webvork/logos/bio-innovate-logo_t9f1yq",
+          "state": "orig",
+          "dimensions": { "width": 200, "height": 50 }
+        }
+      ],
+      "metadata": {
+        "altText": { "es-ES": "Logo de Bio-Innovate Forum" }
+      },
+      "createdAt": "2025-09-27T11:10:00.000Z",
+      "updatedAt": "2025-09-27T11:10:00.000Z"
+    },
+    {
+      "assetId": "i-sybl-nutrition-council-01",
+      "status": "active",
+      "provider": "cloudinary",
+      "description": "Logo para la marca ficticia 'Nutrition Council', utilizado como prueba social.",
+      "tags": { "assetType": "ui", "subject": "logo" },
+      "variants": [
+        {
+          "versionId": "v1-orig",
+          "publicId": "webvork/logos/nutrition-council-logo_v4xsmb",
+          "state": "orig",
+          "dimensions": { "width": 200, "height": 50 }
+        }
+      ],
+      "metadata": {
+        "altText": { "es-ES": "Logo del Nutrition Council" }
+      },
+      "createdAt": "2025-09-27T11:15:00.000Z",
+      "updatedAt": "2025-09-27T11:15:00.000Z"
+    },
+    {
+      "assetId": "i-bkg-login-abstract-01",
+      "status": "active",
+      "provider": "cloudinary",
+      "description": "Imagen de fondo abstracta y tecnológica para la página de autenticación del DCC.",
+      "tags": { "assetType": "ui", "subject": "abstract" },
+      "variants": [
+        {
+          "versionId": "v1-orig",
+          "publicId": "webvork/backgrounds/login_bg_abstract_1_sje15x",
+          "state": "orig",
+          "dimensions": { "width": 1920, "height": 1080 }
+        }
+      ],
+      "metadata": {
+        "altText": {
+          "es-ES": "Fondo abstracto y tecnológico para la página de login"
+        }
+      },
+      "createdAt": "2025-09-26T15:00:00.000Z",
+      "updatedAt": "2025-09-26T15:00:00.000Z"
+    },
+    {
+      "assetId": "i-bkg-hero-abstract-01",
+      "status": "active",
+      "provider": "cloudinary",
+      "description": "Imagen de fondo abstracta con temática de bienestar para la sección Hero principal del portal.",
+      "tags": { "assetType": "ui", "subject": "abstract" },
+      "variants": [
+        {
+          "versionId": "v1-orig",
+          "publicId": "webvork/backgrounds/hero_abstract_wellness_1_qwea45",
+          "state": "orig",
+          "dimensions": { "width": 1920, "height": 1080 }
+        }
+      ],
+      "metadata": {
+        "altText": {
+          "es-ES": "Fondo abstracto y tecnológico para la sección hero del portal"
+        }
+      },
+      "createdAt": "2025-09-26T15:05:00.000Z",
+      "updatedAt": "2025-09-26T15:05:00.000Z"
+    }
+  ]
+}

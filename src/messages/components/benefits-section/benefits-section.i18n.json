@@ -1,0 +1,118 @@
+{
+  "it-IT": {
+    "benefitsSection": {
+      "eyebrow": "Benefici",
+      "title": "La Tua Scorciatoia per il Successo",
+      "subtitle": "Un'architettura di landing page progettata per la massima conversione e una Developer Experience di élite. Costruisci più velocemente, converti di più.",
+      "benefits": [
+        {
+          "icon": "Blocks",
+          "title": "Costruisci la Fiducia del Marchio",
+          "description": "Una presentazione professionale e basata sull'evidenza scientifica che genera credibilità istantanea con il tuo pubblico."
+        },
+        {
+          "icon": "LineChart",
+          "title": "Più Lead Qualificati",
+          "description": "Un percorso di conversione ottimizzato che guida l'utente in modo intuitivo, aumentando la qualità e la quantità dei lead."
+        },
+        {
+          "icon": "Wallet",
+          "title": "Conversioni Più Alte",
+          "description": "Ogni elemento è progettato con un unico scopo: trasformare i visitatori in clienti, massimizzando il tuo ROI."
+        },
+        {
+          "icon": "Sparkle",
+          "title": "Testa Idee di Marketing",
+          "description": "L'architettura modulare ti permette di testare rapidamente diversi angoli e messaggi per trovare la formula vincente."
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "benefitsSection": {
+      "eyebrow": "Beneficios",
+      "title": "Tu Atajo hacia el Éxito",
+      "subtitle": "Una arquitectura de landing page diseñada para la máxima conversión y una Developer Experience de élite. Construye más rápido, convierte más.",
+      "benefits": [
+        {
+          "icon": "Blocks",
+          "title": "Construye Confianza de Marca",
+          "description": "Una presentación profesional y basada en evidencia que genera credibilidad instantánea con tu audiencia."
+        },
+        {
+          "icon": "LineChart",
+          "title": "Más Leads Cualificados",
+          "description": "Un camino de conversión optimizado que guía al usuario de forma intuitiva, aumentando la calidad y cantidad de los leads."
+        },
+        {
+          "icon": "Wallet",
+          "title": "Conversiones Más Altas",
+          "description": "Cada elemento está diseñado con un único propósito: transformar visitantes en clientes, maximizando tu ROI."
+        },
+        {
+          "icon": "Sparkle",
+          "title": "Testea Ideas de Marketing",
+          "description": "La arquitectura modular te permite probar rápidamente diferentes ángulos y mensajes para encontrar la fórmula ganadora."
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "benefitsSection": {
+      "eyebrow": "Benefits",
+      "title": "Your Shortcut to Success",
+      "subtitle": "A landing page architecture designed for maximum conversion and an elite Developer Experience. Build faster, convert more.",
+      "benefits": [
+        {
+          "icon": "Blocks",
+          "title": "Build Brand Trust",
+          "description": "A professional and evidence-based presentation that builds instant credibility with your audience."
+        },
+        {
+          "icon": "LineChart",
+          "title": "More Qualified Leads",
+          "description": "An optimized conversion path that guides the user intuitively, increasing the quality and quantity of leads."
+        },
+        {
+          "icon": "Wallet",
+          "title": "Higher Conversions",
+          "description": "Every element is designed with a single purpose: to turn visitors into customers, maximizing your ROI."
+        },
+        {
+          "icon": "Sparkle",
+          "title": "Test Marketing Ideas",
+          "description": "The modular architecture allows you to quickly test different angles and messages to find the winning formula."
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "benefitsSection": {
+      "eyebrow": "Benefícios",
+      "title": "Seu Atalho para o Sucesso",
+      "subtitle": "Uma arquitetura de landing page projetada para máxima conversão e uma Developer Experience de elite. Construa mais rápido, converta mais.",
+      "benefits": [
+        {
+          "icon": "Blocks",
+          "title": "Construa Confiança na Marca",
+          "description": "Uma apresentação profissional e baseada em evidências que gera credibilidade instantânea com seu público."
+        },
+        {
+          "icon": "LineChart",
+          "title": "Mais Leads Qualificados",
+          "description": "Um caminho de conversão otimizado que guia o usuário de forma intuitiva, aumentando a qualidade e a quantidade de leads."
+        },
+        {
+          "icon": "Wallet",
+          "title": "Conversões Mais Altas",
+          "description": "Cada elemento é projetado com um único propósito: transformar visitantes em clientes, maximizando seu ROI."
+        },
+        {
+          "icon": "Sparkle",
+          "title": "Teste Ideias de Marketing",
+          "description": "A arquitetura modular permite que você teste rapidamente diferentes ângulos e mensagens para encontrar a fórmula vencedora."
+        }
+      ]
+    }
+  }
+}

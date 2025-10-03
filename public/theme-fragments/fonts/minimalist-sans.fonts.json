@@ -1,0 +1,23 @@
+{
+  "fonts": {
+    "sans": "'Inter', sans-serif",
+    "serif": "Georgia, serif",
+    "--text-xs": "0.75rem",
+    "--text-sm": "0.875rem",
+    "--text-base": "1rem",
+    "--text-lg": "1.125rem",
+    "--text-xl": "1.25rem",
+    "--text-2xl": "1.5rem",
+    "--font-weight-light": "300",
+    "--font-weight-normal": "400",
+    "--font-weight-medium": "500",
+    "--font-weight-semibold": "600",
+    "--font-weight-bold": "700",
+    "--leading-none": "1",
+    "--leading-tight": "1.25",
+    "--leading-snug": "1.375",
+    "--leading-normal": "1.5",
+    "--leading-relaxed": "1.625",
+    "--leading-loose": "2"
+  }
+}

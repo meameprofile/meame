@@ -1,0 +1,46 @@
+{
+  "it-IT": {
+    "userNav": {
+      "loginButton": "Accedi",
+      "sessionLabel": "Sessione avviata come",
+      "logoutButton": "Esci",
+      "viewAllNotificationsLink": "Vedi tutte",
+      "notificationsLabel": "Notifiche",
+      "noNotificationsText": "Non hai notifiche.",
+      "loadingText": "Caricamento..."
+    }
+  },
+  "es-ES": {
+    "userNav": {
+      "loginButton": "Iniciar Sesión",
+      "sessionLabel": "Sesión iniciada como",
+      "logoutButton": "Cerrar Sesión",
+      "viewAllNotificationsLink": "Ver todas",
+      "notificationsLabel": "Notificaciones",
+      "noNotificationsText": "No tienes notificaciones.",
+      "loadingText": "Cargando..."
+    }
+  },
+  "en-US": {
+    "userNav": {
+      "loginButton": "Sign In",
+      "sessionLabel": "Signed in as",
+      "logoutButton": "Log Out",
+      "viewAllNotificationsLink": "View all",
+      "notificationsLabel": "Notifications",
+      "noNotificationsText": "You have no notifications.",
+      "loadingText": "Loading..."
+    }
+  },
+  "pt-BR": {
+    "userNav": {
+      "loginButton": "Entrar",
+      "sessionLabel": "Sessão iniciada como",
+      "logoutButton": "Sair",
+      "viewAllNotificationsLink": "Ver todas",
+      "notificationsLabel": "Notificações",
+      "noNotificationsText": "Você não tem notificações.",
+      "loadingText": "Carregando..."
+    }
+  }
+}

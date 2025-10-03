@@ -1,0 +1,50 @@
+{
+  "it-IT": {
+    "selectLanguage": {
+      "title": "Seleziona la tua lingua",
+      "subtitle": "Scegli la tua lingua preferita per continuare.",
+      "languages": {
+        "it-IT": "Italiano",
+        "es-ES": "Spagnolo",
+        "en-US": "Inglese",
+        "pt-BR": "Portoghese"
+      }
+    }
+  },
+  "es-ES": {
+    "selectLanguage": {
+      "title": "Selecciona tu idioma",
+      "subtitle": "Elige tu idioma preferido para continuar.",
+      "languages": {
+        "it-IT": "Italiano",
+        "es-ES": "Español",
+        "en-US": "Inglés",
+        "pt-BR": "Portugués"
+      }
+    }
+  },
+  "en-US": {
+    "selectLanguage": {
+      "title": "Select Your Language",
+      "subtitle": "Choose your preferred language to continue.",
+      "languages": {
+        "it-IT": "Italian",
+        "es-ES": "Spanish",
+        "en-US": "English",
+        "pt-BR": "Portuguese"
+      }
+    }
+  },
+  "pt-BR": {
+    "selectLanguage": {
+      "title": "Selecione seu idioma",
+      "subtitle": "Escolha o seu idioma de preferência para continuar.",
+      "languages": {
+        "it-IT": "Italiano",
+        "es-ES": "Espanhol",
+        "en-US": "Inglês",
+        "pt-BR": "Português"
+      }
+    }
+  }
+}

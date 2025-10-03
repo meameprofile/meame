@@ -1,0 +1,40 @@
+{
+  "articleId": "clxzyw2v30001cde4h8jklmno",
+  "status": "published",
+  "createdAt": "2025-09-18T12:00:00.000Z",
+  "updatedAt": "2025-09-18T12:00:00.000Z",
+  "studyDna": {
+    "originalTitle": "The Impact of Functional Training on Athletic Performance and Injury Prevention: A Systematic Review",
+    "authors": ["Dr. M. Garcia", "Dr. S. Lee"],
+    "institution": "Sports Science Institute",
+    "publication": "International Journal of Sports Physiology and Performance",
+    "publicationDate": "2024-09-01T00:00:00.000Z",
+    "doi": "https://doi.org/10.9876/ijspp.2024.456",
+    "fundingSource": "Sports Research Council",
+    "objective": "To systematically review the effects of functional training programs...",
+    "studyType": "Systematic Review",
+    "methodologySummary": "Review of 30 randomized controlled trials (RCTs)...",
+    "mainResults": "Functional training significantly improved measures of strength...",
+    "authorsConclusion": "Functional training is a valuable component of athletic conditioning...",
+    "limitations": [
+      "Variability in functional training definitions and protocols across studies."
+    ]
+  },
+  "content": {
+    "es-ES": {
+      "title": "Entrenamiento Funcional: La Guía Definitiva para Mejorar tu Rendimiento",
+      "slug": "entrenamiento-funcional-guia-definitiva",
+      "summary": "Descubre cómo el entrenamiento funcional puede revolucionar tu rendimiento atlético...",
+      "body": "El entrenamiento funcional se ha convertido en una piedra angular para atletas..."
+    }
+  },
+  "baviHeroImageId": "webvork/assets/i-prv-standard-header-01/v1-original",
+  "relatedPromptIds": [],
+  "tags": [
+    "entrenamiento-funcional",
+    "fitness",
+    "rendimiento-atletico",
+    "prevencion-lesiones",
+    "deporte"
+  ]
+}

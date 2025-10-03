@@ -1,0 +1,62 @@
+{
+  "it-IT": {
+    "servicesSection": {
+      "eyebrow": "Servizi",
+      "title": "Fai Crescere il Tuo Business",
+      "subtitle": "Dal marketing e vendite alle operazioni e strategia, abbiamo l'esperienza per aiutarti a raggiungere i tuoi obiettivi.",
+      "proLabel": "PRO",
+      "services": [
+        {
+          "title": "Integrazione Dominio Personalizzato",
+          "description": "Usa il tuo dominio per rafforzare il tuo marchio e la tua credibilità online.",
+          "isPro": false
+        },
+        {
+          "title": "Integrazioni Social Media",
+          "description": "Connetti i tuoi profili social per amplificare la tua portata e il tuo coinvolgimento.",
+          "isPro": false
+        },
+        {
+          "title": "Integrazioni Email Marketing",
+          "description": "Sincronizza con i tuoi strumenti di email marketing preferiti per nutrire i tuoi lead.",
+          "isPro": false
+        },
+        {
+          "title": "Ottimizzazione SEO",
+          "description": "Migliora il tuo ranking sui motori di ricerca e attira traffico organico qualificato.",
+          "isPro": true
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "servicesSection": {
+      "eyebrow": "Servicios",
+      "title": "Haz Crecer Tu Negocio",
+      "subtitle": "Desde marketing y ventas hasta operaciones y estrategia, tenemos la experiencia para ayudarte a alcanzar tus metas.",
+      "proLabel": "PRO",
+      "services": [
+        {
+          "title": "Integración de Dominio Personalizado",
+          "description": "Usa tu propio dominio para fortalecer tu marca y credibilidad en línea.",
+          "isPro": false
+        },
+        {
+          "title": "Integraciones de Redes Sociales",
+          "description": "Conecta tus perfiles sociales para amplificar tu alcance y engagement.",
+          "isPro": false
+        },
+        {
+          "title": "Integraciones de Email Marketing",
+          "description": "Sincroniza con tus herramientas de email marketing favoritas para nutrir a tus leads.",
+          "isPro": false
+        },
+        {
+          "title": "Optimización SEO",
+          "description": "Mejora tu ranking en los motores de búsqueda y atrae tráfico orgánico cualificado.",
+          "isPro": true
+        }
+      ]
+    }
+  }
+}

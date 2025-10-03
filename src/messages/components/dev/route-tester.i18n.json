@@ -1,0 +1,62 @@
+{
+  "es-ES": {
+    "routeTester": {
+      "devToolsGroup": "HERRAMIENTAS DEV",
+      "campaignPagesGroup": "PÁGINAS DE CAMPAÑA",
+      "legalPagesGroup": "PÁGINAS LEGALES",
+      "campaignDesignSuite": "Suite de Diseño de Campaña",
+      "bridgePage": "Página Bridge",
+      "reviewPage": "Página de Revisión",
+      "terms": "Términos",
+      "privacy": "Privacidad",
+      "cookies": "Cookies",
+      "changeLanguage": "Cambiar idioma",
+      "currentLanguageIs": "El idioma actual es"
+    }
+  },
+  "it-IT": {
+    "routeTester": {
+      "devToolsGroup": "DEV TOOLS",
+      "campaignPagesGroup": "PAGINE CAMPAGNA",
+      "legalPagesGroup": "PAGINE LEGALI",
+      "campaignDesignSuite": "Suite di Design Campagna",
+      "bridgePage": "Pagina Bridge",
+      "reviewPage": "Pagina di Revisione",
+      "terms": "Termini",
+      "privacy": "Privacy",
+      "cookies": "Cookies",
+      "changeLanguage": "Cambia lingua",
+      "currentLanguageIs": "La lingua attuale è"
+    }
+  },
+  "en-US": {
+    "routeTester": {
+      "devToolsGroup": "DEV TOOLS",
+      "campaignPagesGroup": "CAMPAIGN PAGES",
+      "legalPagesGroup": "LEGAL PAGES",
+      "campaignDesignSuite": "Campaign Design Suite",
+      "bridgePage": "Bridge Page",
+      "reviewPage": "Review Page",
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "cookies": "Cookies",
+      "changeLanguage": "Change language",
+      "currentLanguageIs": "Current language is"
+    }
+  },
+  "pt-BR": {
+    "routeTester": {
+      "devToolsGroup": "FERRAMENTAS DEV",
+      "campaignPagesGroup": "PÁGINAS DE CAMPANHA",
+      "legalPagesGroup": "PÁGINAS LEGAIS",
+      "campaignDesignSuite": "Suite de Design de Campanha",
+      "bridgePage": "Página Bridge",
+      "reviewPage": "Página de Revisão",
+      "terms": "Termos",
+      "privacy": "Privacidade",
+      "cookies": "Cookies",
+      "changeLanguage": "Mudar idioma",
+      "currentLanguageIs": "O idioma atual é"
+    }
+  }
+}

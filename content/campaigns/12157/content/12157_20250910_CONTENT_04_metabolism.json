@@ -1,0 +1,350 @@
+{
+  "it-IT": {
+    "scrollingBanner": {
+      "message": "Combatti il metabolismo lento? Aiuta il tuo corpo a lavorare con te."
+    },
+    "hero": {
+      "title": "Il Tuo Metabolismo Non È Il Nemico.",
+      "subtitle": "Ha solo bisogno dell'alleato giusto. Supporta i tuoi obiettivi di benessere con una formula che lavora in sinergia con il tuo corpo."
+    },
+    "benefitsSection": {
+      "eyebrow": "Supporto Efficace",
+      "title": "Un Aiuto Intelligente per i Tuoi Obiettivi",
+      "subtitle": "Non una soluzione magica, ma un supporto concreto per rendere i tuoi sforzi più efficaci.",
+      "benefits": [
+        {
+          "icon": "Flame",
+          "title": "Metabolismo Energetico",
+          "description": "Supporta un normale metabolismo energetico per aiutarti a sentirti più attivo e vitale."
+        },
+        {
+          "icon": "Scale",
+          "title": "Equilibrio del Peso",
+          "description": "Contribuisce all'equilibrio del peso corporeo come parte di uno stile di vita sano."
+        },
+        {
+          "icon": "Grape",
+          "title": "Funzione Digestiva",
+          "description": "Lo zenzero è tradizionalmente noto per aiutare la digestione e ridurre il gonfiore."
+        },
+        {
+          "icon": "SmilePlus",
+          "title": "Controllo dell'Appetito",
+          "description": "Lo zafferano è studiato per il suo ruolo nel supportare il controllo del senso di fame."
+        }
+      ]
+    },
+    "ingredientAnalysis": {
+      "title": "Ingredienti Chiave per il Tuo Metabolismo",
+      "ingredients": [
+        {
+          "name": "Curcuma & Piperina",
+          "description": "Coppia studiata per le loro proprietà antiossidanti e di supporto al benessere generale."
+        },
+        {
+          "name": "Zenzero",
+          "description": "Tradizionalmente usato per favorire la digestione e per le sue proprietà termogeniche."
+        },
+        {
+          "name": "Zafferano & Spirulina",
+          "description": "Supportano l'equilibrio dell'umore e forniscono nutrienti, aiutando a contrastare la fame nervosa."
+        }
+      ]
+    },
+    "testimonialGrid": {
+      "title": "Le Loro Storie di Successo",
+      "testimonials": [
+        {
+          "quote": "Mi ha aiutato a sentirmi meno gonfia e a controllare gli attacchi di fame. Un ottimo supporto per la mia dieta.",
+          "author": "Laura C.",
+          "location": "Bologna, IT",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_laura-c.jpg"
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Prezzo Standard",
+      "discountedPriceLabel": "Offerta Metabolismo",
+      "nameInputLabel": "Nome",
+      "nameInputPlaceholder": "Il tuo nome",
+      "phoneInputLabel": "Telefono",
+      "phoneInputPlaceholder": "Il tuo numero",
+      "submitButtonText": "Inizia a Supportare il Tuo Metabolismo",
+      "submitButtonLoadingText": "Invio..."
+    },
+    "guaranteeSection": {
+      "title": "La Tua Scelta Intelligente, Senza Rischi",
+      "seals": []
+    },
+    "faqAccordion": {
+      "title": "Domande sulla Gestione del Peso",
+      "faqs": [
+        {
+          "question": "Questo prodotto fa dimagrire da solo?",
+          "answer": "Nessun integratore può sostituire una dieta equilibrata. Il nostro prodotto è formulato per essere un supporto efficace ai tuoi sforzi."
+        }
+      ]
+    },
+    "socialProofLogos": {
+      "title": "Scelto da Chi Cerca un Equilibrio Naturale",
+      "logos": []
+    }
+  },
+  "es-ES": {
+    "scrollingBanner": {
+      "message": "¿Luchas contra un metabolismo lento? Ayuda a tu cuerpo a trabajar contigo."
+    },
+    "hero": {
+      "title": "Tu Metabolismo No Es El Enemigo.",
+      "subtitle": "Solo necesita el aliado correcto. Apoya tus objetivos de bienestar con una fórmula que trabaja en sinergia con tu cuerpo."
+    },
+    "benefitsSection": {
+      "eyebrow": "Apoyo Eficaz",
+      "title": "Una Ayuda Inteligente para Tus Objetivos",
+      "subtitle": "No una solución mágica, sino un apoyo concreto para que tus esfuerzos sean más eficaces.",
+      "benefits": [
+        {
+          "icon": "Flame",
+          "title": "Metabolismo Energético",
+          "description": "Apoya un metabolismo energético normal para ayudarte a sentirte más activo y vital."
+        },
+        {
+          "icon": "Scale",
+          "title": "Equilibrio del Peso",
+          "description": "Contribuye al equilibrio del peso corporal como parte de un estilo de vida saludable."
+        },
+        {
+          "icon": "Grape",
+          "title": "Función Digestiva",
+          "description": "El jengibre es tradicionalmente conocido por ayudar a la digestión y reducir la hinchazón."
+        },
+        {
+          "icon": "SmilePlus",
+          "title": "Control del Apetito",
+          "description": "El azafrán es estudiado por su papel en apoyar el control de la sensación de hambre."
+        }
+      ]
+    },
+    "ingredientAnalysis": {
+      "title": "Ingredientes Clave para Tu Metabolismo",
+      "ingredients": [
+        {
+          "name": "Cúrcuma y Piperina",
+          "description": "Dúo estudiado por sus propiedades antioxidantes y de apoyo al bienestar general."
+        }
+      ]
+    },
+    "testimonialGrid": {
+      "title": "Sus Historias de Éxito",
+      "testimonials": [
+        {
+          "quote": "Me ha ayudado a sentirme menos hinchada y a controlar los antojos. Un gran apoyo para mi dieta.",
+          "author": "Laura C.",
+          "location": "Bolonia, IT",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_laura-c.jpg"
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Precio Estándar",
+      "discountedPriceLabel": "Oferta Metabolismo",
+      "nameInputLabel": "Nombre",
+      "nameInputPlaceholder": "Tu nombre",
+      "phoneInputLabel": "Teléfono",
+      "phoneInputPlaceholder": "Tu número",
+      "submitButtonText": "Empieza a Apoyar Tu Metabolismo",
+      "submitButtonLoadingText": "Enviando..."
+    },
+    "guaranteeSection": {
+      "title": "Tu Elección Inteligente, Sin Riesgos",
+      "seals": []
+    },
+    "faqAccordion": {
+      "title": "Preguntas sobre la Gestión del Peso",
+      "faqs": [
+        {
+          "question": "¿Este producto adelgaza por sí solo?",
+          "answer": "Ningún suplemento puede reemplazar una dieta equilibrada. Nuestro producto está formulado para ser un apoyo eficaz a tus esfuerzos."
+        }
+      ]
+    },
+    "socialProofLogos": {
+      "title": "Elegido por Quienes Buscan un Equilibrio Natural",
+      "logos": []
+    }
+  },
+  "en-US": {
+    "scrollingBanner": {
+      "message": "Struggling with a slow metabolism? Help your body work with you."
+    },
+    "hero": {
+      "title": "Your Metabolism Is Not The Enemy.",
+      "subtitle": "It just needs the right ally. Support your wellness goals with a formula that works in synergy with your body."
+    },
+    "benefitsSection": {
+      "eyebrow": "Effective Support",
+      "title": "An Intelligent Aid for Your Goals",
+      "subtitle": "Not a magic solution, but concrete support to make your efforts more effective.",
+      "benefits": [
+        {
+          "icon": "Flame",
+          "title": "Energy Metabolism",
+          "description": "Supports normal energy-yielding metabolism to help you feel more active and vital."
+        },
+        {
+          "icon": "Scale",
+          "title": "Weight Balance",
+          "description": "Contributes to body weight balance as part of a healthy lifestyle."
+        },
+        {
+          "icon": "Grape",
+          "title": "Digestive Function",
+          "description": "Ginger is traditionally known to aid digestion and reduce bloating."
+        },
+        {
+          "icon": "SmilePlus",
+          "title": "Appetite Control",
+          "description": "Saffron is studied for its role in supporting the control of hunger pangs."
+        }
+      ]
+    },
+    "ingredientAnalysis": {
+      "title": "Key Ingredients for Your Metabolism",
+      "ingredients": [
+        {
+          "name": "Turmeric & Piperine",
+          "description": "A studied pair for their antioxidant and general wellness support properties."
+        }
+      ]
+    },
+    "testimonialGrid": {
+      "title": "Their Success Stories",
+      "testimonials": [
+        {
+          "quote": "It helped me feel less bloated and control cravings. A great support for my diet.",
+          "author": "Laura C.",
+          "location": "Bologna, IT",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_laura-c.jpg"
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Standard Price",
+      "discountedPriceLabel": "Metabolism Offer",
+      "nameInputLabel": "Name",
+      "nameInputPlaceholder": "Your name",
+      "phoneInputLabel": "Phone",
+      "phoneInputPlaceholder": "Your number",
+      "submitButtonText": "Start Supporting Your Metabolism",
+      "submitButtonLoadingText": "Sending..."
+    },
+    "guaranteeSection": {
+      "title": "Your Smart Choice, Risk-Free",
+      "seals": []
+    },
+    "faqAccordion": {
+      "title": "Questions on Weight Management",
+      "faqs": [
+        {
+          "question": "Does this product cause weight loss on its own?",
+          "answer": "No supplement can replace a balanced diet. Our product is formulated to be an effective support for your efforts."
+        }
+      ]
+    },
+    "socialProofLogos": {
+      "title": "Chosen by Those Seeking Natural Balance",
+      "logos": []
+    }
+  },
+  "pt-BR": {
+    "scrollingBanner": {
+      "message": "Lutando contra um metabolismo lento? Ajude seu corpo a trabalhar com você."
+    },
+    "hero": {
+      "title": "Seu Metabolismo Não É O Inimigo.",
+      "subtitle": "Ele só precisa do aliado certo. Apoie seus objetivos de bem-estar com uma fórmula que trabalha em sinergia com seu corpo."
+    },
+    "benefitsSection": {
+      "eyebrow": "Suporte Eficaz",
+      "title": "Uma Ajuda Inteligente para Seus Objetivos",
+      "subtitle": "Não uma solução mágica, mas um suporte concreto para tornar seus esforços mais eficazes.",
+      "benefits": [
+        {
+          "icon": "Flame",
+          "title": "Metabolismo Energético",
+          "description": "Apoia o metabolismo energético normal para ajudá-lo a se sentir mais ativo e vital."
+        },
+        {
+          "icon": "Scale",
+          "title": "Equilíbrio de Peso",
+          "description": "Contribui para o equilíbrio do peso corporal como parte de um estilo de vida saudável."
+        },
+        {
+          "icon": "Grape",
+          "title": "Função Digestiva",
+          "description": "O gengibre é tradicionalmente conhecido por ajudar na digestão e reduzir o inchaço."
+        },
+        {
+          "icon": "SmilePlus",
+          "title": "Controle do Apetite",
+          "description": "O açafrão é estudado por seu papel no apoio ao controle da sensação de fome."
+        }
+      ]
+    },
+    "ingredientAnalysis": {
+      "title": "Ingredientes-Chave para o Seu Metabolismo",
+      "ingredients": [
+        {
+          "name": "Cúrcuma e Piperina",
+          "description": "Uma dupla estudada por suas propriedades antioxidantes e de apoio ao bem-estar geral."
+        }
+      ]
+    },
+    "testimonialGrid": {
+      "title": "Suas Histórias de Sucesso",
+      "testimonials": [
+        {
+          "quote": "Ajudou-me a sentir menos inchada e a controlar os desejos. Um ótimo suporte para a minha dieta.",
+          "author": "Laura C.",
+          "location": "Bolonha, IT",
+          "imageSrc": "/img/sections/testimonial-grid/avatar_laura-c.jpg"
+        }
+      ]
+    },
+    "orderSection": {
+      "originalPrice": 78,
+      "discountedPrice": 39,
+      "originalPriceLabel": "Preço Padrão",
+      "discountedPriceLabel": "Oferta Metabolismo",
+      "nameInputLabel": "Nome",
+      "nameInputPlaceholder": "Seu nome",
+      "phoneInputLabel": "Telefone",
+      "phoneInputPlaceholder": "Seu número",
+      "submitButtonText": "Comece a Apoiar Seu Metabolismo",
+      "submitButtonLoadingText": "Enviando..."
+    },
+    "guaranteeSection": {
+      "title": "Sua Escolha Inteligente, Sem Riscos",
+      "seals": []
+    },
+    "faqAccordion": {
+      "title": "Perguntas sobre Gerenciamento de Peso",
+      "faqs": [
+        {
+          "question": "Este produto causa perda de peso por si só?",
+          "answer": "Nenhum suplemento pode substituir uma dieta equilibrada. Nosso produto é formulado para ser um suporte eficaz aos seus esforços."
+        }
+      ]
+    },
+    "socialProofLogos": {
+      "title": "Escolhido por Quem Busca um Equilíbrio Natural",
+      "logos": []
+    }
+  }
+}

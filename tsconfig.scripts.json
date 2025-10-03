@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "paths": {
+      "@/shared/lib/logging": ["./scripts/_shims/logging.ts"],
+      "@/shared/lib/types/actions.types": ["./scripts/_shims/actions.types.ts"],
+      "@/shared/lib/supabase/script-client": [
+        "./scripts/supabase/script-client.ts"
+      ],
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["scripts/**/*.ts"]
+}

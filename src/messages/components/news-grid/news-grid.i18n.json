@@ -1,0 +1,26 @@
+{
+  "it-IT": {
+    "newsGrid": {
+      "title": "Ultime Notizie e Articoli",
+      "subtitle": "Esplora i nostri ultimi articoli su benessere, nutrizione e performance."
+    }
+  },
+  "es-ES": {
+    "newsGrid": {
+      "title": "Últimas Noticias y Artículos",
+      "subtitle": "Explora nuestros últimos artículos sobre bienestar, nutrición y rendimiento."
+    }
+  },
+  "en-US": {
+    "newsGrid": {
+      "title": "Latest News & Articles",
+      "subtitle": "Explore our latest articles on wellness, nutrition, and performance."
+    }
+  },
+  "pt-BR": {
+    "newsGrid": {
+      "title": "Últimas Notícias e Artigos",
+      "subtitle": "Explore nossos últimos artigos sobre bem-estar, nutrição e desempenho."
+    }
+  }
+}

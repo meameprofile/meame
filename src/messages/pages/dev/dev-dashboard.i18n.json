@@ -1,0 +1,202 @@
+{
+  "it-IT": {
+    "devDashboardPage": {
+      "pageHeader": {
+        "title": "Developer Command Center",
+        "subtitle": "Strumenti forgiati per dominare l'intero ciclo di vita dello sviluppo di élite."
+      },
+      "magicBento": {
+        "config": {
+          "textAutoHide": true,
+          "enableStars": true,
+          "enableSpotlight": true,
+          "enableBorderGlow": true,
+          "enableTilt": true,
+          "glowColor": "primary"
+        },
+        "cards": [
+          {
+            "label": "Creatività",
+            "title": "La Fucina (SDC)",
+            "description": "Forgia campagne ad alta conversione."
+          },
+          {
+            "label": "Asset",
+            "title": "L'Arsenale (BAVI)",
+            "description": "La SSoT per tutti gli asset visivi."
+          },
+          {
+            "label": "Genoma",
+            "title": "La Cripta (RaZPrompts)",
+            "description": "Cataloga il DNA creativo dei tuoi asset."
+          },
+          {
+            "label": "Credibilità",
+            "title": "Il Motore (CogniRead)",
+            "description": "Trasforma la scienza in autorità."
+          },
+          {
+            "label": "UX",
+            "title": "Il Sistema Nervoso (Nos3)",
+            "description": "Guarda attraverso gli occhi dell'utente."
+          },
+          {
+            "label": "Resilienza",
+            "title": "Il Laboratorio",
+            "description": "Stress-test per ogni componente."
+          }
+        ]
+      }
+    }
+  },
+  "es-ES": {
+    "devDashboardPage": {
+      "pageHeader": {
+        "title": "Centro de Comando del Desarrollador",
+        "subtitle": "Herramientas forjadas para dominar el ciclo de vida completo del desarrollo de élite."
+      },
+      "magicBento": {
+        "config": {
+          "textAutoHide": true,
+          "enableStars": true,
+          "enableSpotlight": true,
+          "enableBorderGlow": true,
+          "enableTilt": true,
+          "glowColor": "primary"
+        },
+        "cards": [
+          {
+            "label": "Creatividad",
+            "title": "La Forja (SDC)",
+            "description": "Forja campañas de alta conversión."
+          },
+          {
+            "label": "Activos",
+            "title": "El Arsenal (BAVI)",
+            "description": "La SSoT para todos los activos visuales."
+          },
+          {
+            "label": "Genoma",
+            "title": "La Bóveda (RaZPrompts)",
+            "description": "Cataloga el ADN creativo de tus activos."
+          },
+          {
+            "label": "Credibilidad",
+            "title": "El Motor (CogniRead)",
+            "description": "Transforma la ciencia en autoridad."
+          },
+          {
+            "label": "UX",
+            "title": "El Sistema Nervioso (Nos3)",
+            "description": "Mira a través de los ojos del usuario."
+          },
+          {
+            "label": "Resiliencia",
+            "title": "El Laboratorio",
+            "description": "Stress-test para cada componente."
+          }
+        ]
+      }
+    }
+  },
+  "en-US": {
+    "devDashboardPage": {
+      "pageHeader": {
+        "title": "Developer Command Center",
+        "subtitle": "Tools forged to master the entire elite development lifecycle."
+      },
+      "magicBento": {
+        "config": {
+          "textAutoHide": true,
+          "enableStars": true,
+          "enableSpotlight": true,
+          "enableBorderGlow": true,
+          "enableTilt": true,
+          "glowColor": "primary"
+        },
+        "cards": [
+          {
+            "label": "Creativity",
+            "title": "The Forge (SDC)",
+            "description": "Forge high-conversion campaigns."
+          },
+          {
+            "label": "Assets",
+            "title": "The Armory (BAVI)",
+            "description": "The SSoT for all visual assets."
+          },
+          {
+            "label": "Genome",
+            "title": "The Vault (RaZPrompts)",
+            "description": "Catalog the creative DNA of your assets."
+          },
+          {
+            "label": "Credibility",
+            "title": "The Engine (CogniRead)",
+            "description": "Transform science into authority."
+          },
+          {
+            "label": "UX",
+            "title": "The Nervous System (Nos3)",
+            "description": "See through the user's eyes."
+          },
+          {
+            "label": "Resilience",
+            "title": "The Lab",
+            "description": "Stress-test for every component."
+          }
+        ]
+      }
+    }
+  },
+  "pt-BR": {
+    "devDashboardPage": {
+      "pageHeader": {
+        "title": "Centro de Comando do Desenvolvedor",
+        "subtitle": "Ferramentas forjadas para dominar todo o ciclo de vida do desenvolvimento de elite."
+      },
+      "magicBento": {
+        "config": {
+          "textAutoHide": true,
+          "enableStars": true,
+          "enableSpotlight": true,
+          "enableBorderGlow": true,
+          "enableTilt": true,
+          "glowColor": "primary"
+        },
+        "cards": [
+          {
+            "label": "Criatividade",
+            "title": "A Forja (SDC)",
+            "description": "Forje campanhas de alta conversão."
+          },
+          {
+            "label": "Ativos",
+            "title": "O Arsenal (BAVI)",
+            "description": "A SSoT para todos os ativos visuais."
+          },
+          {
+            "label": "Genoma",
+            "title": "O Cofre (RaZPrompts)",
+            "description": "Catalogue o DNA criativo de seus ativos."
+          },
+          {
+            "label": "Credibilidade",
+            "title": "O Motor (CogniRead)",
+            "description": "Transforme ciência em autoridade."
+          },
+          {
+            "label": "UX",
+            "title": "O Sistema Nervoso (Nos3)",
+            "description": "Veja através dos olhos do usuário."
+          },
+          {
+            "label": "Resiliência",
+            "title": "O Laboratório",
+            "description": "Teste de estresse para cada componente."
+          }
+        ]
+      }
+    }
+  }
+}

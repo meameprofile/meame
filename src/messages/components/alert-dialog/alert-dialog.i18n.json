@@ -1,0 +1,30 @@
+{
+  "it-IT": {
+    "alertDialog": {
+      "title": "Modifica Profilo",
+      "description": "Apporta modifiche al tuo profilo qui. Clicca su salva quando hai finito.",
+      "footerButton": "Salva Cambiamenti"
+    }
+  },
+  "es-ES": {
+    "alertDialog": {
+      "title": "Editar Perfil",
+      "description": "Realiza cambios en tu perfil aquí. Haz clic en guardar cuando hayas terminado.",
+      "footerButton": "Guardar Cambios"
+    }
+  },
+  "en-US": {
+    "alertDialog": {
+      "title": "Edit Profile",
+      "description": "Make changes to your profile here. Click save when you're done.",
+      "footerButton": "Save Changes"
+    }
+  },
+  "pt-BR": {
+    "alertDialog": {
+      "title": "Editar Perfil",
+      "description": "Faça alterações no seu perfil aqui. Clique em salvar quando terminar.",
+      "footerButton": "Salvar Alterações"
+    }
+  }
+}

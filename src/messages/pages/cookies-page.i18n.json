@@ -1,0 +1,98 @@
+{
+  "it-IT": {
+    "cookiesPage": {
+      "title": "Informativa sui Cookie",
+      "subtitle": "Come utilizziamo i cookie per migliorare la tua esperienza.",
+      "content": [
+        {
+          "type": "h2",
+          "text": "1. Cosa sono i cookie?"
+        },
+        {
+          "type": "p",
+          "text": "I cookie sono piccoli file di testo che vengono memorizzati sul tuo dispositivo quando visiti un sito web. Ci aiutano a ricordare le tue preferenze, a capire come utilizzi il nostro sito e a personalizzare i contenuti e la pubblicità."
+        },
+        {
+          "type": "h2",
+          "text": "2. Tipi di Cookie che Utilizziamo"
+        },
+        {
+          "type": "p",
+          "text": "Utilizziamo cookie essenziali per il funzionamento del sito, cookie di performance per analizzare il traffico e cookie funzionali per ricordare le tue scelte. Utilizziamo anche cookie di marketing per mostrarti annunci pertinenti."
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "cookiesPage": {
+      "title": "Política de Cookies",
+      "subtitle": "Cómo utilizamos las cookies para mejorar tu experiencia.",
+      "content": [
+        {
+          "type": "h2",
+          "text": "1. ¿Qué son las cookies?"
+        },
+        {
+          "type": "p",
+          "text": "Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Nos ayudan a recordar tus preferencias, entender cómo usas nuestro sitio y personalizar el contenido y la publicidad."
+        },
+        {
+          "type": "h2",
+          "text": "2. Tipos de Cookies que Usamos"
+        },
+        {
+          "type": "p",
+          "text": "Usamos cookies esenciales para el funcionamiento del sitio, cookies de rendimiento para analizar el tráfico y cookies funcionales para recordar tus elecciones. También usamos cookies de marketing para mostrarte anuncios relevantes."
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "cookiesPage": {
+      "title": "Cookie Policy",
+      "subtitle": "How we use cookies to improve your experience.",
+      "content": [
+        {
+          "type": "h2",
+          "text": "1. What are cookies?"
+        },
+        {
+          "type": "p",
+          "text": "Cookies are small text files stored on your device when you visit a website. They help us remember your preferences, understand how you use our site, and customize content and advertising."
+        },
+        {
+          "type": "h2",
+          "text": "2. Types of Cookies We Use"
+        },
+        {
+          "type": "p",
+          "text": "We use essential cookies for site functionality, performance cookies to analyze traffic, and functional cookies to remember your choices. We also use marketing cookies to show you relevant ads."
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "cookiesPage": {
+      "title": "Política de Cookies",
+      "subtitle": "Como usamos cookies para melhorar sua experiência.",
+      "content": [
+        {
+          "type": "h2",
+          "text": "1. O que são cookies?"
+        },
+        {
+          "type": "p",
+          "text": "Cookies são pequenos arquivos de texto armazenados no seu dispositivo quando você visita um site. Eles nos ajudam a lembrar suas preferências, entender como você usa nosso site e personalizar conteúdo e publicidade."
+        },
+        {
+          "type": "h2",
+          "text": "2. Tipos de Cookies que Usamos"
+        },
+        {
+          "type": "p",
+          "text": "Usamos cookies essenciais para a funcionalidade do site, cookies de desempenho para analisar o tráfego e cookies funcionais para lembrar suas escolhas. Também usamos cookies de marketing para exibir anúncios relevantes."
+        }
+      ]
+    }
+  }
+}

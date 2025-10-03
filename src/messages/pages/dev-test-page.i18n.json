@@ -1,0 +1,94 @@
+{
+  "it-IT": {
+    "devTestPage": {
+      "title": "Vetrina di Resilienza dei Componenti",
+      "subtitle": "Tutti i componenti del sistema renderizzati con dati SSoT reali per garantire la stabilità.",
+      "selectThemeLabel": "Seleziona Tema di Campagna",
+      "noContentWarning": "Contenuto non trovato per questo componente nel dizionario.",
+      "fallbackHeroTitle": "Titolo di Fallback",
+      "fallbackHeroSubtitle": "Sottotitolo di fallback per il componente Hero.",
+      "fallbackBenefitsTitle": "Benefici di Fallback",
+      "fallbackBenefitsSubtitle": "Sottotitolo di fallback per i benefici.",
+      "fallbackBenefit1": "Beneficio 1",
+      "fallbackBenefit2": "Beneficio 2",
+      "fallbackBenefit3": "Beneficio 3",
+      "fallbackAccordionQuestion": "Domanda di Fallback?",
+      "fallbackAccordionAnswer": "Risposta di fallback.",
+      "fallbackOrderNameLabel": "Nome",
+      "fallbackOrderNamePlaceholder": "Nome Completo",
+      "fallbackOrderPhoneLabel": "Telefono",
+      "fallbackOrderPhonePlaceholder": "Numero di Telefono",
+      "fallbackOrderSubmitText": "Invia",
+      "fallbackOrderLoadingText": "Invio in corso..."
+    }
+  },
+  "es-ES": {
+    "devTestPage": {
+      "title": "Vitrina de Resiliencia de Componentes",
+      "subtitle": "Todos los componentes del sistema renderizados con datos SSoT reales para garantizar la estabilidad.",
+      "selectThemeLabel": "Seleccionar Tema de Campaña",
+      "noContentWarning": "Contenido no encontrado para este componente en el diccionario.",
+      "fallbackHeroTitle": "Título de Fallback",
+      "fallbackHeroSubtitle": "Subtítulo de fallback para el componente Hero.",
+      "fallbackBenefitsTitle": "Beneficios de Fallback",
+      "fallbackBenefitsSubtitle": "Subtítulo de fallback para beneficios.",
+      "fallbackBenefit1": "Beneficio 1",
+      "fallbackBenefit2": "Beneficio 2",
+      "fallbackBenefit3": "Beneficio 3",
+      "fallbackAccordionQuestion": "¿Pregunta de Fallback?",
+      "fallbackAccordionAnswer": "Respuesta de fallback.",
+      "fallbackOrderNameLabel": "Nombre",
+      "fallbackOrderNamePlaceholder": "Nombre Completo",
+      "fallbackOrderPhoneLabel": "Teléfono",
+      "fallbackOrderPhonePlaceholder": "Número de Teléfono",
+      "fallbackOrderSubmitText": "Enviar",
+      "fallbackOrderLoadingText": "Enviando..."
+    }
+  },
+  "en-US": {
+    "devTestPage": {
+      "title": "Component Resilience Showcase",
+      "subtitle": "All system components rendered with real SSoT data to ensure stability.",
+      "selectThemeLabel": "Select Campaign Theme",
+      "noContentWarning": "Content not found for this component in the dictionary.",
+      "fallbackHeroTitle": "Fallback Title",
+      "fallbackHeroSubtitle": "Fallback subtitle for the Hero component.",
+      "fallbackBenefitsTitle": "Fallback Benefits",
+      "fallbackBenefitsSubtitle": "Fallback subtitle for benefits.",
+      "fallbackBenefit1": "Benefit 1",
+      "fallbackBenefit2": "Benefit 2",
+      "fallbackBenefit3": "Benefit 3",
+      "fallbackAccordionQuestion": "Fallback Question?",
+      "fallbackAccordionAnswer": "Fallback answer.",
+      "fallbackOrderNameLabel": "Name",
+      "fallbackOrderNamePlaceholder": "Full Name",
+      "fallbackOrderPhoneLabel": "Phone",
+      "fallbackOrderPhonePlaceholder": "Phone Number",
+      "fallbackOrderSubmitText": "Submit",
+      "fallbackOrderLoadingText": "Submitting..."
+    }
+  },
+  "pt-BR": {
+    "devTestPage": {
+      "title": "Vitrine de Resiliência de Componentes",
+      "subtitle": "Todos os componentes do sistema renderizados com dados SSoT reais para garantir a estabilidade.",
+      "selectThemeLabel": "Selecionar Tema da Campanha",
+      "noContentWarning": "Conteúdo não encontrado para este componente no dicionário.",
+      "fallbackHeroTitle": "Título de Fallback",
+      "fallbackHeroSubtitle": "Subtítulo de fallback para o componente Hero.",
+      "fallbackBenefitsTitle": "Benefícios de Fallback",
+      "fallbackBenefitsSubtitle": "Subtítulo de fallback para benefícios.",
+      "fallbackBenefit1": "Benefício 1",
+      "fallbackBenefit2": "Benefício 2",
+      "fallbackBenefit3": "Benefício 3",
+      "fallbackAccordionQuestion": "Pergunta de Fallback?",
+      "fallbackAccordionAnswer": "Resposta de fallback.",
+      "fallbackOrderNameLabel": "Nome",
+      "fallbackOrderNamePlaceholder": "Nome Completo",
+      "fallbackOrderPhoneLabel": "Telefone",
+      "fallbackOrderPhonePlaceholder": "Número de Telefone",
+      "fallbackOrderSubmitText": "Enviar",
+      "fallbackOrderLoadingText": "Enviando..."
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "it-IT": {
+    "cogniReadDashboard": {
+      "pageHeader": {
+        "title": "CogniRead: Gestione del Conoscenza Scientifica",
+        "subtitle": "Il motore di credibilità di Global Fitwell. Gestisci qui tutti gli analisi di studi scientifici."
+      },
+      "newArticleButton": "Nuovo Analisi di Studio",
+      "articlesListTitle": "Biblioteca di Articoli",
+      "articlesListDescription": "Qui si listano tutti gli articoli analizzati, sia in bozza che pubblicati."
+    }
+  },
+  "es-ES": {
+    "cogniReadDashboard": {
+      "pageHeader": {
+        "title": "CogniRead: Gestión del Conocimiento Científico",
+        "subtitle": "El motor de credibilidad de Global Fitwell. Gestiona aquí todos los análisis de estudios científicos."
+      },
+      "newArticleButton": "Nuevo Análisis de Estudio",
+      "articlesListTitle": "Biblioteca de Artículos",
+      "articlesListDescription": "Aquí se listan todos los artículos analizados, tanto en borrador como publicados."
+    }
+  },
+  "en-US": {
+    "cogniReadDashboard": {
+      "pageHeader": {
+        "title": "CogniRead: Scientific Knowledge Management",
+        "subtitle": "Global Fitwell's credibility engine. Manage all scientific study analyses here."
+      },
+      "newArticleButton": "New Study Analysis",
+      "articlesListTitle": "Article Library",
+      "articlesListDescription": "All analyzed articles, both draft and published, are listed here."
+    }
+  },
+  "pt-BR": {
+    "cogniReadDashboard": {
+      "pageHeader": {
+        "title": "CogniRead: Gerenciamento do Conhecimento Científico",
+        "subtitle": "O motor de credibilidade da Global Fitwell. Gerencie todas as análises de estudos científicos aqui."
+      },
+      "newArticleButton": "Nova Análise de Estudo",
+      "articlesListTitle": "Biblioteca de Artigos",
+      "articlesListDescription": "Todos os artigos analisados, tanto em rascunho quanto publicados, estão listados aqui."
+    }
+  }
+}

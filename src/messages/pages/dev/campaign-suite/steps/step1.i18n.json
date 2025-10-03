@@ -1,0 +1,70 @@
+{
+  "it-IT": {
+    "step1": {
+      "title": "Passo 1: Struttura della Pagina",
+      "description": "Definisci il layout di base. Includere un'intestazione o un piè di pagina è una decisione strategica chiave.",
+      "headerSwitchLabel": "Includere Intestazione (Header)?",
+      "footerSwitchLabel": "Includere Piè di Pagina (Footer)?",
+      "headerGalleryTitle": "Seleziona uno Stile di Intestazione",
+      "footerGalleryTitle": "Seleziona uno Stile di Piè di Pagina",
+      "selectedLabel": "Selezionato",
+      "galleryDescriptions": {
+        "StandardHeader": "Intestazione standard con logo, navigazione e CTA.",
+        "MinimalHeader": "Intestazione minimalista solo con logo.",
+        "StandardFooter": "Piè di pagina completo con link e newsletter.",
+        "BenefitsSection": "Mostra i benefici chiave in schede con icone."
+      }
+    }
+  },
+  "es-ES": {
+    "step1": {
+      "title": "Paso 1: Estructura de la Página",
+      "description": "Define el marco básico. Incluir un encabezado o un pie de página es una decisión estratégica clave.",
+      "headerSwitchLabel": "¿Incluir Encabezado (Header)?",
+      "footerSwitchLabel": "¿Incluir Pie de Página (Footer)?",
+      "headerGalleryTitle": "Selecciona un Estilo de Encabezado",
+      "footerGalleryTitle": "Selecciona un Estilo de Pie de Página",
+      "selectedLabel": "Seleccionado",
+      "galleryDescriptions": {
+        "StandardHeader": "Cabecera estándar con logo, navegación y CTA.",
+        "MinimalHeader": "Cabecera minimalista solo con logo.",
+        "StandardFooter": "Pie de página completo con enlaces y newsletter.",
+        "BenefitsSection": "Muestra los beneficios clave en tarjetas con iconos."
+      }
+    }
+  },
+  "en-US": {
+    "step1": {
+      "title": "Step 1: Page Structure",
+      "description": "Define the basic framework. Including a header or footer is a key strategic decision.",
+      "headerSwitchLabel": "Include Header?",
+      "footerSwitchLabel": "Include Footer?",
+      "headerGalleryTitle": "Select a Header Style",
+      "footerGalleryTitle": "Select a Footer Style",
+      "selectedLabel": "Selected",
+      "galleryDescriptions": {
+        "StandardHeader": "Standard header with logo, navigation, and CTA.",
+        "MinimalHeader": "Minimalist header with logo only.",
+        "StandardFooter": "Complete footer with links and newsletter.",
+        "BenefitsSection": "Showcases key benefits in cards with icons."
+      }
+    }
+  },
+  "pt-BR": {
+    "step1": {
+      "title": "Passo 1: Estrutura da Página",
+      "description": "Defina a estrutura básica. Incluir um cabeçalho ou rodapé é uma decisão estratégica chave.",
+      "headerSwitchLabel": "Incluir Cabeçalho (Header)?",
+      "footerSwitchLabel": "Incluir Rodapé (Footer)?",
+      "headerGalleryTitle": "Selecione um Estilo de Cabeçalho",
+      "footerGalleryTitle": "Selecione um Estilo de Rodapé",
+      "selectedLabel": "Selecionado",
+      "galleryDescriptions": {
+        "StandardHeader": "Cabeçalho padrão com logo, navegação e CTA.",
+        "MinimalHeader": "Cabeçalho minimalista apenas com o logo.",
+        "StandardFooter": "Rodapé completo com links e newsletter.",
+        "BenefitsSection": "Apresenta os principais benefícios em cartões com ícones."
+      }
+    }
+  }
+}

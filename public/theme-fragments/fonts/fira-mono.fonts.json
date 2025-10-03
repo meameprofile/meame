@@ -1,0 +1,8 @@
+{
+  "fonts": {
+    "sans": "'Inter', sans-serif",
+    "mono": "'Fira Code', monospace",
+    "--text-sm": "0.8125rem",
+    "--text-base": "0.9375rem"
+  }
+}

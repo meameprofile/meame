@@ -1,0 +1,106 @@
+{
+  "it-IT": {
+    "storePage": {
+      "title": "Il Nostro Negozio del Benessere",
+      "subtitle": "Una selezione curata di prodotti per potenziare la tua salute e le tue prestazioni.",
+      "filters": {
+        "searchLabel": "Cerca",
+        "searchPlaceholder": "Cerca prodotti...",
+        "categoryTitle": "Categorie",
+        "priceTitle": "Fascia di Prezzo",
+        "tagsTitle": "Etichette",
+        "stockTitle": "Disponibilità",
+        "inStockLabel": "Solo disponibili"
+      },
+      "bestsellerLabel": "Più Venduto",
+      "addToCartButton": "Aggiungi al Carrello",
+      "viewDetailsButton": "Vedi Dettagli",
+      "products": [
+        "prod_kband_pro",
+        "prod_vp_filter",
+        "prod_nb_pods",
+        "prod_rg_mat",
+        "prod_eg_blend",
+        "prod_ha_bottle"
+      ]
+    }
+  },
+  "es-ES": {
+    "storePage": {
+      "title": "Nuestra Tienda de Bienestar",
+      "subtitle": "Una selección curada de productos para potenciar tu salud y rendimiento.",
+      "filters": {
+        "searchLabel": "Buscar",
+        "searchPlaceholder": "Buscar productos...",
+        "categoryTitle": "Categorías",
+        "priceTitle": "Rango de Precios",
+        "tagsTitle": "Etiquetas",
+        "stockTitle": "Disponibilidad",
+        "inStockLabel": "Solo en stock"
+      },
+      "bestsellerLabel": "Más Vendido",
+      "addToCartButton": "Añadir al Carrito",
+      "viewDetailsButton": "Ver Detalles",
+      "products": [
+        "prod_kband_pro",
+        "prod_vp_filter",
+        "prod_nb_pods",
+        "prod_rg_mat",
+        "prod_eg_blend",
+        "prod_ha_bottle"
+      ]
+    }
+  },
+  "en-US": {
+    "storePage": {
+      "title": "Our Wellness Store",
+      "subtitle": "A curated selection of products to boost your health and performance.",
+      "filters": {
+        "searchLabel": "Search",
+        "searchPlaceholder": "Search products...",
+        "categoryTitle": "Categories",
+        "priceTitle": "Price Range",
+        "tagsTitle": "Tags",
+        "stockTitle": "Availability",
+        "inStockLabel": "In stock only"
+      },
+      "bestsellerLabel": "Bestseller",
+      "addToCartButton": "Add to Cart",
+      "viewDetailsButton": "View Details",
+      "products": [
+        "prod_kband_pro",
+        "prod_vp_filter",
+        "prod_nb_pods",
+        "prod_rg_mat",
+        "prod_eg_blend",
+        "prod_ha_bottle"
+      ]
+    }
+  },
+  "pt-BR": {
+    "storePage": {
+      "title": "Nossa Loja de Bem-Estar",
+      "subtitle": "Uma seleção curada de produtos para impulsionar sua saúde e desempenho.",
+      "filters": {
+        "searchLabel": "Buscar",
+        "searchPlaceholder": "Buscar produtos...",
+        "categoryTitle": "Categorias",
+        "priceTitle": "Faixa de Preço",
+        "tagsTitle": "Tags",
+        "stockTitle": "Disponibilidade",
+        "inStockLabel": "Apenas em estoque"
+      },
+      "bestsellerLabel": "Mais Vendido",
+      "addToCartButton": "Adicionar ao Carrinho",
+      "viewDetailsButton": "Ver Detalhes",
+      "products": [
+        "prod_kband_pro",
+        "prod_vp_filter",
+        "prod_nb_pods",
+        "prod_rg_mat",
+        "prod_eg_blend",
+        "prod_ha_bottle"
+      ]
+    }
+  }
+}

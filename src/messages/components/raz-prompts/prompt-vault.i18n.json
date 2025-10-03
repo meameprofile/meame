@@ -1,0 +1,70 @@
+{
+  "it-IT": {
+    "promptVault": {
+      "title": "Bóveda di Prompt",
+      "description": "Esplora e gestisci i tuoi prompt generativi.",
+      "searchPlaceholder": "Cerca per titolo, testo o parole chiave...",
+      "searchButton": "Cerca",
+      "filterByAILabel": "Filtra per IA",
+      "allAIsOption": "Tutte le IA",
+      "loadingPrompts": "Caricamento dei prompt...",
+      "noPromptsFound": "Nessun prompt trovato che corrisponda alla tua ricerca.",
+      "previousPageButton": "Precedente",
+      "nextPageButton": "Successivo",
+      "pageInfo": "Pagina {{currentPage}} di {{totalPages}}",
+      "viewDetailsButton": "Vedi Dettagli",
+      "noImageYet": "Nessuna immagine ancora"
+    }
+  },
+  "es-ES": {
+    "promptVault": {
+      "title": "Bóveda de Prompts",
+      "description": "Explora y gestiona tus prompts generativos.",
+      "searchPlaceholder": "Buscar por título, texto o palabras clave...",
+      "searchButton": "Buscar",
+      "filterByAILabel": "Filtrar por IA",
+      "allAIsOption": "Todas las IAs",
+      "loadingPrompts": "Cargando prompts...",
+      "noPromptsFound": "No se encontraron prompts que coincidan con tu búsqueda.",
+      "previousPageButton": "Anterior",
+      "nextPageButton": "Siguiente",
+      "pageInfo": "Página {{currentPage}} de {{totalPages}}",
+      "viewDetailsButton": "Ver Detalles",
+      "noImageYet": "Sin imagen todavía"
+    }
+  },
+  "en-US": {
+    "promptVault": {
+      "title": "Prompt Vault",
+      "description": "Explore and manage your generative prompts.",
+      "searchPlaceholder": "Search by title, text, or keywords...",
+      "searchButton": "Search",
+      "filterByAILabel": "Filter by AI",
+      "allAIsOption": "All AIs",
+      "loadingPrompts": "Loading prompts...",
+      "noPromptsFound": "No prompts found matching your search.",
+      "previousPageButton": "Previous",
+      "nextPageButton": "Next",
+      "pageInfo": "Page {{currentPage}} of {{totalPages}}",
+      "viewDetailsButton": "View Details",
+      "noImageYet": "No image yet"
+    }
+  },
+  "pt-BR": {
+    "promptVault": {
+      "title": "Cofre de Prompts",
+      "description": "Explore e gerencie seus prompts generativos.",
+      "searchPlaceholder": "Buscar por título, texto ou palavras-chave...",
+      "searchButton": "Buscar",
+      "filterByAILabel": "Filtrar por IA",
+      "allAIsOption": "Todas as IAs",
+      "loadingPrompts": "Carregando prompts...",
+      "noPromptsFound": "Nenhum prompt encontrado que corresponda à sua busca.",
+      "previousPageButton": "Anterior",
+      "nextPageButton": "Próximo",
+      "pageInfo": "Página {{currentPage}} de {{totalPages}}",
+      "viewDetailsButton": "Ver Detalhes",
+      "noImageYet": "Nenhuma imagem ainda"
+    }
+  }
+}

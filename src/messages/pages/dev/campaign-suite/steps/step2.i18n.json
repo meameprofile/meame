@@ -1,0 +1,50 @@
+{
+  "it-IT": {
+    "step2": {
+      "title": "Passo 2: Composizione del Layout",
+      "description": "Costruisci la narrativa visiva della tua pagina. Trascina le sezioni dalla libreria al canvas e riordinale per definire il flusso dell'utente.",
+      "libraryTitle": "Libreria delle Sezioni",
+      "canvasTitle": "Layout della Campagna",
+      "addSectionButtonText": "Aggiungi",
+      "emptyLibraryText": "Tutte le sezioni sono state aggiunte.",
+      "emptyCanvasText": "Trascina o aggiungi sezioni qui per costruire il tuo layout.",
+      "nextButtonText": "Salva Layout e Continua"
+    }
+  },
+  "es-ES": {
+    "step2": {
+      "title": "Paso 2: Composición del Layout",
+      "description": "Construye la narrativa visual de tu página. Arrastra las secciones desde la biblioteca al lienzo y reordénalas para definir el flujo del usuario.",
+      "libraryTitle": "Biblioteca de Secciones",
+      "canvasTitle": "Layout de la Campaña",
+      "addSectionButtonText": "Añadir",
+      "emptyLibraryText": "Todas las secciones han sido añadidas.",
+      "emptyCanvasText": "Arrastra o añade secciones aquí para construir tu layout.",
+      "nextButtonText": "Guardar Layout y Continuar"
+    }
+  },
+  "en-US": {
+    "step2": {
+      "title": "Step 2: Layout Composition",
+      "description": "Build the visual narrative of your page. Drag sections from the library to the canvas and reorder them to define the user's journey.",
+      "libraryTitle": "Section Library",
+      "canvasTitle": "Campaign Layout",
+      "addSectionButtonText": "Add",
+      "emptyLibraryText": "All sections have been added.",
+      "emptyCanvasText": "Drag or add sections here to build your layout.",
+      "nextButtonText": "Save Layout & Continue"
+    }
+  },
+  "pt-BR": {
+    "step2": {
+      "title": "Passo 2: Composição do Layout",
+      "description": "Construa a narrativa visual da sua página. Arraste as seções da biblioteca para a tela e reordene-as para definir o fluxo do usuário.",
+      "libraryTitle": "Biblioteca de Seções",
+      "canvasTitle": "Layout da Campanha",
+      "addSectionButtonText": "Adicionar",
+      "emptyLibraryText": "Todas as seções foram adicionadas.",
+      "emptyCanvasText": "Arraste ou adicione seções aqui para construir seu layout.",
+      "nextButtonText": "Salvar Layout e Continuar"
+    }
+  }
+}

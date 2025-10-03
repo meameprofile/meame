@@ -1,0 +1,98 @@
+{
+  "it-IT": {
+    "commentSection": {
+      "title": "Commenti",
+      "form": {
+        "placeholder": "Aggiungi il tuo commento...",
+        "minCharactersError": "Il commento deve avere almeno 3 caratteri.",
+        "publishButton": "Pubblica Commento",
+        "publishButtonLoading": "Pubblicazione in corso...",
+        "authRequiredMessage": "Devi ",
+        "loginLinkText": "accedere",
+        "loginPrompt": "Per unirti alla conversazione, per favore ",
+        "loginPromptSuffix": " per commentare.",
+        "loginLink": "accedi"
+      },
+      "list": {
+        "emptyState": "Ancora nessun commento. Sii il primo a partecipare!"
+      },
+      "toast": {
+        "success": "Commento pubblicato con successo!",
+        "errorTitle": "Errore nella pubblicazione",
+        "authError": "Devi effettuare l'accesso per commentare."
+      }
+    }
+  },
+  "es-ES": {
+    "commentSection": {
+      "title": "Comentarios",
+      "form": {
+        "placeholder": "Añade tu comentario...",
+        "minCharactersError": "El comentario debe tener al menos 3 caracteres.",
+        "publishButton": "Publicar Comentario",
+        "publishButtonLoading": "Publicando...",
+        "authRequiredMessage": "Debes ",
+        "loginLinkText": "iniciar sesión",
+        "loginPrompt": "Para unirte a la conversación, por favor ",
+        "loginPromptSuffix": " para comentar.",
+        "loginLink": "inicia sesión"
+      },
+      "list": {
+        "emptyState": "Aún no hay comentarios. ¡Sé el primero en participar!"
+      },
+      "toast": {
+        "success": "¡Comentario publicado con éxito!",
+        "errorTitle": "Error al publicar",
+        "authError": "Debes iniciar sesión para comentar."
+      }
+    }
+  },
+  "en-US": {
+    "commentSection": {
+      "title": "Comments",
+      "form": {
+        "placeholder": "Add your comment...",
+        "minCharactersError": "Comment must be at least 3 characters long.",
+        "publishButton": "Post Comment",
+        "publishButtonLoading": "Posting...",
+        "authRequiredMessage": "You must ",
+        "loginLinkText": "log in",
+        "loginPrompt": "To join the conversation, please ",
+        "loginPromptSuffix": " to comment.",
+        "loginLink": "log in"
+      },
+      "list": {
+        "emptyState": "No comments yet. Be the first to participate!"
+      },
+      "toast": {
+        "success": "Comment posted successfully!",
+        "errorTitle": "Error posting comment",
+        "authError": "You must be logged in to comment."
+      }
+    }
+  },
+  "pt-BR": {
+    "commentSection": {
+      "title": "Comentários",
+      "form": {
+        "placeholder": "Adicione seu comentário...",
+        "minCharactersError": "O comentário deve ter pelo menos 3 caracteres.",
+        "publishButton": "Publicar Comentário",
+        "publishButtonLoading": "Publicando...",
+        "authRequiredMessage": "Você deve ",
+        "loginLinkText": "fazer login",
+        "loginPrompt": "Para se juntar à conversa, por favor ",
+        "loginPromptSuffix": " para comentar.",
+        "loginLink": "faça login"
+      },
+      "list": {
+        "emptyState": "Ainda sem comentários. Seja o primeiro a participar!"
+      },
+      "toast": {
+        "success": "Comentário publicado com sucesso!",
+        "errorTitle": "Erro ao publicar comentário",
+        "authError": "Você deve estar logado para comentar."
+      }
+    }
+  }
+}

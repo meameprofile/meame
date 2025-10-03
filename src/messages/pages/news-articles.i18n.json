@@ -1,0 +1,94 @@
+{
+  "it-IT": {
+    "5-supercibi-dieta": {
+      "title": "5 Superfood Essenziali da Aggiungere alla Tua Dieta Quotidiana",
+      "subtitle": "Potenzia la tua salute con questi concentrati di nutrienti che la natura ci offre.",
+      "author": "Dott.ssa Sofia Rossi",
+      "publishedDate": "15 Settembre 2025",
+      "readTime": 5,
+      "category": "Nutrizione",
+      "featuredImageUrl": "/img/news/superfoods.jpg",
+      "featuredImageAlt": "Una ciotola colorata di superfood, incluse bacche e noci.",
+      "content": [
+        {
+          "type": "p",
+          "text": "In un mondo pieno di diete complesse e integratori, a volte la soluzione più potente si trova negli alimenti semplici e naturali. I superfood sono alimenti ricchi di nutrienti considerati particolarmente benefici per la salute e il benessere. Ecco cinque dei nostri preferiti che puoi facilmente integrare nella tua routine."
+        },
+        { "type": "h2", "text": "1. Bacche di Goji: L'Antiossidante Potente" },
+        {
+          "type": "p",
+          "text": "Queste piccole bacche rosse sono un concentrato di antiossidanti, vitamine e minerali. Aiutano a combattere i radicali liberi, supportano la vista e possono migliorare il sistema immunitario. Aggiungile al tuo yogurt o frullato mattutino."
+        }
+      ]
+    }
+  },
+  "es-ES": {
+    "5-superalimentos-dieta": {
+      "title": "5 Superalimentos Esenciales para Añadir a Tu Dieta Diaria",
+      "subtitle": "Potencia tu salud con estos concentrados de nutrientes que la naturaleza nos ofrece.",
+      "author": "Dra. Sofía Rossi",
+      "publishedDate": "15 de Septiembre de 2025",
+      "readTime": 5,
+      "category": "Nutrición",
+      "featuredImageUrl": "/img/news/superfoods.jpg",
+      "featuredImageAlt": "Un bol colorido de superalimentos, incluyendo bayas y frutos secos.",
+      "content": [
+        {
+          "type": "p",
+          "text": "En un mundo lleno de dietas complejas y suplementos, a veces la solución más potente se encuentra en los alimentos simples y naturales. Los superalimentos son alimentos densos en nutrientes considerados especialmente beneficiosos para la salud y el bienestar. Aquí tienes cinco de nuestros favoritos que puedes integrar fácilmente en tu rutina."
+        },
+        { "type": "h2", "text": "1. Bayas de Goji: El Antioxidante Poderoso" },
+        {
+          "type": "p",
+          "text": "Estas pequeñas bayas rojas son una potencia de antioxidantes, vitaminas y minerales. Ayudan a combatir los radicales libres, apoyan la visión y pueden mejorar el sistema inmunológico. Añádelas a tu yogur o batido matutino."
+        }
+      ]
+    }
+  },
+  "en-US": {
+    "5-superfoods-diet": {
+      "title": "5 Essential Superfoods to Add to Your Daily Diet",
+      "subtitle": "Boost your health with these nutrient powerhouses that nature offers.",
+      "author": "Dr. Sophia Rossi",
+      "publishedDate": "September 15, 2025",
+      "readTime": 5,
+      "category": "Nutrition",
+      "featuredImageUrl": "/img/news/superfoods.jpg",
+      "featuredImageAlt": "A colorful bowl of superfoods, including berries and nuts.",
+      "content": [
+        {
+          "type": "p",
+          "text": "In a world full of complex diets and supplements, sometimes the most powerful solution lies in simple, natural foods. Superfoods are nutrient-dense foods considered to be particularly beneficial for health and well-being. Here are five of our favorites that you can easily integrate into your routine."
+        },
+        { "type": "h2", "text": "1. Goji Berries: The Antioxidant Powerhouse" },
+        {
+          "type": "p",
+          "text": "These small red berries are a powerhouse of antioxidants, vitamins, and minerals. They help fight free radicals, support vision, and can boost the immune system. Add them to your morning yogurt or smoothie."
+        }
+      ]
+    }
+  },
+  "pt-BR": {
+    "5-superalimentos-dieta": {
+      "title": "5 Superalimentos Essenciais para Adicionar à Sua Dieta Diária",
+      "subtitle": "Potencialize sua saúde com estes concentrados de nutrientes que a natureza nos oferece.",
+      "author": "Dra. Sofia Rossi",
+      "publishedDate": "15 de Setembro de 2025",
+      "readTime": 5,
+      "category": "Nutrição",
+      "featuredImageUrl": "/img/news/superfoods.jpg",
+      "featuredImageAlt": "Uma tigela colorida de superalimentos, incluindo frutas vermelhas e nozes.",
+      "content": [
+        {
+          "type": "p",
+          "text": "Em um mundo cheio de dietas complexas e suplementos, às vezes a solução mais poderosa está nos alimentos simples e naturais. Superalimentos são alimentos densos em nutrientes considerados particularmente benéficos para a saúde e o bem-estar. Aqui estão cinco dos nossos favoritos que você pode integrar facilmente à sua rotina."
+        },
+        { "type": "h2", "text": "1. Bagas de Goji: O Poderoso Antioxidante" },
+        {
+          "type": "p",
+          "text": "Estas pequenas bagas vermelhas são uma potência de antioxidantes, vitaminas e minerais. Elas ajudam a combater os radicais livres, apoiam a visão e podem fortalecer o sistema imunológico. Adicione-as ao seu iogurte ou smoothie matinal."
+        }
+      ]
+    }
+  }
+}

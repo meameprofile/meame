@@ -1,0 +1,42 @@
+{
+  "it-IT": {
+    "componentCanvas": {
+      "errorNoComponentTitle": "Nessun Componente Selezionato",
+      "errorNoComponentDescription": "Per favore, seleziona un componente dal dashboard di sviluppo per vederne l'anteprima qui.",
+      "errorNoComponentLink": "Torna al dashboard",
+      "errorLoadingTitle": "Errore di Caricamento del Componente",
+      "errorLoadingDescription": "Impossibile caricare il componente",
+      "metadataPanelPropsLabel": "Props di Mock Applicate"
+    }
+  },
+  "es-ES": {
+    "componentCanvas": {
+      "errorNoComponentTitle": "Ningún Componente Seleccionado",
+      "errorNoComponentDescription": "Por favor, selecciona un componente del dashboard de desarrollo para previsualizarlo aquí.",
+      "errorNoComponentLink": "Volver al dashboard",
+      "errorLoadingTitle": "Error de Carga del Componente",
+      "errorLoadingDescription": "No se pudo cargar el componente",
+      "metadataPanelPropsLabel": "Props de Mock Aplicadas"
+    }
+  },
+  "en-US": {
+    "componentCanvas": {
+      "errorNoComponentTitle": "No Component Selected",
+      "errorNoComponentDescription": "Please select a component from the developer dashboard to preview it here.",
+      "errorNoComponentLink": "Back to dashboard",
+      "errorLoadingTitle": "Component Load Error",
+      "errorLoadingDescription": "Could not load the component",
+      "metadataPanelPropsLabel": "Applied Mock Props"
+    }
+  },
+  "pt-BR": {
+    "componentCanvas": {
+      "errorNoComponentTitle": "Nenhum Componente Selecionado",
+      "errorNoComponentDescription": "Por favor, selecione um componente no painel do desenvolvedor para visualizá-lo aqui.",
+      "errorNoComponentLink": "Voltar ao painel",
+      "errorLoadingTitle": "Erro ao Carregar o Componente",
+      "errorLoadingDescription": "Não foi possível carregar o componente",
+      "metadataPanelPropsLabel": "Props de Mock Aplicadas"
+    }
+  }
+}

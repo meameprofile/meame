@@ -1,0 +1,82 @@
+{
+  "it-IT": {
+    "sesa": {
+      "categories": {
+        "ai": "Motore IA",
+        "sty": "Stile Visuale",
+        "fmt": "Proporzioni"
+      },
+      "codes": {
+        "ideo": "Ideogram",
+        "mj": "Midjourney",
+        "sdxl": "Stable Diffusion",
+        "pht": "Fotorealistico",
+        "cin": "Cinematografico",
+        "ill": "Illustrazione",
+        "1x1": "1:1 (Quadrato)",
+        "16x9": "16:9 (Orizzontale)",
+        "9x16": "9:16 (Verticale)"
+      }
+    }
+  },
+  "es-ES": {
+    "sesa": {
+      "categories": {
+        "ai": "Motor IA",
+        "sty": "Estilo Visual",
+        "fmt": "Relación de Aspecto"
+      },
+      "codes": {
+        "ideo": "Ideogram",
+        "mj": "Midjourney",
+        "sdxl": "Stable Diffusion",
+        "pht": "Fotorrealista",
+        "cin": "Cinematográfico",
+        "ill": "Ilustración",
+        "1x1": "1:1 (Cuadrado)",
+        "16x9": "16:9 (Horizontal)",
+        "9x16": "9:16 (Vertical)"
+      }
+    }
+  },
+  "en-US": {
+    "sesa": {
+      "categories": {
+        "ai": "AI Engine",
+        "sty": "Visual Style",
+        "fmt": "Aspect Ratio"
+      },
+      "codes": {
+        "ideo": "Ideogram",
+        "mj": "Midjourney",
+        "sdxl": "Stable Diffusion",
+        "pht": "Photorealistic",
+        "cin": "Cinematic",
+        "ill": "Illustration",
+        "1x1": "1:1 (Square)",
+        "16x9": "16:9 (Landscape)",
+        "9x16": "9:16 (Portrait)"
+      }
+    }
+  },
+  "pt-BR": {
+    "sesa": {
+      "categories": {
+        "ai": "Motor de IA",
+        "sty": "Estilo Visual",
+        "fmt": "Proporção da Imagem"
+      },
+      "codes": {
+        "ideo": "Ideogram",
+        "mj": "Midjourney",
+        "sdxl": "Stable Diffusion",
+        "pht": "Fotorrealista",
+        "cin": "Cinematográfico",
+        "ill": "Ilustração",
+        "1x1": "1:1 (Quadrado)",
+        "16x9": "16:9 (Paisagem)",
+        "9x16": "9:16 (Retrato)"
+      }
+    }
+  }
+}

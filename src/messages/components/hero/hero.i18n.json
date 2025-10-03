@@ -1,0 +1,30 @@
+{
+  "it-IT": {
+    "hero": {
+      "title": "Il Tuo Percorso Verso il Benessere Inizia Qui",
+      "subtitle": "Scopri soluzioni basate sulla scienza per sbloccare il tuo massimo potenziale.",
+      "backgroundImageAssetId": "i-bkg-hero-abstract-01"
+    }
+  },
+  "es-ES": {
+    "hero": {
+      "title": "Tu Camino Hacia el Bienestar Comienza Aquí",
+      "subtitle": "Descubre soluciones basadas en la ciencia para desbloquear tu máximo potencial.",
+      "backgroundImageAssetId": "i-bkg-hero-abstract-01"
+    }
+  },
+  "en-US": {
+    "hero": {
+      "title": "Your Path to Wellness Starts Here",
+      "subtitle": "Discover science-backed solutions to unlock your full potential.",
+      "backgroundImageAssetId": "i-bkg-hero-abstract-01"
+    }
+  },
+  "pt-BR": {
+    "hero": {
+      "title": "Sua Jornada para o Bem-Estar Começa Aqui",
+      "subtitle": "Descubra soluções baseadas na ciência para desbloquear seu potencial máximo.",
+      "backgroundImageAssetId": "i-bkg-hero-abstract-01"
+    }
+  }
+}

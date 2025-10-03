@@ -1,0 +1,40 @@
+{
+  "articleId": "clxzyw3v40002cde4ijklmno",
+  "status": "published",
+  "createdAt": "2025-09-20T08:00:00.000Z",
+  "updatedAt": "2025-09-20T08:00:00.000Z",
+  "studyDna": {
+    "originalTitle": "The Efficacy of Mindfulness-Based Interventions for Stress Reduction: A Meta-Analysis",
+    "authors": ["Dr. J. Smith", "Dr. L. Chen"],
+    "institution": "Institute of Contemplative Studies",
+    "publication": "Mindfulness & Health Journal",
+    "publicationDate": "2024-06-15T00:00:00.000Z",
+    "doi": "https://doi.org/10.5678/mhj.2024.987",
+    "fundingSource": "National Health Fund",
+    "objective": "To evaluate the overall effectiveness of various mindfulness-based interventions...",
+    "studyType": "Meta-Analysis",
+    "methodologySummary": "Systematic review and meta-analysis of 50 randomized controlled trials (RCTs)...",
+    "mainResults": "Mindfulness-based interventions demonstrated a moderate to large effect size...",
+    "authorsConclusion": "Mindfulness practices are effective and valuable tools for stress reduction...",
+    "limitations": [
+      "Heterogeneity in study designs and intervention durations."
+    ]
+  },
+  "content": {
+    "es-ES": {
+      "title": "Mindfulness y Reducción del Estrés: El Camino Hacia la Calma Interior",
+      "slug": "mindfulness-reduccion-estres-camino-calma",
+      "summary": "Descubre cómo las prácticas de mindfulness, respaldadas por la ciencia, pueden ser una herramienta poderosa...",
+      "body": "En la vorágine de la vida moderna, el estrés se ha convertido en un compañero constante..."
+    }
+  },
+  "baviHeroImageId": "webvork/backgrounds/login_bg_abstract_1_sje15x",
+  "relatedPromptIds": [],
+  "tags": [
+    "mindfulness",
+    "meditacion",
+    "bienestar-mental",
+    "reduccion-estres",
+    "salud-mental"
+  ]
+}
