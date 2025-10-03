@@ -1,11 +1,12 @@
-// _docs/000_MANIFIESTO_GUARDIANES_DE_DIAGNOSTICO.md
-/**
- * @file 000_MANIFIESTO_GUARDIANES_DE_DIAGNOSTICO.md
- * @description Manifiesto Canónico y SSoT para la creación de scripts de diagnóstico.
- *              Define la arquitectura, contratos y principios para todo el arsenal de auditoría.
- * @version 1.0.0
- * @author L.I.A. Legacy
- */
+// \_docs/000_MANIFIESTO_GUARDIANES_DE_DIAGNOSTICO.md
+/\*\*
+
+- @file 000_MANIFIESTO_GUARDIANES_DE_DIAGNOSTICO.md
+- @description Manifiesto Canónico y SSoT para la creación de scripts de diagnóstico.
+-              Define la arquitectura, contratos y principios para todo el arsenal de auditoría.
+- @version 1.0.0
+- @author L.I.A. Legacy
+  \*/
 
 # Manifiesto Canónico: Creación de Guardianes de Diagnóstico
 
@@ -37,7 +38,7 @@ Todo script de diagnóstico **DEBE** adherirse a los siguientes contratos:
 
 La primera línea del archivo **DEBE** ser un comentario con el comando `pnpm tsx` exacto para ejecutar ese script, seguido del bloque de documentación TSDoc.
 
-```typescript
+````typescript
 // pnpm tsx scripts/run-with-env.ts scripts/dominio/script.ts
 /**
  * @file script.ts
@@ -83,3 +84,4 @@ Para cada dominio, se DEBEN crear los siguientes scripts en package.json:
 Este manifiesto asegura que, a medida que el proyecto crezca, nuestro arsenal de diagnóstico se mantendrá coherente, robusto y de élite.
 
 ---
+````

@@ -57,7 +57,10 @@ async function diagnoseCloudinaryConnection() {
     ],
     connectionStatus: "FAILED", // Por defecto
     environmentValidation: [],
-    apiPingResult: { status: "PENDING", message: "La prueba no se ha ejecutado." },
+    apiPingResult: {
+      status: "PENDING",
+      message: "La prueba no se ha ejecutado.",
+    },
     summary: "",
   };
 
@@ -96,7 +99,9 @@ async function diagnoseCloudinaryConnection() {
     if (!allKeysValid) {
       throw new Error("Una o más variables de entorno de Cloudinary faltan.");
     }
-    scriptLogger.success("Todas las variables de entorno requeridas están presentes.");
+    scriptLogger.success(
+      "Todas las variables de entorno requeridas están presentes."
+    );
 
     // 2. Configurar y probar la conexión con la API
     cloudinary.config({
@@ -138,7 +143,9 @@ async function diagnoseCloudinaryConnection() {
     // 4. Escribir el informe final, sea de éxito o de fallo
     await fs.mkdir(reportDir, { recursive: true });
     await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
-    scriptLogger.info(`Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`);
+    scriptLogger.info(
+      `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
+    );
     scriptLogger.endGroup();
     scriptLogger.endTrace(traceId);
     if (report.connectionStatus === "FAILED") {

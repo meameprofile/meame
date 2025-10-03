@@ -15,12 +15,33 @@ import { scriptLogger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";
 
 // --- SSoT de Contratos de Datos para la Respuesta COMPLETA de la RPC ---
-const ColumnSchema = z.object({ table: z.string(), column: z.string(), type: z.string() });
-const ConstraintSchema = z.object({ table: z.string(), constraint_name: z.string(), type: z.string() });
+const ColumnSchema = z.object({
+  table: z.string(),
+  column: z.string(),
+  type: z.string(),
+});
+const ConstraintSchema = z.object({
+  table: z.string(),
+  constraint_name: z.string(),
+  type: z.string(),
+});
 const IndexSchema = z.object({ table: z.string(), index_name: z.string() });
-const RlsPolicySchema = z.object({ table: z.string(), policy_name: z.string(), command: z.string(), definition: z.string().nullable() });
-const TriggerSchema = z.object({ trigger_name: z.string(), table: z.string(), timing: z.string(), event: z.string() });
-const FunctionSchema = z.object({ name: z.string(), type: z.enum(["FUNCTION", "PROCEDURE"]) });
+const RlsPolicySchema = z.object({
+  table: z.string(),
+  policy_name: z.string(),
+  command: z.string(),
+  definition: z.string().nullable(),
+});
+const TriggerSchema = z.object({
+  trigger_name: z.string(),
+  table: z.string(),
+  timing: z.string(),
+  event: z.string(),
+});
+const FunctionSchema = z.object({
+  name: z.string(),
+  type: z.enum(["FUNCTION", "PROCEDURE"]),
+});
 
 const SystemDiagnosticsSchema = z.object({
   schema_columns: z.array(ColumnSchema),
@@ -47,7 +68,9 @@ interface Report {
 
 async function diagnoseFullSchema(): Promise<ScriptActionResult<string>> {
   const traceId = scriptLogger.startTrace(`diagnoseSchema:all_v1.0`);
-  scriptLogger.startGroup(`🔬 Auditando Esquema COMPLETO de la Base de Datos...`);
+  scriptLogger.startGroup(
+    `🔬 Auditando Esquema COMPLETO de la Base de Datos...`
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "supabase");
   const reportPath = path.resolve(reportDir, `schema-all.json`);
@@ -55,7 +78,8 @@ async function diagnoseFullSchema(): Promise<ScriptActionResult<string>> {
   const report: Report = {
     reportMetadata: {
       script: `scripts/supabase/schema-all.ts`,
-      purpose: "Diagnóstico estructural holístico de la base de datos Supabase.",
+      purpose:
+        "Diagnóstico estructural holístico de la base de datos Supabase.",
       generatedAt: new Date().toISOString(),
     },
     instructionsForAI: [
@@ -82,37 +106,45 @@ async function diagnoseFullSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(`Invocando RPC 'get_system_diagnostics'...`);
 
     const { data, error } = await supabase.rpc("get_system_diagnostics");
-    if (error) throw new Error(`Fallo en RPC 'get_system_diagnostics': ${error.message}`);
+    if (error)
+      throw new Error(
+        `Fallo en RPC 'get_system_diagnostics': ${error.message}`
+      );
 
     const validation = SystemDiagnosticsSchema.safeParse(data);
     if (!validation.success) {
       throw new Error(`Los datos de la RPC no cumplen con el schema esperado.`);
     }
     report.schemaDetails = validation.data;
-    scriptLogger.traceEvent(traceId, "Datos de diagnóstico del sistema obtenidos y validados.");
+    scriptLogger.traceEvent(
+      traceId,
+      "Datos de diagnóstico del sistema obtenidos y validados."
+    );
 
     scriptLogger.info("--- Resumen del Esquema ---");
     console.table({
-        "Columnas": report.schemaDetails.schema_columns.length,
-        "Restricciones": report.schemaDetails.table_constraints.length,
-        "Índices": report.schemaDetails.indexes.length,
-        "Políticas RLS": report.schemaDetails.rls_policies.length,
-        "Triggers": report.schemaDetails.triggers.length,
-        "Funciones": report.schemaDetails.functions_and_procedures.length,
+      Columnas: report.schemaDetails.schema_columns.length,
+      Restricciones: report.schemaDetails.table_constraints.length,
+      Índices: report.schemaDetails.indexes.length,
+      "Políticas RLS": report.schemaDetails.rls_policies.length,
+      Triggers: report.schemaDetails.triggers.length,
+      Funciones: report.schemaDetails.functions_and_procedures.length,
     });
 
     report.auditStatus = "SUCCESS";
     report.summary = `Auditoría de esquema completada con éxito. Se analizaron ${Object.keys(report.schemaDetails).length} categorías del esquema.`;
     scriptLogger.success(report.summary);
-
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : "Error desconocido.";
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
     report.summary = `Auditoría de esquema fallida: ${errorMessage}`;
     scriptLogger.error(report.summary, { traceId });
   } finally {
     await fs.mkdir(reportDir, { recursive: true });
     await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
-    scriptLogger.info(`Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`);
+    scriptLogger.info(
+      `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
+    );
     scriptLogger.endGroup();
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") {

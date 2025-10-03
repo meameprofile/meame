@@ -43,7 +43,9 @@ interface Report {
 
 async function diagnoseRlsSchema(): Promise<ScriptActionResult<string>> {
   const traceId = scriptLogger.startTrace(`diagnoseSchema:rls`);
-  scriptLogger.startGroup(`🛡️  Auditando Políticas de Seguridad (RLS) de la Base de Datos...`);
+  scriptLogger.startGroup(
+    `🛡️  Auditando Políticas de Seguridad (RLS) de la Base de Datos...`
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "supabase");
   const reportPath = path.resolve(reportDir, `schema-rls.json`);
@@ -51,7 +53,8 @@ async function diagnoseRlsSchema(): Promise<ScriptActionResult<string>> {
   const report: Report = {
     reportMetadata: {
       script: `scripts/supabase/schema-rls.ts`,
-      purpose: "Diagnóstico de todas las políticas de Seguridad a Nivel de Fila (RLS).",
+      purpose:
+        "Diagnóstico de todas las políticas de Seguridad a Nivel de Fila (RLS).",
       generatedAt: new Date().toISOString(),
     },
     instructionsForAI: [
@@ -72,19 +75,29 @@ async function diagnoseRlsSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(`Invocando RPC 'get_system_diagnostics'...`);
 
     const { data, error } = await supabase.rpc("get_system_diagnostics");
-    if (error) throw new Error(`Fallo en RPC 'get_system_diagnostics': ${error.message}`);
+    if (error)
+      throw new Error(
+        `Fallo en RPC 'get_system_diagnostics': ${error.message}`
+      );
 
     const validation = SystemDiagnosticsSchema.safeParse(data);
     if (!validation.success) {
-      throw new Error(`Los datos de la RPC 'get_system_diagnostics' no cumplen con el schema esperado.`);
+      throw new Error(
+        `Los datos de la RPC 'get_system_diagnostics' no cumplen con el schema esperado.`
+      );
     }
     const diagnosticsData = validation.data;
-    scriptLogger.traceEvent(traceId, "Datos de diagnóstico del sistema obtenidos y validados.");
+    scriptLogger.traceEvent(
+      traceId,
+      "Datos de diagnóstico del sistema obtenidos y validados."
+    );
 
     report.schemaDetails.rls_policies = diagnosticsData.rls_policies || [];
 
     if (report.schemaDetails.rls_policies.length === 0) {
-      scriptLogger.warn("¡ALERTA DE SEGURIDAD! No se encontraron políticas RLS. Tus datos podrían estar expuestos.");
+      scriptLogger.warn(
+        "¡ALERTA DE SEGURIDAD! No se encontraron políticas RLS. Tus datos podrían estar expuestos."
+      );
     }
 
     scriptLogger.info("--- Políticas de Seguridad a Nivel de Fila (RLS) ---");
@@ -94,13 +107,16 @@ async function diagnoseRlsSchema(): Promise<ScriptActionResult<string>> {
     report.summary = `Auditoría RLS completada. Se encontraron ${report.schemaDetails.rls_policies.length} políticas.`;
     scriptLogger.success(report.summary);
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : "Error desconocido.";
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
     report.summary = `Auditoría RLS fallida: ${errorMessage}`;
     scriptLogger.error(report.summary, { traceId });
   } finally {
     await fs.mkdir(reportDir, { recursive: true });
     await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
-    scriptLogger.info(`Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`);
+    scriptLogger.info(
+      `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
+    );
     scriptLogger.endGroup();
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);

@@ -1,10 +1,11 @@
-// _docs/supabase/001_MANIFIESTO_TABLA_PROFILES.md
-/**
- * @file 001_MANIFIESTO_TABLA_PROFILES.md
- * @description Manifiesto Canónico y SSoT para la tabla 'public.profiles'.
- * @version 3.0.0 (Hybrid Identity Architecture)
- * @author L.I.A. Legacy
- */
+// \_docs/supabase/001_MANIFIESTO_TABLA_PROFILES.md
+/\*\*
+
+- @file 001_MANIFIESTO_TABLA_PROFILES.md
+- @description Manifiesto Canónico y SSoT para la tabla 'public.profiles'.
+- @version 3.0.0 (Hybrid Identity Architecture)
+- @author L.I.A. Legacy
+  \*/
 
 # Manifiesto de Tabla Soberana: `public.profiles` v3.0
 
@@ -16,14 +17,14 @@ Esta tabla es la extensión soberana de la entidad `auth.users`. Almacena metada
 
 Este sistema sigue un principio de identidad híbrida para lograr tanto la manejabilidad humana como el rendimiento de la máquina:
 
-*   **Clave Primaria Inmutable (UUID):** La relación fundamental entre las tablas se basa en el `id` de tipo `UUID` de la tabla `auth.users`. Este es el identificador interno, estable y de alto rendimiento.
-*   **Identificador Legible (Email):** La columna `email` en `auth.users` tiene una restricción `UNIQUE`. Actúa como un "identificador natural" y legible por humanos que se puede usar para buscar un usuario específico y obtener su `id` inmutable.
+- **Clave Primaria Inmutable (UUID):** La relación fundamental entre las tablas se basa en el `id` de tipo `UUID` de la tabla `auth.users`. Este es el identificador interno, estable y de alto rendimiento.
+- **Identificador Legible (Email):** La columna `email` en `auth.users` tiene una restricción `UNIQUE`. Actúa como un "identificador natural" y legible por humanos que se puede usar para buscar un usuario específico y obtener su `id` inmutable.
 
 **Principio Raíz:** Por cada registro en `auth.users`, debe existir uno y solo un registro correspondiente en `public.profiles`, vinculado inmutablemente por el `user_id` (UUID). **Nunca se usará el email como clave primaria o foránea.**
 
 ## 3. Definición de Schema (DDL)
 
-```sql
+````sql
 -- La tabla 'profiles' se vincula a 'auth.users' a través del UUID inmutable.
 CREATE TABLE IF NOT EXISTS public.profiles (
     id UUID PRIMARY KEY NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -195,3 +196,4 @@ EXECUTE FUNCTION moddatetime(updated_at);
 
 ---
 
+````

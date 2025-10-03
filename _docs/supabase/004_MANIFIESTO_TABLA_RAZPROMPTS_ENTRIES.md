@@ -1,10 +1,11 @@
-// _docs/supabase/004_MANIFIESTO_TABLA_RAZPROMPTS_ENTRIES.md
-/**
- * @file 004_MANIFIESTO_TABLA_RAZPROMPTS_ENTRIES.md
- * @description Manifiesto Canónico y SSoT para la tabla 'public.razprompts_entries'.
- * @version 2.0.0 (Secure & Automated)
- * @author L.I.A. Legacy
- */
+// \_docs/supabase/004_MANIFIESTO_TABLA_RAZPROMPTS_ENTRIES.md
+/\*\*
+
+- @file 004_MANIFIESTO_TABLA_RAZPROMPTS_ENTRIES.md
+- @description Manifiesto Canónico y SSoT para la tabla 'public.razprompts_entries'.
+- @version 2.0.0 (Secure & Automated)
+- @author L.I.A. Legacy
+  \*/
 
 # Manifiesto de Tabla Soberana: `public.razprompts_entries` v2.0
 
@@ -47,3 +48,4 @@ WITH CHECK (public.is_workspace_member(workspace_id));
 ---
 
 
+```
