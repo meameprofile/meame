@@ -1,21 +1,24 @@
-// RUTA: scripts/supabase/seed-superuser.ts
+// RUTA: scripts/supabase/seeding/superuser.ts
 /**
- * @file seed-superuser.ts
- * @description Script de seed para crear un superusuario de desarrollo en Supabase.
- * @version 4.0.0 (Architectural Purity)
+ * @file superuser.ts
+ * @description Script de seed para crear un superusuario de desarrollo en Supabase,
+ *              ahora con observabilidad y resiliencia de élite.
+ * @version 6.0.0 (Great Refactoring Aligned)
  * @author L.I.A. Legacy
  */
-import { createScriptClient } from "./script-client"; // <-- RUTA CORREGIDA
-import { logger } from "../../src/shared/lib/logging";
-import type { ActionResult } from "../../src/shared/lib/types/actions.types";
+import { createScriptClient } from "../../_utils/supabaseClient";
+import { scriptLogger as logger } from "../../_utils/logger";
+import type { ScriptActionResult as ActionResult } from "../../_utils/types";
+import type { User } from "@supabase/supabase-js";
 
-async function createSuperUser(): Promise<ActionResult<{ userId: string }>> {
-  const traceId = logger.startTrace("createSuperUser_v4.0");
+export default async function createSuperUser(): Promise<
+  ActionResult<{ userId: string }>
+> {
+  const traceId = logger.startTrace("createSuperUser_v6.0");
   logger.startGroup("🌱 Iniciando creación de Superusuario en Supabase...");
 
   try {
     const supabaseAdmin = createScriptClient();
-
     const superUserEmail = "superuser@webvork.dev";
     const superUserPassword = "superuserpassword123";
 
@@ -25,15 +28,15 @@ async function createSuperUser(): Promise<ActionResult<{ userId: string }>> {
     } = await supabaseAdmin.auth.admin.listUsers();
     if (listError) throw listError;
 
-    const existingUser = users.find((user) => user.email === superUserEmail);
+    const existingUser = users.find(
+      (user: User) => user.email === superUserEmail
+    );
 
     if (existingUser) {
       logger.warn(
         `El superusuario con email ${superUserEmail} ya existe. Saltando creación.`,
         { traceId }
       );
-      logger.endGroup();
-      logger.endTrace(traceId);
       return { success: true, data: { userId: existingUser.id } };
     }
 
@@ -76,5 +79,3 @@ async function createSuperUser(): Promise<ActionResult<{ userId: string }>> {
     logger.endTrace(traceId);
   }
 }
-
-export default createSuperUser;

@@ -1,7 +1,7 @@
 {
-  "promptId": "clxzyghij0002klmn9012opqr",
-  "userId": "ee9f7536-1217-4f92-9dc7-d95922ce56df",
-  "workspaceId": "4df72b1f-627a-47e9-b93d-f6e083068000",
+  "promptId": "clyd1q2w5000212mnfg67hijk",
+  "userId": "f125b449-c1cd-4190-abc4-3d5d5e3ddca4",
+  "workspaceId": "59105ea4-6d79-414a-9e26-24c91d258fcc",
   "title": "Mascota IA TEMEO - Concepto 01",
   "status": "pending_generation",
   "aiService": "ideogram",
@@ -12,19 +12,14 @@
     "robot",
     "personaje",
     "3d",
-    "futurista",
-    "ciberpunk-suave",
-    "holograma"
+    "futurista"
   ],
   "versions": [
     {
       "version": 1,
-      "basePromptText": "Una encantadora e inteligente mascota robot llamada TEMEO, estilo personaje 3D de Pixar. El robot tiene un cuerpo elegante y minimalista de cromo pulido y blanco, con circuitos internos que brillan con una luz azul neón. Su cabeza es una pantalla lisa con grandes ojos digitales, amigables y expresivos. El personaje interactúa juguetonamente con flujos de datos holográficos y formas geométricas luminosas que flotan a su alrededor. El fondo es oscuro y minimalista, destacando al personaje.",
-      "fullPromptText": "Una encantadora e inteligente mascota robot llamada TEMEO, estilo personaje 3D de Pixar. El robot tiene un cuerpo elegante y minimalista de cromo pulido y blanco, con circuitos internos que brillan con una luz azul neón. Su cabeza es una pantalla lisa con grandes ojos digitales, amigables y expresivos. El personaje interactúa juguetonamente con flujos de datos holográficos y formas geométricas luminosas que flotan a su alrededor. El fondo es oscuro y minimalista, destacando al personaje. 3d render, cinematic, photorealistic, aspect ratio 1x1",
-      "parameters": {
-        "styleType": "DESIGN",
-        "aspectRatio": "1x1"
-      },
+      "basePromptText": "Una encantadora e inteligente mascota robot llamada TEMEO, estilo personaje 3D de Pixar...",
+      "fullPromptText": "Una encantadora e inteligente mascota robot llamada TEMEO, estilo personaje 3D de Pixar... 3d render, cinematic, photorealistic, aspect ratio 1x1",
+      "parameters": { "styleType": "DESIGN", "aspectRatio": "1x1" },
       "createdAt": "2025-10-01T18:00:00.000Z"
     }
   ],

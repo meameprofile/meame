@@ -1,10 +1,10 @@
 // RUTA: src/shared/lib/actions/analytics/getDecryptedEventsForDebug.action.ts
 /**
  * @file getDecryptedEventsForDebug.action.ts
- * @description Server Action para obtener y desencriptar eventos de campaña, forjada
- *              con un guardián de resiliencia granular y observabilidad de élite.
- * @version 2.2.0 (Elite Code Hygiene Restoration)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Server Action para obtener y desencriptar eventos de campaña,
+ *              ahora alineada con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 4.0.0 (Sovereign Contract Aligned & Elite Resilience)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -12,27 +12,15 @@ import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import { decryptServerData } from "@/shared/lib/utils/server-encryption";
 import {
-  AuraEventSchema,
+  AuraEventPayloadSchema,
   type AuraEventPayload,
 } from "@/shared/lib/schemas/analytics/aura.schema";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-
-interface SupabaseEventRecord {
-  id: string;
-  session_id: string;
-  user_id: string | null;
-  workspace_id: string;
-  campaign_id: string;
-  variant_id: string;
-  event_type: string;
-  payload: string;
-  created_at: string;
-}
+import type { VisitorCampaignEventRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
 
 interface GetDecryptedEventsInput {
   campaignId: string;
   sessionId?: string;
-  userId?: string;
   limit?: number;
   page?: number;
 }
@@ -40,54 +28,49 @@ interface GetDecryptedEventsInput {
 export async function getDecryptedEventsForDebugAction(
   input: GetDecryptedEventsInput
 ): Promise<ActionResult<{ events: AuraEventPayload[]; total: number }>> {
-  const traceId = logger.startTrace("getDecryptedEventsForDebugAction_v2.2");
-  logger.startGroup(`[Action] Obteniendo eventos desencriptados...`);
+  const traceId = logger.startTrace("getDecryptedEventsAction_v4.0");
+  logger.startGroup(`[Action] Obteniendo eventos desencriptados...`, traceId);
 
   const supabase = createServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user && !input.sessionId) {
+  if (!user) {
     logger.warn("[Action] Intento no autorizado.", { traceId });
     return { success: false, error: "auth_required" };
   }
 
   try {
-    const { campaignId, sessionId, userId, limit = 20, page = 1 } = input;
+    const { campaignId, sessionId, limit = 20, page = 1 } = input;
     const offset = (page - 1) * limit;
 
-    let queryBuilder;
-    if (userId) {
-      queryBuilder = supabase
-        .from("visitor_campaign_events")
-        .select("*, count()", { count: "exact" })
-        .eq("user_id", userId)
-        .eq("campaign_id", campaignId);
-    } else if (sessionId) {
-      queryBuilder = supabase
-        .from("anonymous_campaign_events")
-        .select("*, count()", { count: "exact" })
-        .eq("session_id", sessionId)
-        .eq("campaign_id", campaignId);
-    } else {
-      throw new Error("Se requiere un userId o sessionId.");
-    }
+    let queryBuilder = supabase
+      .from("visitor_campaign_events")
+      .select("*, count", { count: "exact" })
+      .eq("campaign_id", campaignId);
 
-    logger.traceEvent(traceId, "Ejecutando consulta a Supabase...", { input });
+    if (sessionId) {
+      queryBuilder = queryBuilder.eq("session_id", sessionId);
+    }
+    // Podríamos añadir más filtros aquí en el futuro si es necesario.
+
+    logger.traceEvent(traceId, "Query de Supabase construida.", { input });
+
     const { data, error, count } = await queryBuilder
       .order("created_at", { ascending: false })
       .range(offset, offset + limit - 1);
 
     if (error) throw new Error(error.message);
     if (!data) return { success: true, data: { events: [], total: 0 } };
+
     logger.traceEvent(
       traceId,
       `Se obtuvieron ${data.length} eventos de la DB.`
     );
 
     const decryptedEvents: AuraEventPayload[] = data.map(
-      (event: SupabaseEventRecord) => {
+      (event: VisitorCampaignEventRow) => {
         const baseEventData = {
           eventType: event.event_type,
           sessionId: event.session_id,
@@ -96,55 +79,48 @@ export async function getDecryptedEventsForDebugAction(
           timestamp: new Date(event.created_at).getTime(),
         };
 
-        let decryptedPayloadString: string;
         try {
-          decryptedPayloadString = decryptServerData(event.payload);
-        } catch {
-          // --- [INICIO DE CORRECCIÓN DE HIGIENE] --- Se elimina `_decryptionError`
-          logger.warn(
-            `[Action] Fallo al desencriptar payload para evento ${event.id}`,
-            { traceId, eventId: event.id }
+          if (!event.payload) {
+            throw new Error("Payload nulo o indefinido.");
+          }
+          const decryptedPayloadString = decryptServerData(
+            event.payload as string
           );
-          return {
-            ...baseEventData,
-            payload: { error: "Failed to decrypt payload." },
-          };
-        } // --- [FIN DE CORRECCIÓN DE HIGIENE] ---
-
-        try {
           const decryptedPayloadObject = JSON.parse(decryptedPayloadString);
-          const validation = AuraEventSchema.pick({
-            eventType: true,
-            payload: true,
-            sessionId: true,
-            campaignId: true,
-            variantId: true,
-            timestamp: true,
-          }).safeParse({
+
+          const validation = AuraEventPayloadSchema.safeParse({
             ...baseEventData,
             payload: decryptedPayloadObject,
           });
 
           if (!validation.success) {
             logger.warn(
-              `[Action] Payload desencriptado para evento ${event.id} no cumple con el schema.`,
-              { traceId, eventId: event.id, errors: validation.error.flatten() }
+              `[Guardián] Payload desencriptado para evento ${event.event_id} no cumple con el schema.`,
+              {
+                traceId,
+                eventId: event.event_id,
+                errors: validation.error.flatten(),
+              }
             );
           }
           return { ...baseEventData, payload: decryptedPayloadObject };
-        } catch {
-          // --- [INICIO DE CORRECCIÓN DE HIGIENE] --- Se elimina `_parseError`
+        } catch (decryptionError) {
+          const errorMessage =
+            decryptionError instanceof Error
+              ? decryptionError.message
+              : "Error desconocido.";
           logger.warn(
-            `[Action] Fallo al parsear JSON del payload para evento ${event.id}`,
-            { traceId, eventId: event.id }
+            `[Guardián] Fallo al desencriptar o parsear payload para evento ${event.event_id}`,
+            { traceId, eventId: event.event_id, error: errorMessage }
           );
           return {
             ...baseEventData,
-            payload: { error: "Failed to parse decrypted JSON payload." },
+            payload: { error: `Failed to decrypt: ${errorMessage}` },
           };
-        } // --- [FIN DE CORRECCIÓN DE HIGIENE] ---
+        }
       }
     );
+
     logger.traceEvent(
       traceId,
       `Se procesaron ${decryptedEvents.length} eventos.`

@@ -1,52 +1,52 @@
 // RUTA: src/shared/hooks/use-auth.ts
 /**
  * @file use-auth.ts
- * @description Hook de cliente de élite, ahora con manejo de estado resiliente y
- *              observabilidad completa para la obtención del perfil de usuario.
- * @version 2.1.0 (Resilient Profile Fetching)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Hook de cliente de élite para la gestión del estado de autenticación,
+ *              ahora alineado con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 3.0.0 (Sovereign Contract Aligned)
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { createClient } from "@/shared/lib/supabase/client";
-import {
-  getCurrentUserProfile_Action,
-  type UserProfileData,
-} from "@/shared/lib/actions/account/get-current-user-profile.action";
+import { getCurrentUserProfile_Action } from "@/shared/lib/actions/account/get-current-user-profile.action";
+import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
 import type { User } from "@supabase/supabase-js";
 import { logger } from "@/shared/lib/logging";
 
 export function useAuth() {
+  const traceId = useMemo(
+    () => logger.startTrace("useAuth_Lifecycle_v3.0"),
+    []
+  );
   const supabase = createClient();
   const [user, setUser] = useState<User | null>(null);
-  const [profile, setProfile] = useState<UserProfileData | null>(null);
+  const [profile, setProfile] = useState<ProfilesRow | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    logger.info("[useAuth] Hook montado.", { traceId });
+
     const fetchUserProfile = async () => {
-      const traceId = logger.startTrace("useAuth.fetchUserProfile");
-      logger.traceEvent(traceId, "Iniciando obtención de perfil de usuario...");
+      const fetchTraceId = logger.startTrace("useAuth.fetchUserProfile");
+      logger.traceEvent(fetchTraceId, "Iniciando obtención de perfil...");
 
       const result = await getCurrentUserProfile_Action();
 
-      // --- INICIO DEL GUARDIÁN DE RESILIENCIA VERBOSO ---
       if (result.success) {
         setProfile(result.data);
-        logger.success(
-          "[useAuth] Perfil de usuario obtenido y actualizado en el estado.",
-          { traceId }
-        );
+        logger.success("[useAuth] Perfil de usuario obtenido.", {
+          traceId: fetchTraceId,
+        });
       } else {
-        // En caso de fallo, el perfil se setea a null y se loguea el error.
         setProfile(null);
-        logger.error("[useAuth] Falló la obtención del perfil de usuario.", {
+        logger.error("[useAuth] Fallo al obtener el perfil de usuario.", {
           error: result.error,
-          traceId,
+          traceId: fetchTraceId,
         });
       }
-      logger.endTrace(traceId);
-      // --- FIN DEL GUARDIÁN DE RESILIENCIA VERBOSO ---
+      logger.endTrace(fetchTraceId);
     };
 
     const {
@@ -55,13 +55,15 @@ export function useAuth() {
       const sessionUser = session?.user ?? null;
       setUser(sessionUser);
       if (sessionUser) {
-        logger.trace(
-          "[useAuth] Cambio de estado de autenticación: SESIÓN ACTIVA. Obteniendo perfil..."
+        logger.traceEvent(
+          traceId,
+          "Cambio de Auth detectado: SESIÓN ACTIVA. Obteniendo perfil..."
         );
         fetchUserProfile();
       } else {
-        logger.trace(
-          "[useAuth] Cambio de estado de autenticación: SESIÓN TERMINADA. Limpiando perfil."
+        logger.traceEvent(
+          traceId,
+          "Cambio de Auth detectado: SESIÓN TERMINADA. Limpiando perfil."
         );
         setProfile(null);
       }
@@ -70,9 +72,7 @@ export function useAuth() {
 
     const getInitialSession = async () => {
       setIsLoading(true);
-      logger.trace(
-        "[useAuth] Obteniendo sesión inicial al montar el componente..."
-      );
+      logger.traceEvent(traceId, "Obteniendo sesión inicial...");
       const {
         data: { session },
       } = await supabase.auth.getSession();
@@ -82,15 +82,16 @@ export function useAuth() {
         await fetchUserProfile();
       }
       setIsLoading(false);
-      logger.trace("[useAuth] Carga de sesión inicial completada.");
+      logger.traceEvent(traceId, "Carga de sesión inicial completada.");
     };
 
     getInitialSession();
 
     return () => {
       subscription.unsubscribe();
+      logger.endTrace(traceId);
     };
-  }, [supabase.auth]);
+  }, [supabase.auth, traceId]);
 
   return { user, profile, isLoading };
 }

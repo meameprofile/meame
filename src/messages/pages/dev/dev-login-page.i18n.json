@@ -32,7 +32,9 @@
       "lastSignIn": {
         "title": "Ultimo Accesso:",
         "location": "da {{location}}",
-        "ip": "IP: {{ip}}"
+        "ip": "IP: {{ip}}",
+        "unknownLocation": "Località sconosciuta",
+        "unknownIp": "IP sconosciuto"
       }
     }
   },
@@ -69,7 +71,9 @@
       "lastSignIn": {
         "title": "Último Acceso:",
         "location": "desde {{location}}",
-        "ip": "IP: {{ip}}"
+        "ip": "IP: {{ip}}",
+        "unknownLocation": "Ubicación desconocida",
+        "unknownIp": "IP desconocida"
       }
     }
   },
@@ -106,7 +110,9 @@
       "lastSignIn": {
         "title": "Last Signed In:",
         "location": "from {{location}}",
-        "ip": "IP: {{ip}}"
+        "ip": "IP: {{ip}}",
+        "unknownLocation": "Unknown location",
+        "unknownIp": "Unknown IP"
       }
     }
   },
@@ -143,7 +149,9 @@
       "lastSignIn": {
         "title": "Último Acesso:",
         "location": "de {{location}}",
-        "ip": "IP: {{ip}}"
+        "ip": "IP: {{ip}}",
+        "unknownLocation": "Localização desconhecida",
+        "unknownIp": "IP desconhecido"
       }
     }
   }

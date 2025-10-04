@@ -11,41 +11,45 @@
     "publicationDate": "2025-01-03T00:00:00.000Z",
     "doi": "https://doi.org/10.1016/j.prmcm.2025.100572",
     "fundingSource": "No especificado en el artículo.",
-    "objective": "Explorar los efectos terapéuticos de la cúrcuma y la Medicina Tradicional China (MTC) en el manejo de enfermedades inflamatorias y crónicas...",
+    "objective": "Explorar los efectos terapéuticos de la cúrcuma y la Medicina Tradicional China (MTC) en el manejo de enfermedades inflamatorias y crónicas, destacando mecanismos de acción, eficacia clínica y posibles efectos sinérgicos.",
     "studyType": "Artículo de revisión (Review)",
-    "methodologySummary": "Revisión de la literatura científica publicada entre 2000 y 2024...",
-    "mainResults": "La revisión encontró evidencia significativa que respalda los efectos antiinflamatorios de la cúrcuma...",
-    "authorsConclusion": "La cúrcuma y la MTC tienen un potencial significativo en el manejo de enfermedades inflamatorias...",
-    "limitations": ["Variabilidad en los diseños de los estudios analizados."]
+    "methodologySummary": "Revisión de la literatura científica publicada entre 2000 y 2024, obtenida de las bases de datos Google Scholar, Scopus, PubMed y Web of Science. Se seleccionaron 85 de 150 artículos recuperados.",
+    "mainResults": "La revisión encontró evidencia significativa que respalda los efectos antiinflamatorios de la cúrcuma, principalmente a través de la modulación de las vías moleculares NF-kB y Nrf2. El uso combinado con preparaciones de la MTC mostró resultados terapéuticos mejorados.",
+    "authorsConclusion": "La cúrcuma y la MTC tienen un potencial significativo en el manejo de enfermedades inflamatorias y crónicas. Su integración en la medicina convencional podría ofrecer opciones de tratamiento más completas.",
+    "limitations": [
+      "Variabilidad en los diseños de los estudios analizados.",
+      "Diferencias en las formulaciones y dosis utilizadas en los estudios.",
+      "Necesidad de más ensayos clínicos a gran escala para estandarizar protocolos."
+    ]
   },
   "content": {
     "es-ES": {
       "title": "Cúrcuma: El Poder Ancestral y la Ciencia Moderna Detrás de la Raíz Dorada",
       "slug": "curcuma-poder-ancestral-ciencia-moderna-raiz-dorada",
-      "summary": "Una revisión exhaustiva de 85 estudios científicos revela cómo la cúrcuma modula la inflamación a nivel molecular...",
-      "body": "La cúrcuma (Curcuma longa), esa especia de color dorado intenso que da vida al curry..."
+      "summary": "Una revisión exhaustiva de 85 estudios científicos revela cómo la cúrcuma, un pilar de la medicina tradicional, modula la inflamación a nivel molecular y ofrece un potencial significativo para la salud crónica. Descubre lo que la ciencia dice sobre esta especia dorada.",
+      "body": "La cúrcuma (Curcuma longa), esa especia de color dorado intenso que da vida al curry, ha sido venerada durante siglos no solo por su sabor, sino por sus profundas propiedades medicinales. Utilizada extensamente en la Medicina Tradicional China (MTC) y el Ayurveda, hoy la ciencia moderna comienza a descifrar los secretos de sus beneficios, especialmente en el manejo de enfermedades inflamatorias y crónicas.\\n\\n## El Secreto Activo: La Curcumina\\n\\nEl tesoro más preciado del rizoma de la cúrcuma son los curcuminoides. El más importante y estudiado es la **curcumina**, un polifenol que constituye cerca del 77% de estos compuestos. La evidencia científica apunta a la curcumina como la principal responsable de las potentes propiedades antiinflamatorias y antioxidantes de la cúrcuma, que modula vías moleculares clave como NF-kB y Nrf2 para reducir la inflamación y el estrés oxidativo en el cuerpo.\\n\\n## El Gran Desafío: La Biodisponibilidad\\n\\nA pesar de sus beneficios, la curcumina por sí sola se absorbe muy mal. Esta es la razón por la que la suplementación inteligente, a menudo combinada con piperina (pimienta negra) para aumentar su biodisponibilidad hasta en un 2000%, es fundamental para alcanzar las dosis terapéuticas utilizadas en los estudios clínicos."
     },
     "en-US": {
       "title": "Turmeric: The Ancient Power and Modern Science Behind the Golden Root",
       "slug": "turmeric-ancient-power-modern-science-golden-root",
-      "summary": "A comprehensive review of 85 scientific studies reveals how turmeric modulates inflammation at a molecular level...",
-      "body": "Turmeric (Curcuma longa), the intensely golden spice that gives curry its vibrant color..."
+      "summary": "A comprehensive review of 85 scientific studies reveals how turmeric, a cornerstone of traditional medicine, modulates inflammation at a molecular level and offers significant potential for chronic health. Discover what science says about this golden spice.",
+      "body": "Turmeric (Curcuma longa), the intensely golden spice that gives curry its vibrant color, has been revered for centuries not only for its flavor but for its profound medicinal properties. Used extensively in Traditional Chinese Medicine (TCM) and Ayurveda, modern science is now beginning to unlock the secrets of its benefits, especially in managing inflammatory and chronic diseases.\\n\\n## The Active Secret: Curcumin\\n\\nThe most precious treasure of the turmeric rhizome is its curcuminoids. The most important and studied is **curcumin**, a polyphenol that makes up about 77% of these compounds. Scientific evidence points to curcumin as the main driver of turmeric's potent anti-inflammatory and antioxidant properties, modulating key molecular pathways like NF-kB and Nrf2 to reduce inflammation and oxidative stress in the body.\\n\\n## The Great Challenge: Bioavailability\\n\\nDespite its benefits, curcumin on its own is poorly absorbed. This is why intelligent supplementation, often combined with piperine (black pepper) to increase its bioavailability by up to 2000%, is crucial to achieve the therapeutic doses used in clinical studies."
     },
     "it-IT": {
       "title": "Curcuma: Il Potere Ancestrale e la Scienza Moderna Dietro la Radice d'Oro",
       "slug": "curcuma-potere-ancestrale-scienza-moderna-radice-oro",
-      "summary": "Una revisione completa di 85 studi scientifici rivela come la curcuma modula l'infiammazione a livello molecolare...",
-      "body": "La curcuma (Curcuma longa), quella spezia dal colore dorato intenso che dà vita al curry..."
+      "summary": "Una revisione completa di 85 studi scientifici rivela come la curcuma, pilastro della medicina tradizionale, modula l'infiammazione a livello molecolare e offre un potenziale significativo per la salute cronica. Scopri cosa dice la scienza su questa spezia dorata.",
+      "body": "La curcuma (Curcuma longa), quella spezia dal colore dorato intenso che dà vita al curry, è stata venerata per secoli non solo per il suo sapore, ma per le sue profonde proprietà medicinali. Utilizzata ampiamente nella Medicina Tradizionale Cinese (MTC) e nell'Ayurveda, la scienza moderna sta ora iniziando a svelare i segreti dei suoi benefici, specialmente nella gestione delle malattie infiammatorie e croniche.\\n\\n## Il Segreto Attivo: La Curcumina\\n\\nIl tesoro più prezioso del rizoma della curcuma sono i curcuminoidi. Il più importante e studiato è la **curcumina**, un polifenolo che costituisce circa il 77% di questi composti. Le prove scientifiche indicano la curcumina come la principale responsabile delle potenti proprietà antinfiammatorie e antiossidanti della curcuma, modulando vie molecolari chiave come NF-kB e Nrf2 per ridurre l'infiammazione e lo stress ossidativo nel corpo.\\n\\n## La Grande Sfida: La Biodisponibilità\\n\\nNonostante i suoi benefici, la curcumina da sola è scarsamente assorbita. Questo è il motivo per cui un'integrazione intelligente, spesso combinata con la piperina (pepe nero) per aumentarne la biodisponibilità fino al 2000%, è fondamentale per raggiungere le dosi terapeutiche utilizzate negli studi clinici."
     },
     "pt-BR": {
       "title": "Cúrcuma: O Poder Ancestral e a Ciência Moderna por Trás da Raiz Dourada",
       "slug": "curcuma-poder-ancestral-ciencia-moderna-raiz-dourada",
-      "summary": "Uma revisão abrangente de 85 estudos científicos revela como a cúrcuma modula a inflamação a nível molecular...",
-      "body": "A cúrcuma (Curcuma longa), a especiaria de cor dourada intensa que dá vida ao caril..."
+      "summary": "Uma revisão abrangente de 85 estudos científicos revela como a cúrcuma, um pilar da medicina tradicional, modula a inflamação a nível molecular e oferece um potencial significativo para a saúde crônica. Descubra o que a ciência diz sobre esta especiaria dourada.",
+      "body": "A cúrcuma (Curcuma longa), a especiaria de cor dourada intensa que dá vida ao caril, tem sido reverenciada por séculos não apenas pelo seu sabor, mas pelas suas profundas propriedades medicinais. Usada extensivamente na Medicina Tradicional Chinesa (MTC) e na Ayurveda, a ciência moderna está agora a começar a desvendar os segredos dos seus benefícios, especialmente na gestão de doenças inflamatórias e crónicas.\\n\\n## O Segredo Ativo: A Curcumina\\n\\nO tesouro mais precioso do rizoma da cúrcuma são os seus curcuminoides. O mais importante e estudado é a **curcumina**, um polifenol que constitui cerca de 77% destes compostos. A evidência científica aponta a curcumina como a principal responsável pelas potentes propriedades anti-inflamatórias e antioxidantes da cúrcuma, modulando vias moleculares chave como NF-kB e Nrf2 para reduzir a inflamação e o stress oxidativo no corpo.\\n\\n## O Grande Desafio: A Biodisponibilidade\\n\\nApesar dos seus benefícios, a cúrcuma por si só é mal absorvida. É por isso que a suplementação inteligente, muitas vezes combinada com piperina (pimenta preta) para aumentar a sua biodisponibilidade em até 2000%, é crucial para atingir as doses terapêuticas utilizadas nos estudos clínicos."
     }
   },
   "baviHeroImageId": "webvork/assets/i-ing-turmeric-synergy-01/v1-original",
-  "relatedPromptIds": ["clxzyw5v60004cde4lmnopqr"],
+  "relatedPromptIds": ["clyd1q2w4000112mna2b34cde"],
   "tags": [
     "curcuma",
     "sinergia",

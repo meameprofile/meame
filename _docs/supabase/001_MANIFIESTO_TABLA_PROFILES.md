@@ -196,4 +196,49 @@ EXECUTE FUNCTION moddatetime(updated_at);
 
 ---
 
+actualizacion // RUTA: _docs/supabase/001_MANIFIESTO_TABLA_PROFILES.md
+/**
+ * @file 001_MANIFIESTO_TABLA_PROFILES.md
+ * @description Manifiesto Canónico y SSoT para la tabla 'public.profiles'.
+ * @version 5.0.0 (Schema Synchronization & Security Hardening)
+ * @author L.I.A. Legacy
+ */
+
+# Manifiesto de Tabla Soberana: `public.profiles` v5.0
+
+## 1. Visión y Propósito
+
+Esta tabla es la extensión soberana de la entidad `auth.users`. Almacena metadatos de aplicación que definen la identidad y la actividad de un usuario en nuestro ecosistema, incluyendo el seguimiento del último inicio de sesión para mejorar la seguridad y la experiencia del usuario.
+
+## 2. Definición de Schema (DDL)
+
+Esta es la estructura de la tabla tal como **debe existir** en la base de datos de Supabase.
+
+```sql
+CREATE TABLE IF NOT EXISTS public.profiles (
+    id UUID PRIMARY KEY NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+    full_name TEXT,
+    avatar_url TEXT,
+    provider_name TEXT,
+    provider_avatar_url TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    last_sign_in_at TIMESTAMPTZ,
+    last_sign_in_ip TEXT,
+    last_sign_in_location TEXT
+);
+3. Políticas de Seguridad a Nivel de Fila (RLS)
+La seguridad de esta tabla es mandatoria y se basa en la propiedad del usuario.
+Política de LECTURA (SELECT): Un usuario solo puede leer su propio perfil.
+USING (auth.uid() = id)
+Política de ACTUALIZACIÓN (UPDATE): Un usuario solo puede actualizar su propio perfil.
+USING (auth.uid() = id)
+Política de INSERCIÓN (INSERT): Un usuario solo puede crear su propio perfil. Esta política es crítica para prevenir que un usuario malintencionado cree perfiles para otros.
+WITH CHECK (auth.uid() = id)
+4. Triggers y Funciones Asociadas
+handle_new_user: Un trigger en auth.users que se dispara AFTER INSERT para crear automáticamente la fila correspondiente en public.profiles, garantizando la relación 1:1.
+on_profile_update: Un trigger que se dispara BEFORE UPDATE en public.profiles para actualizar automáticamente el campo updated_at.
+
+---
+
 ````

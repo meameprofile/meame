@@ -2,76 +2,98 @@
 /**
  * @file saveDraft.action.ts
  * @description Server Action de producción para guardar/actualizar un borrador.
- *              v3.1.0 (Code Hygiene Restoration): Se elimina la importación de
- *              tipos no utilizada para cumplir con los estándares de élite.
- * @version 3.1.0
- *@author RaZ Podestá - MetaShark Tech
+ *              v5.0.0 (Decoupled API Contract): Refactorizado para aceptar
+ *              el workspaceId como un argumento separado, mejorando la claridad
+ *              y la seguridad de tipos.
+ * @version 5.0.0
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
 import { revalidatePath } from "next/cache";
 import { createServerClient } from "@/shared/lib/supabase/server";
-import {
-  CampaignDraftDataSchema,
-  // --- [INICIO DE REFACTORIZACIÓN DE HIGIENE] ---
-  // type CampaignDraftDb, // <-- Eliminado: Tipo no utilizado.
-  // --- [FIN DE REFACTORIZACIÓN DE HIGIENE] ---
-} from "@/shared/lib/schemas/campaigns/draft.schema";
+import { CampaignDraftDataSchema } from "@/shared/lib/schemas/campaigns/draft.schema";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { logger } from "@/shared/lib/logging";
-import { z } from "zod";
-
-type SaveDraftInput = z.infer<typeof CampaignDraftDataSchema> & {
-  workspaceId: string;
-};
+import type { Json } from "@/shared/lib/supabase/database.types";
+import type { CampaignDraftInsert } from "@/shared/lib/schemas/campaigns/campaign-suite.contracts";
 
 export async function saveDraftAction(
-  draftData: SaveDraftInput
+  draftData: CampaignDraft,
+  workspaceId: string
 ): Promise<ActionResult<{ draftId: string; updatedAt: string }>> {
-  const traceId = logger.startTrace("saveDraftAction_v3.1_hygiene");
-  const supabase = createServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return { success: false, error: "Acción no autorizada." };
-  }
+  const traceId = logger.startTrace("saveDraftAction_v5.0");
+  logger.startGroup(`[Action] Guardando borrador: ${draftData.draftId}`);
 
   try {
-    const { workspaceId, ...restOfDraft } = draftData;
-    const validation = CampaignDraftDataSchema.safeParse(restOfDraft);
+    const supabase = createServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      logger.warn("[Action] Intento de guardado no autorizado.", { traceId });
+      return { success: false, error: "Acción no autorizada." };
+    }
+    logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
+
+    const validation = CampaignDraftDataSchema.safeParse(draftData);
     if (!validation.success) {
-      return {
-        success: false,
-        error: "Los datos del borrador son inválidos.",
-      };
+      logger.error("[Action] Los datos del borrador son inválidos.", {
+        errors: validation.error.flatten(),
+        traceId,
+      });
+      return { success: false, error: "Los datos del borrador son inválidos." };
+    }
+    const validatedData = validation.data;
+    logger.traceEvent(traceId, "Datos del borrador validados con Zod.");
+
+    if (!validatedData.draftId) {
+      return { success: false, error: "El ID del borrador es inválido." };
     }
 
-    const { error } = await supabase.from("campaign_drafts").upsert({
-      draft_id: validation.data.draftId,
+    const supabasePayload: CampaignDraftInsert = {
+      draft_id: validatedData.draftId,
       user_id: user.id,
       workspace_id: workspaceId,
-      draft_data: validation.data,
-    });
+      draft_data: validatedData as Json,
+    };
 
-    if (error) throw new Error(error.message);
+    const { error } = await supabase
+      .from("campaign_drafts")
+      .upsert(supabasePayload);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+    logger.traceEvent(traceId, "Operación 'upsert' en DB completada.");
 
     const now = new Date().toISOString();
     revalidatePath("/creator/campaign-suite");
 
+    logger.success(
+      `[Action] Borrador ${validatedData.draftId} guardado con éxito.`,
+      { traceId }
+    );
     return {
       success: true,
-      data: { draftId: draftData.draftId!, updatedAt: now },
+      data: { draftId: validatedData.draftId, updatedAt: now },
     };
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
+    logger.error("[Action] Fallo crítico al guardar el borrador.", {
+      error: errorMessage,
+      traceId,
+    });
     return {
       success: false,
       error: `No se pudo guardar el borrador: ${errorMessage}`,
     };
   } finally {
+    logger.endGroup();
     logger.endTrace(traceId);
   }
 }

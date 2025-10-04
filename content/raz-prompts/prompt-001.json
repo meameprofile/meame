@@ -1,7 +1,7 @@
 {
-  "promptId": "clxzyabcd0001efgh5678ijkl",
-  "userId": "ee9f7536-1217-4f92-9dc7-d95922ce56df",
-  "workspaceId": "4df72b1f-627a-47e9-b93d-f6e083068000",
+  "promptId": "clyd1q2w3000012mnhgfd8765",
+  "userId": "f125b449-c1cd-4190-abc4-3d5d5e3ddca4",
+  "workspaceId": "59105ea4-6d79-414a-9e26-24c91d258fcc",
   "title": "Preview Image for StandardHeader Component",
   "status": "generated",
   "aiService": "ideogram",
@@ -16,11 +16,9 @@
   "versions": [
     {
       "version": 1,
-      "basePromptText": "A cinematic, photorealistic header for a modern website. The design is minimalist and elegant, featuring a clean layout on a slightly off-white background. Include a subtle, abstract logo on the left, generic navigation links, and a prominent, vibrant call-to-action button on the right.",
-      "fullPromptText": "A cinematic, photorealistic header for a modern website. The design is minimalist and elegant, featuring a clean layout on a slightly off-white background. Include a subtle, abstract logo on the left, generic navigation links, and a prominent, vibrant call-to-action button on the right. aspect ratio 16:9, photorealistic, 8k, ultra-high detail, sharp focus",
-      "parameters": {
-        "aspectRatio": "16x9"
-      },
+      "basePromptText": "A cinematic, photorealistic header for a modern website...",
+      "fullPromptText": "A cinematic, photorealistic header for a modern website... aspect ratio 16:9, photorealistic, 8k, ultra-high detail, sharp focus",
+      "parameters": { "aspectRatio": "16x9" },
       "createdAt": "2025-09-17T14:30:00.000Z"
     }
   ],

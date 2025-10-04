@@ -1,10 +1,9 @@
 // RUTA: src/app/[locale]/creator/campaign-suite/[[...stepId]]/layout.tsx
 /**
  * @file layout.tsx
- * @description Layout Orquestador y "Server Shell" de élite para la SDC.
- *              Forjado con un guardián de contrato de datos que garantiza la
- *              seguridad de tipos holística y una observabilidad de ciclo de vida completo.
- * @version 1.0.0 (Sovereign & Elite)
+ * @description Layout Orquestador y "Server Shell" de élite para la SDC,
+ *              con una arquitectura de composición Cliente-Servidor soberana.
+ * @version 2.0.0 (Server Shell Pattern & Elite Compliance)
  * @author L.I.A. Legacy
  */
 import React from "react";
@@ -27,18 +26,16 @@ export default async function WizardLayout({
   children,
   params: { locale },
 }: WizardLayoutProps) {
-  const traceId = logger.startTrace("SDC_SovereignLayout_v1.0");
+  const traceId = logger.startTrace("SDC_SovereignLayout_v2.0");
   logger.startGroup(`[SDC Layout Shell] Ensamblando datos para [${locale}]...`);
 
   try {
-    logger.traceEvent(traceId, "Iniciando obtención de datos en paralelo...");
     const [dictionaryResult, fragmentsResult, baviManifestResult] =
       await Promise.all([
         getDictionary(locale),
         loadAllThemeFragmentsAction(),
         getBaviManifest(),
       ]);
-    logger.traceEvent(traceId, "Todas las fuentes de datos respondieron.");
 
     const { dictionary: partialDictionary, error: dictError } =
       dictionaryResult;
@@ -67,10 +64,6 @@ export default async function WizardLayout({
     if (!baviManifestResult) {
       throw new Error("Fallo al cargar el manifiesto BAVI.");
     }
-    logger.success(
-      "[SDC Layout Shell] Datos de servidor obtenidos y validados. Delegando al Wizard...",
-      { traceId }
-    );
 
     return (
       <CampaignSuiteWizard

@@ -1,58 +1,62 @@
 // RUTA: src/shared/lib/actions/theme-fragments/createThemeFragment.action.ts
 /**
  * @file createThemeFragment.action.ts
- * @description Server Action para crear un nuevo fragmento de tema en un workspace,
- *              forjada con observabilidad de élite y resiliencia.
- * @version 2.0.0 (Elite Observability & Resilience)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Server Action para crear un nuevo fragmento de tema, con un
+ *              contrato de tipo de retorno holístico y soberano.
+ * @version 5.0.0 (Holistic Type Contract)
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
 import { z } from "zod";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
+import type { Json } from "@/shared/lib/supabase/database.types";
+import {
+  type ThemeFragmentInsert,
+  type ThemeFragmentRow,
+} from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import type { ThemeFragment } from "./getThemeFragments.action";
 
-// --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA Y TIPOS] ---
-// Se crea un schema de Zod para validar la entrada, eliminando 'any'.
 const CreateFragmentInputSchema = z.object({
   workspaceId: z.string().uuid(),
   name: z.string().min(1, "El nombre no puede estar vacío."),
   type: z.enum(["color", "font", "geometry"]),
-  data: z.record(z.string(), z.unknown()), // Alternativa segura a 'any'
+  data: z.record(z.string(), z.unknown()),
 });
 
 type CreateFragmentInput = z.infer<typeof CreateFragmentInputSchema>;
-// --- [FIN DE REFACTORIZACIÓN DE RESILIENCIA Y TIPOS] ---
+
+function mapSupabaseToThemeFragment(row: ThemeFragmentRow): ThemeFragment {
+  return {
+    id: row.id,
+    workspace_id: row.workspace_id,
+    user_id: row.user_id,
+    name: row.name,
+    type: row.type,
+    data: row.data as Record<string, unknown>,
+    created_at: row.created_at,
+    updated_at: row.updated_at,
+  };
+}
 
 export async function createThemeFragmentAction(
   input: CreateFragmentInput
 ): Promise<ActionResult<{ newFragment: ThemeFragment }>> {
-  const traceId = logger.startTrace("createThemeFragmentAction_v2.0");
-  // --- [INICIO DE CORRECCIÓN DE API LOGGER (TS2345)] ---
-  // El segundo argumento de startGroup es para estilo, no para contexto.
-  logger.startGroup(`[Action] Creando fragmento de tema...`);
-  // --- [FIN DE CORRECCIÓN DE API LOGGER (TS2345)] ---
+  const traceId = logger.startTrace("createThemeFragmentAction_v5.0");
+  logger.startGroup(`[Action] Creando fragmento de tema...`, traceId);
 
   try {
     const supabase = createServerClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
-
-    if (!user) {
-      logger.warn("[Action] Intento no autorizado.", { traceId });
-      return { success: false, error: "auth_required" };
-    }
-    logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
+    if (!user) return { success: false, error: "auth_required" };
 
     const validation = CreateFragmentInputSchema.safeParse(input);
     if (!validation.success) {
-      logger.warn("[Action] Input de creación de fragmento inválido.", {
-        errors: validation.error.flatten(),
-        traceId,
-      });
       return { success: false, error: "Datos de entrada inválidos." };
     }
 
@@ -62,31 +66,28 @@ export async function createThemeFragmentAction(
       "is_workspace_member",
       { workspace_id_to_check: workspaceId }
     );
-
     if (memberError || !memberCheck) {
       throw new Error("Acceso denegado al workspace.");
     }
-    logger.traceEvent(traceId, `Membresía del workspace verificada.`);
 
-    const { data: newFragment, error: insertError } = await supabase
+    const supabasePayload: ThemeFragmentInsert = {
+      workspace_id: workspaceId,
+      user_id: user.id,
+      name,
+      type,
+      data: fragmentData as Json,
+    };
+
+    const { data: newFragmentRow, error: insertError } = await supabase
       .from("theme_fragments")
-      .insert({
-        workspace_id: workspaceId,
-        user_id: user.id,
-        name,
-        type,
-        data: fragmentData,
-      })
+      .insert(supabasePayload)
       .select()
       .single();
 
-    if (insertError) {
+    if (insertError)
       throw new Error(`Error de Supabase: ${insertError.message}`);
-    }
-    logger.traceEvent(
-      traceId,
-      `Fragmento insertado en DB con ID: ${newFragment.id}`
-    );
+
+    const newFragment = mapSupabaseToThemeFragment(newFragmentRow);
 
     logger.success(`[Action] Fragmento '${name}' creado con éxito.`);
     return { success: true, data: { newFragment } };

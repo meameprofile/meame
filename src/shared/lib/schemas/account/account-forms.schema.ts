@@ -2,10 +2,17 @@
 /**
  * @file account-forms.schema.ts
  * @description SSoT para los contratos de datos de TODOS los formularios de la página de cuenta.
- * @version 3.0.0 (Secure Password Update)
- *@author RaZ Podestá - MetaShark Tech
+ *              v4.0.0 (UI Forging Blueprint): Inyectado con metadatos de UI (`describe`)
+ *              para actuar como un plano de forja para el motor de renderizado de formularios.
+ * @version 4.0.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
+import { logger } from "@/shared/lib/logging";
+
+logger.trace(
+  "[Schema] Módulo de schemas para formularios de cuenta cargado (v4.0)."
+);
 
 /**
  * @const UpdateProfileSchema
@@ -14,7 +21,8 @@ import { z } from "zod";
 export const UpdateProfileSchema = z.object({
   fullName: z
     .string()
-    .min(3, "El nombre completo debe tener al menos 3 caracteres."),
+    .min(3, "El nombre completo debe tener al menos 3 caracteres.")
+    .describe("ui:label:Nombre Completo|ui:placeholder:Tu nombre y apellido"),
 });
 
 /**
@@ -26,16 +34,27 @@ export type UpdateProfileFormData = z.infer<typeof UpdateProfileSchema>;
 /**
  * @const UpdatePasswordSchema
  * @description Valida los datos para el formulario de cambio de contraseña.
- *              Incluye la validación de la contraseña actual y la confirmación
- *              de la nueva contraseña para una seguridad robusta.
  */
 export const UpdatePasswordSchema = z
   .object({
-    currentPassword: z.string().min(1, "Debes ingresar tu contraseña actual."),
+    currentPassword: z
+      .string()
+      .min(1, "Debes ingresar tu contraseña actual.")
+      .describe(
+        "ui:label:Contraseña Actual|ui:control:password|ui:placeholder:••••••••"
+      ),
     newPassword: z
       .string()
-      .min(8, "La nueva contraseña debe tener al menos 8 caracteres."),
-    confirmPassword: z.string(),
+      .min(8, "La nueva contraseña debe tener al menos 8 caracteres.")
+      .describe(
+        "ui:label:Nueva Contraseña|ui:control:password|ui:placeholder:••••••••"
+      ),
+    confirmPassword: z
+      .string()
+      .min(1, "Debes confirmar tu nueva contraseña.")
+      .describe(
+        "ui:label:Confirmar Nueva Contraseña|ui:control:password|ui:placeholder:••••••••"
+      ),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
     message: "Las nuevas contraseñas no coinciden.",

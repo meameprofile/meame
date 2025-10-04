@@ -3,15 +3,16 @@
  * @file content-all.ts
  * @description Guardián de Contenido Holístico para Supabase. Realiza un volcado completo
  *              de todas las tablas públicas y genera un informe de diagnóstico maestro.
- * @version 2.0.0 (Type-Safe & AI-Consumable)
+ * @version 2.2.0 (Elite Observability & Linter Compliance)
  * @author L.I.A. Legacy
  */
 import { promises as fs } from "fs";
 import * as path from "path";
 import { z } from "zod";
 import { createScriptClient } from "../_utils/supabaseClient";
-import { scriptLogger } from "../_utils/logger";
+import { scriptLogger } from "../_utils/logger"; // <-- El alias correcto es 'scriptLogger'
 import type { ScriptActionResult } from "../_utils/types";
+import type { Database } from "../../src/shared/lib/supabase/database.types";
 
 // --- SSoT de Contratos de Datos ---
 const TableNameSchema = z.object({ table_name: z.string() });
@@ -32,20 +33,24 @@ interface Report {
   summary: string;
 }
 
+type TableName = keyof Database["public"]["Tables"];
+
 async function diagnoseSupabaseContentAll(): Promise<
   ScriptActionResult<string>
 > {
-  const traceId = scriptLogger.startTrace(`diagnoseContent:all_v2.0`);
+  // --- [INICIO DE CORRECCIÓN DE ALIAS] ---
+  const traceId = scriptLogger.startTrace(`diagnoseContent:all_v2.2`);
   scriptLogger.startGroup(
     `💾 Realizando volcado de contenido completo de Supabase...`
   );
+  // --- [FIN DE CORRECCIÓN DE ALIAS] ---
 
   const reportDir = path.resolve(process.cwd(), "reports", "supabase");
-  const reportPath = path.resolve(reportDir, `content-all-diagnostics.json`); // <-- NOMBRE DE REPORTE ACTUALIZADO
+  const reportPath = path.resolve(reportDir, `content-all-diagnostics.json`);
 
   const report: Report = {
     reportMetadata: {
-      script: `scripts/supabase/content-all.ts`, // <-- NOMBRE DE SCRIPT ACTUALIZADO
+      script: `scripts/supabase/content-all.ts`,
       purpose:
         "Volcado de contenido COMPLETO de todas las tablas públicas de Supabase.",
       generatedAt: new Date().toISOString(),
@@ -63,7 +68,9 @@ async function diagnoseSupabaseContentAll(): Promise<
 
   try {
     const supabase = createScriptClient();
+    // --- [INICIO DE CORRECCIÓN DE ALIAS] ---
     scriptLogger.info(`Invocando RPC 'get_public_table_names'...`);
+    // --- [FIN DE CORRECCIÓN DE ALIAS] ---
 
     const { data: rpcData, error: rpcError } = await supabase.rpc(
       "get_public_table_names"
@@ -73,7 +80,6 @@ async function diagnoseSupabaseContentAll(): Promise<
         `Fallo en RPC 'get_public_table_names': ${rpcError.message}`
       );
 
-    // --- Guardián de Resiliencia de Datos ---
     const validation = RpcResponseSchema.safeParse(rpcData);
     if (!validation.success) {
       throw new Error(
@@ -81,24 +87,29 @@ async function diagnoseSupabaseContentAll(): Promise<
       );
     }
     const tablesData = validation.data;
-    // --- Fin del Guardián ---
 
     const tableNames = tablesData.map((t) => t.table_name);
+    // --- [INICIO DE CORRECCIÓN DE ALIAS] ---
     scriptLogger.info(
       `Se encontraron ${tableNames.length} tablas públicas para volcar.`
     );
+    // --- [FIN DE CORRECCIÓN DE ALIAS] ---
 
     for (const tableName of tableNames) {
+      // --- [INICIO DE CORRECCIÓN DE ALIAS] ---
       scriptLogger.trace(`Volcando contenido de la tabla: '${tableName}'...`);
+      // --- [FIN DE CORRECCIÓN DE ALIAS] ---
       const { data: tableData, error: tableError } = await supabase
-        .from(tableName)
+        .from(tableName as TableName)
         .select("*");
 
       if (tableError) {
         report.data[tableName] = { error: tableError.message };
+        // --- [INICIO DE CORRECCIÓN DE ALIAS] ---
         scriptLogger.warn(
           `Error al leer la tabla '${tableName}': ${tableError.message}`
         );
+        // --- [FIN DE CORRECCIÓN DE ALIAS] ---
       } else {
         report.data[tableName] = {
           count: tableData.length,

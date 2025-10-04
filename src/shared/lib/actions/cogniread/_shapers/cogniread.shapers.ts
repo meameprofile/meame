@@ -1,67 +1,41 @@
 // RUTA: src/shared/lib/actions/cogniread/_shapers/cogniread.shapers.ts
 /**
  * @file cogniread.shapers.ts
- * @description Módulo soberano para las funciones de transformación ("shaping")
- *              de datos del dominio CogniRead. Es una utilidad pura del lado del servidor.
- *              v2.1.0 (Holistic & Coherent): Se añade el mapeo para `available_languages`
- *              para una sincronización total con el schema de la base de datos.
- * @version 2.1.0
+ * @description Módulo soberano para la transformación de datos del dominio CogniRead.
+ *              v5.0.0 (Absolute Type Safety): Erradica 'any' y alinea los
+ *              contratos de tipo entre la base de datos y la aplicación.
+ * @version 5.0.0
  * @author L.I.A. Legacy
  */
 import "server-only";
-import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
+import { logger } from "@/shared/lib/logging";
+import type {
+  CogniReadArticle,
+  StudyDna,
+} from "@/shared/lib/schemas/cogniread/article.schema";
 import type { Comment } from "@/shared/lib/schemas/community/comment.schema";
+import type {
+  CogniReadArticleRow,
+  CommunityCommentRow,
+} from "@/shared/lib/schemas/cogniread/cogniread.contracts";
 
-// --- Contratos para Artículos ---
-
-export interface SupabaseStudyDna {
-  originalTitle: string;
-  authors: string[];
-  institution: string;
-  publication: string;
-  publicationDate: string;
-  doi: string;
-  fundingSource: string;
-  objective: string;
-  studyType: string;
-  methodologySummary: string;
-  mainResults: string;
-  authorsConclusion: string;
-  limitations: string[];
-}
-
-export interface SupabaseArticleTranslation {
-  title: string;
-  slug: string;
-  summary: string;
-  body: string;
-}
-
-export interface SupabaseCogniReadArticle {
-  id: string;
-  status: "draft" | "published" | "archived";
-  study_dna: SupabaseStudyDna;
-  content: Record<string, SupabaseArticleTranslation>;
-  tags: string[] | null;
-  available_languages: string[] | null;
-  bavi_hero_image_id: string | null;
-  related_prompt_ids: string[] | null;
-  created_at: string;
-  updated_at: string;
-}
-
+/**
+ * @function mapSupabaseToCogniReadArticle
+ * @description Transforma una fila 'cogniread_articles' a la entidad 'CogniReadArticle'.
+ */
 export function mapSupabaseToCogniReadArticle(
-  supabaseArticle: SupabaseCogniReadArticle
+  supabaseArticle: CogniReadArticleRow
 ): CogniReadArticle {
+  logger.trace(
+    `[Shaper] Transformando CogniReadArticleRow: ${supabaseArticle.id}`
+  );
   return {
     articleId: supabaseArticle.id,
-    status: supabaseArticle.status,
-    studyDna: supabaseArticle.study_dna,
-    content: supabaseArticle.content,
+    status: supabaseArticle.status as CogniReadArticle["status"],
+    studyDna: supabaseArticle.study_dna as StudyDna,
+    content: supabaseArticle.content as CogniReadArticle["content"],
     tags: supabaseArticle.tags ?? [],
-    // --- [INICIO DE CORRECCIÓN DE SINCRONIZACIÓN] ---
     available_languages: supabaseArticle.available_languages ?? [],
-    // --- [FIN DE CORRECCIÓN DE SINCRONIZACIÓN] ---
     baviHeroImageId: supabaseArticle.bavi_hero_image_id ?? undefined,
     relatedPromptIds: supabaseArticle.related_prompt_ids ?? [],
     createdAt: supabaseArticle.created_at,
@@ -69,23 +43,16 @@ export function mapSupabaseToCogniReadArticle(
   };
 }
 
-// --- Contratos para Comentarios ---
-
-export interface SupabaseComment {
-  id: string;
-  article_id: string;
-  user_id: string;
-  author_name: string;
-  author_avatar_url: string | null;
-  comment_text: string;
-  parent_id: string | null;
-  created_at: string;
-  updated_at: string;
-}
-
+/**
+ * @function mapSupabaseToComment
+ * @description Transforma una fila 'community_comments' a la entidad 'Comment'.
+ */
 export function mapSupabaseToComment(
-  supabaseComment: SupabaseComment
+  supabaseComment: CommunityCommentRow
 ): Comment {
+  logger.trace(
+    `[Shaper] Transformando CommunityCommentRow: ${supabaseComment.id}`
+  );
   return {
     commentId: supabaseComment.id,
     articleId: supabaseComment.article_id,

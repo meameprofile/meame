@@ -2,10 +2,7 @@
 /**
  * @file page.tsx
  * @description Página "Shell" de servidor para el editor de artículos de CogniRead.
- *              v5.0.0 (Holistic & Sovereign Path Restoration): Se refactoriza la
- *              importación del componente de cliente para que apunte a su SSoT
- *              canónica en la capa de features, resolviendo el error TS2307.
- * @version 5.0.0
+ * @version 5.0.0 (Holistic & Sovereign Path Restoration)
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
@@ -18,10 +15,7 @@ import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
 import { getArticleByIdAction } from "@/shared/lib/actions/cogniread";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// La importación ahora apunta a la ruta soberana del componente en la capa de features.
 import { ArticleEditorClient } from "@/components/features/cogniread/editor/ArticleEditorClient";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
 interface ArticleEditorPageProps {
   params: { locale: Locale };
@@ -101,4 +95,3 @@ export default async function ArticleEditorPage({
     </>
   );
 }
-// RUTA: src/app/[locale]/(dev)/cogniread/editor/page.tsx

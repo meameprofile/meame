@@ -1,14 +1,16 @@
-// lib/schemas/bavi/bavi-uploader.i18n.schema.ts
+// RUTA: src/shared/lib/schemas/bavi/bavi-uploader.i18n.schema.ts
 /**
  * @file bavi-uploader.i18n.schema.ts
  * @description SSoT para el contrato de datos del contenido i18n del AssetUploader.
- * @version 2.0.0 (Modal & Selector Content)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 2.1.0 (Intelligent Ingestion Content)
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
 
 export const BaviUploaderContentSchema = z.object({
   dropzoneDefault: z.string(),
+  finalFileNameLabel: z.string(), // <-- NUEVO
+  finalFileNamePlaceholder: z.string(), // <-- NUEVO
   metadataFormTitle: z.string(),
   assetIdLabel: z.string(),
   assetIdPlaceholder: z.string(),
@@ -27,4 +29,3 @@ export const BaviUploaderContentSchema = z.object({
 export const BaviUploaderLocaleSchema = z.object({
   baviUploader: BaviUploaderContentSchema.optional(),
 });
-// lib/schemas/bavi/bavi-uploader.i18n.schema.ts

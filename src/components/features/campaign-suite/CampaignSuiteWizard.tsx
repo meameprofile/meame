@@ -1,17 +1,17 @@
 // RUTA: src/components/features/campaign-suite/CampaignSuiteWizard.tsx
 /**
  * @file CampaignSuiteWizard.tsx
- * @description Orquestador de cliente principal para la SDC, con integridad
- *              arquitectónica restaurada y observabilidad de élite.
- * @version 20.0.0 (Architectural Integrity Restoration & Elite Compliance)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Orquestador de cliente y "Layout Shell" para la SDC.
+ * @version 21.1.0 (Code Hygiene)
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import React, { useMemo, useCallback, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+// --- [INICIO DE CORRECCIÓN DE HIGIENE (no-unused-vars)] ---
+import { useRouter, usePathname } from "next/navigation";
+// --- [FIN DE CORRECCIÓN DE HIGIENE] ---
 import { logger } from "@/shared/lib/logging";
-import { stepsConfig } from "@/shared/lib/config/campaign-suite/wizard.config";
 import { stepsDataConfig } from "@/shared/lib/config/campaign-suite/wizard.data.config";
 import {
   useCampaignDraftStore,
@@ -19,6 +19,7 @@ import {
 } from "@/shared/hooks/campaign-suite";
 import { WizardProvider } from "./_context/WizardContext";
 import { ProgressContext, type ProgressStep } from "./_context/ProgressContext";
+import { WizardHeader } from "./_components/WizardHeader";
 import { WizardClientLayout } from "./_components/WizardClientLayout";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
@@ -39,20 +40,20 @@ export function CampaignSuiteWizard({
   loadedFragments,
   baviManifest,
   dictionary,
-}: CampaignSuiteWizardProps): React.ReactElement {
+}: CampaignSuiteWizardProps) {
   const traceId = useMemo(
-    () => logger.startTrace("CampaignSuiteWizard_Lifecycle_v20.0"),
+    () => logger.startTrace("CampaignSuiteWizard_v21.1"),
     []
   );
   useEffect(() => {
-    logger.info("[CampaignSuiteWizard] Orquestador montado y listo.", {
+    logger.info("[CampaignSuiteWizard] Orquestador de cliente montado.", {
       traceId,
     });
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const pathname = usePathname();
   const { initializeDraft, isLoading } = useCampaignDraftStore();
   const { completedSteps } = useDraftMetadataStore();
 
@@ -61,19 +62,19 @@ export function CampaignSuiteWizard({
   }, [initializeDraft]);
 
   const currentStepId = useMemo(() => {
-    const firstStepId = stepsDataConfig[0].id;
-    const stepParam = searchParams.get("step");
-    return stepParam ? parseInt(stepParam, 10) : firstStepId;
-  }, [searchParams]);
+    const pathSegments = pathname.split("/");
+    const stepSegment = pathSegments[pathSegments.length - 1];
+    const stepId = parseInt(stepSegment, 10);
+    return isNaN(stepId) ? 0 : stepId;
+  }, [pathname]);
 
   const handleNavigation = useCallback(
     (newStepId: number) => {
-      logger.traceEvent(traceId, `Acción: Navegando al paso ${newStepId}.`);
-      const newParams = new URLSearchParams(searchParams.toString());
-      newParams.set("step", String(newStepId));
-      router.push(`?${newParams.toString()}`);
+      const newPath =
+        pathname.substring(0, pathname.lastIndexOf("/") + 1) + newStepId;
+      router.push(newPath);
     },
-    [router, searchParams, traceId]
+    [router, pathname]
   );
 
   const handleNextStep = useCallback(
@@ -84,7 +85,6 @@ export function CampaignSuiteWizard({
     () => handleNavigation(currentStepId - 1),
     [currentStepId, handleNavigation]
   );
-
   const handleStepClick = useCallback(
     (stepId: number) => {
       if (
@@ -104,7 +104,7 @@ export function CampaignSuiteWizard({
   );
 
   const progressSteps: ProgressStep[] = useMemo(() => {
-    return stepsConfig.map((step) => ({
+    return stepsDataConfig.map((step) => ({
       id: step.id,
       title: content.stepper
         ? content.stepper[step.titleKey as keyof typeof content.stepper]
@@ -123,18 +123,11 @@ export function CampaignSuiteWizard({
     [progressSteps, handleStepClick]
   );
 
-  // --- GUARDIÁN DE RESILIENCIA DE CONTRATO ---
   if (!content?.preview || !content?.stepper) {
-    const errorMsg =
-      "Contrato de UI violado: Faltan claves de contenido para la SDC.";
-    logger.error(`[Guardián] ${errorMsg}`, {
-      traceId,
-      receivedContent: content,
-    });
     return (
       <DeveloperErrorDisplay
         context="CampaignSuiteWizard"
-        errorMessage={errorMsg}
+        errorMessage="Contenido i18n incompleto."
       />
     );
   }
@@ -142,6 +135,7 @@ export function CampaignSuiteWizard({
   return (
     <WizardProvider value={wizardContextValue}>
       <ProgressContext.Provider value={progressContextValue}>
+        <WizardHeader />
         <WizardClientLayout
           previewContent={content.preview}
           isLoadingDraft={isLoading}

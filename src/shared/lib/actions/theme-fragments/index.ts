@@ -2,9 +2,10 @@
 /**
  * @file index.ts (Barrel File)
  * @description Fachada pública para las Server Actions de fragmentos de tema.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 2.0.0 (Holistic CRUD)
+ * @author L.I.A. Legacy
  */
 export * from "./getThemeFragments.action";
 export * from "./createThemeFragment.action";
-// Futuras actions (update, delete) se exportarán aquí.
+export * from "./updateThemeFragment.action";
+export * from "./deleteThemeFragment.action";

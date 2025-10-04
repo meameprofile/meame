@@ -1,12 +1,10 @@
 // RUTA: src/shared/lib/actions/raz-prompts/getPrompts.action.ts
 /**
  * @file getPrompts.action.ts
- * @description Server Action de élite que actúa como un Agregador de Datos.
- *              Obtiene prompts y los enriquece eficientemente con datos de la BAVI
- *              a través de una consulta dirigida, eliminando el cuello de botella N+1.
- *              Forjada con observabilidad de élite y un guardián de resiliencia.
- * @version 12.0.0 (Elite Observability & Resilience)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Server Action de élite que actúa como un Agregador de Datos,
+ *              ahora completamente alineada con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 13.0.0 (Sovereign Contract Aligned & Absolute Type Safety)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -19,41 +17,11 @@ import {
 import { RaZPromptsSesaTagsSchema } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { logger } from "@/shared/lib/logging";
+import type { RazPromptsEntryRow } from "@/shared/lib/schemas/raz-prompts/raz-prompts.contracts";
 
 export type EnrichedRaZPromptsEntry = RaZPromptsEntry & {
   primaryImageUrl?: string;
 };
-
-interface SupabasePromptVersion {
-  version: number;
-  promptText: string;
-  negativePrompt?: string;
-  parameters: unknown;
-  createdAt: string;
-}
-
-interface SupabaseRaZPromptsSesaTags {
-  ai: string;
-  sty?: string;
-  fmt?: string;
-  typ?: string;
-  sbj?: string;
-}
-
-interface SupabaseRaZPromptsEntry {
-  id: string;
-  user_id: string;
-  workspace_id: string;
-  title: string;
-  status: "pending_generation" | "generated" | "archived";
-  ai_service: string;
-  keywords: string[];
-  versions: SupabasePromptVersion[];
-  tags: SupabaseRaZPromptsSesaTags;
-  bavi_asset_ids: string[];
-  created_at: string;
-  updated_at: string;
-}
 
 const GetPromptsInputSchema = z.object({
   page: z.number().int().min(1).default(1),
@@ -64,7 +32,7 @@ const GetPromptsInputSchema = z.object({
 
 export type GetPromptsInput = z.infer<typeof GetPromptsInputSchema>;
 
-function mapSupabaseToCamelCase(supabaseEntry: SupabaseRaZPromptsEntry) {
+function mapSupabaseToCamelCase(supabaseEntry: RazPromptsEntryRow) {
   return {
     promptId: supabaseEntry.id,
     userId: supabaseEntry.user_id,
@@ -86,8 +54,8 @@ export async function getPromptsAction(
 ): Promise<
   ActionResult<{ prompts: EnrichedRaZPromptsEntry[]; total: number }>
 > {
-  const traceId = logger.startTrace("getPromptsAction_v12.0");
-  logger.startGroup(`[Action] Obteniendo prompts...`, `traceId: ${traceId}`);
+  const traceId = logger.startTrace("getPromptsAction_v13.0");
+  logger.startGroup(`[Action] Obteniendo prompts...`, traceId);
 
   try {
     const supabase = createServerClient();
@@ -104,8 +72,6 @@ export async function getPromptsAction(
     if (!validatedInput.success) {
       return { success: false, error: "Parámetros de búsqueda inválidos." };
     }
-    logger.traceEvent(traceId, "Input de búsqueda validado.", { input });
-
     const { page, limit, query, tags } = validatedInput.data;
     const start = (page - 1) * limit;
     const end = start + limit - 1;
@@ -127,18 +93,13 @@ export async function getPromptsAction(
         }
       });
     }
-    logger.traceEvent(traceId, "Query de Supabase construida.");
 
     const { data, error, count } = await queryBuilder
       .order("updated_at", { ascending: false })
       .range(start, end);
 
     if (error) throw new Error(error.message);
-    const rawDataFromDb = (data as SupabaseRaZPromptsEntry[]) || [];
-    logger.traceEvent(
-      traceId,
-      `Se obtuvieron ${rawDataFromDb.length} prompts crudos de la DB.`
-    );
+    const rawDataFromDb = (data as RazPromptsEntryRow[]) || [];
 
     const validatedPrompts: RaZPromptsEntry[] = rawDataFromDb
       .map(mapSupabaseToCamelCase)
@@ -147,21 +108,13 @@ export async function getPromptsAction(
         if (!validation.success) {
           logger.warn(
             `[Guardián] Dato de prompt corrupto ignorado: ${item.promptId}`,
-            {
-              errors: validation.error.flatten(),
-              corruptData: item,
-              traceId,
-            }
+            { errors: validation.error.flatten(), traceId }
           );
           return null;
         }
         return validation.data;
       })
       .filter((p): p is RaZPromptsEntry => p !== null);
-    logger.traceEvent(
-      traceId,
-      `${validatedPrompts.length} prompts validados exitosamente.`
-    );
 
     const assetIdsToFetch = Array.from(
       new Set(
@@ -172,12 +125,7 @@ export async function getPromptsAction(
     );
 
     const assetIdToPublicIdMap = new Map<string, string>();
-
     if (assetIdsToFetch.length > 0) {
-      logger.traceEvent(
-        traceId,
-        `Fase de Enriquecimiento: Consultando ${assetIdsToFetch.length} activos BAVI...`
-      );
       const { data: variantsData, error: variantsError } = await supabase
         .from("bavi_variants")
         .select("asset_id, public_id")
@@ -189,14 +137,10 @@ export async function getPromptsAction(
           "[Action] Fallo al obtener variantes de BAVI, el enriquecimiento será parcial.",
           { error: variantsError.message, traceId }
         );
-      } else {
+      } else if (variantsData) {
         for (const variant of variantsData) {
           assetIdToPublicIdMap.set(variant.asset_id, variant.public_id);
         }
-        logger.traceEvent(
-          traceId,
-          "Mapa de enriquecimiento de BAVI construido."
-        );
       }
     }
 
@@ -213,7 +157,6 @@ export async function getPromptsAction(
         return prompt;
       }
     );
-    logger.traceEvent(traceId, "Enriquecimiento de prompts completado.");
 
     return {
       success: true,

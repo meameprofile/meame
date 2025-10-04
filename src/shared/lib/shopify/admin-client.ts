@@ -1,47 +1,23 @@
 // RUTA: src/shared/lib/shopify/admin-client.ts
 /**
  * @file admin-client.ts
- * @description SSoT para la comunicación de bajo nivel con la API GraphQL de Shopify ADMIN.
- *              Este cliente es responsable de todas las peticiones a la Admin API.
- * @version 1.0.0 (Dedicated Admin Client)
- * @author RaZ Podestá - MetaShark Tech
+ * @description SSoT para la comunicación con la API GraphQL de Shopify ADMIN.
+ *              v2.0.0 (Lazy Initialization): Refactorizado para una inicialización
+ *              diferida de las variables de entorno, garantizando la compatibilidad
+ *              con orquestadores de scripts como `run-with-env.ts`.
+ * @version 2.0.0
+ * @author L.I.A. Legacy
  */
 import { logger } from "@/shared/lib/logging";
-
-// Asegurarse de que las variables de entorno están cargadas.
-// CRÍTICO: SHOPIFY_ADMIN_ACCESS_TOKEN es un secreto de servidor.
-if (!process.env.SHOPIFY_STORE_DOMAIN) {
-  throw new Error("SHOPIFY_STORE_DOMAIN is not defined.");
-}
-if (!process.env.SHOPIFY_ADMIN_ACCESS_TOKEN) {
-  throw new Error("SHOPIFY_ADMIN_ACCESS_TOKEN is not defined.");
-}
-if (!process.env.SHOPIFY_API_VERSION) {
-  throw new Error("SHOPIFY_API_VERSION is not defined.");
-}
-
-const SHOPIFY_STORE_DOMAIN = process.env.SHOPIFY_STORE_DOMAIN;
-const ADMIN_ACCESS_TOKEN = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
-const API_VERSION = process.env.SHOPIFY_API_VERSION;
-
-const ADMIN_API_ENDPOINT = `https://${SHOPIFY_STORE_DOMAIN}/admin/api/${API_VERSION}/graphql.json`;
 
 type ExtractVariables<T> = T extends { variables: object }
   ? T["variables"]
   : never;
 
-/**
- * @function shopifyAdminFetch
- * @description Realiza una petición GraphQL a la Admin API de Shopify.
- * @template T El tipo de la respuesta GraphQL esperada.
- * @param {{ query: string; variables?: ExtractVariables<T>; cache?: RequestCache; tags?: string[] }} options
- * @returns {Promise<{ status: number; body: T }>} La respuesta de la API.
- * @throws {Error} Si la configuración es incorrecta o la petición falla.
- */
 export async function shopifyAdminFetch<T>({
   query,
   variables,
-  cache = "no-store", // La Admin API a menudo requiere datos frescos.
+  cache = "no-store",
   tags,
 }: {
   query: string;
@@ -49,24 +25,43 @@ export async function shopifyAdminFetch<T>({
   cache?: RequestCache;
   tags?: string[];
 }): Promise<{ status: number; body: T }> {
-  const traceId = logger.startTrace("shopifyAdminFetch");
+  const traceId = logger.startTrace("shopifyAdminFetch_v2.0");
+
+  // --- INICIO DE REFACTORIZACIÓN: INICIALIZACIÓN DIFERIDA ---
+  const domain = process.env.SHOPIFY_STORE_DOMAIN;
+  const adminToken = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
+  const apiVersion = process.env.SHOPIFY_API_VERSION;
+
+  if (!domain || !adminToken || !apiVersion) {
+    logger.error(
+      "[Shopify Admin DAL] Variables de entorno de Shopify no configuradas en tiempo de ejecución.",
+      { traceId }
+    );
+    throw new Error(
+      "Las variables de entorno de Shopify no están disponibles."
+    );
+  }
+
+  const endpoint = `https://${domain}/admin/api/${apiVersion}/graphql.json`;
+  // --- FIN DE REFACTORIZACIÓN ---
+
   logger.info("[Shopify Admin DAL] Realizando petición GraphQL...", {
-    url: ADMIN_API_ENDPOINT,
+    url: endpoint,
     cache,
     tags,
     traceId,
   });
 
   try {
-    const result = await fetch(ADMIN_API_ENDPOINT, {
+    const result = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Shopify-Access-Token": ADMIN_ACCESS_TOKEN, // Usar Admin Access Token
+        "X-Shopify-Access-Token": adminToken,
       },
       body: JSON.stringify({ query, variables }),
       cache,
-      next: { tags: tags || [] }, // Los tags son menos comunes para Admin API, pero permitidos.
+      next: { tags: tags || [] },
     });
 
     const body = await result.json();

@@ -2,12 +2,8 @@
 /**
  * @file use-asset-uploader.ts
  * @description Hook "cerebro" soberano para la lógica de subida de activos a la BAVI.
- *              v6.0.0 (Data Contract Alignment & Elite Observability): Se corrige la
- *              estructura de datos de `sesaContent` para alinearla con el contrato
- *              del componente de presentación, resolviendo el error TS2322.
- *              Inyectado con observabilidad de ciclo de vida completo.
- * @version 6.0.0
- *@author RaZ Podestá - MetaShark Tech
+ * @version 7.0.0 (Intelligent Ingestion Engine)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -47,12 +43,9 @@ export function useAssetUploader({
   sesaLabels,
   sesaOptions,
 }: UseAssetUploaderProps) {
-  const traceId = useMemo(
-    () => logger.startTrace("useAssetUploader_Lifecycle_v6.0"),
-    []
-  );
+  const traceId = useMemo(() => logger.startTrace("useAssetUploader_v7.0"), []);
   useEffect(() => {
-    logger.info("[useAssetUploader] Hook montado y listo.", { traceId });
+    logger.info("[useAssetUploader] Hook montado.", { traceId });
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
@@ -66,9 +59,17 @@ export function useAssetUploader({
     (state) => state.activeWorkspaceId
   );
 
+  // --- [INICIO DE REFACTORIZACIÓN: INGESTIÓN INTELIGENTE] ---
+  const [extractedMetadata, setExtractedMetadata] = useState<Record<
+    string,
+    string | number
+  > | null>(null);
+  // --- [FIN DE REFACTORIZACIÓN] ---
+
   const form = useForm<AssetUploadMetadata>({
     resolver: zodResolver(assetUploadMetadataSchema),
     defaultValues: {
+      finalFileName: "", // Nuevo campo
       assetId: "",
       keywords: [],
       sesaTags: {},
@@ -83,12 +84,26 @@ export function useAssetUploader({
       if (selectedFile) {
         setFile(selectedFile);
         if (preview) URL.revokeObjectURL(preview);
-        setPreview(URL.createObjectURL(selectedFile));
+        const previewUrl = URL.createObjectURL(selectedFile);
+        setPreview(previewUrl);
+
+        // --- [INICIO DE REFACTORIZACIÓN: EXTRACCIÓN DE METADATOS] ---
         const baseName = selectedFile.name.split(".").slice(0, -1).join(".");
-        form.setValue(
-          "assetId",
-          `i-generic-${baseName.toLowerCase().replace(/[^a-z0-9]/g, "-")}-01`
-        );
+        const sanitizedBaseName = baseName
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, "-");
+
+        form.setValue("finalFileName", selectedFile.name);
+        form.setValue("assetId", `i-generic-${sanitizedBaseName}-01`);
+
+        setExtractedMetadata({
+          "Tipo de Archivo": selectedFile.type,
+          Tamaño: `${(selectedFile.size / 1024).toFixed(2)} KB`,
+          "Última Modificación": new Date(
+            selectedFile.lastModified
+          ).toLocaleString(),
+        });
+        // --- [FIN DE REFACTORIZACIÓN] ---
       }
     },
     [form, preview]
@@ -108,7 +123,7 @@ export function useAssetUploader({
 
   const onSubmit = (data: AssetUploadMetadata) => {
     if (!file) {
-      toast.error("Nessun file selezionato.");
+      toast.error("Ningún archivo seleccionado.");
       return;
     }
     if (!activeWorkspaceId) {
@@ -120,31 +135,29 @@ export function useAssetUploader({
 
     startTransition(async () => {
       const formData = new FormData();
-      formData.append("file", file);
+      // Usamos el nombre de archivo final (potencialmente modificado) para la subida
+      const finalFile = new File([file], data.finalFileName, {
+        type: file.type,
+      });
+      formData.append("file", finalFile);
       formData.append("metadata", JSON.stringify(data));
       formData.append("workspaceId", activeWorkspaceId);
 
       const result = await uploadAssetAction(formData);
       if (result.success) {
-        toast.success("Ingestione dell'asset completata!");
+        toast.success("¡Ingestión del activo completada!");
         setUploadResult(result.data);
         form.reset();
         setFile(null);
         setPreview(null);
+        setExtractedMetadata(null);
       } else {
-        toast.error("Errore di ingestione", { description: result.error });
+        toast.error("Error de ingestión", { description: result.error });
       }
     });
   };
 
-  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
-  // Se ensambla el objeto `sesaContent` con la estructura anidada correcta
-  // que espera el componente de presentación `AssetUploaderForm`.
-  const sesaContentForForm = {
-    sesaLabels,
-    sesaOptions,
-  };
-  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
+  const sesaContentForForm = { sesaLabels, sesaOptions };
 
   return {
     form,
@@ -156,6 +169,7 @@ export function useAssetUploader({
     getInputProps,
     isDragActive,
     content,
-    sesaContent: sesaContentForForm, // Se pasa el objeto corregido
+    sesaContent: sesaContentForForm,
+    extractedMetadata,
   };
 }

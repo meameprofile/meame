@@ -1,116 +1,145 @@
-// scripts/diagnostics/diag-mongo.ts
+// pnpm tsx scripts/run-with-env.ts scripts/mongo/connect.ts
 /**
- * @file diag-mongo.ts
- * @description Herramienta de diagnóstico de élite para verificar la conexión
- *              y la autenticación con la base de datos de MongoDB Atlas.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
- * @usage pnpm diag:mongo
+ * @file connect.ts
+ * @description Guardián de Conexión para MongoDB. Verifica variables de entorno
+ *              y la conectividad con el clúster, generando un informe de diagnóstico.
+ * @version 1.0.0 (Elite & AI-Consumable)
+ * @author L.I.A. Legacy
  */
 import { MongoClient } from "mongodb";
-import chalk from "chalk";
-import dotenv from "dotenv";
-import path from "path";
+import { promises as fs } from "fs";
+import * as path from "path";
+import { loadEnvironment } from "../_utils/env";
+import { scriptLogger } from "../_utils/logger";
+import type { ScriptActionResult } from "../_utils/types";
 
-async function runMongoDiagnostics() {
-  console.clear();
-  console.log(
-    chalk.cyan.bold("🔬 Iniciando Diagnóstico de Conexión a MongoDB Atlas...")
-  );
-
-  // 1. Cargar Variables de Entorno
-  dotenv.config({ path: path.resolve(process.cwd(), ".env.local") });
-  const MONGODB_URI = process.env.MONGODB_URI;
-  const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME;
-
-  if (!MONGODB_URI || !MONGODB_DB_NAME) {
-    console.error(
-      chalk.red.bold(
-        "\n❌ [FALLO] Faltan variables de entorno. Asegúrate de que MONGODB_URI y MONGODB_DB_NAME estén definidos en tu archivo .env.local."
-      )
-    );
-    process.exit(1);
-  }
-  console.log(chalk.green("✅ Variables de entorno cargadas."));
-
-  // 2. Intentar Conexión
-  console.log(
-    chalk.gray(`   Conectando al clúster... (Esto puede tardar unos segundos)`)
-  );
-  const client = new MongoClient(MONGODB_URI);
-  try {
-    await client.connect();
-    console.log(
-      chalk.green("✅ Conexión con el clúster de MongoDB establecida.")
-    );
-  } catch (error) {
-    console.error(
-      chalk.red.bold("\n❌ [FALLO] No se pudo conectar al clúster de MongoDB.")
-    );
-    console.error(chalk.white("Posibles Causas:"));
-    console.error(
-      chalk.yellow(
-        "   1. Tu dirección IP actual no está en la lista blanca de 'Network Access' en MongoDB Atlas."
-      )
-    );
-    console.error(
-      chalk.yellow(
-        "   2. La cadena de conexión 'MONGODB_URI' en tu .env.local es incorrecta (revisa la contraseña)."
-      )
-    );
-    console.error(
-      chalk.yellow(
-        "   3. Un firewall o problema de red está bloqueando la conexión."
-      )
-    );
-    console.error("\nError detallado:", error);
-    process.exit(1);
-  }
-
-  // 3. Verificar Base de Datos y Colección
-  try {
-    const db = client.db(MONGODB_DB_NAME);
-    const collections = await db
-      .listCollections({ name: "articles" })
-      .toArray();
-    console.log(
-      chalk.green(
-        `✅ Conexión a la base de datos '${MONGODB_DB_NAME}' exitosa.`
-      )
-    );
-
-    if (collections.length > 0) {
-      console.log(chalk.green("✅ La colección 'articles' fue encontrada."));
-    } else {
-      console.log(
-        chalk.yellow(
-          "   ⚠️  La colección 'articles' no existe. Será creada en la primera inserción."
-        )
-      );
-    }
-  } catch (error) {
-    console.error(
-      chalk.red.bold(
-        "\n❌ [FALLO] Se conectó al clúster, pero no se pudo acceder a la base de datos."
-      )
-    );
-    console.error(
-      chalk.white(
-        "Verifica que el nombre de la base de datos en MONGODB_DB_NAME sea correcto y que el usuario tenga permisos."
-      )
-    );
-    console.error("\nError detallado:", error);
-    process.exit(1);
-  } finally {
-    await client.close();
-  }
-
-  console.log(
-    chalk.green.bold(
-      "\n✨ Diagnóstico de MongoDB completado. ¡La conexión es saludable!"
-    )
-  );
+// --- SSoT de Contratos de Datos ---
+interface Report {
+  reportMetadata: {
+    script: string;
+    purpose: string;
+    generatedAt: string;
+  };
+  instructionsForAI: string[];
+  connectionStatus: "SUCCESS" | "FAILED";
+  environmentValidation: {
+    variable: string;
+    status: "OK" | "MISSING" | "INVALID";
+    message: string;
+  }[];
+  apiConnectionResult: {
+    status: "OK" | "FAILED";
+    message: string;
+    details?: unknown;
+  };
+  summary: string;
 }
 
-runMongoDiagnostics();
-// scripts/diagnostics/diag-mongo.ts
+async function diagnoseMongoConnection(): Promise<ScriptActionResult<string>> {
+  const traceId = scriptLogger.startTrace("diagnoseMongoConnection_v1.0");
+  scriptLogger.startGroup("🍃 Iniciando Guardián de Conexión a MongoDB...");
+
+  const reportDir = path.resolve(process.cwd(), "reports", "mongodb");
+  const reportPath = path.resolve(reportDir, "connect-diagnostics.json");
+
+  const report: Report = {
+    reportMetadata: {
+      script: "scripts/mongo/connect.ts",
+      purpose: "Diagnóstico de Conexión de MongoDB Atlas",
+      generatedAt: new Date().toISOString(),
+    },
+    instructionsForAI: [
+      "Este es un informe de diagnóstico de conexión para MongoDB.",
+      "Analiza 'connectionStatus' para el resultado general.",
+      "Revisa 'environmentValidation' para el estado de cada variable de entorno. La `MONGODB_URI` es la más crítica.",
+      "Revisa 'apiConnectionResult' para el resultado de la prueba de `ping` a la base de datos.",
+      "Un fallo aquí suele indicar problemas de red (IP no en la lista blanca) o credenciales incorrectas en la URI.",
+    ],
+    connectionStatus: "FAILED",
+    environmentValidation: [],
+    apiConnectionResult: {
+      status: "FAILED",
+      message: "La prueba no se ha ejecutado.",
+    },
+    summary: "",
+  };
+
+  let client: MongoClient | null = null;
+
+  try {
+    loadEnvironment();
+    const requiredKeys = ["MONGODB_URI", "MONGODB_DB_NAME"];
+    let allKeysValid = true;
+
+    for (const key of requiredKeys) {
+      const value = process.env[key];
+      if (value && value !== "") {
+        report.environmentValidation.push({
+          variable: key,
+          status: "OK",
+          message: `Variable '${key}' configurada.`,
+        });
+        scriptLogger.success(`Variable '${key}' encontrada.`);
+      } else {
+        allKeysValid = false;
+        report.environmentValidation.push({
+          variable: key,
+          status: "MISSING",
+          message: `ERROR: Variable '${key}' no definida.`,
+        });
+        scriptLogger.error(`Variable '${key}' NO encontrada.`);
+      }
+    }
+    if (!allKeysValid)
+      throw new Error("Variables de entorno de MongoDB faltan.");
+
+    const uri = process.env.MONGODB_URI!;
+    client = new MongoClient(uri);
+
+    scriptLogger.info(
+      "Intentando conectar y hacer ping al clúster de MongoDB..."
+    );
+    await client.connect();
+    const db = client.db(process.env.MONGODB_DB_NAME!);
+    const pingResult = await db.command({ ping: 1 });
+
+    if (!pingResult || pingResult.ok !== 1) {
+      throw new Error(
+        "El comando ping a MongoDB no devolvió una respuesta 'ok'."
+      );
+    }
+
+    report.connectionStatus = "SUCCESS";
+    report.apiConnectionResult = {
+      status: "OK",
+      message: "Conexión y ping al clúster de MongoDB exitosos.",
+    };
+    report.summary =
+      "Diagnóstico exitoso. La conexión con MongoDB Atlas está activa y las credenciales son válidas.";
+    scriptLogger.success(report.summary);
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
+    report.summary = `Diagnóstico fallido: ${errorMessage}`;
+    report.apiConnectionResult = { status: "FAILED", message: errorMessage };
+    scriptLogger.error(report.summary, { traceId });
+  } finally {
+    if (client) await client.close();
+    await fs.mkdir(reportDir, { recursive: true });
+    await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
+    scriptLogger.info(
+      `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
+    );
+    scriptLogger.endGroup();
+    scriptLogger.endTrace(traceId);
+    if (report.connectionStatus === "FAILED") process.exit(1);
+  }
+
+  if (report.connectionStatus === "SUCCESS") {
+    return { success: true, data: report.summary };
+  } else {
+    return { success: false, error: report.summary };
+  }
+}
+
+diagnoseMongoConnection();

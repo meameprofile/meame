@@ -1,32 +1,30 @@
 // RUTA: src/shared/lib/actions/raz-prompts/createPromptEntry.action.ts
 /**
  * @file createPromptEntry.action.ts
- * @description Server Action de producción para crear una nueva entrada de prompt.
- *              v12.0.0 (Architectural Integrity & Type Safety Restoration): Restaura
- *              las rutas de importación soberanas y la seguridad de tipos absoluta.
- * @version 12.0.0
- *@author RaZ Podestá - MetaShark Tech
+ * @description Server Action de producción para crear una nueva entrada de prompt,
+ *              ahora con seguridad de tipos absoluta y alineamiento de contratos.
+ * @version 13.0.0 (Absolute Type Safety & Contract Alignment)
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
 import { createId } from "@paralleldrive/cuid2";
 import { z } from "zod";
 import { createServerClient } from "@/shared/lib/supabase/server";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// Se importa el schema de la entidad desde su SSoT soberana.
 import {
   RaZPromptsEntrySchema,
   type RaZPromptsEntry,
 } from "@/shared/lib/schemas/raz-prompts/entry.schema";
-// Se importan los schemas atómicos desde su SSoT.
 import {
   PromptParametersSchema,
   RaZPromptsSesaTagsSchema,
 } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { logger } from "@/shared/lib/logging";
 import { IDEOGRAM_PARAMETERS_CONFIG } from "@/shared/lib/config/raz-prompts/parameters.config";
+import type { Json } from "@/shared/lib/supabase/database.types";
+import type { RazPromptsEntryInsert } from "@/shared/lib/schemas/raz-prompts/raz-prompts.contracts";
 
 type CreatePromptInput = {
   title: string;
@@ -43,23 +41,18 @@ function assembleFullPrompt(
   params: z.infer<typeof PromptParametersSchema>
 ): string {
   const technicalAdditions: string[] = [];
-
   for (const config of IDEOGRAM_PARAMETERS_CONFIG) {
     const paramValue = params[config.id as keyof typeof params];
     if (paramValue) {
       const option = config.options.find((opt) => opt.value === paramValue);
-      // --- [INICIO DE REFACTORIZACIÓN DE SEGURIDAD DE TIPOS] ---
-      // Se fuerza la coerción a string para cumplir con el contrato de la función.
       technicalAdditions.push(
         config.appendToPrompt(
           String(paramValue),
           option?.labelKey || String(paramValue)
         )
       );
-      // --- [FIN DE REFACTORIZACIÓN DE SEGURIDAD DE TIPOS] ---
     }
   }
-
   technicalAdditions.push("8k, ultra-high detail, sharp focus, photorealistic");
   return `${baseText}, ${technicalAdditions.join(", ")}`;
 }
@@ -67,8 +60,8 @@ function assembleFullPrompt(
 export async function createPromptEntryAction(
   input: CreatePromptInput
 ): Promise<ActionResult<{ promptId: string }>> {
-  const traceId = logger.startTrace("createPromptEntry_v12.0");
-  logger.startGroup(`[Action] Creando nueva entrada de prompt...`);
+  const traceId = logger.startTrace("createPromptEntry_v13.0");
+  logger.startGroup(`[Action] Creando nueva entrada de prompt...`, traceId);
 
   try {
     const supabase = createServerClient();
@@ -77,7 +70,6 @@ export async function createPromptEntryAction(
     } = await supabase.auth.getUser();
 
     if (!user) {
-      logger.warn("[Action] Intento no autorizado.", { traceId });
       return { success: false, error: "auth_required" };
     }
     logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
@@ -96,16 +88,14 @@ export async function createPromptEntryAction(
       `Membresía del workspace ${workspaceId} verificada.`
     );
 
-    const newPromptId = createId();
     const now = new Date().toISOString();
     const fullPromptText = assembleFullPrompt(
       input.basePromptText,
       input.parameters
     );
-    logger.traceEvent(traceId, "Prompt profesional ensamblado con éxito.");
 
-    const fullPromptData: RaZPromptsEntry = {
-      promptId: newPromptId,
+    const promptEntity: RaZPromptsEntry = {
+      promptId: createId(),
       userId: user.id,
       workspaceId: workspaceId,
       title: input.title,
@@ -127,45 +117,40 @@ export async function createPromptEntryAction(
       updatedAt: now,
     };
 
-    const validation = RaZPromptsEntrySchema.safeParse(fullPromptData);
+    const validation = RaZPromptsEntrySchema.safeParse(promptEntity);
     if (!validation.success) {
-      logger.error(
-        "[Guardián] Fallo de validación de Zod antes de la inserción.",
-        { errors: validation.error.flatten(), traceId }
-      );
       return {
         success: false,
         error: "Los datos del prompt son inválidos según el esquema.",
       };
     }
-    logger.traceEvent(traceId, "Datos del prompt validados con éxito.");
+    logger.traceEvent(traceId, "Entidad de prompt validada con Zod.");
+
+    const supabasePayload: RazPromptsEntryInsert = {
+      id: validation.data.promptId,
+      user_id: validation.data.userId,
+      workspace_id: validation.data.workspaceId,
+      title: validation.data.title,
+      status: validation.data.status,
+      ai_service: validation.data.aiService,
+      keywords: validation.data.keywords,
+      versions: validation.data.versions as Json,
+      tags: validation.data.tags as Json,
+      bavi_asset_ids: validation.data.baviAssetIds,
+      created_at: validation.data.createdAt,
+      updated_at: validation.data.updatedAt,
+    };
+    logger.traceEvent(traceId, "Payload de inserción (snake_case) generado.");
 
     const { data, error } = await supabase
       .from("razprompts_entries")
-      .insert({
-        id: validation.data.promptId,
-        user_id: validation.data.userId,
-        workspace_id: validation.data.workspaceId,
-        title: validation.data.title,
-        status: validation.data.status,
-        ai_service: validation.data.aiService,
-        keywords: validation.data.keywords,
-        versions: validation.data.versions,
-        tags: validation.data.tags,
-        bavi_asset_ids: validation.data.baviAssetIds,
-        created_at: validation.data.createdAt,
-        updated_at: validation.data.updatedAt,
-      })
+      .insert(supabasePayload)
       .select("id")
       .single();
 
     if (error) {
       throw new Error(`Error de Supabase: ${error.message}`);
     }
-    logger.traceEvent(
-      traceId,
-      `Inserción en base de datos exitosa. ID: ${data.id}`
-    );
 
     logger.success(
       `[Action] Nuevo genoma de prompt ${data.id} creado en workspace ${workspaceId}.`,

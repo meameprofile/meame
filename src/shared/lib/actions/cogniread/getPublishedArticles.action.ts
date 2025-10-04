@@ -1,12 +1,10 @@
-// RUTA: src/shared/lib/actions/cogniread/getAllArticles.action.ts
+// RUTA: src/shared/lib/actions/cogniread/getPublishedArticles.action.ts
 /**
- * @file getAllArticles.action.ts
- * @description Server Action para obtener una lista paginada de TODOS los artículos.
- *              v7.0.0 (Holistic & Type-Safe Refactor): Se abstrae la lógica de
- *              procesamiento de respuesta para eliminar la dependencia de tipos internos
- *              de PostgREST, resolviendo errores TS2305 y no-explicit-any.
- * @version 7.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @file getPublishedArticles.action.ts
+ * @description Server Action para obtener una lista paginada de artículos PUBLICADOS,
+ *              ahora completamente alineada con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 8.0.0 (Sovereign Contract Aligned)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -18,11 +16,9 @@ import {
 } from "@/shared/lib/schemas/cogniread/article.schema";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { logger } from "@/shared/lib/logging";
-import {
-  mapSupabaseToCogniReadArticle,
-  type SupabaseCogniReadArticle,
-} from "./_shapers/cogniread.shapers";
+import { mapSupabaseToCogniReadArticle } from "./_shapers/cogniread.shapers";
 import type { PostgrestResponse } from "@supabase/supabase-js";
+import type { CogniReadArticleRow } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
 
 const GetArticlesInputSchema = z.object({
   page: z.number().int().min(1).default(1),
@@ -30,22 +26,12 @@ const GetArticlesInputSchema = z.object({
 });
 type GetArticlesInput = z.infer<typeof GetArticlesInputSchema>;
 
-/**
- * @function _processArticleQuery
- * @description Motor interno y puro para procesar la respuesta de una consulta de artículos.
- * @private
- * @param {PromiseLike<PostgrestResponse<SupabaseCogniReadArticle>>} queryPromise - La promesa devuelta por el PostgrestBuilder.
- * @returns {Promise<{ articles: CogniReadArticle[]; total: number }>}
- */
 async function _processArticleQuery(
-  queryPromise: PromiseLike<PostgrestResponse<SupabaseCogniReadArticle>>
+  queryPromise: PromiseLike<PostgrestResponse<CogniReadArticleRow>>
 ): Promise<{ articles: CogniReadArticle[]; total: number }> {
   const { data, error, count } = await queryPromise;
 
   if (error) {
-    logger.error("[_processArticleQuery] Error en la respuesta de Supabase.", {
-      error: error.message,
-    });
     throw new Error(error.message);
   }
 
@@ -55,9 +41,6 @@ async function _processArticleQuery(
 
   const validation = z.array(CogniReadArticleSchema).safeParse(mappedArticles);
   if (!validation.success) {
-    logger.error("[_processArticleQuery] Los datos de la DB están corruptos.", {
-      errors: validation.error.flatten(),
-    });
     throw new Error(
       "Formato de datos de artículos inesperado desde la base de datos."
     );
@@ -66,12 +49,12 @@ async function _processArticleQuery(
   return { articles: validation.data, total: count ?? 0 };
 }
 
-export async function getAllArticlesAction(
+export async function getPublishedArticlesAction(
   input: GetArticlesInput
 ): Promise<ActionResult<{ articles: CogniReadArticle[]; total: number }>> {
-  const traceId = logger.startTrace("getAllArticlesAction_v7.0");
+  const traceId = logger.startTrace("getPublishedArticlesAction_v8.0");
   logger.info(
-    `[CogniReadAction] Obteniendo todos los artículos (página ${input.page})...`,
+    `[CogniReadAction] Obteniendo artículos publicados (página ${input.page})...`,
     { traceId }
   );
 
@@ -82,23 +65,19 @@ export async function getAllArticlesAction(
     const start = (page - 1) * limit;
     const end = start + limit - 1;
 
-    // --- [INICIO DE REFACTORIZACIÓN QUIRÚRGICA] ---
-    // Se corrige el método .select() para usar la sintaxis correcta del SDK de Supabase,
-    // eliminando la función de agregación "count()" de la cadena de selección.
     const query = supabase
       .from("cogniread_articles")
-      .select("*", { count: "exact" }) // CORREGIDO: Se elimina ", count()"
+      .select("*", { count: "exact" })
+      .eq("status", "published") // Filtro clave para esta acción
       .order("updated_at", { ascending: false })
       .range(start, end);
-    // --- [FIN DE REFACTORIZACIÓN QUIRÚRGICA] ---
 
-    // Se delega el procesamiento de la respuesta al motor interno
     const result = await _processArticleQuery(query);
     return { success: true, data: result };
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
-    logger.error(`[getAllArticlesAction] Fallo crítico.`, {
+    logger.error(`[getPublishedArticlesAction] Fallo crítico.`, {
       error: errorMessage,
       traceId,
     });

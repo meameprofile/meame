@@ -1,13 +1,15 @@
 // RUTA: src/shared/lib/actions/workspaces/getWorkspacesForUser.action.ts
 /**
  * @file getWorkspacesForUser.action.ts
- * @description Server Action de producción para obtener todos los workspaces
- *              a los que pertenece el usuario autenticado.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description Server Action para obtener los workspaces de un usuario, ahora
+ *              alineada con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 2.0.0 (Sovereign Contract Aligned & Type-Safe)
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
+import { z } from "zod";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
@@ -15,29 +17,39 @@ import {
   WorkspaceSchema,
   type Workspace,
 } from "@/shared/lib/schemas/entities/workspace.schema";
-import { z } from "zod";
+import type { WorkspaceRow } from "@/shared/lib/schemas/workspaces/workspaces.contracts";
+
+/**
+ * @function mapSupabaseToWorkspace
+ * @description Shaper que transforma una fila de la DB al formato de la aplicación.
+ * @param {WorkspaceRow} row - La fila cruda de Supabase.
+ * @returns {Workspace} La entidad de aplicación transformada.
+ */
+function mapSupabaseToWorkspace(row: WorkspaceRow): Workspace {
+  return {
+    id: row.id,
+    name: row.name,
+  };
+}
 
 export async function getWorkspacesForUserAction(): Promise<
   ActionResult<Workspace[]>
 > {
-  const traceId = logger.startTrace("getWorkspacesForUserAction");
-  const supabase = createServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    logger.warn("[Action] Intento no autorizado de obtener workspaces.", {
-      traceId,
-    });
-    return { success: false, error: "auth_required" };
-  }
-
-  logger.info(`[Action] Solicitando workspaces para el usuario: ${user.id}`, {
-    traceId,
-  });
+  const traceId = logger.startTrace("getWorkspacesForUserAction_v2.0");
+  logger.startGroup(`[Action] Obteniendo workspaces del usuario...`, traceId);
 
   try {
+    const supabase = createServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      logger.warn("[Action] Intento no autorizado.", { traceId });
+      return { success: false, error: "auth_required" };
+    }
+    logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
+
     const { data, error } = await supabase
       .from("workspace_members")
       .select(
@@ -51,19 +63,37 @@ export async function getWorkspacesForUserAction(): Promise<
       .eq("user_id", user.id);
 
     if (error) {
-      throw new Error(error.message);
+      throw new Error(`Error de Supabase: ${error.message}`);
     }
+    logger.traceEvent(
+      traceId,
+      `Se obtuvieron ${data.length} registros de membresía.`
+    );
 
-    // El resultado es un array de objetos { workspaces: { id, name } },
-    // así que lo aplanamos y validamos.
-    const workspaces = data.map((item) => item.workspaces).filter(Boolean);
-    const validatedWorkspaces = z.array(WorkspaceSchema).parse(workspaces);
+    const workspaces = data
+      .map((item) => item.workspaces as WorkspaceRow | null)
+      .filter((ws): ws is WorkspaceRow => ws !== null)
+      .map(mapSupabaseToWorkspace);
+
+    // Guardián de Contrato: Validamos la data transformada.
+    const validation = z.array(WorkspaceSchema).safeParse(workspaces);
+    if (!validation.success) {
+      logger.error("[Action] Los datos de workspace de la DB son inválidos.", {
+        errors: validation.error.flatten(),
+        traceId,
+      });
+      throw new Error("Formato de datos de workspace inesperado.");
+    }
+    logger.traceEvent(
+      traceId,
+      `${validation.data.length} workspaces validados.`
+    );
 
     logger.success(
-      `[Action] Se encontraron ${validatedWorkspaces.length} workspaces para el usuario.`,
+      `[Action] Se encontraron ${validation.data.length} workspaces para el usuario.`,
       { traceId }
     );
-    return { success: true, data: validatedWorkspaces };
+    return { success: true, data: validation.data };
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
@@ -76,6 +106,7 @@ export async function getWorkspacesForUserAction(): Promise<
       error: `No se pudieron cargar los espacios de trabajo: ${errorMessage}`,
     };
   } finally {
+    logger.endGroup();
     logger.endTrace(traceId);
   }
 }

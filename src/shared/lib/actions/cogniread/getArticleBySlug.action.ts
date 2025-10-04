@@ -1,12 +1,14 @@
 // RUTA: src/shared/lib/actions/cogniread/getArticleBySlug.action.ts
 /**
  * @file getArticleBySlug.action.ts
- * @description Server Action para obtener un único artículo publicado por su slug.
- * @version 3.0.0 (Architecturally Pure)
- *@author RaZ Podestá - MetaShark Tech - Asistente de Refactorización
+ * @description Server Action para obtener un único artículo publicado por su slug,
+ *              ahora completamente alineada con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 4.0.0 (Sovereign Contract Aligned)
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import {
   CogniReadArticleSchema,
@@ -15,16 +17,14 @@ import {
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import {
-  mapSupabaseToCogniReadArticle,
-  type SupabaseCogniReadArticle,
-} from "./_shapers/cogniread.shapers";
+import { mapSupabaseToCogniReadArticle } from "./_shapers/cogniread.shapers";
+import type { CogniReadArticleRow } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
 
 export async function getArticleBySlugAction(
   slug: string,
   locale: Locale
 ): Promise<ActionResult<{ article: CogniReadArticle | null }>> {
-  const traceId = logger.startTrace("getArticleBySlugAction_v3.0_Pure");
+  const traceId = logger.startTrace("getArticleBySlugAction_v4.0");
   logger.info(
     `[CogniReadAction] Obteniendo artículo por slug: "${slug}", locale: ${locale}...`,
     { traceId }
@@ -52,7 +52,7 @@ export async function getArticleBySlugAction(
     }
 
     const mappedArticle = mapSupabaseToCogniReadArticle(
-      data as SupabaseCogniReadArticle
+      data as CogniReadArticleRow
     );
     const validation = CogniReadArticleSchema.safeParse(mappedArticle);
 

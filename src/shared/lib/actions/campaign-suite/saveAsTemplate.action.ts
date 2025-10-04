@@ -2,18 +2,21 @@
 /**
  * @file saveAsTemplate.action.ts
  * @description Server Action para persistir un borrador como plantilla, ahora
- *              consciente del contexto del workspace y con seguridad a nivel de fila.
- * @version 4.0.0 (Workspace-Aware & Secure)
- * @author RaZ Podestá - MetaShark Tech
+ *              alineada con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 5.0.0 (Sovereign Contract & Type-Safe)
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
 import { z } from "zod";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import { CampaignDraftDataSchema } from "@/shared/lib/schemas/campaigns/draft.schema";
+import type { Json } from "@/shared/lib/supabase/database.types";
+import type { CampaignTemplateInsert } from "@/shared/lib/schemas/campaigns/campaign-suite.contracts";
 
 const InputSchema = z.object({
   name: z.string().min(3, "El nombre debe tener al menos 3 caracteres."),
@@ -25,76 +28,84 @@ export async function saveAsTemplateAction(
   draft: CampaignDraft,
   name: string,
   description: string,
-  workspaceId: string // <-- PARÁMETRO DE CONTEXTO REQUERIDO
+  workspaceId: string
 ): Promise<ActionResult<{ templateId: string }>> {
-  const traceId = logger.startTrace("saveAsTemplateAction_v4.0");
-  const supabase = createServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return { success: false, error: "auth_required" };
-  }
+  const traceId = logger.startTrace("saveAsTemplateAction_v5.0");
+  logger.startGroup(`[Action] Guardando borrador como plantilla...`, traceId);
 
   try {
+    const supabase = createServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      logger.warn("[Action] Intento no autorizado.", { traceId });
+      return { success: false, error: "auth_required" };
+    }
+    logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
+
     const inputValidation = InputSchema.safeParse({
       name,
       description,
       workspaceId,
     });
     if (!inputValidation.success) {
+      logger.warn("[Action] Input de creación de plantilla inválido.", {
+        errors: inputValidation.error.flatten(),
+        traceId,
+      });
       return {
         success: false,
         error: "Los datos proporcionados son inválidos.",
       };
     }
 
-    // --- GUARDIA DE SEGURIDAD DE WORKSPACE ---
     const { data: memberCheck, error: memberError } = await supabase.rpc(
       "is_workspace_member",
       { workspace_id_to_check: workspaceId }
     );
     if (memberError || !memberCheck) {
-      logger.error("[Action] Verificación de membresía fallida.", {
-        userId: user.id,
-        workspaceId,
-        error: memberError,
-        traceId,
-      });
       throw new Error("Acceso denegado al workspace.");
     }
     logger.traceEvent(
       traceId,
-      `Usuario ${user.id} verificado como miembro del workspace ${workspaceId}.`
+      `Membresía del workspace ${workspaceId} verificada.`
     );
-    // --- FIN DE LA GUARDIA DE SEGURIDAD ---
 
     const draftValidation = CampaignDraftDataSchema.safeParse(draft);
     if (!draftValidation.success) {
+      logger.error("[Action] El borrador a guardar es inválido.", {
+        errors: draftValidation.error.flatten(),
+        traceId,
+      });
       return { success: false, error: "El borrador contiene datos corruptos." };
     }
+    const draftData = draftValidation.data;
+    logger.traceEvent(traceId, "Datos del borrador validados.");
 
-    const templateData = {
-      user_id: user.id, // Mantenemos el creador original por auditoría
-      workspace_id: workspaceId, // <-- PROPIEDAD DEL WORKSPACE
+    const templatePayload: CampaignTemplateInsert = {
+      user_id: user.id,
+      workspace_id: workspaceId,
       name: inputValidation.data.name,
       description: inputValidation.data.description || null,
-      source_campaign_id: draft.baseCampaignId || "unknown",
-      draft_data: draftValidation.data,
+      source_campaign_id: draftData.baseCampaignId || "unknown",
+      draft_data: draftData as Json, // Aserción de tipo explícita
     };
+    logger.traceEvent(traceId, "Payload de Supabase generado.");
 
     const { data, error } = await supabase
       .from("campaign_templates")
-      .insert(templateData)
+      .insert(templatePayload)
       .select("id")
       .single();
 
     if (error) {
       throw new Error(error.message);
     }
+    logger.traceEvent(traceId, `Plantilla insertada con ID: ${data.id}.`);
 
-    logger.success("[Action] Plantilla guardada exitosamente.", {
+    logger.success(`[Action] Plantilla '${name}' guardada con éxito.`, {
       templateId: data.id,
       traceId,
     });
@@ -108,6 +119,7 @@ export async function saveAsTemplateAction(
     });
     return { success: false, error: "No se pudo guardar la plantilla." };
   } finally {
+    logger.endGroup();
     logger.endTrace(traceId);
   }
 }

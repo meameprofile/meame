@@ -2,13 +2,16 @@
 /**
  * @file upload.schema.ts
  * @description SSoT para los metadatos de subida a la BAVI.
- * @version 2.1.0 (Sovereign Path Restoration)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Intelligent Ingestion)
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
-import { RaZPromptsSesaTagsSchema } from "@/shared/lib/schemas/raz-prompts/atomic.schema"; // <-- RUTA CORREGIDA
+import { RaZPromptsSesaTagsSchema } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 
 export const assetUploadMetadataSchema = z.object({
+  finalFileName: z
+    .string()
+    .min(1, "El nombre del archivo no puede estar vacío."), // <-- NUEVO
   assetId: z.string().min(1, "Se requiere un assetId único."),
   keywords: z.array(z.string()),
   sesaTags: RaZPromptsSesaTagsSchema.partial(),

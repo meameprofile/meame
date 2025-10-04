@@ -2,20 +2,14 @@
 /**
  * @file AssetUploader.tsx
  * @description Orquestador "smart" para la subida de activos.
- *              v8.0.0 (Architectural Integrity Restoration): Se alinea la
- *              importación del formulario de presentación a su nueva SSoT canónica,
- *              resolviendo el error de build TS2307.
- * @version 8.0.0
- *@author RaZ Podestá - MetaShark Tech
+ * @version 9.0.0 (Holistic Data Flow Restoration)
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import React from "react";
 import { useAssetUploader } from "@/shared/hooks/bavi/use-asset-uploader";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// La importación ahora apunta a la nueva ruta soberana del componente de presentación.
 import { AssetUploaderForm } from "./AssetUploader/components/AssetUploaderForm";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { logger } from "@/shared/lib/logging";
 
@@ -30,7 +24,7 @@ export function AssetUploader({
   sesaLabels,
   sesaOptions,
 }: AssetUploaderProps) {
-  const traceId = logger.startTrace("AssetUploader_Orchestrator_Render_v8.0");
+  const traceId = logger.startTrace("AssetUploader_Orchestrator_v9.0");
   logger.info("[AssetUploader] Renderizando orquestador de subida.", {
     traceId,
   });
@@ -43,5 +37,8 @@ export function AssetUploader({
 
   logger.endTrace(traceId);
 
+  // --- [INICIO DE RESTAURACIÓN DE FLUJO DE DATOS] ---
+  // Se pasan TODAS las props del estado del uploader al formulario de presentación.
   return <AssetUploaderForm {...uploaderState} />;
+  // --- [FIN DE RESTAURACIÓN DE FLUJO DE DATOS] ---
 }

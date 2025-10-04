@@ -1,12 +1,14 @@
 // RUTA: src/shared/lib/actions/cogniread/postComment.action.ts
 /**
  * @file postComment.action.ts
- * @description Server Action para publicar un nuevo comentario en un artículo.
- * @version 3.0.0 (Architecturally Pure)
- *@author RaZ Podestá - MetaShark Tech - Asistente de Refactorización
+ * @description Server Action para publicar un nuevo comentario, ahora completamente
+ *              alineada con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 4.0.0 (Sovereign Contract Aligned)
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
 import { revalidatePath } from "next/cache";
 import { createId } from "@paralleldrive/cuid2";
 import { createServerClient } from "@/shared/lib/supabase/server";
@@ -15,10 +17,8 @@ import {
   type Comment,
 } from "@/shared/lib/schemas/community/comment.schema";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-import {
-  mapSupabaseToComment,
-  type SupabaseComment,
-} from "./_shapers/cogniread.shapers";
+import { mapSupabaseToComment } from "./_shapers/cogniread.shapers";
+import type { CommunityCommentRow } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
 
 interface PostCommentInput {
   articleId: string;
@@ -86,7 +86,7 @@ export async function postCommentAction(
       throw new Error(error.message);
     }
 
-    const newComment = mapSupabaseToComment(data as SupabaseComment);
+    const newComment = mapSupabaseToComment(data as CommunityCommentRow);
     revalidatePath(`/news/${input.articleSlug}`);
 
     return { success: true, data: { newComment } };

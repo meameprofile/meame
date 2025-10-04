@@ -2,9 +2,8 @@
 /**
  * @file AssetUploaderForm.tsx
  * @description Componente de presentación puro para la UI del AssetUploader.
- *              Forjado con observabilidad de élite y un guardián de resiliencia de contrato.
- * @version 1.0.0
- *@author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Holistic Data Flow & Elite Compliance)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -13,14 +12,12 @@ import type { UseFormReturn } from "react-hook-form";
 import type { DropzoneRootProps, DropzoneInputProps } from "react-dropzone";
 import type { UploadApiResponse } from "cloudinary";
 import { Form, Button, DynamicIcon } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
 import { AssetDropzone } from "./AssetDropzone";
 import { MetadataForm } from "./MetadataForm";
 import { UploadPreview } from "./UploadPreview";
 import { SesaTagsFormGroup } from "@/components/features/raz-prompts/components/SesaTagsFormGroup";
 import type { AssetUploadMetadata } from "@/shared/lib/schemas/bavi/upload.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { logger } from "@/shared/lib/logging";
 
 type UploaderContent = NonNullable<Dictionary["baviUploader"]>;
 type SesaContent = {
@@ -39,6 +36,7 @@ interface AssetUploaderFormProps {
   isDragActive: boolean;
   content: UploaderContent;
   sesaContent: SesaContent;
+  extractedMetadata: Record<string, string | number> | null;
 }
 
 export function AssetUploaderForm({
@@ -52,27 +50,8 @@ export function AssetUploaderForm({
   isDragActive,
   content,
   sesaContent,
+  extractedMetadata,
 }: AssetUploaderFormProps) {
-  const traceId = logger.startTrace("AssetUploaderForm_Render");
-  logger.trace("[AssetUploaderForm] Renderizando formulario de presentación.", {
-    traceId,
-  });
-
-  // --- GUARDIÁN DE RESILIENCIA DE CONTRATO ---
-  if (!content || !sesaContent.sesaLabels || !sesaContent.sesaOptions) {
-    const errorMsg =
-      "Contrato de UI violado: Faltan props de contenido requeridas.";
-    logger.error(`[Guardián] ${errorMsg}`, { traceId });
-    logger.endTrace(traceId);
-    return (
-      <DeveloperErrorDisplay
-        context="AssetUploaderForm"
-        errorMessage={errorMsg}
-      />
-    );
-  }
-
-  logger.endTrace(traceId);
   return (
     <Form {...form}>
       <form
@@ -91,7 +70,11 @@ export function AssetUploaderForm({
           }
         />
         <div className="space-y-6">
-          <MetadataForm control={form.control} content={content} />
+          <MetadataForm
+            control={form.control}
+            content={content}
+            extractedMetadata={extractedMetadata}
+          />
           <SesaTagsFormGroup
             control={form.control}
             content={{

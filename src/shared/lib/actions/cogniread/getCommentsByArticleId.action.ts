@@ -1,12 +1,14 @@
 // RUTA: src/shared/lib/actions/cogniread/getCommentsByArticleId.action.ts
 /**
  * @file getCommentsByArticleId.action.ts
- * @description Server Action para obtener todos los comentarios de un artículo.
- * @version 3.0.0 (Architecturally Pure)
- *@author RaZ Podestá - MetaShark Tech - Asistente de Refactorización
+ * @description Server Action para obtener todos los comentarios de un artículo,
+ *              ahora completamente alineada con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 4.0.0 (Sovereign Contract Aligned)
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
 import { z } from "zod";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import {
@@ -15,15 +17,13 @@ import {
 } from "@/shared/lib/schemas/community/comment.schema";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { logger } from "@/shared/lib/logging";
-import {
-  mapSupabaseToComment,
-  type SupabaseComment,
-} from "./_shapers/cogniread.shapers";
+import { mapSupabaseToComment } from "./_shapers/cogniread.shapers";
+import type { CommunityCommentRow } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
 
 export async function getCommentsByArticleIdAction(
   articleId: string
 ): Promise<ActionResult<{ comments: Comment[] }>> {
-  const traceId = logger.startTrace("getCommentsByArticleIdAction_v3.0_Pure");
+  const traceId = logger.startTrace("getCommentsByArticleIdAction_v4.0");
   logger.info(
     `[CogniReadAction] Solicitando comentarios para el artículo: ${articleId}...`,
     { traceId }
@@ -42,9 +42,9 @@ export async function getCommentsByArticleIdAction(
       throw new Error(error.message);
     }
 
-    const mappedComments: Comment[] = ((data as SupabaseComment[]) || []).map(
-      mapSupabaseToComment
-    );
+    const mappedComments: Comment[] = (
+      (data as CommunityCommentRow[]) || []
+    ).map(mapSupabaseToComment);
     const validation = z.array(CommentSchema).safeParse(mappedComments);
 
     if (!validation.success) {

@@ -1,16 +1,18 @@
 // RUTA: src/shared/lib/actions/raz-prompts/linkPromptToBaviAsset.action.ts
 /**
  * @file linkPromptToBaviAsset.action.ts
- * @description Server Action simbiótica para vincular un activo de BAVI a un genoma de prompt.
- *              Forjada con observabilidad transaccional, resiliencia atómica y un contrato de tipos estricto.
- * @version 9.1.0 (Type Safety & API Contract Restoration)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Server Action simbiótica para vincular un activo de BAVI a un genoma de prompt,
+ *              ahora con seguridad de tipos absoluta mediante contratos de dominio soberanos.
+ * @version 10.0.0 (Sovereign Contract Aligned)
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { logger } from "@/shared/lib/logging";
+import type { RazPromptsEntryUpdate } from "@/shared/lib/schemas/raz-prompts/raz-prompts.contracts";
 
 interface LinkPromptInput {
   promptId: string;
@@ -18,22 +20,13 @@ interface LinkPromptInput {
   workspaceId: string;
 }
 
-type SupabaseUpdatePayload = {
-  status: "generated";
-  updated_at: string;
-  bavi_asset_ids: string[];
-};
-
 export async function linkPromptToBaviAssetAction({
   promptId,
   baviAssetId,
   workspaceId,
 }: LinkPromptInput): Promise<ActionResult<{ updatedCount: number }>> {
-  const traceId = logger.startTrace("linkPromptToBaviAsset_v9.1");
-  // --- [INICIO DE CORRECCIÓN DE CONTRATO DE API (TS2345)] ---
-  // Se elimina el segundo argumento inválido de la llamada a startGroup.
-  logger.startGroup(`[Action] Vinculando prompt ${promptId}...`);
-  // --- [FIN DE CORRECCIÓN DE CONTRATO DE API] ---
+  const traceId = logger.startTrace("linkPromptToBaviAsset_v10.0");
+  logger.startGroup(`[Action] Vinculando prompt ${promptId}...`, traceId);
 
   try {
     const supabase = createServerClient();
@@ -80,18 +73,20 @@ export async function linkPromptToBaviAssetAction({
         `No se encontró el prompt o acceso denegado: ${fetchError.message}`
       );
     }
-    logger.traceEvent(traceId, "Prompt actual obtenido de la base de datos.");
 
     const updatedBaviAssetIds = Array.from(
       new Set([...(currentPrompt.bavi_asset_ids || []), baviAssetId])
     );
-    logger.traceEvent(traceId, `Array de IDs de activo actualizado.`);
 
-    const updatePayload: SupabaseUpdatePayload = {
+    const updatePayload: RazPromptsEntryUpdate = {
       status: "generated",
       updated_at: new Date().toISOString(),
       bavi_asset_ids: updatedBaviAssetIds,
     };
+    logger.traceEvent(
+      traceId,
+      "Payload de actualización (snake_case) generado."
+    );
 
     const { error: updateError, count } = await supabase
       .from("razprompts_entries")
@@ -101,13 +96,6 @@ export async function linkPromptToBaviAssetAction({
 
     if (updateError) {
       throw new Error(`Error al actualizar el prompt: ${updateError.message}`);
-    }
-
-    if (count === 0) {
-      logger.warn(
-        `[Action] No se actualizó ninguna fila para el prompt ${promptId}.`,
-        { traceId }
-      );
     }
 
     logger.success(

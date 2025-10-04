@@ -1,11 +1,10 @@
 // RUTA: src/components/features/campaign-suite/Step3_Theme/_components/ThemeComposerModal.tsx
 /**
  * @file ThemeComposerModal.tsx
- * @description Orquestador modal para la Bóveda de Estilos. Forjado con
- *              observabilidad granular, un guardián de resiliencia holístico y
- *              un flujo de datos soberano y puro.
- * @version 7.1.1 (React Hooks Compliance)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Orquestador modal para la Bóveda de Estilos, ahora con
+ *              alineamiento de contrato de datos soberano y observabilidad de élite.
+ * @version 7.2.0 (Sovereign Contract Alignment)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -69,21 +68,14 @@ export function ThemeComposerModal({
   content,
   loadedFragments,
 }: ThemeComposerModalProps) {
-  // --- [INICIO DE CORRECCIÓN DE REGLAS DE HOOKS] ---
-  // Se elimina la dependencia 'isOpen' del useMemo. El traceId debe ser
-  // constante durante todo el ciclo de vida del componente para una
-  // trazabilidad coherente.
   const traceId = useMemo(
-    () => logger.startTrace("ThemeComposerModal_Lifecycle_v7.1.1"),
-    [] // El array de dependencias vacío asegura que esto se ejecute solo una vez.
+    () => logger.startTrace("ThemeComposerModal_Lifecycle_v7.2"),
+    []
   );
-  // --- [FIN DE CORRECCIÓN DE REGLAS DE HOOKS] ---
 
   useEffect(() => {
     if (isOpen) logger.info("[ThemeComposerModal] Modal montado.", { traceId });
     return () => {
-      // El endTrace se ejecuta cuando el componente se desmonta o el efecto se vuelve a ejecutar.
-      // Si el modal está abierto durante el desmontaje, se registra el final del trace.
       if (isOpen) logger.endTrace(traceId);
     };
   }, [isOpen, traceId]);
@@ -132,9 +124,18 @@ export function ThemeComposerModal({
                 ? allPresets.fonts
                 : allPresets.geometry;
           const preset = presetSource.find((p) => p.name === name);
-          return preset?.theme_config
-            ? (preset.theme_config as Partial<AssembledTheme>)
-            : {};
+
+          if (preset) {
+            logger.traceEvent(
+              traceId,
+              `Preset '${name}' encontrado. Aplicando su themeConfig.`,
+              { presetType: type }
+            );
+            return preset.themeConfig
+              ? (preset.themeConfig as Partial<AssembledTheme>)
+              : {};
+          }
+          return {};
         };
 
         const finalTheme = deepMerge(
@@ -207,8 +208,6 @@ export function ThemeComposerModal({
       logger.traceEvent(traceId, "Acción: Iniciar creación de nuevo preset.", {
         type,
       });
-      // Aquí se llamaría a onCreatePreset, posiblemente abriendo otro modal para pedir nombre/descripción.
-      // Por ahora, para cumplir el contrato, lo llamamos con valores placeholder.
       onCreatePreset(
         `Nuevo Preset de ${type}`,
         `Descripción para el nuevo preset`,

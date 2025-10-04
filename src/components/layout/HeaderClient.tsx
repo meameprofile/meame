@@ -3,7 +3,7 @@
  * @file HeaderClient.tsx
  * @description Componente de Cliente Soberano para cabeceras, ahora con seguridad de tipos absoluta.
  * @version 46.0.0 (Absolute Type Safety)
- *@author L.I.A. Legacy
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -16,7 +16,7 @@ import { motion, type Variants } from "framer-motion";
 import { logger } from "@/shared/lib/logging";
 import { type Locale, supportedLocales } from "@/shared/lib/i18n/i18n.config";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import type { UserProfileData } from "@/shared/lib/actions/account/get-current-user-profile.action";
+import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
 import { Container, Button } from "@/components/ui";
 import {
   NavigationMenu,
@@ -32,13 +32,11 @@ import { UserNavClient } from "@/components/features/auth/components/UserNavClie
 import { NotificationBell } from "@/components/features/notifications/NotificationBell/NotificationBell";
 import { DeveloperErrorDisplay } from "../features/dev-tools";
 import { useCartStore, type CartItem } from "@/shared/lib/stores/useCartStore";
-// --- [INICIO DE REFACTORIZACIÓN POR INTEGRIDAD DE TIPOS] ---
 import type { NavLink } from "@/shared/lib/schemas/components/header.schema";
-// --- [FIN DE REFACTORIZACIÓN POR INTEGRIDAD DE TIPOS] ---
 
 export interface HeaderClientProps {
   user: User | null;
-  profile: UserProfileData | null;
+  profile: ProfilesRow | null;
   logoUrl: string;
   content: {
     header: NonNullable<Dictionary["header"]>;
@@ -86,6 +84,7 @@ export default function HeaderClient({
     logger.info("[HeaderClient] Componente montado y listo.", { traceId });
     if (!useCartStore.getState().isInitialized) {
       initializeCart(initialCart);
+      logger.traceEvent(traceId, "Estado del carrito inicializado.");
     }
     return () => logger.endTrace(traceId);
   }, [traceId, initializeCart, initialCart]);
@@ -161,28 +160,22 @@ export default function HeaderClient({
             ) : (
               <NavigationMenu>
                 <NavigationMenuList>
-                  {header.navLinks.map(
-                    (
-                      link: NavLink // <-- TIPO EXPLÍCITO AÑADIDO
-                    ) => (
-                      <NavigationMenuItem key={link.href}>
-                        <Link
-                          href={`/${currentLocale}${link.href}`}
-                          legacyBehavior
-                          passHref
+                  {header.navLinks.map((link: NavLink) => (
+                    <NavigationMenuItem key={link.href}>
+                      <Link
+                        href={`/${currentLocale}${link.href}`}
+                        legacyBehavior
+                        passHref
+                      >
+                        <NavigationMenuLink
+                          className={navigationMenuTriggerStyle()}
+                          active={pathname === `/${currentLocale}${link.href}`}
                         >
-                          <NavigationMenuLink
-                            className={navigationMenuTriggerStyle()}
-                            active={
-                              pathname === `/${currentLocale}${link.href}`
-                            }
-                          >
-                            {link.label}
-                          </NavigationMenuLink>
-                        </Link>
-                      </NavigationMenuItem>
-                    )
-                  )}
+                          {link.label}
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
+                  ))}
                 </NavigationMenuList>
               </NavigationMenu>
             )}
