@@ -112,3 +112,11 @@ Toda modificación o creación de una entidad de base de datos (tabla, función,
 Para la reconstrucción de una base de datos desde cero, se creará y perfeccionará un script maestro en `scripts/supabase/migrations/000_create_initial_schema.ts`. Este script consolidará todos los `CREATE TABLE`, `CREATE FUNCTION` y `CREATE POLICY` de los manifiestos individuales en un único archivo ejecutable, garantizando un despliegue rápido, consistente y determinista.
 
 ---
+
+ACTUALIZACION ### Fase 0: Enlace del Ecosistema Local (Paso Previo Indispensable)
+
+- **Acción:** Asegurar que la CLI de Supabase local esté autenticada y enlazada al proyecto correcto.
+- **Comando:** `pnpm supabase:link`
+- **Justificación:** Este paso es el guardián contra la desincronización del ecosistema. Garantiza que todos los comandos subsecuentes (diagnóstico, generación de tipos) operen contra la SSoT correcta. **Debe ejecutarse siempre que se cambie de proyecto de Supabase.**
+
+---

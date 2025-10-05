@@ -2,8 +2,8 @@
 /**
  * @file use-step4-content.store.ts
  * @description Store atómico para los datos del Paso 4 (Contenido).
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 2.0.0 (Elite Observability)
+ * @author L.I.A. Legacy
  */
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
@@ -34,16 +34,10 @@ export const useStep4ContentStore = create<Step4State & Step4Actions>()(
     (set, get) => ({
       ...initialState,
       setSectionContent: (sectionName, locale, field, value) => {
-        logger.trace(
-          `[Step4Store] Actualizando contenido para ${sectionName}.${locale}.${field}`
-        );
+        logger.trace(`[Step4Store] Actualizando contenido para ${sectionName}.${locale}.${field}`);
         const newContentData = structuredClone(get().contentData);
-        if (!newContentData[sectionName]) {
-          newContentData[sectionName] = {};
-        }
-        if (!newContentData[sectionName][locale]) {
-          newContentData[sectionName][locale] = {};
-        }
+        if (!newContentData[sectionName]) newContentData[sectionName] = {};
+        if (!newContentData[sectionName][locale]) newContentData[sectionName][locale] = {};
         newContentData[sectionName][locale]![field] = value;
         set({ contentData: newContentData });
       },

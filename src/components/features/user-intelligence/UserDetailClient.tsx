@@ -3,7 +3,7 @@
  * @file UserDetailClient.tsx
  * @description Componente de cliente para la vista de detalle del perfil de usuario.
  * @version 2.0.0 (Sovereign Contract Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

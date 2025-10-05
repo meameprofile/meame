@@ -3,7 +3,7 @@
  * @file fix-orphan-blobs.ts
  * @description Script de nivelación para purgar blobs huérfanos de Vercel Blob.
  * @version 1.1.0 (Sovereign Path Restoration & Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { list, del } from "@vercel/blob";
 import { createScriptClient } from "../../_utils/supabaseClient";

@@ -1,10 +1,9 @@
 // RUTA: src/shared/lib/actions/theme-fragments/createThemeFragment.action.ts
 /**
  * @file createThemeFragment.action.ts
- * @description Server Action para crear un nuevo fragmento de tema, con un
- *              contrato de tipo de retorno holístico y soberano.
- * @version 5.0.0 (Holistic Type Contract)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Server Action para crear un nuevo fragmento de tema.
+ * @version 7.0.0 (Holistic Refactoring & Elite Compliance)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -19,6 +18,7 @@ import {
   type ThemeFragmentRow,
 } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import type { ThemeFragment } from "./getThemeFragments.action";
+import { mapSupabaseToThemeFragment } from "./_shapers/theme-fragments.shapers";
 
 const CreateFragmentInputSchema = z.object({
   workspaceId: z.string().uuid(),
@@ -29,23 +29,10 @@ const CreateFragmentInputSchema = z.object({
 
 type CreateFragmentInput = z.infer<typeof CreateFragmentInputSchema>;
 
-function mapSupabaseToThemeFragment(row: ThemeFragmentRow): ThemeFragment {
-  return {
-    id: row.id,
-    workspace_id: row.workspace_id,
-    user_id: row.user_id,
-    name: row.name,
-    type: row.type,
-    data: row.data as Record<string, unknown>,
-    created_at: row.created_at,
-    updated_at: row.updated_at,
-  };
-}
-
 export async function createThemeFragmentAction(
   input: CreateFragmentInput
 ): Promise<ActionResult<{ newFragment: ThemeFragment }>> {
-  const traceId = logger.startTrace("createThemeFragmentAction_v5.0");
+  const traceId = logger.startTrace("createThemeFragmentAction_v7.0");
   logger.startGroup(`[Action] Creando fragmento de tema...`, traceId);
 
   try {
@@ -53,13 +40,24 @@ export async function createThemeFragmentAction(
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) return { success: false, error: "auth_required" };
+    if (!user) {
+      logger.warn("[Action] Intento no autorizado.", { traceId });
+      return { success: false, error: "auth_required" };
+    }
+    logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
 
     const validation = CreateFragmentInputSchema.safeParse(input);
     if (!validation.success) {
-      return { success: false, error: "Datos de entrada inválidos." };
+      logger.warn("[Action] Datos de entrada inválidos.", {
+        errors: validation.error.flatten(),
+        traceId,
+      });
+      return {
+        success: false,
+        error: "Los datos proporcionados son inválidos.",
+      };
     }
-
+    logger.traceEvent(traceId, `Datos de entrada validados.`);
     const { workspaceId, name, type, data: fragmentData } = validation.data;
 
     const { data: memberCheck, error: memberError } = await supabase.rpc(
@@ -69,6 +67,7 @@ export async function createThemeFragmentAction(
     if (memberError || !memberCheck) {
       throw new Error("Acceso denegado al workspace.");
     }
+    logger.traceEvent(traceId, `Membresía del workspace verificada.`);
 
     const supabasePayload: ThemeFragmentInsert = {
       workspace_id: workspaceId,
@@ -87,7 +86,10 @@ export async function createThemeFragmentAction(
     if (insertError)
       throw new Error(`Error de Supabase: ${insertError.message}`);
 
-    const newFragment = mapSupabaseToThemeFragment(newFragmentRow);
+    const newFragment = mapSupabaseToThemeFragment(
+      newFragmentRow as ThemeFragmentRow,
+      traceId
+    );
 
     logger.success(`[Action] Fragmento '${name}' creado con éxito.`);
     return { success: true, data: { newFragment } };

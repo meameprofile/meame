@@ -3,7 +3,7 @@
  * @file LanguageSelectorModal.tsx
  * @description Modal de élite para la selección de idioma a gran escala.
  * @version 3.0.0 (Holistic Contract Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -119,7 +119,6 @@ export function LanguageSelectorModal({
                         className="w-full justify-start h-12 text-left"
                         onClick={() => onSelect(lang.code as Locale)}
                       >
-
                         <FlagIcon
                           locale={lang.code as Locale}
                           className="w-5 h-5 mr-3 rounded-sm flex-shrink-0"

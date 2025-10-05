@@ -4,7 +4,7 @@
  * @description SSoT para la creación de un cliente de Supabase seguro
  *              y de servicio para el entorno de las Edge Functions (Deno).
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 
 // Las importaciones utilizan los alias de 'import_map.json'

@@ -2,19 +2,16 @@
 /**
  * @file admin.shapers.ts
  * @description SSoT para la transformación de datos de la Admin API de Shopify.
- *              Inyectado con observabilidad de élite y guardianes de resiliencia.
- * @version 2.0.0 (Observable & Resilient)
- *@author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Holistic Elite Leveling)
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import { z } from "zod";
 import { logger } from "@/shared/lib/logging";
 import type { ShopifyAdminProduct } from "@/shared/lib/shopify/types/admin.types";
 
-// --- [INYECCIÓN DE OBSERVABILIDAD] ---
-logger.trace("[AdminShaper] Módulo de transformación de datos v2.0 cargado.");
+logger.trace("[AdminShaper] Módulo de transformación de datos v3.0 cargado.");
 
-// --- SSoT del Contrato de Datos de Salida ---
 export const AdminProductSchema = z.object({
   id: z.string(),
   title: z.string(),
@@ -29,24 +26,20 @@ export const AdminProductSchema = z.object({
 
 export type AdminProduct = z.infer<typeof AdminProductSchema>;
 
-/**
- * @function reshapeAdminProduct
- * @description Transforma y valida un único objeto de producto de la Admin API.
- * @param {ShopifyAdminProduct} shopifyProduct - El objeto de producto crudo.
- * @returns {AdminProduct} El objeto de producto transformado y validado.
- * @throws {ZodError} Si el objeto transformado no cumple con el AdminProductSchema.
- */
 export function reshapeAdminProduct(
-  shopifyProduct: ShopifyAdminProduct
+  shopifyProduct: ShopifyAdminProduct,
+  traceId?: string
 ): AdminProduct {
-  logger.trace(`[AdminShaper] Transformando producto: ${shopifyProduct.id}`);
+  logger.trace(`[AdminShaper] Transformando producto: ${shopifyProduct.id}`, {
+    traceId,
+  });
 
   const firstVariant = shopifyProduct.variants.edges[0]?.node;
 
-  // --- [GUARDIÁN DE RESILIENCIA] ---
   if (!firstVariant) {
     logger.warn(
-      `[AdminShaper] Producto ${shopifyProduct.id} no tiene variantes. Se usarán valores por defecto para precio e inventario.`
+      `[Guardián] Producto ${shopifyProduct.id} sin variantes. Usando valores por defecto.`,
+      { traceId }
     );
   }
 
@@ -62,34 +55,28 @@ export function reshapeAdminProduct(
     updatedAt: shopifyProduct.updatedAt,
   };
 
-  // El `parse` actúa como un guardián estricto. Si falla, lanzará una excepción
-  // que será capturada por la Server Action que lo invoca.
   return AdminProductSchema.parse(transformed);
 }
 
-/**
- * @function reshapeAdminProducts
- * @description Aplica la transformación a un array de productos de forma segura.
- * @param {ShopifyAdminProduct[]} products - El array de productos de Shopify.
- * @returns {AdminProduct[]} El array de productos transformados y válidos.
- */
 export function reshapeAdminProducts(
-  products: ShopifyAdminProduct[]
+  products: ShopifyAdminProduct[],
+  traceId?: string
 ): AdminProduct[] {
   logger.trace(
-    `[AdminShaper] Transformando lote de ${products.length} productos.`
+    `[AdminShaper] Transformando lote de ${products.length} productos.`,
+    { traceId }
   );
   return products
     .map((product) => {
       try {
-        return reshapeAdminProduct(product);
+        return reshapeAdminProduct(product, traceId);
       } catch (error) {
         logger.error(
-          `[AdminShaper] Fallo al transformar el producto ${product.id}. Será omitido del resultado final.`,
-          { error }
+          `[Guardián] Fallo al transformar producto ${product.id}. Será omitido.`,
+          { error, traceId }
         );
-        return null; // Devuelve null si un producto individual falla la validación
+        return null;
       }
     })
-    .filter((p): p is AdminProduct => p !== null); // Filtra los nulos para devolver un array limpio
+    .filter((p): p is AdminProduct => p !== null);
 }

@@ -2,8 +2,8 @@
 /**
  * @file page.tsx
  * @description Página "Server Shell" soberana para el dashboard de Inteligencia de Usuarios.
- * @version 2.0.0 (Sovereign Contract Restoration & Elite Compliance)
- * @author L.I.A. Legacy
+ * @version 2.2.0 (Holistic Type & Hygiene Restoration)
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 
@@ -17,6 +17,13 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
 import { getProfiledUsersAction } from "@/shared/lib/actions/user-intelligence/getProfiledUsers.action";
 import { UserIntelligenceClient } from "@/components/features/user-intelligence/UserIntelligenceClient";
+// --- [INICIO DE REFACTORIZACIÓN DE INTEGRIDAD DE CONTRATO v2.2.0] ---
+// Se importa el TIPO explícito 'UserIntelligenceContent' en lugar del schema.
+import {
+  UserIntelligenceContentSchema,
+  type UserIntelligenceContent,
+} from "@/shared/lib/schemas/pages/dev-user-intelligence.i18n.schema";
+// --- [FIN DE REFACTORIZACIÓN DE INTEGRIDAD DE CONTRATO v2.2.0] ---
 
 interface UserIntelligencePageProps {
   params: { locale: Locale };
@@ -32,7 +39,7 @@ async function UserIntelligenceDataLoader({
   page: number;
   limit: number;
   locale: Locale;
-  content: any;
+  content: UserIntelligenceContent; // <-- El tipo ahora es correcto y seguro.
 }) {
   const result = await getProfiledUsersAction({ page, limit });
 
@@ -59,7 +66,7 @@ export default async function UserIntelligencePage({
   params: { locale },
   searchParams,
 }: UserIntelligencePageProps) {
-  const traceId = logger.startTrace("UserIntelligencePage_Shell_v2.0");
+  const traceId = logger.startTrace("UserIntelligencePage_Shell_v2.2");
   logger.startGroup(`[UserInt Shell] Ensamblando dashboard...`, traceId);
 
   try {
@@ -68,11 +75,14 @@ export default async function UserIntelligencePage({
     const limit = 20;
 
     const { dictionary, error: dictError } = await getDictionary(locale);
-    const content = dictionary.userIntelligencePage;
+    const contentValidation = UserIntelligenceContentSchema.safeParse(
+      dictionary.userIntelligencePage
+    );
 
-    if (dictError || !content) {
-      throw new Error("Faltan datos de i18n esenciales para esta página.");
+    if (dictError || !contentValidation.success) {
+      throw new Error("Faltan datos de i18n o son inválidos para esta página.");
     }
+    const content = contentValidation.data;
     logger.traceEvent(traceId, "Contenido i18n validado.");
 
     return (
@@ -81,7 +91,7 @@ export default async function UserIntelligencePage({
         <Card>
           <CardContent className="pt-6">
             <Suspense fallback={<Skeleton className="h-[400px] w-full" />}>
-              <UserDataLoader
+              <UserIntelligenceDataLoader
                 page={page}
                 limit={limit}
                 locale={locale}
@@ -103,7 +113,7 @@ export default async function UserIntelligencePage({
       <DeveloperErrorDisplay
         context="UserIntelligencePage Shell"
         errorMessage="No se pudo renderizar la página."
-        errorDetails={error}
+        errorDetails={error instanceof Error ? error : String(error)}
       />
     );
   } finally {

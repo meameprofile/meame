@@ -2,8 +2,8 @@
 /**
  * @file use-step5-management.store.ts
  * @description Store atómico para el estado de UI del Paso 5 (Gestión).
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 2.0.0 (Elite Observability)
+ * @author L.I.A. Legacy
  */
 import { create } from "zustand";
 import { logger } from "@/shared/lib/logging";
@@ -27,14 +27,11 @@ export const useStep5ManagementStore = create<Step5State & Step5Actions>()(
   (set) => ({
     ...initialState,
     setTemplateDetails: (details) => {
-      logger.trace(
-        "[Step5Store] Actualizando detalles de la plantilla.",
-        details
-      );
+      logger.trace("[Step5Store] Actualizando detalles de plantilla.", details);
       set((state) => ({ ...state, ...details }));
     },
     reset: () => {
-      logger.trace("[Step5Store] Reiniciando estado del Paso 5.");
+      logger.warn("[Step5Store] Reiniciando estado del Paso 5.");
       set(initialState);
     },
   })

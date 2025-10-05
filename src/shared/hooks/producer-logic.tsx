@@ -3,8 +3,8 @@
  * @file producer-logic.tsx
  * @description Orquestador de lógica de tracking, encapsulado en un componente
  *              wrapper para cumplir con las Reglas de los Hooks y la arquitectura de élite.
- * @version 9.1.0 (Filename Convention Fix)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 10.0.0 (React Hooks Contract Compliance)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -22,6 +22,8 @@ import { useExecutionGuard } from "./useExecutionGuard";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
 
 export function ProducerLogicWrapper(): React.ReactElement | null {
+  // --- [INICIO DE REFACTORIZACIÓN DE REGLAS DE HOOKS] ---
+  // Todos los hooks se llaman incondicionalmente en el nivel superior.
   const [hasInteracted, setHasInteracted] = useState(false);
   const producerConfig = getProducerConfig();
   const { status: consentStatus } = useCookieConsent();
@@ -32,23 +34,15 @@ export function ProducerLogicWrapper(): React.ReactElement | null {
     callback: () => {
       if (hasInteracted) return;
       const handleInteraction = () => {
-        logger.info("[ProducerLogic] Interacción de usuario detectada.");
+        logger.info("[ProducerLogic] Interacción de usuario detectada. Activando trackers.");
         setHasInteracted(true);
         eventListeners.forEach((event) =>
           window.removeEventListener(event, handleInteraction)
         );
       };
-      const eventListeners: (keyof WindowEventMap)[] = [
-        "mousedown",
-        "touchstart",
-        "keydown",
-        "scroll",
-      ];
+      const eventListeners: (keyof WindowEventMap)[] = ["mousedown", "touchstart", "keydown", "scroll"];
       eventListeners.forEach((event) =>
-        window.addEventListener(event, handleInteraction, {
-          once: true,
-          passive: true,
-        })
+        window.addEventListener(event, handleInteraction, { once: true, passive: true })
       );
       return () =>
         eventListeners.forEach((event) =>
@@ -57,25 +51,29 @@ export function ProducerLogicWrapper(): React.ReactElement | null {
     },
   });
 
-  const canInitializeTracking =
-    producerConfig.TRACKING_ENABLED && consentStatus === "accepted";
+  // La lógica condicional ahora determina el valor de una bandera.
+  const canInitializeTracking = producerConfig.TRACKING_ENABLED && consentStatus === "accepted";
   const shouldInitialize = canInitializeTracking && hasInteracted;
 
+  // Los hooks de tracking se llaman incondicionalmente, pero se activan
+  // internamente según el valor de 'shouldInitialize'.
   useUtmTracker(shouldInitialize);
   useYandexMetrika(shouldInitialize);
   useGoogleAnalytics(shouldInitialize);
   useTrufflePixel(shouldInitialize);
   useWebvorkGuid(shouldInitialize);
   useNos3Tracker(shouldInitialize);
+  // --- [FIN DE REFACTORIZACIÓN DE REGLAS DE HOOKS] ---
 
   if (error) {
-    return (
-      <DeveloperErrorDisplay context="ProducerLogic" errorMessage={error} />
-    );
+    return <DeveloperErrorDisplay context="ProducerLogic" errorMessage={error} />;
   }
   return null;
 }
 
+/**
+ * @deprecated La lógica ha sido movida a `ProducerLogicWrapper` para cumplir con las Reglas de los Hooks.
+ */
 export function useProducerLogic() {
-  // Obsoleto: La lógica ahora reside en el componente ProducerLogicWrapper.
+  // Esta función ahora está obsoleta y no hace nada.
 }

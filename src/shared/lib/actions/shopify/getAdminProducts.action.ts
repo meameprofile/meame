@@ -1,10 +1,9 @@
 // RUTA: src/shared/lib/actions/shopify/getAdminProducts.action.ts
 /**
  * @file getAdminProducts.action.ts
- * @description Server Action soberana para obtener productos de la Admin API,
- *              ahora con observabilidad de élite y un "Guardián de Resiliencia" holístico.
- * @version 4.0.0 (Elite Observability & Resilience)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Server Action soberana para obtener productos de la Admin API.
+ * @version 5.0.0 (Holistic Elite Leveling)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -33,56 +32,34 @@ export async function getAdminProductsAction(
     endCursor: string | null;
   }>
 > {
-  const traceId = logger.startTrace("getAdminProductsAction_v4.0");
-  logger.info(
-    "[Shopify Admin Action] Solicitando productos de la Admin API...",
-    { input, traceId }
+  const traceId = logger.startTrace("getAdminProductsAction_v5.0");
+  logger.startGroup(
+    `[Shopify Action] Solicitando productos de Admin API...`,
+    traceId
   );
 
-  const supabase = createServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  // --- [GUARDIÁN DE AUTORIZACIÓN] ---
-  if (!user) {
-    logger.warn("[Shopify Admin Action] Intento de acceso no autorizado.", {
-      traceId,
-    });
-    logger.endTrace(traceId);
-    return { success: false, error: "auth_required" };
-  }
-  logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
-
-  // --- [GUARDIÁN DE RESILIENCIA HOLÍSTICO] ---
   try {
+    const supabase = createServerClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { success: false, error: "auth_required" };
+    logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
+
     const { first = 10, after } = input;
 
-    logger.traceEvent(traceId, "Iniciando llamada a shopifyAdminFetch...");
     const response = await shopifyAdminFetch<ShopifyAdminProductsOperation>({
       query: getAdminProductsQuery,
       variables: { first, after },
       cache: "no-store",
     });
-    logger.traceEvent(traceId, "Respuesta de Shopify recibida con éxito.");
+    logger.traceEvent(traceId, "Respuesta de Shopify recibida.");
 
-    const productsData =
-      response.body.data?.products?.edges.map((edge) => edge.node) || [];
+    const productsData = response.body.data?.products?.edges.map(edge => edge.node) || [];
     const pageInfo = response.body.data?.products?.pageInfo;
 
-    logger.traceEvent(
-      traceId,
-      `Iniciando transformación de ${productsData.length} productos a través del shaper...`
-    );
-    const finalProducts = reshapeAdminProducts(productsData);
-    logger.traceEvent(
-      traceId,
-      `Transformación completada. ${finalProducts.length} productos válidos.`
-    );
+    const finalProducts = reshapeAdminProducts(productsData, traceId);
 
     logger.success(
-      `[Shopify Admin Action] ${finalProducts.length} productos obtenidos y transformados.`,
-      { traceId }
+      `[Shopify Action] ${finalProducts.length} productos obtenidos y transformados.`
     );
     return {
       success: true,
@@ -93,20 +70,11 @@ export async function getAdminProductsAction(
       },
     };
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : "Error desconocido.";
-    logger.error(
-      "[Shopify Admin Action] Fallo crítico durante la obtención de productos.",
-      {
-        error: errorMessage,
-        traceId,
-      }
-    );
-    return {
-      success: false,
-      error: `Error al cargar productos de Shopify Admin: ${errorMessage}`,
-    };
+    const msg = error instanceof Error ? error.message : "Error desconocido.";
+    logger.error("[Shopify Action] Fallo crítico.", { error: msg, traceId });
+    return { success: false, error: `Error al cargar productos: ${msg}` };
   } finally {
+    logger.endGroup();
     logger.endTrace(traceId);
   }
 }

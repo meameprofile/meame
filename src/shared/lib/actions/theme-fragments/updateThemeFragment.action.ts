@@ -1,9 +1,9 @@
 // RUTA: src/shared/lib/actions/theme-fragments/updateThemeFragment.action.ts
 /**
  * @file updateThemeFragment.action.ts
- * @description Server Action de élite para actualizar un fragmento de tema existente.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech (Creative Twin)
+ * @description Server Action de élite para actualizar un fragmento de tema.
+ * @version 2.1.0 (Payload Contract Fix)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -18,6 +18,7 @@ import {
   type ThemeFragmentRow,
 } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import type { ThemeFragment } from "./getThemeFragments.action";
+import { mapSupabaseToThemeFragment } from "./_shapers/theme-fragments.shapers";
 
 const UpdateFragmentInputSchema = z.object({
   id: z.string().uuid(),
@@ -28,23 +29,10 @@ const UpdateFragmentInputSchema = z.object({
 
 type UpdateFragmentInput = z.infer<typeof UpdateFragmentInputSchema>;
 
-function mapSupabaseToThemeFragment(row: ThemeFragmentRow): ThemeFragment {
-  return {
-    id: row.id,
-    workspace_id: row.workspace_id,
-    user_id: row.user_id,
-    name: row.name,
-    type: row.type,
-    data: row.data as Record<string, unknown>,
-    created_at: row.created_at,
-    updated_at: row.updated_at,
-  };
-}
-
 export async function updateThemeFragmentAction(
   input: UpdateFragmentInput
 ): Promise<ActionResult<{ updatedFragment: ThemeFragment }>> {
-  const traceId = logger.startTrace("updateThemeFragmentAction_v1.0");
+  const traceId = logger.startTrace("updateThemeFragmentAction_v2.1");
   logger.startGroup(`[Action] Actualizando fragmento de tema...`, traceId);
 
   try {
@@ -67,11 +55,14 @@ export async function updateThemeFragmentAction(
     if (memberError || !memberCheck)
       throw new Error("Acceso denegado al workspace.");
 
+    // --- [INICIO DE CORRECCIÓN DE CONTRATO] ---
+    // El payload ahora actualiza la columna 'data', no 'theme_config'.
     const supabasePayload: ThemeFragmentUpdate = {
       name: updateData.name,
       data: updateData.data as Json,
       updated_at: new Date().toISOString(),
     };
+    // --- [FIN DE CORRECCIÓN DE CONTRATO] ---
 
     const { data: updatedFragmentRow, error } = await supabase
       .from("theme_fragments")
@@ -79,18 +70,17 @@ export async function updateThemeFragmentAction(
       .match({ id, workspace_id: workspaceId })
       .select()
       .single();
-
     if (error) throw new Error(`Error de Supabase: ${error.message}`);
 
-    const updatedFragment = mapSupabaseToThemeFragment(updatedFragmentRow);
-
-    logger.success(
-      `[Action] Fragmento '${updatedFragment.name}' actualizado con éxito.`
+    const updatedFragment = mapSupabaseToThemeFragment(
+      updatedFragmentRow as ThemeFragmentRow
     );
+
+    logger.success(`[Action] Fragmento '${updatedFragment.name}' actualizado.`);
     return { success: true, data: { updatedFragment } };
   } catch (error) {
     const msg = error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[Action] Fallo crítico al actualizar fragmento.", {
+    logger.error("[Action] Fallo al actualizar el fragmento.", {
       error: msg,
       traceId,
     });

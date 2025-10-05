@@ -2,12 +2,8 @@
 /**
  * @file auth.actions.ts
  * @description SSoT para las Server Actions de autenticación.
- *              v13.0.0 (Holistic Auth Flow & Elite Error Handling): Refactorizado
- *              holísticamente para implementar el flujo de registro completo,
- *              inyectar un sistema de tracing de élite para una observabilidad
- *              total, y reforzar el manejo de errores para una máxima resiliencia.
- * @version 13.0.0
- *@author RaZ Podestá - MetaShark Tech - Asistente de Refactorización
+ * @version 13.0.0 (Holistic Auth Flow & Elite Error Handling)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -33,14 +29,19 @@ export async function loginWithPasswordAction(
   data: LoginFormData
 ): Promise<ActionResult<null>> {
   const traceId = logger.startTrace("loginWithPasswordAction_v13.0");
-  logger.info("[AuthAction] Iniciando flujo de login...", { traceId });
+  logger.startGroup("[AuthAction] Iniciando flujo de login...", traceId);
 
   try {
     const validation = LoginSchema.safeParse(data);
     if (!validation.success) {
       const firstError = validation.error.errors[0].message;
+      logger.warn("[AuthAction] Validación de login fallida.", {
+        error: firstError,
+        traceId,
+      });
       return { success: false, error: firstError };
     }
+    logger.traceEvent(traceId, "Payload de login validado.");
 
     const { email, password } = validation.data;
     const supabase = createServerClient();
@@ -50,8 +51,12 @@ export async function loginWithPasswordAction(
     });
 
     if (error) throw error;
+    logger.traceEvent(traceId, "signInWithPassword exitoso.");
 
     revalidatePath("/", "layout");
+    logger.success("[AuthAction] Flujo de login completado con éxito.", {
+      traceId,
+    });
     return { success: true, data: null };
   } catch (error) {
     const errorMessage =
@@ -66,6 +71,7 @@ export async function loginWithPasswordAction(
         "Credenciales inválidas. Por favor, verifica tu email y contraseña.",
     };
   } finally {
+    logger.endGroup();
     logger.endTrace(traceId);
   }
 }
@@ -74,16 +80,22 @@ export async function signUpAction(
   data: SignUpFormData
 ): Promise<ActionResult<{ success: true }>> {
   const traceId = logger.startTrace("signUpAction_v13.0");
-  logger.info("[AuthAction] Iniciando flujo de registro de nuevo usuario...", {
-    traceId,
-  });
+  logger.startGroup(
+    "[AuthAction] Iniciando flujo de registro de nuevo usuario...",
+    traceId
+  );
 
   try {
     const validation = SignUpSchema.safeParse(data);
     if (!validation.success) {
       const firstError = validation.error.errors[0].message;
+      logger.warn("[AuthAction] Validación de registro fallida.", {
+        error: firstError,
+        traceId,
+      });
       return { success: false, error: firstError };
     }
+    logger.traceEvent(traceId, "Payload de registro validado.");
 
     const { email, password, fullName } = validation.data;
     const supabase = createServerClient();
@@ -101,8 +113,12 @@ export async function signUpAction(
     });
 
     if (error) throw error;
+    logger.traceEvent(traceId, "signUp en Supabase exitoso.");
 
     revalidatePath("/", "layout");
+    logger.success("[AuthAction] Flujo de registro completado con éxito.", {
+      traceId,
+    });
     return { success: true, data: { success: true } };
   } catch (error) {
     const errorMessage =
@@ -113,6 +129,7 @@ export async function signUpAction(
     });
     return { success: false, error: "No se pudo registrar el usuario." };
   } finally {
+    logger.endGroup();
     logger.endTrace(traceId);
   }
 }
@@ -121,16 +138,22 @@ export async function sendPasswordResetAction(
   data: ForgotPasswordFormData
 ): Promise<ActionResult<null>> {
   const traceId = logger.startTrace("sendPasswordResetAction_v13.0");
-  logger.info("[AuthAction] Iniciando flujo de reseteo de contraseña...", {
-    traceId,
-  });
+  logger.startGroup(
+    "[AuthAction] Iniciando flujo de reseteo de contraseña...",
+    traceId
+  );
 
   try {
     const validation = ForgotPasswordSchema.safeParse(data);
     if (!validation.success) {
       const firstError = validation.error.errors[0].message;
+      logger.warn("[AuthAction] Validación de reseteo fallida.", {
+        error: firstError,
+        traceId,
+      });
       return { success: false, error: firstError };
     }
+    logger.traceEvent(traceId, "Payload de reseteo validado.");
 
     const { email } = validation.data;
     const supabase = createServerClient();
@@ -141,7 +164,12 @@ export async function sendPasswordResetAction(
     });
 
     if (error) throw error;
+    logger.traceEvent(traceId, "resetPasswordForEmail exitoso.");
 
+    logger.success(
+      "[AuthAction] Flujo de reseteo de contraseña completado con éxito.",
+      { traceId }
+    );
     return { success: true, data: null };
   } catch (error) {
     const errorMessage =
@@ -156,6 +184,7 @@ export async function sendPasswordResetAction(
         "No se pudo enviar el email de recuperación. Por favor, verifica el email e inténtalo de nuevo.",
     };
   } finally {
+    logger.endGroup();
     logger.endTrace(traceId);
   }
 }

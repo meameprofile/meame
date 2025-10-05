@@ -3,12 +3,13 @@
  * @file _registry.ts
  * @description Manifiesto Soberano y SSoT para el mapeo entre tablas de Supabase
  *              y sus schemas de Zod de fila (`RowSchema`).
- * @version 5.0.0 (Definitive & Purified)
+ * @version 5.1.0 (Holistic Integrity Verified)
  * @author RaZ Podestá - MetaShark Tech
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from "zod";
 import { ProfilesRowSchema } from "./account/account.contracts";
+// --- La importación ahora es válida gracias a la nivelación del aparato anterior ---
 import {
   AnonymousCampaignEventRowSchema,
   UserActivityEventRowSchema,
@@ -50,6 +51,6 @@ export const schemaRegistry: Record<string, z.ZodObject<any>> = {
   theme_presets: ThemePresetRowSchema,
   visitor_sessions: VisitorSessionRowSchema,
   visitor_campaign_events: VisitorCampaignEventRowSchema,
-  anonymous_campaign_events: AnonymousCampaignEventRowSchema,
+  anonymous_campaign_events: AnonymousCampaignEventRowSchema, // <-- Esta línea ahora es válida.
   user_activity_events: UserActivityEventRowSchema,
 };

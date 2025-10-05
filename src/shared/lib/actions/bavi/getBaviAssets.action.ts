@@ -1,10 +1,9 @@
 // RUTA: src/shared/lib/actions/bavi/getBaviAssets.action.ts
 /**
  * @file getBaviAssets.action.ts
- * @description Server Action de producción para obtener una lista paginada y
- *              filtrada de activos de la BAVI, consultando directamente Supabase.
- * @version 2.1.0 (Type-Safe & Linter-Compliant)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Server Action de producción para obtener activos de la BAVI.
+ * @version 4.0.0 (Absolute Type Safety & Elite Compliance)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -12,42 +11,13 @@ import { z } from "zod";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-import {
-  BaviAssetSchema,
-  type BaviAsset,
-} from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
-import {
-  RaZPromptsSesaTagsSchema,
-  type RaZPromptsSesaTags,
-} from "@/shared/lib/schemas/raz-prompts/atomic.schema";
-// Se elimina la importación no utilizada.
-// import { normalizeKeywords } from "@/shared/lib/utils/search/keyword-normalizer";
-
-// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE: CONTRATOS DE TIPO SOBERANOS] ---
-// Contratos que modelan la respuesta de Supabase con snake_case.
-interface SupabaseBaviVariant {
-  variant_id: string;
-  public_id: string;
-  state: "orig" | "enh";
-  width: number;
-  height: number;
-}
-
-interface SupabaseBaviAsset {
-  asset_id: string;
-  provider: "cloudinary";
-  prompt_id: string | null;
-  tags: Partial<RaZPromptsSesaTags> | null;
-  metadata: { altText?: Record<string, string> } | null;
-  created_at: string;
-  updated_at: string;
-  bavi_variants: SupabaseBaviVariant[];
-}
-// --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
+import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import { RaZPromptsSesaTagsSchema } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
+import { mapSupabaseToBaviAsset } from "./_shapers/bavi.shapers";
 
 const GetBaviAssetsInputSchema = z.object({
   page: z.number().int().min(1).default(1),
-  limit: z.number().int().min(1).max(100).default(10),
+  limit: z.number().int().min(1).max(100).default(9),
   query: z.string().optional(),
   tags: RaZPromptsSesaTagsSchema.partial().optional(),
 });
@@ -57,16 +27,14 @@ export type GetBaviAssetsInput = z.infer<typeof GetBaviAssetsInputSchema>;
 export async function getBaviAssetsAction(
   input: GetBaviAssetsInput
 ): Promise<ActionResult<{ assets: BaviAsset[]; total: number }>> {
-  const traceId = logger.startTrace("getBaviAssetsAction_v2.1");
+  const traceId = logger.startTrace("getBaviAssetsAction_v4.0");
   const supabase = createServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (!user) {
-    logger.warn("[Action] Intento no autorizado de obtener activos BAVI.", {
-      traceId,
-    });
+    logger.warn("[Action] Intento no autorizado.", { traceId });
     return { success: false, error: "auth_required" };
   }
 
@@ -86,15 +54,14 @@ export async function getBaviAssetsAction(
       .eq("user_id", user.id);
 
     if (query) {
-      // Futura implementación de búsqueda por palabras clave aquí.
+      queryBuilder = queryBuilder.or(
+        `asset_id.ilike.%${query}%,keywords.cs.{${query}}`
+      );
     }
-
     if (tags) {
       for (const key in tags) {
-        const tagValue = tags[key as keyof RaZPromptsSesaTags];
-        if (tagValue) {
-          queryBuilder = queryBuilder.eq(`tags->>${key}`, tagValue);
-        }
+        const tagValue = tags[key as keyof typeof tags];
+        if (tagValue) queryBuilder = queryBuilder.eq(`tags->>${key}`, tagValue);
       }
     }
 
@@ -104,45 +71,36 @@ export async function getBaviAssetsAction(
 
     if (error) throw new Error(error.message);
 
-    // Se aplica el tipo soberano a la respuesta de la base de datos.
-    const reshapedAssets = (data as SupabaseBaviAsset[]).map(
-      (asset: SupabaseBaviAsset): BaviAsset => {
-        // <-- Tipo explícito para 'asset'
-        const transformedAsset = {
-          assetId: asset.asset_id,
-          provider: asset.provider,
-          promptId: asset.prompt_id ?? undefined,
-          tags: asset.tags ?? undefined,
-          variants: asset.bavi_variants.map((v: SupabaseBaviVariant) => ({
-            // <-- Tipo explícito para 'v'
-            versionId: v.variant_id,
-            publicId: v.public_id,
-            state: v.state,
-            dimensions: { width: v.width, height: v.height },
-          })),
-          metadata: asset.metadata ?? { altText: {} },
-          createdAt: asset.created_at,
-          updatedAt: asset.updated_at,
-        };
-        return BaviAssetSchema.parse(transformedAsset);
+    const validAssets: BaviAsset[] = [];
+    for (const row of data || []) {
+      try {
+        // --- [INICIO DE CORRECCIÓN DE TIPO] ---
+        // La aserción 'as any' ya no es necesaria. El tipo de 'row' es ahora
+        // inferido correctamente por TypeScript a partir de la consulta.
+        const asset = mapSupabaseToBaviAsset(row, traceId);
+        // --- [FIN DE CORRECCIÓN DE TIPO] ---
+        validAssets.push(asset);
+      } catch (validationError) {
+        logger.warn(
+          `[Guardián] Activo BAVI corrupto omitido (ID: ${row.asset_id}).`,
+          {
+            error:
+              validationError instanceof Error
+                ? validationError.message
+                : "Error de validación",
+            traceId,
+          }
+        );
       }
-    );
+    }
 
     logger.success(
-      `[getBaviAssetsAction] Activos obtenidos: ${reshapedAssets.length} de ${
-        count ?? 0
-      }.`
+      `[Action] Activos obtenidos: ${validAssets.length} de ${count ?? 0}.`
     );
-    return {
-      success: true,
-      data: { assets: reshapedAssets, total: count ?? 0 },
-    };
+    return { success: true, data: { assets: validAssets, total: count ?? 0 } };
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[getBaviAssetsAction] Fallo al obtener activos de BAVI.", {
-      error: errorMessage,
-    });
+    const msg = error instanceof Error ? error.message : "Error desconocido.";
+    logger.error("[Action] Fallo al obtener activos de BAVI.", { error: msg });
     return {
       success: false,
       error: "No se pudieron cargar los activos de la biblioteca.",

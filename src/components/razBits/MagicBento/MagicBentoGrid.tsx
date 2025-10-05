@@ -1,6 +1,4 @@
-// APARATO ÚNICO: CUADRÍCULA DE BENTO NAVEGABLE (NIVELACIÓN DEFINITIVA)
 // RUTA: src/components/razBits/MagicBento/MagicBentoGrid.tsx
-
 /**
  * @file MagicBentoGrid.tsx
  * @description Componente de trabajo de presentación puro para la cuadrícula MagicBento,
@@ -15,10 +13,13 @@ import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { useBentoGridInteraction } from "@/components/razBits/MagicBento/use-bento-grid-interaction";
 import { BentoCard } from "./BentoCard";
+// --- [INICIO DE REFACTORIZACIÓN DE INTEGRIDAD DE TIPOS v2.0.0] ---
+// Se importa el contrato de datos completo desde la SSoT, incluyendo el 'href' opcional.
 import {
   type BentoCardData,
   type MagicBentoConfigSchema,
 } from "./magic-bento.schema";
+// --- [FIN DE REFACTORIZACIÓN DE INTEGRIDAD DE TIPOS v2.0.0] ---
 import type { z } from "zod";
 import { logger } from "@/shared/lib/logging";
 
@@ -26,7 +27,7 @@ import { logger } from "@/shared/lib/logging";
 type BentoConfig = z.infer<typeof MagicBentoConfigSchema>;
 
 interface MagicBentoGridProps {
-  cards: BentoCardData[];
+  cards: BentoCardData[]; // <-- Se utiliza el tipo soberano importado.
   config: BentoConfig;
   className?: string;
 }
@@ -63,6 +64,7 @@ export function MagicBentoGrid({
       }
     >
       {cards.map((card: BentoCardData, index: number) => {
+        // El tipo de 'card' ahora es correcto.
         const cardComponent = (
           <BentoCard
             key={card.title}
@@ -77,8 +79,8 @@ export function MagicBentoGrid({
           />
         );
 
-        // Pilar VII: Adherencia Arquitectónica (Navegación)
-        // Si la tarjeta tiene un href, la envolvemos en un Link de Next.js.
+        // --- [INICIO DE REFACTORIZACIÓN DE LÓGICA DE NAVEGACIÓN v2.0.0] ---
+        // La comprobación de 'card.href' ahora es segura a nivel de tipo.
         if (card.href) {
           return (
             <Link href={card.href} key={card.title} className="contents">
@@ -86,6 +88,7 @@ export function MagicBentoGrid({
             </Link>
           );
         }
+        // --- [FIN DE REFACTORIZACIÓN DE LÓGICA DE NAVEGACIÓN v2.0.0] ---
 
         return cardComponent;
       })}

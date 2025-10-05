@@ -2,56 +2,55 @@
 /**
  * @file use-aether-telemetry.ts
  * @description Hook atómico para la telemetría de eventos de reproducción.
- * @version 2.0.0 (Sovereign Type Import)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Elite Observability)
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import { logger } from "@/shared/lib/logging";
 import type { VideoTexture } from "three";
-// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE: IMPORTACIÓN SOBERANA] ---
-import type {
-  PlaybackEvent,
-  PlaybackEventType,
-} from "../use-cinematic-renderer";
-// --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
+import type { PlaybackEvent, PlaybackEventType } from "../use-cinematic-renderer";
 
 export function useAetherTelemetry(
   videoTexture: VideoTexture,
   onPlaybackEvent?: (event: PlaybackEvent) => void
 ) {
+  const traceId = useMemo(() => logger.startTrace("useAetherTelemetry_v3.0"), []);
   const [visitorId, setVisitorId] = useState<string | null>(null);
 
   useEffect(() => {
+    logger.info("[Aether Telemetry] Hook montado.", { traceId });
     const getVisitorId = async () => {
       try {
         const fp = await FingerprintJS.load();
         const result = await fp.get();
         setVisitorId(result.visitorId);
+        logger.success(`[Aether Telemetry] Fingerprint de visitante obtenido: ${result.visitorId}`, { traceId });
       } catch (error) {
-        logger.error("[Fingerprint] Fallo al generar el ID de visitante.", {
-          error,
-        });
+        logger.error("[Aether Telemetry] Fallo al generar ID de visitante.", { error, traceId });
       }
     };
     getVisitorId();
-  }, []);
+    return () => logger.endTrace(traceId);
+  }, [traceId]);
 
   const dispatchEvent = useCallback(
     (type: PlaybackEventType) => {
       if (onPlaybackEvent && visitorId) {
         const video = videoTexture.image as HTMLVideoElement;
-        onPlaybackEvent({
+        const eventData: PlaybackEvent = {
           type,
           timestamp: video.currentTime,
           duration: video.duration,
           visitorId,
-        });
+        };
+        logger.trace(`[Aether Telemetry] Despachando evento: ${type}`, { eventData, traceId });
+        onPlaybackEvent(eventData);
       }
     },
-    [onPlaybackEvent, videoTexture, visitorId]
+    [onPlaybackEvent, videoTexture, visitorId, traceId]
   );
 
   useEffect(() => {

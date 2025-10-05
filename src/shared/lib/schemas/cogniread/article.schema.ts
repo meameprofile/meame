@@ -3,7 +3,7 @@
  * @file article.schema.ts
  * @description SSoT para el contrato de datos de la entidad Artículo de CogniRead.
  * @version 5.2.1 (i18n & Zod Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v5.2.1] ---

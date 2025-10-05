@@ -1,9 +1,8 @@
 // RUTA: src/shared/lib/actions/auth/linkAnonymousSessionToUser.action.ts
 /**
  * @file linkAnonymousSessionToUser.action.ts
- * @description Server Action soberana que orquesta el "Traspaso de Identidad",
- *              vinculando el historial anónimo de un visitante a su nueva cuenta de usuario.
- * @version 1.1.0 (Zod Contract Alignment)
+ * @description Server Action que orquesta el "Traspaso de Identidad".
+ * @version 2.0.0 (Elite Observability & Resilience)
  * @author L.I.A. Legacy
  */
 "use server";
@@ -24,7 +23,7 @@ type LinkSessionInput = z.infer<typeof LinkSessionInputSchema>;
 export async function linkAnonymousSessionToUserAction(
   input: LinkSessionInput
 ): Promise<ActionResult<null>> {
-  const traceId = logger.startTrace("linkAnonymousSessionToUserAction_v1.1");
+  const traceId = logger.startTrace("linkAnonymousSessionToUserAction_v2.0");
   logger.startGroup(`[Auth Action] Vinculando sesión anónima...`, traceId);
 
   try {
@@ -43,10 +42,8 @@ export async function linkAnonymousSessionToUserAction(
 
     const validation = LinkSessionInputSchema.safeParse(input);
     if (!validation.success) {
-      // --- [INICIO DE CORRECCIÓN DE CONTRATO ZOD] ---
       const firstError =
         validation.error.errors[0]?.message || "Payload inválido.";
-      // --- [FIN DE CORRECCIÓN DE CONTRATO ZOD] ---
       logger.warn("[Auth Action] Payload de vinculación inválido.", {
         error: firstError,
         traceId,
@@ -77,10 +74,7 @@ export async function linkAnonymousSessionToUserAction(
       error instanceof Error ? error.message : "Error desconocido.";
     logger.error(
       "[Auth Action] Fallo crítico durante la vinculación de la sesión.",
-      {
-        error: errorMessage,
-        traceId,
-      }
+      { error: errorMessage, traceId }
     );
     return {
       success: false,

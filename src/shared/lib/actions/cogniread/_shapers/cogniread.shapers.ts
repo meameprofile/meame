@@ -2,9 +2,10 @@
 /**
  * @file cogniread.shapers.ts
  * @description Módulo soberano para la transformación de datos del dominio CogniRead.
- *              v5.0.0 (Absolute Type Safety): Erradica 'any' y alinea los
- *              contratos de tipo entre la base de datos y la aplicación.
- * @version 5.0.0
+ *              v5.1.0 (Vestigial Property Removal): Se elimina el mapeo de la
+ *              propiedad obsoleta 'available_languages' para alinear el shaper
+ *              con el contrato actual de CogniReadArticleSchema.
+ * @version 5.1.0
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
@@ -35,7 +36,11 @@ export function mapSupabaseToCogniReadArticle(
     studyDna: supabaseArticle.study_dna as StudyDna,
     content: supabaseArticle.content as CogniReadArticle["content"],
     tags: supabaseArticle.tags ?? [],
-    available_languages: supabaseArticle.available_languages ?? [],
+    // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v5.1.0] ---
+    // La propiedad 'available_languages' es obsoleta en el schema de destino
+    // y se elimina de la transformación para resolver el error TS2353.
+    // available_languages: supabaseArticle.available_languages ?? [],
+    // --- [FIN DE REFACTORIZACIÓN DE CONTRATO v5.1.0] ---
     baviHeroImageId: supabaseArticle.bavi_hero_image_id ?? undefined,
     relatedPromptIds: supabaseArticle.related_prompt_ids ?? [],
     createdAt: supabaseArticle.created_at,

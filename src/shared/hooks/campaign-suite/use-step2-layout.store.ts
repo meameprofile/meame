@@ -2,8 +2,8 @@
 /**
  * @file use-step2-layout.store.ts
  * @description Store atómico para los datos del Paso 2 (Layout Config).
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 2.0.0 (Elite Observability)
+ * @author L.I.A. Legacy
  */
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
@@ -28,7 +28,7 @@ export const useStep2LayoutStore = create<Step2State & Step2Actions>()(
     (set) => ({
       ...initialState,
       setLayoutConfig: (newLayout) => {
-        logger.trace("[Step2Store] Reemplazando el layout completo.");
+        logger.trace("[Step2Store] Reemplazando el layout completo.", { count: newLayout.length });
         set({ layoutConfig: newLayout });
       },
       resetLayout: () => {

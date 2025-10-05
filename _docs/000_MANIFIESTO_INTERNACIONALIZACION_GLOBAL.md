@@ -15,7 +15,7 @@ refac src/messages/components/language-switcher/language-switcher.i18n.json
 -              Define la visión, los pilares, la arquitectura y el protocolo para
 -              una escalabilidad global sin fricciones.
 - @version 12.0.0 (Global Architecture First)
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Soberano: Internacionalización Global v12.0

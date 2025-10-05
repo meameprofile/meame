@@ -4,7 +4,7 @@
  * @description Guardián de Esquema para Vercel Blob, con lógica de validación
  *              de CUID2 restaurada y observabilidad de élite.
  * @version 2.0.0 (CUID2 Validation Fix & Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { list } from "@vercel/blob";
 import { promises as fs } from "fs";

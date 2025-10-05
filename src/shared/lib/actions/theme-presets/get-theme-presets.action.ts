@@ -1,10 +1,9 @@
 // RUTA: src/shared/lib/actions/theme-presets/get-theme-presets.action.ts
 /**
  * @file get-theme-presets.action.ts
- * @description Server Action para obtener presets de tema, ahora con un Guardián
- *              de Resiliencia granular y observabilidad de élite.
- * @version 4.0.0 (Granular Resilience & Elite Observability)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Server Action para obtener presets de tema.
+ * @version 5.0.0 (Sovereign Shaper & Granular Resilience)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -12,32 +11,14 @@ import "server-only";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-import {
-  ThemePresetSchema,
-  type ThemePreset,
-} from "@/shared/lib/schemas/theme-preset.schema";
-import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
+import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
 import type { ThemePresetRow } from "@/shared/lib/schemas/theme-presets/theme-presets.contracts";
-
-function mapSupabaseToThemePreset(row: ThemePresetRow): ThemePreset {
-  const transformed = {
-    id: row.id,
-    workspaceId: row.workspace_id,
-    userId: row.user_id,
-    name: row.name,
-    description: row.description || undefined,
-    type: row.type,
-    themeConfig: row.theme_config as ThemeConfig,
-    createdAt: row.created_at,
-    updatedAt: row.updated_at,
-  };
-  return ThemePresetSchema.parse(transformed);
-}
+import { mapSupabaseToThemePreset } from "./_shapers/theme-presets.shapers";
 
 export async function getThemePresetsAction(
   workspaceId: string
 ): Promise<ActionResult<{ global: ThemePreset[]; workspace: ThemePreset[] }>> {
-  const traceId = logger.startTrace("getThemePresetsAction_v4.0");
+  const traceId = logger.startTrace("getThemePresetsAction_v5.0");
   logger.startGroup(`[Action] Obteniendo presets de tema...`, traceId);
 
   try {
@@ -61,11 +42,10 @@ export async function getThemePresetsAction(
       `Se obtuvieron ${presetsFromDb.length} presets crudos de la DB.`
     );
 
-    // --- [INICIO] GUARDIÁN DE RESILIENCIA GRANULAR ---
     const validPresets: ThemePreset[] = [];
     for (const row of presetsFromDb) {
       try {
-        const preset = mapSupabaseToThemePreset(row);
+        const preset = mapSupabaseToThemePreset(row, traceId);
         validPresets.push(preset);
       } catch (validationError) {
         logger.warn(`[Guardián] Preset corrupto omitido (ID: ${row.id}).`, {
@@ -77,7 +57,6 @@ export async function getThemePresetsAction(
         });
       }
     }
-    // --- [FIN] GUARDIÁN DE RESILIENCIA GRANULAR ---
     logger.traceEvent(
       traceId,
       `Se procesaron ${validPresets.length} presets válidos.`
@@ -89,8 +68,7 @@ export async function getThemePresetsAction(
     );
 
     logger.success(
-      `[Action] Presets obtenidos: ${globalPresets.length} globales, ${workspacePresets.length} de workspace.`,
-      { traceId }
+      `[Action] Presets obtenidos: ${globalPresets.length} globales, ${workspacePresets.length} de workspace.`
     );
     return {
       success: true,

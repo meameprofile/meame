@@ -51,4 +51,16 @@ Nuestra integración con Supabase se divide en tres dominios distintos y soberan
   - `seeding/`: Scripts para poblar la base de datos con datos de prueba.
   - `schema-*.ts`: Scripts de diagnóstico para auditar la estructura de la base de datos.
 
-  ***
+---
+
+ACTUALICAION
+
+### 2.4. Dominio de Sincronización Local (Comandos)
+
+- **Propósito Soberano:** Garantizar que el entorno de desarrollo local esté inequívocamente enlazado con la SSoT de la base de datos remota.
+- **Protocolo Mandatorio:**
+  1.  **Enlace (`pnpm supabase:link`):** Este es el **primer comando** que se debe ejecutar después de clonar el proyecto o si el proyecto de Supabase remoto cambia. Establece la conexión entre la CLI local y el `project-ref` correcto en Supabase.
+  2.  **Sincronización de Tipos (`pnpm supabase:gen-types`):** Después de cualquier migración de esquema en la base de datos, este comando **DEBE** ejecutarse para regenerar `database.types.ts`, manteniendo el "mapa" de TypeScript alineado con la "realidad" de la base de datos.
+- **Justificación Arquitectónica:** Este protocolo desacopla la configuración del proyecto de los comandos de operación, eliminando los "números mágicos" y haciendo que las migraciones de ecosistema sean un proceso explícito y controlado.
+
+---

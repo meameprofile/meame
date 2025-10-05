@@ -2,8 +2,8 @@
 /**
  * @file use-step3-theme.store.ts
  * @description Store atómico para los datos del Paso 3 (Configuración de Tema).
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 2.0.0 (Elite Observability)
+ * @author L.I.A. Legacy
  */
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
@@ -34,14 +34,10 @@ export const useStep3ThemeStore = create<Step3State & Step3Actions>()(
     (set) => ({
       ...initialState,
       updateThemeConfig: (newConfig) => {
-        logger.trace(
-          "[Step3Store] Actualizando configuración de tema.",
-          newConfig
-        );
+        logger.trace("[Step3Store] Actualizando configuración de tema.", newConfig);
         set((state) => ({
           themeConfig: deepMerge(state.themeConfig, newConfig),
         }));
-        // Notificar al orquestador para debounce...
       },
       resetThemeConfig: () => {
         logger.warn("[Step3Store] Reiniciando la configuración de tema.");
@@ -49,7 +45,7 @@ export const useStep3ThemeStore = create<Step3State & Step3Actions>()(
       },
     }),
     {
-      name: "campaign-draft-step3-theme", // Clave de persistencia granular
+      name: "campaign-draft-step3-theme",
       storage: createJSONStorage(() => localStorage),
     }
   )

@@ -1,10 +1,9 @@
 // RUTA: src/shared/lib/actions/theme-presets/updateThemePreset.action.ts
 /**
  * @file updateThemePreset.action.ts
- * @description Server Action de élite para actualizar un preset de tema, ahora
- *              consumiendo un "shaper" soberano para máxima cohesión y cero duplicación.
- * @version 2.0.0 (Sovereign Shaper Consumption)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Server Action de élite para actualizar un preset de tema.
+ * @version 3.0.0 (Sovereign Shaper Consumption)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -14,9 +13,12 @@ import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { Json } from "@/shared/lib/supabase/database.types";
-import { type ThemePresetUpdate } from "@/shared/lib/schemas/theme-presets/theme-presets.contracts";
+import {
+  type ThemePresetUpdate,
+  type ThemePresetRow,
+} from "@/shared/lib/schemas/theme-presets/theme-presets.contracts";
 import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
-import { mapSupabaseToThemePreset } from "./_shapers/theme-presets.shapers"; // <-- CONSUMO DE SHAPER SOBERANO
+import { mapSupabaseToThemePreset } from "./_shapers/theme-presets.shapers";
 
 const UpdatePresetInputSchema = z.object({
   id: z.string().uuid(),
@@ -31,7 +33,7 @@ type UpdatePresetInput = z.infer<typeof UpdatePresetInputSchema>;
 export async function updateThemePresetAction(
   input: UpdatePresetInput
 ): Promise<ActionResult<{ updatedPreset: ThemePreset }>> {
-  const traceId = logger.startTrace("updateThemePresetAction_v2.0");
+  const traceId = logger.startTrace("updateThemePresetAction_v3.0");
   logger.startGroup(`[Action] Actualizando preset de tema...`, traceId);
 
   try {
@@ -68,9 +70,14 @@ export async function updateThemePresetAction(
       .single();
     if (error) throw new Error(`Error de Supabase: ${error.message}`);
 
-    const updatedPreset = mapSupabaseToThemePreset(updatedPresetRow);
+    const updatedPreset = mapSupabaseToThemePreset(
+      updatedPresetRow as ThemePresetRow,
+      traceId
+    );
 
-    logger.success(`[Action] Preset '${updatedPreset.name}' actualizado.`);
+    logger.success(
+      `[Action] Preset '${updatedPreset.name}' actualizado.`
+    );
     return { success: true, data: { updatedPreset } };
   } catch (error) {
     const msg = error instanceof Error ? error.message : "Error desconocido.";

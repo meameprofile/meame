@@ -63,8 +63,8 @@ reports
 # de la máquina de cada desarrollador.
 .DS_Store
 Thumbs.db
-.vscode/ # Ignorar configuración local, excepto lo que se quiera compartir (ej. .vscode/settings.json)
-!.vscode/settings.json # Ejemplo de excepción
+.vscode/*
+!.vscode/settings.json
 
 # 8. Activos Estáticos (Imágenes, PDFs, etc.) - NOTA IMPORTANTE
 # ------------------------------------------------------------------------------

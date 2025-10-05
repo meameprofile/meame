@@ -1,9 +1,9 @@
 // RUTA: scripts/supabase/content-aura.ts
 /**
  * @file content-aura.ts
- * @description Guardián de Contenido para el dominio Aura, forjado con observabilidad de élite.
- *              Realiza un censo de registros en las tablas de telemetría.
- * @version 2.0.0 (Elite Observability & Type Safety)
+ * @description Guardián de Contenido para el dominio Aura, forjado con una lógica de censo
+ *              "consciente del esquema" para una resiliencia y precisión de élite.
+ * @version 4.0.0 (Schema-Aware & Definitive)
  * @author L.I.A. Legacy
  */
 import { promises as fs } from "fs";
@@ -12,7 +12,6 @@ import { createScriptClient } from "../_utils/supabaseClient";
 import { scriptLogger as logger } from "../_utils/logger";
 import type { Database } from "@/shared/lib/supabase/database.types";
 
-// Contrato de tipos para las tablas que vamos a auditar
 type AuraTables = Extract<
   keyof Database["public"]["Tables"],
   | "visitor_sessions"
@@ -20,6 +19,15 @@ type AuraTables = Extract<
   | "user_activity_events"
   | "aura_insights"
 >;
+
+// SSoT para las claves primarias de las tablas de Aura.
+// Esto hace que el script sea resiliente a cambios de esquema.
+const primaryKeyMap: Record<AuraTables, string> = {
+  visitor_sessions: "session_id",
+  visitor_campaign_events: "event_id",
+  user_activity_events: "id",
+  aura_insights: "id",
+};
 
 interface Report {
   reportMetadata: {
@@ -33,8 +41,10 @@ interface Report {
 }
 
 async function diagnoseAuraContent() {
-  const traceId = logger.startTrace("diagnoseAuraContent_v2.0");
-  logger.startGroup(`[Guardián Aura] Realizando censo de contenido...`);
+  const traceId = logger.startTrace("diagnoseAuraContent_v4.0");
+  logger.startGroup(
+    `[Guardián Aura] Realizando censo de contenido consciente del esquema...`
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "supabase");
   const reportPath = path.resolve(reportDir, "content-aura.json");
@@ -64,9 +74,17 @@ async function diagnoseAuraContent() {
       "aura_insights",
     ];
 
-    const countPromises = tablesToCount.map((table) =>
-      supabase.from(table).select("id", { count: "exact", head: true })
-    );
+    // --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA v4.0.0] ---
+    // La consulta ahora selecciona dinámicamente la clave primaria correcta para cada tabla.
+    const countPromises = tablesToCount.map(async (table) => {
+      const primaryKey = primaryKeyMap[table];
+      const { data, error } = await supabase.from(table).select(primaryKey);
+      if (error) {
+        throw new Error(`Al contar ${table}: ${error.message}`);
+      }
+      return { table, count: data?.length ?? 0 };
+    });
+    // --- [FIN DE REFACTORIZACIÓN DE RESILIENCIA v4.0.0] ---
 
     logger.traceEvent(
       traceId,
@@ -74,12 +92,8 @@ async function diagnoseAuraContent() {
     );
     const results = await Promise.all(countPromises);
 
-    results.forEach((result, index) => {
-      const tableName = tablesToCount[index];
-      if (result.error) {
-        throw new Error(`Al contar ${tableName}: ${result.error.message}`);
-      }
-      report.census[tableName] = result.count ?? 0;
+    results.forEach((result) => {
+      report.census[result.table as AuraTables] = result.count;
     });
 
     report.auditStatus = "SUCCESS";

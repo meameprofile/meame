@@ -5,7 +5,7 @@
  *              v3.0.0 (i18n & Zod Contract Alignment): Alineado con la SSoT de i18n
  *              y corregida la aserción de tipo para `z.enum`, resolviendo TS2769.
  * @version 3.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v3.0.0] ---

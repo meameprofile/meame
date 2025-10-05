@@ -2,13 +2,14 @@
 /**
  * @file use-progress-tracker.ts
  * @description Hook atómico para rastrear el progreso de reproducción del vídeo.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 2.0.0 (Elite Observability)
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import { useState, useEffect } from "react";
 import type { VideoTexture } from "three";
+import { logger } from "@/shared/lib/logging";
 
 export interface ProgressState {
   currentTime: number;
@@ -22,9 +23,9 @@ export function useProgressTracker(videoTexture: VideoTexture) {
   });
 
   useEffect(() => {
+    logger.trace("[ProgressTracker] Hook montado y escuchando eventos de tiempo.");
     const video = videoTexture.image as HTMLVideoElement;
-    const handleTimeUpdate = () =>
-      setProgress((p) => ({ ...p, currentTime: video.currentTime }));
+    const handleTimeUpdate = () => setProgress((p) => ({ ...p, currentTime: video.currentTime }));
     const handleDurationChange = () => {
       if (!isNaN(video.duration)) {
         setProgress((p) => ({ ...p, duration: video.duration }));

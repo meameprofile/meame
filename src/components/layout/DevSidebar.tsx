@@ -2,7 +2,8 @@
 /**
  * @file DevSidebar.tsx
  * @description Barra lateral soberana para el Developer Command Center.
- * @version 1.0.0 (Forged & Elite)
+ * @version 2.0.0 (Holistic i18n Contract Alignment): Se elimina la prop obsoleta
+ *              'supportedLocales' para alinearse con la arquitectura de i18n soberana.
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -14,10 +15,17 @@ import type { HeaderClientProps } from "@/components/layout/HeaderClient";
 import { logger } from "@/shared/lib/logging";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 
-type DevSidebarProps = Pick<
+// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v2.0.0] ---
+// El contrato de props ahora omite la prop obsoleta 'supportedLocales'.
+type DevSidebarProps = Omit<
   HeaderClientProps,
-  "user" | "profile" | "currentLocale" | "content"
+  | "supportedLocales"
+  | "logoUrl"
+  | "initialCart"
+  | "centerComponent"
+  | "rightComponent"
 >;
+// --- [FIN DE REFACTORIZACIÓN DE CONTRATO v2.0.0] ---
 
 export function DevSidebar({
   user,
@@ -25,7 +33,7 @@ export function DevSidebar({
   currentLocale,
   content,
 }: DevSidebarProps) {
-  logger.info("[DevSidebar] Renderizando barra lateral del DCC.");
+  logger.info("[DevSidebar] Renderizando barra lateral del DCC (v2.0).");
 
   const { activeWorkspaceId, availableWorkspaces } = useWorkspaceStore();
   const activeWorkspace = availableWorkspaces.find(
@@ -45,9 +53,10 @@ export function DevSidebar({
         </Link>
       </div>
       <nav className="flex-1 overflow-y-auto py-4">
-        {/* El DevRouteMenu se podría mover aquí para una navegación persistente */}
+        {/* El DevRouteMenu se podría mover aquí */}
       </nav>
       <div className="mt-auto">
+        {/* La llamada a UserNavClient ahora cumple con su contrato. */}
         <UserNavClient
           user={user}
           profile={profile}

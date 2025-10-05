@@ -1,10 +1,9 @@
 // RUTA: src/shared/lib/actions/raz-prompts/createPromptEntry.action.ts
 /**
  * @file createPromptEntry.action.ts
- * @description Server Action de producción para crear una nueva entrada de prompt,
- *              ahora con seguridad de tipos absoluta y alineamiento de contratos.
+ * @description Server Action de producción para crear una nueva entrada de prompt.
  * @version 13.0.0 (Absolute Type Safety & Contract Alignment)
- * @author RaZ Podestá - MetaShark Tech
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -77,7 +76,7 @@ export async function createPromptEntryAction(
     const { workspaceId } = input;
     const { data: memberCheck, error: memberError } = await supabase.rpc(
       "is_workspace_member",
-      { workspace_id_to_check: workspaceId, min_role: "member" }
+      { workspace_id_to_check: workspaceId }
     );
 
     if (memberError || !memberCheck) {

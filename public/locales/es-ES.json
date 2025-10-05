@@ -149,32 +149,38 @@
         {
           "title": "La Forja (SDC)",
           "description": "Forja campañas de alta conversión.",
-          "label": "Creatividad"
+          "label": "Creatividad",
+          "href": "/es-ES/creator/campaign-suite"
         },
         {
           "title": "El Arsenal (BAVI)",
           "description": "La SSoT para todos los activos visuales.",
-          "label": "Activos"
+          "label": "Activos",
+          "href": "/es-ES/dev/bavi"
         },
         {
           "title": "La Bóveda (RaZPrompts)",
           "description": "Cataloga el ADN creativo de tus activos.",
-          "label": "Genoma"
+          "label": "Genoma",
+          "href": "/es-ES/dev/raz-prompts"
         },
         {
           "title": "El Motor (CogniRead)",
           "description": "Transforma la ciencia en autoridad.",
-          "label": "Credibilidad"
+          "label": "Credibilidad",
+          "href": "/es-ES/dev/cogniread"
         },
         {
           "title": "El Sistema Nervioso (Nos3)",
           "description": "Mira a través de los ojos del usuario.",
-          "label": "UX"
+          "label": "UX",
+          "href": "/es-ES/dev/nos3"
         },
         {
-          "title": "El Laboratorio",
-          "description": "Stress-test para cada componente.",
-          "label": "Resiliencia"
+          "title": "La Cabina de Mando (Aura)",
+          "description": "Visualiza los datos y optimiza las conversiones.",
+          "label": "Inteligencia",
+          "href": "/es-ES/dev/analytics"
         }
       ]
     }
@@ -457,6 +463,20 @@
   },
   "languageSwitcher": {
     "ariaLabel": "Seleccionar idioma",
+    "modalTitle": "Selecciona un Idioma y Región",
+    "modalDescription": "Tu selección personalizará tu experiencia en todo el sitio.",
+    "searchPlaceholder": "Buscar por idioma, país o continente...",
+    "noResultsFound": "No se encontraron idiomas.",
+    "continents": {
+      "Africa": "África",
+      "Asia": "Asia",
+      "Europe": "Europa",
+      "North America": "Norteamérica",
+      "South America": "Sudamérica",
+      "Oceania": "Oceanía",
+      "Global": "Global",
+      "Other": "Otro"
+    },
     "languages": {
       "it-IT": "Italiano",
       "es-ES": "Español",
@@ -1344,6 +1364,58 @@
     "saveButtonLoading": "Guardando...",
     "articleNotFoundError": "Artículo no encontrado."
   },
+  "userIntelligenceDetailPage": {
+    "pageHeader": {
+      "title": "Perfil de Usuario",
+      "subtitle": "Vista de 360 grados del viaje de un visitante, desde el primer contacto hasta la conversión."
+    },
+    "summaryCardTitle": "Resumen del Perfil",
+    "sessionCardTitle": "Metadatos de la Sesión",
+    "activityCardTitle": "Historial de Actividad",
+    "nos3Button": "Ver Grabación de Sesión (Nos3)",
+    "labels": {
+      "userId": "ID de Usuario",
+      "fingerprintId": "ID de Huella Digital",
+      "ipAddress": "Dirección IP",
+      "country": "País",
+      "city": "Ciudad",
+      "browser": "Navegador",
+      "os": "Sistema Operativo",
+      "device": "Dispositivo"
+    },
+    "eventTableHeaders": {
+      "event": "Evento",
+      "campaign": "Campaña / Variante",
+      "timestamp": "Fecha y Hora",
+      "details": "Detalles (Payload)"
+    }
+  },
+  "userIntelligencePage": {
+    "pageHeader": {
+      "title": "Temeo Assistant",
+      "subtitle": "Un perfil unificado de cada visitante y usuario registrado que ha interactuado con tus campañas."
+    },
+    "tableHeaders": {
+      "user": "Usuario / Visitante",
+      "userType": "Tipo",
+      "firstSeen": "Visto por Primera Vez",
+      "lastSeen": "Última Visita",
+      "totalEvents": "Eventos",
+      "actions": "Acciones"
+    },
+    "userTypes": {
+      "Registered": "Registrado",
+      "Anonymous": "Anónimo"
+    },
+    "viewProfileButton": "Ver Perfil",
+    "emptyStateTitle": "Aún no hay perfiles de usuario",
+    "emptyStateDescription": "A medida que los usuarios y visitantes interactúen con tus campañas, aparecerán aquí.",
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "pageInfo": "Página {{currentPage}} de {{totalPages}}"
+    }
+  },
   "step0": {
     "title": "Paso 0: Identificación",
     "description": "Este es el paso fundacional. La información aquí define la identidad y estrategia de tu campaña.",
@@ -1475,5 +1547,22 @@
     "payButton": "Pagar Ahora",
     "processingButton": "Procesando Pago...",
     "unexpectedError": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+  },
+  "campaignsTable": {
+    "headerVariant": "Variante",
+    "headerVisitors": "Visitantes",
+    "headerConversions": "Conversiones",
+    "headerBounceRate": "Tasa de Rebote",
+    "noResultsText": "No hay resultados.",
+    "previousButton": "Anterior",
+    "nextButton": "Siguiente",
+    "actionsLabel": "Acciones",
+    "viewDetailsLabel": "Ver detalles"
+  },
+  "dashboardHeader": {
+    "title": "Dashboard de Analíticas",
+    "subtitle": "Una visión general del rendimiento de tus campañas.",
+    "dateRangeButton": "Últimos 30 días",
+    "exportButton": "Exportar"
   }
 }

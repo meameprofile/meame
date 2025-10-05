@@ -149,32 +149,38 @@
         {
           "title": "La Fucina (SDC)",
           "description": "Forgia campagne ad alta conversione.",
-          "label": "Creatività"
+          "label": "Creatività",
+          "href": "/it-IT/creator/campaign-suite"
         },
         {
           "title": "L'Arsenale (BAVI)",
           "description": "La SSoT per tutti gli asset visivi.",
-          "label": "Asset"
+          "label": "Asset",
+          "href": "/it-IT/dev/bavi"
         },
         {
           "title": "La Cripta (RaZPrompts)",
           "description": "Cataloga il DNA creativo dei tuoi asset.",
-          "label": "Genoma"
+          "label": "Genoma",
+          "href": "/it-IT/dev/raz-prompts"
         },
         {
           "title": "Il Motore (CogniRead)",
           "description": "Trasforma la scienza in autorità.",
-          "label": "Credibilità"
+          "label": "Credibilità",
+          "href": "/it-IT/dev/cogniread"
         },
         {
           "title": "Il Sistema Nervoso (Nos3)",
           "description": "Guarda attraverso gli occhi dell'utente.",
-          "label": "UX"
+          "label": "UX",
+          "href": "/it-IT/dev/nos3"
         },
         {
-          "title": "Il Laboratorio",
-          "description": "Stress-test per ogni componente.",
-          "label": "Resilienza"
+          "title": "La Cabina di Mando (Aura)",
+          "description": "Visualizza i dati e ottimizza le conversioni.",
+          "label": "Intelligenza",
+          "href": "/it-IT/dev/analytics"
         }
       ]
     }
@@ -456,7 +462,21 @@
     "toggleAriaLabel": "Attiva/disattiva tema"
   },
   "languageSwitcher": {
-    "ariaLabel": "Seleziona la lingua",
+    "ariaLabel": "Seleziona lingua",
+    "modalTitle": "Seleziona una Lingua e Regione",
+    "modalDescription": "La tua selezione personalizzerà la tua esperienza sull'intero sito.",
+    "searchPlaceholder": "Cerca per lingua, paese o continente...",
+    "noResultsFound": "Nessuna lingua trovata.",
+    "continents": {
+      "Africa": "Africa",
+      "Asia": "Asia",
+      "Europe": "Europa",
+      "North America": "Nord America",
+      "South America": "Sud America",
+      "Oceania": "Oceania",
+      "Global": "Globale",
+      "Other": "Altro"
+    },
     "languages": {
       "it-IT": "Italiano",
       "es-ES": "Spagnolo",
@@ -1475,5 +1495,22 @@
     "payButton": "Paga Adesso",
     "processingButton": "Elaborazione Pagamento...",
     "unexpectedError": "Si è verificato un errore inaspettato. Per favore, riprova."
+  },
+  "campaignsTable": {
+    "headerVariant": "Variante",
+    "headerVisitors": "Visitatori",
+    "headerConversions": "Conversioni",
+    "headerBounceRate": "Frequenza di Rimbalzo",
+    "noResultsText": "Nessun risultato.",
+    "previousButton": "Precedente",
+    "nextButton": "Successivo",
+    "actionsLabel": "Azioni",
+    "viewDetailsLabel": "Vedi dettagli"
+  },
+  "dashboardHeader": {
+    "title": "Dashboard di Analisi",
+    "subtitle": "Una panoramica delle prestazioni delle tue campagne.",
+    "dateRangeButton": "Ultimi 30 giorni",
+    "exportButton": "Esporta"
   }
 }

@@ -2,7 +2,7 @@
 /**
  * @file analytics.contracts.ts
  * @description SSoT para los contratos de tipo de las tablas del dominio de Analytics.
- * @version 2.0.0 (UserProfileSummaryRow Integration)
+ * @version 4.0.0 (Tracking Fields Alignment)
  * @author L.I.A. Legacy
  */
 import { z } from "zod";
@@ -28,23 +28,6 @@ export const VisitorSessionRowSchema = z.object({
   last_seen_at: z.string().datetime(),
 });
 
-export type VisitorCampaignEventRow = Tables<"visitor_campaign_events">;
-export type VisitorCampaignEventInsert =
-  TablesInsert<"visitor_campaign_events">;
-export type VisitorCampaignEventUpdate =
-  TablesUpdate<"visitor_campaign_events">;
-export const VisitorCampaignEventRowSchema = z.object({
-  event_id: z.string().uuid(),
-  session_id: z.string(),
-  campaign_id: z.string(),
-  variant_id: z.string(),
-  event_type: z.string(),
-  payload: z.any().nullable(),
-  created_at: z.string().datetime(),
-});
-
-// --- [INICIO DE ADICIÓN SOBERANA v2.0.0] ---
-// Se crea y exporta el contrato de datos para la tabla 'user_profile_summary'.
 export type UserProfileSummaryRow = Tables<"user_profile_summary">;
 export type UserProfileSummaryInsert = TablesInsert<"user_profile_summary">;
 export type UserProfileSummaryUpdate = TablesUpdate<"user_profile_summary">;
@@ -63,7 +46,6 @@ export const UserProfileSummaryRowSchema = z.object({
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
 });
-// --- [FIN DE ADICIÓN SOBERANA v2.0.0] ---
 
 export type UserActivityEventRow = Tables<"user_activity_events">;
 export type UserActivityEventInsert = TablesInsert<"user_activity_events">;
@@ -77,3 +59,42 @@ export const UserActivityEventRowSchema = z.object({
   event_type: z.string(),
   payload: z.any().nullable(),
 });
+
+export type AnonymousCampaignEventRow = Tables<"anonymous_campaign_events">;
+export type AnonymousCampaignEventInsert =
+  TablesInsert<"anonymous_campaign_events">;
+export type AnonymousCampaignEventUpdate =
+  TablesUpdate<"anonymous_campaign_events">;
+export const AnonymousCampaignEventRowSchema = z.object({
+  id: z.string().uuid(),
+  created_at: z.string().datetime(),
+  fingerprint_id: z.string(),
+  session_id: z.string(),
+  workspace_id: z.string().uuid(),
+  campaign_id: z.string(),
+  variant_id: z.string(),
+  event_type: z.string(),
+  payload: z.any().nullable(),
+});
+
+// --- [INICIO DE NIVELACIÓN DE CONTRATO v4.0.0] ---
+export type VisitorCampaignEventRow = Tables<"visitor_campaign_events">;
+export type VisitorCampaignEventInsert =
+  TablesInsert<"visitor_campaign_events">;
+export type VisitorCampaignEventUpdate =
+  TablesUpdate<"visitor_campaign_events">;
+export const VisitorCampaignEventRowSchema = z.object({
+  event_id: z.string().uuid(),
+  session_id: z.string(),
+  campaign_id: z.string(),
+  variant_id: z.string(),
+  event_type: z.string(),
+  payload: z.any().nullable(),
+  created_at: z.string().datetime(),
+  // Columnas de tracking añadidas para alineación
+  referer: z.string().nullable(),
+  utm_source: z.string().nullable(),
+  utm_medium: z.string().nullable(),
+  utm_campaign: z.string().nullable(),
+});
+// --- [FIN DE NIVELACIÓN DE CONTRATO v4.0.0] ---

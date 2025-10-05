@@ -5,7 +5,7 @@
  *              global y deriva las constantes de configuración de la aplicación.
  *              Es resiliente al entorno (isomórfico).
  * @version 13.0.0 (Zod Enum Contract Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { logger } from "../logging";

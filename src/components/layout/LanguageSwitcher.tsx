@@ -3,7 +3,7 @@
  * @file LanguageSwitcher.tsx
  * @description Activador del modal de selección de idioma, con UX de élite.
  * @version 8.0.0 (Holistic Contract Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -28,10 +28,7 @@ export function LanguageSwitcher({
   currentLocale,
   content,
 }: LanguageSwitcherProps) {
-  const traceId = useMemo(
-    () => logger.startTrace("LanguageSwitcher_v8.0"),
-    []
-  );
+  const traceId = useMemo(() => logger.startTrace("LanguageSwitcher_v8.0"), []);
 
   useEffect(() => {
     logger.info("[LanguageSwitcher] Componente montado (v8.0).", { traceId });

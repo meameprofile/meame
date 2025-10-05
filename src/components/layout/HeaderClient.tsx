@@ -5,7 +5,7 @@
  *              de tipos absoluta, un guardián de resiliencia holístico, observabilidad
  *              completa y cumplimiento estricto de las Reglas de los Hooks de React.
  * @version 48.1.0 (Hooks Contract Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

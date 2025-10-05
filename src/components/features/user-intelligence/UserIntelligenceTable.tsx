@@ -2,10 +2,8 @@
 /**
  * @file UserIntelligenceTable.tsx
  * @description Orquestador de UI para la tabla de Inteligencia de Usuarios.
- *              v2.0.0 (Sovereign Contract Restoration): Se alinea la importación
- *              con la SSoT de acciones soberanas, resolviendo el error crítico de build TS2305.
- * @version 2.0.0
- * @author L.I.A. Legacy
+ * @version 2.1.0 (SSoT Path Restoration)
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -27,10 +25,10 @@ import {
 import { Button } from "@/components/ui/Button";
 import { logger } from "@/shared/lib/logging";
 import { getUserIntelligenceColumns } from "./UserIntelligenceTable.columns";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v2.0.0] ---
 import type { ProfiledUser } from "@/shared/lib/actions/user-intelligence/getProfiledUsers.action";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v2.0.0] ---
-import type { UserIntelligenceContentSchema } from "@/shared/lib/schemas/pages/dev-user-intelligence.schema";
+// --- [INICIO DE REFACTORIZACIÓN DE INTEGRIDAD DE RUTA v2.1.0] ---
+import type { UserIntelligenceContentSchema } from "@/shared/lib/schemas/pages/dev-user-intelligence.i18n.schema";
+// --- [FIN DE REFACTORIZACIÓN DE INTEGRIDAD DE RUTA v2.1.0] ---
 import type { z } from "zod";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 
@@ -55,7 +53,7 @@ export function UserIntelligenceTable({
   content,
   locale,
 }: UserIntelligenceTableProps) {
-  logger.info("[UserIntelligenceTable] Renderizando tabla de perfiles (v2.0).");
+  logger.info("[UserIntelligenceTable] Renderizando tabla de perfiles (v2.1).");
 
   const columns = React.useMemo(
     () => getUserIntelligenceColumns(content, locale),

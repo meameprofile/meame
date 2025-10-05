@@ -1,44 +1,27 @@
-// RUTA: .vscode/settings.json
 {
-  // =========================================================================
-  // PILAR 1: CONFIGURACIÓN SOBERANA DE DENO (Dominio: supabase/functions)
-  // Requisito: Extensión 'Deno' de 'denoland' instalada.
-  // =========================================================================
+  // ========================================================================
+  // PILAR 1: SOBERANÍA DE DENO (Frontera Inmutable)
+  // Visión: Activa la extensión de Deno y le ordena operar EXCLUSIVAMENTE
+  // dentro del directorio de las funciones de Supabase.
+  // ========================================================================
   "deno.enable": true,
   "deno.lint": true,
-  "deno.unstable": true,
+  "deno.unstable": [],
   "deno.importMap": "./supabase/functions/import_map.json",
-
-  // =========================================================================
-  // PILAR 2: PACTO DE NO AGRESIÓN ENTRE LINTERS
-  // Visión: Asegura que ESLint (para Next.js) y Deno Lint no se interfieran.
-  // =========================================================================
-  "eslint.workingDirectories": [
-    { "mode": "auto" },
-    // Instruye a ESLint para que ignore por completo el directorio de Deno.
-    { "pattern": "./supabase/*", "!cwd": true }
+  "deno.enablePaths": [
+    "supabase/functions"
   ],
 
-  // =========================================================================
-  // PILAR 3: CALIDAD DE CÓDIGO AUTOMATIZADA (DX DE ÉLITE)
-  // Visión: Asigna el formateador correcto al dominio correcto y lo automatiza.
-  // =========================================================================
-
-  // [SOLUCIÓN DEFINITIVA AL ERROR DE FORMATEADOR]
-  // Asigna el formateador de Deno SOLO a los archivos TypeScript (.ts).
-  "[typescript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno",
-    "editor.formatOnSave": true
-  },
-
-  // Asigna Prettier (nuestro estándar para el frontend) a los archivos .tsx.
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-
-  // Activa la corrección automática de ESLint al guardar.
+  // ========================================================================
+  // PILAR 2: INTELIGENCIA DEL ENTORNO Node.js
+  // Visión: Asegura que el resto del proyecto utilice las herramientas
+  // y versiones de TypeScript correctas, gobernadas por Prettier y ESLint.
+  // ========================================================================
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "eslint.useFlatConfig": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

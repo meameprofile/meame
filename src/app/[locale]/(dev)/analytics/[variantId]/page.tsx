@@ -3,7 +3,8 @@
  * @file page.tsx
  * @description Página de detalle para la analítica de una variante de campaña específica.
  *              Forjada con observabilidad de élite y un guardián de resiliencia.
- * @version 3.0.0 (Elite & Resilient)
+ * @version 3.1.0 (Elite Error Handling & Type Safety): Implementa un manejo
+ *              de tipos explícito en el bloque catch para una seguridad de tipos absoluta.
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
@@ -87,7 +88,7 @@ export default async function AnalyticsDetailPage({
       <DeveloperErrorDisplay
         context={`AnalyticsDetailShell: ${params.variantId}`}
         errorMessage="No se pudieron cargar los datos de la campaña."
-        errorDetails={error}
+        errorDetails={error instanceof Error ? error : String(error)}
       />
     );
   } finally {

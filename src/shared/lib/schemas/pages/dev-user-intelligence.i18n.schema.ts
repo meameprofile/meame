@@ -1,10 +1,10 @@
-// RUTA: src/shared/lib/schemas/pages/dev-user-intelligence.schema.ts
+// RUTA: src/shared/lib/schemas/pages/dev-user-intelligence.i18n.schema.ts
 /**
- * @file dev-user-intelligence.schema.ts
+ * @file dev-user-intelligence.i18n.schema.ts
  * @description SSoT para el contrato de datos del contenido i18n del dominio de
  *              Inteligencia de Usuarios en el DCC.
- * @version 1.0.0
- * @author L.I.A. Legacy
+ * @version 1.1.0 (Sovereign Type Export)
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { PageHeaderContentSchema } from "@/shared/lib/schemas/components/page-header.schema";
@@ -32,6 +32,14 @@ export const UserIntelligenceContentSchema = z.object({
     pageInfo: z.string().includes("{{currentPage}}").includes("{{totalPages}}"),
   }),
 });
+
+// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO SOBERANO v1.1.0] ---
+// Se exporta el tipo inferido para que los consumidores puedan importarlo
+// de forma segura, sin mezclar valores de runtime con tipos de compile-time.
+export type UserIntelligenceContent = z.infer<
+  typeof UserIntelligenceContentSchema
+>;
+// --- [FIN DE REFACTORIZACIÓN DE CONTRATO SOBERANO v1.1.0] ---
 
 export const UserIntelligenceLocaleSchema = z.object({
   userIntelligencePage: UserIntelligenceContentSchema.optional(),

@@ -1,34 +1,35 @@
 // RUTA: src/shared/lib/actions/theme-fragments/getThemeFragments.action.ts
 /**
  * @file getThemeFragments.action.ts
- * @description Server Action para obtener los fragmentos de tema, forjada con
- *              observabilidad de élite, seguridad de tipos y resiliencia.
- * @version 2.0.0 (Elite Observability & Type Safety)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Server Action para obtener los fragmentos de tema.
+ * @version 3.0.0 (Granular Resilience & Sovereign Shaper)
+ * @author L.I.A. Legacy
  */
 "use server";
 
+import "server-only";
 import { z } from "zod";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
+import { mapSupabaseToThemeFragment } from "./_shapers/theme-fragments.shapers";
+import type { ThemeFragmentRow } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 
-// --- [INICIO DE REFACTORIZACIÓN DE TIPOS Y RESILIENCIA] ---
-// Se define un schema de Zod como la SSoT para un fragmento de tema.
-// El uso de z.unknown() es la alternativa segura a 'any'.
+// --- [INICIO DE CORRECCIÓN DE VISIBILIDAD DE MÓDULO] ---
+// Se exportan el schema y el tipo para que sean consumibles por otros módulos.
 export const ThemeFragmentSchema = z.object({
   id: z.string().uuid(),
   workspace_id: z.string().uuid().nullable(),
+  user_id: z.string().uuid(),
   name: z.string(),
   type: z.enum(["color", "font", "geometry"]),
   data: z.record(z.string(), z.unknown()),
-  user_id: z.string().uuid(),
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
 });
 
 export type ThemeFragment = z.infer<typeof ThemeFragmentSchema>;
-// --- [FIN DE REFACTORIZACIÓN DE TIPOS Y RESILIENCIA] ---
+// --- [FIN DE CORRECCIÓN DE VISIBILIDAD DE MÓDULO] ---
 
 export async function getThemeFragmentsAction(
   workspaceId: string,
@@ -36,22 +37,15 @@ export async function getThemeFragmentsAction(
 ): Promise<
   ActionResult<{ global: ThemeFragment[]; workspace: ThemeFragment[] }>
 > {
-  const traceId = logger.startTrace("getThemeFragmentsAction_v2.0");
-  // --- [INICIO DE CORRECCIÓN DE API LOGGER (TS2345)] ---
-  // El segundo argumento de startGroup es para estilo, no para contexto.
-  logger.startGroup(`[Action] Obteniendo fragmentos de tema...`);
-  // --- [FIN DE CORRECCIÓN DE API LOGGER (TS2345)] ---
+  const traceId = logger.startTrace("getThemeFragmentsAction_v3.0");
+  logger.startGroup(`[Action] Obteniendo fragmentos de tema...`, traceId);
 
   try {
     const supabase = createServerClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
-
-    if (!user) {
-      logger.warn("[Action] Intento no autorizado.", { traceId });
-      return { success: false, error: "auth_required" };
-    }
+    if (!user) return { success: false, error: "auth_required" };
     logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
 
     const { data, error } = await supabase
@@ -65,20 +59,29 @@ export async function getThemeFragmentsAction(
     }
     logger.traceEvent(
       traceId,
-      `Se obtuvieron ${data.length} fragmentos de la base de datos.`
+      `Se obtuvieron ${data.length} fragmentos crudos de la DB.`
     );
 
-    // Validar cada fragmento para garantizar la integridad de los datos
-    const validation = z.array(ThemeFragmentSchema).safeParse(data);
-    if (!validation.success) {
-      logger.error("[Action] Los datos de fragmentos de la DB son inválidos.", {
-        errors: validation.error.flatten(),
-        traceId,
-      });
-      throw new Error("Formato de datos de fragmentos inesperado.");
+    const validFragments: ThemeFragment[] = [];
+    for (const row of (data as ThemeFragmentRow[]) || []) {
+      try {
+        const fragment = mapSupabaseToThemeFragment(row, traceId);
+        validFragments.push(fragment);
+      } catch (validationError) {
+        logger.warn(`[Guardián] Fragmento corrupto omitido (ID: ${row.id}).`, {
+          error:
+            validationError instanceof Error
+              ? validationError.message
+              : "Error de validación",
+          traceId,
+        });
+      }
     }
+    logger.traceEvent(
+      traceId,
+      `Se procesaron ${validFragments.length} fragmentos válidos.`
+    );
 
-    const validFragments = validation.data;
     const globalFragments = validFragments.filter(
       (fragment) => fragment.workspace_id === null
     );

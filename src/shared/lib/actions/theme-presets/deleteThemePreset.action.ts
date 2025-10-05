@@ -2,8 +2,8 @@
 /**
  * @file deleteThemePreset.action.ts
  * @description Server Action de élite para eliminar un preset de tema.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech (Creative Twin)
+ * @version 2.0.0 (Elite Observability)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -23,7 +23,7 @@ type DeletePresetInput = z.infer<typeof DeletePresetInputSchema>;
 export async function deleteThemePresetAction(
   input: DeletePresetInput
 ): Promise<ActionResult<{ deletedId: string }>> {
-  const traceId = logger.startTrace("deleteThemePresetAction_v1.0");
+  const traceId = logger.startTrace("deleteThemePresetAction_v2.0");
   logger.startGroup(`[Action] Eliminando preset de tema...`, traceId);
 
   try {
@@ -45,6 +45,7 @@ export async function deleteThemePresetAction(
     );
     if (memberError || !memberCheck)
       throw new Error("Acceso denegado al workspace.");
+    logger.traceEvent(traceId, `Membresía del workspace verificada.`);
 
     const { error, count } = await supabase
       .from("theme_presets")

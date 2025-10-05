@@ -1,0 +1,9 @@
+{
+  "devHomepageHeader": {
+    "homeLink": "Inicio",
+    "aboutLink": "Sobre Nosotros",
+    "storeLink": "Tienda",
+    "blogLink": "Blog",
+    "devMenuLabel": "Menú Dev"
+  }
+}

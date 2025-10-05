@@ -1,10 +1,11 @@
-// app/[locale]/(dev)/raz-prompts/_actions/index.ts
+// RUTA: src/shared/lib/actions/raz-prompts/index.ts
 /**
  * @file index.ts (Barrel File)
  * @description Fachada pública para las Server Actions de RaZPrompts.
- * @version 2.0.0 (Get Prompts Action)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Holistic Export)
+ * @author L.I.A. Legacy
  */
 export * from "./createPromptEntry.action";
 export * from "./linkPromptToBaviAsset.action";
-export * from "./getPrompts.action"; // <-- NUEVA EXPORTACIÓN
+export * from "./getPrompts.action";
+export * from "./enhancePrompt.action";

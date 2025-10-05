@@ -1,12 +1,7 @@
-// RUTA: supabase/tsconfig.json
 {
   "compilerOptions": {
-    // --- [INICIO DE NIVELACIÓN DE ENTORNO v3.0] ---
-    // Se elimina la directiva "lib" explícita. La extensión de Deno
-    // en VS Code se encargará de proporcionar los tipos globales de "Deno".
-    // Esto resuelve el conflicto con el motor de TypeScript base del editor.
-    // --- [FIN DE NIVELACIÓN DE ENTORNO v3.0] ---
-
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "noEmit": true,
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -14,7 +9,7 @@
     "strict": true,
     "jsx": "react-jsx",
     "jsxImportSource": "https://esm.sh/react@18.2.0",
-
+    "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["./functions/_shared/*"]
     }

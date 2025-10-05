@@ -2,8 +2,10 @@
 /**
  * @file page.tsx
  * @description Página "Server Shell" soberana para la vista de detalle de un perfil de usuario.
- * @version 2.0.0 (Sovereign Contract Restoration & Elite Compliance)
- * @author L.I.A. Legacy
+ * @version 3.1.0 (Elite Type Safety in Error Boundary): Implementa un manejo de
+ *              tipos explícito en el bloque catch para cumplir con el contrato de
+ *              la prop 'errorDetails' y garantizar una seguridad de tipos absoluta.
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 
@@ -15,6 +17,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
 import { getProfiledUserDetailAction } from "@/shared/lib/actions/user-intelligence/getProfiledUserDetail.action";
 import { UserDetailClient } from "@/components/features/user-intelligence/UserDetailClient";
+import { UserIntelligenceDetailContentSchema } from "@/shared/lib/schemas/pages/dev-user-intelligence-detail.i18n.schema";
 
 interface UserDetailPageProps {
   params: { locale: Locale; sessionId: string };
@@ -23,7 +26,7 @@ interface UserDetailPageProps {
 export default async function UserDetailPage({
   params: { locale, sessionId },
 }: UserDetailPageProps) {
-  const traceId = logger.startTrace(`UserDetailPage_Shell_v2.0:${sessionId}`);
+  const traceId = logger.startTrace(`UserDetailPage_Shell_v3.1:${sessionId}`);
   logger.startGroup(
     `[UserInt Detail Shell] Ensamblando perfil para ${sessionId}...`
   );
@@ -34,9 +37,18 @@ export default async function UserDetailPage({
       getProfiledUserDetailAction(sessionId),
     ]);
 
-    const content = dictionary.userIntelligenceDetailPage;
-    if (dictError || !content)
-      throw new Error("Faltan datos de i18n para la página de detalle.");
+    const contentValidation = UserIntelligenceDetailContentSchema.safeParse(
+      dictionary.userIntelligenceDetailPage
+    );
+
+    if (dictError || !contentValidation.success) {
+      throw new Error(
+        "Faltan datos de i18n o son inválidos para la página de detalle.",
+        { cause: dictError || contentValidation.error }
+      );
+    }
+    const content = contentValidation.data;
+
     if (!userResult.success) throw new Error(userResult.error);
 
     return (
@@ -54,13 +66,14 @@ export default async function UserDetailPage({
       error instanceof Error ? error.message : "Error desconocido.";
     logger.error("[UserInt Detail Shell] Fallo crítico al ensamblar.", {
       error: errorMessage,
+      cause: error instanceof Error ? error.cause : undefined,
       traceId,
     });
     return (
       <DeveloperErrorDisplay
         context="UserDetailPage Shell"
         errorMessage="No se pudo renderizar la página de perfil."
-        errorDetails={error}
+        errorDetails={error instanceof Error ? error : String(error)}
       />
     );
   } finally {

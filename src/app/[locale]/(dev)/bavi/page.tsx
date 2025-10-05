@@ -3,7 +3,7 @@
  * @file page.tsx
  * @description Página principal de la Central de Operaciones BAVI.
  * @version 5.0.0 (Sovereign Path Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import { getDictionary } from "@/shared/lib/i18n/i18n";

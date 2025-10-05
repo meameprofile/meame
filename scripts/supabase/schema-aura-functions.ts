@@ -4,9 +4,9 @@
  * @description Guardián de Esquema soberano para las funciones de base de datos
  *              del dominio Aura y de Inteligencia de Visitantes.
  * @version 2.0.0 (Elite Compliance & Bug Fix)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
-import "server-only";
+
 import { promises as fs } from "fs";
 import * as path from "path";
 import { z } from "zod";

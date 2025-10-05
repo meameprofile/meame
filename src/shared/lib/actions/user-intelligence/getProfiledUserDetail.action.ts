@@ -2,18 +2,43 @@
 /**
  * @file getProfiledUserDetail.action.ts
  * @description Server Action soberana para obtener la vista de 360 grados de un perfil de usuario.
- * @version 2.0.0 (Relational Query Restoration & Elite Compliance): Reconstruido con una
- *              lógica de consulta correcta que respeta la arquitectura de la base de datos.
- * @author L.I.A. Legacy
+ * @version 3.1.0 (Resilient Fallback & Elite Compliance): Proporciona un fallback
+ *              seguro a nivel de tipo para datos de user-agent nulos, resolviendo TS2322.
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 
+import { z } from "zod";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import { decryptServerData } from "@/shared/lib/utils/server-encryption";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { VisitorCampaignEventRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
-import type { Json } from "@/shared/lib/supabase/database.types";
+
+const UaParserResultSchema = z
+  .object({
+    ua: z.string(),
+    browser: z
+      .object({ name: z.string().optional(), version: z.string().optional() })
+      .optional(),
+    engine: z
+      .object({ name: z.string().optional(), version: z.string().optional() })
+      .optional(),
+    os: z
+      .object({ name: z.string().optional(), version: z.string().optional() })
+      .optional(),
+    device: z
+      .object({
+        vendor: z.string().optional(),
+        model: z.string().optional(),
+        type: z.string().optional(),
+      })
+      .optional(),
+    cpu: z.object({ architecture: z.string().optional() }).optional(),
+  })
+  .passthrough();
+
+type UaParserResult = z.infer<typeof UaParserResultSchema>;
 
 export interface ProfiledUserDetail {
   sessionId: string;
@@ -28,14 +53,14 @@ export interface ProfiledUserDetail {
     city: string | null;
     region: string | null;
   } | null;
-  userAgent: any;
+  userAgent: UaParserResult;
   events: VisitorCampaignEventRow[];
 }
 
 export async function getProfiledUserDetailAction(
   sessionId: string
 ): Promise<ActionResult<ProfiledUserDetail>> {
-  const traceId = logger.startTrace("getProfiledUserDetailAction_v2.0");
+  const traceId = logger.startTrace("getProfiledUserDetailAction_v3.1");
   logger.startGroup(
     `[UserInt Action] Obteniendo detalle para sesión: ${sessionId}`
   );
@@ -70,7 +95,7 @@ export async function getProfiledUserDetailAction(
       profileData = pData;
     }
 
-    const [ip, geo, userAgent] = await Promise.all([
+    const [ip, geo, userAgentString] = await Promise.all([
       sessionData.ip_address_encrypted
         ? decryptServerData(sessionData.ip_address_encrypted)
         : null,
@@ -81,6 +106,14 @@ export async function getProfiledUserDetailAction(
         ? decryptServerData(sessionData.user_agent_encrypted)
         : null,
     ]);
+
+    // --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA v3.1.0] ---
+    // Se proporciona un valor de fallback que cumple con el contrato del schema,
+    // garantizando que 'userAgent' nunca sea un objeto vacío inválido.
+    const userAgent = userAgentString
+      ? UaParserResultSchema.parse(JSON.parse(userAgentString))
+      : UaParserResultSchema.parse({ ua: "" }); // Fallback seguro
+    // --- [FIN DE REFACTORIZACIÓN DE RESILIENCIA v3.1.0] ---
 
     const result: ProfiledUserDetail = {
       sessionId: sessionData.session_id,
@@ -93,7 +126,7 @@ export async function getProfiledUserDetailAction(
       avatarUrl: profileData?.avatar_url ?? null,
       ip,
       geo: geo ? JSON.parse(geo) : null,
-      userAgent: userAgent ? JSON.parse(userAgent) : {},
+      userAgent,
       events:
         (sessionData.visitor_campaign_events as VisitorCampaignEventRow[]) ||
         [],

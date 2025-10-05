@@ -2,45 +2,49 @@
 /**
  * @file use-google-analytics.ts
  * @description Hook Atómico de Efecto para el píxel de Google Analytics.
- * @version 4.0.0 (Resilient & Production Ready)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 5.0.0 (Elite Observability & Resilience)
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import { useEffect, useRef } from "react";
-// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
-// Se importa la función en lugar de la constante para una inicialización diferida y segura.
+import { useEffect, useRef, useMemo } from "react";
 import { getProducerConfig } from "@/shared/lib/config/producer.config";
-// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
 import { logger } from "@/shared/lib/logging";
 
 const GA_REMOTE_SCRIPT_ID = "google-analytics-gtag";
 const GA_INIT_SCRIPT_ID = "google-analytics-init";
 
 export function useGoogleAnalytics(enabled: boolean): void {
+  const traceId = useMemo(() => logger.startTrace("useGoogleAnalytics_v5.0"), []);
   const hasExecuted = useRef(false);
 
   useEffect(() => {
-    if (!enabled || hasExecuted.current) {
+    logger.info(`[GoogleAnalytics] Hook montado. Estado: ${enabled ? 'HABILITADO' : 'DESHABILITADO'}.`, { traceId });
+
+    if (!enabled) {
+      logger.traceEvent(traceId, "Tracker deshabilitado, omitiendo ejecución.");
+      return;
+    }
+    if (hasExecuted.current) {
+      logger.traceEvent(traceId, "El script ya fue inyectado, omitiendo ejecución.");
       return;
     }
 
-    // Se invoca la función para obtener la configuración de forma segura.
     const producerConfig = getProducerConfig();
     const gaId = producerConfig.TRACKING.GOOGLE_ANALYTICS_ID;
 
     if (!gaId) {
-      return; // Falla silenciosamente si el ID no está configurado.
+      logger.warn("[Guardián] ID de Google Analytics no configurado. Omitiendo inyección.", { traceId });
+      return;
     }
 
-    if (
-      document.getElementById(GA_REMOTE_SCRIPT_ID) ||
-      document.getElementById(GA_INIT_SCRIPT_ID)
-    ) {
-      return; // Evita la reinyección.
+    if (document.getElementById(GA_REMOTE_SCRIPT_ID) || document.getElementById(GA_INIT_SCRIPT_ID)) {
+      logger.warn("[Guardián] Los scripts de Google Analytics ya existen en el DOM. Omitiendo re-inyección.", { traceId });
+      hasExecuted.current = true;
+      return;
     }
 
-    logger.info(`[Tracking] Inyectando Google Analytics con ID: ${gaId}`);
+    logger.success(`[Tracking] Inyectando Google Analytics con ID: ${gaId}`, { traceId });
 
     const remoteScript = document.createElement("script");
     remoteScript.id = GA_REMOTE_SCRIPT_ID;
@@ -59,5 +63,8 @@ export function useGoogleAnalytics(enabled: boolean): void {
     document.head.appendChild(initScript);
 
     hasExecuted.current = true;
-  }, [enabled]);
+    logger.traceEvent(traceId, "Inyección de scripts completada.");
+
+    return () => logger.endTrace(traceId);
+  }, [enabled, traceId]);
 }

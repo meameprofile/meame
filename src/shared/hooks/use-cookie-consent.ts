@@ -2,17 +2,15 @@
 /**
  * @file use-cookie-consent.ts
  * @description Hook soberano para gestionar el estado del consentimiento de cookies.
- *              Es SSR-safe y cumple con los 5 Pilares de Calidad.
- * @version 2.0.0 (Elite & FSD Aligned)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Elite Observability & Resilience)
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { logger } from "@/shared/lib/logging";
 
 const CONSENT_STORAGE_KEY = "cookie_consent_status";
-
 type ConsentStatus = "pending" | "accepted" | "rejected";
 
 interface CookieConsentState {
@@ -23,64 +21,42 @@ interface CookieConsentState {
 }
 
 export function useCookieConsent(): CookieConsentState {
-  // Pilar III (Observabilidad): Se añade un log de traza en la inicialización.
-  logger.trace("[useCookieConsent] Hook de consentimiento inicializado.");
-
+  const traceId = useMemo(() => logger.startTrace("useCookieConsent_v3.0"), []);
   const [status, setStatus] = useState<ConsentStatus>("pending");
   const [hasBeenSet, setHasBeenSet] = useState(true);
 
   useEffect(() => {
+    logger.info("[CookieConsent] Hook montado, leyendo estado.", { traceId });
     try {
-      const storedStatus = window.localStorage.getItem(
-        CONSENT_STORAGE_KEY
-      ) as ConsentStatus | null;
+      const storedStatus = window.localStorage.getItem(CONSENT_STORAGE_KEY) as ConsentStatus | null;
       if (storedStatus) {
         setStatus(storedStatus);
         setHasBeenSet(true);
+        logger.traceEvent(traceId, `Estado de consentimiento cargado desde localStorage: ${storedStatus}`);
       } else {
         setHasBeenSet(false);
+        logger.traceEvent(traceId, "No se encontró estado de consentimiento, se solicitará.");
       }
     } catch (error) {
-      // Pilar III (Observabilidad): Se utiliza el logger soberano.
-      logger.error(
-        "Fallo al leer el consentimiento de cookies del localStorage",
-        { error }
-      );
+      logger.error("[Guardián] Fallo al leer consentimiento del localStorage.", { error, traceId });
       setHasBeenSet(false);
     }
-  }, []);
+    return () => logger.endTrace(traceId);
+  }, [traceId]);
 
-  const accept = useCallback(() => {
+  const setConsent = useCallback((newStatus: "accepted" | "rejected") => {
     try {
-      window.localStorage.setItem(CONSENT_STORAGE_KEY, "accepted");
-      setStatus("accepted");
+      window.localStorage.setItem(CONSENT_STORAGE_KEY, newStatus);
+      setStatus(newStatus);
       setHasBeenSet(true);
-      logger.success(
-        "[useCookieConsent] Consentimiento ACEPTADO y persistido."
-      );
+      logger.success(`[CookieConsent] Consentimiento ${newStatus.toUpperCase()} y persistido.`, { traceId });
     } catch (error) {
-      // Pilar III (Observabilidad): Se utiliza el logger soberano.
-      logger.error(
-        "Fallo al guardar el consentimiento de cookies en localStorage",
-        { error }
-      );
+      logger.error("[Guardián] Fallo al guardar consentimiento en localStorage.", { error, traceId });
     }
-  }, []);
+  }, [traceId]);
 
-  const reject = useCallback(() => {
-    try {
-      window.localStorage.setItem(CONSENT_STORAGE_KEY, "rejected");
-      setStatus("rejected");
-      setHasBeenSet(true);
-      logger.warn("[useCookieConsent] Consentimiento RECHAZADO y persistido.");
-    } catch (error) {
-      // Pilar III (Observabilidad): Se utiliza el logger soberano.
-      logger.error(
-        "Fallo al guardar el consentimiento de cookies en localStorage",
-        { error }
-      );
-    }
-  }, []);
+  const accept = useCallback(() => setConsent("accepted"), [setConsent]);
+  const reject = useCallback(() => setConsent("rejected"), [setConsent]);
 
   return { status, hasBeenSet, accept, reject };
 }

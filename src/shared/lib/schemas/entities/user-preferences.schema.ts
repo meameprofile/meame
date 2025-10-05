@@ -3,7 +3,7 @@
  * @file user-preferences.schema.ts
  * @description SSoT para el contrato de datos de la entidad UserPreferences.
  * @version 2.0.0 (i18n & Zod Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v2.0.0] ---

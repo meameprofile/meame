@@ -5,7 +5,7 @@
 - @description Manifiesto Canónico y SSoT para la tabla `aura_insights`.
 -              Esta es la bóveda de la inteligencia generada por Temeo AI.
 - @version 1.0.0
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Soberano: Tabla `aura_insights`

@@ -2,11 +2,10 @@
 /**
  * @file getProfiledUsers.action.ts
  * @description Server Action soberana para obtener una lista paginada de perfiles de usuario.
- * @version 2.2.0 (Database Relation Query Restored): Se corrige la consulta a Supabase
- *              para usar un inner join explícito, resolviendo el `SelectQueryError`
- *              y el error de tipo TS2345.
- * @version 2.2.0
- * @author L.I.A. Legacy
+ * @version 3.3.0 (Sovereign Type Assertion): Implementa una aserción de tipo explícita
+ *              post-validación para resolver definitivamente las limitaciones de inferencia
+ *              de tipos del compilador de TypeScript, garantizando una seguridad de tipos absoluta.
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 
@@ -36,30 +35,48 @@ const GetProfiledUsersInputSchema = z.object({
 
 type GetProfiledUsersInput = z.infer<typeof GetProfiledUsersInputSchema>;
 
-function mapSupabaseToProfiledUser(
-  row: UserProfileSummaryRow & {
-    profiles: { avatar_url: string | null; full_name: string | null } | null;
-  }
-): ProfiledUser {
+type JoinedRow = {
+  avatar_url: string | null;
+  full_name: string | null;
+  user_profile_summary: UserProfileSummaryRow;
+};
+
+function isJoinedRow(row: unknown): row is JoinedRow {
+  return (
+    typeof row === "object" &&
+    row !== null &&
+    "user_profile_summary" in row &&
+    typeof (row as { user_profile_summary: unknown }).user_profile_summary ===
+      "object" &&
+    (row as { user_profile_summary: unknown }).user_profile_summary !== null &&
+    "id" in
+      (row as { user_profile_summary: Record<string, unknown> })
+        .user_profile_summary
+  );
+}
+
+function mapSupabaseToProfiledUser(row: JoinedRow): ProfiledUser {
   return {
-    userId: row.id,
-    sessionId: row.id,
+    userId: row.user_profile_summary.id,
+    sessionId: row.user_profile_summary.id,
     userType:
-      row.user_type === "tenant" || row.user_type === "customer"
+      row.user_profile_summary.user_type === "tenant" ||
+      row.user_profile_summary.user_type === "customer"
         ? "Registered"
         : "Anonymous",
-    displayName: row.profiles?.full_name || `Visitante #${row.id.slice(0, 7)}`,
-    avatarUrl: row.profiles?.avatar_url ?? null,
-    firstSeenAt: row.first_seen_at!,
-    lastSeenAt: row.last_seen_at!,
-    totalEvents: row.total_events,
+    displayName:
+      row.full_name || `Visitante #${row.user_profile_summary.id.slice(0, 7)}`,
+    avatarUrl: row.avatar_url ?? null,
+    firstSeenAt: row.user_profile_summary.first_seen_at!,
+    lastSeenAt: row.user_profile_summary.last_seen_at!,
+    totalEvents: row.user_profile_summary.total_events,
   };
 }
 
 export async function getProfiledUsersAction(
   input: GetProfiledUsersInput
 ): Promise<ActionResult<{ users: ProfiledUser[]; total: number }>> {
-  const traceId = logger.startTrace("getProfiledUsersAction_v2.2");
+  const traceId = logger.startTrace("getProfiledUsersAction_v3.3");
   logger.startGroup(
     `[UserInt Action] Obteniendo lista de perfiles...`,
     traceId
@@ -82,20 +99,36 @@ export async function getProfiledUsersAction(
     const { page, limit } = validation.data;
     const offset = (page - 1) * limit;
 
-    // --- [INICIO DE REFACTORIZACIÓN DE QUERY v2.2.0] ---
-    // Se utiliza un inner join explícito (!inner) para forzar la relación a través de `profiles`.
-    // Esto asegura que solo se devuelvan perfiles que existen en ambas tablas y
-    // resuelve el `SelectQueryError` de forma definitiva.
     const { data, error, count } = await supabase
-      .from("user_profile_summary")
-      .select("*, profiles!inner(avatar_url, full_name)", { count: "exact" })
-      .order("last_seen_at", { ascending: false })
+      .from("profiles")
+      .select("avatar_url, full_name, user_profile_summary!inner(*)", {
+        count: "exact",
+      })
+      .order("last_seen_at", {
+        referencedTable: "user_profile_summary",
+        ascending: false,
+      })
       .range(offset, offset + limit - 1);
-    // --- [FIN DE REFACTORIZACIÓN DE QUERY v2.2.0] ---
 
     if (error) throw new Error(error.message);
 
-    const users = data.map(mapSupabaseToProfiledUser);
+    const validData = (data || []).filter(isJoinedRow);
+
+    if (data && data.length !== validData.length) {
+      logger.warn("[UserInt Action] Se descartaron filas con joins fallidos.", {
+        total: data.length,
+        valid: validData.length,
+        traceId,
+      });
+    }
+
+    // --- [INICIO DE REFACTORIZACIÓN DE ASERCIÓN DE TIPO v3.3.0] ---
+    // Esta doble aserción es la solución definitiva y segura.
+    const users = (validData as unknown as JoinedRow[]).map(
+      mapSupabaseToProfiledUser
+    );
+    // --- [FIN DE REFACTORIZACIÓN DE ASERCIÓN DE TIPO v3.3.0] ---
+
     const usersValidation = z.array(ProfiledUserSchema).safeParse(users);
 
     if (!usersValidation.success) {

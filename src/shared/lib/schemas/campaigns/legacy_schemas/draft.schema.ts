@@ -3,7 +3,7 @@
  * @file draft.schema.ts
  * @description SSoT para los schemas que componen un CampaignDraft (Legacy).
  * @version 2.0.0 (i18n & Zod Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v2.0.0] ---

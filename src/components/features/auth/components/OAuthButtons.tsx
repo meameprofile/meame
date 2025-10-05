@@ -4,7 +4,7 @@
  * @description Componente de cliente para los botones de inicio de sesión OAuth, ahora
  *              con funcionalidad completa para Google y observabilidad de élite.
  * @version 4.0.0 (Functional & Observable)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -1,14 +1,14 @@
 // RUTA: src/shared/lib/i18n/i18n.ts
 /**
  * @file i18n.ts
- * @description Orquestador de i18n "isomórfico" y consciente del entorno.
- * @version 18.0.0 (Isomorphic & Build-Resilient)
+ * @description Orquestador de i18n "isomórfico" y consciente del entorno,
+ *              ahora con un motor de carga de producción desde Supabase
+ *              que es completamente seguro a nivel de tipos.
+ * @version 20.0.0 (Type-Safe Supabase Engine)
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import * as React from "react";
-import * as fs from "fs/promises";
-import * as path from "path";
+import { cache } from "react";
 import { type ZodError } from "zod";
 import { i18nSchema, type Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import {
@@ -18,57 +18,87 @@ import {
 } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 import { getDevDictionary } from "@/shared/lib/i18n/i18n.dev";
+import { createServerClient } from "../supabase/server";
+import type { I18nFileContent } from "../dev/i18n-discoverer";
+import type { Tables } from "../supabase/database.types";
 
-logger.trace("[i18n.ts] Módulo orquestador i18n v18.0 cargado.");
+// --- [INICIO DE REFACTORIZACIÓN DE TIPO SOBERANO] ---
+// Se define un tipo explícito para la fila que esperamos de la base de datos.
+type I18nEntry = Pick<
+  Tables<"i18n_content_entries">,
+  "entry_key" | "translations"
+>;
+// --- [FIN DE REFACTORIZACIÓN DE TIPO SOBERANO] ---
 
-const prodDictionariesCache: Partial<
-  Record<
-    Locale,
-    { dictionary: Partial<Dictionary>; error: ZodError | Error | null }
-  >
-> = {};
-
-// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE: LÓGICA PURA AISLADA] ---
-const getProductionDictionaryFn = async (
-  locale: Locale
-): Promise<{
-  dictionary: Partial<Dictionary>;
-  error: ZodError | Error | null;
-}> => {
-  if (prodDictionariesCache[locale]) {
-    return prodDictionariesCache[locale]!;
-  }
-  try {
-    const filePath = path.join(
-      process.cwd(),
-      "public",
-      "locales",
-      `${locale}.json`
+const getProductionDictionaryFn = cache(
+  async (
+    locale: Locale
+  ): Promise<{
+    dictionary: Partial<Dictionary>;
+    error: ZodError | Error | null;
+  }> => {
+    const traceId = logger.startTrace(`getProductionDictionary:${locale}`);
+    logger.startGroup(
+      `[i18n.prod] Ensamblando diccionario desde Supabase para [${locale}]...`
     );
-    const fileContent = await fs.readFile(filePath, "utf-8");
-    const dictionary = JSON.parse(fileContent);
 
-    const validation = i18nSchema.safeParse(dictionary);
-    if (!validation.success) {
-      throw new Error(`Diccionario i18n para '${locale}' corrupto o inválido.`);
+    try {
+      const supabase = createServerClient();
+      // --- [INICIO DE REFACTORIZACIÓN DE TIPO] ---
+      // Se elimina la aserción 'as any'. El cliente de Supabase ya está tipado
+      // y la consulta ahora devuelve un tipo seguro.
+      const { data, error } = await supabase
+        .from("i18n_content_entries")
+        .select("entry_key, translations");
+      // --- [FIN DE REFACTORIZACIÓN DE TIPO] ---
+
+      if (error) throw error;
+
+      const assembledDictionary = (data as I18nEntry[]).reduce(
+        (acc: Partial<Dictionary>, entry: I18nEntry) => {
+          const entryContent = (entry.translations as I18nFileContent)?.[
+            locale
+          ];
+          if (entryContent) {
+            // Se extrae la clave del diccionario desde el nombre del archivo.
+            const key = entry.entry_key
+              .split("/")
+              .pop()
+              ?.replace(".i18n.json", "");
+
+            if (key) {
+              // Se asigna el contenido a la clave correspondiente en el acumulador.
+              (acc as Record<string, unknown>)[key] = entryContent;
+            }
+          }
+          return acc;
+        },
+        {} as Partial<Dictionary>
+      );
+
+      const validation = i18nSchema.safeParse(assembledDictionary);
+      if (!validation.success) {
+        throw validation.error;
+      }
+
+      logger.success(
+        `[i18n.prod] Diccionario para [${locale}] ensamblado y validado desde Supabase.`
+      );
+      return { dictionary: validation.data, error: null };
+    } catch (error) {
+      const typedError =
+        error instanceof Error ? error : new Error(String(error));
+      logger.error(
+        `[i18n.prod] Fallo crítico al ensamblar diccionario para ${locale} desde Supabase.`,
+        { error: typedError.message }
+      );
+      return { dictionary: {}, error: typedError };
+    } finally {
+      logger.endGroup();
+      logger.endTrace(traceId);
     }
-    const result = { dictionary: validation.data, error: null };
-    prodDictionariesCache[locale] = result;
-    return result;
-  } catch (error) {
-    logger.error(
-      `[i18n.prod] No se pudo cargar el diccionario para ${locale}.`,
-      { error }
-    );
-    throw error;
   }
-};
-// --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
-
-const getCachedProductionDictionary =
-  typeof React.cache === "function"
-    ? React.cache(getProductionDictionaryFn)
-    : getProductionDictionaryFn;
+);
 
 export const getDictionary = async (
   locale: string
@@ -84,12 +114,5 @@ export const getDictionary = async (
     return getDevDictionary(validatedLocale);
   }
 
-  try {
-    return await getCachedProductionDictionary(validatedLocale);
-  } catch (error) {
-    return {
-      dictionary: {},
-      error: error instanceof Error ? error : new Error(String(error)),
-    };
-  }
+  return getProductionDictionaryFn(validatedLocale);
 };

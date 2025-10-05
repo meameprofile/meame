@@ -3,7 +3,7 @@
  * @file select-language.schema.ts
  * @description SSoT para el contrato de datos del contenido i18n de la página de selección de idioma.
  * @version 4.0.0 (i18n & Zod Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v4.0.0] ---

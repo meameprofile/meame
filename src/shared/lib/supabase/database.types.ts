@@ -1,12 +1,3 @@
-// RUTA: src/shared/lib/supabase/database.types.ts
-/**
- * @file database.types.ts
- * @description SSoT para los tipos generados desde el esquema de Supabase.
- *              ¡ESTE ARCHIVO ES GENERADO AUTOMÁTICAMENTE!
- * @version 12.0.0 (Holistic Schema Restoration & Elite Compliance)
- * @author L.I.A. Legacy (Re-Forged & Verified)
- */
-
 export type Json =
   | string
   | number
@@ -16,41 +7,84 @@ export type Json =
   | Json[];
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "13.0.5";
+  };
   public: {
     Tables: {
-      anonymous_campaign_events: {
+      ai_conversations: {
         Row: {
-          id: string;
+          context_key: string;
+          conversation_id: string;
           created_at: string;
-          fingerprint_id: string;
-          session_id: string;
+          messages: Json;
+          updated_at: string;
+          user_id: string;
           workspace_id: string;
-          campaign_id: string;
-          variant_id: string;
-          event_type: string;
-          payload: Json | null;
         };
         Insert: {
-          id?: string;
+          context_key: string;
+          conversation_id?: string;
           created_at?: string;
-          fingerprint_id: string;
-          session_id: string;
+          messages?: Json;
+          updated_at?: string;
+          user_id: string;
           workspace_id: string;
-          campaign_id: string;
-          variant_id: string;
-          event_type: string;
-          payload?: Json | null;
         };
         Update: {
-          id?: string;
+          context_key?: string;
+          conversation_id?: string;
           created_at?: string;
-          fingerprint_id?: string;
-          session_id?: string;
+          messages?: Json;
+          updated_at?: string;
+          user_id?: string;
           workspace_id?: string;
-          campaign_id?: string;
-          variant_id?: string;
-          event_type?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ai_conversations_workspace_id_fkey";
+            columns: ["workspace_id"];
+            isOneToOne: false;
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      anonymous_campaign_events: {
+        Row: {
+          campaign_id: string;
+          created_at: string;
+          event_type: string;
+          fingerprint_id: string;
+          id: string;
+          payload: Json | null;
+          session_id: string;
+          variant_id: string;
+          workspace_id: string;
+        };
+        Insert: {
+          campaign_id: string;
+          created_at?: string;
+          event_type: string;
+          fingerprint_id: string;
+          id?: string;
           payload?: Json | null;
+          session_id: string;
+          variant_id: string;
+          workspace_id: string;
+        };
+        Update: {
+          campaign_id?: string;
+          created_at?: string;
+          event_type?: string;
+          fingerprint_id?: string;
+          id?: string;
+          payload?: Json | null;
+          session_id?: string;
+          variant_id?: string;
+          workspace_id?: string;
         };
         Relationships: [
           {
@@ -64,40 +98,40 @@ export type Database = {
       };
       aura_insights: {
         Row: {
-          id: string;
           created_at: string;
-          workspace_id: string;
-          title: string;
           description: string;
-          severity: "low" | "medium" | "high" | "critical";
-          recommendation: string;
-          related_data: Json | null;
+          id: string;
           is_resolved: boolean;
+          recommendation: string | null;
+          related_data: Json | null;
           resolved_at: string | null;
+          severity: Database["public"]["Enums"]["insight_severity"];
+          title: string;
+          workspace_id: string;
         };
         Insert: {
-          id?: string;
           created_at?: string;
-          workspace_id: string;
-          title: string;
           description: string;
-          severity: "low" | "medium" | "high" | "critical";
-          recommendation: string;
-          related_data?: Json | null;
+          id?: string;
           is_resolved?: boolean;
+          recommendation?: string | null;
+          related_data?: Json | null;
           resolved_at?: string | null;
+          severity: Database["public"]["Enums"]["insight_severity"];
+          title: string;
+          workspace_id: string;
         };
         Update: {
-          id?: string;
           created_at?: string;
-          workspace_id?: string;
-          title?: string;
           description?: string;
-          severity?: "low" | "medium" | "high" | "critical";
-          recommendation?: string;
-          related_data?: Json | null;
+          id?: string;
           is_resolved?: boolean;
+          recommendation?: string | null;
+          related_data?: Json | null;
           resolved_at?: string | null;
+          severity?: Database["public"]["Enums"]["insight_severity"];
+          title?: string;
+          workspace_id?: string;
         };
         Relationships: [
           {
@@ -112,51 +146,44 @@ export type Database = {
       bavi_assets: {
         Row: {
           asset_id: string;
-          workspace_id: string;
-          user_id: string;
-          status: string;
-          provider: string;
-          description: string | null;
-          prompt_id: string | null;
-          tags: Json | null;
-          metadata: Json | null;
           created_at: string;
+          description: string | null;
+          metadata: Json | null;
+          prompt_id: string | null;
+          provider: string;
+          status: string;
+          tags: Json | null;
           updated_at: string;
+          user_id: string;
+          workspace_id: string;
         };
         Insert: {
           asset_id: string;
-          workspace_id: string;
-          user_id: string;
-          status?: string;
-          provider?: string;
-          description?: string | null;
-          prompt_id?: string | null;
-          tags?: Json | null;
-          metadata?: Json | null;
           created_at?: string;
+          description?: string | null;
+          metadata?: Json | null;
+          prompt_id?: string | null;
+          provider?: string;
+          status?: string;
+          tags?: Json | null;
           updated_at?: string;
+          user_id: string;
+          workspace_id: string;
         };
         Update: {
           asset_id?: string;
-          workspace_id?: string;
-          user_id?: string;
-          status?: string;
-          provider?: string;
-          description?: string | null;
-          prompt_id?: string | null;
-          tags?: Json | null;
-          metadata?: Json | null;
           created_at?: string;
+          description?: string | null;
+          metadata?: Json | null;
+          prompt_id?: string | null;
+          provider?: string;
+          status?: string;
+          tags?: Json | null;
           updated_at?: string;
+          user_id?: string;
+          workspace_id?: string;
         };
         Relationships: [
-          {
-            foreignKeyName: "bavi_assets_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "bavi_assets_workspace_id_fkey";
             columns: ["workspace_id"];
@@ -168,31 +195,31 @@ export type Database = {
       };
       bavi_variants: {
         Row: {
-          variant_id: string;
           asset_id: string;
+          created_at: string;
+          height: number;
           public_id: string;
           state: string;
+          variant_id: string;
           width: number;
-          height: number;
-          created_at: string;
         };
         Insert: {
-          variant_id: string;
           asset_id: string;
+          created_at?: string;
+          height: number;
           public_id: string;
           state: string;
+          variant_id: string;
           width: number;
-          height: number;
-          created_at?: string;
         };
         Update: {
-          variant_id?: string;
           asset_id?: string;
+          created_at?: string;
+          height?: number;
           public_id?: string;
           state?: string;
+          variant_id?: string;
           width?: number;
-          height?: number;
-          created_at?: string;
         };
         Relationships: [
           {
@@ -206,43 +233,36 @@ export type Database = {
       };
       campaign_artifacts: {
         Row: {
-          id: string;
-          workspace_id: string;
-          user_id: string;
-          draft_id: string;
-          storage_path: string;
-          version: number;
-          file_size: number;
           created_at: string;
+          draft_id: string;
+          file_size: number;
+          id: string;
+          storage_path: string;
+          user_id: string;
+          version: number;
+          workspace_id: string;
         };
         Insert: {
-          id?: string;
-          workspace_id: string;
-          user_id: string;
-          draft_id: string;
-          storage_path: string;
-          version?: number;
-          file_size: number;
           created_at?: string;
+          draft_id: string;
+          file_size: number;
+          id?: string;
+          storage_path: string;
+          user_id: string;
+          version?: number;
+          workspace_id: string;
         };
         Update: {
-          id?: string;
-          workspace_id?: string;
-          user_id?: string;
-          draft_id?: string;
-          storage_path?: string;
-          version?: number;
-          file_size?: number;
           created_at?: string;
+          draft_id?: string;
+          file_size?: number;
+          id?: string;
+          storage_path?: string;
+          user_id?: string;
+          version?: number;
+          workspace_id?: string;
         };
         Relationships: [
-          {
-            foreignKeyName: "campaign_artifacts_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "campaign_artifacts_workspace_id_fkey";
             columns: ["workspace_id"];
@@ -254,37 +274,30 @@ export type Database = {
       };
       campaign_drafts: {
         Row: {
+          created_at: string;
+          draft_data: Json;
           draft_id: string;
+          updated_at: string;
           user_id: string;
           workspace_id: string;
-          draft_data: Json;
-          created_at: string;
-          updated_at: string;
         };
         Insert: {
+          created_at?: string;
+          draft_data: Json;
           draft_id: string;
+          updated_at?: string;
           user_id: string;
           workspace_id: string;
-          draft_data: Json;
-          created_at?: string;
-          updated_at?: string;
         };
         Update: {
+          created_at?: string;
+          draft_data?: Json;
           draft_id?: string;
+          updated_at?: string;
           user_id?: string;
           workspace_id?: string;
-          draft_data?: Json;
-          created_at?: string;
-          updated_at?: string;
         };
         Relationships: [
-          {
-            foreignKeyName: "campaign_drafts_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "campaign_drafts_workspace_id_fkey";
             columns: ["workspace_id"];
@@ -296,46 +309,39 @@ export type Database = {
       };
       campaign_templates: {
         Row: {
-          id: string;
-          workspace_id: string;
-          user_id: string;
-          name: string;
-          description: string | null;
-          source_campaign_id: string;
-          draft_data: Json;
           created_at: string;
+          description: string | null;
+          draft_data: Json;
+          id: string;
+          name: string;
+          source_campaign_id: string;
           updated_at: string;
+          user_id: string;
+          workspace_id: string;
         };
         Insert: {
-          id?: string;
-          workspace_id: string;
-          user_id: string;
-          name: string;
-          description?: string | null;
-          source_campaign_id: string;
-          draft_data: Json;
           created_at?: string;
+          description?: string | null;
+          draft_data: Json;
+          id?: string;
+          name: string;
+          source_campaign_id: string;
           updated_at?: string;
+          user_id: string;
+          workspace_id: string;
         };
         Update: {
-          id?: string;
-          workspace_id?: string;
-          user_id?: string;
-          name?: string;
-          description?: string | null;
-          source_campaign_id?: string;
-          draft_data?: Json;
           created_at?: string;
+          description?: string | null;
+          draft_data?: Json;
+          id?: string;
+          name?: string;
+          source_campaign_id?: string;
           updated_at?: string;
+          user_id?: string;
+          workspace_id?: string;
         };
         Relationships: [
-          {
-            foreignKeyName: "campaign_templates_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "campaign_templates_workspace_id_fkey";
             columns: ["workspace_id"];
@@ -347,123 +353,115 @@ export type Database = {
       };
       cogniread_articles: {
         Row: {
-          id: string;
-          status: string;
-          study_dna: Json;
-          content: Json;
-          tags: string[] | null;
           available_languages: string[] | null;
           bavi_hero_image_id: string | null;
-          related_prompt_ids: string[] | null;
+          content: Json;
           created_at: string;
+          id: string;
+          related_prompt_ids: string[] | null;
+          status: string;
+          study_dna: Json;
+          tags: string[] | null;
           updated_at: string;
         };
         Insert: {
-          id: string;
-          status?: string;
-          study_dna: Json;
-          content: Json;
-          tags?: string[] | null;
           available_languages?: string[] | null;
           bavi_hero_image_id?: string | null;
-          related_prompt_ids?: string[] | null;
+          content: Json;
           created_at?: string;
+          id: string;
+          related_prompt_ids?: string[] | null;
+          status?: string;
+          study_dna: Json;
+          tags?: string[] | null;
           updated_at?: string;
         };
         Update: {
-          id?: string;
-          status?: string;
-          study_dna?: Json;
-          content?: Json;
-          tags?: string[] | null;
           available_languages?: string[] | null;
           bavi_hero_image_id?: string | null;
-          related_prompt_ids?: string[] | null;
+          content?: Json;
           created_at?: string;
+          id?: string;
+          related_prompt_ids?: string[] | null;
+          status?: string;
+          study_dna?: Json;
+          tags?: string[] | null;
           updated_at?: string;
         };
         Relationships: [];
       };
       commerce_orders: {
         Row: {
-          id: string;
-          stripe_payment_intent_id: string;
-          user_id: string | null;
           amount: number;
-          currency: string;
-          status: string;
-          customer_email: string;
-          items: Json;
           created_at: string;
+          currency: string;
+          customer_email: string;
+          id: string;
+          items: Json;
+          status: string;
+          stripe_payment_intent_id: string | null;
           updated_at: string;
+          user_id: string | null;
         };
         Insert: {
-          id: string;
-          stripe_payment_intent_id: string;
-          user_id?: string | null;
           amount: number;
-          currency: string;
-          status: string;
-          customer_email: string;
-          items: Json;
           created_at?: string;
+          currency: string;
+          customer_email: string;
+          id: string;
+          items: Json;
+          status: string;
+          stripe_payment_intent_id?: string | null;
           updated_at?: string;
+          user_id?: string | null;
         };
         Update: {
-          id?: string;
-          stripe_payment_intent_id?: string;
-          user_id?: string | null;
           amount?: number;
-          currency?: string;
-          status?: string;
-          customer_email?: string;
-          items?: Json;
           created_at?: string;
+          currency?: string;
+          customer_email?: string;
+          id?: string;
+          items?: Json;
+          status?: string;
+          stripe_payment_intent_id?: string | null;
           updated_at?: string;
+          user_id?: string | null;
         };
-        Relationships: [
-          {
-            foreignKeyName: "commerce_orders_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-        ];
+        Relationships: [];
       };
       community_comments: {
         Row: {
-          id: string;
           article_id: string;
-          user_id: string;
-          author_name: string;
           author_avatar_url: string | null;
+          author_name: string;
           comment_text: string;
-          parent_id: string | null;
           created_at: string;
+          id: string;
+          parent_id: string | null;
           updated_at: string;
+          user_id: string;
         };
         Insert: {
-          id?: string;
           article_id: string;
-          user_id: string;
-          author_name: string;
           author_avatar_url?: string | null;
+          author_name: string;
           comment_text: string;
-          parent_id?: string | null;
           created_at?: string;
+          id?: string;
+          parent_id?: string | null;
           updated_at?: string;
+          user_id: string;
         };
         Update: {
-          id?: string;
           article_id?: string;
-          user_id?: string;
-          author_name?: string;
           author_avatar_url?: string | null;
+          author_name?: string;
           comment_text?: string;
-          parent_id?: string | null;
           created_at?: string;
+          id?: string;
+          parent_id?: string | null;
           updated_at?: string;
+          user_id?: string;
         };
         Relationships: [
           {
@@ -480,151 +478,186 @@ export type Database = {
             referencedRelation: "community_comments";
             referencedColumns: ["id"];
           },
+        ];
+      };
+      i18n_content_entries: {
+        Row: {
+          created_at: string;
+          domain: string | null;
+          entry_key: string;
+          last_modified_by: string | null;
+          translations: Json;
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          domain?: string | null;
+          entry_key: string;
+          last_modified_by?: string | null;
+          translations: Json;
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          domain?: string | null;
+          entry_key?: string;
+          last_modified_by?: string | null;
+          translations?: Json;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      invitations: {
+        Row: {
+          created_at: string;
+          id: string;
+          invited_by_user_id: string;
+          invitee_email: string;
+          status: Database["public"]["Enums"]["invitation_status"];
+          token: string;
+          workspace_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          invited_by_user_id: string;
+          invitee_email: string;
+          status?: Database["public"]["Enums"]["invitation_status"];
+          token: string;
+          workspace_id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          invited_by_user_id?: string;
+          invitee_email?: string;
+          status?: Database["public"]["Enums"]["invitation_status"];
+          token?: string;
+          workspace_id?: string;
+        };
+        Relationships: [
           {
-            foreignKeyName: "community_comments_user_id_fkey";
-            columns: ["user_id"];
+            foreignKeyName: "invitations_workspace_id_fkey";
+            columns: ["workspace_id"];
             isOneToOne: false;
-            referencedRelation: "users";
+            referencedRelation: "workspaces";
             referencedColumns: ["id"];
           },
         ];
       };
       notifications: {
         Row: {
-          id: string;
-          user_id: string;
           created_at: string;
+          id: string;
           is_read: boolean;
-          type: "info" | "success" | "warning" | "error";
-          message: string;
           link: string | null;
+          message: string;
+          type: Database["public"]["Enums"]["notification_type"];
+          user_id: string;
         };
         Insert: {
-          id?: string;
-          user_id: string;
           created_at?: string;
+          id?: string;
           is_read?: boolean;
-          type: "info" | "success" | "warning" | "error";
-          message: string;
           link?: string | null;
+          message: string;
+          type: Database["public"]["Enums"]["notification_type"];
+          user_id: string;
         };
         Update: {
-          id?: string;
-          user_id?: string;
           created_at?: string;
+          id?: string;
           is_read?: boolean;
-          type?: "info" | "success" | "warning" | "error";
-          message?: string;
           link?: string | null;
+          message?: string;
+          type?: Database["public"]["Enums"]["notification_type"];
+          user_id?: string;
         };
-        Relationships: [
-          {
-            foreignKeyName: "notifications_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-        ];
+        Relationships: [];
       };
       profiles: {
         Row: {
-          id: string;
-          full_name: string | null;
           avatar_url: string | null;
-          provider_name: string | null;
-          provider_avatar_url: string | null;
           created_at: string;
-          updated_at: string;
+          full_name: string | null;
+          id: string;
           last_sign_in_at: string | null;
           last_sign_in_ip: string | null;
           last_sign_in_location: string | null;
-        };
-        Insert: {
-          id: string;
-          full_name?: string | null;
-          avatar_url?: string | null;
-          provider_name?: string | null;
-          provider_avatar_url?: string | null;
-          created_at?: string;
-          updated_at?: string;
-          last_sign_in_at?: string | null;
-          last_sign_in_ip?: string | null;
-          last_sign_in_location?: string | null;
-        };
-        Update: {
-          id?: string;
-          full_name?: string | null;
-          avatar_url?: string | null;
-          provider_name?: string | null;
-          provider_avatar_url?: string | null;
-          created_at?: string;
-          updated_at?: string;
-          last_sign_in_at?: string | null;
-          last_sign_in_ip?: string | null;
-          last_sign_in_location?: string | null;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "profiles_id_fkey";
-            columns: ["id"];
-            isOneToOne: true;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-        ];
-      };
-      razprompts_entries: {
-        Row: {
-          id: string;
-          user_id: string;
-          workspace_id: string;
-          title: string;
-          status: string;
-          ai_service: string;
-          keywords: string[] | null;
-          versions: Json;
-          tags: Json | null;
-          bavi_asset_ids: string[] | null;
-          created_at: string;
+          provider_avatar_url: string | null;
+          provider_name: string | null;
           updated_at: string;
         };
         Insert: {
-          id: string;
-          user_id: string;
-          workspace_id: string;
-          title: string;
-          status?: string;
-          ai_service: string;
-          keywords?: string[] | null;
-          versions: Json;
-          tags?: Json | null;
-          bavi_asset_ids?: string[] | null;
+          avatar_url?: string | null;
           created_at?: string;
+          full_name?: string | null;
+          id: string;
+          last_sign_in_at?: string | null;
+          last_sign_in_ip?: string | null;
+          last_sign_in_location?: string | null;
+          provider_avatar_url?: string | null;
+          provider_name?: string | null;
           updated_at?: string;
         };
         Update: {
-          id?: string;
-          user_id?: string;
-          workspace_id?: string;
-          title?: string;
-          status?: string;
-          ai_service?: string;
-          keywords?: string[] | null;
-          versions?: Json;
-          tags?: Json | null;
-          bavi_asset_ids?: string[] | null;
+          avatar_url?: string | null;
           created_at?: string;
+          full_name?: string | null;
+          id?: string;
+          last_sign_in_at?: string | null;
+          last_sign_in_ip?: string | null;
+          last_sign_in_location?: string | null;
+          provider_avatar_url?: string | null;
+          provider_name?: string | null;
           updated_at?: string;
         };
+        Relationships: [];
+      };
+      razprompts_entries: {
+        Row: {
+          ai_service: string;
+          bavi_asset_ids: string[] | null;
+          created_at: string;
+          id: string;
+          keywords: string[] | null;
+          status: string;
+          tags: Json | null;
+          title: string;
+          updated_at: string;
+          user_id: string;
+          versions: Json;
+          workspace_id: string;
+        };
+        Insert: {
+          ai_service: string;
+          bavi_asset_ids?: string[] | null;
+          created_at?: string;
+          id: string;
+          keywords?: string[] | null;
+          status?: string;
+          tags?: Json | null;
+          title: string;
+          updated_at?: string;
+          user_id: string;
+          versions: Json;
+          workspace_id: string;
+        };
+        Update: {
+          ai_service?: string;
+          bavi_asset_ids?: string[] | null;
+          created_at?: string;
+          id?: string;
+          keywords?: string[] | null;
+          status?: string;
+          tags?: Json | null;
+          title?: string;
+          updated_at?: string;
+          user_id?: string;
+          versions?: Json;
+          workspace_id?: string;
+        };
         Relationships: [
-          {
-            foreignKeyName: "razprompts_entries_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "razprompts_entries_workspace_id_fkey";
             columns: ["workspace_id"];
@@ -634,97 +667,38 @@ export type Database = {
           },
         ];
       };
-      theme_presets: {
-        Row: {
-          id: string;
-          workspace_id: string;
-          user_id: string;
-          name: string;
-          description: string | null;
-          theme_config: Json;
-          created_at: string;
-          updated_at: string;
-          type: "color" | "font" | "geometry";
-        };
-        Insert: {
-          id?: string;
-          workspace_id: string;
-          user_id: string;
-          name: string;
-          description?: string | null;
-          theme_config: Json;
-          created_at?: string;
-          updated_at?: string;
-          type: "color" | "font" | "geometry";
-        };
-        Update: {
-          id?: string;
-          workspace_id?: string;
-          user_id?: string;
-          name?: string;
-          description?: string | null;
-          theme_config?: Json;
-          created_at?: string;
-          updated_at?: string;
-          type?: "color" | "font" | "geometry";
-        };
-        Relationships: [
-          {
-            foreignKeyName: "theme_presets_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "theme_presets_workspace_id_fkey";
-            columns: ["workspace_id"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
-          },
-        ];
-      };
-      // --- TABLA FALTANTE AÑADIDA ---
       theme_fragments: {
         Row: {
-          id: string;
-          workspace_id: string;
-          user_id: string;
-          name: string;
-          type: "color" | "font" | "geometry";
-          data: Json;
           created_at: string;
+          data: Json;
+          id: string;
+          name: string;
+          type: string;
           updated_at: string;
+          user_id: string;
+          workspace_id: string;
         };
         Insert: {
-          id?: string;
-          workspace_id: string;
-          user_id: string;
-          name: string;
-          type: "color" | "font" | "geometry";
-          data: Json;
           created_at?: string;
+          data: Json;
+          id?: string;
+          name: string;
+          type: string;
           updated_at?: string;
+          user_id: string;
+          workspace_id: string;
         };
         Update: {
-          id?: string;
-          workspace_id?: string;
-          user_id?: string;
-          name?: string;
-          type?: "color" | "font" | "geometry";
-          data?: Json;
           created_at?: string;
+          data?: Json;
+          id?: string;
+          name?: string;
+          type?: string;
           updated_at?: string;
+          user_id?: string;
+          workspace_id?: string;
         };
         Relationships: [
-          {
-            foreignKeyName: "theme_fragments_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "theme_fragments_workspace_id_fkey";
             columns: ["workspace_id"];
@@ -734,42 +708,79 @@ export type Database = {
           },
         ];
       };
-      user_activity_events: {
+      theme_presets: {
         Row: {
-          id: string;
           created_at: string;
+          description: string | null;
+          id: string;
+          name: string;
+          theme_config: Json;
+          type: string;
+          updated_at: string;
           user_id: string;
           workspace_id: string;
-          session_id: string;
-          event_type: string;
-          payload: Json | null;
         };
         Insert: {
-          id?: string;
           created_at?: string;
+          description?: string | null;
+          id?: string;
+          name: string;
+          theme_config: Json;
+          type: string;
+          updated_at?: string;
           user_id: string;
           workspace_id: string;
-          session_id: string;
-          event_type: string;
-          payload?: Json | null;
         };
         Update: {
-          id?: string;
           created_at?: string;
+          description?: string | null;
+          id?: string;
+          name?: string;
+          theme_config?: Json;
+          type?: string;
+          updated_at?: string;
           user_id?: string;
           workspace_id?: string;
-          session_id?: string;
-          event_type?: string;
-          payload?: Json | null;
         };
         Relationships: [
           {
-            foreignKeyName: "user_activity_events_user_id_fkey";
-            columns: ["user_id"];
+            foreignKeyName: "theme_presets_workspace_id_fkey";
+            columns: ["workspace_id"];
             isOneToOne: false;
-            referencedRelation: "users";
+            referencedRelation: "workspaces";
             referencedColumns: ["id"];
           },
+        ];
+      };
+      user_activity_events: {
+        Row: {
+          created_at: string;
+          event_type: string;
+          id: string;
+          payload: Json | null;
+          session_id: string;
+          user_id: string;
+          workspace_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          event_type: string;
+          id?: string;
+          payload?: Json | null;
+          session_id: string;
+          user_id: string;
+          workspace_id: string;
+        };
+        Update: {
+          created_at?: string;
+          event_type?: string;
+          id?: string;
+          payload?: Json | null;
+          session_id?: string;
+          user_id?: string;
+          workspace_id?: string;
+        };
+        Relationships: [
           {
             foreignKeyName: "user_activity_events_workspace_id_fkey";
             columns: ["workspace_id"];
@@ -779,101 +790,114 @@ export type Database = {
           },
         ];
       };
-      user_profile_summary: {
+      user_preferences: {
         Row: {
-          id: string;
-          user_type: string;
-          total_sessions: number;
-          total_events: number;
-          total_conversions: number;
-          first_seen_at: string | null;
-          last_seen_at: string | null;
-          most_frequent_country: string | null;
-          last_campaign_id_seen: string | null;
-          last_variant_id_seen: string | null;
-          last_insight_generated_at: string | null;
-          created_at: string;
+          locale: string | null;
+          theme: string | null;
           updated_at: string;
+          user_id: string;
         };
         Insert: {
-          id: string;
-          user_type: string;
-          total_sessions?: number;
-          total_events?: number;
-          total_conversions?: number;
-          first_seen_at?: string | null;
-          last_seen_at?: string | null;
-          most_frequent_country?: string | null;
-          last_campaign_id_seen?: string | null;
-          last_variant_id_seen?: string | null;
-          last_insight_generated_at?: string | null;
-          created_at?: string;
+          locale?: string | null;
+          theme?: string | null;
           updated_at?: string;
+          user_id: string;
         };
         Update: {
-          id?: string;
-          user_type?: string;
-          total_sessions?: number;
-          total_events?: number;
-          total_conversions?: number;
-          first_seen_at?: string | null;
-          last_seen_at?: string | null;
-          most_frequent_country?: string | null;
-          last_campaign_id_seen?: string | null;
-          last_variant_id_seen?: string | null;
-          last_insight_generated_at?: string | null;
-          created_at?: string;
+          locale?: string | null;
+          theme?: string | null;
           updated_at?: string;
+          user_id?: string;
         };
-        Relationships: [
-          {
-            foreignKeyName: "user_profile_summary_id_fkey";
-            columns: ["id"];
-            isOneToOne: true;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-        ];
+        Relationships: [];
+      };
+      user_profile_summary: {
+        Row: {
+          created_at: string;
+          first_seen_at: string | null;
+          id: string;
+          last_campaign_id_seen: string | null;
+          last_insight_generated_at: string | null;
+          last_seen_at: string | null;
+          last_variant_id_seen: string | null;
+          most_frequent_country: string | null;
+          total_conversions: number;
+          total_events: number;
+          total_sessions: number;
+          updated_at: string;
+          user_type: string;
+        };
+        Insert: {
+          created_at?: string;
+          first_seen_at?: string | null;
+          id: string;
+          last_campaign_id_seen?: string | null;
+          last_insight_generated_at?: string | null;
+          last_seen_at?: string | null;
+          last_variant_id_seen?: string | null;
+          most_frequent_country?: string | null;
+          total_conversions?: number;
+          total_events?: number;
+          total_sessions?: number;
+          updated_at?: string;
+          user_type: string;
+        };
+        Update: {
+          created_at?: string;
+          first_seen_at?: string | null;
+          id?: string;
+          last_campaign_id_seen?: string | null;
+          last_insight_generated_at?: string | null;
+          last_seen_at?: string | null;
+          last_variant_id_seen?: string | null;
+          most_frequent_country?: string | null;
+          total_conversions?: number;
+          total_events?: number;
+          total_sessions?: number;
+          updated_at?: string;
+          user_type?: string;
+        };
+        Relationships: [];
       };
       visitor_campaign_events: {
         Row: {
-          event_id: string;
-          session_id: string;
           campaign_id: string;
-          variant_id: string;
+          created_at: string;
+          event_id: string;
           event_type: string;
           payload: Json | null;
-          created_at: string;
           referer: string | null;
-          utm_source: string | null;
-          utm_medium: string | null;
+          session_id: string;
           utm_campaign: string | null;
+          utm_medium: string | null;
+          utm_source: string | null;
+          variant_id: string;
         };
         Insert: {
-          event_id?: string;
-          session_id: string;
           campaign_id: string;
-          variant_id: string;
+          created_at?: string;
+          event_id?: string;
           event_type: string;
           payload?: Json | null;
-          created_at?: string;
           referer?: string | null;
-          utm_source?: string | null;
-          utm_medium?: string | null;
+          session_id: string;
           utm_campaign?: string | null;
+          utm_medium?: string | null;
+          utm_source?: string | null;
+          variant_id: string;
         };
         Update: {
-          event_id?: string;
-          session_id?: string;
           campaign_id?: string;
-          variant_id?: string;
+          created_at?: string;
+          event_id?: string;
           event_type?: string;
           payload?: Json | null;
-          created_at?: string;
           referer?: string | null;
-          utm_source?: string | null;
-          utm_medium?: string | null;
+          session_id?: string;
           utm_campaign?: string | null;
+          utm_medium?: string | null;
+          utm_source?: string | null;
+          variant_id?: string;
         };
         Relationships: [
           {
@@ -885,48 +909,71 @@ export type Database = {
           },
         ];
       };
-      visitor_sessions: {
+      visitor_consents: {
         Row: {
-          session_id: string;
-          fingerprint_id: string | null;
-          user_id: string | null;
-          workspace_id: string | null;
+          consent_status: Database["public"]["Enums"]["consent_status_type"];
+          consented_at: string;
+          fingerprint_id: string;
+          id: string;
           ip_address_encrypted: string | null;
+          session_id: string;
           user_agent_encrypted: string | null;
-          geo_encrypted: Json | null;
-          first_seen_at: string;
-          last_seen_at: string;
         };
         Insert: {
-          session_id: string;
-          fingerprint_id?: string | null;
-          user_id?: string | null;
-          workspace_id?: string | null;
+          consent_status: Database["public"]["Enums"]["consent_status_type"];
+          consented_at?: string;
+          fingerprint_id: string;
+          id?: string;
           ip_address_encrypted?: string | null;
+          session_id: string;
           user_agent_encrypted?: string | null;
-          geo_encrypted?: Json | null;
-          first_seen_at?: string;
-          last_seen_at?: string;
         };
         Update: {
+          consent_status?: Database["public"]["Enums"]["consent_status_type"];
+          consented_at?: string;
+          fingerprint_id?: string;
+          id?: string;
+          ip_address_encrypted?: string | null;
           session_id?: string;
+          user_agent_encrypted?: string | null;
+        };
+        Relationships: [];
+      };
+      visitor_sessions: {
+        Row: {
+          fingerprint_id: string | null;
+          first_seen_at: string;
+          geo_encrypted: Json | null;
+          ip_address_encrypted: string | null;
+          last_seen_at: string;
+          session_id: string;
+          user_agent_encrypted: string | null;
+          user_id: string | null;
+          workspace_id: string | null;
+        };
+        Insert: {
           fingerprint_id?: string | null;
+          first_seen_at?: string;
+          geo_encrypted?: Json | null;
+          ip_address_encrypted?: string | null;
+          last_seen_at?: string;
+          session_id: string;
+          user_agent_encrypted?: string | null;
           user_id?: string | null;
           workspace_id?: string | null;
-          ip_address_encrypted?: string | null;
-          user_agent_encrypted?: string | null;
-          geo_encrypted?: Json | null;
+        };
+        Update: {
+          fingerprint_id?: string | null;
           first_seen_at?: string;
+          geo_encrypted?: Json | null;
+          ip_address_encrypted?: string | null;
           last_seen_at?: string;
+          session_id?: string;
+          user_agent_encrypted?: string | null;
+          user_id?: string | null;
+          workspace_id?: string | null;
         };
         Relationships: [
-          {
-            foreignKeyName: "visitor_sessions_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "visitor_sessions_workspace_id_fkey";
             columns: ["workspace_id"];
@@ -936,65 +983,26 @@ export type Database = {
           },
         ];
       };
-      workspaces: {
-        Row: {
-          id: string;
-          owner_id: string;
-          name: string;
-          created_at: string;
-          updated_at: string;
-        };
-        Insert: {
-          id?: string;
-          owner_id: string;
-          name: string;
-          created_at?: string;
-          updated_at?: string;
-        };
-        Update: {
-          id?: string;
-          owner_id?: string;
-          name?: string;
-          created_at?: string;
-          updated_at?: string;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "workspaces_owner_id_fkey";
-            columns: ["owner_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-        ];
-      };
       workspace_members: {
         Row: {
-          workspace_id: string;
-          user_id: string;
-          role: string;
           created_at: string;
+          role: string;
+          user_id: string;
+          workspace_id: string;
         };
         Insert: {
-          workspace_id: string;
-          user_id: string;
-          role: string;
           created_at?: string;
+          role: string;
+          user_id: string;
+          workspace_id: string;
         };
         Update: {
-          workspace_id?: string;
-          user_id?: string;
-          role?: string;
           created_at?: string;
+          role?: string;
+          user_id?: string;
+          workspace_id?: string;
         };
         Relationships: [
-          {
-            foreignKeyName: "workspace_members_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "workspace_members_workspace_id_fkey";
             columns: ["workspace_id"];
@@ -1004,18 +1012,52 @@ export type Database = {
           },
         ];
       };
+      workspaces: {
+        Row: {
+          created_at: string;
+          id: string;
+          name: string;
+          owner_id: string;
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          name: string;
+          owner_id: string;
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          name?: string;
+          owner_id?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
     };
     Functions: {
+      analyze_behavior_patterns: {
+        Args: Record<PropertyKey, never>;
+        Returns: undefined;
+      };
+      create_superuser_etl_notification: {
+        Args: Record<PropertyKey, never>;
+        Returns: undefined;
+      };
       get_campaign_analytics: {
-        Args: { p_user_id: string };
+        Args: Record<PropertyKey, never>;
         Returns: Json;
       };
       get_public_table_names: {
         Args: Record<PropertyKey, never>;
-        Returns: { table_name: string }[];
+        Returns: {
+          table_name: string;
+        }[];
       };
       get_system_diagnostics: {
         Args: Record<PropertyKey, never>;
@@ -1025,24 +1067,27 @@ export type Database = {
         Args: { workspace_id_to_check: string };
         Returns: string;
       };
-      handle_new_user: {
-        Args: Record<PropertyKey, never>;
-        Returns: unknown;
-      };
       is_workspace_member: {
-        Args: { workspace_id_to_check: string; min_role?: string };
+        Args: { min_role?: string; workspace_id_to_check: string };
         Returns: boolean;
       };
       link_fingerprint_to_user: {
         Args: { p_fingerprint_id: string; p_user_id: string };
         Returns: undefined;
       };
-      update_cogniread_available_languages: {
+      run_daily_etl_and_notify: {
         Args: Record<PropertyKey, never>;
-        Returns: unknown;
+        Returns: undefined;
+      };
+      update_user_profile_summaries: {
+        Args: Record<PropertyKey, never>;
+        Returns: undefined;
       };
     };
     Enums: {
+      consent_status_type: "accepted" | "rejected";
+      insight_severity: "low" | "medium" | "high" | "critical";
+      invitation_status: "pending" | "accepted" | "declined";
       notification_type: "info" | "success" | "warning" | "error";
     };
     CompositeTypes: {
@@ -1051,25 +1096,36 @@ export type Database = {
   };
 };
 
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">;
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<
+  keyof Database,
+  "public"
+>];
+
 export type Tables<
-  PublicTableNameOrOptions extends
-    | keyof (Database["public"]["Tables"] & Database["public"]["Views"])
-    | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R;
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (Database["public"]["Tables"] &
-        Database["public"]["Views"])
-    ? (Database["public"]["Tables"] &
-        Database["public"]["Views"])[PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
         Row: infer R;
       }
       ? R
@@ -1077,20 +1133,24 @@ export type Tables<
     : never;
 
 export type TablesInsert<
-  PublicTableNameOrOptions extends
-    | keyof Database["public"]["Tables"]
-    | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I;
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
-    ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
         Insert: infer I;
       }
       ? I
@@ -1098,20 +1158,24 @@ export type TablesInsert<
     : never;
 
 export type TablesUpdate<
-  PublicTableNameOrOptions extends
-    | keyof Database["public"]["Tables"]
-    | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U;
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
-    ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
         Update: infer U;
       }
       ? U
@@ -1119,14 +1183,46 @@ export type TablesUpdate<
     : never;
 
 export type Enums<
-  PublicEnumNameOrOptions extends
-    | keyof Database["public"]["Enums"]
-    | { schema: keyof Database },
-  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
-    ? Database["public"]["Enums"][PublicEnumNameOrOptions]
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
     : never;
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals;
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never;
+
+export const Constants = {
+  public: {
+    Enums: {
+      consent_status_type: ["accepted", "rejected"],
+      insight_severity: ["low", "medium", "high", "critical"],
+      invitation_status: ["pending", "accepted", "declined"],
+      notification_type: ["info", "success", "warning", "error"],
+    },
+  },
+} as const;

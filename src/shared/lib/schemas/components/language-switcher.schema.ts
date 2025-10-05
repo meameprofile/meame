@@ -3,7 +3,7 @@
  * @file language-switcher.schema.ts
  * @description SSoT para el contrato i18n del ecosistema de selección de idioma.
  * @version 6.0.0 (Sovereign Path Restoration & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v6.0.0] ---

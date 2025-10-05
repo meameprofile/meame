@@ -2,7 +2,9 @@
 /**
  * @file layout.tsx
  * @description Layout Soberano y Guardián del DCC, con integridad arquitectónica, de tipos e higiene restaurada.
- * @version 22.2.0 (Holistic Contract & Hygiene Fix)
+ * @version 23.0.0 (Holistic i18n Contract Alignment): Se elimina el paso de la prop
+ *              obsoleta 'supportedLocales' para alinear todo el layout del DCC
+ *              con la arquitectura de internacionalización soberana.
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
@@ -24,20 +26,17 @@ async function DevLayoutDataOrchestrator({
   children: React.ReactNode;
   locale: Locale;
 }) {
-  const traceId = logger.startTrace(`DevLayout_Orchestrator_v22.2:${locale}`);
+  const traceId = logger.startTrace(`DevLayout_Orchestrator_v23.0:${locale}`);
   logger.startGroup(`[DCC Orchestrator] Ensamblando UI para [${locale}]...`);
 
   try {
     const supabase = createServerClient();
-    // --- [INICIO DE CORRECCIÓN DE HIGIENE (no-unused-vars)] ---
-    // Se elimina la obtención de `getCart` ya que `initialCart` no se utiliza.
     const [{ dictionary, error }, userSession, profileResult] =
       await Promise.all([
         getDictionary(locale),
         supabase.auth.getUser(),
         getCurrentUserProfile_Action(),
       ]);
-    // --- [FIN DE CORRECCIÓN DE HIGIENE] ---
 
     if (
       error ||
@@ -55,23 +54,23 @@ async function DevLayoutDataOrchestrator({
 
     return (
       <div className="flex h-screen bg-muted/30">
+        {/* --- [INICIO DE NIVELACIÓN DE CONTRATO v23.0.0] --- */}
+        {/* La prop 'supportedLocales' ha sido eliminada de la llamada,
+            resolviendo la fractura de contrato. */}
         <DevSidebar
           user={userSession.data.user}
           profile={profileResult.success ? profileResult.data : null}
           currentLocale={locale}
           content={{
-            // --- [INICIO DE CORRECCIÓN DE CONTRATO (TS2353)] ---
-            // Se construye el objeto 'content' con la estructura exacta que espera el componente.
-            // La clave 'toggleTheme' ha sido eliminada.
             userNav: dictionary.userNav,
             notificationBell: dictionary.notificationBell,
             devLoginPage: dictionary.devLoginPage,
             cart: dictionary.cart,
             header: dictionary.header,
             languageSwitcher: dictionary.languageSwitcher,
-            // --- [FIN DE CORRECCIÓN DE CONTRATO] ---
           }}
         />
+        {/* --- [FIN DE NIVELACIÓN DE CONTRATO v23.0.0] --- */}
         <main className="flex-1 flex flex-col overflow-hidden">
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
             {children}

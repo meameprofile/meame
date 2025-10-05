@@ -2,45 +2,44 @@
 /**
  * @file use-truffle-pixel.ts
  * @description Hook Atómico de Efecto para el píxel de Truffle.bid.
- *              v4.0.0 (Lazy Config Initialization): Refactorizado para adherirse
- *              al contrato de `getProducerConfig`, garantizando una carga
- *              segura y diferida de las variables de entorno. Cumple con los 5 Pilares.
- * @version 4.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 5.0.0 (Elite Observability & Resilience)
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { getProducerConfig } from "@/shared/lib/config/producer.config";
 import { logger } from "@/shared/lib/logging";
 
 const TRUFFLE_SCRIPT_ID = "truffle-pixel-init";
 
 export function useTrufflePixel(enabled: boolean): void {
+  const traceId = useMemo(() => logger.startTrace("useTrufflePixel_v5.0"), []);
   const hasExecuted = useRef(false);
 
   useEffect(() => {
-    // Guardia de idempotencia y activación.
+    logger.info(`[Truffle Pixel] Hook montado. Estado: ${enabled ? 'HABILITADO' : 'DESHABILITADO'}.`, { traceId });
+
     if (!enabled || hasExecuted.current) {
+      if (!enabled) logger.traceEvent(traceId, "Tracker deshabilitado, omitiendo.");
       return;
     }
 
-    // Obtención segura de la configuración.
     const producerConfig = getProducerConfig();
     const truffleId = producerConfig.TRACKING.TRUFFLE_PIXEL_ID;
 
-    // Guardia de configuración.
     if (!truffleId) {
-      logger.trace("[Truffle Pixel] ID no configurado. Omitiendo inyección.");
+      logger.warn("[Guardián] ID de Truffle Pixel no configurado. Omitiendo.", { traceId });
       return;
     }
 
-    // Guardia de re-inyección.
     if (document.getElementById(TRUFFLE_SCRIPT_ID)) {
+      hasExecuted.current = true;
+      logger.warn("[Guardián] Script de Truffle ya existe. Omitiendo re-inyección.", { traceId });
       return;
     }
 
-    logger.info(`[Tracking] Inyectando Truffle.bid con ID: ${truffleId}`);
+    logger.success(`[Tracking] Inyectando Truffle.bid con ID: ${truffleId}`, { traceId });
 
     const script = document.createElement("script");
     script.id = TRUFFLE_SCRIPT_ID;
@@ -51,5 +50,8 @@ export function useTrufflePixel(enabled: boolean): void {
     document.head.appendChild(script);
 
     hasExecuted.current = true;
-  }, [enabled]);
+    logger.traceEvent(traceId, "Inyección de script completada.");
+
+    return () => logger.endTrace(traceId);
+  }, [enabled, traceId]);
 }

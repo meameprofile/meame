@@ -2,8 +2,10 @@
 /**
  * @file page.tsx
  * @description Página "Server Shell" soberana para el Dashboard de Analíticas.
- *              Forjada con un guardián de resiliencia holístico y observabilidad de élite.
- * @version 1.0.0
+ *              v2.0.0 (Elite Contract Guardian & Type Safety): Implementa guardianes de
+ *              contrato de Zod en la frontera Servidor-Cliente y un manejo de errores
+ *              seguro a nivel de tipos para una resiliencia y seguridad de élite.
+ * @version 2.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
@@ -18,28 +20,51 @@ import { StatCard } from "@/components/features/analytics/StatCard";
 import { KPICharts } from "@/components/features/analytics/KPICharts";
 import { CampaignsTable } from "@/components/features/analytics/CampaignsTable";
 import { motion } from "framer-motion";
+// --- [INICIO DE REFACTORIZACIÓN DE GUARDIÁN DE CONTRATO v2.0.0] ---
+import { DashboardHeaderContentSchema } from "@/shared/lib/schemas/components/analytics/dashboard-header.schema";
+import { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
+// --- [FIN DE REFACTORIZACIÓN DE GUARDIÁN DE CONTRATO v2.0.0] ---
 
 export default async function AnalyticsPage({
   params: { locale },
 }: {
   params: { locale: Locale };
 }) {
-  const traceId = logger.startTrace("AnalyticsPage_ServerShell_v1.0");
+  const traceId = logger.startTrace("AnalyticsPage_ServerShell_v2.0");
   logger.startGroup(`[Analytics Shell] Ensamblando Dashboard...`, traceId);
 
   try {
     const [{ dictionary, error: dictError }, analyticsResult] =
       await Promise.all([getDictionary(locale), getCampaignAnalyticsAction()]);
 
-    const { dashboardHeader, campaignsTable } = dictionary;
+    // --- [INICIO DE REFACTORIZACIÓN DE GUARDIÁN DE CONTRATO v2.0.0] ---
+    const headerContentValidation = DashboardHeaderContentSchema.safeParse(
+      dictionary.dashboardHeader
+    );
+    const tableContentValidation = CampaignsTableContentSchema.safeParse(
+      dictionary.campaignsTable
+    );
 
-    // Guardián de Resiliencia de Contrato
-    if (dictError || !dashboardHeader || !campaignsTable) {
-      throw new Error("Faltan datos de i18n esenciales para el dashboard.");
+    if (
+      dictError ||
+      !headerContentValidation.success ||
+      !tableContentValidation.success
+    ) {
+      throw new Error(
+        "Faltan datos de i18n esenciales o son inválidos para el dashboard.",
+        {
+          cause:
+            dictError ||
+            headerContentValidation.error ||
+            tableContentValidation.error,
+        }
+      );
     }
+    const dashboardHeader = headerContentValidation.data;
+    const campaignsTable = tableContentValidation.data;
     logger.traceEvent(traceId, "Contenido i18n validado.");
+    // --- [FIN DE REFACTORIZACIÓN DE GUARDIÁN DE CONTRATO v2.0.0] ---
 
-    // Guardián de Resiliencia de Datos
     if (!analyticsResult.success) {
       throw new Error(analyticsResult.error);
     }
@@ -77,7 +102,6 @@ export default async function AnalyticsPage({
             value={totalSummary.conversions}
             icon="BadgeCheck"
           />
-          {/* Aquí se pueden añadir más KPIs agregados si se desea */}
         </motion.div>
         <KPICharts data={analyticsData} />
         <CampaignsTable data={analyticsData} content={campaignsTable} />
@@ -94,7 +118,7 @@ export default async function AnalyticsPage({
       <DeveloperErrorDisplay
         context="AnalyticsPage Shell"
         errorMessage="No se pudieron cargar los datos de analíticas."
-        errorDetails={error}
+        errorDetails={error instanceof Error ? error : String(error)}
       />
     );
   } finally {

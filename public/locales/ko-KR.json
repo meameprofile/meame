@@ -1,0 +1,9 @@
+{
+  "devHomepageHeader": {
+    "homeLink": "홈",
+    "aboutLink": "회사 소개",
+    "storeLink": "스토어",
+    "blogLink": "블로그",
+    "devMenuLabel": "개발자 메뉴"
+  }
+}

@@ -5,7 +5,7 @@
 - @description Manifiesto Canónico y SSoT para la tabla de perfiles agregados,
 -              el corazón del motor de Temeo Insights.
 - @version 1.0.0
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Soberano: Tabla `user_profile_summary` v1.0

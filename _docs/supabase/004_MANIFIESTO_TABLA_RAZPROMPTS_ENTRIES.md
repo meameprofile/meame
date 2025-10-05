@@ -46,6 +46,32 @@ USING (public.is_workspace_member(workspace_id))
 WITH CHECK (public.is_workspace_member(workspace_id));
 
 ---
+/**
+ * @file 004_MANIFIESTO_TABLA_RAZPROMPTS_ENTRIES.md
+ * @description Manifiesto Canónico y SSoT para la tabla 'public.razprompts_entries'.
+ * @version 3.0.0 (AI Conversation Integration)
+ * @author RaZ Podestá - MetaShark Tech
+ */
+
+# Manifiesto de Tabla Soberana: `public.razprompts_entries` v3.0
+
+## 1. Visión y Propósito
+...
+
+## 2. Esquema DDL (CREATE TABLE)
+...
+
+## 3. Simbiosis con el Ecosistema
+
+### 3.1 Integración con Conversaciones de IA (Tabla `ai_conversations`)
+
+La tabla `razprompts_entries` actúa como un ancla contextual para las conversaciones de IA. Esto permite funcionalidades avanzadas como "chatear para refinar un prompt".
+
+-   **Vínculo Inmutable:** Una conversación sobre un prompt específico se vincula utilizando un `context_key` en la tabla `ai_conversations`.
+-   **Formato del `context_key`:** `razprompt::<id>`, donde `<id>` es el `id` (CUID2) de la fila en `razprompts_entries`.
+-   **Flujo:** Un usuario puede iniciar un "chat" desde un prompt existente. El sistema creará o recuperará la conversación en `ai_conversations` usando esta clave, permitiendo a la IA tener el contexto completo del genoma del prompt y de los intercambios anteriores para refinarlo.
+
+---
 
 
 ```

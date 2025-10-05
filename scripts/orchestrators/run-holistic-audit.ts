@@ -1,12 +1,12 @@
-// RUTA: scripts/orchestrators/run-holistic-audit.ts
+// scripts/orchestrators/run-holistic-audit.ts
 /**
  * @file run-holistic-audit.ts
  * @description Guardián de Integridad Total Resiliente con Informe Holístico.
  *              Orquesta la ejecución de todos los scripts de diagnóstico de dominio
  *              y de consistencia inter-dominio, generando un informe consolidado
  *              y proporcionando un veredicto final sobre la salud del ecosistema.
- * @version 4.1.0 (Complete & Unabbreviated)
- * @author L.I.A. Legacy
+ * @version 5.0.0 (Deterministic & Regression-Free)
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { exec } from "child_process";
 import { promises as fs } from "fs";
@@ -14,18 +14,28 @@ import path from "path";
 import chalk from "chalk";
 import { scriptLogger as logger } from "../_utils/logger";
 
+// SSoT de las auditorías a ejecutar, en un orden determinista y sin regresiones.
 const audits = [
-  // --- Guardianes de Dominio de Servicios ---
-  { name: "Dominio: Supabase", command: "pnpm diag:supabase:all" },
+  // --- [FASE 1] GUARDIANES DE DOMINIO DE SERVICIOS (Aislados) ---
+  {
+    name: "Dominio: Visitor Intelligence (DB)",
+    command: "pnpm diag:visitor-intelligence:all",
+  },
+  { name: "Dominio: Aura (DB)", command: "pnpm diag:aura:all" },
   { name: "Dominio: Cloudinary", command: "pnpm diag:cloudinary:all" },
   { name: "Dominio: MongoDB", command: "pnpm diag:mongo:all" },
   { name: "Dominio: Resend", command: "pnpm diag:resend:all" },
   { name: "Dominio: Shopify", command: "pnpm diag:shopify:all" },
   { name: "Dominio: Stripe", command: "pnpm diag:stripe:all" },
   { name: "Dominio: Nos3 (Vercel Blob)", command: "pnpm diag:nos3:all" },
-  { name: "Dominio: Aura (Supabase Logic)", command: "pnpm diag:aura:all" },
 
-  // --- Guardianes de Consistencia Inter-Dominio ---
+  // --- [FASE 2] GENERACIÓN DE ESQUEMA HOLÍSTICO (Prerrequisito) ---
+  {
+    name: "Consistencia: Generación de Schema Holístico DB",
+    command: "pnpm diag:supabase:schema-all",
+  },
+
+  // --- [FASE 3] GUARDIANES DE CONSISTENCIA INTER-DOMINIO (Dependientes) ---
   {
     name: "Consistencia: Vercel Blob (Nos3) <-> Supabase (Aura)",
     command: "tsx scripts/validation/validate-blob-db-consistency.ts",
@@ -36,6 +46,7 @@ const audits = [
   },
 ];
 
+// Contratos de datos para el informe y los resultados
 interface AuditResult {
   name: string;
   success: boolean;
@@ -89,7 +100,7 @@ async function runAudit(name: string, command: string): Promise<AuditResult> {
 }
 
 async function main() {
-  const mainTraceId = logger.startTrace("holistic-audit-orchestrator-v4.1");
+  const mainTraceId = logger.startTrace("holistic-audit-orchestrator-v5.0");
   const reportDir = path.resolve(process.cwd(), "reports");
   const holisticReportPath = path.resolve(
     reportDir,
@@ -97,7 +108,7 @@ async function main() {
   );
 
   logger.startGroup(
-    "🚀 Iniciando Auditoría Holística (v4.1 - Completa y Sin Abreviaciones)..."
+    "🚀 Iniciando Auditoría Holística (v5.0 - Determinista)..."
   );
 
   const results: AuditResult[] = [];
@@ -107,6 +118,7 @@ async function main() {
   }
 
   const failures = results.filter((r) => !r.success);
+
   const holisticReport: HolisticReport = {
     reportMetadata: {
       script: "scripts/orchestrators/run-holistic-audit.ts",
@@ -133,10 +145,7 @@ async function main() {
       JSON.stringify(holisticReport, null, 2)
     );
     logger.info(
-      `Informe de resumen holístico guardado en: ${path.relative(
-        process.cwd(),
-        holisticReportPath
-      )}`
+      `Informe de resumen holístico guardado en: ${path.relative(process.cwd(), holisticReportPath)}`
     );
   } catch (error) {
     logger.error("No se pudo escribir el informe de resumen holístico.", {

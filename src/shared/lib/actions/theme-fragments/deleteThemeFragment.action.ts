@@ -2,8 +2,8 @@
 /**
  * @file deleteThemeFragment.action.ts
  * @description Server Action de élite para eliminar un fragmento de tema.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech (Creative Twin)
+ * @version 2.0.0 (Elite Observability & Resilience)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -23,7 +23,7 @@ type DeleteFragmentInput = z.infer<typeof DeleteFragmentInputSchema>;
 export async function deleteThemeFragmentAction(
   input: DeleteFragmentInput
 ): Promise<ActionResult<{ deletedId: string }>> {
-  const traceId = logger.startTrace("deleteThemeFragmentAction_v1.0");
+  const traceId = logger.startTrace("deleteThemeFragmentAction_v2.0");
   logger.startGroup(`[Action] Eliminando fragmento de tema...`, traceId);
 
   try {
@@ -32,11 +32,17 @@ export async function deleteThemeFragmentAction(
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) return { success: false, error: "auth_required" };
+    logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
 
     const validation = DeleteFragmentInputSchema.safeParse(input);
-    if (!validation.success)
+    if (!validation.success) {
+      logger.warn("[Action] Datos de entrada inválidos.", {
+        errors: validation.error.flatten(),
+        traceId,
+      });
       return { success: false, error: "Datos de entrada inválidos." };
-
+    }
+    logger.traceEvent(traceId, `Datos de entrada validados.`);
     const { id, workspaceId } = validation.data;
 
     const { data: memberCheck, error: memberError } = await supabase.rpc(
@@ -45,6 +51,7 @@ export async function deleteThemeFragmentAction(
     );
     if (memberError || !memberCheck)
       throw new Error("Acceso denegado al workspace.");
+    logger.traceEvent(traceId, `Membresía del workspace verificada.`);
 
     const { error, count } = await supabase
       .from("theme_fragments")
@@ -56,6 +63,10 @@ export async function deleteThemeFragmentAction(
       throw new Error(
         "El fragmento no fue encontrado o no tienes permiso para eliminarlo."
       );
+    logger.traceEvent(
+      traceId,
+      `Operación de eliminación en DB completada. Filas afectadas: ${count}`
+    );
 
     logger.success(`[Action] Fragmento con ID '${id}' eliminado con éxito.`);
     return { success: true, data: { deletedId: id } };

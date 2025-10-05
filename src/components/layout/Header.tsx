@@ -3,8 +3,9 @@
  * @file Header.tsx
  * @description "Server Shell" soberano para la cabecera, forjado con un Guardián de Resiliencia
  *              holístico y observabilidad de élite para una robustez de nivel de producción.
- * @version 42.0.0 (Elite Observability & Resilience Guardian)
- *@author RaZ Podestá - MetaShark Tech
+ * @version 42.1.0 (I18n Prop Decoupling): Se elimina la prop obsoleta 'supportedLocales'
+ *              para alinear el componente con la arquitectura de internacionalización soberana.
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";
@@ -21,6 +22,8 @@ import type {
   BaviVariant,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 
+// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v42.1.0] ---
+// La prop 'supportedLocales' se elimina del contrato del "Server Shell".
 type HeaderShellProps = Omit<
   HeaderClientProps,
   "user" | "profile" | "logoUrl" | "initialCart"
@@ -29,17 +32,16 @@ type HeaderShellProps = Omit<
 export default async function Header({
   content,
   currentLocale,
-  supportedLocales,
   centerComponent,
   rightComponent,
 }: HeaderShellProps) {
-  const traceId = logger.startTrace("Header_Shell_v42.0");
+  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO v42.1.0] ---
+  const traceId = logger.startTrace("Header_Shell_v42.1");
   logger.startGroup(
     `[Header Shell] Orquestando obtención de datos para cabecera...`,
     traceId
   );
 
-  // Define un fallback robusto en caso de que la BAVI falle.
   const defaultLogoUrl = content.header.logoUrl;
   let logoUrl = defaultLogoUrl;
 
@@ -49,7 +51,6 @@ export default async function Header({
       "Iniciando obtención de datos en paralelo (Supabase Auth, Profile, BAVI, Shopify Cart)..."
     );
 
-    // --- Obtención de Datos Holística ---
     const supabase = createServerClient();
     const [userSession, profileResult, baviManifest, initialApiCart] =
       await Promise.all([
@@ -63,21 +64,10 @@ export default async function Header({
       traceId,
     });
 
-    // --- Procesamiento y Transformación de Datos ---
     const user = userSession.data.user;
     const profile = user && profileResult.success ? profileResult.data : null;
-
-    logger.traceEvent(
-      traceId,
-      "Transformando datos del carrito para el store de cliente..."
-    );
     const initialCartForStore = reshapeCartForStore(initialApiCart);
-    logger.traceEvent(
-      traceId,
-      `Transformación completada: ${initialCartForStore.length} items procesados.`
-    );
 
-    // --- Resolución de Activos con Fallback (Guardián de Resiliencia a Nivel de Activo) ---
     logger.traceEvent(traceId, "Resolviendo URL del logo desde la BAVI...");
     const logoAsset = baviManifest.assets.find(
       (a: BaviAsset) => a.assetId === "i-sybl-global-fitwell-logo-01"
@@ -109,14 +99,12 @@ export default async function Header({
         logoUrl={logoUrl}
         content={content}
         currentLocale={currentLocale}
-        supportedLocales={supportedLocales}
         centerComponent={centerComponent}
         rightComponent={rightComponent}
         initialCart={initialCartForStore}
       />
     );
   } catch (error) {
-    // --- GUARDIÁN DE RESILIENCIA HOLÍSTICO ---
     const errorMessage =
       error instanceof Error
         ? error.message
@@ -126,7 +114,6 @@ export default async function Header({
       { error: errorMessage, traceId }
     );
 
-    // En desarrollo, muestra un error detallado y bloqueante.
     if (process.env.NODE_ENV === "development") {
       return (
         <DeveloperErrorDisplay
@@ -137,7 +124,6 @@ export default async function Header({
       );
     }
 
-    // En producción, renderiza una versión degradada pero funcional del Header.
     logger.warn(
       "[Header Shell] Renderizando en modo degradado debido a un error de obtención de datos.",
       { traceId }
@@ -146,13 +132,12 @@ export default async function Header({
       <HeaderClient
         user={null}
         profile={null}
-        logoUrl={defaultLogoUrl} // Usa el logo de fallback
+        logoUrl={defaultLogoUrl}
         content={content}
         currentLocale={currentLocale}
-        supportedLocales={supportedLocales}
         centerComponent={centerComponent}
         rightComponent={rightComponent}
-        initialCart={[]} // Pasa un carrito vacío
+        initialCart={[]}
       />
     );
   } finally {

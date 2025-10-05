@@ -6,7 +6,7 @@
  *              faltante para el detalle de inteligencia de usuario, resolviendo
  *              una desalineación crítica del contrato de enrutamiento.
  * @version 15.2.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { defaultLocale, type Locale } from "./i18n/i18n.config";
 import { logger } from "./logging";

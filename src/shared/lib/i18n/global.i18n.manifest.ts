@@ -6,7 +6,7 @@
  *              y metadatos geo-lingüísticos. Es 100% agnóstico al entorno y seguro
  *              para ser importado en cualquier capa de la aplicación.
  * @version 1.0.0 (Sovereign Data-Only Module)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 
 export interface LanguageManifestItem {

@@ -149,32 +149,38 @@
         {
           "title": "The Forge (SDC)",
           "description": "Forge high-conversion campaigns.",
-          "label": "Creativity"
+          "label": "Creativity",
+          "href": "/en-US/creator/campaign-suite"
         },
         {
           "title": "The Armory (BAVI)",
           "description": "The SSoT for all visual assets.",
-          "label": "Assets"
+          "label": "Assets",
+          "href": "/en-US/dev/bavi"
         },
         {
           "title": "The Vault (RaZPrompts)",
           "description": "Catalog the creative DNA of your assets.",
-          "label": "Genome"
+          "label": "Genome",
+          "href": "/en-US/dev/raz-prompts"
         },
         {
           "title": "The Engine (CogniRead)",
           "description": "Transform science into authority.",
-          "label": "Credibility"
+          "label": "Credibility",
+          "href": "/en-US/dev/cogniread"
         },
         {
           "title": "The Nervous System (Nos3)",
           "description": "See through the user's eyes.",
-          "label": "UX"
+          "label": "UX",
+          "href": "/en-US/dev/nos3"
         },
         {
-          "title": "The Lab",
-          "description": "Stress-test for every component.",
-          "label": "Resilience"
+          "title": "The Command Deck (Aura)",
+          "description": "Visualize data and optimize conversions.",
+          "label": "Intelligence",
+          "href": "/en-US/dev/analytics"
         }
       ]
     }
@@ -457,6 +463,20 @@
   },
   "languageSwitcher": {
     "ariaLabel": "Select language",
+    "modalTitle": "Select a Language & Region",
+    "modalDescription": "Your selection will customize your experience across the entire site.",
+    "searchPlaceholder": "Search by language, country, or continent...",
+    "noResultsFound": "No languages found.",
+    "continents": {
+      "Africa": "Africa",
+      "Asia": "Asia",
+      "Europe": "Europe",
+      "North America": "North America",
+      "South America": "South America",
+      "Oceania": "Oceania",
+      "Global": "Global",
+      "Other": "Other"
+    },
     "languages": {
       "it-IT": "Italian",
       "es-ES": "Spanish",
@@ -1370,5 +1390,22 @@
     "payButton": "Pay Now",
     "processingButton": "Processing Payment...",
     "unexpectedError": "An unexpected error occurred. Please try again."
+  },
+  "campaignsTable": {
+    "headerVariant": "Variant",
+    "headerVisitors": "Visitors",
+    "headerConversions": "Conversions",
+    "headerBounceRate": "Bounce Rate",
+    "noResultsText": "No results.",
+    "previousButton": "Previous",
+    "nextButton": "Next",
+    "actionsLabel": "Actions",
+    "viewDetailsLabel": "View details"
+  },
+  "dashboardHeader": {
+    "title": "Analytics Dashboard",
+    "subtitle": "An overview of your campaign performance.",
+    "dateRangeButton": "Last 30 days",
+    "exportButton": "Export"
   }
 }

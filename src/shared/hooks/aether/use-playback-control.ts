@@ -2,8 +2,8 @@
 /**
  * @file use-playback-control.ts
  * @description Hook atómico para gestionar el estado de reproducción y volumen.
- * @version 2.0.0 (Conditional Audio Logic)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Elite Observability & Resilience)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -17,30 +17,37 @@ import type {
 interface UsePlaybackControlProps {
   videoTexture: VideoTexture;
   audioRef: React.RefObject<PositionalAudioImpl>;
-  audioSrc?: string; // <-- Prop añadida al contrato
+  audioSrc?: string;
 }
 
 export function usePlaybackControl({
   videoTexture,
   audioRef,
-  audioSrc, // <-- Prop consumida
+  audioSrc,
 }: UsePlaybackControlProps) {
-  logger.trace("[usePlaybackControl] Hook inicializado v2.0.");
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
 
-  const togglePlay = useCallback(() => setIsPlaying((prev) => !prev), []);
-  const toggleMute = useCallback(() => setIsMuted((prev) => !prev), []);
+  const togglePlay = useCallback(() => {
+    setIsPlaying((prev) => {
+      logger.info(`[PlaybackControl] Toggle play. Nuevo estado: ${!prev ? 'Playing' : 'Paused'}`);
+      return !prev;
+    });
+  }, []);
+
+  const toggleMute = useCallback(() => {
+    setIsMuted((prev) => {
+      logger.info(`[PlaybackControl] Toggle mute. Nuevo estado: ${!prev ? 'Unmuted' : 'Muted'}`);
+      return !prev;
+    });
+  }, []);
 
   useEffect(() => {
     const videoElement = videoTexture.image as HTMLVideoElement;
     const audioObject = audioRef.current;
 
     if (isPlaying) {
-      videoElement
-        .play()
-        .catch((e) => logger.warn("Autoplay de vídeo bloqueado.", { e }));
-      // Solo intenta reproducir el audio si existe y tiene una fuente.
+      videoElement.play().catch((e) => logger.warn("[PlaybackControl] Autoplay de vídeo bloqueado.", { e }));
       if (audioSrc && audioObject?.source && !audioObject.isPlaying) {
         audioObject.play();
       }
@@ -55,7 +62,7 @@ export function usePlaybackControl({
       audioObject.setVolume(isMuted ? 0 : 1);
     }
     videoElement.muted = true;
-  }, [isPlaying, isMuted, videoTexture, audioRef, audioSrc]); // <-- audioSrc añadido a las dependencias
+  }, [isPlaying, isMuted, videoTexture, audioRef, audioSrc]);
 
   return { isPlaying, isMuted, togglePlay, toggleMute };
 }
