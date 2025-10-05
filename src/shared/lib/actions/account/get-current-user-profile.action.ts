@@ -5,7 +5,7 @@
  *              usuario, alineada con la Gran Refactorización y el contrato
  *              de datos derivado de la SSoT de la base de datos.
  * @version 8.0.0 (Definitive SSoT-Derived Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

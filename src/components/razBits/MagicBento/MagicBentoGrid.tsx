@@ -1,15 +1,17 @@
+// APARATO ÚNICO: CUADRÍCULA DE BENTO NAVEGABLE (NIVELACIÓN DEFINITIVA)
 // RUTA: src/components/razBits/MagicBento/MagicBentoGrid.tsx
+
 /**
  * @file MagicBentoGrid.tsx
- * @description Componente de trabajo de presentación puro para la cuadrícula MagicBento.
- *              Este aparato es el responsable de renderizar la UI y de invocar
- *              el hook de interacción, garantizando el cumplimiento de las Reglas de los Hooks.
- * @version 1.0.0
+ * @description Componente de trabajo de presentación puro para la cuadrícula MagicBento,
+ *              ahora con capacidad de navegación integrada y cumplimiento de todos los pilares de calidad.
+ * @version 2.0.0 (Navigable & Holistically Aligned)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React, { useRef } from "react";
+import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { useBentoGridInteraction } from "@/components/razBits/MagicBento/use-bento-grid-interaction";
 import { BentoCard } from "./BentoCard";
@@ -20,6 +22,7 @@ import {
 import type { z } from "zod";
 import { logger } from "@/shared/lib/logging";
 
+// Pilar II: Contratos de Tipo Estrictos
 type BentoConfig = z.infer<typeof MagicBentoConfigSchema>;
 
 interface MagicBentoGridProps {
@@ -33,10 +36,13 @@ export function MagicBentoGrid({
   config,
   className,
 }: MagicBentoGridProps): React.ReactElement {
-  logger.trace("[MagicBentoGrid] Renderizando componente de trabajo.");
+  // Pilar III: Observabilidad
+  logger.trace(
+    "[MagicBentoGrid] Renderizando componente de presentación puro v2.0."
+  );
   const gridRef = useRef<HTMLDivElement | null>(null);
 
-  // El hook ahora se llama incondicionalmente en el nivel superior del componente.
+  // Pilar I: Lógica Desacoplada a un Hook
   const { initializeCardInteractions } = useBentoGridInteraction(
     gridRef,
     config
@@ -49,25 +55,40 @@ export function MagicBentoGrid({
         `bento-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[250px] gap-4 max-w-7xl mx-auto p-4`,
         className
       )}
+      // Pilar V: Theming Semántico
       style={
         {
           "--glow-color-rgb": `var(--${config.glowColor}-rgb)`,
         } as React.CSSProperties
       }
     >
-      {cards.map((card: BentoCardData, index: number) => (
-        <BentoCard
-          key={card.title}
-          card={card}
-          cardRef={initializeCardInteractions}
-          textAutoHide={config.textAutoHide}
-          className={twMerge(
-            index === 2 && "lg:col-span-2 lg:row-span-2",
-            index === 3 && "lg:col-span-2"
-          )}
-        />
-      ))}
+      {cards.map((card: BentoCardData, index: number) => {
+        const cardComponent = (
+          <BentoCard
+            key={card.title}
+            card={card}
+            cardRef={initializeCardInteractions}
+            textAutoHide={config.textAutoHide}
+            className={twMerge(
+              // Lógica de layout para tarjetas destacadas
+              index === 0 && "lg:col-span-2 lg:row-span-2",
+              index === 3 && "lg:col-span-2"
+            )}
+          />
+        );
+
+        // Pilar VII: Adherencia Arquitectónica (Navegación)
+        // Si la tarjeta tiene un href, la envolvemos en un Link de Next.js.
+        if (card.href) {
+          return (
+            <Link href={card.href} key={card.title} className="contents">
+              {cardComponent}
+            </Link>
+          );
+        }
+
+        return cardComponent;
+      })}
     </div>
   );
 }
-// RUTA: src/components/razBits/MagicBento/MagicBentoGrid.tsx

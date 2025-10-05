@@ -4,7 +4,7 @@
  * @description Guardián de Conexión para Cloudinary. Verifica variables de entorno
  *              y la conectividad con la API, generando un informe de diagnóstico.
  * @version 3.1.0 (Simplified Structure & Direct Execution)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { v2 as cloudinary } from "cloudinary";
 import { promises as fs } from "fs";

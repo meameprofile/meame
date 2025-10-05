@@ -5,7 +5,7 @@
 - @description Manifiesto Canónico y SSoT para la creación de scripts de diagnóstico.
 -              Define la arquitectura, contratos y principios para todo el arsenal de auditoría.
 - @version 1.0.0
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Canónico: Creación de Guardianes de Diagnóstico

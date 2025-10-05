@@ -4,7 +4,7 @@
  * @description SSoT y réplica funcional (shim) del logger principal para el entorno de scripts.
  *              Este aparato es la única fuente de verdad para todo el logging en los scripts.
  * @version 3.0.0 (Consolidated & Elite)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import chalk from "chalk";
 

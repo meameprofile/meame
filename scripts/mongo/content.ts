@@ -5,7 +5,7 @@
  * @description Guardián de Contenido para MongoDB. Realiza un censo o un volcado
  *              completo de todas las colecciones y genera un informe de diagnóstico.
  * @version 1.0.0 (Census & Full Dump Capability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { MongoClient, type Document } from "mongodb";
 import { promises as fs } from "fs";

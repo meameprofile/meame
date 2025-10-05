@@ -1,20 +1,22 @@
-// components/razBits/MagicBento/magic-bento.schema.ts
+// RUTA: src/shared/lib/schemas/components/razBits/MagicBento/magic-bento.schema.ts (APARATO NIVELADO)
 /**
  * @file magic-bento.schema.ts
- * @description Esquema de Zod para el contenido y configuración del componente MagicBento.
- * @version 1.1.0
+ * @description SSoT para el contrato de datos del componente MagicBento, ahora
+ *              con soporte para navegación y contratos de tipo explícitos.
+ * @version 2.1.0 (Navigable & Type-Safe)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 
-// Contrato para una única tarjeta dentro de la cuadrícula
+// Contrato para una única tarjeta dentro de la cuadrícula, ahora con capacidad de enlace.
 export const BentoCardSchema = z.object({
   title: z.string(),
   description: z.string(),
   label: z.string(),
+  href: z.string().optional(), // <-- PROPIEDAD SOBERANA AÑADIDA
 });
 
-// Exporta el tipo para ser usado en el componente
+// Pilar II: Se exporta explícitamente el tipo inferido para un consumo seguro.
 export type BentoCardData = z.infer<typeof BentoCardSchema>;
 
 // Contrato para el objeto de configuración de los efectos visuales
@@ -41,4 +43,3 @@ export const MagicBentoLocaleSchema = z.object({
     })
     .optional(),
 });
-// components/razBits/MagicBento/magic-bento.schema.ts

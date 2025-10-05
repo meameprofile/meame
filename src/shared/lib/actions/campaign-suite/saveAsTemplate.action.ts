@@ -4,7 +4,7 @@
  * @description Server Action para persistir un borrador como plantilla, ahora
  *              alineada con la Arquitectura de Contratos de Dominio Soberanos.
  * @version 5.0.0 (Sovereign Contract & Type-Safe)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

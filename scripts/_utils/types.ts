@@ -3,7 +3,7 @@
  * @file types.ts
  * @description SSoT para los contratos de tipos de los scripts.
  * @version 1.0.0 (Sovereign & Granular)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 
 /**

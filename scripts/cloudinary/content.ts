@@ -4,7 +4,7 @@
  * @description Guardián de Contenido para Cloudinary. Realiza un censo de los
  *              activos y el uso de la cuenta, generando un informe consumible por IA.
  * @version 4.0.0 (Elite & AI-Consumable Reports)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { v2 as cloudinary } from "cloudinary";
 import { promises as fs } from "fs";

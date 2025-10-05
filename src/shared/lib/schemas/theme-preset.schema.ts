@@ -3,7 +3,7 @@
  * @file theme-preset.schema.ts
  * @description SSoT para la entidad ThemePreset, con convención camelCase soberana.
  * @version 4.0.0 (Sovereign CamelCase Convention)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { ThemeConfigSchema } from "./campaigns/draft.parts.schema";

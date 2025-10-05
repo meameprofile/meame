@@ -6,7 +6,7 @@
 -              Define la metodología inmutable para la instrumentación de telemetría en
 -              todo el codebase, garantizando una claridad absoluta y cero puntos ciegos.
 - @version 1.0.0
-  -@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  -@author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Canónico: Protocolo de Observabilidad y Logging de Élite
@@ -104,7 +104,7 @@ ACTUALIZACION
 - @description Manifiesto Canónico y SSoT para el Protocolo de Observabilidad,
 -              ahora incluyendo la persistencia de telemetría.
 - @version 2.0.0 (Telemetry Persistence)
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Canónico: Protocolo de Observabilidad y Logging de Élite v2.0

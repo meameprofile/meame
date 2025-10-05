@@ -4,7 +4,7 @@
  * @description Aparato "Server Shell" para la sección de prueba social,
  *              ahora Focus-Aware y con contrato soberano.
  * @version 9.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

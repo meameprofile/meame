@@ -4,7 +4,7 @@
  * @description Un carrusel interactivo y automático que muestra artículos
  *              destacados, ahora con cumplimiento estricto de las Reglas de Hooks.
  * @version 2.1.0 (React Hooks Contract Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

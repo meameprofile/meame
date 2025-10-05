@@ -3,7 +3,7 @@
  * @file FeaturesSection.tsx
  * @description Componente de sección para mostrar una lista de características clave.
  * @version 3.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

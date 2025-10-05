@@ -3,7 +3,7 @@
  * @file eslint.config.mjs
  * @description SSoT para la configuración de ESLint v9+ (Flat Config).
  * @version 2.3.0 (CJS Environment Override)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";

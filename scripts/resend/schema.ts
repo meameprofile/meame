@@ -4,7 +4,7 @@
  * @description Guardián de Esquema para Resend. Audita los dominios de envío
  *              verificados en la cuenta y genera un informe de diagnóstico.
  * @version 1.0.0 (Resilient & AI-Consumable)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { Resend } from "resend";
 import { promises as fs } from "fs";

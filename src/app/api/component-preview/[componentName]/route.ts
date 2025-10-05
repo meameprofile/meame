@@ -6,7 +6,7 @@
  *              para restaurar la compatibilidad con el runtime de Node.js,
  *              necesario para las operaciones de sistema de archivos (fs).
  * @version 5.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { ImageResponse } from "@vercel/og";
 import React from "react";

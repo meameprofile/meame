@@ -1,12 +1,6 @@
+// APARATO 2: SERVER ACTION DE OBTENCIÓN DE DATOS
 // RUTA: src/shared/lib/actions/analytics/getCampaignAnalytics.action.ts
-/**
- * @file getCampaignAnalytics.action.ts
- * @description Server Action de producción para obtener los datos de analíticas
- *              de las campañas de un usuario desde Supabase, ahora con un contrato
- *              de tipos soberano y guardianes de resiliencia.
- * @version 3.0.0 (Sovereign Type Contract & Resilience Guardian)
- * @author L.I.A. Legacy
- */
+
 "use server";
 
 import { z } from "zod";
@@ -35,10 +29,6 @@ export async function getCampaignAnalyticsAction(): Promise<
       return { success: false, error: "auth_required" };
     }
     logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
-
-    // NOTA: La lógica para obtener el workspaceId activo deberá gestionarse en la capa de cliente
-    // o pasarse como argumento si es necesario filtrar por un workspace específico.
-    // Por ahora, asumimos que la función RPC puede manejar la lógica de agregación para el usuario.
 
     const { data, error } = await supabase.rpc("get_campaign_analytics");
 

@@ -3,7 +3,7 @@
  * @file Hero.tsx
  * @description Aparato "Server Shell" para la sección Hero, ahora Focus-Aware.
  * @version 13.0.0 (Focus-Aware & Elite Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

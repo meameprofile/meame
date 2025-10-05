@@ -6,7 +6,7 @@
  *              retorno, reemplazándolo con `Record<string, unknown>` para una
  *              seguridad de tipos absoluta y cumplimiento de linter de élite.
  * @version 7.2.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

@@ -4,7 +4,7 @@
  * @description Ensamblador y Cargador de Datos para el Paso 0 de la SDC.
  *              Forjado con un guardián de resiliencia y observabilidad de élite.
  * @version 6.0.0 (Elite Resilience & Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

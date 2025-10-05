@@ -4,7 +4,7 @@
  * @description Guardián de Conexión para Stripe. Verifica variables de entorno
  *              y la conectividad con la API, generando un informe de diagnóstico.
  * @version 1.0.2 (Definitive API Version Sync)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import Stripe from "stripe";
 import { promises as fs } from "fs";

@@ -4,7 +4,7 @@
  * @description Script de inyección autónomo y de élite para CogniRead.
  *              Silencioso en el éxito, forense en el fracaso.
  * @version 21.0.0 (Sovereign Injector)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import * as fs from "fs/promises";
 import * as path from "path";

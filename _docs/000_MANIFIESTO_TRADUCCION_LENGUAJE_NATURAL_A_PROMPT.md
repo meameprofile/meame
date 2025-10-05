@@ -5,7 +5,7 @@
 - @description Manifiesto Canónico y SSoT para el Protocolo de Traducción de Lenguaje Natural (Verbal/Escrito) a Lenguaje de Prompt.
 -              Define el proceso mandatorio de procesamiento de instrucciones del usuario para una ejecución precisa por la IA.
 - @version 1.0.0
-  -@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  -@author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Canónico: Traducción de Lenguaje Natural a Lenguaje de Prompt

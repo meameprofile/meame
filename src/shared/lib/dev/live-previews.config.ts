@@ -6,7 +6,7 @@
  *              TS2352 utilizando una doble aserción explícita (`as unknown as Type`),
  *              alineando la seguridad de tipos estática con el contrato garantizado en tiempo de ejecución.
  * @version 9.3.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import type { ComponentType } from "react";
 import { logger } from "@/shared/lib/logging";

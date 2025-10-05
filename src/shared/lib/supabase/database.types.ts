@@ -3,8 +3,8 @@
  * @file database.types.ts
  * @description SSoT para los tipos generados desde el esquema de Supabase.
  *              ¡ESTE ARCHIVO ES GENERADO AUTOMÁTICAMENTE!
- * @version 9.0.0 (Definitive & Final Schema Restoration)
- * @author L.I.A. Legacy (Re-Forged)
+ * @version 12.0.0 (Holistic Schema Restoration & Elite Compliance)
+ * @author L.I.A. Legacy (Re-Forged & Verified)
  */
 
 export type Json =
@@ -62,45 +62,92 @@ export type Database = {
           },
         ];
       };
+      aura_insights: {
+        Row: {
+          id: string;
+          created_at: string;
+          workspace_id: string;
+          title: string;
+          description: string;
+          severity: "low" | "medium" | "high" | "critical";
+          recommendation: string;
+          related_data: Json | null;
+          is_resolved: boolean;
+          resolved_at: string | null;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string;
+          workspace_id: string;
+          title: string;
+          description: string;
+          severity: "low" | "medium" | "high" | "critical";
+          recommendation: string;
+          related_data?: Json | null;
+          is_resolved?: boolean;
+          resolved_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          created_at?: string;
+          workspace_id?: string;
+          title?: string;
+          description?: string;
+          severity?: "low" | "medium" | "high" | "critical";
+          recommendation?: string;
+          related_data?: Json | null;
+          is_resolved?: boolean;
+          resolved_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "aura_insights_workspace_id_fkey";
+            columns: ["workspace_id"];
+            isOneToOne: false;
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       bavi_assets: {
         Row: {
           asset_id: string;
-          created_at: string;
-          description: string | null;
-          metadata: Json | null;
-          provider: string;
-          prompt_id: string | null;
-          status: string;
-          tags: Json | null;
-          updated_at: string;
-          user_id: string;
           workspace_id: string;
+          user_id: string;
+          status: string;
+          provider: string;
+          description: string | null;
+          prompt_id: string | null;
+          tags: Json | null;
+          metadata: Json | null;
+          created_at: string;
+          updated_at: string;
         };
         Insert: {
           asset_id: string;
-          created_at?: string;
-          description?: string | null;
-          metadata?: Json | null;
-          provider?: string;
-          prompt_id?: string | null;
-          status?: string;
-          tags?: Json | null;
-          updated_at?: string;
-          user_id: string;
           workspace_id: string;
+          user_id: string;
+          status?: string;
+          provider?: string;
+          description?: string | null;
+          prompt_id?: string | null;
+          tags?: Json | null;
+          metadata?: Json | null;
+          created_at?: string;
+          updated_at?: string;
         };
         Update: {
           asset_id?: string;
-          created_at?: string;
-          description?: string | null;
-          metadata?: Json | null;
-          provider?: string;
-          prompt_id?: string | null;
-          status?: string;
-          tags?: Json | null;
-          updated_at?: string;
-          user_id?: string;
           workspace_id?: string;
+          user_id?: string;
+          status?: string;
+          provider?: string;
+          description?: string | null;
+          prompt_id?: string | null;
+          tags?: Json | null;
+          metadata?: Json | null;
+          created_at?: string;
+          updated_at?: string;
         };
         Relationships: [
           {
@@ -121,31 +168,31 @@ export type Database = {
       };
       bavi_variants: {
         Row: {
+          variant_id: string;
           asset_id: string;
-          created_at: string;
-          height: number;
           public_id: string;
           state: string;
-          variant_id: string;
           width: number;
+          height: number;
+          created_at: string;
         };
         Insert: {
+          variant_id: string;
           asset_id: string;
-          created_at?: string;
-          height: number;
           public_id: string;
           state: string;
-          variant_id: string;
           width: number;
+          height: number;
+          created_at?: string;
         };
         Update: {
+          variant_id?: string;
           asset_id?: string;
-          created_at?: string;
-          height?: number;
           public_id?: string;
           state?: string;
-          variant_id?: string;
           width?: number;
+          height?: number;
+          created_at?: string;
         };
         Relationships: [
           {
@@ -207,28 +254,28 @@ export type Database = {
       };
       campaign_drafts: {
         Row: {
-          created_at: string;
-          draft_data: Json;
           draft_id: string;
-          updated_at: string;
           user_id: string;
           workspace_id: string;
+          draft_data: Json;
+          created_at: string;
+          updated_at: string;
         };
         Insert: {
-          created_at?: string;
-          draft_data: Json;
           draft_id: string;
-          updated_at?: string;
           user_id: string;
           workspace_id: string;
+          draft_data: Json;
+          created_at?: string;
+          updated_at?: string;
         };
         Update: {
-          created_at?: string;
-          draft_data?: Json;
           draft_id?: string;
-          updated_at?: string;
           user_id?: string;
           workspace_id?: string;
+          draft_data?: Json;
+          created_at?: string;
+          updated_at?: string;
         };
         Relationships: [
           {
@@ -249,37 +296,37 @@ export type Database = {
       };
       campaign_templates: {
         Row: {
-          created_at: string;
-          description: string | null;
-          draft_data: Json;
           id: string;
-          name: string;
-          source_campaign_id: string;
-          updated_at: string;
-          user_id: string;
           workspace_id: string;
+          user_id: string;
+          name: string;
+          description: string | null;
+          source_campaign_id: string;
+          draft_data: Json;
+          created_at: string;
+          updated_at: string;
         };
         Insert: {
-          created_at?: string;
-          description?: string | null;
-          draft_data: Json;
           id?: string;
-          name: string;
-          source_campaign_id: string;
-          updated_at?: string;
-          user_id: string;
           workspace_id: string;
+          user_id: string;
+          name: string;
+          description?: string | null;
+          source_campaign_id: string;
+          draft_data: Json;
+          created_at?: string;
+          updated_at?: string;
         };
         Update: {
-          created_at?: string;
-          description?: string | null;
-          draft_data?: Json;
           id?: string;
-          name?: string;
-          source_campaign_id?: string;
-          updated_at?: string;
-          user_id?: string;
           workspace_id?: string;
+          user_id?: string;
+          name?: string;
+          description?: string | null;
+          source_campaign_id?: string;
+          draft_data?: Json;
+          created_at?: string;
+          updated_at?: string;
         };
         Relationships: [
           {
@@ -300,39 +347,39 @@ export type Database = {
       };
       cogniread_articles: {
         Row: {
-          available_languages: string[] | null;
-          bavi_hero_image_id: string | null;
-          content: Json;
-          created_at: string;
           id: string;
-          related_prompt_ids: string[] | null;
           status: string;
           study_dna: Json;
+          content: Json;
           tags: string[] | null;
+          available_languages: string[] | null;
+          bavi_hero_image_id: string | null;
+          related_prompt_ids: string[] | null;
+          created_at: string;
           updated_at: string;
         };
         Insert: {
-          available_languages?: string[] | null;
-          bavi_hero_image_id?: string | null;
-          content: Json;
-          created_at?: string;
           id: string;
-          related_prompt_ids?: string[] | null;
           status?: string;
           study_dna: Json;
+          content: Json;
           tags?: string[] | null;
+          available_languages?: string[] | null;
+          bavi_hero_image_id?: string | null;
+          related_prompt_ids?: string[] | null;
+          created_at?: string;
           updated_at?: string;
         };
         Update: {
-          available_languages?: string[] | null;
-          bavi_hero_image_id?: string | null;
-          content?: Json;
-          created_at?: string;
           id?: string;
-          related_prompt_ids?: string[] | null;
           status?: string;
           study_dna?: Json;
+          content?: Json;
           tags?: string[] | null;
+          available_languages?: string[] | null;
+          bavi_hero_image_id?: string | null;
+          related_prompt_ids?: string[] | null;
+          created_at?: string;
           updated_at?: string;
         };
         Relationships: [];
@@ -489,6 +536,9 @@ export type Database = {
           provider_avatar_url: string | null;
           created_at: string;
           updated_at: string;
+          last_sign_in_at: string | null;
+          last_sign_in_ip: string | null;
+          last_sign_in_location: string | null;
         };
         Insert: {
           id: string;
@@ -498,6 +548,9 @@ export type Database = {
           provider_avatar_url?: string | null;
           created_at?: string;
           updated_at?: string;
+          last_sign_in_at?: string | null;
+          last_sign_in_ip?: string | null;
+          last_sign_in_location?: string | null;
         };
         Update: {
           id?: string;
@@ -507,6 +560,9 @@ export type Database = {
           provider_avatar_url?: string | null;
           created_at?: string;
           updated_at?: string;
+          last_sign_in_at?: string | null;
+          last_sign_in_ip?: string | null;
+          last_sign_in_location?: string | null;
         };
         Relationships: [
           {
@@ -578,54 +634,6 @@ export type Database = {
           },
         ];
       };
-      theme_fragments: {
-        Row: {
-          id: string;
-          workspace_id: string;
-          user_id: string;
-          name: string;
-          type: "color" | "font" | "geometry";
-          data: Json;
-          created_at: string;
-          updated_at: string;
-        };
-        Insert: {
-          id?: string;
-          workspace_id: string;
-          user_id: string;
-          name: string;
-          type: "color" | "font" | "geometry";
-          data: Json;
-          created_at?: string;
-          updated_at?: string;
-        };
-        Update: {
-          id?: string;
-          workspace_id?: string;
-          user_id?: string;
-          name?: string;
-          type?: "color" | "font" | "geometry";
-          data?: Json;
-          created_at?: string;
-          updated_at?: string;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "theme_fragments_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "theme_fragments_workspace_id_fkey";
-            columns: ["workspace_id"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
-          },
-        ];
-      };
       theme_presets: {
         Row: {
           id: string;
@@ -670,6 +678,55 @@ export type Database = {
           },
           {
             foreignKeyName: "theme_presets_workspace_id_fkey";
+            columns: ["workspace_id"];
+            isOneToOne: false;
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      // --- TABLA FALTANTE AÑADIDA ---
+      theme_fragments: {
+        Row: {
+          id: string;
+          workspace_id: string;
+          user_id: string;
+          name: string;
+          type: "color" | "font" | "geometry";
+          data: Json;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          workspace_id: string;
+          user_id: string;
+          name: string;
+          type: "color" | "font" | "geometry";
+          data: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          workspace_id?: string;
+          user_id?: string;
+          name?: string;
+          type?: "color" | "font" | "geometry";
+          data?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "theme_fragments_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "theme_fragments_workspace_id_fkey";
             columns: ["workspace_id"];
             isOneToOne: false;
             referencedRelation: "workspaces";
@@ -722,6 +779,112 @@ export type Database = {
           },
         ];
       };
+      user_profile_summary: {
+        Row: {
+          id: string;
+          user_type: string;
+          total_sessions: number;
+          total_events: number;
+          total_conversions: number;
+          first_seen_at: string | null;
+          last_seen_at: string | null;
+          most_frequent_country: string | null;
+          last_campaign_id_seen: string | null;
+          last_variant_id_seen: string | null;
+          last_insight_generated_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          user_type: string;
+          total_sessions?: number;
+          total_events?: number;
+          total_conversions?: number;
+          first_seen_at?: string | null;
+          last_seen_at?: string | null;
+          most_frequent_country?: string | null;
+          last_campaign_id_seen?: string | null;
+          last_variant_id_seen?: string | null;
+          last_insight_generated_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_type?: string;
+          total_sessions?: number;
+          total_events?: number;
+          total_conversions?: number;
+          first_seen_at?: string | null;
+          last_seen_at?: string | null;
+          most_frequent_country?: string | null;
+          last_campaign_id_seen?: string | null;
+          last_variant_id_seen?: string | null;
+          last_insight_generated_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "user_profile_summary_id_fkey";
+            columns: ["id"];
+            isOneToOne: true;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      visitor_campaign_events: {
+        Row: {
+          event_id: string;
+          session_id: string;
+          campaign_id: string;
+          variant_id: string;
+          event_type: string;
+          payload: Json | null;
+          created_at: string;
+          referer: string | null;
+          utm_source: string | null;
+          utm_medium: string | null;
+          utm_campaign: string | null;
+        };
+        Insert: {
+          event_id?: string;
+          session_id: string;
+          campaign_id: string;
+          variant_id: string;
+          event_type: string;
+          payload?: Json | null;
+          created_at?: string;
+          referer?: string | null;
+          utm_source?: string | null;
+          utm_medium?: string | null;
+          utm_campaign?: string | null;
+        };
+        Update: {
+          event_id?: string;
+          session_id?: string;
+          campaign_id?: string;
+          variant_id?: string;
+          event_type?: string;
+          payload?: Json | null;
+          created_at?: string;
+          referer?: string | null;
+          utm_source?: string | null;
+          utm_medium?: string | null;
+          utm_campaign?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "visitor_campaign_events_session_id_fkey";
+            columns: ["session_id"];
+            isOneToOne: false;
+            referencedRelation: "visitor_sessions";
+            referencedColumns: ["session_id"];
+          },
+        ];
+      };
       visitor_sessions: {
         Row: {
           session_id: string;
@@ -770,44 +933,6 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "workspaces";
             referencedColumns: ["id"];
-          },
-        ];
-      };
-      visitor_campaign_events: {
-        Row: {
-          event_id: string;
-          session_id: string;
-          campaign_id: string;
-          variant_id: string;
-          event_type: string;
-          payload: Json | null;
-          created_at: string;
-        };
-        Insert: {
-          event_id?: string;
-          session_id: string;
-          campaign_id: string;
-          variant_id: string;
-          event_type: string;
-          payload?: Json | null;
-          created_at?: string;
-        };
-        Update: {
-          event_id?: string;
-          session_id?: string;
-          campaign_id?: string;
-          variant_id?: string;
-          event_type?: string;
-          payload?: Json | null;
-          created_at?: string;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "visitor_campaign_events_session_id_fkey";
-            columns: ["session_id"];
-            isOneToOne: false;
-            referencedRelation: "visitor_sessions";
-            referencedColumns: ["session_id"];
           },
         ];
       };
@@ -1005,4 +1130,3 @@ export type Enums<
   : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
     ? Database["public"]["Enums"][PublicEnumNameOrOptions]
     : never;
-// FIN DEL APARATO

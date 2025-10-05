@@ -3,14 +3,14 @@
  * @file connect.ts
  * @description Guardián de Conexión para Resend. Verifica variables de entorno
  *              y la conectividad con la API, generando un informe de diagnóstico.
- * @version 2.0.2 (Final Linter Compliance)
- * @author L.I.A. Legacy
+ * @version 2.0.3 (Holistic Integrity Restoration)
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { Resend } from "resend";
 import { promises as fs } from "fs";
 import * as path from "path";
 import { loadEnvironment } from "../_utils/env";
-import { scriptLogger } from "../_utils/logger";
+import { scriptLogger } from "../_utils/logger"; // <-- IMPORTACIÓN RESTAURADA
 import type { ScriptActionResult } from "../_utils/types";
 
 // --- SSoT de Contratos de Datos ---
@@ -36,9 +36,9 @@ interface Report {
 }
 
 async function diagnoseResendConnection(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace("diagnoseResendConnection_v2.0.2");
+  const traceId = scriptLogger.startTrace("diagnoseResendConnection_v2.0.3");
   scriptLogger.startGroup(
-    "✉️  Iniciando Guardián de Conexión a Resend (v2.0.2)..."
+    "✉️  Iniciando Guardián de Conexión a Resend (v2.0.3)..."
   );
 
   const reportDir = path.resolve(process.cwd(), "reports", "resend");

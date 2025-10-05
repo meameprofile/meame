@@ -6,7 +6,7 @@
 -              Define la estructura, reglas de negocio y protocolos de sincronización
 -              para garantizar la integridad de los datos de perfil.
 - @version 1.0.0
-  -@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  -@author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Canónico: Tabla `public.profiles`

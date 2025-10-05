@@ -6,7 +6,7 @@
  *              `useTransition` en lugar de `useActionState`, alineándose con
  *              la arquitectura soberana del proyecto y resolviendo errores de build.
  * @version 2.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -5,7 +5,7 @@
  *              ESTE ARCHIVO ES GENERADO AUTOMÁTICAMENTE. NO LO EDITE MANUALMENTE.
  *              Ejecute 'pnpm gen:icons' para actualizarlo.
  * @author Script de Generación Automática
- * @version 2025-09-29T13:31:49.373Z
+ * @version 2025-10-04T22:19:35.122Z
  */
 import { z } from "zod";
 

@@ -6,7 +6,7 @@
 -              Define la metodología inmutable que L.I.A. Legacy sigue al recibir
 -              un snapshot, asegurando una auditoría profunda y un alineamiento total.
 - @version 1.0.0
-  -@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  -@author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Canónico: Protocolo de Entrada de Snapshots (Prioridad Máxima)

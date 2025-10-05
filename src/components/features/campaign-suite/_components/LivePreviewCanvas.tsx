@@ -4,7 +4,7 @@
  * @description Orquestador de élite para el lienzo de previsualización (EDVI),
  *              ahora con cumplimiento estricto de las Reglas de los Hooks de React.
  * @version 22.0.0 (React Hooks Contract Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

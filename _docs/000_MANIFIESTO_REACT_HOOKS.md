@@ -6,7 +6,7 @@
 -              Define la filosofía, los patrones de diseño y los principios que
 -              rigen toda la lógica y gestión de estado del lado del cliente.
 - @version 1.0.0
-  _@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  _@author RaZ Podestá - MetaShark Tech
   _/
 
 # Manifiesto Canónico: La Arquitectura de Hooks - El Cerebro del Cliente

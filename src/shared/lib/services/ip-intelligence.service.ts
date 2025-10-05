@@ -5,7 +5,7 @@
  *              holística v4.1 captura geolocalización granular (incluyendo coordenadas),
  *              estado de proxy y es consciente del entorno de desarrollo.
  * @version 4.1.0 (Granular Geolocation & Proxy Detection)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { logger } from "../logging";

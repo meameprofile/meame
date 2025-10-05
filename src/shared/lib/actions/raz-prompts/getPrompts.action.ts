@@ -4,7 +4,7 @@
  * @description Server Action de élite que actúa como un Agregador de Datos,
  *              ahora completamente alineada con la Arquitectura de Contratos de Dominio Soberanos.
  * @version 13.0.0 (Sovereign Contract Aligned & Absolute Type Safety)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

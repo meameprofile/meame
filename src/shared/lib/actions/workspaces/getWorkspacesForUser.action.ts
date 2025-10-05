@@ -4,7 +4,7 @@
  * @description Server Action para obtener los workspaces de un usuario, ahora
  *              alineada con la Arquitectura de Contratos de Dominio Soberanos.
  * @version 2.0.0 (Sovereign Contract Aligned & Type-Safe)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

@@ -5,7 +5,7 @@
  *              que obtiene los fragmentos de tema y los delega a su cliente,
  *              blindado con un Guardián de Resiliencia y observabilidad de élite.
  * @version 9.0.0 (Resilient Data Provider & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

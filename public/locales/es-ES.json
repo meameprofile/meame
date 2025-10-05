@@ -182,6 +182,10 @@
   "devLoginPage": {
     "title": "Acceso al DCC",
     "subtitle": "Introduce tus credenciales para acceder a la suite de desarrollo.",
+    "contextualMessages": {
+      "protected_route_access": "Para acceder al recurso solicitado, primero debes iniciar sesión.",
+      "session_expired": "Tu sesión ha expirado. Por favor, inicia sesión de nuevo."
+    },
     "emailLabel": "Email",
     "emailPlaceholder": "tu@ejemplo.com",
     "passwordLabel": "Contraseña",
@@ -193,6 +197,8 @@
     "signUpLink": "Regístrate",
     "footerHtml": "Esta es una zona de acceso restringido para desarrolladores y administradores.",
     "backgroundImageAssetId": "i-bkg-login-abstract-01",
+    "showPasswordAriaLabel": "Mostrar contraseña",
+    "hidePasswordAriaLabel": "Ocultar contraseña",
     "forgotPassword": {
       "modalTitle": "Recupera tu Contraseña",
       "modalDescription": "Introduce tu dirección de email y te enviaremos un enlace para restablecer tu contraseña.",
@@ -205,10 +211,10 @@
     "lastSignIn": {
       "title": "Último Acceso:",
       "location": "desde {{location}}",
-      "ip": "IP: {{ip}}"
-    },
-    "showPasswordAriaLabel": "Mostrar contraseña",
-    "hidePasswordAriaLabel": "Ocultar contraseña"
+      "ip": "IP: {{ip}}",
+      "unknownLocation": "Ubicación desconocida",
+      "unknownIp": "IP desconocida"
+    }
   },
   "devTestPage": {
     "title": "Vitrina de Resiliencia de Componentes",
@@ -1015,19 +1021,21 @@
   },
   "baviUploader": {
     "dropzoneDefault": "Arrastra un archivo aquí, o haz clic para seleccionar.",
+    "finalFileNameLabel": "Nombre del Archivo Final",
+    "finalFileNamePlaceholder": "Ej. imagen-producto-principal.jpg",
     "metadataFormTitle": "Metadatos de Indexación BAVI",
     "assetIdLabel": "Asset ID (SNIA)",
     "assetIdPlaceholder": "i-categoría-descriptor-01",
-    "keywordsLabel": "Palabras Clave (para búsqueda, separadas por coma)",
-    "keywordsPlaceholder": "mujer, sonrisa, parque, cinemático...",
+    "keywordsLabel": "Palabras Clave (separadas por coma)",
+    "keywordsPlaceholder": "mujer, sonrisa, parque...",
     "altTextLabel": "Texto Alternativo (Accesibilidad)",
-    "altTextPlaceholder": "Una descripción clara y concisa de la imagen...",
+    "altTextPlaceholder": "Una descripción clara de la imagen...",
     "promptIdLabel": "ID de Prompt de Origen (Opcional)",
-    "promptIdPlaceholder": "Pega aquí el ID desde RaZPrompts...",
+    "promptIdPlaceholder": "Pega el ID desde RaZPrompts...",
     "submitButtonText": "Subir y Registrar en BAVI",
     "selectFromBaviButton": "Seleccionar de la BAVI",
     "assetSelectorModalTitle": "Seleccionar un Activo de la Biblioteca",
-    "assetSelectorModalDescription": "Busca, filtra y elige un activo existente para tu campaña."
+    "assetSelectorModalDescription": "Busca y elige un activo existente."
   },
   "promptCreator": {
     "titleLabel": "Título Descriptivo",

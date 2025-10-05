@@ -4,7 +4,7 @@
  * @description Hook soberano y agregador de estado, ahora con observabilidad de élite.
  *              Ensambla el borrador de campaña completo desde los stores atómicos.
  * @version 2.0.0 (Elite Observability & Type Safety)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

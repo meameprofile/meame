@@ -5,7 +5,7 @@
  *              Forjado con un guardián de resiliencia y observabilidad de ciclo de
  *              vida completo para una robustez y depuración de nivel de producción.
  * @version 7.0.0 (Elite Resilience & Full Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

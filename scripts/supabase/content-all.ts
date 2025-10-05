@@ -4,7 +4,7 @@
  * @description Guardián de Contenido Holístico para Supabase. Realiza un volcado completo
  *              de todas las tablas públicas y genera un informe de diagnóstico maestro.
  * @version 2.2.0 (Elite Observability & Linter Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

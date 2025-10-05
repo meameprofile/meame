@@ -2,14 +2,16 @@
 /**
  * @file draft.parts.schema.ts
  * @description SSoT para los schemas atómicos que componen un CampaignDraft.
- *              v2.0.0 (Type-Safe Overrides): Se erradica el uso de 'any' en
- *              themeOverrides, reemplazándolo con el AssembledThemeSchema para
- *              una seguridad de tipos absoluta.
- * @version 2.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v3.0.0 (i18n & Zod Contract Alignment): Alineado con la SSoT de i18n
+ *              y corregida la aserción de tipo para `z.enum`, resolviendo TS2769.
+ * @version 3.0.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
+// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v3.0.0] ---
+// Se corrige la ruta de importación para apuntar a la SSoT de configuración.
 import { supportedLocales } from "@/shared/lib/i18n/i18n.config";
+// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA v3.0.0] ---
 import { AssembledThemeSchema } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 
 export const HeaderConfigSchema = z.object({
@@ -29,13 +31,18 @@ export const ThemeConfigSchema = z.object({
   colorPreset: z.string().nullable(),
   fontPreset: z.string().nullable(),
   radiusPreset: z.string().nullable(),
-  // --- REFACTORIZACIÓN DE ÉLITE: 'any' ERRADICADO ---
   themeOverrides: AssembledThemeSchema.optional(),
 });
 
 const LocaleContentSchema = z.record(z.string(), z.unknown());
+
+// --- [INICIO DE CORRECCIÓN DE CONTRATO ZOD v3.0.0] ---
+// Se elimina la aserción de tipo `as [string, ...string[]]`. La constante `supportedLocales`
+// ahora tiene el tipo correcto `readonly [string, ...string[]]` inferido desde su SSoT.
 const SectionContentSchema = z.record(
   z.enum(supportedLocales),
   LocaleContentSchema.optional()
 );
+// --- [FIN DE CORRECCIÓN DE CONTRATO ZOD v3.0.0] ---
+
 export const ContentDataSchema = z.record(z.string(), SectionContentSchema);

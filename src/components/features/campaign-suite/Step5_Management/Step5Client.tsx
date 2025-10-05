@@ -4,7 +4,7 @@
  * @description Orquestador de cliente para el Paso 5, con observabilidad holística
  *              y cumplimiento de los 8 Pilares de Calidad.
  * @version 11.0.0 (Holistic Observability & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

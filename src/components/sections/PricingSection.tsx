@@ -3,7 +3,7 @@
  * @file PricingSection.tsx
  * @description Componente de sección para mostrar planes de precios con animación de élite.
  * @version 3.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

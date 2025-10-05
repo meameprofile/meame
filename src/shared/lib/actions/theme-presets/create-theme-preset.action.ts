@@ -3,7 +3,7 @@
  * @file create-theme-preset.action.ts
  * @description Server Action para crear un nuevo preset de tema.
  * @version 4.0.0 (Holistic Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 import { createServerClient } from "@/shared/lib/supabase/server";

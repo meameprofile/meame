@@ -6,7 +6,7 @@
  *              exportación con el nombre de función refactorizado `getAllArticlesAction`
  *              y se re-exportan todos los miembros para una integridad modular completa.
  * @version 3.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

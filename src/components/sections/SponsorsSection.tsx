@@ -3,7 +3,7 @@
  * @file SponsorsSection.tsx
  * @description Componente de sección para mostrar una cuadrícula de logos de patrocinadores.
  * @version 2.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

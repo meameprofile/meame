@@ -4,7 +4,7 @@
  * @description SSoT para el renderizado de campañas. Forjado con seguridad de
  *              tipos absoluta, erradicando el error de indexación por 'symbol'.
  * @version 12.0.0 (Absolute Type Safety & Indexing Fix)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

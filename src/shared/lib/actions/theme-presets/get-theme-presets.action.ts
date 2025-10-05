@@ -4,7 +4,7 @@
  * @description Server Action para obtener presets de tema, ahora con un Guardián
  *              de Resiliencia granular y observabilidad de élite.
  * @version 4.0.0 (Granular Resilience & Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

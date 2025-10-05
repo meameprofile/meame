@@ -1,0 +1,54 @@
+{
+  "it-IT": {
+    "campaignsTable": {
+      "headerVariant": "Variante",
+      "headerVisitors": "Visitatori",
+      "headerConversions": "Conversioni",
+      "headerBounceRate": "Frequenza di Rimbalzo",
+      "noResultsText": "Nessun risultato.",
+      "previousButton": "Precedente",
+      "nextButton": "Successivo",
+      "actionsLabel": "Azioni",
+      "viewDetailsLabel": "Vedi dettagli"
+    }
+  },
+  "es-ES": {
+    "campaignsTable": {
+      "headerVariant": "Variante",
+      "headerVisitors": "Visitantes",
+      "headerConversions": "Conversiones",
+      "headerBounceRate": "Tasa de Rebote",
+      "noResultsText": "No hay resultados.",
+      "previousButton": "Anterior",
+      "nextButton": "Siguiente",
+      "actionsLabel": "Acciones",
+      "viewDetailsLabel": "Ver detalles"
+    }
+  },
+  "en-US": {
+    "campaignsTable": {
+      "headerVariant": "Variant",
+      "headerVisitors": "Visitors",
+      "headerConversions": "Conversions",
+      "headerBounceRate": "Bounce Rate",
+      "noResultsText": "No results.",
+      "previousButton": "Previous",
+      "nextButton": "Next",
+      "actionsLabel": "Actions",
+      "viewDetailsLabel": "View details"
+    }
+  },
+  "pt-BR": {
+    "campaignsTable": {
+      "headerVariant": "Variante",
+      "headerVisitors": "Visitantes",
+      "headerConversions": "Conversões",
+      "headerBounceRate": "Taxa de Rejeição",
+      "noResultsText": "Nenhum resultado.",
+      "previousButton": "Anterior",
+      "nextButton": "Próximo",
+      "actionsLabel": "Ações",
+      "viewDetailsLabel": "Ver detalhes"
+    }
+  }
+}

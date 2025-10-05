@@ -5,7 +5,7 @@
  *              reconstruido para consumir el hook soberano `useAssembledDraft`
  *              y blindado con guardianes y observabilidad de élite.
  * @version 8.0.0 (Sovereign Draft Consumption & Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

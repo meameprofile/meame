@@ -3,7 +3,7 @@
  * @file sections.types.ts
  * @description SSoT para los contratos de tipos compartidos de los componentes de sección.
  * @version 2.0.0 (Elite & Generic Contract)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";

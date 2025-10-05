@@ -1,57 +1,38 @@
 // RUTA: src/shared/lib/schemas/cogniread/cogniread.contracts.ts
-/**
- * @file cogniread.contracts.ts
- * @description Contrato de Tipos Atómico y Soberano para el Dominio CogniRead.
- *              Esta es la SSoT para todas las formas de datos de la base de
- *              datos relacionadas con CogniRead y la comunidad.
- * @version 3.0.0 (Structural Integrity Restoration)
- * @author L.I.A. Legacy
- */
+import { z } from "zod";
 import type {
   Tables,
   TablesInsert,
   TablesUpdate,
 } from "@/shared/lib/supabase/database.types";
 
-// --- CONTRATOS PARA LA TABLA 'cogniread_articles' ---
-
-/**
- * @type CogniReadArticleRow
- * @description Representa la forma de una fila completa de la tabla `cogniread_articles`.
- *              Es el contrato para los datos en crudo que se leen de la base de datos.
- */
 export type CogniReadArticleRow = Tables<"cogniread_articles">;
-
-/**
- * @type CogniReadArticleInsert
- * @description Representa la forma de un objeto para crear un nuevo artículo.
- *              Es el contrato para las operaciones de `insert()`.
- */
 export type CogniReadArticleInsert = TablesInsert<"cogniread_articles">;
-
-/**
- * @type CogniReadArticleUpdate
- * @description Representa la forma de un objeto para actualizar un artículo existente.
- *              Es el contrato para las operaciones de `update()`.
- */
 export type CogniReadArticleUpdate = TablesUpdate<"cogniread_articles">;
+export const CogniReadArticleRowSchema = z.object({
+  id: z.string(),
+  status: z.string(),
+  study_dna: z.any(), // jsonb
+  content: z.any(), // jsonb
+  tags: z.array(z.string()).nullable(),
+  available_languages: z.array(z.string()).nullable(),
+  bavi_hero_image_id: z.string().nullable(),
+  related_prompt_ids: z.array(z.string()).nullable(),
+  created_at: z.string().datetime(),
+  updated_at: z.string().datetime(),
+});
 
-// --- CONTRATOS PARA LA TABLA 'community_comments' ---
-
-/**
- * @type CommunityCommentRow
- * @description Representa la forma de una fila completa de la tabla `community_comments`.
- */
 export type CommunityCommentRow = Tables<"community_comments">;
-
-/**
- * @type CommunityCommentInsert
- * @description Representa la forma de un objeto para crear un nuevo comentario.
- */
 export type CommunityCommentInsert = TablesInsert<"community_comments">;
-
-/**
- * @type CommunityCommentUpdate
- * @description Representa la forma de un objeto para actualizar un comentario existente.
- */
 export type CommunityCommentUpdate = TablesUpdate<"community_comments">;
+export const CommunityCommentRowSchema = z.object({
+  id: z.string().uuid(),
+  article_id: z.string(),
+  user_id: z.string().uuid(),
+  author_name: z.string(),
+  author_avatar_url: z.string().nullable(),
+  comment_text: z.string(),
+  parent_id: z.string().uuid().nullable(),
+  created_at: z.string().datetime(),
+  updated_at: z.string().datetime(),
+});

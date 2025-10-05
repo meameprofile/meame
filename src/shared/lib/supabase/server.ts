@@ -5,7 +5,7 @@
  *              Forjado con conciencia de tipos de la base de datos, observabilidad de élite
  *              y manejo de errores resiliente para contextos de solo lectura.
  * @version 6.0.0 (Database Type-Aware & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import {

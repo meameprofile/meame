@@ -5,7 +5,7 @@
  *              v3.0.0 (Architectural Purity): Se refactoriza para exportar
  *              funciones de acción y módulos de datos puros por separado.
  * @version 3.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 
 // Se agrupan las exportaciones de acciones en un objeto 'gemini' para

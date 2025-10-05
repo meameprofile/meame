@@ -4,7 +4,7 @@
  * @description Guardián de Esquema para la tabla `bavi_assets`. Realiza una
  *              auditoría estructural completa y genera un informe de diagnóstico.
  * @version 1.0.1 (Path Verification)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

@@ -4,7 +4,7 @@
  * @description Server Action para obtener todos los comentarios de un artículo,
  *              ahora completamente alineada con la Arquitectura de Contratos de Dominio Soberanos.
  * @version 4.0.0 (Sovereign Contract Aligned)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

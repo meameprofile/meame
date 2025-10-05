@@ -6,7 +6,7 @@
 -              Define su visión, arquitectura, modelos de datos, protocolos de identificación y etiquetado,
 -              tecnologías, integraciones con el ecosistema y proyecciones futuras.
 - @version 1.0.0
-  -@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  -@author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Consolidado: Biblioteca de Activos Visuales Integrada (BAVI)

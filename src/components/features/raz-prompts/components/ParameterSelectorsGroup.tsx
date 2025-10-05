@@ -4,7 +4,7 @@
  * @description Orquestador de presentación para los parámetros de la IA,
  *              con integridad de ruta restaurada y resiliencia de élite.
  * @version 6.0.0 (Architectural Integrity & Elite Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

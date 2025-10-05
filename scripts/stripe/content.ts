@@ -1,36 +1,29 @@
-// pnpm tsx scripts/run-with-env.ts scripts/stripe/content.ts
+// RUTA: scripts/stripe/content.ts
 /**
  * @file content.ts
  * @description Guardián de Contenido para Stripe. Realiza un censo de las
  *              transacciones (PaymentIntents) recientes y genera un informe.
- * @version 1.0.0 (Transactions Audit & AI-Consumable)
- * @author L.I.A. Legacy
+ * @version 2.1.0 (Definitive Return Contract)
+ * @author RaZ Podestá - MetaShark Tech
  */
 import Stripe from "stripe";
 import { promises as fs } from "fs";
-import * as path from "path";
+import path from "path";
 import { loadEnvironment } from "../_utils/env";
-import { scriptLogger } from "../_utils/logger";
+import { scriptLogger as logger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";
 
-// --- SSoT de Contratos de Datos ---
 interface Report {
-  reportMetadata: {
-    script: string;
-    purpose: string;
-    generatedAt: string;
-  };
+  reportMetadata: { script: string; purpose: string; generatedAt: string };
   instructionsForAI: string[];
   censusStatus: "SUCCESS" | "FAILED";
-  contentDetails: {
-    recent_payment_intents: unknown[];
-  };
+  contentDetails: { recent_payment_intents: Stripe.PaymentIntent[] };
   summary: string;
 }
 
 async function diagnoseStripeContent(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace("diagnoseStripeContent_v1.0");
-  scriptLogger.startGroup(
+  const traceId = logger.startTrace("diagnoseStripeContent_v2.1");
+  logger.startGroup(
     "📊 Realizando censo de contenido (Transacciones) en Stripe..."
   );
 
@@ -44,11 +37,9 @@ async function diagnoseStripeContent(): Promise<ScriptActionResult<string>> {
       generatedAt: new Date().toISOString(),
     },
     instructionsForAI: [
-      "Este es un informe de censo de contenido para Stripe, enfocado en las transacciones recientes.",
-      "Analiza 'contentDetails.recent_payment_intents' para ver la lista de los últimos 10 intentos de pago.",
-      "Verifica los campos 'id', 'amount', 'currency', y especialmente 'status' ('succeeded', 'requires_payment_method', 'failed').",
-      "Un alto número de estados 'failed' puede indicar un problema con la configuración de la pasarela de pago o reglas de fraude.",
-      "Confirma que los metadatos ('metadata'), como el 'cartId', se están guardando correctamente en las transacciones.",
+      "Este es un censo de contenido para Stripe, enfocado en transacciones recientes.",
+      "Analiza 'contentDetails.recent_payment_intents' para ver los últimos 10 intentos de pago.",
+      "Verifica 'status' ('succeeded', 'failed') y los metadatos ('metadata') para asegurar la integridad de los datos.",
     ],
     censusStatus: "FAILED",
     contentDetails: { recent_payment_intents: [] },
@@ -64,50 +55,55 @@ async function diagnoseStripeContent(): Promise<ScriptActionResult<string>> {
       );
 
     const stripe = new Stripe(stripeApiKey, { apiVersion: "2025-08-27.basil" });
-    scriptLogger.info("Consultando los últimos 10 PaymentIntents...");
+    logger.info("Consultando los últimos 10 PaymentIntents...");
 
     const paymentIntents = await stripe.paymentIntents.list({ limit: 10 });
-    scriptLogger.traceEvent(
-      traceId,
-      "Datos de transacciones obtenidos de la API."
-    );
 
-    report.censusStatus = "SUCCESS";
-    report.contentDetails.recent_payment_intents = paymentIntents.data;
-    report.summary = `Censo de contenido completado. Se encontraron ${paymentIntents.data.length} transacciones recientes.`;
+    if (paymentIntents.data.length === 0) {
+      report.censusStatus = "SUCCESS";
+      report.summary =
+        "Censo de Stripe completado. No se encontraron transacciones recientes.";
+      logger.warn(report.summary);
+    } else {
+      report.censusStatus = "SUCCESS";
+      report.contentDetails.recent_payment_intents = paymentIntents.data;
+      report.summary = `Censo de contenido completado. Se encontraron ${paymentIntents.data.length} transacciones recientes.`;
 
-    scriptLogger.info("--- Transacciones Recientes (PaymentIntents) ---");
-    console.table(
-      paymentIntents.data.map((p) => ({
-        ID: p.id,
-        Monto: `${p.amount / 100} ${p.currency.toUpperCase()}`,
-        Estado: p.status,
-        Creación: new Date(p.created * 1000).toLocaleString(),
-        "Cart ID": p.metadata.cartId || "N/A",
-      }))
-    );
-    scriptLogger.success(report.summary);
+      logger.info("--- Transacciones Recientes (PaymentIntents) ---");
+      console.table(
+        paymentIntents.data.map((p) => ({
+          ID: p.id,
+          Monto: `${(p.amount / 100).toFixed(2)} ${p.currency.toUpperCase()}`,
+          Estado: p.status,
+          Creación: new Date(p.created * 1000).toLocaleString(),
+          "Cart ID": p.metadata.cartId || "N/A",
+        }))
+      );
+      logger.success(report.summary);
+    }
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
     report.summary = `Censo de contenido fallido: ${errorMessage}`;
-    scriptLogger.error(report.summary, { traceId });
+    logger.error(report.summary, { traceId });
   } finally {
-    await fs.mkdir(reportDir, { recursive: true });
+    await fs.mkdir(reportDir, { recursive: true }).catch(() => {});
     await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
-    scriptLogger.info(
+    logger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
-    scriptLogger.endTrace(traceId);
+    logger.endGroup();
+    logger.endTrace(traceId);
     if (report.censusStatus === "FAILED") process.exit(1);
   }
 
+  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RETORNO] ---
   if (report.censusStatus === "SUCCESS") {
     return { success: true, data: report.summary };
   } else {
     return { success: false, error: report.summary };
   }
+  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RETORNO] ---
 }
 
 diagnoseStripeContent();

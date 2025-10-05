@@ -4,7 +4,7 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-pnpmfileChecksum: sha256-/yY/SKEaS2wUxe1kwz4w3L8D5865PFkLIiDNfHnEXeA=
+pnpmfileChecksum: sha256-1Fr7yjo+U7ZcHc/AoN3kz8okZVn2QmwJq0s8gM0lC0I=
 
 importers:
   .:
@@ -123,15 +123,6 @@ importers:
       "@tanstack/react-table":
         specifier: ^8.21.3
         version: 8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      "@types/js-cookie":
-        specifier: ^3.0.6
-        version: 3.0.6
-      "@types/object-hash":
-        specifier: ^3.0.6
-        version: 3.0.6
-      "@types/recharts":
-        specifier: ^2.0.1
-        version: 2.0.1(@types/react@18.3.25)(react-dom@18.3.1(react@18.3.1))(react-is@16.13.1)(react@18.3.1)(redux@5.0.1)
       "@uidotdev/usehooks":
         specifier: ^2.4.1
         version: 2.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -289,12 +280,18 @@ importers:
       "@types/archiver":
         specifier: ^6.0.3
         version: 6.0.3
+      "@types/js-cookie":
+        specifier: ^3.0.6
+        version: 3.0.6
       "@types/negotiator":
         specifier: ^0.6.4
         version: 0.6.4
       "@types/node":
         specifier: ^20
         version: 20.19.19
+      "@types/object-hash":
+        specifier: ^3.0.6
+        version: 3.0.6
       "@types/pluralize":
         specifier: ^0.0.33
         version: 0.0.33
@@ -2732,13 +2729,6 @@ packages:
       {
         integrity: sha512-raiuEPUYqXu+nvtY2Pe8s8FEmZ3x5yAH4VkLdihcPdalvsHltomrRC9BzuStrJ9yk06470hS0Crw0f1pXqD+Hg==,
       }
-
-  "@types/recharts@2.0.1":
-    resolution:
-      {
-        integrity: sha512-/cFs7oiafzByUwBSWA1IzE6FW+ppPwQAWsDTadSgVOwzveY9MESpyLHyyHY0SfPPKLW4+4qVNYHPXd0rFiC8vg==,
-      }
-    deprecated: This is a stub types definition. recharts provides its own type definitions, so you do not need this installed.
 
   "@types/stats.js@0.17.4":
     resolution:
@@ -9577,16 +9567,6 @@ snapshots:
   "@types/readdir-glob@1.1.5":
     dependencies:
       "@types/node": 20.19.19
-
-  "@types/recharts@2.0.1(@types/react@18.3.25)(react-dom@18.3.1(react@18.3.1))(react-is@16.13.1)(react@18.3.1)(redux@5.0.1)":
-    dependencies:
-      recharts: 3.2.1(@types/react@18.3.25)(react-dom@18.3.1(react@18.3.1))(react-is@16.13.1)(react@18.3.1)(redux@5.0.1)
-    transitivePeerDependencies:
-      - "@types/react"
-      - react
-      - react-dom
-      - react-is
-      - redux
 
   "@types/stats.js@0.17.4": {}
 

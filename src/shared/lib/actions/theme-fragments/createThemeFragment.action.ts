@@ -4,7 +4,7 @@
  * @description Server Action para crear un nuevo fragmento de tema, con un
  *              contrato de tipo de retorno holístico y soberano.
  * @version 5.0.0 (Holistic Type Contract)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

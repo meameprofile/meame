@@ -4,7 +4,7 @@
  * @description Guardián de Esquema para la tabla `bavi_variants`. Realiza una
  *              auditoría estructural completa, enfocándose en su relación con `bavi_assets`.
  * @version 1.0.0 (Granular & AI-Consumable Reports)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

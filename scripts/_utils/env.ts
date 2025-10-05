@@ -3,7 +3,7 @@
  * @file env.ts
  * @description SSoT para la carga y validación de variables de entorno para scripts.
  * @version 1.0.0 (Sovereign & Elite)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import chalk from "chalk";
 import * as dotenv from "dotenv";

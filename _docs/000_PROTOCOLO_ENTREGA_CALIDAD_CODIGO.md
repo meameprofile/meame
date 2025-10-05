@@ -7,7 +7,7 @@
 -              justificación y el cumplimiento de los 8 Pilares de Calidad para todas las entregas.
 -              Este protocolo es de máxima prioridad y permanente.
 - @version 1.0.0
-  -@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  -@author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Canónico: Protocolo de Entrega de Calidad de Código (Permanente y Prioridad Máxima)

@@ -4,7 +4,7 @@
  * @description Componente de presentación puro que ensambla la estructura visual
  *              del lienzo de previsualización, ahora con logging granular y resiliencia.
  * @version 3.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React, { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";

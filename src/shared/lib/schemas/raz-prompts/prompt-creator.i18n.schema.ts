@@ -4,7 +4,7 @@
  * @description SSoT para el contrato de datos del contenido i18n del
  *              componente PromptCreator.
  * @version 5.0.0 (Sovereign Type Export)
- *@author L.I.A. Legacy
+ *@author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 

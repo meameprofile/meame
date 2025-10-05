@@ -4,7 +4,7 @@
  * @description Guardián de Conexión para MongoDB. Verifica variables de entorno
  *              y la conectividad con el clúster, generando un informe de diagnóstico.
  * @version 1.0.0 (Elite & AI-Consumable)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { MongoClient } from "mongodb";
 import { promises as fs } from "fs";

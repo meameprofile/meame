@@ -3,7 +3,7 @@
  * @file DevSidebar.tsx
  * @description Barra lateral soberana para el Developer Command Center.
  * @version 1.0.0 (Forged & Elite)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

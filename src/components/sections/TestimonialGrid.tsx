@@ -3,7 +3,7 @@
  * @file TestimonialGrid.tsx
  * @description Sección de prueba social que muestra una cuadrícula de testimonios.
  * @version 5.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

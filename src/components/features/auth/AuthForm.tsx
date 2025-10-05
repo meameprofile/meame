@@ -7,7 +7,7 @@
  * @description Orquestador de UI para autenticación, con soporte para mensajes
  *              contextuales y redirección post-login.
  * @version 5.1.0 (Contextual Message Rendering & Prop Flow)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

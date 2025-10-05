@@ -6,7 +6,7 @@
 -              Define la metodología inmutable y el checklist paso a paso que L.I.A. Legacy sigue al recibir una traza de error,
 -              asegurando un diagnóstico profundo, una resolución definitiva y la resiliencia por diseño.
 - @version 1.0.0
-  _@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  _@author RaZ Podestá - MetaShark Tech
   _/
 
 # Manifiesto Canónico: Protocolo de Recepción y Análisis Proactivo de Trazas de Error

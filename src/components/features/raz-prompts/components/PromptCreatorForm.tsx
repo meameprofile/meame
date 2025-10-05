@@ -4,7 +4,7 @@
  * @description Orquestador de presentación de élite para el creador de prompts.
  *              Ensambla grupos de campos atómicos para una máxima granularidad.
  * @version 9.0.0 (Architectural Integrity & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

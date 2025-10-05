@@ -4,7 +4,7 @@
  * @description Componente "Client Core" para la página de checkout.
  *              Encapsula el Stripe Elements provider y el formulario de pago.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

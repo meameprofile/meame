@@ -1,18 +1,15 @@
-// Ruta correcta: src/components/layout/AppProviders.tsx
+// RUTA: src/components/layout/AppProviders.tsx
 /**
  * @file AppProviders.tsx
  * @description Orquestador de proveedores del lado del cliente.
- *              v6.0.0 (Sovereign Path Restoration): Se corrigen las rutas de
- *              importación de los hooks para alinearse con la SSoT de la
- *              arquitectura de archivos, resolviendo un error crítico de build.
- * @version 6.0.0
+ * @version 7.1.0 (ProducerLogic Filename Fix)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React, { useEffect } from "react";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import { useProducerLogic } from "@/shared/hooks/use-producer-logic";
+import { ProducerLogicWrapper } from "@/shared/hooks/producer-logic"; // <-- RUTA DE IMPORTACIÓN CORREGIDA
 import { useUserPreferences } from "@/shared/hooks/use-user-preferences";
 import { CookieConsentBanner } from "./CookieConsentBanner";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
@@ -30,16 +27,13 @@ export default function AppProviders({
   locale,
   cookieConsentContent,
 }: AppProvidersProps): React.ReactElement {
-  logger.info("[AppProviders] Inicializando proveedores de cliente (v6.0).");
-  useProducerLogic();
+  logger.info("[AppProviders] Inicializando proveedores de cliente (v7.1).");
+
   const { preferences, setPreference } = useUserPreferences();
   const safeLocale = locale || defaultLocale;
 
   useEffect(() => {
     if (safeLocale && preferences.locale !== safeLocale) {
-      logger.info(
-        `Sincronizando locale de URL ('${safeLocale}') con preferencias de usuario.`
-      );
       setPreference("locale", safeLocale);
     }
   }, [safeLocale, preferences.locale, setPreference]);
@@ -51,6 +45,7 @@ export default function AppProviders({
       enableSystem
       disableTransitionOnChange
     >
+      <ProducerLogicWrapper />
       {children}
       {cookieConsentContent && (
         <CookieConsentBanner

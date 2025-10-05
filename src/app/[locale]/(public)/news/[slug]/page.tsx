@@ -4,7 +4,7 @@
  * @description Página de artículo de blog, blindada con un Guardián de Resiliencia
  *              Verboso, observabilidad de élite e importaciones soberanas.
  * @version 5.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import { notFound } from "next/navigation";

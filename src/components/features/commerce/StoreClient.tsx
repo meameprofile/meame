@@ -4,7 +4,7 @@
  * @description Componente "cerebro" de cliente para la tienda, forjado con
  *              importaciones soberanas, resiliencia y observabilidad de élite.
  * @version 5.0.0 (Sovereign Imports & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

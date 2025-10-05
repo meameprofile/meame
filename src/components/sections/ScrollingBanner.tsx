@@ -3,7 +3,7 @@
  * @file ScrollingBanner.tsx
  * @description Componente de sección para una marquesina de anuncios desplazable.
  * @version 3.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

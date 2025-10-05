@@ -1,0 +1,30 @@
+{
+  "es-ES": {
+    "userIntelligencePage": {
+      "pageHeader": {
+        "title": "Temeo Assistant",
+        "subtitle": "Un perfil unificado de cada visitante y usuario registrado que ha interactuado con tus campañas."
+      },
+      "tableHeaders": {
+        "user": "Usuario / Visitante",
+        "userType": "Tipo",
+        "firstSeen": "Visto por Primera Vez",
+        "lastSeen": "Última Visita",
+        "totalEvents": "Eventos",
+        "actions": "Acciones"
+      },
+      "userTypes": {
+        "Registered": "Registrado",
+        "Anonymous": "Anónimo"
+      },
+      "viewProfileButton": "Ver Perfil",
+      "emptyStateTitle": "Aún no hay perfiles de usuario",
+      "emptyStateDescription": "A medida que los usuarios y visitantes interactúen con tus campañas, aparecerán aquí.",
+      "pagination": {
+        "previous": "Anterior",
+        "next": "Siguiente",
+        "pageInfo": "Página {{currentPage}} de {{totalPages}}"
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
  *              estructural completa de TODAS las tablas, funciones, triggers y
  *              políticas, y genera un único informe de diagnóstico maestro.
  * @version 1.0.0 (Holistic & AI-Consumable)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

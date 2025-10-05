@@ -4,7 +4,7 @@
  * @description Componente Contenedor de Cliente para el Paso 1, inyectado con
  *              observabilidad de ciclo de vida completo y MEA/UX.
  * @version 9.0.0 (Elite Observability & MEA/UX)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -6,7 +6,7 @@
  *              y fusión del schema para `oAuthButtons`, resolviendo un error crítico
  *              de tipo TS2739 en el flujo de autenticación.
  * @version 36.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 

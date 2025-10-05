@@ -4,7 +4,7 @@
  * @description Server Action de élite para actualizar un preset de tema, ahora
  *              consumiendo un "shaper" soberano para máxima cohesión y cero duplicación.
  * @version 2.0.0 (Sovereign Shaper Consumption)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

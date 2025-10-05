@@ -4,7 +4,7 @@
  * @description Server Action simbiótica para vincular un activo de BAVI a un genoma de prompt,
  *              ahora con seguridad de tipos absoluta mediante contratos de dominio soberanos.
  * @version 10.0.0 (Sovereign Contract Aligned)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

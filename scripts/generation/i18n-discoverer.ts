@@ -5,7 +5,7 @@
  *              en busca de archivos de contenido .i18n.json y los parsea de
  *              forma resiliente. Es arquitectónicamente puro.
  * @version 1.0.0 (Architecturally Pure)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import * as fs from "fs/promises";
 import * as path from "path";

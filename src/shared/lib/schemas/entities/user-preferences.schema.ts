@@ -1,17 +1,20 @@
-// RUTA: shared/lib/schemas/entities/user-preferences.schema.ts
+// RUTA: src/shared/lib/schemas/entities/user-preferences.schema.ts
 /**
  * @file user-preferences.schema.ts
- * @description SSoT para el contrato de datos de la entidad de Preferencias de Usuario.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description SSoT para el contrato de datos de la entidad UserPreferences.
+ * @version 2.0.0 (i18n & Zod Contract Alignment)
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
+// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v2.0.0] ---
 import { supportedLocales } from "@/shared/lib/i18n/i18n.config";
+// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA v2.0.0] ---
 
 export const UserPreferencesSchema = z.object({
   theme: z.enum(["light", "dark", "system"]).default("system").optional(),
+  // --- [INICIO DE CORRECCIÓN DE CONTRATO ZOD v2.0.0] ---
   locale: z.enum(supportedLocales).optional(),
-  // Futuras preferencias (ej. 'notifications', 'dashboardLayout') se añadirán aquí.
+  // --- [FIN DE CORRECCIÓN DE CONTRATO ZOD v2.0.0] ---
 });
 
 export type UserPreferences = z.infer<typeof UserPreferencesSchema>;

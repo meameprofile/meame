@@ -4,7 +4,7 @@
  * @description Guardián de Esquema para Stripe. Audita los productos y precios
  *              configurados en la cuenta y genera un informe de diagnóstico.
  * @version 1.0.2 (Holistic & Type-Safe Delivery)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import Stripe from "stripe";
 import { promises as fs } from "fs";

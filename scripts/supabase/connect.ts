@@ -4,7 +4,7 @@
  * @description Guardián de Conexión para Supabase. Verifica variables de entorno
  *              y la conectividad con la API, generando un informe de diagnóstico.
  * @version 2.0.1 (Type Inference Fix)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { createClient } from "@supabase/supabase-js";
 import { promises as fs } from "fs";

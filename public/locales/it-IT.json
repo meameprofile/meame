@@ -182,6 +182,10 @@
   "devLoginPage": {
     "title": "Accesso DCC",
     "subtitle": "Inserisci le tue credenziali per accedere alla suite di sviluppo.",
+    "contextualMessages": {
+      "protected_route_access": "Per accedere alla risorsa richiesta, devi prima effettuare l'accesso.",
+      "session_expired": "La tua sessione è scaduta. Per favore, accedi di nuovo."
+    },
     "emailLabel": "Email",
     "emailPlaceholder": "tu@esempio.com",
     "passwordLabel": "Password",
@@ -193,6 +197,8 @@
     "signUpLink": "Registrati",
     "footerHtml": "Questa è un'area di accesso riservata per sviluppatori e amministratori.",
     "backgroundImageAssetId": "i-bkg-login-abstract-01",
+    "showPasswordAriaLabel": "Mostra password",
+    "hidePasswordAriaLabel": "Nascondi password",
     "forgotPassword": {
       "modalTitle": "Recupera la tua Password",
       "modalDescription": "Inserisci il tuo indirizzo email e ti invieremo un link per reimpostare la tua password.",
@@ -205,10 +211,10 @@
     "lastSignIn": {
       "title": "Ultimo Accesso:",
       "location": "da {{location}}",
-      "ip": "IP: {{ip}}"
-    },
-    "showPasswordAriaLabel": "Mostra password",
-    "hidePasswordAriaLabel": "Nascondi password"
+      "ip": "IP: {{ip}}",
+      "unknownLocation": "Località sconosciuta",
+      "unknownIp": "IP sconosciuto"
+    }
   },
   "devTestPage": {
     "title": "Vetrina di Resilienza dei Componenti",
@@ -1015,19 +1021,21 @@
   },
   "baviUploader": {
     "dropzoneDefault": "Trascina un file qui, o clicca per selezionare.",
+    "finalFileNameLabel": "Nome del File Finale",
+    "finalFileNamePlaceholder": "Es. immagine-prodotto-principale.jpg",
     "metadataFormTitle": "Metadati di Indicizzazione BAVI",
     "assetIdLabel": "Asset ID (SNIA)",
     "assetIdPlaceholder": "i-categoria-descrittore-01",
-    "keywordsLabel": "Parole Chiave (per la ricerca, separate da virgola)",
-    "keywordsPlaceholder": "donna, sorriso, parco, cinematico...",
+    "keywordsLabel": "Parole Chiave (separate da virgola)",
+    "keywordsPlaceholder": "donna, sorriso, parco...",
     "altTextLabel": "Testo Alternativo (Accessibilità)",
-    "altTextPlaceholder": "Una descrizione chiara e concisa dell'immagine...",
+    "altTextPlaceholder": "Una descrizione chiara dell'immagine...",
     "promptIdLabel": "ID Prompt di Origine (Opzionale)",
-    "promptIdPlaceholder": "Incolla qui l'ID da RaZPrompts...",
+    "promptIdPlaceholder": "Incolla l'ID da RaZPrompts...",
     "submitButtonText": "Carica e Registra in BAVI",
     "selectFromBaviButton": "Seleziona dalla BAVI",
     "assetSelectorModalTitle": "Seleziona un Asset dalla Biblioteca",
-    "assetSelectorModalDescription": "Cerca, filtra e scegli un asset esistente per la tua campagna."
+    "assetSelectorModalDescription": "Cerca e scegli un asset esistente."
   },
   "promptCreator": {
     "titleLabel": "Titolo Descrittivo",

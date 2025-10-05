@@ -4,7 +4,7 @@
  * @description Guardián de Esquema para MongoDB. Infiere y reporta la
  *              estructura de cada colección basándose en un documento de muestra.
  * @version 1.0.0 (Inferential & AI-Consumable)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { MongoClient, type Document } from "mongodb";
 import { promises as fs } from "fs";

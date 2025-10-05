@@ -4,7 +4,7 @@
 - @file 004_MANIFIESTO_TABLA_RAZPROMPTS_ENTRIES.md
 - @description Manifiesto Canónico y SSoT para la tabla 'public.razprompts_entries'.
 - @version 2.0.0 (Secure & Automated)
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto de Tabla Soberana: `public.razprompts_entries` v2.0

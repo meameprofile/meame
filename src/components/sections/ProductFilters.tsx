@@ -3,7 +3,7 @@
  * @file ProductFilters.tsx
  * @description Barra lateral de filtros interactiva para la Tienda.
  * @version 5.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

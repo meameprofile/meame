@@ -1,9 +1,44 @@
-// .vscode/settings.json
+// RUTA: .vscode/settings.json
 {
-  "json.schemas": [
-    {
-      "fileMatch": ["/package.json"],
-      "url": "https://json.schemastore.org/pnpm-workspace.json"
-    }
-  ]
+  // =========================================================================
+  // PILAR 1: CONFIGURACIÓN SOBERANA DE DENO (Dominio: supabase/functions)
+  // Requisito: Extensión 'Deno' de 'denoland' instalada.
+  // =========================================================================
+  "deno.enable": true,
+  "deno.lint": true,
+  "deno.unstable": true,
+  "deno.importMap": "./supabase/functions/import_map.json",
+
+  // =========================================================================
+  // PILAR 2: PACTO DE NO AGRESIÓN ENTRE LINTERS
+  // Visión: Asegura que ESLint (para Next.js) y Deno Lint no se interfieran.
+  // =========================================================================
+  "eslint.workingDirectories": [
+    { "mode": "auto" },
+    // Instruye a ESLint para que ignore por completo el directorio de Deno.
+    { "pattern": "./supabase/*", "!cwd": true }
+  ],
+
+  // =========================================================================
+  // PILAR 3: CALIDAD DE CÓDIGO AUTOMATIZADA (DX DE ÉLITE)
+  // Visión: Asigna el formateador correcto al dominio correcto y lo automatiza.
+  // =========================================================================
+
+  // [SOLUCIÓN DEFINITIVA AL ERROR DE FORMATEADOR]
+  // Asigna el formateador de Deno SOLO a los archivos TypeScript (.ts).
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "editor.formatOnSave": true
+  },
+
+  // Asigna Prettier (nuestro estándar para el frontend) a los archivos .tsx.
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // Activa la corrección automática de ESLint al guardar.
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }

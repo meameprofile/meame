@@ -4,7 +4,7 @@
  * @description Script de siembra para poblar las tablas de la BAVI en Supabase,
  *              ahora con observabilidad y resiliencia de élite.
  * @version 8.0.0 (Great Refactoring Aligned)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

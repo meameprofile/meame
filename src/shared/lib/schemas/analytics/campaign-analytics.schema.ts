@@ -1,10 +1,6 @@
-// RUTA: shared/lib/schemas/analytics/campaign-analytics.schema.ts
-/**
- * @file campaign-analytics.schema.ts
- * @description SSoT para el contrato de datos de las analíticas de una campaña.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
- */
+// APARATO 1: CONTRATO DE DATOS DE ANALÍTICAS
+// RUTA: src/shared/lib/schemas/analytics/campaign-analytics.schema.ts
+
 import { z } from "zod";
 
 export const CampaignAnalyticsDataSchema = z.object({

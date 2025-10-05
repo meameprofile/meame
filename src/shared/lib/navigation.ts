@@ -2,17 +2,17 @@
 /**
  * @file navigation.ts
  * @description Manifiesto y SSoT para la definición de rutas del ecosistema.
- *              v14.0.0 (Template Property & Resilient Builder): Se añade una propiedad
- *              'template' a cada definición de ruta para desacoplar la estructura
- *              de la lógica de construcción, resolviendo un error de tipo en el middleware.
- * @version 14.0.0
- *@author RaZ Podestá - MetaShark Tech - Asistente de Refactorización
+ *              v15.2 (User Intelligence Route Restoration): Se restaura la ruta
+ *              faltante para el detalle de inteligencia de usuario, resolviendo
+ *              una desalineación crítica del contrato de enrutamiento.
+ * @version 15.2.0
+ * @author L.I.A. Legacy
  */
 import { defaultLocale, type Locale } from "./i18n/i18n.config";
 import { logger } from "./logging";
 
 logger.info(
-  "[Observabilidad][ARQUITECTURA-RAIZ] Cargando Manifiesto de Rutas v14.0..."
+  "[Observabilidad][ARQUITECTURA-RAIZ] Cargando Manifiesto de Rutas v15.2..."
 );
 
 export const RouteType = {
@@ -108,7 +108,7 @@ export const routes = {
     template: "/checkout",
     type: RouteType.Public,
   },
-  campaign: {
+  cByCampaignIdByVariantSlugBySeoKeywordSlug: {
     path: (
       params: RouteParams & {
         campaignId: string;
@@ -178,14 +178,14 @@ export const routes = {
     type: RouteType.DevOnly,
   },
   analytics: {
-    path: (params: RouteParams) => buildPath(params.locale, "/analytics"),
-    template: "/analytics",
+    path: (params: RouteParams) => buildPath(params.locale, "/dev/analytics"),
+    template: "/dev/analytics",
     type: RouteType.DevOnly,
   },
   analyticsByVariant: {
     path: (params: RouteParams & { variantId: string }) =>
-      buildPath(params.locale, "/analytics/[variantId]", params),
-    template: "/analytics/[variantId]",
+      buildPath(params.locale, "/dev/analytics/[variantId]", params),
+    template: "/dev/analytics/[variantId]",
     type: RouteType.DevOnly,
   },
   bavi: {
@@ -220,4 +220,18 @@ export const routes = {
     template: "/dev/nos3/[sessionId]",
     type: RouteType.DevOnly,
   },
+  userIntelligence: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/dev/user-intelligence"),
+    template: "/dev/user-intelligence",
+    type: RouteType.DevOnly,
+  },
+  // --- [INICIO DE RESTAURACIÓN DE RUTA SOBERANA v15.2.0] ---
+  userIntelligenceDetail: {
+    path: (params: RouteParams & { sessionId: string }) =>
+      buildPath(params.locale, "/dev/user-intelligence/[sessionId]", params),
+    template: "/dev/user-intelligence/[sessionId]",
+    type: RouteType.DevOnly,
+  },
+  // --- [FIN DE RESTAURACIÓN DE RUTA SOBERANA v15.2.0] ---
 } as const;

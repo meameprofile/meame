@@ -1,10 +1,5 @@
 // RUTA: src/shared/lib/schemas/theme-presets/theme-presets.contracts.ts
-/**
- * @file theme-presets.contracts.ts
- * @description Contrato de Tipos Atómico y Soberano para el Dominio de Presets de Tema.
- * @version 3.0.0 (Isomorphic Type Safety)
- * @author L.I.A. Legacy
- */
+import { z } from "zod";
 import type {
   Tables,
   TablesInsert,
@@ -14,3 +9,14 @@ import type {
 export type ThemePresetRow = Tables<"theme_presets">;
 export type ThemePresetInsert = TablesInsert<"theme_presets">;
 export type ThemePresetUpdate = TablesUpdate<"theme_presets">;
+export const ThemePresetRowSchema = z.object({
+  id: z.string().uuid(),
+  workspace_id: z.string().uuid(),
+  user_id: z.string().uuid(),
+  name: z.string(),
+  description: z.string().nullable(),
+  theme_config: z.any(), // jsonb
+  created_at: z.string().datetime(),
+  updated_at: z.string().datetime(),
+  type: z.enum(["color", "font", "geometry"]),
+});

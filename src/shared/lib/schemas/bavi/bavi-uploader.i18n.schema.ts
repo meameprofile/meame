@@ -3,7 +3,7 @@
  * @file bavi-uploader.i18n.schema.ts
  * @description SSoT para el contrato de datos del contenido i18n del AssetUploader.
  * @version 2.1.0 (Intelligent Ingestion Content)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 

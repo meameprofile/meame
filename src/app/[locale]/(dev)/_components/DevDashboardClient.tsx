@@ -4,7 +4,7 @@
  * @description Orquestador de cliente para el dashboard del DCC, ahora purificado
  *              y con observabilidad de ciclo de vida completo.
  * @version 3.0.0 (Purified & Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

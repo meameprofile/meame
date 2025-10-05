@@ -1,10 +1,12 @@
+// APARATO 1/2: ACCIÓN DE DESENCRIPTADO (NIVELACIÓN DEFINITIVA)
 // RUTA: src/shared/lib/actions/analytics/getDecryptedEventsForDebug.action.ts
+
 /**
  * @file getDecryptedEventsForDebug.action.ts
- * @description Server Action para obtener y desencriptar eventos de campaña,
- *              ahora alineada con la Arquitectura de Contratos de Dominio Soberanos.
- * @version 4.0.0 (Sovereign Contract Aligned & Elite Resilience)
- * @author L.I.A. Legacy
+ * @description Server Action para obtener y desencriptar eventos, con manejo asíncrono robusto,
+ *              observabilidad de élite y alineada con la Arquitectura de Contratos de Dominio Soberanos.
+ * @version 5.0.0 (Asynchronous Resilience & Elite Observability)
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 
@@ -28,7 +30,7 @@ interface GetDecryptedEventsInput {
 export async function getDecryptedEventsForDebugAction(
   input: GetDecryptedEventsInput
 ): Promise<ActionResult<{ events: AuraEventPayload[]; total: number }>> {
-  const traceId = logger.startTrace("getDecryptedEventsAction_v4.0");
+  const traceId = logger.startTrace("getDecryptedEventsAction_v5.0");
   logger.startGroup(`[Action] Obteniendo eventos desencriptados...`, traceId);
 
   const supabase = createServerClient();
@@ -38,6 +40,8 @@ export async function getDecryptedEventsForDebugAction(
 
   if (!user) {
     logger.warn("[Action] Intento no autorizado.", { traceId });
+    logger.endGroup();
+    logger.endTrace(traceId);
     return { success: false, error: "auth_required" };
   }
 
@@ -53,7 +57,6 @@ export async function getDecryptedEventsForDebugAction(
     if (sessionId) {
       queryBuilder = queryBuilder.eq("session_id", sessionId);
     }
-    // Podríamos añadir más filtros aquí en el futuro si es necesario.
 
     logger.traceEvent(traceId, "Query de Supabase construida.", { input });
 
@@ -62,15 +65,20 @@ export async function getDecryptedEventsForDebugAction(
       .range(offset, offset + limit - 1);
 
     if (error) throw new Error(error.message);
-    if (!data) return { success: true, data: { events: [], total: 0 } };
-
+    if (!data) {
+      logger.traceEvent(
+        traceId,
+        "No se encontraron eventos en la base de datos."
+      );
+      return { success: true, data: { events: [], total: 0 } };
+    }
     logger.traceEvent(
       traceId,
-      `Se obtuvieron ${data.length} eventos de la DB.`
+      `Se obtuvieron ${data.length} eventos encriptados de la DB.`
     );
 
-    const decryptedEvents: AuraEventPayload[] = data.map(
-      (event: VisitorCampaignEventRow) => {
+    const decryptedEventsPromises = data.map(
+      async (event: VisitorCampaignEventRow): Promise<AuraEventPayload> => {
         const baseEventData = {
           eventType: event.event_type,
           sessionId: event.session_id,
@@ -81,9 +89,11 @@ export async function getDecryptedEventsForDebugAction(
 
         try {
           if (!event.payload) {
-            throw new Error("Payload nulo o indefinido.");
+            throw new Error("Payload nulo o indefinido en la base de datos.");
           }
-          const decryptedPayloadString = decryptServerData(
+
+          // SOLUCIÓN DEFINITIVA: Se utiliza 'await' para manejar la posible Promesa
+          const decryptedPayloadString = await decryptServerData(
             event.payload as string
           );
           const decryptedPayloadObject = JSON.parse(decryptedPayloadString);
@@ -121,9 +131,11 @@ export async function getDecryptedEventsForDebugAction(
       }
     );
 
-    logger.traceEvent(
-      traceId,
-      `Se procesaron ${decryptedEvents.length} eventos.`
+    const decryptedEvents = await Promise.all(decryptedEventsPromises);
+
+    logger.success(
+      `[Action] Se procesaron y desencriptaron ${decryptedEvents.length} eventos.`,
+      { traceId }
     );
 
     return {

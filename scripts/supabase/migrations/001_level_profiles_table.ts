@@ -7,7 +7,7 @@
  * @description Script generador de SQL para alinear la tabla `profiles`
  *              con su manifiesto soberano v4.0.
  * @version 2.0.0 (SQL Generator)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { scriptLogger } from "../../_utils/logger";
 

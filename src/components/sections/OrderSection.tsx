@@ -5,7 +5,7 @@
  *              v9.0.0 (Architectural Alignment & Elite Compliance): Refactorizado
  *              para consumir la SSoT canónica de `OrderForm` y cumplir con los 8 Pilares.
  * @version 9.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

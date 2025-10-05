@@ -4,7 +4,7 @@
  * @description Componente Contenedor de Cliente para el Paso 2 (Layout), inyectado
  *              con observabilidad de ciclo de vida completo y MEA/UX.
  * @version 7.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

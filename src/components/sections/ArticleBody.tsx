@@ -6,7 +6,7 @@
  *              cumplir con la arquitectura de "Modo Enfoque" y con un guardián de
  *              resiliencia de contrato reforzado.
  * @version 3.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

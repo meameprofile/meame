@@ -3,7 +3,7 @@
  * @file VariantInputField.tsx
  * @description Componente atómico para un campo <Input>, con integridad de ruta restaurada.
  * @version 3.0.0 (Architectural Integrity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -8,7 +8,7 @@
  *              y forjado con observabilidad y resiliencia de élite para prevenir
  *              bucles de redirección.
  * @version 11.2.0 (Elite Code Hygiene)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { NextResponse } from "next/server";

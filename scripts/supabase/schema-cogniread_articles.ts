@@ -4,7 +4,7 @@
  * @description Guardián de Esquema para la tabla `cogniread_articles`. Realiza una
  *              auditoría estructural completa y genera un informe de diagnóstico.
  * @version 1.0.1 (Type-Safe & Linter-Compliant)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

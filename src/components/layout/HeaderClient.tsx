@@ -1,8 +1,10 @@
 // RUTA: src/components/layout/HeaderClient.tsx
 /**
  * @file HeaderClient.tsx
- * @description Componente de Cliente Soberano para cabeceras, ahora con seguridad de tipos absoluta.
- * @version 46.0.0 (Absolute Type Safety)
+ * @description Componente de Cliente Soberano para cabeceras, ahora con seguridad
+ *              de tipos absoluta, un guardián de resiliencia holístico, observabilidad
+ *              completa y cumplimiento estricto de las Reglas de los Hooks de React.
+ * @version 48.1.0 (Hooks Contract Restoration)
  * @author L.I.A. Legacy
  */
 "use client";
@@ -14,7 +16,7 @@ import { usePathname } from "next/navigation";
 import { type User } from "@supabase/supabase-js";
 import { motion, type Variants } from "framer-motion";
 import { logger } from "@/shared/lib/logging";
-import { type Locale, supportedLocales } from "@/shared/lib/i18n/i18n.config";
+import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
 import { Container, Button } from "@/components/ui";
@@ -47,7 +49,6 @@ export interface HeaderClientProps {
     devLoginPage: NonNullable<Dictionary["devLoginPage"]>;
   };
   currentLocale: Locale;
-  supportedLocales: readonly string[];
   centerComponent?: React.ReactNode;
   rightComponent?: React.ReactNode;
   initialCart: CartItem[];
@@ -72,27 +73,64 @@ export default function HeaderClient({
   rightComponent,
   initialCart,
 }: HeaderClientProps): React.ReactElement | null {
+  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE HOOKS v48.1.0] ---
+  // Todas las llamadas a Hooks se agrupan en el nivel superior, antes de cualquier retorno condicional.
   const traceId = useMemo(
-    () => logger.startTrace("HeaderClient_Lifecycle_v46.0"),
+    () => logger.startTrace("HeaderClient_Lifecycle_v48.1"),
     []
   );
   const pathname = usePathname();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { initialize: initializeCart } = useCartStore();
 
+  const handleCartOpen = useCallback(() => {
+    logger.traceEvent(traceId, "Acción de usuario: Abrir panel del carrito.");
+    setIsCartOpen(true);
+  }, [traceId]);
+
   useEffect(() => {
-    logger.info("[HeaderClient] Componente montado y listo.", { traceId });
+    logger.info("[HeaderClient] Componente montado y listo (v48.1).", {
+      traceId,
+    });
     if (!useCartStore.getState().isInitialized) {
       initializeCart(initialCart);
       logger.traceEvent(traceId, "Estado del carrito inicializado.");
     }
     return () => logger.endTrace(traceId);
   }, [traceId, initializeCart, initialCart]);
+  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE HOOKS v48.1.0] ---
 
-  const handleCartOpen = useCallback(() => {
-    logger.traceEvent(traceId, "Acción de usuario: Abrir panel del carrito.");
-    setIsCartOpen(true);
-  }, [traceId]);
+  // El Guardián de Resiliencia se ejecuta DESPUÉS de todas las llamadas a Hooks.
+  if (
+    !content ||
+    !content.header ||
+    !content.languageSwitcher ||
+    !content.cart ||
+    !content.userNav ||
+    !content.notificationBell ||
+    !content.devLoginPage
+  ) {
+    const errorMsg =
+      "Contrato de UI violado: La prop 'content' para HeaderClient es nula, indefinida o incompleta.";
+    logger.error(`[Guardián] ${errorMsg}`, {
+      traceId,
+      receivedContent: content,
+    });
+
+    if (process.env.NODE_ENV === "development") {
+      return (
+        <header className="py-3 border-b border-destructive">
+          <Container>
+            <DeveloperErrorDisplay
+              context="HeaderClient"
+              errorMessage={errorMsg}
+            />
+          </Container>
+        </header>
+      );
+    }
+    return null;
+  }
 
   const {
     header,
@@ -102,33 +140,6 @@ export default function HeaderClient({
     notificationBell,
     devLoginPage,
   } = content;
-
-  if (
-    !header ||
-    !languageSwitcher ||
-    !cart ||
-    !userNav ||
-    !notificationBell ||
-    !devLoginPage
-  ) {
-    const errorMsg =
-      "Contrato de UI violado: La prop 'content' para HeaderClient está incompleta.";
-    logger.error(`[Guardián] ${errorMsg}`, {
-      traceId,
-      receivedContent: content,
-    });
-    return process.env.NODE_ENV === "development" ? (
-      <header className="py-3 border-b border-destructive">
-        <Container>
-          <DeveloperErrorDisplay
-            context="HeaderClient"
-            errorMessage={errorMsg}
-          />
-        </Container>
-      </header>
-    ) : null;
-  }
-
   const isPublicView = !centerComponent;
 
   return (
@@ -155,9 +166,7 @@ export default function HeaderClient({
             </Link>
           </div>
           <div className="flex-grow w-1/3 flex items-center justify-center">
-            {centerComponent ? (
-              centerComponent
-            ) : (
+            {isPublicView && (
               <NavigationMenu>
                 <NavigationMenuList>
                   {header.navLinks.map((link: NavLink) => (
@@ -179,12 +188,12 @@ export default function HeaderClient({
                 </NavigationMenuList>
               </NavigationMenu>
             )}
+            {centerComponent}
           </div>
           <div className="flex items-center justify-end gap-2 sm:gap-4 flex-shrink-0 w-1/3">
             {rightComponent}
             <LanguageSwitcher
               currentLocale={currentLocale}
-              supportedLocales={supportedLocales}
               content={languageSwitcher}
             />
 

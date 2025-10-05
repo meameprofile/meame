@@ -5,7 +5,7 @@
  *              v4.0.0 (UI Forging Blueprint): Inyectado con metadatos de UI (`describe`)
  *              para actuar como un plano de forja para el motor de renderizado de formularios.
  * @version 4.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { logger } from "@/shared/lib/logging";

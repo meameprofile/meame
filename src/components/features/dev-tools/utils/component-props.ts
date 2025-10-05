@@ -4,7 +4,7 @@
  * @description Utilidad para generar props de fallback robustas y estructuradas para
  *              componentes de desarrollo dentro del Developer Command Center (DCC).
  * @version 2.3.0 (Holistic Hygiene & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";

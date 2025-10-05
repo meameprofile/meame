@@ -3,7 +3,7 @@
  * @file dev-login-page.schema.ts
  * @description SSoT para el contrato de datos i18n del dominio de login del DCC.
  * @version 6.1.0 (Fallback Content Contract)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 

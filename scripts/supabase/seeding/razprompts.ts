@@ -3,7 +3,7 @@
  * @file razprompts.ts
  * @description Script de siembra soberano para RaZPrompts, con observabilidad de élite.
  * @version 9.0.0 (Great Refactoring Aligned)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import path from "path";

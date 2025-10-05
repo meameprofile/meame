@@ -7,7 +7,7 @@
  * @description Componente de cliente para la selección de idioma, con persistencia
  *              de preferencia y navegación contextual.
  * @version 3.1.0 (Build Integrity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

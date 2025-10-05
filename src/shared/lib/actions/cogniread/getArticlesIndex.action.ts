@@ -4,7 +4,7 @@
  * @description Server Action de élite para obtener un índice de versiones,
  *              ahora completamente alineada con la Arquitectura de Contratos de Dominio Soberanos.
  * @version 4.0.0 (Sovereign Contract Aligned)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

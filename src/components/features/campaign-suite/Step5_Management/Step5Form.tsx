@@ -4,7 +4,7 @@
  * @description Aparato de presentación puro para la maquetación del Paso 5,
  *              inyectado con MEA/UX y observabilidad de élite.
  * @version 17.0.0 (Elite MEA/UX & Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

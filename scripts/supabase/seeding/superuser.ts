@@ -4,7 +4,7 @@
  * @description Script de seed para crear un superusuario de desarrollo en Supabase,
  *              ahora con observabilidad y resiliencia de élite.
  * @version 6.0.0 (Great Refactoring Aligned)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { createScriptClient } from "../../_utils/supabaseClient";
 import { scriptLogger as logger } from "../../_utils/logger";

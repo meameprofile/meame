@@ -5,7 +5,7 @@
  *              seguridad de tipos absoluta, resiliencia y cumplimiento estricto
  *              de las Reglas de los Hooks.
  * @version 11.0.0 (Absolute Type Safety & `any` Eradication)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

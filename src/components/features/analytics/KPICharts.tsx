@@ -1,7 +1,7 @@
 // RUTA: src/components/features/analytics/KPICharts.tsx
 /**
  * @file KPICharts.tsx
- * @description Componente para la visualización de KPIs de analíticas.
+ * @description Componente de presentación para los gráficos de KPI de Aura.
  * @version 1.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
@@ -20,12 +20,14 @@ import {
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
+import { logger } from "@/shared/lib/logging";
 
 interface KPIChartsProps {
   data: CampaignAnalyticsData[];
 }
 
 export function KPICharts({ data }: KPIChartsProps): React.ReactElement {
+  logger.trace("[KPICharts] Renderizando gráficos de analíticas.");
   const trafficSourceData = data.flatMap((d) => d.trafficSources);
 
   return (
@@ -39,26 +41,33 @@ export function KPICharts({ data }: KPIChartsProps): React.ReactElement {
             <LineChart data={data[0]?.visitorsOverTime}>
               <XAxis
                 dataKey="date"
-                stroke="#888888"
+                stroke="hsl(var(--muted-foreground))"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
               />
               <YAxis
-                stroke="#888888"
+                stroke="hsl(var(--muted-foreground))"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                tickFormatter={(value) => `${value}`}
               />
-              <Tooltip />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "hsl(var(--background))",
+                  borderColor: "hsl(var(--border))",
+                }}
+              />
               {data.map((d, index) => (
                 <Line
                   key={d.variantId}
                   type="monotone"
                   dataKey="visitors"
                   data={d.visitorsOverTime}
-                  stroke={index === 0 ? "#8884d8" : "#82ca9d"}
+                  stroke={
+                    index === 0 ? "hsl(var(--primary))" : "hsl(var(--accent))"
+                  }
+                  strokeWidth={2}
                   name={d.variantName}
                 />
               ))}
@@ -75,19 +84,29 @@ export function KPICharts({ data }: KPIChartsProps): React.ReactElement {
             <BarChart data={trafficSourceData}>
               <XAxis
                 dataKey="source"
-                stroke="#888888"
+                stroke="hsl(var(--muted-foreground))"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
               />
               <YAxis
-                stroke="#888888"
+                stroke="hsl(var(--muted-foreground))"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
               />
-              <Tooltip />
-              <Bar dataKey="visitors" fill="#adfa1d" radius={[4, 4, 0, 0]} />
+              <Tooltip
+                cursor={{ fill: "hsla(var(--muted), 0.5)" }}
+                contentStyle={{
+                  backgroundColor: "hsl(var(--background))",
+                  borderColor: "hsl(var(--border))",
+                }}
+              />
+              <Bar
+                dataKey="visitors"
+                fill="hsl(var(--primary))"
+                radius={[4, 4, 0, 0]}
+              />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>

@@ -7,7 +7,7 @@
 -              un logging granularmente verboso, mensajes claros y uso de traceId,
 -              asegurando la resiliencia y el Guardian de Resiliencia en cada refactorización.
 - @version 1.0.0
-  _@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  _@author RaZ Podestá - MetaShark Tech
   _/
 
 # Manifiesto Canónico: Protocolo de Observabilidad en Refactorizaciones (Granularidad Extrema)

@@ -3,7 +3,7 @@
  * @file AssetUploader.tsx
  * @description Orquestador "smart" para la subida de activos.
  * @version 9.0.0 (Holistic Data Flow Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

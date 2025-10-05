@@ -3,7 +3,7 @@
  * @file SocialProofLogosClient.tsx
  * @description Componente "Client Core" para la sección de prueba social.
  * @version 3.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

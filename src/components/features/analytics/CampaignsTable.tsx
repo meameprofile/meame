@@ -1,8 +1,8 @@
 // RUTA: src/components/features/analytics/CampaignsTable.tsx
 /**
  * @file CampaignsTable.tsx
- * @description Tabla de datos interactiva para mostrar las analíticas de campaña.
- * @version 2.0.0 (Client Component with Tanstack Table)
+ * @description Orquestador de UI para la tabla de datos de campañas.
+ * @version 1.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -25,21 +25,20 @@ import {
 import { Button } from "@/components/ui/Button";
 import { getAnalyticsColumns } from "./CampaignsTable.columns";
 import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
+import { logger } from "@/shared/lib/logging";
+import type { z } from "zod";
+import type { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
+
+type Content = z.infer<typeof CampaignsTableContentSchema>;
 
 interface CampaignsTableProps {
   data: CampaignAnalyticsData[];
+  content: Content;
 }
 
-export function CampaignsTable({ data }: CampaignsTableProps) {
-  const columns = React.useMemo(
-    () =>
-      getAnalyticsColumns({
-        actionsLabel: "Acciones",
-        viewDetailsLabel: "Ver detalles",
-      }),
-    []
-  );
-
+export function CampaignsTable({ data, content }: CampaignsTableProps) {
+  logger.info("[CampaignsTable] Renderizando tabla de campañas.");
+  const columns = React.useMemo(() => getAnalyticsColumns(content), [content]);
   const table = useReactTable({
     data,
     columns,
@@ -85,7 +84,7 @@ export function CampaignsTable({ data }: CampaignsTableProps) {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No hay resultados.
+                  {content.noResultsText}
                 </TableCell>
               </TableRow>
             )}
@@ -99,7 +98,7 @@ export function CampaignsTable({ data }: CampaignsTableProps) {
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          Anterior
+          {content.previousButton}
         </Button>
         <Button
           variant="outline"
@@ -107,7 +106,7 @@ export function CampaignsTable({ data }: CampaignsTableProps) {
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          Siguiente
+          {content.nextButton}
         </Button>
       </div>
     </div>

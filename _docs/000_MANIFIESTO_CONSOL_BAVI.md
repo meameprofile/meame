@@ -8,7 +8,7 @@ ACTUALIZACION DE MANIFIESTO
 -              Define su visión, arquitectura de datos resiliente, protocolos de identificación y etiquetado,
 -              y el plan de acción para garantizar la integridad referencial en todo el ecosistema.
 - @version 2.0.0
--@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+-@author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Consolidado: Biblioteca de Activos Visuales Integrada (BAVI)

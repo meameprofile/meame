@@ -3,7 +3,7 @@
  * @file campaign.data.loader.ts
  * @description Aparato Atómico: Cargador de Activos JSON, con resiliencia mejorada.
  * @version 6.0.0 (Granular Error Handling & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { promises as fs } from "fs";

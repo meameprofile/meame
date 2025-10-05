@@ -5,7 +5,7 @@
  * @file 002_create_bavi_tables.ts
  * @description Script generador de SQL para la creación soberana de las tablas del dominio BAVI.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { scriptLogger } from "../../_utils/logger";
 

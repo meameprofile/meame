@@ -4,7 +4,7 @@
  * @description Cuadrícula de noticias, ahora blindada con guardianes de resiliencia
  *              y alineada con el contrato de sección soberano.
  * @version 9.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

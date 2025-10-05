@@ -4,7 +4,7 @@
  * @description Guardián de Integridad Total Resiliente. Orquesta la ejecución de
  *              todos los scripts de diagnóstico y no se detiene ante el primer fallo.
  * @version 4.0.0 (Holistic & Resilient Orchestrator)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { exec } from "child_process";
 import chalk from "chalk";

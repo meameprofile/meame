@@ -3,7 +3,7 @@
  * @file deleteThemePreset.action.ts
  * @description Server Action de élite para eliminar un preset de tema.
  * @version 1.0.0
- * @author L.I.A. Legacy (Creative Twin)
+ * @author RaZ Podestá - MetaShark Tech (Creative Twin)
  */
 "use server";
 

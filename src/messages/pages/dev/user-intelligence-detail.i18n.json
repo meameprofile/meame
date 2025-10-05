@@ -1,0 +1,30 @@
+{
+  "es-ES": {
+    "userIntelligenceDetailPage": {
+      "pageHeader": {
+        "title": "Perfil de Usuario",
+        "subtitle": "Vista de 360 grados del viaje de un visitante, desde el primer contacto hasta la conversión."
+      },
+      "summaryCardTitle": "Resumen del Perfil",
+      "sessionCardTitle": "Metadatos de la Sesión",
+      "activityCardTitle": "Historial de Actividad",
+      "nos3Button": "Ver Grabación de Sesión (Nos3)",
+      "labels": {
+        "userId": "ID de Usuario",
+        "fingerprintId": "ID de Huella Digital",
+        "ipAddress": "Dirección IP",
+        "country": "País",
+        "city": "Ciudad",
+        "browser": "Navegador",
+        "os": "Sistema Operativo",
+        "device": "Dispositivo"
+      },
+      "eventTableHeaders": {
+        "event": "Evento",
+        "campaign": "Campaña / Variante",
+        "timestamp": "Fecha y Hora",
+        "details": "Detalles (Payload)"
+      }
+    }
+  }
+}

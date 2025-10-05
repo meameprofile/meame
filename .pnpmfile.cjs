@@ -7,7 +7,7 @@
  *              comportamientos de dependencias. Este archivo es el guardián
  *              de la seguridad y la integridad del proceso de instalación.
  * @version 1.1.0 (Build Integrity Enforcement)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 
 /**

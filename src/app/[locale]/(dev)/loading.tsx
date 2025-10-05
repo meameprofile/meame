@@ -3,7 +3,7 @@
  * @file loading.tsx
  * @description Indicador de carga de élite para el layout del DCC.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import { DotsWave } from "@/components/ui/Loaders";

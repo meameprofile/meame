@@ -2,24 +2,25 @@
 /**
  * @file select-language.schema.ts
  * @description SSoT para el contrato de datos del contenido i18n de la página de selección de idioma.
- * @version 3.0.0 (Sovereign Export Alignment)
+ * @version 4.0.0 (i18n & Zod Contract Alignment)
  * @author L.I.A. Legacy
  */
 import { z } from "zod";
+// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v4.0.0] ---
 import { supportedLocales } from "@/shared/lib/i18n/i18n.config";
+// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA v4.0.0] ---
 
 export const SelectLanguagePageContentSchema = z.object({
   title: z.string(),
   subtitle: z.string(),
+  // --- [INICIO DE CORRECCIÓN DE CONTRATO ZOD v4.0.0] ---
   languages: z.record(z.enum(supportedLocales), z.string()),
+  // --- [FIN DE CORRECCIÓN DE CONTRATO ZOD v4.0.0] ---
 });
 
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// Se exporta el schema de locale para su consumo en el ensamblador i18n.
 export const SelectLanguagePageLocaleSchema = z.object({
   selectLanguage: SelectLanguagePageContentSchema.optional(),
 });
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
 export type SelectLanguagePageContent = z.infer<
   typeof SelectLanguagePageContentSchema

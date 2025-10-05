@@ -6,7 +6,7 @@
  *              diferida para ser resiliente a la ausencia de variables de
  *              entorno durante el proceso de build, resolviendo un fallo crítico.
  * @version 7.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

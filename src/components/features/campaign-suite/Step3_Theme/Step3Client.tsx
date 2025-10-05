@@ -4,7 +4,7 @@
  * @description Contenedor de Cliente para el Paso 3, inyectado con observabilidad de
  *              ciclo de vida completo y un sistema de caché de presets.
  * @version 12.0.0 (Elite Observability & State Management)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

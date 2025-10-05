@@ -2,11 +2,11 @@
 /**
  * @file OrderForm.tsx
  * @description Formulario de pedido de élite, "Guardián de la Conversión".
- *              v9.0.0 (Sovereign Architectural Elevation): Elevado a su dominio
- *              canónico en `features/commerce` para una cohesión arquitectónica total.
- *              Forjado con observabilidad de élite y MEA/UX.
- * @version 9.0.0
- * @author L.I.A. Legacy
+ *              v9.1.0 (Ghost Import Eradication): Se elimina la dependencia
+ *              al hook obsoleto `useProducerLogic`, restaurando la integridad
+ *              del build y el cumplimiento arquitectónico.
+ * @version 9.1.0
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -17,7 +17,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, type Variants } from "framer-motion";
 import { getProducerConfig } from "@/shared/lib/config/producer.config";
 import { logger } from "@/shared/lib/logging";
-import { useProducerLogic } from "@/shared/hooks/use-producer-logic";
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
+// Se elimina la importación del hook obsoleto que causaba el error de build.
+// import { useProducerLogic } from "@/shared/hooks/use-producer-logic";
+// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 import { HiddenFormFields } from "@/components/features/commerce/HiddenFormFields";
 import { FormInput } from "@/components/ui/FormInput";
 import { Button, DynamicIcon } from "@/components/ui";
@@ -64,16 +67,21 @@ const fieldVariants: Variants = {
 
 export function OrderForm({ content }: OrderFormProps): React.ReactElement {
   const traceId = useMemo(
-    () => logger.startTrace("OrderForm_Lifecycle_v9.0"),
+    () => logger.startTrace("OrderForm_Lifecycle_v9.1"),
     []
   );
-  logger.info("[OrderForm] Renderizando v9.0 (Sovereign Elevation).", {
+  logger.info("[OrderForm] Renderizando v9.1 (Ghost Import Eradicated).", {
     traceId,
   });
 
   const formRef = useRef<HTMLFormElement>(null);
   const producerConfig = getProducerConfig();
-  useProducerLogic();
+
+  // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
+  // Se elimina la llamada al hook obsoleto. La lógica de tracking ahora es
+  // gestionada de forma centralizada y soberana por `ProducerLogicWrapper` en el layout raíz.
+  // useProducerLogic();
+  // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
   const {
     register,
@@ -91,7 +99,6 @@ export function OrderForm({ content }: OrderFormProps): React.ReactElement {
     formRef.current?.submit();
   };
 
-  // --- Guardián de Resiliencia de Contrato ---
   if (!content) {
     const errorMsg = "Contrato de UI violado: La prop 'content' es requerida.";
     logger.error(`[Guardián] ${errorMsg}`, { traceId });

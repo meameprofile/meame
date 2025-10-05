@@ -3,7 +3,7 @@
  * @file Step0Client.tsx
  * @description Componente Contenedor de Cliente para el Paso 0, con observabilidad de élite.
  * @version 10.0.0 (Elite Observability & MEA/UX)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

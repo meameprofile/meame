@@ -6,7 +6,7 @@
  *              v5.0.0 (Runtime Agnostic): Se elimina la directiva 'server-only' para
  *              garantizar la compatibilidad con el entorno de ejecución de Node.js.
  * @version 5.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import chalk from "chalk";

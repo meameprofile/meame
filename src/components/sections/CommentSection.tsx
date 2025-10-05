@@ -4,7 +4,7 @@
  * @description Aparato "Server Shell" para la sección de comentarios, alineado
  *              con el contrato de props soberano y con resiliencia de élite.
  * @version 4.0.0 (Sovereign Prop Contract & Elite Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

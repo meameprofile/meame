@@ -3,7 +3,7 @@
  * @file updateThemeFragment.action.ts
  * @description Server Action de élite para actualizar un fragmento de tema existente.
  * @version 1.0.0
- * @author L.I.A. Legacy (Creative Twin)
+ * @author RaZ Podestá - MetaShark Tech (Creative Twin)
  */
 "use server";
 

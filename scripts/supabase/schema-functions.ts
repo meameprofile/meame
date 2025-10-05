@@ -4,7 +4,7 @@
  * @description Guardián de Esquema para las funciones y procedimientos de Supabase.
  *              Realiza una auditoría completa y genera un informe de diagnóstico.
  * @version 1.0.0 (Granular & AI-Consumable Reports)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

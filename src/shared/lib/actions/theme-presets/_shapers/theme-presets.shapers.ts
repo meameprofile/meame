@@ -4,7 +4,7 @@
  * @description Módulo soberano para la transformación de datos (shaping) del dominio Theme Presets.
  *              Esta es la SSoT para convertir datos de la DB al contrato de la aplicación.
  * @version 1.0.0 (Sovereign & DRY)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import {

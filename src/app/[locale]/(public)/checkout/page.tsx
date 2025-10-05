@@ -4,7 +4,7 @@
  * @description Página de checkout (Server Shell), ahora con una separación de
  *              responsabilidades arquitectónicamente pura.
  * @version 5.0.0 (Server Shell Pattern)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import { Container } from "@/components/ui";

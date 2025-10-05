@@ -4,7 +4,7 @@
  * @description Server Action para orquestar la extracción de StudyDNA
  *              utilizando el motor de IA TEMA.
  * @version 2.0.0 (Architectural Integrity Restoration & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

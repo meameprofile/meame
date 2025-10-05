@@ -1,0 +1,34 @@
+{
+  "it-IT": {
+    "dashboardHeader": {
+      "title": "Dashboard di Analisi",
+      "subtitle": "Una panoramica delle prestazioni delle tue campagne.",
+      "dateRangeButton": "Ultimi 30 giorni",
+      "exportButton": "Esporta"
+    }
+  },
+  "es-ES": {
+    "dashboardHeader": {
+      "title": "Dashboard de Analíticas",
+      "subtitle": "Una visión general del rendimiento de tus campañas.",
+      "dateRangeButton": "Últimos 30 días",
+      "exportButton": "Exportar"
+    }
+  },
+  "en-US": {
+    "dashboardHeader": {
+      "title": "Analytics Dashboard",
+      "subtitle": "An overview of your campaign performance.",
+      "dateRangeButton": "Last 30 days",
+      "exportButton": "Export"
+    }
+  },
+  "pt-BR": {
+    "dashboardHeader": {
+      "title": "Painel de Análise",
+      "subtitle": "Uma visão geral do desempenho de suas campanhas.",
+      "dateRangeButton": "Últimos 30 dias",
+      "exportButton": "Exportar"
+    }
+  }
+}

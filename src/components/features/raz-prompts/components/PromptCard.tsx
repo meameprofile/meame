@@ -4,7 +4,7 @@
  * @description Componente de presentación para visualizar un prompt, con seguridad
  *              de tipos absoluta y cumplimiento de contratos soberanos.
  * @version 8.0.0 (Absolute Type Safety)
- *@author L.I.A. Legacy
+ *@author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

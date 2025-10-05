@@ -3,7 +3,7 @@
  * @file schema.ts
  * @description Herramienta de auditoría para inspeccionar la configuración de Cloudinary.
  * @version 10.0.0 (Simplified Structure & AI Reports)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { v2 as cloudinary } from "cloudinary";
 import { promises as fs } from "fs";

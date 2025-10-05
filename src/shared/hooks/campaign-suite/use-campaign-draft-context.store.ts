@@ -4,7 +4,7 @@
  * @description Store Orquestador de élite para la SDC, ahora con un contrato
  *              de acción de guardado desacoplado.
  * @version 16.0.0 (Decoupled Save Action Contract)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

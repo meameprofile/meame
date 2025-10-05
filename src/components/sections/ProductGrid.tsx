@@ -4,7 +4,7 @@
  * @description Cuadrícula de productos de lujo, ahora como un orquestador
  *              puro que cumple el contrato soberano de secciones.
  * @version 6.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -3,7 +3,7 @@
  * @file use-asset-uploader.ts
  * @description Hook "cerebro" soberano para la lógica de subida de activos a la BAVI.
  * @version 7.0.0 (Intelligent Ingestion Engine)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

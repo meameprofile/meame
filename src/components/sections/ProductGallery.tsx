@@ -3,7 +3,7 @@
  * @file ProductGallery.tsx
  * @description Galería de imágenes interactiva para la página de detalle de producto.
  * @version 2.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

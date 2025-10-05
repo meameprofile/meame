@@ -5,7 +5,7 @@
  *              v4.0.0 (Elite Compliance & Resilience): Inyectado con observabilidad de
  *              ciclo de vida completo y un guardián de resiliencia para el contenido.
  * @version 4.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

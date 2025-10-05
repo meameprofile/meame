@@ -4,7 +4,7 @@
  * @description Ensamblador de Cliente para el Paso 5 de la SDC (Gestión).
  *              Forjado con un guardián de resiliencia y observabilidad de élite.
  * @version 6.0.0 (Elite Resilience & Full Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

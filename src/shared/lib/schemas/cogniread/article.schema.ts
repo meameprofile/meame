@@ -2,13 +2,13 @@
 /**
  * @file article.schema.ts
  * @description SSoT para el contrato de datos de la entidad Artículo de CogniRead.
- *              v5.2.0 (Data Integrity Restoration): Se restaura la validación
- *              estricta de CUID2 en `relatedPromptIds` tras alinear los datos de origen.
- * @version 5.2.0
+ * @version 5.2.1 (i18n & Zod Contract Alignment)
  * @author L.I.A. Legacy
  */
 import { z } from "zod";
+// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v5.2.1] ---
 import { supportedLocales } from "@/shared/lib/i18n/i18n.config";
+// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA v5.2.1] ---
 
 export const ArticleTranslationSchema = z.object({
   title: z.string().min(1, "El título no puede estar vacío."),
@@ -76,18 +76,16 @@ export const CogniReadArticleSchema = z.object({
       "La fecha de actualización debe ser un formato de fecha y hora ISO válido."
     ),
   studyDna: StudyDnaSchema,
+  // --- [INICIO DE CORRECCIÓN DE CONTRATO ZOD v5.2.1] ---
   content: z.record(
     z.enum(supportedLocales),
     ArticleTranslationSchema.partial()
   ),
+  // --- [FIN DE CORRECCIÓN DE CONTRATO ZOD v5.2.1] ---
   tags: z
     .array(z.string())
     .optional()
     .describe("Etiquetas temáticas para búsqueda y filtrado."),
-  available_languages: z
-    .array(z.string())
-    .optional()
-    .describe("Lista autogenerada de idiomas disponibles en 'content'."),
   baviHeroImageId: z
     .string()
     .refine((s) => s.includes("/"), {
@@ -96,7 +94,6 @@ export const CogniReadArticleSchema = z.object({
     })
     .optional()
     .describe("ID público del activo visual de BAVI para la imagen destacada."),
-  // --- [INICIO DE RESTAURACIÓN DE CONTRATO ESTRICTO] ---
   relatedPromptIds: z
     .array(
       z
@@ -105,7 +102,6 @@ export const CogniReadArticleSchema = z.object({
     )
     .optional()
     .describe("IDs de prompts de RaZPrompts relacionados con este artículo."),
-  // --- [FIN DE RESTAURACIÓN DE CONTRATO ESTRICTO] ---
 });
 
 export type CogniReadArticle = z.infer<typeof CogniReadArticleSchema>;

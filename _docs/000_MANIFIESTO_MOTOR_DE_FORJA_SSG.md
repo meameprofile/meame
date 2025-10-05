@@ -6,7 +6,7 @@
 -              Define la filosofía, arquitectura, componentes y flujo de ejecución
 -              del sistema de build programático y estático de campañas.
 - @version 1.0.0
-  _@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  _@author RaZ Podestá - MetaShark Tech
   _/
 
 # Manifiesto Canónico: El Motor de Forja (SSG)

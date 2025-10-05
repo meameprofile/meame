@@ -3,7 +3,7 @@
  * @file layout.tsx
  * @description Layout Soberano y Guardián del DCC, con integridad arquitectónica, de tipos e higiene restaurada.
  * @version 22.2.0 (Holistic Contract & Hygiene Fix)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React, { Suspense } from "react";

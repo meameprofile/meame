@@ -1,7 +1,21 @@
 {
   "it-IT": {
     "languageSwitcher": {
-      "ariaLabel": "Seleziona la lingua",
+      "ariaLabel": "Seleziona lingua",
+      "modalTitle": "Seleziona una Lingua e Regione",
+      "modalDescription": "La tua selezione personalizzerà la tua esperienza sull'intero sito.",
+      "searchPlaceholder": "Cerca per lingua, paese o continente...",
+      "noResultsFound": "Nessuna lingua trovata.",
+      "continents": {
+        "Africa": "Africa",
+        "Asia": "Asia",
+        "Europe": "Europa",
+        "North America": "Nord America",
+        "South America": "Sud America",
+        "Oceania": "Oceania",
+        "Global": "Globale",
+        "Other": "Altro"
+      },
       "languages": {
         "it-IT": "Italiano",
         "es-ES": "Spagnolo",
@@ -13,6 +27,20 @@
   "es-ES": {
     "languageSwitcher": {
       "ariaLabel": "Seleccionar idioma",
+      "modalTitle": "Selecciona un Idioma y Región",
+      "modalDescription": "Tu selección personalizará tu experiencia en todo el sitio.",
+      "searchPlaceholder": "Buscar por idioma, país o continente...",
+      "noResultsFound": "No se encontraron idiomas.",
+      "continents": {
+        "Africa": "África",
+        "Asia": "Asia",
+        "Europe": "Europa",
+        "North America": "Norteamérica",
+        "South America": "Sudamérica",
+        "Oceania": "Oceanía",
+        "Global": "Global",
+        "Other": "Otro"
+      },
       "languages": {
         "it-IT": "Italiano",
         "es-ES": "Español",
@@ -24,6 +52,20 @@
   "en-US": {
     "languageSwitcher": {
       "ariaLabel": "Select language",
+      "modalTitle": "Select a Language & Region",
+      "modalDescription": "Your selection will customize your experience across the entire site.",
+      "searchPlaceholder": "Search by language, country, or continent...",
+      "noResultsFound": "No languages found.",
+      "continents": {
+        "Africa": "Africa",
+        "Asia": "Asia",
+        "Europe": "Europe",
+        "North America": "North America",
+        "South America": "South America",
+        "Oceania": "Oceania",
+        "Global": "Global",
+        "Other": "Other"
+      },
       "languages": {
         "it-IT": "Italian",
         "es-ES": "Spanish",
@@ -35,6 +77,20 @@
   "pt-BR": {
     "languageSwitcher": {
       "ariaLabel": "Selecionar idioma",
+      "modalTitle": "Selecione um Idioma e Região",
+      "modalDescription": "Sua seleção personalizará sua experiência em todo o site.",
+      "searchPlaceholder": "Pesquisar por idioma, país ou continente...",
+      "noResultsFound": "Nenhum idioma encontrado.",
+      "continents": {
+        "Africa": "África",
+        "Asia": "Ásia",
+        "Europe": "Europa",
+        "North America": "América do Norte",
+        "South America": "América do Sul",
+        "Oceania": "Oceania",
+        "Global": "Global",
+        "Other": "Outro"
+      },
       "languages": {
         "it-IT": "Italiano",
         "es-ES": "Espanhol",

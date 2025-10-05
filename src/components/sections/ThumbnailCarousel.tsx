@@ -4,7 +4,7 @@
  * @description Un carrusel visual que cicla a través de una serie de imágenes,
  *              ahora con funcionalidad de navegación completa y código limpio.
  * @version 6.2.0 (Code Hygiene & Functionality Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -4,7 +4,7 @@
  * @description Store de Zustand y SSoT para gestionar el estado del workspace,
  *              ahora con lógica de fallback resiliente para el workspace activo.
  * @version 3.1.0 (Export Integrity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

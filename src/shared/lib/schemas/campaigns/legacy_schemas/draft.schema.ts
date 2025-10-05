@@ -1,12 +1,14 @@
-// app/[locale]/(dev)/dev/campaign-suite/_schemas/draft.schema.ts
+// RUTA: src/shared/lib/schemas/campaigns/legacy_schemas/draft.schema.ts
 /**
  * @file draft.schema.ts
- * @description SSoT para los schemas que componen un CampaignDraft.
- * @version 1.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description SSoT para los schemas que componen un CampaignDraft (Legacy).
+ * @version 2.0.0 (i18n & Zod Contract Alignment)
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
+// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v2.0.0] ---
 import { supportedLocales } from "@/shared/lib/i18n/i18n.config";
+// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA v2.0.0] ---
 
 export const HeaderConfigSchema = z.object({
   useHeader: z.boolean(),
@@ -28,8 +30,12 @@ export const ThemeConfigSchema = z.object({
 });
 
 const LocaleContentSchema = z.record(z.string(), z.unknown());
+
+// --- [INICIO DE CORRECCIÓN DE CONTRATO ZOD v2.0.0] ---
 const SectionContentSchema = z.record(
   z.enum(supportedLocales),
   LocaleContentSchema.optional()
 );
+// --- [FIN DE CORRECCIÓN DE CONTRATO ZOD v2.0.0] ---
+
 export const ContentDataSchema = z.record(z.string(), SectionContentSchema);

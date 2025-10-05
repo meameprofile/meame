@@ -1,99 +1,130 @@
+// APARATO NIVELADO Y COMPLETO
 // RUTA: src/shared/lib/utils/server-encryption.ts
+
 /**
  * @file server-encryption.ts
- * @description Utilidad de élite para encriptación y desencriptación simétrica en el servidor.
- *              Utiliza la Node.js Crypto API para proteger datos sensibles en reposo.
- * @version 1.0.0
+ * @description Utilidad de élite ISOMÓRFICA para encriptación y desencriptación simétrica.
+ *              Detecta el entorno (Node.js o Edge) y utiliza la API Crypto apropiada.
+ * @version 2.2.0 (Elite Hygiene & Type Safety)
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import * as crypto from "crypto";
-import { logger } from "@/shared/lib/logging";
+import {
+  webcrypto,
+  createCipheriv,
+  createDecipheriv,
+  pbkdf2Sync,
+  randomBytes,
+} from "crypto";
 
-// Asegurarse de que la clave secreta esté disponible.
-// En un entorno de producción, esta clave debería ser un secreto de entorno gestionado de forma segura.
+// --- Guardián de Configuración Crítica ---
 const ENCRYPTION_KEY = process.env.SUPABASE_JWT_SECRET;
-const IV_LENGTH = 16; // AES block size in bytes
+const IV_LENGTH = 12; // GCM recomienda un IV de 12 bytes
+const SALT = "lia-sovereign-salt-for-derivation";
+const ITERATIONS = 100000;
+const KEY_LENGTH = 32; // 32 bytes para AES-256
+const DIGEST = "sha512";
+const ALGORITHM = "aes-256-gcm";
 
 if (!ENCRYPTION_KEY || ENCRYPTION_KEY.length < 32) {
-  // La clave debe ser al menos de 32 bytes para AES-256
-  logger.error(
-    "[Server Encryption] CRÍTICO: La variable de entorno 'SUPABASE_JWT_SECRET' no está definida o es demasiado corta para la encriptación."
-  );
+  // Falla rápido en el arranque del servidor si la configuración es insegura.
   throw new Error(
-    "Missing or insecure 'SUPABASE_JWT_SECRET' for server encryption."
+    "CRÍTICO: La variable de entorno 'SUPABASE_JWT_SECRET' es insegura o no está definida."
   );
 }
 
-// Derivar una clave de 32 bytes a partir de SUPABASE_JWT_SECRET para AES-256
-const deriveKey = (secret: string): Buffer => {
-  // Usamos PBKDF2 para derivar una clave de 32 bytes de forma segura
-  return crypto.pbkdf2Sync(secret, "salt", 100000, 32, "sha512");
+// --- Motor de Encriptación para Node.js ---
+const nodeEncrypt = (text: string): string => {
+  const key = pbkdf2Sync(ENCRYPTION_KEY, SALT, ITERATIONS, KEY_LENGTH, DIGEST);
+  const iv = randomBytes(IV_LENGTH);
+  const cipher = createCipheriv(ALGORITHM, key, iv);
+  const encrypted = Buffer.concat([
+    cipher.update(text, "utf8"),
+    cipher.final(),
+  ]);
+  const authTag = cipher.getAuthTag();
+  return Buffer.concat([iv, authTag, encrypted]).toString("hex");
 };
 
-const key = deriveKey(ENCRYPTION_KEY);
+const nodeDecrypt = (hex: string): string => {
+  const data = Buffer.from(hex, "hex");
+  const key = pbkdf2Sync(ENCRYPTION_KEY, SALT, ITERATIONS, KEY_LENGTH, DIGEST);
+  const iv = data.slice(0, IV_LENGTH);
+  const authTag = data.slice(IV_LENGTH, IV_LENGTH + 16);
+  const encrypted = data.slice(IV_LENGTH + 16);
+  const decipher = createDecipheriv(ALGORITHM, key, iv);
+  decipher.setAuthTag(authTag);
+  return decipher.update(encrypted, undefined, "utf8") + decipher.final("utf8");
+};
 
-/**
- * @function encryptServerData
- * @description Encripta un string de datos en el servidor usando AES-256-GCM.
- * @param {string} text - El texto a encriptar.
- * @returns {string} El texto encriptado en formato Base64.
- */
-export function encryptServerData(text: string): string {
-  const traceId = logger.startTrace("encryptServerData");
-  logger.traceEvent(traceId, "Iniciando encriptación de datos en el servidor.");
-
-  const iv = crypto.randomBytes(IV_LENGTH); // Generar un IV aleatorio
-  const cipher = crypto.createCipheriv("aes-256-gcm", key, iv);
-
-  let encrypted = cipher.update(text, "utf8", "hex");
-  encrypted += cipher.final("hex");
-  const authTag = cipher.getAuthTag().toString("hex"); // Obtener el Authentication Tag
-
-  const result = iv.toString("hex") + encrypted + authTag;
-  logger.traceEvent(traceId, "Encriptación de datos completada.");
-  logger.endTrace(traceId);
-  return result; // IV + Encrypted Text + Auth Tag
-}
-
-/**
- * @function decryptServerData
- * @description Desencripta un string de datos encriptados en el servidor usando AES-256-GCM.
- * @param {string} encryptedText - El texto encriptado en formato Base64.
- * @returns {string} El texto desencriptado.
- * @throws {Error} Si la desencriptación falla (ej. clave incorrecta o datos manipulados).
- */
-export function decryptServerData(encryptedText: string): string {
-  const traceId = logger.startTrace("decryptServerData");
-  logger.traceEvent(
-    traceId,
-    "Iniciando desencriptación de datos en el servidor."
+// --- Motor de Encriptación para Web Crypto API (Edge) ---
+const getWebCryptoKey = async (): Promise<CryptoKey> => {
+  const keyMaterial = await webcrypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(ENCRYPTION_KEY),
+    { name: "PBKDF2" },
+    false,
+    ["deriveKey"]
   );
+  return webcrypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt: new TextEncoder().encode(SALT),
+      iterations: ITERATIONS,
+      hash: DIGEST,
+    },
+    keyMaterial,
+    { name: ALGORITHM, length: 256 },
+    true,
+    ["encrypt", "decrypt"]
+  );
+};
 
+const webEncrypt = async (text: string): Promise<string> => {
+  const key = await getWebCryptoKey();
+  const iv = webcrypto.getRandomValues(new Uint8Array(IV_LENGTH));
+  const encrypted = await webcrypto.subtle.encrypt(
+    { name: ALGORITHM, iv },
+    key,
+    new TextEncoder().encode(text)
+  );
+  const finalBuffer = new Uint8Array(iv.length + encrypted.byteLength);
+  finalBuffer.set(iv, 0);
+  finalBuffer.set(new Uint8Array(encrypted), iv.length);
+  return Buffer.from(finalBuffer).toString("hex");
+};
+
+const webDecrypt = async (hex: string): Promise<string> => {
   try {
-    const iv = Buffer.from(encryptedText.slice(0, IV_LENGTH * 2), "hex");
-    const authTagHex = encryptedText.slice(-32); // El Authentication Tag es de 16 bytes (32 hex chars)
-    const encrypted = encryptedText.slice(IV_LENGTH * 2, -32);
-
-    const decipher = crypto.createDecipheriv("aes-256-gcm", key, iv);
-    decipher.setAuthTag(Buffer.from(authTagHex, "hex"));
-
-    let decrypted = decipher.update(encrypted, "hex", "utf8");
-    decrypted += decipher.final("utf8");
-
-    logger.traceEvent(traceId, "Desencriptación de datos completada.");
-    logger.endTrace(traceId);
-    return decrypted;
+    const key = await getWebCryptoKey();
+    const data = Buffer.from(hex, "hex");
+    const iv = data.slice(0, IV_LENGTH);
+    const encrypted = data.slice(IV_LENGTH);
+    const decrypted = await webcrypto.subtle.decrypt(
+      { name: ALGORITHM, iv },
+      key,
+      encrypted
+    );
+    return new TextDecoder().decode(decrypted);
   } catch (error) {
-    logger.error(
-      "Fallo de desencriptación: datos corruptos o clave incorrecta.",
-      { error, traceId }
-    );
-    throw new Error(
-      "Failed to decrypt data: " +
-        (error instanceof Error ? error.message : "unknown error")
-    );
-  } finally {
-    logger.endTrace(traceId);
+    // --- [INICIO DE REFACTORIZACIÓN DE SEGURIDAD DE TIPOS] ---
+    // Se asegura que el error propagado sea siempre un string.
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "Error desconocido durante la desencriptación.";
+    throw new Error(errorMessage);
+    // --- [FIN DE REFACTORIZACIÓN DE SEGURIDAD DE TIPOS] ---
   }
-}
+};
+
+// --- API Pública Isomórfica ---
+const isNode =
+  typeof process !== "undefined" &&
+  process.versions != null &&
+  process.versions.node != null;
+
+export const encryptServerData: (text: string) => string | Promise<string> =
+  isNode ? nodeEncrypt : webEncrypt;
+export const decryptServerData: (hex: string) => string | Promise<string> =
+  isNode ? nodeDecrypt : webDecrypt;

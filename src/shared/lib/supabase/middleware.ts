@@ -6,7 +6,7 @@
  *              linting y un error de tipo crítico en el manejador de cookies para
  *              garantizar una higiene de código y una seguridad de tipos de élite.
  * @version 8.1.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";

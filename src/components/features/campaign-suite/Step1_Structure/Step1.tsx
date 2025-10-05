@@ -5,7 +5,7 @@
  *              Forjado con un guardián de resiliencia, observabilidad de ciclo de
  *              vida completo y cumplimiento de los 8 Pilares de Calidad.
  * @version 7.0.0 (Elite Resilience & Full Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

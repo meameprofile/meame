@@ -3,7 +3,7 @@
  * @file CommunitySection.tsx
  * @description Componente de sección para invitar a la comunidad, ahora con contrato soberano.
  * @version 5.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

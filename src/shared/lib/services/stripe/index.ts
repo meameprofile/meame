@@ -5,7 +5,7 @@
  *              v4.0.0 (Runtime Agnostic): Se elimina la directiva 'server-only'
  *              para permitir el consumo desde scripts de prueba E2E.
  * @version 4.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import Stripe from "stripe";
 import { logger } from "@/shared/lib/logging";

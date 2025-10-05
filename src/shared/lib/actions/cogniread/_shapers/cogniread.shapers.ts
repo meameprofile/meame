@@ -5,7 +5,7 @@
  *              v5.0.0 (Absolute Type Safety): Erradica 'any' y alinea los
  *              contratos de tipo entre la base de datos y la aplicación.
  * @version 5.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { logger } from "@/shared/lib/logging";

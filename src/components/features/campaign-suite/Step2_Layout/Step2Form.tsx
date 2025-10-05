@@ -4,7 +4,7 @@
  * @description Componente de Presentación Puro para la UI del Paso 2 (Layout),
  *              con observabilidad inyectada y delegación de datos robusta.
  * @version 8.0.0 (Observable & Resilient Data Delegation)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

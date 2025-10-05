@@ -18,32 +18,38 @@
           {
             "label": "Creatività",
             "title": "La Fucina (SDC)",
-            "description": "Forgia campagne ad alta conversione."
+            "description": "Forgia campagne ad alta conversione.",
+            "href": "/it-IT/creator/campaign-suite"
           },
           {
             "label": "Asset",
             "title": "L'Arsenale (BAVI)",
-            "description": "La SSoT per tutti gli asset visivi."
+            "description": "La SSoT per tutti gli asset visivi.",
+            "href": "/it-IT/dev/bavi"
           },
           {
             "label": "Genoma",
             "title": "La Cripta (RaZPrompts)",
-            "description": "Cataloga il DNA creativo dei tuoi asset."
+            "description": "Cataloga il DNA creativo dei tuoi asset.",
+            "href": "/it-IT/dev/raz-prompts"
           },
           {
             "label": "Credibilità",
             "title": "Il Motore (CogniRead)",
-            "description": "Trasforma la scienza in autorità."
+            "description": "Trasforma la scienza in autorità.",
+            "href": "/it-IT/dev/cogniread"
           },
           {
             "label": "UX",
             "title": "Il Sistema Nervoso (Nos3)",
-            "description": "Guarda attraverso gli occhi dell'utente."
+            "description": "Guarda attraverso gli occhi dell'utente.",
+            "href": "/it-IT/dev/nos3"
           },
           {
-            "label": "Resilienza",
-            "title": "Il Laboratorio",
-            "description": "Stress-test per ogni componente."
+            "label": "Intelligenza",
+            "title": "La Cabina di Mando (Aura)",
+            "description": "Visualizza i dati e ottimizza le conversioni.",
+            "href": "/it-IT/dev/analytics"
           }
         ]
       }
@@ -68,32 +74,38 @@
           {
             "label": "Creatividad",
             "title": "La Forja (SDC)",
-            "description": "Forja campañas de alta conversión."
+            "description": "Forja campañas de alta conversión.",
+            "href": "/es-ES/creator/campaign-suite"
           },
           {
             "label": "Activos",
             "title": "El Arsenal (BAVI)",
-            "description": "La SSoT para todos los activos visuales."
+            "description": "La SSoT para todos los activos visuales.",
+            "href": "/es-ES/dev/bavi"
           },
           {
             "label": "Genoma",
             "title": "La Bóveda (RaZPrompts)",
-            "description": "Cataloga el ADN creativo de tus activos."
+            "description": "Cataloga el ADN creativo de tus activos.",
+            "href": "/es-ES/dev/raz-prompts"
           },
           {
             "label": "Credibilidad",
             "title": "El Motor (CogniRead)",
-            "description": "Transforma la ciencia en autoridad."
+            "description": "Transforma la ciencia en autoridad.",
+            "href": "/es-ES/dev/cogniread"
           },
           {
             "label": "UX",
             "title": "El Sistema Nervioso (Nos3)",
-            "description": "Mira a través de los ojos del usuario."
+            "description": "Mira a través de los ojos del usuario.",
+            "href": "/es-ES/dev/nos3"
           },
           {
-            "label": "Resiliencia",
-            "title": "El Laboratorio",
-            "description": "Stress-test para cada componente."
+            "label": "Inteligencia",
+            "title": "La Cabina de Mando (Aura)",
+            "description": "Visualiza los datos y optimiza las conversiones.",
+            "href": "/es-ES/dev/analytics"
           }
         ]
       }
@@ -118,32 +130,38 @@
           {
             "label": "Creativity",
             "title": "The Forge (SDC)",
-            "description": "Forge high-conversion campaigns."
+            "description": "Forge high-conversion campaigns.",
+            "href": "/en-US/creator/campaign-suite"
           },
           {
             "label": "Assets",
             "title": "The Armory (BAVI)",
-            "description": "The SSoT for all visual assets."
+            "description": "The SSoT for all visual assets.",
+            "href": "/en-US/dev/bavi"
           },
           {
             "label": "Genome",
             "title": "The Vault (RaZPrompts)",
-            "description": "Catalog the creative DNA of your assets."
+            "description": "Catalog the creative DNA of your assets.",
+            "href": "/en-US/dev/raz-prompts"
           },
           {
             "label": "Credibility",
             "title": "The Engine (CogniRead)",
-            "description": "Transform science into authority."
+            "description": "Transform science into authority.",
+            "href": "/en-US/dev/cogniread"
           },
           {
             "label": "UX",
             "title": "The Nervous System (Nos3)",
-            "description": "See through the user's eyes."
+            "description": "See through the user's eyes.",
+            "href": "/en-US/dev/nos3"
           },
           {
-            "label": "Resilience",
-            "title": "The Lab",
-            "description": "Stress-test for every component."
+            "label": "Intelligence",
+            "title": "The Command Deck (Aura)",
+            "description": "Visualize data and optimize conversions.",
+            "href": "/en-US/dev/analytics"
           }
         ]
       }
@@ -168,32 +186,38 @@
           {
             "label": "Criatividade",
             "title": "A Forja (SDC)",
-            "description": "Forje campanhas de alta conversão."
+            "description": "Forje campanhas de alta conversão.",
+            "href": "/pt-BR/creator/campaign-suite"
           },
           {
             "label": "Ativos",
             "title": "O Arsenal (BAVI)",
-            "description": "A SSoT para todos os ativos visuais."
+            "description": "A SSoT para todos os ativos visuais.",
+            "href": "/pt-BR/dev/bavi"
           },
           {
             "label": "Genoma",
             "title": "O Cofre (RaZPrompts)",
-            "description": "Catalogue o DNA criativo de seus ativos."
+            "description": "Catalogue o DNA criativo de seus ativos.",
+            "href": "/pt-BR/dev/raz-prompts"
           },
           {
             "label": "Credibilidade",
             "title": "O Motor (CogniRead)",
-            "description": "Transforme ciência em autoridade."
+            "description": "Transforme ciência em autoridade.",
+            "href": "/pt-BR/dev/cogniread"
           },
           {
             "label": "UX",
             "title": "O Sistema Nervoso (Nos3)",
-            "description": "Veja através dos olhos do usuário."
+            "description": "Veja através dos olhos do usuário.",
+            "href": "/pt-BR/dev/nos3"
           },
           {
-            "label": "Resiliência",
-            "title": "O Laboratório",
-            "description": "Teste de estresse para cada componente."
+            "label": "Inteligência",
+            "title": "A Cabine de Comando (Aura)",
+            "description": "Visualize os dados e otimize as conversões.",
+            "href": "/pt-BR/dev/analytics"
           }
         ]
       }

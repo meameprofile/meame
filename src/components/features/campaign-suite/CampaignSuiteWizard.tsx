@@ -3,7 +3,7 @@
  * @file CampaignSuiteWizard.tsx
  * @description Orquestador de cliente y "Layout Shell" para la SDC.
  * @version 21.1.0 (Code Hygiene)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

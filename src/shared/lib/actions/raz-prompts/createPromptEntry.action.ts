@@ -4,7 +4,7 @@
  * @description Server Action de producción para crear una nueva entrada de prompt,
  *              ahora con seguridad de tipos absoluta y alineamiento de contratos.
  * @version 13.0.0 (Absolute Type Safety & Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

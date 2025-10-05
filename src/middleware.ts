@@ -3,7 +3,7 @@
  * @file middleware.ts
  * @description Guardián de la puerta de entrada, ahora completamente agnóstico al runtime de Supabase.
  * @version 16.0.0 (Runtime Agnostic)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { type NextRequest, NextResponse } from "next/server";
 import { logger } from "./shared/lib/logging";

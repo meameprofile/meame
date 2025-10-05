@@ -7,7 +7,7 @@
  * @description Script generador de SQL para alinear las tablas del dominio BAVI
  *              con su manifiesto soberano v2.0.
  * @version 1.0.0 (SQL Generator)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { scriptLogger } from "../../_utils/logger";
 

@@ -4,7 +4,7 @@
 - @file 002_MANIFIESTO_TABLAS_BAVI.md
 - @description Manifiesto Canónico y SSoT para las tablas 'bavi_assets' y 'bavi_variants'.
 - @version 2.0.0 (Schema Alignment & Holism)
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto de Tablas Soberanas: `bavi_assets` y `bavi_variants` v2.0

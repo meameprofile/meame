@@ -7,7 +7,7 @@
  *              procesamiento de middleware más complejas y restaurando la
  *              integridad del contrato de API.
  * @version 4.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { NextRequest, NextResponse } from "next/server";
 import { logger } from "@/shared/lib/logging";

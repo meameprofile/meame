@@ -4,7 +4,7 @@
  * @description Orquestador de animación puro. Envuelve a sus hijos en una animación
  *              de entrada escalonada, cumpliendo con la arquitectura RSC.
  * @version 1.0.0 (RSC Architectural Integrity)
- *@author L.I.A. Legacy
+ *@author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

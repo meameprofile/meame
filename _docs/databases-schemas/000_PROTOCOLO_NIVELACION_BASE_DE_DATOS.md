@@ -4,7 +4,7 @@
 - @file 006_PROTOCOLO_NIVELACION_BASE_DE_DATOS.md
 - @description Manifiesto Canónico y SSoT para el Protocolo de Nivelación y Sincronización de la Base de Datos.
 - @version 1.0.0
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Soberano: Protocolo de Nivelación de Base de Datos
@@ -60,7 +60,7 @@ actualizacaion
 - @file 000_PROTOCOLO_NIVELACION_BASE_DE_DATOS.md
 - @description Manifiesto Canónico y SSoT para el Protocolo de Nivelación y Sincronización de la Base de Datos.
 - @version 2.0.0 (Granular & Surgical)
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Soberano: Protocolo de Nivelación de Base de Datos v2.0

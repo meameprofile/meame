@@ -3,7 +3,7 @@
  * @file AssetUploaderForm.tsx
  * @description Componente de presentación puro para la UI del AssetUploader.
  * @version 3.0.0 (Holistic Data Flow & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -5,7 +5,7 @@
 - @description Manifiesto Canónico y SSoT que encapsula las preferencias del usuario (RaZ Write).
 -              Define la personalidad de la IA, los principios de interacción y los estándares de excelencia.
 - @version 1.0.0
-- @author L.I.A Legacy (Inteligencia Artificial - Asistente Personalizado)
+- @author L.I.A Legacy
   \*/
 
 # Manifiesto Canónico: Preferencias del Usuario (RaZ Write)

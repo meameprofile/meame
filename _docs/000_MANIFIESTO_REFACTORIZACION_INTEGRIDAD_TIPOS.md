@@ -6,7 +6,7 @@
 -              Este documento es el plano maestro que define la visión, los principios, las fases,
 -              la metodología y el alcance de la iniciativa de refactorización de tipos en el ecosistema 'meame'.
 - @version 1.0.0
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto de Refactorización: Integridad de Tipos Absoluta

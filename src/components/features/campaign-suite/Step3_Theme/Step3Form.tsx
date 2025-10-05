@@ -3,7 +3,7 @@
  * @file Step3Form.tsx
  * @description Orquestador de presentación puro para el Paso 3, inyectado con MEA/UX y resiliencia.
  * @version 8.0.0 (MEA/UX Injection & Elite Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

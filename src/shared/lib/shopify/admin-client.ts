@@ -6,7 +6,7 @@
  *              diferida de las variables de entorno, garantizando la compatibilidad
  *              con orquestadores de scripts como `run-with-env.ts`.
  * @version 2.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { logger } from "@/shared/lib/logging";
 

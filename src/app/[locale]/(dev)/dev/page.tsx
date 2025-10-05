@@ -5,7 +5,7 @@
  *              v2.0.0 (Architectural Route Fix): Movido a la ruta /dev para resolver
  *              el conflicto de enrutamiento con la página de inicio pública.
  * @version 2.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

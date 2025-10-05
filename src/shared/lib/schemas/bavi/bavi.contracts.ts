@@ -1,10 +1,5 @@
 // RUTA: src/shared/lib/schemas/bavi/bavi.contracts.ts
-/**
- * @file bavi.contracts.ts
- * @description Contrato de Tipos Atómico y Soberano para el Dominio BAVI.
- * @version 2.0.0 (Isomorphic Type Safety)
- * @author L.I.A. Legacy
- */
+import { z } from "zod";
 import type {
   Tables,
   TablesInsert,
@@ -14,7 +9,29 @@ import type {
 export type BaviAssetRow = Tables<"bavi_assets">;
 export type BaviAssetInsert = TablesInsert<"bavi_assets">;
 export type BaviAssetUpdate = TablesUpdate<"bavi_assets">;
+export const BaviAssetRowSchema = z.object({
+  asset_id: z.string(),
+  workspace_id: z.string().uuid(),
+  user_id: z.string().uuid(),
+  status: z.string(),
+  provider: z.string(),
+  description: z.string().nullable(),
+  prompt_id: z.string().nullable(),
+  tags: z.any().nullable(), // jsonb
+  metadata: z.any().nullable(), // jsonb
+  created_at: z.string().datetime(),
+  updated_at: z.string().datetime(),
+});
 
 export type BaviVariantRow = Tables<"bavi_variants">;
 export type BaviVariantInsert = TablesInsert<"bavi_variants">;
 export type BaviVariantUpdate = TablesUpdate<"bavi_variants">;
+export const BaviVariantRowSchema = z.object({
+  variant_id: z.string(),
+  asset_id: z.string(),
+  public_id: z.string(),
+  state: z.string(),
+  width: z.number().int(),
+  height: z.number().int(),
+  created_at: z.string().datetime(),
+});

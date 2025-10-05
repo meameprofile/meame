@@ -1,11 +1,11 @@
 // RUTA: src/components/features/analytics/CampaignsTable.columns.tsx
 /**
  * @file CampaignsTable.columns.tsx
- * @description SSoT para las definiciones de las columnas de la tabla de analíticas.
- *              v6.0.0 (Icon SSoT Compliance): Se corrige el nombre del icono de
- *              acciones a 'Ellipsis' para alinearse con el manifiesto de iconos
- *              soberano (lucide-icon-names.ts), resolviendo un error de tipo TS2820.
- * @version 6.0.0
+ * @description SSoT para la definición de columnas de la tabla de analíticas.
+ *              v2.1.0 (SSoT Icon Alignment): Se reemplaza el icono faltante por
+ *              un sustituto semántico ('Ellipsis') garantizado por la SSoT de iconos,
+ *              resolviendo el error de build TS2820.
+ * @version 2.1.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -14,6 +14,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ColumnDef, Row } from "@tanstack/react-table";
+import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,40 +23,42 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
 import { Button } from "@/components/ui/Button";
-import { DynamicIcon } from "@/components/ui";
-import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
-import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
+import type { z } from "zod";
+import type { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
 import { logger } from "@/shared/lib/logging";
 
-interface ActionsCellProps {
-  row: Row<CampaignAnalyticsData>;
-  content: {
-    actionsLabel: string;
-    viewDetailsLabel: string;
-  };
-}
+type Content = z.infer<typeof CampaignsTableContentSchema>;
 
-const ActionsCell = ({ row, content }: ActionsCellProps) => {
-  logger.trace("[ActionsCell] Renderizando celda de acciones v6.0.");
-  const campaign = row.original;
+const ActionsCell = ({
+  row,
+  content,
+}: {
+  row: Row<CampaignAnalyticsData>;
+  content: Content;
+}) => {
   const pathname = usePathname();
-  const locale = getCurrentLocaleFromPathname(pathname);
+  const variantId = row.original.variantId;
+
+  logger.trace(
+    `[ActionsCell] Renderizando acciones para la variante: ${variantId}`
+  );
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-8 w-8 p-0">
           <span className="sr-only">Abrir menú</span>
-          {/* --- [INICIO DE REFACTORIZACIÓN DE SSoT] --- */}
-          {/* Se reemplaza "MoreHorizontal" por el icono canónico "Ellipsis". */}
+          {/* --- [INICIO DE CORRECCIÓN DE SSoT] --- */}
+          {/* Se reemplaza 'MoreHorizontal' por 'Ellipsis', que es el sustituto semántico y existe en tu SSoT. */}
           <DynamicIcon name="Ellipsis" className="h-4 w-4" />
-          {/* --- [FIN DE REFACTORIZACIÓN DE SSoT] --- */}
+          {/* --- [FIN DE CORRECCIÓN DE SSoT] --- */}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>{content.actionsLabel}</DropdownMenuLabel>
         <DropdownMenuItem asChild>
-          <Link href={`/${locale}/analytics/${campaign.variantId}`}>
+          <Link href={`${pathname}/${variantId}`}>
             {content.viewDetailsLabel}
           </Link>
         </DropdownMenuItem>
@@ -65,23 +68,23 @@ const ActionsCell = ({ row, content }: ActionsCellProps) => {
 };
 
 export const getAnalyticsColumns = (
-  content: ActionsCellProps["content"]
+  content: Content
 ): ColumnDef<CampaignAnalyticsData>[] => [
   {
     accessorKey: "variantName",
-    header: "Variante",
+    header: content.headerVariant,
   },
   {
     accessorKey: "summary.totalVisitors",
-    header: "Visitantes",
+    header: content.headerVisitors,
   },
   {
     accessorKey: "summary.conversions",
-    header: "Conversiones",
+    header: content.headerConversions,
   },
   {
     accessorKey: "summary.bounceRate",
-    header: "Tasa de Rebote",
+    header: content.headerBounceRate,
     cell: ({ row }) => `${row.original.summary.bounceRate}%`,
   },
   {

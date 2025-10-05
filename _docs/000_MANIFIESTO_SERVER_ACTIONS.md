@@ -6,7 +6,7 @@
 -              Define la filosofía, los pilares de diseño, los patrones obligatorios
 -              y los contratos de datos que rigen toda la lógica de negocio del servidor.
 - @version 1.0.0
-  _@author RaZ Podestá - MetaShark Tech (Inteligencia Artificial - Asistente Personalizado)
+  _@author RaZ Podestá - MetaShark Tech
   _/
 
 # Manifiesto Canónico: La Arquitectura de Server Actions Soberanas

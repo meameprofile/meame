@@ -4,7 +4,7 @@
  * @description Sección de Contacto. Orquestador que compone la información
  *              de contacto y el formulario atómico.
  * @version 6.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

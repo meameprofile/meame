@@ -4,7 +4,7 @@
 - @file 000_MANIFIESTO_FUNCIONES_Soberanas.md
 - @description Manifiesto Canónico y SSoT para las funciones de base de datos fundacionales.
 - @version 1.0.0
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto de Funciones Soberanas v1.0

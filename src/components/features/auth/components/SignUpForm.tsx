@@ -6,7 +6,7 @@
  *              y se elimina el código no utilizado para cumplir con todos los pilares
  *              de calidad y resolver errores de build.
  * @version 3.2.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

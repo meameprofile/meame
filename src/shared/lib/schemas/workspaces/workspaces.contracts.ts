@@ -1,10 +1,5 @@
 // RUTA: src/shared/lib/schemas/workspaces/workspaces.contracts.ts
-/**
- * @file workspaces.contracts.ts
- * @description Contrato de Tipos Atómico y Soberano para el Dominio de Workspaces.
- * @version 2.0.0 (Isomorphic Type Safety)
- * @author L.I.A. Legacy
- */
+import { z } from "zod";
 import type {
   Tables,
   TablesInsert,
@@ -14,7 +9,20 @@ import type {
 export type WorkspaceRow = Tables<"workspaces">;
 export type WorkspaceInsert = TablesInsert<"workspaces">;
 export type WorkspaceUpdate = TablesUpdate<"workspaces">;
+export const WorkspaceRowSchema = z.object({
+  id: z.string().uuid(),
+  owner_id: z.string().uuid(),
+  name: z.string(),
+  created_at: z.string().datetime(),
+  updated_at: z.string().datetime(),
+});
 
 export type WorkspaceMemberRow = Tables<"workspace_members">;
 export type WorkspaceMemberInsert = TablesInsert<"workspace_members">;
 export type WorkspaceMemberUpdate = TablesUpdate<"workspace_members">;
+export const WorkspaceMemberRowSchema = z.object({
+  workspace_id: z.string().uuid(),
+  user_id: z.string().uuid(),
+  role: z.string(),
+  created_at: z.string().datetime(),
+});

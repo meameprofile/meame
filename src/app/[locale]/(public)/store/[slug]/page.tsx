@@ -4,7 +4,7 @@
  * @description Página de la Tienda ("Server Shell"), forjada con resiliencia de
  *              élite, observabilidad holística y una arquitectura de datos soberana.
  * @version 4.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

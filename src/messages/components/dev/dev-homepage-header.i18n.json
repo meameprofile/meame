@@ -1,4 +1,319 @@
 {
+  "af-ZA": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "sq-AL": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "de-DE": {
+    "devHomepageHeader": {
+      "homeLink": "Startseite",
+      "aboutLink": "Über Uns",
+      "storeLink": "Shop",
+      "blogLink": "Blog",
+      "devMenuLabel": "Entwickler-Menü"
+    }
+  },
+  "de-AT": {
+    "devHomepageHeader": {
+      "homeLink": "Startseite",
+      "aboutLink": "Über Uns",
+      "storeLink": "Shop",
+      "blogLink": "Blog",
+      "devMenuLabel": "Entwickler-Menü"
+    }
+  },
+  "de-CH": {
+    "devHomepageHeader": {
+      "homeLink": "Startseite",
+      "aboutLink": "Über Uns",
+      "storeLink": "Shop",
+      "blogLink": "Blog",
+      "devMenuLabel": "Entwickler-Menü"
+    }
+  },
+  "ar-SA": {
+    "devHomepageHeader": {
+      "homeLink": "الرئيسية",
+      "aboutLink": "معلومات عنا",
+      "storeLink": "متجر",
+      "blogLink": "مدونة",
+      "devMenuLabel": "قائمة المطور"
+    }
+  },
+  "ar-DZ": {
+    "devHomepageHeader": {
+      "homeLink": "الرئيسية",
+      "aboutLink": "معلومات عنا",
+      "storeLink": "متجر",
+      "blogLink": "مدونة",
+      "devMenuLabel": "قائمة المطور"
+    }
+  },
+  "ar-KW": {
+    "devHomepageHeader": {
+      "homeLink": "الرئيسية",
+      "aboutLink": "معلومات عنا",
+      "storeLink": "متجر",
+      "blogLink": "مدونة",
+      "devMenuLabel": "قائمة المطور"
+    }
+  },
+  "ar-LY": {
+    "devHomepageHeader": {
+      "homeLink": "الرئيسية",
+      "aboutLink": "معلومات عنا",
+      "storeLink": "متجر",
+      "blogLink": "مدونة",
+      "devMenuLabel": "قائمة المطور"
+    }
+  },
+  "ar-MA": {
+    "devHomepageHeader": {
+      "homeLink": "الرئيسية",
+      "aboutLink": "معلومات عنا",
+      "storeLink": "متجر",
+      "blogLink": "مدونة",
+      "devMenuLabel": "قائمة المطور"
+    }
+  },
+  "ar-PS": {
+    "devHomepageHeader": {
+      "homeLink": "الرئيسية",
+      "aboutLink": "معلومات عنا",
+      "storeLink": "متجر",
+      "blogLink": "مدونة",
+      "devMenuLabel": "قائمة المطور"
+    }
+  },
+  "ar-TN": {
+    "devHomepageHeader": {
+      "homeLink": "الرئيسية",
+      "aboutLink": "معلومات عنا",
+      "storeLink": "متجر",
+      "blogLink": "مدونة",
+      "devMenuLabel": "قائمة المطور"
+    }
+  },
+  "hy-AM": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "az-AZ": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "bm-ML": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "bn-BD": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "be-BY": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "my-MM": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "bs-BA": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "br-FR": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "bg-BG": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "ca-ES": {
+    "devHomepageHeader": {
+      "homeLink": "Inici",
+      "aboutLink": "Sobre Nosaltres",
+      "storeLink": "Botiga",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menú Dev"
+    }
+  },
+  "cs-CZ": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "zh-CN": {
+    "devHomepageHeader": {
+      "homeLink": "首页",
+      "aboutLink": "关于我们",
+      "storeLink": "商店",
+      "blogLink": "博客",
+      "devMenuLabel": "开发者菜单"
+    }
+  },
+  "zh-HK": {
+    "devHomepageHeader": {
+      "homeLink": "首頁",
+      "aboutLink": "關於我們",
+      "storeLink": "商店",
+      "blogLink": "博客",
+      "devMenuLabel": "開發者菜單"
+    }
+  },
+  "zh-MO": {
+    "devHomepageHeader": {
+      "homeLink": "首頁",
+      "aboutLink": "關於我們",
+      "storeLink": "商店",
+      "blogLink": "博客",
+      "devMenuLabel": "開發者菜單"
+    }
+  },
+  "zh-TW": {
+    "devHomepageHeader": {
+      "homeLink": "首頁",
+      "aboutLink": "關於我們",
+      "storeLink": "商店",
+      "blogLink": "部落格",
+      "devMenuLabel": "開發者選單"
+    }
+  },
+  "cv-RU": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "ko-KR": {
+    "devHomepageHeader": {
+      "homeLink": "홈",
+      "aboutLink": "회사 소개",
+      "storeLink": "스토어",
+      "blogLink": "블로그",
+      "devMenuLabel": "개발자 메뉴"
+    }
+  },
+  "hr-HR": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "ku-KMR": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "da-DK": {
+    "devHomepageHeader": {
+      "homeLink": "Hjem",
+      "aboutLink": "Om Os",
+      "storeLink": "Butik",
+      "blogLink": "Blog",
+      "devMenuLabel": "Udvikler Menu"
+    }
+  },
+  "dv-MV": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "sk-SK": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "sl-SI": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
   "es-ES": {
     "devHomepageHeader": {
       "homeLink": "Inicio",
@@ -8,13 +323,283 @@
       "devMenuLabel": "Menú Dev"
     }
   },
-  "it-IT": {
+  "es-MX": {
+    "devHomepageHeader": {
+      "homeLink": "Inicio",
+      "aboutLink": "Sobre Nosotros",
+      "storeLink": "Tienda",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menú Dev"
+    }
+  },
+  "es-DO": {
+    "devHomepageHeader": {
+      "homeLink": "Inicio",
+      "aboutLink": "Sobre Nosotros",
+      "storeLink": "Tienda",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menú Dev"
+    }
+  },
+  "es-US": {
+    "devHomepageHeader": {
+      "homeLink": "Inicio",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "eo": {
     "devHomepageHeader": {
       "homeLink": "Home",
-      "aboutLink": "Chi Siamo",
-      "storeLink": "Negozio",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
       "blogLink": "Blog",
-      "devMenuLabel": "Menù Dev"
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "et-EE": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "eu-ES": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "fo-FO": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "fil-PH": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "fi-FI": {
+    "devHomepageHeader": {
+      "homeLink": "Koti",
+      "aboutLink": "Meistä",
+      "storeLink": "Kauppa",
+      "blogLink": "Blogi",
+      "devMenuLabel": "Kehittäjävalikko"
+    }
+  },
+  "fr-FR": {
+    "devHomepageHeader": {
+      "homeLink": "Accueil",
+      "aboutLink": "À Propos",
+      "storeLink": "Boutique",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menu Dév"
+    }
+  },
+  "fr-CA": {
+    "devHomepageHeader": {
+      "homeLink": "Accueil",
+      "aboutLink": "À Propos",
+      "storeLink": "Boutique",
+      "blogLink": "Blogue",
+      "devMenuLabel": "Menu Dév"
+    }
+  },
+  "fr-CH": {
+    "devHomepageHeader": {
+      "homeLink": "Accueil",
+      "aboutLink": "À Propos",
+      "storeLink": "Boutique",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menu Dév"
+    }
+  },
+  "fy-NL": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "gd-GB": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "cy-GB": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "gl-ES": {
+    "devHomepageHeader": {
+      "homeLink": "Inicio",
+      "aboutLink": "Sobre Nós",
+      "storeLink": "Tenda",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menú Dev"
+    }
+  },
+  "ka-GE": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "el-GR": {
+    "devHomepageHeader": {
+      "homeLink": "Αρχική",
+      "aboutLink": "Σχετικά με εμάς",
+      "storeLink": "Κατάστημα",
+      "blogLink": "Ιστολόγιο",
+      "devMenuLabel": "Μενού προγραμματιστή"
+    }
+  },
+  "gu-IN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "he-IL": {
+    "devHomepageHeader": {
+      "homeLink": "בית",
+      "aboutLink": "אודות",
+      "storeLink": "חנות",
+      "blogLink": "בלוג",
+      "devMenuLabel": "תפריט מפתחים"
+    }
+  },
+  "hi-IN": {
+    "devHomepageHeader": {
+      "homeLink": "होम",
+      "aboutLink": "हमारे बारे में",
+      "storeLink": "स्टोर",
+      "blogLink": "ब्लॉग",
+      "devMenuLabel": "डेवलपर मेनू"
+    }
+  },
+  "hu-HU": {
+    "devHomepageHeader": {
+      "homeLink": "Kezdőlap",
+      "aboutLink": "Rólunk",
+      "storeLink": "Bolt",
+      "blogLink": "Blog",
+      "devMenuLabel": "Fejlesztői menü"
+    }
+  },
+  "id-ID": {
+    "devHomepageHeader": {
+      "homeLink": "Beranda",
+      "aboutLink": "Tentang Kami",
+      "storeLink": "Toko",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menu Pengembang"
+    }
+  },
+  "en-AU": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "en-CA": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "en-IN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "en-IE": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "en-IL": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "en-NZ": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "en-GB": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "en-SG": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
     }
   },
   "en-US": {
@@ -26,6 +611,294 @@
       "devMenuLabel": "Dev Menu"
     }
   },
+  "ga-IE": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "is-IS": {
+    "devHomepageHeader": {
+      "homeLink": "Heim",
+      "aboutLink": "Um okkur",
+      "storeLink": "Verslun",
+      "blogLink": "Blogg",
+      "devMenuLabel": "Hönnuðarvalmynd"
+    }
+  },
+  "it-IT": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "Chi Siamo",
+      "storeLink": "Negozio",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menù Dev"
+    }
+  },
+  "it-CH": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "Chi Siamo",
+      "storeLink": "Negozio",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menù Dev"
+    }
+  },
+  "ja-JP": {
+    "devHomepageHeader": {
+      "homeLink": "ホーム",
+      "aboutLink": "会社概要",
+      "storeLink": "ストア",
+      "blogLink": "ブログ",
+      "devMenuLabel": "開発者メニュー"
+    }
+  },
+  "jv-ID": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "km-KH": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "kk-KZ": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "ky-KG": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "tlh": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "gom-Deva": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "gom-Latn": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "lo-LA": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "lv-LV": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "lt-LT": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "lb-LU": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "mk-MK": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "ms-MY": {
+    "devHomepageHeader": {
+      "homeLink": "Utama",
+      "aboutLink": "Tentang Kami",
+      "storeLink": "Kedai",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menu Pembangun"
+    }
+  },
+  "ml-IN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "mt-MT": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "mi-NZ": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "mr-IN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "mn-MN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "me-ME": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "ne-NP": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "nb-NO": {
+    "devHomepageHeader": {
+      "homeLink": "Hjem",
+      "aboutLink": "Om Oss",
+      "storeLink": "Butikk",
+      "blogLink": "Blogg",
+      "devMenuLabel": "Utviklermeny"
+    }
+  },
+  "nn-NO": {
+    "devHomepageHeader": {
+      "homeLink": "Heim",
+      "aboutLink": "Om Oss",
+      "storeLink": "Butikk",
+      "blogLink": "Blogg",
+      "devMenuLabel": "Utviklarmeny"
+    }
+  },
+  "oc-LNC": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "pa-IN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "fa-IR": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "pl-PL": {
+    "devHomepageHeader": {
+      "homeLink": "Start",
+      "aboutLink": "O nas",
+      "storeLink": "Sklep",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menu dewelopera"
+    }
+  },
+  "pt-PT": {
+    "devHomepageHeader": {
+      "homeLink": "Início",
+      "aboutLink": "Sobre Nós",
+      "storeLink": "Loja",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menu de Programador"
+    }
+  },
   "pt-BR": {
     "devHomepageHeader": {
       "homeLink": "Início",
@@ -33,6 +906,267 @@
       "storeLink": "Loja",
       "blogLink": "Blog",
       "devMenuLabel": "Menu Dev"
+    }
+  },
+  "ro-RO": {
+    "devHomepageHeader": {
+      "homeLink": "Acasă",
+      "aboutLink": "Despre Noi",
+      "storeLink": "Magazin",
+      "blogLink": "Blog",
+      "devMenuLabel": "Meniu Dezvoltator"
+    }
+  },
+  "ru-RU": {
+    "devHomepageHeader": {
+      "homeLink": "Главная",
+      "aboutLink": "О нас",
+      "storeLink": "Магазин",
+      "blogLink": "Блог",
+      "devMenuLabel": "Меню разработчика"
+    }
+  },
+  "se-NO": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "sr-Cyrl-RS": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "sr-Latn-RS": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "sd-PK": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "si-LK": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "sw-KE": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "ss-SZ": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "sv-SE": {
+    "devHomepageHeader": {
+      "homeLink": "Hem",
+      "aboutLink": "Om Oss",
+      "storeLink": "Butik",
+      "blogLink": "Blogg",
+      "devMenuLabel": "Utvecklarmeny"
+    }
+  },
+  "tl-PH": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "th-TH": {
+    "devHomepageHeader": {
+      "homeLink": "หน้าแรก",
+      "aboutLink": "เกี่ยวกับเรา",
+      "storeLink": "ร้านค้า",
+      "blogLink": "บล็อก",
+      "devMenuLabel": "เมนูนักพัฒนา"
+    }
+  },
+  "tzl": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "tzm-Tfng-MA": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "tzm-Latn": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "ta-IN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "tg-TJ": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "te-IN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "tet-TL": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "bo-CN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "tr-TR": {
+    "devHomepageHeader": {
+      "homeLink": "Anasayfa",
+      "aboutLink": "Hakkımızda",
+      "storeLink": "Mağaza",
+      "blogLink": "Blog",
+      "devMenuLabel": "Geliştirici Menüsü"
+    }
+  },
+  "tk-TM": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "uk-UA": {
+    "devHomepageHeader": {
+      "homeLink": "Головна",
+      "aboutLink": "Про нас",
+      "storeLink": "Магазин",
+      "blogLink": "Блог",
+      "devMenuLabel": "Меню розробника"
+    }
+  },
+  "ug-CN": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "ur-PK": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "uz-Cyrl-UZ": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "uz-Latn-UZ": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
+    }
+  },
+  "vi-VN": {
+    "devHomepageHeader": {
+      "homeLink": "Trang chủ",
+      "aboutLink": "Về chúng tôi",
+      "storeLink": "Cửa hàng",
+      "blogLink": "Blog",
+      "devMenuLabel": "Menu nhà phát triển"
+    }
+  },
+  "yo-NG": {
+    "devHomepageHeader": {
+      "homeLink": "Home",
+      "aboutLink": "About Us",
+      "storeLink": "Store",
+      "blogLink": "Blog",
+      "devMenuLabel": "Dev Menu"
     }
   }
 }

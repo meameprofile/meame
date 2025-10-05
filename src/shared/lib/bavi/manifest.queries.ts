@@ -5,7 +5,7 @@
  *              al contexto y seguro para su uso tanto en Server Components
  *              como en scripts de Node.js.
  * @version 8.0.0 (DB Schema Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import * as React from "react";
 import { createServerClient } from "@/shared/lib/supabase/server";

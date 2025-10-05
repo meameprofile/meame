@@ -4,7 +4,7 @@
  * @description Server Action soberana para obtener un único artículo de CogniRead por su CUID2,
  *              ahora completamente alineada con la Arquitectura de Contratos de Dominio Soberanos.
  * @version 5.0.0 (Sovereign Contract Aligned)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

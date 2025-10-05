@@ -4,7 +4,7 @@
 - @file 000_MANIFIESTO_VISITOR_INTELLIGENCE.md
 - @description Manifiesto Canónico y SSoT para el dominio de Inteligencia de Visitantes.
 - @version 1.0.0
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Soberano: Dominio de Inteligencia de Visitantes

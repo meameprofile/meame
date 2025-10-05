@@ -1,135 +1,80 @@
-// APARATO REVISADO Y NIVELADO POR L.I.A. LEGACY - VERSIÓN 6.2.0
-// ADVERTENCIA: No modificar sin consultar para evaluar el impacto holístico.
-
 // RUTA: src/components/layout/LanguageSwitcher.tsx
 /**
  * @file LanguageSwitcher.tsx
- * @description Componente de UI de élite para cambiar el idioma, con persistencia
- *              de la preferencia del usuario a través de cookies. Esta versión
- *              restaura la integridad de dependencias y la higiene de código.
- * @version 6.2.0 (Dependency Integrity & Elite Compliance)
+ * @description Activador del modal de selección de idioma, con UX de élite.
+ * @version 8.0.0 (Holistic Contract Restoration)
  * @author L.I.A. Legacy
  */
 "use client";
 
-import React, { useCallback, useMemo } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import Cookies from "js-cookie";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
-import { Button } from "@/components/ui/Button";
-import { FlagIcon } from "@/components/ui/FlagIcon";
+import React, { useState, useMemo, useEffect } from "react";
+import { Button, FlagIcon } from "@/components/ui";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
+import { LANGUAGE_MANIFEST } from "@/shared/lib/i18n/global.i18n.manifest";
 import { logger } from "@/shared/lib/logging";
+import { LanguageSelectorModal } from "./LanguageSelectorModal";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { cn } from "@/shared/lib/utils/cn";
 
+// --- [INICIO DE REFACTORIZACIÓN DE API v8.0.0] ---
+// La prop `supportedLocales` se elimina, ya que este componente
+// no necesita conocer la lista completa; es una responsabilidad del modal.
 interface LanguageSwitcherProps {
   currentLocale: Locale;
-  supportedLocales: readonly string[];
   content: NonNullable<Dictionary["languageSwitcher"]>;
 }
+// --- [FIN DE REFACTORIZACIÓN DE API v8.0.0] ---
 
 export function LanguageSwitcher({
   currentLocale,
-  supportedLocales,
   content,
-}: LanguageSwitcherProps): React.ReactElement {
-  const traceId = useMemo(() => logger.startTrace("LanguageSwitcher_v6.2"), []);
-  logger.info("[LanguageSwitcher] Renderizando v6.2 (Restored).", {
-    traceId,
-  });
-  const router = useRouter();
-  const pathname = usePathname();
-
-  /**
-   * @function handleLanguageChange
-   * @description Orquesta el cambio de idioma. Persiste la preferencia en una
-   *              cookie y luego redirige al usuario a la nueva ruta localizada.
-   * @param {string} newLocale - El nuevo locale seleccionado por el usuario.
-   */
-  const handleLanguageChange = useCallback(
-    (newLocale: string) => {
-      const actionTraceId = logger.startTrace("handleLanguageChange");
-      logger.startGroup(
-        `[LanguageSwitcher] Cambiando idioma a ${newLocale}...`
-      );
-
-      // 1. Persistir la preferencia explícita del usuario en el disco duro del navegador.
-      Cookies.set("NEXT_LOCALE", newLocale, { expires: 365, path: "/" });
-      logger.traceEvent(
-        actionTraceId,
-        `Cookie 'NEXT_LOCALE' establecida con valor: ${newLocale}`
-      );
-
-      // 2. Calcular la nueva ruta
-      const segments = pathname.split("/");
-      const localeIndex = segments.findIndex((segment) =>
-        supportedLocales.includes(segment as Locale)
-      );
-
-      if (localeIndex !== -1) {
-        segments[localeIndex] = newLocale;
-      } else {
-        segments.splice(1, 0, newLocale);
-      }
-
-      const newPathname = segments.join("/") || "/";
-      const finalPath = newPathname.startsWith(`/${newLocale}/${newLocale}`)
-        ? newPathname.substring(`/${newLocale}`.length)
-        : newPathname;
-
-      logger.traceEvent(
-        actionTraceId,
-        `Redirigiendo a la nueva ruta: ${finalPath}`
-      );
-      router.push(finalPath);
-
-      logger.endGroup();
-      logger.endTrace(actionTraceId);
-    },
-    [pathname, router, supportedLocales]
+}: LanguageSwitcherProps) {
+  const traceId = useMemo(
+    () => logger.startTrace("LanguageSwitcher_v8.0"),
+    []
   );
 
+  useEffect(() => {
+    logger.info("[LanguageSwitcher] Componente montado (v8.0).", { traceId });
+    return () => logger.endTrace(traceId);
+  }, [traceId]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const currentLanguage = useMemo(() => {
+    return LANGUAGE_MANIFEST.find((lang) => lang.code === currentLocale);
+  }, [currentLocale]);
+
+  if (!currentLanguage) {
+    logger.error(
+      `[Guardián] No se encontró la configuración del manifiesto para el locale: ${currentLocale}`,
+      { traceId }
+    );
+    return null;
+  }
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={content.ariaLabel}
-          className="relative group"
-        >
-          <FlagIcon
-            locale={currentLocale}
-            className="w-5 h-5 rounded-sm transition-transform duration-300 group-hover:scale-110"
-          />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {supportedLocales.map((locale) => (
-          <DropdownMenuItem
-            key={locale}
-            onClick={() => handleLanguageChange(locale)}
-            className={cn(
-              "flex items-center gap-3 cursor-pointer",
-              currentLocale === locale && "bg-muted font-semibold"
-            )}
-          >
-            <FlagIcon
-              locale={locale as Locale}
-              className="w-5 h-5 rounded-sm"
-            />
-            <span>
-              {content.languages[locale as keyof typeof content.languages]}
-            </span>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <>
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-label={content.ariaLabel}
+        className="relative group"
+        onClick={() => setIsModalOpen(true)}
+      >
+        {/* --- [INICIO DE CORRECCIÓN DE CONTRATO DE API v8.0.0] --- */}
+        {/* Se pasa la prop `locale` en lugar de `countryCode` para cumplir con la API de FlagIcon. */}
+        <FlagIcon
+          locale={currentLanguage.code as Locale}
+          className="w-6 h-6 rounded-sm transition-transform duration-300 group-hover:scale-110"
+        />
+        {/* --- [FIN DE CORRECCIÓN DE CONTRATO DE API v8.0.0] --- */}
+      </Button>
+      <LanguageSelectorModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        currentLocale={currentLocale}
+        content={content}
+      />
+    </>
   );
 }

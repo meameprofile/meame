@@ -4,7 +4,7 @@
  * @description Despachador de Pasos dinámico para la SDC. Renderiza el
  *              componente de paso correcto del lado del servidor.
  * @version 2.0.0 (Server-Side Dispatcher)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React, { Suspense } from "react";

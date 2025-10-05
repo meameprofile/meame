@@ -5,7 +5,7 @@
  *              información del último inicio de sesión, forjado con
  *              resiliencia, compatibilidad hacia adelante y seguridad de tipos absoluta.
  * @version 7.0.0 (Great Refactoring Aligned & Type-Safe Property Guards)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

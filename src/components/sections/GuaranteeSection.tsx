@@ -3,7 +3,7 @@
  * @file GuaranteeSection.tsx
  * @description Muestra una marquesina con los sellos de calidad y confianza.
  * @version 6.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

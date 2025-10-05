@@ -4,7 +4,7 @@
  * @description Guardián de Contenido para la tabla `profiles`. Realiza un volcado
  *              completo de los registros de la tabla y genera un informe de diagnóstico.
  * @version 1.1.0 (Schema Synchronization)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

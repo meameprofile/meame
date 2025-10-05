@@ -4,7 +4,7 @@
  * @description Componente de presentación puro para el formulario de metadatos de BAVI,
  *              incluyendo la UI para la ingestión inteligente de activos.
  * @version 6.0.0 (Holistic & Finalized)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 import React from "react";

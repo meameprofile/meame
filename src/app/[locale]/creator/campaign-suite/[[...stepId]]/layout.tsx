@@ -4,7 +4,7 @@
  * @description Layout Orquestador y "Server Shell" de élite para la SDC,
  *              con una arquitectura de composición Cliente-Servidor soberana.
  * @version 2.0.0 (Server Shell Pattern & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import { notFound } from "next/navigation";

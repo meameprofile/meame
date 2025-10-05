@@ -4,7 +4,7 @@
  * @description SSoT para la creación de un cliente de Supabase aislado,
  *              seguro y con seguridad de tipos para scripts del lado del servidor.
  * @version 8.1.0 (Resilient Path Resolution)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { scriptLogger } from "./logger";

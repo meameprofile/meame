@@ -4,7 +4,7 @@
  * @description Orquestador modal para la Bóveda de Estilos, ahora con
  *              alineamiento de contrato de datos soberano y observabilidad de élite.
  * @version 7.2.0 (Sovereign Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

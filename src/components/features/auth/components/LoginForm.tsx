@@ -8,7 +8,7 @@
  *              v9.0.0 (Contextual Redirect Logic): Ahora acepta una URL de
  *              redirección para una experiencia de usuario post-login sin fisuras.
  * @version 9.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

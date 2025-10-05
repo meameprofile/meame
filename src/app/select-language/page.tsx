@@ -4,7 +4,7 @@
  * @description Página de selección de idioma, ahora blindada con un guardián de
  *              contrato de datos para una resiliencia y seguridad de tipos de élite.
  * @version 4.0.0 (Elite Contract Guardian)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import { logger } from "@/shared/lib/logging";

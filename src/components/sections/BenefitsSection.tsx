@@ -3,7 +3,7 @@
  * @file BenefitsSection.tsx
  * @description Componente de presentación para la sección de Beneficios.
  * @version 9.0.0 (Elite Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

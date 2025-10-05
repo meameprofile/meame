@@ -4,7 +4,7 @@
  * @description Orquestador de presentación puro para el Paso 4.
  *              Delega la renderización a componentes atómicos y animados.
  * @version 10.0.0 (Atomic & Observable)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

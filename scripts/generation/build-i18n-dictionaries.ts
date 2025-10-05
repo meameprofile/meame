@@ -6,7 +6,7 @@
  *              erradicar errores de tipo 'any' y corregir rutas de importación,
  *              restaurando la integridad del build.
  * @version 6.1.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import * as fs from "fs/promises";
 import * as path from "path";

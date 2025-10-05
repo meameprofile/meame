@@ -5,7 +5,7 @@
  *              observabilidad, resiliencia, MEA/UX y alineado con la
  *              Gran Refactorización para una integridad de tipos absoluta.
  * @version 10.0.0 (Definitive & Holistically Aligned)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

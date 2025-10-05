@@ -2,8 +2,8 @@
 /**
  * @file page.tsx
  * @description Página principal de la Central de Operaciones BAVI.
- * @version 4.0.0 (Architectural Integrity Restoration)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 5.0.0 (Sovereign Path Restoration)
+ * @author L.I.A. Legacy
  */
 import React from "react";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
@@ -19,6 +19,7 @@ import {
 } from "@/components/ui";
 import { AssetUploader } from "@/components/features/bavi/components/AssetUploader";
 import { logger } from "@/shared/lib/logging";
+// --- [FIN DE NIVELACIÓN DE RUTAS v5.0.0] ---
 
 export default async function BaviHomePage({
   params: { locale },
@@ -26,7 +27,7 @@ export default async function BaviHomePage({
   params: { locale: Locale };
 }) {
   logger.info(
-    "[BaviHomePage] Renderizando la página principal de la BAVI (v4.0)."
+    "[BaviHomePage] Renderizando la página principal de la BAVI (v5.0)."
   );
   const { dictionary } = await getDictionary(locale);
   const pageContent = dictionary.baviHomePage;
@@ -34,6 +35,7 @@ export default async function BaviHomePage({
   const promptCreatorContent = dictionary.promptCreator;
 
   if (!uploaderContent || !promptCreatorContent || !pageContent) {
+    // En un escenario real, aquí se usaría un DeveloperErrorDisplay.
     return <div>Error: Contenido de la página BAVI no encontrado.</div>;
   }
 

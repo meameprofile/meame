@@ -4,7 +4,7 @@
  * @description Guardián de Conexión para Shopify. Verifica variables de entorno
  *              y la conectividad con las APIs de Admin y Storefront.
  * @version 1.0.1 (Type-Safe & Linter-Compliant)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

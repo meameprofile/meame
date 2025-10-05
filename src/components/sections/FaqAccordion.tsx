@@ -4,7 +4,7 @@
  * @description Sección de Preguntas Frecuentes (FAQ), nivelada a un estándar de élite,
  *              consumiendo el sistema de Acordeón composicional y animado.
  * @version 8.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

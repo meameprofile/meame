@@ -4,7 +4,7 @@
  * @description Utilidades del lado del cliente para ensamblar los datos de la vista previa,
  *              ahora forjado con un Guardián de Resiliencia y Observabilidad de élite.
  * @version 3.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

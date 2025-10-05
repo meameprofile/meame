@@ -4,7 +4,7 @@
 - @file 001_MANIFIESTO_TABLA_PROFILES.md
 - @description Manifiesto Canónico y SSoT para la tabla 'public.profiles'.
 - @version 3.0.0 (Hybrid Identity Architecture)
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto de Tabla Soberana: `public.profiles` v3.0
@@ -96,7 +96,7 @@ ACTUALIZACION
  *              sistema de "Sesión Ascendente" que vincula la identidad anónima
  *              y la autenticada.
  * @version 4.0.0 (Holistic Identity & Leveling Protocol)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 
 # Manifiesto Soberano: Entidad `profiles` y Arquitectura de Identidad
@@ -201,7 +201,7 @@ actualizacion // RUTA: _docs/supabase/001_MANIFIESTO_TABLA_PROFILES.md
  * @file 001_MANIFIESTO_TABLA_PROFILES.md
  * @description Manifiesto Canónico y SSoT para la tabla 'public.profiles'.
  * @version 5.0.0 (Schema Synchronization & Security Hardening)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 
 # Manifiesto de Tabla Soberana: `public.profiles` v5.0

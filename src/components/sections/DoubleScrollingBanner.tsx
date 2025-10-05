@@ -3,7 +3,7 @@
  * @file DoubleScrollingBanner.tsx
  * @description Sección de prueba social con dos marquesinas animadas.
  * @version 4.0.0 (Sovereign Contract & Focus-Aware)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

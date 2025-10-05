@@ -6,7 +6,7 @@
  *              únicamente componentes seguros para el cliente, erradicando la
  *              causa raíz de las violaciones de la frontera Cliente-Servidor.
  * @version 33.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import type { ComponentType } from "react";

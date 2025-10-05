@@ -9,7 +9,7 @@
 -              Define la arquitectura del "Guardián Inteligente" que perfila,
 -              personaliza y protege cada petición entrante.
 - @version 3.0.0 (Holistic Visitor Profiling & Preference-First i18n)
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Canónico: El Pipeline del Middleware v3.0 (El Guardián Inteligente)

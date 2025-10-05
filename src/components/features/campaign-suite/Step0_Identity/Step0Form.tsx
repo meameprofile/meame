@@ -4,7 +4,7 @@
  * @description Componente de Presentación para el formulario del Paso 0, ahora
  *              inyectado con una animación de entrada en cascada para una MEA/UX de élite.
  * @version 8.0.0 (MEA/UX Injection & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

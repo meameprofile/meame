@@ -1,8 +1,9 @@
 // RUTA: src/components/features/analytics/StatCard.tsx
 /**
  * @file StatCard.tsx
- * @description Componente atómico de UI para mostrar un KPI individual con MEA/UX.
- * @version 2.1.0 (Holistic Integrity Restoration)
+ * @description Componente de UI atómico para una tarjeta de KPI (Indicador Clave de Rendimiento).
+ *              Inyectado con MEA/UX para una experiencia visual superior.
+ * @version 1.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -30,7 +31,7 @@ export function StatCard({
   value,
   icon,
 }: StatCardProps): React.ReactElement {
-  logger.trace(`[StatCard] Renderizando v2.1 para: ${title}`);
+  logger.trace(`[StatCard] Renderizando para KPI: ${title}`);
   return (
     <motion.div
       variants={cardVariants}

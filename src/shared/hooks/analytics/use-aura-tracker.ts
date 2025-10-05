@@ -9,7 +9,7 @@
  */
 "use client";
 
-import { useEffect, useCallback, useRef, useState } from "react";
+import { useEffect, useCallback, useRef, useState, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import { logger } from "@/shared/lib/logging";
@@ -88,7 +88,10 @@ export function useAuraTracker({
   variantId,
   enabled,
 }: AuraTrackerProps) {
-  const traceId = useRef(`aura-tracker-${scope}-${Date.now()}`).current;
+  const traceId = useMemo(
+    () => logger.startTrace(`auraTracker_v6.0:${scope}`),
+    [scope]
+  );
   const [fingerprintId, setFingerprintId] = useState<string | null>(null);
   const activeWorkspaceId = useWorkspaceStore(
     (state) => state.activeWorkspaceId
@@ -126,7 +129,20 @@ export function useAuraTracker({
 
       try {
         const decryptedJSON = await cryptoEngine.decrypt(encryptedQueue);
-        const events: AuraEvent[] = JSON.parse(decryptedJSON);
+
+        // Guardián de Resiliencia contra datos corruptos en localStorage
+        let events: AuraEvent[];
+        try {
+          events = JSON.parse(decryptedJSON);
+        } catch (parseError) {
+          logger.error(
+            `[AuraTracker] Datos corruptos en localStorage para ${storageKey}. Limpiando cola.`,
+            { error: parseError, traceId }
+          );
+          localStorage.removeItem(storageKey);
+          return;
+        }
+
         if (events.length === 0) return;
 
         logger.traceEvent(
@@ -184,7 +200,7 @@ export function useAuraTracker({
         campaignId: campaignId || "n/a",
         variantId: variantId || "n/a",
         eventType,
-        payload: { ...payload, pathname }, // Se añade el pathname al payload
+        payload: { ...payload, pathname },
         timestamp: Date.now(),
       };
 
@@ -229,19 +245,29 @@ export function useAuraTracker({
   );
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      return;
+    }
     logger.info(`[AuraTracker] Tracker activado para scope: ${scope}.`, {
       traceId,
     });
 
+    // Iniciar el intervalo de envío
     intervalRef.current = setInterval(() => sendBatch(), BATCH_INTERVAL);
+
+    // Configurar el envío final al salir de la página
     const handleUnload = () => sendBatch(true);
     window.addEventListener("beforeunload", handleUnload);
 
     return () => {
+      logger.info(`[AuraTracker] Limpiando para scope: ${scope}.`, {
+        traceId,
+      });
       if (intervalRef.current) clearInterval(intervalRef.current);
       window.removeEventListener("beforeunload", handleUnload);
-      sendBatch(true);
+      sendBatch(true); // Intento final de envío
+      logger.endTrace(traceId);
     };
   }, [enabled, sendBatch, scope, traceId]);
 
