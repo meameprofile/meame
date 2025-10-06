@@ -33,19 +33,26 @@ export const CreatePromptFormSchema = z.object({
 export type CreatePromptFormData = z.infer<typeof CreatePromptFormSchema>;
 
 export function usePromptCreator() {
-  const traceId = useMemo(() => logger.startTrace("usePromptCreator_v10.0"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("usePromptCreator_v10.0"),
+    []
+  );
   useEffect(() => {
     logger.info("[Hook] usePromptCreator montado.", { traceId });
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
   const [isPending, startTransition] = useTransition();
-  const activeWorkspaceId = useWorkspaceStore((state) => state.activeWorkspaceId);
+  const activeWorkspaceId = useWorkspaceStore(
+    (state) => state.activeWorkspaceId
+  );
 
   const form = useForm<CreatePromptFormData>({
     resolver: zodResolver(CreatePromptFormSchema),
     defaultValues: {
-      title: "", promptText: "", enhanceWithAI: false,
+      title: "",
+      promptText: "",
+      enhanceWithAI: false,
       tags: { ai: "ideo", sty: "pht", fmt: "16x9", typ: "ui", sbj: "abs" },
       parameters: { styleType: "REALISTIC", aspectRatio: "16x9" },
       keywords: "",
@@ -57,9 +64,14 @@ export function usePromptCreator() {
     logger.startGroup(`[PromptCreator] Procesando envío...`, submitTraceId);
 
     if (!activeWorkspaceId) {
-      toast.error("Error de Contexto", { description: "No hay un workspace activo." });
-      logger.error("[Guardián] Envío abortado: falta workspaceId.", { traceId: submitTraceId });
-      logger.endGroup(); logger.endTrace(submitTraceId);
+      toast.error("Error de Contexto", {
+        description: "No hay un workspace activo.",
+      });
+      logger.error("[Guardián] Envío abortado: falta workspaceId.", {
+        traceId: submitTraceId,
+      });
+      logger.endGroup();
+      logger.endTrace(submitTraceId);
       return;
     }
 
@@ -67,7 +79,10 @@ export function usePromptCreator() {
       let finalPromptText = data.promptText;
 
       if (data.enhanceWithAI) {
-        logger.traceEvent(submitTraceId, "Solicitando perfeccionamiento por IA...");
+        logger.traceEvent(
+          submitTraceId,
+          "Solicitando perfeccionamiento por IA..."
+        );
         toast.info("Perfeccionando tu prompt con nuestra IA...");
         const enhancementResult = await enhancePromptAction(data.promptText);
         if (enhancementResult.success) {
@@ -76,8 +91,13 @@ export function usePromptCreator() {
           form.setValue("promptText", finalPromptText);
           logger.traceEvent(submitTraceId, "Perfeccionamiento por IA exitoso.");
         } else {
-          toast.error("Error de la IA", { description: enhancementResult.error });
-          logger.warn("[PromptCreator] Fallo en el perfeccionamiento por IA.", { error: enhancementResult.error, traceId: submitTraceId });
+          toast.error("Error de la IA", {
+            description: enhancementResult.error,
+          });
+          logger.warn("[PromptCreator] Fallo en el perfeccionamiento por IA.", {
+            error: enhancementResult.error,
+            traceId: submitTraceId,
+          });
         }
       }
 
@@ -88,17 +108,28 @@ export function usePromptCreator() {
         aiService: data.tags.ai,
         parameters: data.parameters as z.infer<typeof PromptParametersSchema>,
         tags: data.tags,
-        keywords: data.keywords.split(",").map((k) => k.trim()).filter(Boolean),
+        keywords: data.keywords
+          .split(",")
+          .map((k) => k.trim())
+          .filter(Boolean),
         workspaceId: activeWorkspaceId,
       });
 
       if (result.success) {
-        toast.success("¡Genoma de Prompt creado!", { description: `ID: ${result.data.promptId}`, duration: 10000 });
+        toast.success("¡Genoma de Prompt creado!", {
+          description: `ID: ${result.data.promptId}`,
+          duration: 10000,
+        });
         form.reset();
-        logger.success("[PromptCreator] Creación de genoma exitosa.", { traceId: submitTraceId });
+        logger.success("[PromptCreator] Creación de genoma exitosa.", {
+          traceId: submitTraceId,
+        });
       } else {
         toast.error("Error en la Creación", { description: result.error });
-        logger.error("[PromptCreator] Fallo en la creación.", { error: result.error, traceId: submitTraceId });
+        logger.error("[PromptCreator] Fallo en la creación.", {
+          error: result.error,
+          traceId: submitTraceId,
+        });
       }
       logger.endGroup();
       logger.endTrace(submitTraceId);

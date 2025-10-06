@@ -14,7 +14,7 @@ import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { logger } from "@/shared/lib/logging";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getProfiledUserDetailAction } from "@/shared/lib/actions/user-intelligence/getProfiledUserDetail.action";
 import { UserDetailClient } from "@/components/features/user-intelligence/UserDetailClient";
 import { UserIntelligenceDetailContentSchema } from "@/shared/lib/schemas/pages/dev-user-intelligence-detail.i18n.schema";

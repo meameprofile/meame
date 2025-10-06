@@ -1,16 +1,13 @@
-// lib/schemas/components/hero-news.schema.ts
+// RUTA: src/shared/lib/schemas/components/hero-news.schema.ts
 /**
  * @file hero-news.schema.ts
  * @description Esquema de Zod para el contenido i18n del componente HeroNews.
- *              - v2.0.0 (Architectural Fix): Desacopla el schema de contenido del schema
- *                de locale.
- * @version 2.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              - v2.1.0 (Build Fix): Se elimina la llamada al logger para resolver
+ *                la violación de la frontera servidor-cliente.
+ * @version 2.1.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para [HeroNews]");
 
 /**
  * @const HeroNewsContentSchema
@@ -40,4 +37,3 @@ export const HeroNewsI18nSchema = z.object({
   "pt-BR": HeroNewsLocaleSchema,
   "it-IT": HeroNewsLocaleSchema,
 });
-// lib/schemas/components/hero-news.schema.ts

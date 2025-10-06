@@ -2,7 +2,7 @@
 /**
  * @file CampaignsTable.tsx
  * @description Orquestador de UI para la tabla de datos de campañas.
- * @version 1.0.0
+ * @version 2.0.0 (Locale Propagation)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -28,17 +28,22 @@ import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campa
 import { logger } from "@/shared/lib/logging";
 import type { z } from "zod";
 import type { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
 
 type Content = z.infer<typeof CampaignsTableContentSchema>;
 
 interface CampaignsTableProps {
   data: CampaignAnalyticsData[];
   content: Content;
+  locale: Locale; // <-- Se añade la prop locale al contrato
 }
 
-export function CampaignsTable({ data, content }: CampaignsTableProps) {
-  logger.info("[CampaignsTable] Renderizando tabla de campañas.");
-  const columns = React.useMemo(() => getAnalyticsColumns(content), [content]);
+export function CampaignsTable({ data, content, locale }: CampaignsTableProps) {
+  logger.info("[CampaignsTable] Renderizando tabla de campañas (v2.0).");
+  const columns = React.useMemo(
+    () => getAnalyticsColumns(content, locale),
+    [content, locale]
+  ); // <-- Se pasa el locale
   const table = useReactTable({
     data,
     columns,

@@ -1,18 +1,16 @@
 // RUTA: src/shared/lib/i18n/i18n.ts
 /**
  * @file i18n.ts
- * @description Orquestador de i18n "isomórfico" y consciente del entorno,
- *              ahora con un motor de carga de producción desde Supabase
- *              que es completamente seguro a nivel de tipos.
- * @version 20.0.0 (Type-Safe Supabase Engine)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Orquestador de i18n "isomórfico", ahora alineado con la SSoT de enrutamiento.
+ * @version 21.0.0 (Routing Contract Alignment)
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import { cache } from "react";
 import { type ZodError } from "zod";
 import { i18nSchema, type Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import {
-  supportedLocales,
+  ROUTING_LOCALES,
   defaultLocale,
   type Locale,
 } from "@/shared/lib/i18n/i18n.config";
@@ -22,13 +20,10 @@ import { createServerClient } from "../supabase/server";
 import type { I18nFileContent } from "../dev/i18n-discoverer";
 import type { Tables } from "../supabase/database.types";
 
-// --- [INICIO DE REFACTORIZACIÓN DE TIPO SOBERANO] ---
-// Se define un tipo explícito para la fila que esperamos de la base de datos.
 type I18nEntry = Pick<
   Tables<"i18n_content_entries">,
   "entry_key" | "translations"
 >;
-// --- [FIN DE REFACTORIZACIÓN DE TIPO SOBERANO] ---
 
 const getProductionDictionaryFn = cache(
   async (
@@ -44,13 +39,9 @@ const getProductionDictionaryFn = cache(
 
     try {
       const supabase = createServerClient();
-      // --- [INICIO DE REFACTORIZACIÓN DE TIPO] ---
-      // Se elimina la aserción 'as any'. El cliente de Supabase ya está tipado
-      // y la consulta ahora devuelve un tipo seguro.
       const { data, error } = await supabase
         .from("i18n_content_entries")
         .select("entry_key, translations");
-      // --- [FIN DE REFACTORIZACIÓN DE TIPO] ---
 
       if (error) throw error;
 
@@ -60,14 +51,11 @@ const getProductionDictionaryFn = cache(
             locale
           ];
           if (entryContent) {
-            // Se extrae la clave del diccionario desde el nombre del archivo.
             const key = entry.entry_key
               .split("/")
               .pop()
               ?.replace(".i18n.json", "");
-
             if (key) {
-              // Se asigna el contenido a la clave correspondiente en el acumulador.
               (acc as Record<string, unknown>)[key] = entryContent;
             }
           }
@@ -106,7 +94,7 @@ export const getDictionary = async (
   dictionary: Partial<Dictionary>;
   error: ZodError | Error | null;
 }> => {
-  const validatedLocale = supportedLocales.includes(locale as Locale)
+  const validatedLocale = ROUTING_LOCALES.includes(locale as Locale)
     ? (locale as Locale)
     : defaultLocale;
 

@@ -18,7 +18,7 @@ import type {
   TestimonialItem as Testimonial,
   LogoItem as Logo,
 } from "@/shared/lib/schemas/components/double-scrolling-banner.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface DoubleScrollingBannerProps
   extends SectionProps<"doubleScrollingBanner"> {

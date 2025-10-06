@@ -1,20 +1,22 @@
-// RUTA (NUEVA): src/app/[locale]/(dev)/dev/page.tsx
+// RUTA: src/app/[locale]/(dev)/dev/page.tsx
 /**
  * @file page.tsx
  * @description Punto de entrada soberano y "Server Shell" para el Developer Command Center.
- *              v2.0.0 (Architectural Route Fix): Movido a la ruta /dev para resolver
- *              el conflicto de enrutamiento con la página de inicio pública.
- * @version 2.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v4.2.0 (Holistic Observability & Contract Integrity): Refactorizado para
+ *              cumplir con el contrato de API del logger soberano v20+ y enriquecido
+ *              con una trazabilidad hiper-granular de su ciclo de vida.
+ * @version 4.2.0
+ * @author L.I.A. Legacy
  */
-import "server-only";
+"use server-only";
 import React from "react";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { DevDashboardClient } from "../_components/DevDashboardClient";
 import { notFound } from "next/navigation";
+import { DevDashboardContentSchema } from "@/shared/lib/schemas/pages/dev-dashboard.schema";
 
 interface DevDashboardPageProps {
   params: { locale: Locale };
@@ -23,32 +25,31 @@ interface DevDashboardPageProps {
 export default async function DevDashboardPage({
   params: { locale },
 }: DevDashboardPageProps) {
-  const traceId = logger.startTrace("DCC_Dashboard_Shell_v2.0");
-  logger.startGroup(
+  const traceId = logger.startTrace("DCC_Dashboard_Shell_v4.2");
+  // --- [INICIO DE CORRECCIÓN DE CONTRATO v4.2.0] ---
+  const groupId = logger.startGroup(
     `[DCC Shell] Renderizando dashboard para locale: ${locale}`
   );
+  // --- [FIN DE CORRECCIÓN DE CONTRATO v4.2.0] ---
 
   try {
-    logger.traceEvent(traceId, "Iniciando obtención de diccionario i18n...");
+    logger.traceEvent(traceId, "Iniciando obtención de diccionario...");
     const { dictionary, error } = await getDictionary(locale);
-    const content = dictionary.devDashboardPage;
     logger.traceEvent(traceId, "Obtención de diccionario completada.");
 
-    // --- [INICIO] GUARDIÁN DE RESILIENCIA HOLÍSTICO ---
-    if (error || !content || !content.pageHeader || !content.magicBento) {
-      const missingKeys = [
-        !content && "devDashboardPage",
-        !content?.pageHeader && "pageHeader",
-        !content?.magicBento && "magicBento",
-      ]
-        .filter(Boolean)
-        .join(", ");
+    logger.traceEvent(traceId, "Validando contenido contra el schema Zod...");
+    const validation = DevDashboardContentSchema.safeParse(
+      dictionary.devDashboardPage
+    );
 
+    if (error || !validation.success) {
       throw new Error(
-        `Fallo al cargar el contenido i18n esencial para el DCC. Claves ausentes: ${missingKeys}`
+        `Fallo al cargar o validar el contenido i18n para el DCC.`,
+        { cause: error || validation.error }
       );
     }
-    // --- [FIN] GUARDIÁN DE RESILIENCIA HOLÍSTICO ---
+    const content = validation.data;
+    logger.traceEvent(traceId, "Contenido i18n validado con éxito.");
 
     logger.success(
       "[DCC Shell] Datos obtenidos y validados. Delegando a DevDashboardClient...",
@@ -63,16 +64,14 @@ export default async function DevDashboardPage({
       "[DCC Shell] Fallo crítico irrecuperable en el Server Shell.",
       {
         error: errorMessage,
-        traceId,
+        traceId, // Se añade traceId para una depuración correlacionada.
       }
     );
 
-    // En producción, un fallo aquí debería mostrar una página de no encontrado.
     if (process.env.NODE_ENV === "production") {
       return notFound();
     }
 
-    // En desarrollo, mostramos el error detallado para una depuración inmediata.
     return (
       <DeveloperErrorDisplay
         context="DevDashboardPage (Server Shell)"
@@ -81,7 +80,9 @@ export default async function DevDashboardPage({
       />
     );
   } finally {
-    logger.endGroup();
+    // --- [INICIO DE CORRECCIÓN DE CONTRATO v4.2.0] ---
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
+    // --- [FIN DE CORRECCIÓN DE CONTRATO v4.2.0] ---
   }
 }

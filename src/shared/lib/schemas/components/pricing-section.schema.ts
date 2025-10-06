@@ -1,16 +1,13 @@
-// lib/schemas/components/pricing-section.schema.ts
+// RUTA: src/shared/lib/schemas/components/pricing-section.schema.ts
 /**
  * @file pricing-section.schema.ts
  * @description Esquema de Zod para el contenido i18n del componente PricingSection.
- *              - v2.0.0 (Architectural Fix): Desacopla el schema de contenido del schema
- *                de locale.
- * @version 2.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              - v2.1.0 (Build Fix): Se elimina la llamada al logger para resolver
+ *                la violación de la frontera servidor-cliente.
+ * @version 2.1.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para [PricingSection]");
 
 const PricingPlanSchema = z.object({
   title: z.string(),
@@ -50,4 +47,3 @@ export const PricingSectionI18nSchema = z.object({
   "en-US": PricingSectionLocaleSchema,
   "pt-BR": PricingSectionLocaleSchema,
 });
-// lib/schemas/components/pricing-section.schema.ts

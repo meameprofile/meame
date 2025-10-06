@@ -15,7 +15,7 @@ import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface ProductGridProps extends SectionProps<"storePage"> {
   products: Product[];

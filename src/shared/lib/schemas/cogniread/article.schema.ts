@@ -2,23 +2,18 @@
 /**
  * @file article.schema.ts
  * @description SSoT para el contrato de datos de la entidad Artículo de CogniRead.
- * @version 5.2.1 (i18n & Zod Contract Alignment)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 5.3.0 (Routing Contract Alignment)
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
-// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v5.2.1] ---
-import { supportedLocales } from "@/shared/lib/i18n/i18n.config";
-// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA v5.2.1] ---
+import { ROUTING_LOCALES } from "@/shared/lib/i18n/i18n.config";
 
 export const ArticleTranslationSchema = z.object({
   title: z.string().min(1, "El título no puede estar vacío."),
   slug: z
     .string()
     .min(1, "El slug es requerido.")
-    .regex(
-      /^[a-z0-9-]+$/,
-      "El slug solo puede contener letras minúsculas, números y guiones."
-    ),
+    .regex(/^[a-z0-9-]+$/),
   summary: z.string().min(1, "El resumen no puede estar vacío."),
   body: z.string().min(1, "El cuerpo del artículo no puede estar vacío."),
 });
@@ -61,47 +56,21 @@ export const StudyDnaSchema = z.object({
 });
 
 export const CogniReadArticleSchema = z.object({
-  articleId: z.string().cuid2("El ID del artículo debe ser un CUID2 válido."),
-  status: z.enum(["draft", "published", "archived"], {
-    invalid_type_error: "El estado del artículo es inválido.",
-  }),
-  createdAt: z
-    .string()
-    .datetime(
-      "La fecha de creación debe ser un formato de fecha y hora ISO válido."
-    ),
-  updatedAt: z
-    .string()
-    .datetime(
-      "La fecha de actualización debe ser un formato de fecha y hora ISO válido."
-    ),
+  articleId: z.string().cuid2(),
+  status: z.enum(["draft", "published", "archived"]),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
   studyDna: StudyDnaSchema,
-  // --- [INICIO DE CORRECCIÓN DE CONTRATO ZOD v5.2.1] ---
   content: z.record(
-    z.enum(supportedLocales),
+    z.enum(ROUTING_LOCALES),
     ArticleTranslationSchema.partial()
   ),
-  // --- [FIN DE CORRECCIÓN DE CONTRATO ZOD v5.2.1] ---
-  tags: z
-    .array(z.string())
-    .optional()
-    .describe("Etiquetas temáticas para búsqueda y filtrado."),
+  tags: z.array(z.string()).optional(),
   baviHeroImageId: z
     .string()
-    .refine((s) => s.includes("/"), {
-      message:
-        "El ID de la imagen debe ser un 'public_id' de Cloudinary (ej. 'folder/asset'), no un 'assetId' de BAVI.",
-    })
-    .optional()
-    .describe("ID público del activo visual de BAVI para la imagen destacada."),
-  relatedPromptIds: z
-    .array(
-      z
-        .string()
-        .cuid2("Los IDs de prompt relacionados deben ser CUID2 válidos.")
-    )
-    .optional()
-    .describe("IDs de prompts de RaZPrompts relacionados con este artículo."),
+    .refine((s) => s.includes("/"))
+    .optional(),
+  relatedPromptIds: z.array(z.string().cuid2()).optional(),
 });
 
 export type CogniReadArticle = z.infer<typeof CogniReadArticleSchema>;

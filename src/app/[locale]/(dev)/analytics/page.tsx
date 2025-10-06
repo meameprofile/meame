@@ -2,42 +2,37 @@
 /**
  * @file page.tsx
  * @description Página "Server Shell" soberana para el Dashboard de Analíticas.
- *              v2.0.0 (Elite Contract Guardian & Type Safety): Implementa guardianes de
- *              contrato de Zod en la frontera Servidor-Cliente y un manejo de errores
- *              seguro a nivel de tipos para una resiliencia y seguridad de élite.
- * @version 2.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 4.0.0 (Heimdall Compliance)
+ * @author L.I.A. Legacy
  */
-import "server-only";
+"use server-only";
 import React from "react";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { getCampaignAnalyticsAction } from "@/shared/lib/actions/analytics";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { DashboardHeader } from "@/components/features/analytics/DashboardHeader";
 import { StatCard } from "@/components/features/analytics/StatCard";
 import { KPICharts } from "@/components/features/analytics/KPICharts";
 import { CampaignsTable } from "@/components/features/analytics/CampaignsTable";
 import { motion } from "framer-motion";
-// --- [INICIO DE REFACTORIZACIÓN DE GUARDIÁN DE CONTRATO v2.0.0] ---
 import { DashboardHeaderContentSchema } from "@/shared/lib/schemas/components/analytics/dashboard-header.schema";
 import { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
-// --- [FIN DE REFACTORIZACIÓN DE GUARDIÁN DE CONTRATO v2.0.0] ---
 
 export default async function AnalyticsPage({
   params: { locale },
 }: {
   params: { locale: Locale };
 }) {
-  const traceId = logger.startTrace("AnalyticsPage_ServerShell_v2.0");
-  logger.startGroup(`[Analytics Shell] Ensamblando Dashboard...`, traceId);
+  const traceId = logger.startTrace("AnalyticsPage_ServerShell_v4.0");
+  const groupId = logger.startGroup(
+    `[Analytics Shell] Ensamblando Dashboard...`
+  );
 
   try {
     const [{ dictionary, error: dictError }, analyticsResult] =
       await Promise.all([getDictionary(locale), getCampaignAnalyticsAction()]);
-
-    // --- [INICIO DE REFACTORIZACIÓN DE GUARDIÁN DE CONTRATO v2.0.0] ---
     const headerContentValidation = DashboardHeaderContentSchema.safeParse(
       dictionary.dashboardHeader
     );
@@ -61,13 +56,10 @@ export default async function AnalyticsPage({
       );
     }
     const dashboardHeader = headerContentValidation.data;
-    const campaignsTable = tableContentValidation.data;
+    const campaignsTableContent = tableContentValidation.data;
     logger.traceEvent(traceId, "Contenido i18n validado.");
-    // --- [FIN DE REFACTORIZACIÓN DE GUARDIÁN DE CONTRATO v2.0.0] ---
 
-    if (!analyticsResult.success) {
-      throw new Error(analyticsResult.error);
-    }
+    if (!analyticsResult.success) throw new Error(analyticsResult.error);
     const analyticsData = analyticsResult.data;
     logger.traceEvent(
       traceId,
@@ -84,7 +76,7 @@ export default async function AnalyticsPage({
     );
 
     return (
-      <div className="container mx-auto px-4 py-8 space-y-8">
+      <div className="space-y-8">
         <DashboardHeader content={dashboardHeader} />
         <motion.div
           className="grid gap-4 md:grid-cols-2 lg:grid-cols-4"
@@ -104,7 +96,11 @@ export default async function AnalyticsPage({
           />
         </motion.div>
         <KPICharts data={analyticsData} />
-        <CampaignsTable data={analyticsData} content={campaignsTable} />
+        <CampaignsTable
+          data={analyticsData}
+          content={campaignsTableContent}
+          locale={locale}
+        />
       </div>
     );
   } catch (error) {
@@ -122,7 +118,7 @@ export default async function AnalyticsPage({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

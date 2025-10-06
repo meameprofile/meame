@@ -1,11 +1,10 @@
 // RUTA: src/app/layout.tsx
 /**
  * @file layout.tsx
- * @description Layout Raíz Soberano del Ecosistema. Forjado con Observabilidad de Élite y
- *              un Guardián de Resiliencia Holístico. Es la SSoT para la estructura
- *              fundamental del documento HTML.
- * @version 2.0.0 (Elite Observability & Resilience)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Layout Raíz Soberano, nivelado a un estándar de élite con
+ *              observabilidad hiper-granular y resiliencia de contrato.
+ * @version 5.0.0 (Holistic Elite Leveling)
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import React from "react";
@@ -17,7 +16,7 @@ import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale, defaultLocale } from "@/shared/lib/i18n/i18n.config";
 import { cn } from "@/shared/lib/utils/cn";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import "./globals.css";
 
 interface RootLayoutProps {
@@ -29,30 +28,32 @@ export default async function RootLayout({
   children,
   params: { locale = defaultLocale },
 }: RootLayoutProps) {
-  const traceId = logger.startTrace(`RootLayout_Render_v2.0:${locale}`);
-  logger.startGroup(
+  // --- [INICIO DE REFACTORIZACIÓN DE OBSERVABILIDAD v5.0.0] ---
+  const traceId = logger.startTrace(`RootLayout_Render_v5.0:${locale}`);
+  // Se captura el ID del grupo para una finalización de log correcta.
+  const groupId = logger.startGroup(
     `[RootLayout Shell] Ensamblando UI raíz para [${locale}]...`
   );
+  // --- [FIN DE REFACTORIZACIÓN DE OBSERVABILIDAD v5.0.0] ---
 
   try {
-    // --- [INICIO: GUARDIÁN DE RESILIENCIA] ---
-    logger.traceEvent(
-      traceId,
-      "Obteniendo diccionario para datos de proveedores..."
-    );
+    logger.traceEvent(traceId, "Iniciando obtención de diccionario...");
     const { dictionary, error: dictError } = await getDictionary(locale);
+    logger.traceEvent(traceId, "Obtención de diccionario completada.");
 
+    // Guardián de Resiliencia para el contenido del banner de cookies
     if (dictError || !dictionary.cookieConsentBanner) {
       logger.error(
-        "[Guardián de Resiliencia] No se pudo cargar el contenido para AppProviders (cookie banner). La aplicación continuará sin él.",
+        "[Guardián] No se pudo cargar el contenido esencial para AppProviders.",
         { error: dictError, traceId }
       );
+      // Aunque falle, intentamos renderizar una estructura base.
     }
+
     logger.traceEvent(
       traceId,
-      "Datos para proveedores obtenidos de forma resiliente."
+      "Ensamblaje de datos completado. Renderizando estructura HTML..."
     );
-    // --- [FIN: GUARDIÁN DE RESILIENCIA] ---
 
     return (
       <html lang={locale} suppressHydrationWarning>
@@ -78,10 +79,13 @@ export default async function RootLayout({
       error instanceof Error
         ? error.message
         : "Error desconocido en RootLayout.";
+    // --- [INICIO DE REFACTORIZACIÓN DE OBSERVABILIDAD v5.0.0] ---
+    // Se asegura que el traceId se propague al log de error.
     logger.error("[RootLayout Shell] Fallo crítico irrecuperable.", {
       error: errorMessage,
       traceId,
     });
+    // --- [FIN DE REFACTORIZACIÓN DE OBSERVABILIDAD v5.0.0] ---
     return (
       <html lang={locale}>
         <body>
@@ -94,7 +98,10 @@ export default async function RootLayout({
       </html>
     );
   } finally {
-    logger.endGroup();
+    // --- [INICIO DE CORRECCIÓN DE CONTRATO Y OBSERVABILIDAD v5.0.0] ---
+    // Se pasa el groupId requerido a endGroup.
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
+    // --- [FIN DE CORRECCIÓN DE CONTRATO Y OBSERVABILIDAD v5.0.0] ---
   }
 }

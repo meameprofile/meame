@@ -15,7 +15,7 @@ import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { Product } from "@/shared/lib/schemas/components/product-showcase.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface ProductShowcaseProps extends SectionProps<"productShowcase"> {
   isFocused?: boolean;

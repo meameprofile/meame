@@ -21,7 +21,9 @@ interface UsePreviewThemeReturn {
   error: string | null;
 }
 
-export function usePreviewTheme(allThemeFragments: LoadedFragments | null): UsePreviewThemeReturn {
+export function usePreviewTheme(
+  allThemeFragments: LoadedFragments | null
+): UsePreviewThemeReturn {
   const themeConfig = useStep3ThemeStore((state) => state.themeConfig);
   const previewThemeFromStore = usePreviewStore((state) => state.previewTheme);
 
@@ -29,34 +31,56 @@ export function usePreviewTheme(allThemeFragments: LoadedFragments | null): UseP
     const traceId = logger.startTrace("usePreviewTheme.assemble_v8.0");
     try {
       if (previewThemeFromStore) {
-        logger.traceEvent(traceId, "Usando tema de previsualización temporal del store.");
+        logger.traceEvent(
+          traceId,
+          "Usando tema de previsualización temporal del store."
+        );
         return { theme: previewThemeFromStore, error: null };
       }
 
-      if (!allThemeFragments) throw new Error("Los fragmentos de tema no están cargados.");
+      if (!allThemeFragments)
+        throw new Error("Los fragmentos de tema no están cargados.");
 
-      const { colorPreset, fontPreset, radiusPreset, themeOverrides } = themeConfig;
+      const { colorPreset, fontPreset, radiusPreset, themeOverrides } =
+        themeConfig;
       if (!colorPreset || !fontPreset || !radiusPreset) {
-         logger.traceEvent(traceId, "Configuración de tema incompleta, no se ensambla.");
-         return { theme: null, error: null };
+        logger.traceEvent(
+          traceId,
+          "Configuración de tema incompleta, no se ensambla."
+        );
+        return { theme: null, error: null };
       }
 
       const finalThemeObject = deepMerge(
-        deepMerge(deepMerge(deepMerge(allThemeFragments.base, allThemeFragments.colors[colorPreset] || {}), allThemeFragments.fonts[fontPreset] || {}), allThemeFragments.radii[radiusPreset] || {}),
+        deepMerge(
+          deepMerge(
+            deepMerge(
+              allThemeFragments.base,
+              allThemeFragments.colors[colorPreset] || {}
+            ),
+            allThemeFragments.fonts[fontPreset] || {}
+          ),
+          allThemeFragments.radii[radiusPreset] || {}
+        ),
         themeOverrides ?? {}
       );
 
       const validation = AssembledThemeSchema.safeParse(finalThemeObject);
       if (!validation.success) {
-        throw new Error(`Tema ensamblado inválido: ${validation.error.message}`);
+        throw new Error(
+          `Tema ensamblado inválido: ${validation.error.message}`
+        );
       }
 
       logger.traceEvent(traceId, "Tema ensamblado y validado con éxito.");
       return { theme: validation.data, error: null };
-
     } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : "Error desconocido.";
-      logger.error("[usePreviewTheme] Fallo al ensamblar el tema.", { error: errorMessage, traceId });
+      const errorMessage =
+        e instanceof Error ? e.message : "Error desconocido.";
+      logger.error("[usePreviewTheme] Fallo al ensamblar el tema.", {
+        error: errorMessage,
+        traceId,
+      });
       return { theme: null, error: errorMessage };
     } finally {
       logger.endTrace(traceId);

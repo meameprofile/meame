@@ -2,17 +2,16 @@
 /**
  * @file CampaignsTable.columns.tsx
  * @description SSoT para la definición de columnas de la tabla de analíticas.
- *              v2.1.0 (SSoT Icon Alignment): Se reemplaza el icono faltante por
- *              un sustituto semántico ('Ellipsis') garantizado por la SSoT de iconos,
- *              resolviendo el error de build TS2820.
- * @version 2.1.0
+ *              v3.0.0 (Sovereign Routing Compliance): Refactorizado para consumir
+ *              la SSoT de enrutamiento 'navigation.ts', resolviendo un error
+ *              crítico de 'dynamic href' en el App Router.
+ * @version 3.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import type { ColumnDef, Row } from "@tanstack/react-table";
 import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
 import {
@@ -27,19 +26,21 @@ import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import type { z } from "zod";
 import type { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
 import { logger } from "@/shared/lib/logging";
+import { routes } from "@/shared/lib/navigation";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
 
 type Content = z.infer<typeof CampaignsTableContentSchema>;
 
 const ActionsCell = ({
   row,
   content,
+  locale,
 }: {
   row: Row<CampaignAnalyticsData>;
   content: Content;
+  locale: Locale;
 }) => {
-  const pathname = usePathname();
   const variantId = row.original.variantId;
-
   logger.trace(
     `[ActionsCell] Renderizando acciones para la variante: ${variantId}`
   );
@@ -49,18 +50,17 @@ const ActionsCell = ({
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-8 w-8 p-0">
           <span className="sr-only">Abrir menú</span>
-          {/* --- [INICIO DE CORRECCIÓN DE SSoT] --- */}
-          {/* Se reemplaza 'MoreHorizontal' por 'Ellipsis', que es el sustituto semántico y existe en tu SSoT. */}
           <DynamicIcon name="Ellipsis" className="h-4 w-4" />
-          {/* --- [FIN DE CORRECCIÓN DE SSoT] --- */}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>{content.actionsLabel}</DropdownMenuLabel>
         <DropdownMenuItem asChild>
-          <Link href={`${pathname}/${variantId}`}>
+          {/* --- [INICIO DE CORRECCIÓN SOBERANA] --- */}
+          <Link href={routes.analyticsByVariant.path({ locale, variantId })}>
             {content.viewDetailsLabel}
           </Link>
+          {/* --- [FIN DE CORRECCIÓN SOBERANA] --- */}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -68,7 +68,8 @@ const ActionsCell = ({
 };
 
 export const getAnalyticsColumns = (
-  content: Content
+  content: Content,
+  locale: Locale
 ): ColumnDef<CampaignAnalyticsData>[] => [
   {
     accessorKey: "variantName",
@@ -89,6 +90,8 @@ export const getAnalyticsColumns = (
   },
   {
     id: "actions",
-    cell: ({ row }) => <ActionsCell row={row} content={content} />,
+    cell: ({ row }) => (
+      <ActionsCell row={row} content={content} locale={locale} />
+    ),
   },
 ];

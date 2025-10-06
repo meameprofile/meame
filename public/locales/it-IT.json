@@ -128,61 +128,45 @@
   },
   "devDashboardPage": {
     "pageHeader": {
-      "title": "Developer Command Center",
+      "title": "Centro di Comando dello Sviluppatore",
       "subtitle": "Strumenti forgiati per dominare l'intero ciclo di vita dello sviluppo di élite."
     },
-    "magicBento": {
-      "config": {
-        "textAutoHide": true,
-        "enableStars": true,
-        "enableSpotlight": true,
-        "enableBorderGlow": true,
-        "disableAnimations": false,
-        "spotlightRadius": 300,
-        "particleCount": 12,
-        "enableTilt": true,
-        "glowColor": "primary",
-        "clickEffect": true,
-        "enableMagnetism": true
+    "mainActions": {
+      "title": "Crea un Nuovo Progetto",
+      "campaignButton": "Nuova Campagna"
+    },
+    "toolsTitle": "Il Tuo Arsenale di Sviluppo",
+    "tools": {
+      "sdc": {
+        "title": "La Fucina (SDC)",
+        "description": "Forgia campagne ad alta conversione.",
+        "href": "/it-IT/creator/campaign-suite"
       },
-      "cards": [
-        {
-          "title": "La Fucina (SDC)",
-          "description": "Forgia campagne ad alta conversione.",
-          "label": "Creatività",
-          "href": "/it-IT/creator/campaign-suite"
-        },
-        {
-          "title": "L'Arsenale (BAVI)",
-          "description": "La SSoT per tutti gli asset visivi.",
-          "label": "Asset",
-          "href": "/it-IT/dev/bavi"
-        },
-        {
-          "title": "La Cripta (RaZPrompts)",
-          "description": "Cataloga il DNA creativo dei tuoi asset.",
-          "label": "Genoma",
-          "href": "/it-IT/dev/raz-prompts"
-        },
-        {
-          "title": "Il Motore (CogniRead)",
-          "description": "Trasforma la scienza in autorità.",
-          "label": "Credibilità",
-          "href": "/it-IT/dev/cogniread"
-        },
-        {
-          "title": "Il Sistema Nervoso (Nos3)",
-          "description": "Guarda attraverso gli occhi dell'utente.",
-          "label": "UX",
-          "href": "/it-IT/dev/nos3"
-        },
-        {
-          "title": "La Cabina di Mando (Aura)",
-          "description": "Visualizza i dati e ottimizza le conversioni.",
-          "label": "Intelligenza",
-          "href": "/it-IT/dev/analytics"
-        }
-      ]
+      "bavi": {
+        "title": "L'Arsenale (BAVI)",
+        "description": "La SSoT per tutti gli asset visivi.",
+        "href": "/it-IT/dev/bavi"
+      },
+      "razprompts": {
+        "title": "La Cripta (RaZPrompts)",
+        "description": "Cataloga il DNA creativo dei tuoi asset.",
+        "href": "/it-IT/dev/raz-prompts"
+      },
+      "cogniread": {
+        "title": "Il Motore (CogniRead)",
+        "description": "Trasforma la scienza in autorità.",
+        "href": "/it-IT/dev/cogniread"
+      },
+      "nos3": {
+        "title": "Il Sistema Nervoso (Nos3)",
+        "description": "Guarda attraverso gli occhi dell'utente.",
+        "href": "/it-IT/dev/nos3"
+      },
+      "analytics": {
+        "title": "La Cabina di Pilotaggio (Aura)",
+        "description": "Visualizza i dati e ottimizza le conversioni.",
+        "href": "/it-IT/dev/analytics"
+      }
     }
   },
   "devLoginPage": {
@@ -285,8 +269,6 @@
     "selectAssetButton": "Seleziona"
   },
   "razPromptsHomePage": {
-    "title": "RaZPrompts: Bóveda di Conoscenza Generativa",
-    "subtitle": "Il laboratorio per creare, catalogare e versionare il genoma dei tuoi asset visivi.",
     "createPromptTab": "Crea Prompt",
     "viewVaultTab": "Vedi Bóveda"
   },
@@ -508,7 +490,15 @@
     "viewAllNotificationsLink": "Vedi tutte",
     "notificationsLabel": "Notifiche",
     "noNotificationsText": "Non hai notifiche.",
-    "loadingText": "Caricamento..."
+    "loadingText": "Caricamento...",
+    "workspaceSwitcher": {
+      "activeWorkspaceLabel": "Workspace Attivo",
+      "loadingText": "Caricamento...",
+      "noWorkspacesTitle": "Nessun Workspace Trovato",
+      "noWorkspacesDescription": "Il tuo account non è associato a nessun workspace. Contatta il supporto.",
+      "errorTitle": "Errore nel Caricamento",
+      "errorDescription": "Impossibile caricare i tuoi workspace. Riprova più tardi."
+    }
   },
   "oAuthButtons": {
     "google": "Continua con Google",
@@ -1073,14 +1063,14 @@
     "submitButtonText": "Crea Voce e Ottieni ID",
     "submitButtonLoadingText": "Creazione in corso...",
     "sesaLabels": {
-      "ai": "IA",
-      "sty": "Stile",
-      "fmt": "Formato",
-      "typ": "Tipo",
-      "sbj": "Soggetto",
-      "styleTypeLabel": "Tipo di Stile",
+      "ai": "Motore IA",
+      "sty": "Stile Visuale",
+      "fmt": "Proporzioni",
+      "typ": "Tipo di Asset",
+      "sbj": "Soggetto Principale",
+      "styleTypeLabel": "Tipo di Stile (Ideogram)",
       "styleTypePlaceholder": "Scegli tipo...",
-      "aspectRatioLabel": "Proporzioni",
+      "aspectRatioLabel": "Proporzioni (Ideogram)",
       "aspectRatioPlaceholder": "Scegli proporzioni..."
     },
     "sesaOptions": {
@@ -1138,6 +1128,10 @@
         {
           "value": "abs",
           "label": "Astratto"
+        },
+        {
+          "value": "chr",
+          "label": "Personaggio"
         }
       ],
       "sbj": [
@@ -1156,6 +1150,14 @@
         {
           "value": "lsc",
           "label": "Paesaggio"
+        },
+        {
+          "value": "rob",
+          "label": "Robot"
+        },
+        {
+          "value": "logo",
+          "label": "Logo"
         }
       ]
     },
@@ -1220,6 +1222,29 @@
     "summaryLabel": "Riepilogo Ordine:",
     "totalLabel": "Totale",
     "footerText": "Se hai domande sul tuo ordine, rispondi a questa email o contatta il nostro supporto."
+  },
+  "checkoutForm": {
+    "title": "Finalizza Acquisto",
+    "payButton": "Paga Adesso",
+    "processingButton": "Elaborazione Pagamento...",
+    "unexpectedError": "Si è verificato un errore inaspettato. Per favore, riprova."
+  },
+  "campaignsTable": {
+    "headerVariant": "Variante",
+    "headerVisitors": "Visitatori",
+    "headerConversions": "Conversioni",
+    "headerBounceRate": "Frequenza di Rimbalzo",
+    "noResultsText": "Nessun risultato.",
+    "previousButton": "Precedente",
+    "nextButton": "Successivo",
+    "actionsLabel": "Azioni",
+    "viewDetailsLabel": "Vedi dettagli"
+  },
+  "dashboardHeader": {
+    "title": "Dashboard di Analisi",
+    "subtitle": "Una panoramica delle prestazioni delle tue campagne.",
+    "dateRangeButton": "Ultimi 30 giorni",
+    "exportButton": "Esporta"
   },
   "devCampaignSimulatorPage": {
     "title": "Simulatore di Campagne",
@@ -1490,27 +1515,12 @@
     "changeLanguage": "Cambia lingua",
     "currentLanguageIs": "La lingua attuale è"
   },
-  "checkoutForm": {
-    "title": "Finalizza Acquisto",
-    "payButton": "Paga Adesso",
-    "processingButton": "Elaborazione Pagamento...",
-    "unexpectedError": "Si è verificato un errore inaspettato. Per favore, riprova."
-  },
-  "campaignsTable": {
-    "headerVariant": "Variante",
-    "headerVisitors": "Visitatori",
-    "headerConversions": "Conversioni",
-    "headerBounceRate": "Frequenza di Rimbalzo",
-    "noResultsText": "Nessun risultato.",
-    "previousButton": "Precedente",
-    "nextButton": "Successivo",
-    "actionsLabel": "Azioni",
-    "viewDetailsLabel": "Vedi dettagli"
-  },
-  "dashboardHeader": {
-    "title": "Dashboard di Analisi",
-    "subtitle": "Una panoramica delle prestazioni delle tue campagne.",
-    "dateRangeButton": "Ultimi 30 giorni",
-    "exportButton": "Esporta"
+  "workspaceSwitcher": {
+    "activeWorkspaceLabel": "Workspace Attivo",
+    "loadingText": "Caricamento...",
+    "noWorkspacesTitle": "Nessun Workspace Trovato",
+    "noWorkspacesDescription": "Il tuo account non è associato a nessun workspace. Contatta il supporto.",
+    "errorTitle": "Errore nel Caricamento",
+    "errorDescription": "Impossibile caricare i tuoi workspace. Riprova più tardi."
   }
 }

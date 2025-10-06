@@ -9,7 +9,7 @@
   import React from "react";
   import { PageHeader } from "@/components/layout/PageHeader";
   import { Container, Card, CardContent } from "@/components/ui";
-  import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+  import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
   import { logger } from "@/shared/lib/logging";
   // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
   // Se utilizan los alias de ruta soberanos para importar desde las SSoT canónicas.

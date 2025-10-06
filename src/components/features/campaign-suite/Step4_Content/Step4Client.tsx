@@ -18,7 +18,7 @@ import { useStep4ContentStore } from "@/shared/hooks/campaign-suite/use-step4-co
 import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
 import { Step4Form } from "./Step4Form";
 import type { Step4ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step4.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { useAssembledDraft } from "@/shared/hooks/campaign-suite/use-assembled-draft.hook";
 
 type Step4Content = z.infer<typeof Step4ContentSchema>;

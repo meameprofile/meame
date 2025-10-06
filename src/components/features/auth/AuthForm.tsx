@@ -1,13 +1,9 @@
-// APARATO REVISADO Y NIVELADO POR L.I.A. LEGACY - VERSIÓN 5.1.0
-// ADVERTENCIA: No modificar sin consultar para evaluar el impacto holístico.
-
 // RUTA: src/components/features/auth/AuthForm.tsx
 /**
  * @file AuthForm.tsx
- * @description Orquestador de UI para autenticación, con soporte para mensajes
- *              contextuales y redirección post-login.
- * @version 5.1.0 (Contextual Message Rendering & Prop Flow)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Orquestador de UI para autenticación, con integridad de build restaurada.
+ * @version 5.2.0 (Definitive Build Integrity Restoration)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -17,7 +13,10 @@ import { TiltCard } from "@/components/ui/TiltCard";
 import { LoginForm } from "./components/LoginForm";
 import { SignUpForm } from "./components/SignUpForm";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE v5.2.0] ---
+// Se realiza la importación quirúrgica para erradicar la contaminación del barrel file.
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+// --- [FIN DE REFACTORIZACIÓN DE ÉLITE v5.2.0] ---
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
@@ -42,7 +41,7 @@ export function AuthForm({
   redirectUrl,
 }: AuthFormProps) {
   const traceId = useMemo(
-    () => logger.startTrace("AuthForm_Lifecycle_v5.1"),
+    () => logger.startTrace("AuthForm_Lifecycle_v5.2"),
     []
   );
   useEffect(() => {

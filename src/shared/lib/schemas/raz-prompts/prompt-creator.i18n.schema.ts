@@ -4,7 +4,7 @@
  * @description SSoT para el contrato de datos del contenido i18n del
  *              componente PromptCreator.
  * @version 5.0.0 (Sovereign Type Export)
- *@author RaZ Podestá - MetaShark Tech
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 
@@ -13,10 +13,7 @@ const SesaOptionSchema = z.object({
   label: z.string(),
 });
 
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// Se exporta el tipo soberano para su consumo en componentes de UI.
 export type SesaOption = z.infer<typeof SesaOptionSchema>;
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
 export const PromptCreatorContentSchema = z.object({
   titleLabel: z.string(),

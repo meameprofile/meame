@@ -8,7 +8,10 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { logger } from "@/shared/lib/logging";
-import type { HeaderConfig, FooterConfig } from "@/shared/lib/types/campaigns/draft.types";
+import type {
+  HeaderConfig,
+  FooterConfig,
+} from "@/shared/lib/types/campaigns/draft.types";
 import { deepMerge } from "@/shared/lib/utils";
 
 interface Step1State {
@@ -33,11 +36,15 @@ export const useStep1StructureStore = create<Step1State & Step1Actions>()(
       ...initialState,
       updateHeaderConfig: (config) => {
         logger.trace("[Step1Store] Actualizando config de header.", config);
-        set((state) => ({ headerConfig: deepMerge(state.headerConfig, config) }));
+        set((state) => ({
+          headerConfig: deepMerge(state.headerConfig, config),
+        }));
       },
       updateFooterConfig: (config) => {
         logger.trace("[Step1Store] Actualizando config de footer.", config);
-        set((state) => ({ footerConfig: deepMerge(state.footerConfig, config) }));
+        set((state) => ({
+          footerConfig: deepMerge(state.footerConfig, config),
+        }));
       },
       reset: () => {
         logger.warn("[Step1Store] Reiniciando la configuración de estructura.");

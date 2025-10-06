@@ -11,13 +11,19 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import { logger } from "@/shared/lib/logging";
 import type { VideoTexture } from "three";
-import type { PlaybackEvent, PlaybackEventType } from "../use-cinematic-renderer";
+import type {
+  PlaybackEvent,
+  PlaybackEventType,
+} from "../use-cinematic-renderer";
 
 export function useAetherTelemetry(
   videoTexture: VideoTexture,
   onPlaybackEvent?: (event: PlaybackEvent) => void
 ) {
-  const traceId = useMemo(() => logger.startTrace("useAetherTelemetry_v3.0"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("useAetherTelemetry_v3.0"),
+    []
+  );
   const [visitorId, setVisitorId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -27,9 +33,15 @@ export function useAetherTelemetry(
         const fp = await FingerprintJS.load();
         const result = await fp.get();
         setVisitorId(result.visitorId);
-        logger.success(`[Aether Telemetry] Fingerprint de visitante obtenido: ${result.visitorId}`, { traceId });
+        logger.success(
+          `[Aether Telemetry] Fingerprint de visitante obtenido: ${result.visitorId}`,
+          { traceId }
+        );
       } catch (error) {
-        logger.error("[Aether Telemetry] Fallo al generar ID de visitante.", { error, traceId });
+        logger.error("[Aether Telemetry] Fallo al generar ID de visitante.", {
+          error,
+          traceId,
+        });
       }
     };
     getVisitorId();
@@ -46,7 +58,10 @@ export function useAetherTelemetry(
           duration: video.duration,
           visitorId,
         };
-        logger.trace(`[Aether Telemetry] Despachando evento: ${type}`, { eventData, traceId });
+        logger.trace(`[Aether Telemetry] Despachando evento: ${type}`, {
+          eventData,
+          traceId,
+        });
         onPlaybackEvent(eventData);
       }
     },

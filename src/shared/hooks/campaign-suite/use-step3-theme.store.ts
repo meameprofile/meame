@@ -34,7 +34,10 @@ export const useStep3ThemeStore = create<Step3State & Step3Actions>()(
     (set) => ({
       ...initialState,
       updateThemeConfig: (newConfig) => {
-        logger.trace("[Step3Store] Actualizando configuración de tema.", newConfig);
+        logger.trace(
+          "[Step3Store] Actualizando configuración de tema.",
+          newConfig
+        );
         set((state) => ({
           themeConfig: deepMerge(state.themeConfig, newConfig),
         }));

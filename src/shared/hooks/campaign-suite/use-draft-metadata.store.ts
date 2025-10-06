@@ -34,7 +34,9 @@ const initialState: DraftMetadata = {
   updatedAt: new Date(0).toISOString(),
 };
 
-export const useDraftMetadataStore = create<DraftMetadata & DraftMetadataActions>()(
+export const useDraftMetadataStore = create<
+  DraftMetadata & DraftMetadataActions
+>()(
   persist(
     (set, get) => ({
       ...initialState,
@@ -44,10 +46,15 @@ export const useDraftMetadataStore = create<DraftMetadata & DraftMetadataActions
 
         if (data.baseCampaignId && !currentState.draftId) {
           newDraftId = generateDraftId(data.baseCampaignId);
-          logger.success(`[MetadataStore] Nuevo draftId generado: ${newDraftId}`);
+          logger.success(
+            `[MetadataStore] Nuevo draftId generado: ${newDraftId}`
+          );
         }
 
-        logger.trace("[MetadataStore] Actualizando metadata del borrador.", data);
+        logger.trace(
+          "[MetadataStore] Actualizando metadata del borrador.",
+          data
+        );
         set((state) => ({
           ...state,
           ...data,
@@ -58,7 +65,9 @@ export const useDraftMetadataStore = create<DraftMetadata & DraftMetadataActions
       completeStep: (stepId) => {
         logger.info(`[MetadataStore] Marcando paso ${stepId} como completado.`);
         set((state) => ({
-          completedSteps: Array.from(new Set([...state.completedSteps, stepId])),
+          completedSteps: Array.from(
+            new Set([...state.completedSteps, stepId])
+          ),
           updatedAt: new Date().toISOString(),
         }));
       },

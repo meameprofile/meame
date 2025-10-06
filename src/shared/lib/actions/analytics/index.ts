@@ -7,7 +7,9 @@
  */
 import { logger } from "@/shared/lib/logging";
 
-logger.trace("[Analytics Actions Façade] Módulo de acciones de analíticas cargado.");
+logger.trace(
+  "[Analytics Actions Façade] Módulo de acciones de analíticas cargado."
+);
 
 export * from "./getCampaignAnalytics.action";
 export * from "./getDecryptedEventsForDebug.action";

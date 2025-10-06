@@ -11,7 +11,7 @@ import { logger } from "@/shared/lib/logging";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
 import { getArticleByIdAction } from "@/shared/lib/actions/cogniread";

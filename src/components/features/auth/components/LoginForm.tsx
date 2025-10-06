@@ -1,14 +1,10 @@
-// APARATO REVISADO Y NIVELADO POR L.I.A. LEGACY - VERSIÓN 9.0.0
-// ADVERTENCIA: No modificar sin consultar para evaluar el impacto holístico.
-
 // RUTA: src/components/features/auth/components/LoginForm.tsx
 /**
  * @file LoginForm.tsx
- * @description Componente de presentación puro para el formulario de login.
- *              v9.0.0 (Contextual Redirect Logic): Ahora acepta una URL de
- *              redirección para una experiencia de usuario post-login sin fisuras.
- * @version 9.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description Componente de presentación puro para el formulario de login, nivelado
+ *              con observabilidad de élite y cumplimiento estricto de contratos.
+ * @version 10.0.0 (Holistic Observability & Contract Integrity)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -48,7 +44,7 @@ import {
 import { loginWithPasswordAction } from "@/shared/lib/actions/auth/auth.actions";
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
 import { OAuthButtons } from "./OAuthButtons";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type LoginFormContent = NonNullable<Dictionary["devLoginPage"]>;
 type OAuthButtonsContent = NonNullable<Dictionary["oAuthButtons"]>;
@@ -79,7 +75,7 @@ export function LoginForm({
   redirectUrl,
 }: LoginFormProps) {
   const traceId = useMemo(
-    () => logger.startTrace("LoginForm_Lifecycle_v9.0"),
+    () => logger.startTrace("LoginForm_Lifecycle_v10.0"),
     []
   );
   useEffect(() => {
@@ -112,10 +108,19 @@ export function LoginForm({
   }
 
   const onSubmit = (data: LoginFormData) => {
-    const submitTraceId = logger.startTrace("LoginForm_onSubmit");
-    logger.startGroup("[LoginForm] Procesando envío de credenciales...");
+    const submitTraceId = logger.startTrace("LoginForm.onSubmit");
+    // --- [INICIO DE CORRECCIÓN DE CONTRATO v10.0.0] ---
+    const groupId = logger.startGroup(
+      "[LoginForm] Procesando envío de credenciales...",
+      submitTraceId
+    );
+    // --- [FIN DE CORRECCIÓN DE CONTRATO v10.0.0] ---
 
     startTransition(async () => {
+      logger.traceEvent(
+        submitTraceId,
+        "Invocando 'loginWithPasswordAction'..."
+      );
       const result = await loginWithPasswordAction(data);
       if (result.success) {
         toast.success("Login exitoso. Redirigiendo...");
@@ -133,8 +138,10 @@ export function LoginForm({
           traceId: submitTraceId,
         });
       }
-      logger.endGroup();
+      // --- [INICIO DE CORRECCIÓN DE CONTRATO v10.0.0] ---
+      logger.endGroup(groupId);
       logger.endTrace(submitTraceId);
+      // --- [FIN DE CORRECCIÓN DE CONTRATO v10.0.0] ---
     });
   };
 

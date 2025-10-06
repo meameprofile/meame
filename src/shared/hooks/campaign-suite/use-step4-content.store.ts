@@ -34,10 +34,13 @@ export const useStep4ContentStore = create<Step4State & Step4Actions>()(
     (set, get) => ({
       ...initialState,
       setSectionContent: (sectionName, locale, field, value) => {
-        logger.trace(`[Step4Store] Actualizando contenido para ${sectionName}.${locale}.${field}`);
+        logger.trace(
+          `[Step4Store] Actualizando contenido para ${sectionName}.${locale}.${field}`
+        );
         const newContentData = structuredClone(get().contentData);
         if (!newContentData[sectionName]) newContentData[sectionName] = {};
-        if (!newContentData[sectionName][locale]) newContentData[sectionName][locale] = {};
+        if (!newContentData[sectionName][locale])
+          newContentData[sectionName][locale] = {};
         newContentData[sectionName][locale]![field] = value;
         set({ contentData: newContentData });
       },

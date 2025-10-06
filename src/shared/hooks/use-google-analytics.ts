@@ -15,18 +15,27 @@ const GA_REMOTE_SCRIPT_ID = "google-analytics-gtag";
 const GA_INIT_SCRIPT_ID = "google-analytics-init";
 
 export function useGoogleAnalytics(enabled: boolean): void {
-  const traceId = useMemo(() => logger.startTrace("useGoogleAnalytics_v5.0"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("useGoogleAnalytics_v5.0"),
+    []
+  );
   const hasExecuted = useRef(false);
 
   useEffect(() => {
-    logger.info(`[GoogleAnalytics] Hook montado. Estado: ${enabled ? 'HABILITADO' : 'DESHABILITADO'}.`, { traceId });
+    logger.info(
+      `[GoogleAnalytics] Hook montado. Estado: ${enabled ? "HABILITADO" : "DESHABILITADO"}.`,
+      { traceId }
+    );
 
     if (!enabled) {
       logger.traceEvent(traceId, "Tracker deshabilitado, omitiendo ejecución.");
       return;
     }
     if (hasExecuted.current) {
-      logger.traceEvent(traceId, "El script ya fue inyectado, omitiendo ejecución.");
+      logger.traceEvent(
+        traceId,
+        "El script ya fue inyectado, omitiendo ejecución."
+      );
       return;
     }
 
@@ -34,17 +43,28 @@ export function useGoogleAnalytics(enabled: boolean): void {
     const gaId = producerConfig.TRACKING.GOOGLE_ANALYTICS_ID;
 
     if (!gaId) {
-      logger.warn("[Guardián] ID de Google Analytics no configurado. Omitiendo inyección.", { traceId });
+      logger.warn(
+        "[Guardián] ID de Google Analytics no configurado. Omitiendo inyección.",
+        { traceId }
+      );
       return;
     }
 
-    if (document.getElementById(GA_REMOTE_SCRIPT_ID) || document.getElementById(GA_INIT_SCRIPT_ID)) {
-      logger.warn("[Guardián] Los scripts de Google Analytics ya existen en el DOM. Omitiendo re-inyección.", { traceId });
+    if (
+      document.getElementById(GA_REMOTE_SCRIPT_ID) ||
+      document.getElementById(GA_INIT_SCRIPT_ID)
+    ) {
+      logger.warn(
+        "[Guardián] Los scripts de Google Analytics ya existen en el DOM. Omitiendo re-inyección.",
+        { traceId }
+      );
       hasExecuted.current = true;
       return;
     }
 
-    logger.success(`[Tracking] Inyectando Google Analytics con ID: ${gaId}`, { traceId });
+    logger.success(`[Tracking] Inyectando Google Analytics con ID: ${gaId}`, {
+      traceId,
+    });
 
     const remoteScript = document.createElement("script");
     remoteScript.id = GA_REMOTE_SCRIPT_ID;

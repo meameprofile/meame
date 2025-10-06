@@ -11,7 +11,7 @@ import React from "react";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { SectionAnimator } from "@/components/layout/SectionAnimator";
 // --- [INICIO] REFACTORIZACIÓN POR ERRADICACIÓN DE BARREL FILE ---
 import { HeroNews } from "@/components/sections/HeroNews";

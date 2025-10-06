@@ -13,7 +13,7 @@ import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { AuthForm } from "@/components/features/auth/AuthForm";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getBaviManifest } from "@/shared/lib/bavi";
 import type {
   BaviAsset,

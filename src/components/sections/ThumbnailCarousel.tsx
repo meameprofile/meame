@@ -22,7 +22,7 @@ import { Button, Container, DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface ThumbnailCarouselProps extends SectionProps<"thumbnailCarousel"> {
   interval?: number;
@@ -75,7 +75,6 @@ export const ThumbnailCarousel = forwardRef<
     );
   };
 
-  // La función nextSlide ya está definida en el useCallback, la reusamos para el botón.
   const handleNextClick = () => {
     logger.traceEvent(traceId, "Navegación manual: Siguiente slide.");
     nextSlide();

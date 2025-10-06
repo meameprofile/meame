@@ -1,22 +1,45 @@
 // RUTA: src/components/layout/DevSidebar.tsx
 /**
  * @file DevSidebar.tsx
- * @description Barra lateral soberana para el Developer Command Center.
- * @version 2.0.0 (Holistic i18n Contract Alignment): Se elimina la prop obsoleta
- *              'supportedLocales' para alinearse con la arquitectura de i18n soberana.
- * @author RaZ Podestá - MetaShark Tech
+ * @description Barra lateral soberana para el DCC. Ahora es un componente de presentación puro
+ *              que recibe las rutas pre-generadas y maneja de forma resiliente las plantillas de
+ *              rutas dinámicas para prevenir errores de "dynamic href" en Next.js.
+ * @version 5.0.0 (DRY & Dynamic Href Resilience)
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { UserNavClient } from "@/components/features/auth/components/UserNavClient";
 import type { HeaderClientProps } from "@/components/layout/HeaderClient";
 import { logger } from "@/shared/lib/logging";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
+import {
+  type RouteGroup,
+  type RouteItem,
+} from "@/components/features/dev-tools/utils/route-menu.generator";
+import type { Workspace } from "@/shared/lib/schemas/entities/workspace.schema";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/Accordion";
+import { Button } from "@/components/ui/Button";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
+import { cn } from "@/shared/lib/utils/cn";
+import { Separator } from "@/components/ui/Separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/Tooltip";
+import { Badge } from "@/components/ui/Badge";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
-// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v2.0.0] ---
-// El contrato de props ahora omite la prop obsoleta 'supportedLocales'.
 type DevSidebarProps = Omit<
   HeaderClientProps,
   | "supportedLocales"
@@ -24,39 +47,130 @@ type DevSidebarProps = Omit<
   | "initialCart"
   | "centerComponent"
   | "rightComponent"
->;
-// --- [FIN DE REFACTORIZACIÓN DE CONTRATO v2.0.0] ---
+> & {
+  workspaces: Workspace[];
+  content: HeaderClientProps["content"] & {
+    devRouteMenu: NonNullable<Dictionary["devRouteMenu"]>;
+  };
+  routeGroups: RouteGroup[];
+};
 
 export function DevSidebar({
   user,
   profile,
   currentLocale,
+  workspaces,
   content,
+  routeGroups,
 }: DevSidebarProps) {
-  logger.info("[DevSidebar] Renderizando barra lateral del DCC (v2.0).");
-
-  const { activeWorkspaceId, availableWorkspaces } = useWorkspaceStore();
-  const activeWorkspace = availableWorkspaces.find(
-    (ws) => ws.id === activeWorkspaceId
+  const traceId = useMemo(
+    () => logger.startTrace("DevSidebar_Lifecycle_v5.0"),
+    []
   );
+  useEffect(() => {
+    logger.info(
+      "[DevSidebar] Componente de presentación puro montado (v5.0).",
+      { traceId }
+    );
+    return () => logger.endTrace(traceId);
+  }, [traceId]);
+
+  const { activeWorkspaceId, setAvailableWorkspaces } = useWorkspaceStore();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setAvailableWorkspaces(workspaces);
+  }, [workspaces, setAvailableWorkspaces]);
+
+  const activeWorkspace = workspaces.find((ws) => ws.id === activeWorkspaceId);
 
   return (
-    <aside className="h-full w-72 flex-col border-r bg-background p-4 hidden md:flex">
-      <div className="flex h-16 items-center border-b px-2">
+    <aside className="h-full w-72 flex-col border-r bg-card p-4 hidden md:flex">
+      <div className="flex h-16 items-center px-2">
         <Link
           href={`/${currentLocale}/dev`}
           className="flex items-center gap-2 font-semibold"
         >
-          <span className="text-primary">DCC</span>
-          <span>/</span>
-          <span>{activeWorkspace?.name || "Cargando..."}</span>
+          <span className="text-primary font-black text-lg">DCC</span>
+          <span className="text-muted-foreground">/</span>
+          <span className="truncate text-foreground">
+            {activeWorkspace?.name || "Cargando..."}
+          </span>
         </Link>
       </div>
-      <nav className="flex-1 overflow-y-auto py-4">
-        {/* El DevRouteMenu se podría mover aquí */}
+      <Separator />
+
+      <nav className="flex-1 overflow-y-auto py-4 space-y-1">
+        {routeGroups.map((group) => (
+          <Accordion
+            type="single"
+            collapsible
+            defaultValue={group.groupName}
+            key={group.groupName}
+          >
+            <AccordionItem value={group.groupName} className="border-b-0">
+              <AccordionTrigger className="py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:no-underline">
+                {group.groupName}
+              </AccordionTrigger>
+              <AccordionContent className="pl-2 space-y-1">
+                {group.items.map((item: RouteItem) => {
+                  const isDynamic = item.path.includes("[");
+                  const isActive = !isDynamic && pathname === item.path;
+
+                  return (
+                    <TooltipProvider key={item.path} delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            asChild={!isDynamic}
+                            variant={isActive ? "secondary" : "ghost"}
+                            className="w-full justify-start"
+                            disabled={isDynamic}
+                          >
+                            {isDynamic ? (
+                              <span className="flex w-full items-center">
+                                <DynamicIcon
+                                  name={item.iconName}
+                                  className={cn("mr-2 h-4 w-4")}
+                                />
+                                {item.name}
+                                <Badge
+                                  variant="outline"
+                                  className="ml-auto text-xs font-mono"
+                                >
+                                  tpl
+                                </Badge>
+                              </span>
+                            ) : (
+                              <Link href={item.path}>
+                                <DynamicIcon
+                                  name={item.iconName}
+                                  className={cn("mr-2 h-4 w-4")}
+                                />
+                                {item.name}
+                              </Link>
+                            )}
+                          </Button>
+                        </TooltipTrigger>
+                        {isDynamic && (
+                          <TooltipContent>
+                            <p>
+                              Esta es una plantilla de ruta dinámica y no se
+                              puede navegar directamente.
+                            </p>
+                          </TooltipContent>
+                        )}
+                      </Tooltip>
+                    </TooltipProvider>
+                  );
+                })}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        ))}
       </nav>
-      <div className="mt-auto">
-        {/* La llamada a UserNavClient ahora cumple con su contrato. */}
+
+      <div className="mt-auto border-t pt-4">
         <UserNavClient
           user={user}
           profile={profile}

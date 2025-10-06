@@ -24,7 +24,7 @@ import { logger } from "@/shared/lib/logging";
 import { HiddenFormFields } from "@/components/features/commerce/HiddenFormFields";
 import { FormInput } from "@/components/ui/FormInput";
 import { Button, DynamicIcon } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 // --- SSoT de Contratos y Animaciones ---
 

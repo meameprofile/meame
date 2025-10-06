@@ -17,11 +17,17 @@ import {
 const PREFERENCES_STORAGE_KEY = "user-preferences";
 
 export const useUserPreferences = () => {
-  const traceId = useMemo(() => logger.startTrace("useUserPreferences_v2.0"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("useUserPreferences_v2.0"),
+    []
+  );
   const [preferences, setPreferences] = useState<UserPreferences>({});
 
   useEffect(() => {
-    logger.info("[UserPreferences] Hook montado, leyendo estado de localStorage.", { traceId });
+    logger.info(
+      "[UserPreferences] Hook montado, leyendo estado de localStorage.",
+      { traceId }
+    );
     try {
       const storedItem = localStorage.getItem(PREFERENCES_STORAGE_KEY);
       if (storedItem) {
@@ -29,16 +35,28 @@ export const useUserPreferences = () => {
         const validation = UserPreferencesSchema.safeParse(parsed);
         if (validation.success) {
           setPreferences(validation.data);
-          logger.success("[UserPreferences] Preferencias cargadas y validadas desde localStorage.", { data: validation.data, traceId });
+          logger.success(
+            "[UserPreferences] Preferencias cargadas y validadas desde localStorage.",
+            { data: validation.data, traceId }
+          );
         } else {
-          logger.warn("[Guardián] Datos de preferencias corruptos en localStorage. Se ignorarán.", { errors: validation.error.flatten(), traceId });
+          logger.warn(
+            "[Guardián] Datos de preferencias corruptos en localStorage. Se ignorarán.",
+            { errors: validation.error.flatten(), traceId }
+          );
           localStorage.removeItem(PREFERENCES_STORAGE_KEY);
         }
       } else {
-        logger.traceEvent(traceId, "No se encontraron preferencias en localStorage.");
+        logger.traceEvent(
+          traceId,
+          "No se encontraron preferencias en localStorage."
+        );
       }
     } catch (error) {
-      logger.error("[Guardián] Fallo al leer preferencias del localStorage.", { error, traceId });
+      logger.error("[Guardián] Fallo al leer preferencias del localStorage.", {
+        error,
+        traceId,
+      });
     }
     return () => logger.endTrace(traceId);
   }, [traceId]);
@@ -49,10 +67,20 @@ export const useUserPreferences = () => {
       setPreferences((prev) => {
         const newPrefs = { ...prev, [key]: value };
         try {
-          localStorage.setItem(PREFERENCES_STORAGE_KEY, JSON.stringify(newPrefs));
-          logger.traceEvent(actionTraceId, "Preferencia persistida en localStorage.", newPrefs);
+          localStorage.setItem(
+            PREFERENCES_STORAGE_KEY,
+            JSON.stringify(newPrefs)
+          );
+          logger.traceEvent(
+            actionTraceId,
+            "Preferencia persistida en localStorage.",
+            newPrefs
+          );
         } catch (error) {
-          logger.error("[Guardián] Fallo al guardar preferencias en localStorage.", { error, traceId: actionTraceId });
+          logger.error(
+            "[Guardián] Fallo al guardar preferencias en localStorage.",
+            { error, traceId: actionTraceId }
+          );
         }
         logger.endTrace(actionTraceId);
         return newPrefs;

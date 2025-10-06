@@ -6,11 +6,11 @@
       "provider": "cloudinary",
       "description": "Activo de previsualización para el componente de UI StandardHeader, utilizado en la galería de la SDC.",
       "tags": {
-        "aiEngine": "ideo",
-        "visualStyle": "pht",
-        "aspectRatio": "16x9",
-        "assetType": "ui",
-        "subject": "abstract"
+        "ai": "ideo",
+        "sty": "pht",
+        "fmt": "16x9",
+        "typ": "ui",
+        "sbj": "abs"
       },
       "variants": [
         {
@@ -37,7 +37,7 @@
       "status": "active",
       "provider": "cloudinary",
       "description": "Logo para la marca ficticia 'Wellness Insider', utilizado como prueba social.",
-      "tags": { "assetType": "ui", "subject": "logo" },
+      "tags": { "typ": "ui", "sbj": "logo" },
       "variants": [
         {
           "versionId": "v1-orig",
@@ -57,7 +57,7 @@
       "status": "active",
       "provider": "cloudinary",
       "description": "Logo para la marca ficticia 'The Health Journal', utilizado como prueba social.",
-      "tags": { "assetType": "ui", "subject": "logo" },
+      "tags": { "typ": "ui", "sbj": "logo" },
       "variants": [
         {
           "versionId": "v1-orig",
@@ -77,7 +77,7 @@
       "status": "active",
       "provider": "cloudinary",
       "description": "Logo para la marca ficticia 'Bio-Innovate Forum', utilizado como prueba social.",
-      "tags": { "assetType": "ui", "subject": "logo" },
+      "tags": { "typ": "ui", "sbj": "logo" },
       "variants": [
         {
           "versionId": "v1-orig",
@@ -97,7 +97,7 @@
       "status": "active",
       "provider": "cloudinary",
       "description": "Logo para la marca ficticia 'Nutrition Council', utilizado como prueba social.",
-      "tags": { "assetType": "ui", "subject": "logo" },
+      "tags": { "typ": "ui", "sbj": "logo" },
       "variants": [
         {
           "versionId": "v1-orig",
@@ -117,7 +117,7 @@
       "status": "active",
       "provider": "cloudinary",
       "description": "Imagen de fondo abstracta y tecnológica para la página de autenticación del DCC.",
-      "tags": { "assetType": "ui", "subject": "abstract" },
+      "tags": { "typ": "ui", "sbj": "abs" },
       "variants": [
         {
           "versionId": "v1-orig",
@@ -139,7 +139,7 @@
       "status": "active",
       "provider": "cloudinary",
       "description": "Imagen de fondo abstracta con temática de bienestar para la sección Hero principal del portal.",
-      "tags": { "assetType": "ui", "subject": "abstract" },
+      "tags": { "typ": "ui", "sbj": "abs" },
       "variants": [
         {
           "versionId": "v1-orig",

@@ -14,7 +14,9 @@ import { logger } from "@/shared/lib/logging";
 export function usePreviewFocus() {
   const traceId = useMemo(() => logger.startTrace("usePreviewFocus_v2.0"), []);
   useEffect(() => {
-    logger.info("[PreviewFocus Hook] Montado y escuchando cambios de foco.", { traceId });
+    logger.info("[PreviewFocus Hook] Montado y escuchando cambios de foco.", {
+      traceId,
+    });
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
@@ -23,7 +25,10 @@ export function usePreviewFocus() {
 
   useEffect(() => {
     if (focusedSection && sectionRefs.current[focusedSection]) {
-      logger.info(`[MEA/UX] Activando Modo Enfoque. Desplazando a: ${focusedSection}`, { traceId });
+      logger.info(
+        `[MEA/UX] Activando Modo Enfoque. Desplazando a: ${focusedSection}`,
+        { traceId }
+      );
       sectionRefs.current[focusedSection]?.scrollIntoView({
         behavior: "smooth",
         block: "center",

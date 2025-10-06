@@ -3,9 +3,8 @@
  * @file EcosystemTab.tsx
  * @description Componente de presentación para la pestaña "Ecosistema", forjado con
  *              observabilidad de élite, guardianes de resiliencia y una arquitectura soberana.
- *              v3.0.0 (Elite Observability, Resilience & Hooks Compliance)
- * @version 3.0.0
- *@author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Elite Observability, Resilience & Hooks Compliance)
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -29,7 +28,7 @@ import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type EcosystemTabContent = NonNullable<
   Dictionary["cogniReadEditor"]

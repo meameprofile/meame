@@ -2,11 +2,11 @@
 /**
  * @file i18n.schema.ts
  * @description Aparato ensamblador y SSoT para el contrato del diccionario i18n.
- *              v36.0.0 (OAuthButtons Contract Restoration): Se restaura la importación
- *              y fusión del schema para `oAuthButtons`, resolviendo un error crítico
- *              de tipo TS2739 en el flujo de autenticación.
- * @version 36.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v37.0.0 (Holistic Regression Fix): Restaura la importación y fusión
+ *              del schema para `oAuthButtons`, resolviendo una regresión crítica
+ *              y garantizando la integridad total del contrato de datos de autenticación.
+ * @version 37.0.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
 
@@ -29,6 +29,8 @@ import { CinematicDemoPageLocaleSchema } from "./pages/dev-cinematic-demo-page.s
 import { CogniReadDashboardLocaleSchema } from "./pages/cogniread-dashboard.schema";
 import { CogniReadEditorLocaleSchema } from "./pages/cogniread-editor.schema";
 import { Nos3DashboardLocaleSchema } from "./pages/nos3-dashboard.schema";
+import { UserIntelligenceLocaleSchema } from "./pages/dev-user-intelligence.i18n.schema";
+import { UserIntelligenceDetailLocaleSchema } from "./pages/dev-user-intelligence-detail.i18n.schema";
 
 // [DOMINIO LAYOUT Y UI ATÓMICOS]
 import { HeaderLocaleSchema } from "./components/header.schema";
@@ -42,9 +44,7 @@ import { LanguageSwitcherLocaleSchema } from "./components/language-switcher.sch
 import { PageHeaderLocaleSchema } from "./components/page-header.schema";
 import { CartLocaleSchema } from "./components/cart.schema";
 import { UserNavLocaleSchema } from "./components/auth/user-nav.schema";
-// --- [INICIO DE NIVELACIÓN DE INTEGRIDAD v36.0.0] ---
 import { OAuthButtonsLocaleSchema } from "./components/auth/oauth-buttons.schema";
-// --- [FIN DE NIVELACIÓN DE INTEGRIDAD v36.0.0] ---
 import { NotificationBellLocaleSchema } from "./components/notifications.schema";
 import { ValidationErrorLocaleSchema } from "./components/validation-error.schema";
 import { SuiteStyleComposerLocaleSchema } from "./components/dev/suite-style-composer.schema";
@@ -89,6 +89,9 @@ import { OrderConfirmationEmailLocaleSchema } from "./emails/order-confirmation-
 import { DockLocaleSchema } from "./components/razBits/Dock/dock.schema";
 import { LightRaysLocaleSchema } from "./components/razBits/LightRays/light-rays.schema";
 import { MagicBentoLocaleSchema } from "./components/razBits/MagicBento/magic-bento.schema";
+import { CheckoutFormLocaleSchema } from "./components/commerce/checkout-form.schema";
+import { CampaignsTableLocaleSchema } from "./components/analytics/campaigns-table.schema";
+import { DashboardHeaderLocaleSchema } from "./components/analytics/dashboard-header.schema";
 
 const baseSchema = z.object({
   ...GlobalsLocaleSchema.shape,
@@ -110,6 +113,8 @@ const baseSchema = z.object({
   ...CogniReadDashboardLocaleSchema.shape,
   ...CogniReadEditorLocaleSchema.shape,
   ...Nos3DashboardLocaleSchema.shape,
+  ...UserIntelligenceLocaleSchema.shape,
+  ...UserIntelligenceDetailLocaleSchema.shape,
   ...HeaderLocaleSchema.shape,
   ...FooterLocaleSchema.shape,
   ...CookieConsentBannerLocaleSchema.shape,
@@ -121,9 +126,7 @@ const baseSchema = z.object({
   ...PageHeaderLocaleSchema.shape,
   ...CartLocaleSchema.shape,
   ...UserNavLocaleSchema.shape,
-  // --- [INICIO DE NIVELACIÓN DE INTEGRIDAD v36.0.0] ---
   ...OAuthButtonsLocaleSchema.shape,
-  // --- [FIN DE NIVELACIÓN DE INTEGRIDAD v36.0.0] ---
   ...NotificationBellLocaleSchema.shape,
   ...ValidationErrorLocaleSchema.shape,
   ...SuiteStyleComposerLocaleSchema.shape,
@@ -164,6 +167,9 @@ const baseSchema = z.object({
   ...LightRaysLocaleSchema.shape,
   ...MagicBentoLocaleSchema.shape,
   ...OrderConfirmationEmailLocaleSchema.shape,
+  ...CheckoutFormLocaleSchema.shape,
+  ...CampaignsTableLocaleSchema.shape,
+  ...DashboardHeaderLocaleSchema.shape,
 });
 
 export const i18nSchema = baseSchema.passthrough();

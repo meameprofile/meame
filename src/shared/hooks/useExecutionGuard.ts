@@ -29,7 +29,10 @@ export function useExecutionGuard({
   callback,
   dependencies,
 }: ExecutionGuardOptions): ExecutionGuardResult {
-  const traceId = useMemo(() => logger.startTrace(`useExecutionGuard:${name}`), [name]);
+  const traceId = useMemo(
+    () => logger.startTrace(`useExecutionGuard:${name}`),
+    [name]
+  );
   const executionCount = useRef(0);
   const [error, setError] = useState<string | null>(null);
 
@@ -37,11 +40,17 @@ export function useExecutionGuard({
     if (error) return;
 
     executionCount.current += 1;
-    logger.trace(`[ExecutionGuard] Hook '${name}' ejecutado. Conteo: ${executionCount.current}`, { traceId });
+    logger.trace(
+      `[ExecutionGuard] Hook '${name}' ejecutado. Conteo: ${executionCount.current}`,
+      { traceId }
+    );
 
     if (executionCount.current > threshold) {
       const errorMessage = `¡Bucle Infinito Detectado! El hook '${name}' se ha ejecutado más de ${threshold} veces.`;
-      logger.error(`[ExecutionGuard] ${errorMessage}`, { dependencies, traceId });
+      logger.error(`[ExecutionGuard] ${errorMessage}`, {
+        dependencies,
+        traceId,
+      });
       setError(errorMessage);
       return;
     }
@@ -55,7 +64,9 @@ export function useExecutionGuard({
   }, dependencies);
 
   useEffect(() => {
-    logger.info(`[ExecutionGuard] Guardián para '${name}' montado.`, { traceId });
+    logger.info(`[ExecutionGuard] Guardián para '${name}' montado.`, {
+      traceId,
+    });
     return () => logger.endTrace(traceId);
   }, [name, traceId]);
 

@@ -15,7 +15,7 @@ import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { logger } from "@/shared/lib/logging";
 import { stepsConfig } from "@/shared/lib/config/campaign-suite/wizard.config";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface StepClientWrapperProps {
   stepContent: unknown; // La prop es 'unknown' para forzar una validación explícita.

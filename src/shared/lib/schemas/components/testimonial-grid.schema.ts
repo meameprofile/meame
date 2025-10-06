@@ -1,16 +1,13 @@
-// lib/schemas/components/testimonial-grid.schema.ts
+// RUTA: src/shared/lib/schemas/components/testimonial-grid.schema.ts
 /**
  * @file testimonial-grid.schema.ts
  * @description Esquema de Zod para el contenido i18n del componente TestimonialGrid.
- *              - v3.0.0 (Architectural Fix): Desacopla el schema de contenido del schema
- *                de locale.
- * @version 3.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              - v3.1.0 (Build Fix): Se elimina la llamada al logger para resolver
+ *                la violación de la frontera servidor-cliente.
+ * @version 3.1.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para [TestimonialGrid]");
 
 /**
  * @const TestimonialSchema
@@ -48,4 +45,3 @@ export const TestimonialGridI18nSchema = z.object({
   "en-US": TestimonialGridLocaleSchema,
   "it-IT": TestimonialGridLocaleSchema,
 });
-// lib/schemas/components/testimonial-grid.schema.ts

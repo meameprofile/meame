@@ -2,7 +2,7 @@
 /**
  * @file ScrollingBanner.tsx
  * @description Componente de sección para una marquesina de anuncios desplazable.
- * @version 3.0.0 (Sovereign Contract & Focus-Aware)
+ * @version 4.0.0 (Sovereign Contract & Focus-Aware)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -14,7 +14,7 @@ import { DynamicIcon, Container } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface ScrollingBannerProps extends SectionProps<"scrollingBanner"> {
   isFocused?: boolean;
@@ -31,7 +31,7 @@ const sectionVariants: Variants = {
 
 export const ScrollingBanner = forwardRef<HTMLElement, ScrollingBannerProps>(
   ({ content, isFocused }, ref) => {
-    logger.info("[ScrollingBanner] Renderizando v3.0 (Focus-Aware).");
+    logger.info("[ScrollingBanner] Renderizando v4.0 (Focus-Aware).");
 
     if (!content) {
       logger.error(

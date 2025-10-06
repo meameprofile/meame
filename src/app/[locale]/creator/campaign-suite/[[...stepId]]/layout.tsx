@@ -12,7 +12,7 @@ import { CampaignSuiteWizard } from "@/components/features/campaign-suite";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { loadAllThemeFragmentsAction } from "@/shared/lib/actions/campaign-suite";
 import { getBaviManifest } from "@/shared/lib/bavi";
 import { i18nSchema } from "@/shared/lib/schemas/i18n.schema";

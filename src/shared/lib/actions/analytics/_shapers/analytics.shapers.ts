@@ -28,7 +28,10 @@ export function mapSupabaseToAuraEventPayload(
   decryptedPayload: Record<string, unknown>,
   traceId?: string
 ): AuraEventPayload {
-  logger.trace(`[Shaper] Transformando VisitorCampaignEventRow: ${row.event_id}`, { traceId });
+  logger.trace(
+    `[Shaper] Transformando VisitorCampaignEventRow: ${row.event_id}`,
+    { traceId }
+  );
 
   const transformed = {
     eventType: row.event_type,

@@ -1,25 +1,13 @@
 // RUTA: src/app/[locale]/HomePageClient.tsx
-/**
- * @file HomePageClient.tsx
- * @description "Client Core" para el Homepage. Gestiona la carga de artículos desde caché.
- * @version 2.0.0 (Build Integrity Restoration)
- *@author RaZ Podestá - MetaShark Tech - Asistente de Refactorización
- */
 "use client";
-
 import React from "react";
 import { useCogniReadCache } from "@/shared/hooks/use-cogniread-cache";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
-// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE: IMPORTACIONES ATÓMICAS] ---
-// Se importan los componentes directamente desde sus archivos soberanos
-// para evitar la contaminación del "barrel file".
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { HeroNews } from "@/components/sections/HeroNews";
 import { NewsGrid } from "@/components/sections/NewsGrid";
-// --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
 import { Skeleton } from "@/components/ui";
-
 interface HomePageClientProps {
   locale: Locale;
   dictionary: Dictionary;

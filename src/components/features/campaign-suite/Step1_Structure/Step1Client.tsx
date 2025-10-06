@@ -20,7 +20,7 @@ import type {
   HeaderConfig,
   FooterConfig,
 } from "@/shared/lib/types/campaigns/draft.types";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type Step1Content = z.infer<typeof Step1ContentSchema>;
 

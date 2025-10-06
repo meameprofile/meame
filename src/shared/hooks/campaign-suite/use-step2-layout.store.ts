@@ -28,7 +28,9 @@ export const useStep2LayoutStore = create<Step2State & Step2Actions>()(
     (set) => ({
       ...initialState,
       setLayoutConfig: (newLayout) => {
-        logger.trace("[Step2Store] Reemplazando el layout completo.", { count: newLayout.length });
+        logger.trace("[Step2Store] Reemplazando el layout completo.", {
+          count: newLayout.length,
+        });
         set({ layoutConfig: newLayout });
       },
       resetLayout: () => {

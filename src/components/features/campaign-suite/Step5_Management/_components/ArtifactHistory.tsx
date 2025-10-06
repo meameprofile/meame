@@ -18,7 +18,7 @@ import {
 } from "@/shared/lib/actions/campaign-suite";
 import { logger } from "@/shared/lib/logging";
 import { Button, DynamicIcon, Skeleton } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO I18N] ---
 interface ArtifactHistoryContent {

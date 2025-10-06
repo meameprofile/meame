@@ -14,7 +14,7 @@ import { logger } from "@/shared/lib/logging";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Skeleton } from "@/components/ui/Skeleton";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getProfiledUsersAction } from "@/shared/lib/actions/user-intelligence/getProfiledUsers.action";
 import { UserIntelligenceClient } from "@/components/features/user-intelligence/UserIntelligenceClient";
 // --- [INICIO DE REFACTORIZACIÓN DE INTEGRIDAD DE CONTRATO v2.2.0] ---

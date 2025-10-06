@@ -12,7 +12,7 @@
   import { getDictionary } from "@/shared/lib/i18n/i18n";
   import { type Locale } from "@/shared/lib/i18n/i18n.config";
   import { logger } from "@/shared/lib/logging";
-  import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+  import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
   import TestPageClient from "./\_components/TestPageClient";
   import _ as Sections from "@/components/sections";
   import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";

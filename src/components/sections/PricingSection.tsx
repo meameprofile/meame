@@ -23,7 +23,7 @@ import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { PricingPlan } from "@/shared/lib/schemas/components/pricing-section.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface PricingSectionProps extends SectionProps<"pricingSection"> {
   isFocused?: boolean;

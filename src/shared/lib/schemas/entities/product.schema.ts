@@ -1,17 +1,15 @@
 // RUTA: src/shared/lib/schemas/entities/product.schema.ts
 /**
  * @file product.schema.ts
- * @description SSoT para el contrato de datos de la entidad Producto v2.1.
- *              Esta versión añade el campo 'description' para una representación
- *              completa de los datos del producto.
- * @version 2.1.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description SSoT para el contrato de datos de la entidad Producto.
+ *              v2.2.0 (Architectural Purity): Se elimina la importación y
+ *              llamada al logger para cumplir con el principio de pureza de los
+ *              módulos de schema y resolver un error crítico de build.
+ * @version 2.2.0
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para la entidad Producto v2.1.");
 
 const InventorySchema = z.object({
   total: z.number().int().min(0),
@@ -65,9 +63,7 @@ export const ProductSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   slug: z.string().min(1),
-  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
-  description: z.string().optional(), // La descripción ahora es parte del contrato.
-  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
+  description: z.string().optional(),
   price: z.number().positive(),
   currency: z.string().length(3).default("EUR"),
   isBestseller: z.boolean().optional(),

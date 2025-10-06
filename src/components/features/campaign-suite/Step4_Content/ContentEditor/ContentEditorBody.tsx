@@ -2,7 +2,7 @@
 /**
  * @file ContentEditorBody.tsx
  * @description Cuerpo del editor de contenido, ahora con higiene de código de élite.
- * @version 5.0.0 (Code Hygiene)
+ * @version 6.0.0 (Contract Alignment)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -12,7 +12,12 @@ import type { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 import { Form, Tabs, TabsList, TabsTrigger } from "@/components/ui";
 import { SchemaFieldRenderer } from "@/components/features/form-builder/builder/SchemaFieldRenderer";
-import { supportedLocales, type Locale } from "@/shared/lib/i18n/i18n.config";
+// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
+import {
+  ROUTING_LOCALES as supportedLocales,
+  type Locale,
+} from "@/shared/lib/i18n/i18n.config";
+// --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
 import { logger } from "@/shared/lib/logging";
 
 interface ContentEditorBodyProps {
@@ -34,7 +39,7 @@ export function ContentEditorBody({
   onSubmit,
   sectionName,
 }: ContentEditorBodyProps): React.ReactElement {
-  logger.trace("[ContentEditorBody v5.0] Renderizando.");
+  logger.trace("[ContentEditorBody v6.0] Renderizando.");
   const fieldsToRender = Object.keys(sectionSchema.shape);
 
   return (
@@ -45,7 +50,8 @@ export function ContentEditorBody({
         className="h-full flex flex-col"
       >
         <TabsList>
-          {supportedLocales.map((locale) => (
+          {/* Se añade el tipo explícito para resolver TS7006 */}
+          {supportedLocales.map((locale: Locale) => (
             <TabsTrigger key={locale} value={locale}>
               {locale.toUpperCase()}
             </TabsTrigger>

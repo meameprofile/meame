@@ -14,7 +14,7 @@ import { cn } from "@/shared/lib/utils/cn";
 import { logger } from "@/shared/lib/logging";
 import type { z } from "zod";
 import type { ProductDetailPageContentSchema } from "@/shared/lib/schemas/pages/product-detail-page.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type GalleryImage = z.infer<
   typeof ProductDetailPageContentSchema

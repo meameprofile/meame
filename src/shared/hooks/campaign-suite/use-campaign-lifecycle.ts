@@ -23,11 +23,18 @@ import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import { logger } from "@/shared/lib/logging";
 
 export function useCampaignLifecycle(locale: Locale, draft: CampaignDraft) {
-  const traceId = useMemo(() => logger.startTrace("useCampaignLifecycle_v4.1"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("useCampaignLifecycle_v4.1"),
+    []
+  );
   useEffect(() => {
-    logger.info("[Lifecycle Hook] Montado y listo para orquestar acciones.", { traceId });
+    logger.info("[Lifecycle Hook] Montado y listo para orquestar acciones.", {
+      traceId,
+    });
     return () => {
-      logger.info("[Lifecycle Hook] Desmontado. Finalizando traza.", { traceId });
+      logger.info("[Lifecycle Hook] Desmontado. Finalizando traza.", {
+        traceId,
+      });
       logger.endTrace(traceId);
     };
   }, [traceId]);
@@ -41,16 +48,27 @@ export function useCampaignLifecycle(locale: Locale, draft: CampaignDraft) {
 
   const onPublish = useCallback(() => {
     const actionTraceId = logger.startTrace("lifecycle.onPublish");
-    logger.startGroup("[Lifecycle Action] Iniciando publicación...", actionTraceId);
+    logger.startGroup(
+      "[Lifecycle Action] Iniciando publicación...",
+      actionTraceId
+    );
     startPublishTransition(async () => {
       const result = await publishCampaignAction(draft);
       if (result.success) {
         celebrate();
-        toast.success("¡Campaña Publicada!", { description: `Variante ${result.data.variantId} está en vivo.` });
-        logger.success("[Lifecycle] Publicación completada.", { traceId: actionTraceId, result: result.data });
+        toast.success("¡Campaña Publicada!", {
+          description: `Variante ${result.data.variantId} está en vivo.`,
+        });
+        logger.success("[Lifecycle] Publicación completada.", {
+          traceId: actionTraceId,
+          result: result.data,
+        });
       } else {
         toast.error("Fallo en la Publicación", { description: result.error });
-        logger.error("[Lifecycle] Fallo en la publicación.", { error: result.error, traceId: actionTraceId });
+        logger.error("[Lifecycle] Fallo en la publicación.", {
+          error: result.error,
+          traceId: actionTraceId,
+        });
       }
       logger.endGroup();
       logger.endTrace(actionTraceId);
@@ -59,16 +77,26 @@ export function useCampaignLifecycle(locale: Locale, draft: CampaignDraft) {
 
   const onPackage = useCallback(() => {
     const actionTraceId = logger.startTrace("lifecycle.onPackage");
-    logger.startGroup("[Lifecycle Action] Iniciando empaquetado...", actionTraceId);
+    logger.startGroup(
+      "[Lifecycle Action] Iniciando empaquetado...",
+      actionTraceId
+    );
     startPackageTransition(async () => {
       const result = await packageCampaignAction(draft);
       if (result.success) {
-        toast.info("Descarga iniciada", { description: "Tu paquete .zip se está descargando." });
+        toast.info("Descarga iniciada", {
+          description: "Tu paquete .zip se está descargando.",
+        });
         window.open(result.data.downloadUrl, "_blank");
-        logger.success("[Lifecycle] Empaquetado completado.", { traceId: actionTraceId });
+        logger.success("[Lifecycle] Empaquetado completado.", {
+          traceId: actionTraceId,
+        });
       } else {
         toast.error("Fallo en el Empaquetado", { description: result.error });
-        logger.error("[Lifecycle] Fallo en el empaquetado.", { error: result.error, traceId: actionTraceId });
+        logger.error("[Lifecycle] Fallo en el empaquetado.", {
+          error: result.error,
+          traceId: actionTraceId,
+        });
       }
       logger.endGroup();
       logger.endTrace(actionTraceId);
@@ -77,7 +105,10 @@ export function useCampaignLifecycle(locale: Locale, draft: CampaignDraft) {
 
   const onDelete = useCallback(() => {
     const actionTraceId = logger.startTrace("lifecycle.onDelete");
-    logger.startGroup("[Lifecycle Action] Iniciando eliminación...", actionTraceId);
+    logger.startGroup(
+      "[Lifecycle Action] Iniciando eliminación...",
+      actionTraceId
+    );
     startDeleteTransition(async () => {
       if (!draft.draftId) {
         const errorMsg = "No se puede eliminar un borrador sin ID.";
@@ -93,15 +124,29 @@ export function useCampaignLifecycle(locale: Locale, draft: CampaignDraft) {
         toast.info("Borrador eliminado con éxito.");
         router.push(routes.creatorCampaignSuite.path({ locale }));
         router.refresh();
-        logger.success(`[Lifecycle] Borrador ${draft.draftId} eliminado.`, { traceId: actionTraceId });
+        logger.success(`[Lifecycle] Borrador ${draft.draftId} eliminado.`, {
+          traceId: actionTraceId,
+        });
       } else {
-        toast.error("Error al eliminar el borrador", { description: result.error });
-        logger.error("[Lifecycle] Fallo al eliminar.", { error: result.error, traceId: actionTraceId });
+        toast.error("Error al eliminar el borrador", {
+          description: result.error,
+        });
+        logger.error("[Lifecycle] Fallo al eliminar.", {
+          error: result.error,
+          traceId: actionTraceId,
+        });
       }
       logger.endGroup();
       logger.endTrace(actionTraceId);
     });
   }, [draft.draftId, resetDraft, router, locale]);
 
-  return { onPublish, onPackage, onDelete, isPublishing, isPackaging, isDeleting };
+  return {
+    onPublish,
+    onPackage,
+    onDelete,
+    isPublishing,
+    isPackaging,
+    isDeleting,
+  };
 }

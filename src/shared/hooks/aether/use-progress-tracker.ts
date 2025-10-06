@@ -23,9 +23,12 @@ export function useProgressTracker(videoTexture: VideoTexture) {
   });
 
   useEffect(() => {
-    logger.trace("[ProgressTracker] Hook montado y escuchando eventos de tiempo.");
+    logger.trace(
+      "[ProgressTracker] Hook montado y escuchando eventos de tiempo."
+    );
     const video = videoTexture.image as HTMLVideoElement;
-    const handleTimeUpdate = () => setProgress((p) => ({ ...p, currentTime: video.currentTime }));
+    const handleTimeUpdate = () =>
+      setProgress((p) => ({ ...p, currentTime: video.currentTime }));
     const handleDurationChange = () => {
       if (!isNaN(video.duration)) {
         setProgress((p) => ({ ...p, duration: video.duration }));

@@ -15,7 +15,7 @@ import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { Seal } from "@/shared/lib/schemas/components/guarantee-section.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface GuaranteeSectionProps extends SectionProps<"guaranteeSection"> {
   isFocused?: boolean;

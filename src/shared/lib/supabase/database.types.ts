@@ -480,6 +480,42 @@ export type Database = {
           },
         ];
       };
+      heimdall_events: {
+        Row: {
+          context: Json | null;
+          created_at: string;
+          duration_ms: number | null;
+          event_id: string;
+          event_name: string;
+          payload: Json | null;
+          status: string;
+          timestamp: string;
+          trace_id: string;
+        };
+        Insert: {
+          context?: Json | null;
+          created_at?: string;
+          duration_ms?: number | null;
+          event_id: string;
+          event_name: string;
+          payload?: Json | null;
+          status: string;
+          timestamp?: string;
+          trace_id: string;
+        };
+        Update: {
+          context?: Json | null;
+          created_at?: string;
+          duration_ms?: number | null;
+          event_id?: string;
+          event_name?: string;
+          payload?: Json | null;
+          status?: string;
+          timestamp?: string;
+          trace_id?: string;
+        };
+        Relationships: [];
+      };
       i18n_content_entries: {
         Row: {
           created_at: string;

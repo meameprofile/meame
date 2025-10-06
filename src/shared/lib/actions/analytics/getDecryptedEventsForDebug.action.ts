@@ -30,7 +30,9 @@ export async function getDecryptedEventsForDebugAction(
 
   try {
     const supabase = createServerClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) return { success: false, error: "auth_required" };
     logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
 
@@ -49,30 +51,60 @@ export async function getDecryptedEventsForDebugAction(
 
     if (error) throw new Error(error.message);
     if (!data) return { success: true, data: { events: [], total: 0 } };
-    logger.traceEvent(traceId, `Se obtuvieron ${data.length} eventos encriptados.`);
+    logger.traceEvent(
+      traceId,
+      `Se obtuvieron ${data.length} eventos encriptados.`
+    );
 
-    const decryptedEventsPromises = data.map(async (event: VisitorCampaignEventRow) => {
-      try {
-        if (!event.payload) throw new Error("Payload nulo.");
-        const decryptedPayloadString = await decryptServerData(event.payload as string);
-        const decryptedPayloadObject = JSON.parse(decryptedPayloadString);
-        return mapSupabaseToAuraEventPayload(event, decryptedPayloadObject, traceId);
-      } catch (decryptionError) {
-        const errorMessage = decryptionError instanceof Error ? decryptionError.message : "Error desconocido.";
-        logger.warn(`[Guardián] Fallo al procesar evento ${event.event_id}.`, { traceId, error: errorMessage });
-        return null; // Marcar como nulo para filtrarlo después
+    const decryptedEventsPromises = data.map(
+      async (event: VisitorCampaignEventRow) => {
+        try {
+          if (!event.payload) throw new Error("Payload nulo.");
+          const decryptedPayloadString = await decryptServerData(
+            event.payload as string
+          );
+          const decryptedPayloadObject = JSON.parse(decryptedPayloadString);
+          return mapSupabaseToAuraEventPayload(
+            event,
+            decryptedPayloadObject,
+            traceId
+          );
+        } catch (decryptionError) {
+          const errorMessage =
+            decryptionError instanceof Error
+              ? decryptionError.message
+              : "Error desconocido.";
+          logger.warn(
+            `[Guardián] Fallo al procesar evento ${event.event_id}.`,
+            { traceId, error: errorMessage }
+          );
+          return null; // Marcar como nulo para filtrarlo después
+        }
       }
-    });
+    );
 
-    const decryptedEvents = (await Promise.all(decryptedEventsPromises))
-      .filter((e): e is AuraEventPayload => e !== null);
+    const decryptedEvents = (await Promise.all(decryptedEventsPromises)).filter(
+      (e): e is AuraEventPayload => e !== null
+    );
 
-    logger.success(`[Action] Se procesaron ${decryptedEvents.length} eventos válidos.`);
-    return { success: true, data: { events: decryptedEvents, total: count ?? 0 } };
+    logger.success(
+      `[Action] Se procesaron ${decryptedEvents.length} eventos válidos.`
+    );
+    return {
+      success: true,
+      data: { events: decryptedEvents, total: count ?? 0 },
+    };
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[Action] Fallo crítico al obtener eventos.", { error: errorMessage, traceId });
-    return { success: false, error: `No se pudieron obtener los eventos: ${errorMessage}` };
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
+    logger.error("[Action] Fallo crítico al obtener eventos.", {
+      error: errorMessage,
+      traceId,
+    });
+    return {
+      success: false,
+      error: `No se pudieron obtener los eventos: ${errorMessage}`,
+    };
   } finally {
     logger.endGroup();
     logger.endTrace(traceId);

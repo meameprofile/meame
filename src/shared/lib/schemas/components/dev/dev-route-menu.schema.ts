@@ -1,4 +1,4 @@
-// Ruta correcta: src/shared/lib/schemas/components/dev/dev-route-menu.schema.ts
+// RUTA: src/shared/lib/schemas/components/dev/dev-route-menu.schema.ts
 /**
  * @file dev-route-menu.schema.ts
  * @description SSoT para el contrato i18n del DevRouteMenu.
@@ -25,4 +25,3 @@ export const DevRouteMenuContentSchema = z
 export const DevRouteMenuLocaleSchema = z.object({
   devRouteMenu: DevRouteMenuContentSchema.optional(),
 });
-// Ruta correcta: src/shared/lib/schemas/components/dev/dev-route-menu.schema.ts

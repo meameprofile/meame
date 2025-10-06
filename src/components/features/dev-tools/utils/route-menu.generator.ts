@@ -1,4 +1,3 @@
-// components/dev/utils/route-menu.generator.ts
 /**
  * @file route-menu.generator.ts
  * @description Motor de generación de menú anti-frágil.
@@ -103,13 +102,7 @@ export function generateDevRoutes(
       const label = dictionary[key as keyof typeof dictionary] || key;
       const params = getMockParams(key, locale);
 
-      // --- [INICIO DE REFACTORIZACIÓN DE ÉLITE] ---
-      // TypeScript ahora puede inferir que, aunque `route.path` espera un
-      // tipo más específico, `params` es un superconjunto válido. Esto se debe
-      // a que las funciones en TypeScript son contravariantes en sus argumentos.
-      // Se elimina la aserción `as any`, logrando una seguridad de tipos pura.
       const path = (route.path as (p: RouteParams) => string)(params);
-      // --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
 
       groups[groupKey].push({
         name: String(label),
@@ -138,4 +131,3 @@ export function generateDevRoutes(
     },
   ].filter((g) => g.items.length > 0);
 }
-// components/dev/utils/route-menu.generator.ts

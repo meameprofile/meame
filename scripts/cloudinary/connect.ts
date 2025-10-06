@@ -1,16 +1,16 @@
-// pnpm tsx scripts/cloudinary/connect.ts
+// RUTA: scripts/cloudinary/connect.ts
 /**
  * @file connect.ts
  * @description Guardián de Conexión para Cloudinary. Verifica variables de entorno
  *              y la conectividad con la API, generando un informe de diagnóstico.
- * @version 3.1.0 (Simplified Structure & Direct Execution)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 4.1.0 (Type Contract Restoration)
+ * @author L.I.A. Legacy
  */
 import { v2 as cloudinary } from "cloudinary";
 import { promises as fs } from "fs";
 import * as path from "path";
 import { loadEnvironment } from "../_utils/env";
-import { scriptLogger } from "../_utils/logger";
+import { scriptLogger as logger } from "../_utils/logger";
 
 // SSoT para el contrato de datos del informe
 interface Report {
@@ -35,13 +35,15 @@ interface Report {
 }
 
 async function diagnoseCloudinaryConnection() {
-  const traceId = scriptLogger.startTrace("diagnoseCloudinaryConnection_v3.1");
-  scriptLogger.startGroup("🖼️  Iniciando Guardián de Conexión a Cloudinary...");
+  const traceId = logger.startTrace("diagnoseCloudinaryConnection_v4.1");
+  const groupId = logger.startGroup(
+    "🖼️  Iniciando Guardián de Conexión a Cloudinary..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "cloudinary");
   const reportPath = path.resolve(reportDir, "connect-diagnostics.json");
 
-  // Plantilla base para el informe
+  // --- [INICIO DE CORRECCIÓN DE CONTRATO DE TIPO v4.1.0] ---
   const report: Report = {
     reportMetadata: {
       script: "scripts/cloudinary/connect.ts",
@@ -55,7 +57,7 @@ async function diagnoseCloudinaryConnection() {
       "Revisa 'apiPingResult' para el resultado de la prueba de conexión real con la API.",
       "Utiliza el 'summary' para obtener una conclusión legible por humanos.",
     ],
-    connectionStatus: "FAILED", // Por defecto
+    connectionStatus: "FAILED",
     environmentValidation: [],
     apiPingResult: {
       status: "PENDING",
@@ -63,10 +65,10 @@ async function diagnoseCloudinaryConnection() {
     },
     summary: "",
   };
+  // --- [FIN DE CORRECCIÓN DE CONTRATO DE TIPO v4.1.0] ---
 
   try {
-    // 1. Cargar y validar variables de entorno
-    loadEnvironment(); // Carga .env.local sin fallar si faltan claves
+    loadEnvironment();
 
     const requiredKeys = [
       "CLOUDINARY_CLOUD_NAME",
@@ -75,7 +77,7 @@ async function diagnoseCloudinaryConnection() {
     ];
     let allKeysValid = true;
 
-    scriptLogger.info("Verificando variables de entorno...");
+    logger.info("Verificando variables de entorno...");
     for (const key of requiredKeys) {
       const value = process.env[key];
       if (value && value !== "") {
@@ -84,7 +86,7 @@ async function diagnoseCloudinaryConnection() {
           status: "OK",
           message: `La variable '${key}' está configurada.`,
         });
-        scriptLogger.success(`Variable '${key}' encontrada.`);
+        logger.success(`Variable '${key}' encontrada.`);
       } else {
         allKeysValid = false;
         report.environmentValidation.push({
@@ -92,25 +94,24 @@ async function diagnoseCloudinaryConnection() {
           status: "MISSING",
           message: `ERROR: La variable '${key}' no está definida en .env.local.`,
         });
-        scriptLogger.error(`Variable '${key}' no encontrada.`);
+        logger.error(`Variable '${key}' no encontrada.`);
       }
     }
 
     if (!allKeysValid) {
       throw new Error("Una o más variables de entorno de Cloudinary faltan.");
     }
-    scriptLogger.success(
+    logger.success(
       "Todas las variables de entorno requeridas están presentes."
     );
 
-    // 2. Configurar y probar la conexión con la API
     cloudinary.config({
       cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
       api_key: process.env.CLOUDINARY_API_KEY,
       api_secret: process.env.CLOUDINARY_API_SECRET,
     });
 
-    scriptLogger.info(
+    logger.info(
       `Intentando ping a la API de Cloudinary para el cloud: '${process.env.CLOUDINARY_CLOUD_NAME}'...`
     );
     const result = await cloudinary.api.ping();
@@ -124,7 +125,6 @@ async function diagnoseCloudinaryConnection() {
       throw new Error(report.apiPingResult.message);
     }
 
-    // 3. Si todo tiene éxito, actualizar el informe
     report.connectionStatus = "SUCCESS";
     report.apiPingResult = {
       status: "OK",
@@ -133,21 +133,20 @@ async function diagnoseCloudinaryConnection() {
     };
     report.summary =
       "Diagnóstico exitoso. Las variables de entorno son correctas y la conexión con la API de Cloudinary está activa.";
-    scriptLogger.success(report.summary);
+    logger.success(report.summary);
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
     report.summary = `Diagnóstico fallido: ${errorMessage}`;
-    scriptLogger.error(report.summary, { traceId });
+    logger.error(report.summary, { traceId });
   } finally {
-    // 4. Escribir el informe final, sea de éxito o de fallo
     await fs.mkdir(reportDir, { recursive: true });
     await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
-    scriptLogger.info(
+    logger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
-    scriptLogger.endTrace(traceId);
+    logger.endGroup(groupId);
+    logger.endTrace(traceId);
     if (report.connectionStatus === "FAILED") {
       process.exit(1);
     }

@@ -23,7 +23,7 @@ import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { ReviewItem } from "@/shared/lib/schemas/components/testimonial-carousel-section.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface TestimonialCarouselSectionProps
   extends SectionProps<"testimonialCarouselSection"> {

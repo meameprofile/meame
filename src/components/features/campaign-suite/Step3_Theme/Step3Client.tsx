@@ -33,7 +33,7 @@ import type { z } from "zod";
 import type { Step3ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
 import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
 import type { LoadedFragments } from "@/shared/lib/actions/campaign-suite";
-import { DeveloperErrorDisplay } from "../../dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type Step3Content = z.infer<typeof Step3ContentSchema>;
 

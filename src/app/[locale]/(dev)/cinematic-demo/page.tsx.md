@@ -15,7 +15,7 @@
   import { PageHeader } from "@/components/layout/PageHeader";
   import { Skeleton } from "@/components/ui/Skeleton";
   import { logger } from "@/shared/lib/logging";
-  import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+  import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 // --- Carga Dinámica de Élite ---
 const CinematicRenderer = dynamic(

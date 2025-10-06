@@ -17,7 +17,7 @@ import { Step2Form } from "./Step2Form";
 import { useStep2LayoutStore } from "@/shared/hooks/campaign-suite/use-step2-layout.store";
 import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
 import { type Step2ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step2.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type Step2Content = z.infer<typeof Step2ContentSchema>;
 

@@ -2,17 +2,16 @@
 /**
  * @file navigation.ts
  * @description Manifiesto y SSoT para la definición de rutas del ecosistema.
- *              v15.2 (User Intelligence Route Restoration): Se restaura la ruta
- *              faltante para el detalle de inteligencia de usuario, resolviendo
- *              una desalineación crítica del contrato de enrutamiento.
- * @version 15.2.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v16.0.0 (Heimdall Observatory Integration): Se integra la nueva
+ *              ruta soberana para el Observatorio Heimdall dentro del DCC.
+ * @version 16.0.0
+ * @author L.I.A. Legacy
  */
 import { defaultLocale, type Locale } from "./i18n/i18n.config";
 import { logger } from "./logging";
 
 logger.info(
-  "[Observabilidad][ARQUITECTURA-RAIZ] Cargando Manifiesto de Rutas v15.2..."
+  "[Observabilidad][ARQUITECTURA-RAIZ] Cargando Manifiesto de Rutas v16.0..."
 );
 
 export const RouteType = {
@@ -226,12 +225,18 @@ export const routes = {
     template: "/dev/user-intelligence",
     type: RouteType.DevOnly,
   },
-  // --- [INICIO DE RESTAURACIÓN DE RUTA SOBERANA v15.2.0] ---
   userIntelligenceDetail: {
     path: (params: RouteParams & { sessionId: string }) =>
       buildPath(params.locale, "/dev/user-intelligence/[sessionId]", params),
     template: "/dev/user-intelligence/[sessionId]",
     type: RouteType.DevOnly,
   },
-  // --- [FIN DE RESTAURACIÓN DE RUTA SOBERANA v15.2.0] ---
+  // --- [INICIO DE NIVELACIÓN DE RUTA v16.0.0] ---
+  heimdallObservatory: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/dev/heimdall-observatory"),
+    template: "/dev/heimdall-observatory",
+    type: RouteType.DevOnly,
+  },
+  // --- [FIN DE NIVELACIÓN DE RUTA v16.0.0] ---
 } as const;

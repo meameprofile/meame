@@ -29,14 +29,17 @@ export async function linkPromptToBaviAssetAction({
 
   try {
     const supabase = createServerClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) return { success: false, error: "auth_required" };
 
     const { data: memberCheck, error: memberError } = await supabase.rpc(
       "is_workspace_member",
       { workspace_id_to_check: workspaceId }
     );
-    if (memberError || !memberCheck) throw new Error("Acceso denegado al workspace.");
+    if (memberError || !memberCheck)
+      throw new Error("Acceso denegado al workspace.");
 
     const { data: currentPrompt, error: fetchError } = await supabase
       .from("razprompts_entries")
@@ -44,9 +47,12 @@ export async function linkPromptToBaviAssetAction({
       .eq("id", promptId)
       .eq("workspace_id", workspaceId)
       .single();
-    if (fetchError) throw new Error(`Prompt no encontrado: ${fetchError.message}`);
+    if (fetchError)
+      throw new Error(`Prompt no encontrado: ${fetchError.message}`);
 
-    const updatedBaviAssetIds = Array.from(new Set([...(currentPrompt.bavi_asset_ids || []), baviAssetId]));
+    const updatedBaviAssetIds = Array.from(
+      new Set([...(currentPrompt.bavi_asset_ids || []), baviAssetId])
+    );
 
     const updatePayload: RazPromptsEntryUpdate = {
       status: "generated",
@@ -61,11 +67,16 @@ export async function linkPromptToBaviAssetAction({
 
     if (updateError) throw new Error(updateError.message);
 
-    logger.success(`[Action] Prompt ${promptId} vinculado. Filas afectadas: ${count ?? 0}.`);
+    logger.success(
+      `[Action] Prompt ${promptId} vinculado. Filas afectadas: ${count ?? 0}.`
+    );
     return { success: true, data: { updatedCount: count ?? 0 } };
   } catch (error) {
     const msg = error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[Action] Fallo crítico en la vinculación.", { error: msg, traceId });
+    logger.error("[Action] Fallo crítico en la vinculación.", {
+      error: msg,
+      traceId,
+    });
     return { success: false, error: `No se pudo vincular el prompt: ${msg}` };
   } finally {
     logger.endGroup();

@@ -14,7 +14,7 @@ import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 import { Container, Separator } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { CommentSectionClient } from "./comments/CommentSectionClient";
 
 // A diferencia de los componentes de cliente puros, las props de este

@@ -14,7 +14,7 @@ import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { FeatureItem } from "@/shared/lib/schemas/components/features-section.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface FeaturesSectionProps extends SectionProps<"featuresSection"> {
   isFocused?: boolean;

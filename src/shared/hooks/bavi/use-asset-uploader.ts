@@ -7,7 +7,13 @@
  */
 "use client";
 
-import { useState, useCallback, useEffect, useTransition, useMemo } from "react";
+import {
+  useState,
+  useCallback,
+  useEffect,
+  useTransition,
+  useMemo,
+} from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDropzone } from "react-dropzone";
@@ -32,7 +38,11 @@ interface UseAssetUploaderProps {
   sesaOptions: SesaOptions;
 }
 
-export function useAssetUploader({ content, sesaLabels, sesaOptions }: UseAssetUploaderProps) {
+export function useAssetUploader({
+  content,
+  sesaLabels,
+  sesaOptions,
+}: UseAssetUploaderProps) {
   const traceId = useMemo(() => logger.startTrace("useAssetUploader_v8.0"), []);
   useEffect(() => {
     logger.info("[useAssetUploader] Hook montado.", { traceId });
@@ -42,9 +52,16 @@ export function useAssetUploader({ content, sesaLabels, sesaOptions }: UseAssetU
   const [isPending, startTransition] = useTransition();
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [uploadResult, setUploadResult] = useState<UploadApiResponse | null>(null);
-  const activeWorkspaceId = useWorkspaceStore((state) => state.activeWorkspaceId);
-  const [extractedMetadata, setExtractedMetadata] = useState<Record<string, string | number> | null>(null);
+  const [uploadResult, setUploadResult] = useState<UploadApiResponse | null>(
+    null
+  );
+  const activeWorkspaceId = useWorkspaceStore(
+    (state) => state.activeWorkspaceId
+  );
+  const [extractedMetadata, setExtractedMetadata] = useState<Record<
+    string,
+    string | number
+  > | null>(null);
 
   const form = useForm<AssetUploadMetadata>({
     resolver: zodResolver(assetUploadMetadataSchema),
@@ -58,31 +75,47 @@ export function useAssetUploader({ content, sesaLabels, sesaOptions }: UseAssetU
     },
   });
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    const selectedFile = acceptedFiles[0];
-    if (selectedFile) {
-      logger.traceEvent(traceId, "Archivo seleccionado vía dropzone.", { name: selectedFile.name, size: selectedFile.size });
-      setFile(selectedFile);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const selectedFile = acceptedFiles[0];
+      if (selectedFile) {
+        logger.traceEvent(traceId, "Archivo seleccionado vía dropzone.", {
+          name: selectedFile.name,
+          size: selectedFile.size,
+        });
+        setFile(selectedFile);
+        if (preview) URL.revokeObjectURL(preview);
+        const previewUrl = URL.createObjectURL(selectedFile);
+        setPreview(previewUrl);
+
+        const baseName = selectedFile.name.split(".").slice(0, -1).join(".");
+        const sanitizedBaseName = baseName
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, "-");
+
+        form.setValue("finalFileName", selectedFile.name);
+        form.setValue("assetId", `i-generic-${sanitizedBaseName}-01`);
+        setExtractedMetadata({
+          Tipo: selectedFile.type,
+          Tamaño: `${(selectedFile.size / 1024).toFixed(2)} KB`,
+          Modificado: new Date(selectedFile.lastModified).toLocaleString(),
+        });
+      }
+    },
+    [form, preview, traceId]
+  );
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    maxFiles: 1,
+  });
+
+  useEffect(
+    () => () => {
       if (preview) URL.revokeObjectURL(preview);
-      const previewUrl = URL.createObjectURL(selectedFile);
-      setPreview(previewUrl);
-
-      const baseName = selectedFile.name.split(".").slice(0, -1).join(".");
-      const sanitizedBaseName = baseName.toLowerCase().replace(/[^a-z0-9]/g, "-");
-
-      form.setValue("finalFileName", selectedFile.name);
-      form.setValue("assetId", `i-generic-${sanitizedBaseName}-01`);
-      setExtractedMetadata({
-        "Tipo": selectedFile.type,
-        "Tamaño": `${(selectedFile.size / 1024).toFixed(2)} KB`,
-        "Modificado": new Date(selectedFile.lastModified).toLocaleString(),
-      });
-    }
-  }, [form, preview, traceId]);
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, maxFiles: 1 });
-
-  useEffect(() => () => { if (preview) URL.revokeObjectURL(preview) }, [preview]);
+    },
+    [preview]
+  );
 
   const onSubmit = (data: AssetUploadMetadata) => {
     const submitTraceId = logger.startTrace("useAssetUploader.onSubmit");
@@ -94,15 +127,21 @@ export function useAssetUploader({ content, sesaLabels, sesaOptions }: UseAssetU
       return;
     }
     if (!activeWorkspaceId) {
-      toast.error("Error de contexto", { description: "No hay un workspace activo." });
-      logger.error("[Guardián] Envío abortado: falta workspaceId.", { traceId: submitTraceId });
+      toast.error("Error de contexto", {
+        description: "No hay un workspace activo.",
+      });
+      logger.error("[Guardián] Envío abortado: falta workspaceId.", {
+        traceId: submitTraceId,
+      });
       logger.endGroup();
       return;
     }
 
     startTransition(async () => {
       const formData = new FormData();
-      const finalFile = new File([file], data.finalFileName, { type: file.type });
+      const finalFile = new File([file], data.finalFileName, {
+        type: file.type,
+      });
       formData.append("file", finalFile);
       formData.append("metadata", JSON.stringify(data));
       formData.append("workspaceId", activeWorkspaceId);
@@ -117,10 +156,15 @@ export function useAssetUploader({ content, sesaLabels, sesaOptions }: UseAssetU
         setFile(null);
         setPreview(null);
         setExtractedMetadata(null);
-        logger.success("[AssetUploader] Ingestión de activo exitosa.", { traceId: submitTraceId });
+        logger.success("[AssetUploader] Ingestión de activo exitosa.", {
+          traceId: submitTraceId,
+        });
       } else {
         toast.error("Error de ingestión", { description: result.error });
-        logger.error("[AssetUploader] Fallo en la ingestión.", { error: result.error, traceId: submitTraceId });
+        logger.error("[AssetUploader] Fallo en la ingestión.", {
+          error: result.error,
+          traceId: submitTraceId,
+        });
       }
       logger.endGroup();
       logger.endTrace(submitTraceId);
@@ -129,5 +173,17 @@ export function useAssetUploader({ content, sesaLabels, sesaOptions }: UseAssetU
 
   const sesaContentForForm = { sesaLabels, sesaOptions };
 
-  return { form, onSubmit: form.handleSubmit(onSubmit), isPending, preview, uploadResult, getRootProps, getInputProps, isDragActive, content, sesaContent: sesaContentForForm, extractedMetadata };
+  return {
+    form,
+    onSubmit: form.handleSubmit(onSubmit),
+    isPending,
+    preview,
+    uploadResult,
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    content,
+    sesaContent: sesaContentForForm,
+    extractedMetadata,
+  };
 }

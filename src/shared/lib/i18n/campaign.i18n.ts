@@ -1,13 +1,15 @@
-// Ruta correcta: src/shared/lib/i18n/campaign.i18n.ts
+// RUTA: src/shared/lib/i18n/campaign.i18n.ts
 /**
  * @file campaign.i18n.ts
  * @description Aparato Orquestador Soberano para la obtención de datos de campaña.
- * @version 15.2.1 (Sovereign Path Restoration)
+ * @version 16.0.0 (Contract Alignment)
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import {
-  supportedLocales,
+  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
+  ROUTING_LOCALES as supportedLocales,
+  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
   defaultLocale,
   type Locale,
 } from "@/shared/lib/i18n/i18n.config";
@@ -100,7 +102,6 @@ export const getCampaignData = async (
 
     const promises = [
       loadJsonAsset<Partial<AssembledTheme>>(
-        "campaigns", // Corregido para apuntar a la raíz correcta
         "theme-fragments",
         "base",
         "global.theme.json"
@@ -119,7 +120,6 @@ export const getCampaignData = async (
         if (!dir) return Promise.resolve({});
         const filename = `${name}.${dir}.json`;
         return loadJsonAsset<Partial<AssembledTheme>>(
-          "campaigns", // Corregido para apuntar a la raíz correcta
           "theme-fragments",
           dir,
           filename
@@ -161,12 +161,12 @@ export const getCampaignData = async (
     );
 
     logger.success(
-      `[Orquestador v15.2] Datos para Campaña ${campaignId} / Variante "${variant.name}" ensamblados con éxito.`
+      `[Orquestador v16.0] Datos para Campaña ${campaignId} / Variante "${variant.name}" ensamblados con éxito.`
     );
     return processedData;
   } catch (error) {
     logger.error(
-      `[Orquestador v15.2] Fallo crítico en el ensamblaje de datos de campaña.`,
+      `[Orquestador v16.0] Fallo crítico en el ensamblaje de datos de campaña.`,
       { error }
     );
     throw error;
@@ -174,4 +174,3 @@ export const getCampaignData = async (
     logger.endTrace(traceId);
   }
 };
-// Ruta correcta: src/shared/lib/i18n/campaign.i18n.ts

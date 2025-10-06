@@ -2,8 +2,8 @@
 /**
  * @file createOrUpdateArticle.action.ts
  * @description Server Action para crear o actualizar un artículo, ahora isomórfica.
- * @version 3.1.0 (Isomorphic & Context-Aware)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.2.0 (Routing Contract Alignment)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -17,7 +17,7 @@ import {
 } from "@/shared/lib/schemas/cogniread/article.schema";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { logger } from "@/shared/lib/logging";
-import { supportedLocales } from "@/shared/lib/i18n/i18n.config";
+import { ROUTING_LOCALES } from "@/shared/lib/i18n/i18n.config"; // <-- CONTRATO CORREGIDO
 
 type ArticleInput = Omit<
   CogniReadArticle,
@@ -31,7 +31,7 @@ export async function createOrUpdateArticleAction(
   input: ArticleInput,
   supabaseOverride?: SupabaseClient
 ): Promise<ActionResult<{ articleId: string }>> {
-  const traceId = logger.startTrace("createOrUpdateArticleAction_v3.1");
+  const traceId = logger.startTrace("createOrUpdateArticleAction_v3.2");
   const supabase = supabaseOverride || createNextServerClient();
 
   try {
@@ -41,11 +41,6 @@ export async function createOrUpdateArticleAction(
       } = await supabase.auth.getUser();
       if (!user) return { success: false, error: "auth_required" };
     }
-
-    logger.info(
-      `[CogniReadAction] Iniciando creación/actualización para: ${input.articleId || "nuevo artículo"}`,
-      { traceId }
-    );
 
     const now = new Date().toISOString();
     const articleId = input.articleId || createId();
@@ -61,10 +56,7 @@ export async function createOrUpdateArticleAction(
 
     const validation = CogniReadArticleSchema.safeParse(articleDocument);
     if (!validation.success) {
-      return {
-        success: false,
-        error: "Los datos del artículo son inválidos según el esquema.",
-      };
+      return { success: false, error: "Los datos del artículo son inválidos." };
     }
     const { data: validatedData } = validation;
 
@@ -89,7 +81,8 @@ export async function createOrUpdateArticleAction(
 
     if (!supabaseOverride) {
       revalidatePath("/news");
-      for (const locale of supportedLocales) {
+      // La lógica ahora usa la SSoT de enrutamiento
+      for (const locale of ROUTING_LOCALES) {
         const slug = validatedData.content[locale]?.slug;
         if (slug) revalidatePath(`/${locale}/news/${slug}`);
       }

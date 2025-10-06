@@ -1,16 +1,13 @@
-// RUTA: lib/schemas/components/faq-accordion.schema.ts
+// RUTA: src/shared/lib/schemas/components/faq-accordion.schema.ts
 /**
  * @file faq-accordion.schema.ts
  * @description Esquema de Zod para el contenido i18n del componente FaqAccordion.
- *              - v4.0.0 (Architectural Fix): Desacopla el schema de contenido del schema
- *                de locale.
- * @version 4.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              - v4.1.0 (Build Fix): Se elimina la llamada al logger para resolver
+ *                la violación de la frontera servidor-cliente.
+ * @version 4.1.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para [FaqAccordion]");
 
 /**
  * @const FaqItemSchema

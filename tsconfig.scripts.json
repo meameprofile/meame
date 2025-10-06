@@ -1,3 +1,4 @@
+// RUTA: tsconfig.scripts.json
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {

@@ -30,14 +30,18 @@ export function usePlaybackControl({
 
   const togglePlay = useCallback(() => {
     setIsPlaying((prev) => {
-      logger.info(`[PlaybackControl] Toggle play. Nuevo estado: ${!prev ? 'Playing' : 'Paused'}`);
+      logger.info(
+        `[PlaybackControl] Toggle play. Nuevo estado: ${!prev ? "Playing" : "Paused"}`
+      );
       return !prev;
     });
   }, []);
 
   const toggleMute = useCallback(() => {
     setIsMuted((prev) => {
-      logger.info(`[PlaybackControl] Toggle mute. Nuevo estado: ${!prev ? 'Unmuted' : 'Muted'}`);
+      logger.info(
+        `[PlaybackControl] Toggle mute. Nuevo estado: ${!prev ? "Unmuted" : "Muted"}`
+      );
       return !prev;
     });
   }, []);
@@ -47,7 +51,11 @@ export function usePlaybackControl({
     const audioObject = audioRef.current;
 
     if (isPlaying) {
-      videoElement.play().catch((e) => logger.warn("[PlaybackControl] Autoplay de vídeo bloqueado.", { e }));
+      videoElement
+        .play()
+        .catch((e) =>
+          logger.warn("[PlaybackControl] Autoplay de vídeo bloqueado.", { e })
+        );
       if (audioSrc && audioObject?.source && !audioObject.isPlaying) {
         audioObject.play();
       }

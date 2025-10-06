@@ -23,18 +23,26 @@ export function useIframe() {
     const handleLoad = () => {
       const iframeDoc = iframe.contentDocument;
       if (iframeDoc) {
-        logger.traceEvent(traceId, "Evento 'load' de iframe detectado. Inyectando estilos base.");
+        logger.traceEvent(
+          traceId,
+          "Evento 'load' de iframe detectado. Inyectando estilos base."
+        );
         iframeDoc.head.innerHTML = `<style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@700&display=swap');
             body { margin: 0; font-family: 'Inter', sans-serif; background-color: hsl(var(--background)); color: hsl(var(--foreground)); transition: background-color 0.3s ease, color 0.3s ease; scroll-behavior: smooth; }
             * { box-sizing: border-box; }
           </style>`;
         setIframeBody(iframeDoc.body);
-        logger.success("[useIframe] Body del iframe listo para portal.", { traceId });
+        logger.success("[useIframe] Body del iframe listo para portal.", {
+          traceId,
+        });
       }
     };
 
-    if (iframe.contentDocument && iframe.contentDocument.readyState === "complete") {
+    if (
+      iframe.contentDocument &&
+      iframe.contentDocument.readyState === "complete"
+    ) {
       handleLoad();
     } else {
       iframe.addEventListener("load", handleLoad);

@@ -10,7 +10,7 @@ import "server-only";
 import React from "react";
 import { getBaviManifest } from "@/shared/lib/bavi";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { SocialProofLogosClient } from "./SocialProofLogosClient";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type {

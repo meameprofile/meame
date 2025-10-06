@@ -13,7 +13,7 @@ import { logger } from "@/shared/lib/logging";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { stepsConfig } from "@/shared/lib/config/campaign-suite/wizard.config";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface StepPageProps {
   params: { locale: Locale; stepId?: string[] };

@@ -1,10 +1,10 @@
 // RUTA: src/shared/lib/actions/workspaces/getWorkspacesForUser.action.ts
 /**
  * @file getWorkspacesForUser.action.ts
- * @description Server Action para obtener los workspaces de un usuario, ahora
- *              alineada con la Arquitectura de Contratos de Dominio Soberanos.
- * @version 2.0.0 (Sovereign Contract Aligned & Type-Safe)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Server Action para obtener los workspaces de un usuario, nivelada con
+ *              observabilidad de élite y cumplimiento de contrato.
+ * @version 3.0.0 (Holistic Observability & Contract Integrity)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -35,8 +35,13 @@ function mapSupabaseToWorkspace(row: WorkspaceRow): Workspace {
 export async function getWorkspacesForUserAction(): Promise<
   ActionResult<Workspace[]>
 > {
-  const traceId = logger.startTrace("getWorkspacesForUserAction_v2.0");
-  logger.startGroup(`[Action] Obteniendo workspaces del usuario...`, traceId);
+  const traceId = logger.startTrace("getWorkspacesForUserAction_v3.0");
+  // --- [INICIO DE CORRECCIÓN DE CONTRATO v3.0.0] ---
+  const groupId = logger.startGroup(
+    `[Action] Obteniendo workspaces del usuario...`,
+    traceId
+  );
+  // --- [FIN DE CORRECCIÓN DE CONTRATO v3.0.0] ---
 
   try {
     const supabase = createServerClient();
@@ -106,7 +111,9 @@ export async function getWorkspacesForUserAction(): Promise<
       error: `No se pudieron cargar los espacios de trabajo: ${errorMessage}`,
     };
   } finally {
-    logger.endGroup();
+    // --- [INICIO DE CORRECCIÓN DE CONTRATO v3.0.0] ---
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
+    // --- [FIN DE CORRECCIÓN DE CONTRATO v3.0.0] ---
   }
 }

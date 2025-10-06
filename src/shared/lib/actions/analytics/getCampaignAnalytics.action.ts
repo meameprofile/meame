@@ -24,7 +24,9 @@ export async function getCampaignAnalyticsAction(): Promise<
 
   try {
     const supabase = createServerClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
       logger.warn("[Analytics Action] Intento no autorizado.", { traceId });
@@ -35,7 +37,9 @@ export async function getCampaignAnalyticsAction(): Promise<
     const { data, error } = await supabase.rpc("get_campaign_analytics");
 
     if (error) {
-      throw new Error(`Error en RPC 'get_campaign_analytics': ${error.message}`);
+      throw new Error(
+        `Error en RPC 'get_campaign_analytics': ${error.message}`
+      );
     }
 
     const validation = z.array(CampaignAnalyticsDataSchema).safeParse(data);
@@ -48,14 +52,24 @@ export async function getCampaignAnalyticsAction(): Promise<
       });
       throw new Error("Formato de datos de analíticas inesperado.");
     }
-    logger.traceEvent(traceId, `${validation.data.length} registros validados.`);
+    logger.traceEvent(
+      traceId,
+      `${validation.data.length} registros validados.`
+    );
 
     logger.success(`[Analytics Action] Analíticas recuperadas con éxito.`);
     return { success: true, data: validation.data };
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[Analytics Action] Fallo crítico.", { error: errorMessage, traceId });
-    return { success: false, error: "No se pudieron cargar los datos de analíticas." };
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
+    logger.error("[Analytics Action] Fallo crítico.", {
+      error: errorMessage,
+      traceId,
+    });
+    return {
+      success: false,
+      error: "No se pudieron cargar los datos de analíticas.",
+    };
   } finally {
     logger.endGroup();
     logger.endTrace(traceId);

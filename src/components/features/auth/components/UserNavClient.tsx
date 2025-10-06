@@ -1,14 +1,5 @@
 // RUTA: src/components/features/auth/components/UserNavClient.tsx
-/**
- * @file UserNavClient.tsx
- * @description Componente de cliente para la UI de UserNav, forjado con
- *              observabilidad, resiliencia, MEA/UX y alineado con la
- *              Gran Refactorización para una integridad de tipos absoluta.
- * @version 10.0.0 (Definitive & Holistically Aligned)
- * @author RaZ Podestá - MetaShark Tech
- */
 "use client";
-
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -32,8 +23,7 @@ import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "../../dev-tools";
-
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 type NavContent = NonNullable<Dictionary["userNav"]>;
 type LoginContent = NonNullable<Dictionary["devLoginPage"]>;
 
@@ -53,7 +43,7 @@ export function UserNavClient({
   locale,
 }: UserNavClientProps) {
   const traceId = useMemo(
-    () => logger.startTrace("UserNavClient_Lifecycle_v10.0"),
+    () => logger.startTrace("UserNavClient_Lifecycle_v11.1"),
     []
   );
   useEffect(() => {
@@ -155,7 +145,7 @@ export function UserNavClient({
                 />
 
                 <DropdownMenuSeparator />
-                <WorkspaceSwitcher />
+                <WorkspaceSwitcher content={userNavContent.workspaceSwitcher} />
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href={`/${locale}/account`}>Mi Cuenta</Link>

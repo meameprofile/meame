@@ -1,22 +1,12 @@
 // RUTA: src/components/features/auth/components/LastSignInInfo.tsx
-/**
- * @file LastSignInInfo.tsx
- * @description Componente de presentación puro y de élite para mostrar la
- *              información del último inicio de sesión, forjado con
- *              resiliencia, compatibilidad hacia adelante y seguridad de tipos absoluta.
- * @version 7.0.0 (Great Refactoring Aligned & Type-Safe Property Guards)
- * @author RaZ Podestá - MetaShark Tech
- */
 "use client";
-
 import React, { useMemo, useEffect } from "react";
 import { motion, type Variants } from "framer-motion";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { logger } from "@/shared/lib/logging";
 import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { DeveloperErrorDisplay } from "../../dev-tools";
-
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 type LastSignInContent = NonNullable<
   NonNullable<Dictionary["devLoginPage"]>["lastSignIn"]
 >;
@@ -42,7 +32,7 @@ export function LastSignInInfo({
   locale,
 }: LastSignInInfoProps) {
   const traceId = useMemo(
-    () => logger.startTrace("LastSignInInfo_Lifecycle_v7.0"),
+    () => logger.startTrace("LastSignInInfo_Lifecycle_v7.1"),
     []
   );
   useEffect(() => {
@@ -50,9 +40,6 @@ export function LastSignInInfo({
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
-  // --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA Y SEGURIDAD DE TIPOS] ---
-  // Se utiliza el operador 'in' para una comprobación de propiedad segura en tiempo de ejecución.
-  // Esto elimina la necesidad de 'as any' y satisface tanto a TypeScript como a ESLint.
   const lastSignInAt =
     profile && "last_sign_in_at" in profile && profile.last_sign_in_at
       ? (profile.last_sign_in_at as string)
@@ -65,7 +52,6 @@ export function LastSignInInfo({
     );
     return null;
   }
-  // --- [FIN DE REFACTORIZACIÓN] ---
 
   if (!content) {
     logger.error("[Guardián] Prop 'content' no proporcionada.", { traceId });
@@ -85,7 +71,6 @@ export function LastSignInInfo({
     minute: "2-digit",
   });
 
-  // Se aplica el mismo patrón de guardián de propiedad para location e ip.
   const location =
     profile &&
     "last_sign_in_location" in profile &&

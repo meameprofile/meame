@@ -2,9 +2,9 @@
 /**
  * @file ContactSection.tsx
  * @description Sección de Contacto. Orquestador que compone la información
- *              de contacto y el formulario atómico.
- * @version 6.0.0 (Sovereign Contract & Focus-Aware)
- * @author RaZ Podestá - MetaShark Tech
+ *              de contacto y el formulario atómico, ahora con integridad de build definitiva.
+ * @version 6.1.0 (Definitive Build Integrity)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -16,7 +16,10 @@ import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { ContactInfoItem } from "@/shared/lib/schemas/components/contact-section.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE v6.1.0] ---
+// Se realiza la importación quirúrgica para erradicar la contaminación del barrel file.
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+// --- [FIN DE REFACTORIZACIÓN DE ÉLITE v6.1.0] ---
 
 interface ContactSectionProps extends SectionProps<"contactSection"> {
   isFocused?: boolean;
@@ -24,7 +27,9 @@ interface ContactSectionProps extends SectionProps<"contactSection"> {
 
 export const ContactSection = forwardRef<HTMLElement, ContactSectionProps>(
   ({ content, isFocused }, ref) => {
-    logger.info("[ContactSection] Renderizando v6.0 (Focus-Aware).");
+    logger.info(
+      "[ContactSection] Renderizando v6.1 (Definitive Build Integrity)."
+    );
 
     if (!content) {
       logger.error(

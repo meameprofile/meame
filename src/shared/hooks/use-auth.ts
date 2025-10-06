@@ -25,7 +25,10 @@ interface AuthState {
 }
 
 export function useAuth(): AuthState {
-  const traceId = useMemo(() => logger.startTrace("useAuth_Lifecycle_v5.0"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("useAuth_Lifecycle_v5.0"),
+    []
+  );
   const supabase = useMemo(() => createClient(), []);
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<ProfilesRow | null>(null);
@@ -36,21 +39,35 @@ export function useAuth(): AuthState {
     try {
       const fingerprintId = Cookies.get(FINGERPRINT_COOKIE);
       if (fingerprintId) {
-        logger.traceEvent(linkTraceId, "Fingerprint anónimo encontrado. Invocando acción de vinculación...");
-        const result = await linkAnonymousSessionToUserAction({ fingerprintId });
+        logger.traceEvent(
+          linkTraceId,
+          "Fingerprint anónimo encontrado. Invocando acción de vinculación..."
+        );
+        const result = await linkAnonymousSessionToUserAction({
+          fingerprintId,
+        });
         if (!result.success) {
           logger.warn("[useAuth] La vinculación de la sesión anónima falló.", {
             error: result.error,
             traceId: linkTraceId,
           });
         } else {
-          logger.success("[useAuth] Vinculación de sesión anónima completada.", { traceId: linkTraceId });
+          logger.success(
+            "[useAuth] Vinculación de sesión anónima completada.",
+            { traceId: linkTraceId }
+          );
         }
       } else {
-        logger.traceEvent(linkTraceId, "No se encontró fingerprint. Omitiendo vinculación.");
+        logger.traceEvent(
+          linkTraceId,
+          "No se encontró fingerprint. Omitiendo vinculación."
+        );
       }
     } catch (error) {
-      logger.error("[useAuth] Error en handleSessionLink.", { error, traceId: linkTraceId });
+      logger.error("[useAuth] Error en handleSessionLink.", {
+        error,
+        traceId: linkTraceId,
+      });
     } finally {
       logger.endTrace(linkTraceId);
     }
@@ -62,7 +79,9 @@ export function useAuth(): AuthState {
       const result = await getCurrentUserProfile_Action();
       if (result.success) {
         setProfile(result.data);
-        logger.success("[useAuth] Perfil de usuario obtenido.", { traceId: fetchTraceId });
+        logger.success("[useAuth] Perfil de usuario obtenido.", {
+          traceId: fetchTraceId,
+        });
       } else {
         setProfile(null);
         logger.warn("[useAuth] No se pudo obtener el perfil de usuario.", {
@@ -71,7 +90,10 @@ export function useAuth(): AuthState {
         });
       }
     } catch (error) {
-      logger.error("[useAuth] Fallo crítico al obtener el perfil.", { error, traceId: fetchTraceId });
+      logger.error("[useAuth] Fallo crítico al obtener el perfil.", {
+        error,
+        traceId: fetchTraceId,
+      });
       setProfile(null);
     } finally {
       logger.endTrace(fetchTraceId);
@@ -79,35 +101,42 @@ export function useAuth(): AuthState {
   }, []);
 
   useEffect(() => {
-    logger.info("[useAuth] Hook montado. Suscribiéndose a cambios de estado.", { traceId });
+    logger.info("[useAuth] Hook montado. Suscribiéndose a cambios de estado.", {
+      traceId,
+    });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        const authTraceId = logger.startTrace(`onAuthStateChange:${event}`);
-        const sessionUser = session?.user ?? null;
-        const hadUserBefore = !!user;
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      const authTraceId = logger.startTrace(`onAuthStateChange:${event}`);
+      const sessionUser = session?.user ?? null;
+      const hadUserBefore = !!user;
 
-        setUser(sessionUser);
+      setUser(sessionUser);
 
-        if (sessionUser) {
-          logger.traceEvent(authTraceId, `Evento: ${event} para ${sessionUser.email}.`);
-          await fetchUserProfile();
-          if (event === "SIGNED_IN" && !hadUserBefore) {
-            await handleSessionLink();
-          }
-        } else {
-          logger.traceEvent(authTraceId, `Evento: ${event}. Sesión terminada.`);
-          setProfile(null);
+      if (sessionUser) {
+        logger.traceEvent(
+          authTraceId,
+          `Evento: ${event} para ${sessionUser.email}.`
+        );
+        await fetchUserProfile();
+        if (event === "SIGNED_IN" && !hadUserBefore) {
+          await handleSessionLink();
         }
-
-        setIsLoading(false);
-        logger.endTrace(authTraceId);
+      } else {
+        logger.traceEvent(authTraceId, `Evento: ${event}. Sesión terminada.`);
+        setProfile(null);
       }
-    );
+
+      setIsLoading(false);
+      logger.endTrace(authTraceId);
+    });
 
     const getInitialSession = async () => {
       setIsLoading(true);
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       if (session?.user) {
         setUser(session.user);
         await fetchUserProfile();
@@ -118,7 +147,9 @@ export function useAuth(): AuthState {
     getInitialSession();
 
     return () => {
-      logger.info("[useAuth] Hook desmontado. Cancelando suscripción.", { traceId });
+      logger.info("[useAuth] Hook desmontado. Cancelando suscripción.", {
+        traceId,
+      });
       subscription.unsubscribe();
       logger.endTrace(traceId);
     };

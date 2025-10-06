@@ -28,20 +28,38 @@ export const useProductFilters = (allProducts: Product[]) => {
 
   const filteredProducts = useMemo(() => {
     const traceId = logger.startTrace("useProductFilters.recalculate");
-    logger.trace("[ProductFilters] Recalculando productos filtrados...", { filters, traceId });
+    logger.trace("[ProductFilters] Recalculando productos filtrados...", {
+      filters,
+      traceId,
+    });
 
     const result = allProducts.filter((product) => {
-      if (filters.searchQuery && !product.name.toLowerCase().includes(filters.searchQuery.toLowerCase())) return false;
+      if (
+        filters.searchQuery &&
+        !product.name.toLowerCase().includes(filters.searchQuery.toLowerCase())
+      )
+        return false;
       if (filters.selectedTags.length > 0) {
-        const productTags = [product.categorization.primary, ...(product.categorization.secondary || [])];
-        if (!filters.selectedTags.every(tag => productTags.includes(tag))) return false;
+        const productTags = [
+          product.categorization.primary,
+          ...(product.categorization.secondary || []),
+        ];
+        if (!filters.selectedTags.every((tag) => productTags.includes(tag)))
+          return false;
       }
-      if (product.price < filters.priceRange[0] || product.price > filters.priceRange[1]) return false;
+      if (
+        product.price < filters.priceRange[0] ||
+        product.price > filters.priceRange[1]
+      )
+        return false;
       if (filters.inStockOnly && product.inventory.available <= 0) return false;
       return true;
     });
 
-    logger.success(`[ProductFilters] Recálculo completado. ${result.length} de ${allProducts.length} productos coinciden.`, { traceId });
+    logger.success(
+      `[ProductFilters] Recálculo completado. ${result.length} de ${allProducts.length} productos coinciden.`,
+      { traceId }
+    );
     logger.endTrace(traceId);
     return result;
   }, [allProducts, filters]);

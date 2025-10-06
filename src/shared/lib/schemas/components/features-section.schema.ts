@@ -1,17 +1,14 @@
-// lib/schemas/components/features-section.schema.ts
+// RUTA: src/shared/lib/schemas/components/features-section.schema.ts
 /**
  * @file features-section.schema.ts
  * @description Esquema de Zod para el contenido i18n del componente FeaturesSection.
- *              - v3.0.0 (Type Safety): Exporta el tipo 'FeatureItem' para garantizar
- *                la seguridad de tipos en el componente consumidor.
- * @version 3.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              - v3.1.0 (Build Fix): Se elimina la llamada al logger para resolver
+ *                la violación de la frontera servidor-cliente.
+ * @version 3.1.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
 import { LucideIconNameSchema } from "@/shared/lib/config/lucide-icon-names";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para [FeaturesSection] v3.0");
 
 const FeatureItemSchema = z.object({
   icon: LucideIconNameSchema,
@@ -19,9 +16,7 @@ const FeatureItemSchema = z.object({
   description: z.string().min(1),
 });
 
-// --- [INICIO] REFACTORIZACIÓN ARQUITECTÓNICA ---
 export type FeatureItem = z.infer<typeof FeatureItemSchema>;
-// --- [FIN] REFACTORIZACIÓN ARQUITECTÓNICA ---
 
 export const FeaturesSectionContentSchema = z.object({
   eyebrow: z.string(),
@@ -40,4 +35,3 @@ export const FeaturesSectionI18nSchema = z.object({
   "en-US": FeaturesSectionLocaleSchema,
   "pt-BR": FeaturesSectionLocaleSchema,
 });
-// lib/schemas/components/features-section.schema.ts

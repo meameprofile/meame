@@ -1,17 +1,14 @@
-// lib/schemas/components/sponsors-section.schema.ts
+// RUTA: src/shared/lib/schemas/components/sponsors-section.schema.ts
 /**
  * @file sponsors-section.schema.ts
  * @description Esquema de Zod para el contenido i18n del componente SponsorsSection.
- *              - v2.0.0 (Architectural Fix): Desacopla el schema de contenido del schema
- *                de locale.
- * @version 2.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              - v2.1.0 (Build Fix): Se elimina la llamada al logger para resolver
+ *                la violación de la frontera servidor-cliente.
+ * @version 2.1.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
 import { LucideIconNameSchema } from "@/shared/lib/config/lucide-icon-names";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para [SponsorsSection]");
 
 const SponsorItemSchema = z.object({
   icon: LucideIconNameSchema,
@@ -36,4 +33,3 @@ export const SponsorsSectionContentSchema = z.object({
 export const SponsorsSectionLocaleSchema = z.object({
   sponsorsSection: SponsorsSectionContentSchema.optional(),
 });
-// lib/schemas/components/sponsors-section.schema.ts

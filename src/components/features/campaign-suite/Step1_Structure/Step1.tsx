@@ -15,7 +15,7 @@ import { Step1Client } from "./Step1Client";
 import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
 import type { Step1ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step1.schema";
 import type { z } from "zod";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type Content = z.infer<typeof Step1ContentSchema>;
 

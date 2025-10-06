@@ -15,7 +15,7 @@ import type {
   ContentBlocks,
   ContentBlock,
 } from "@/shared/lib/schemas/components/content-block.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface TextSectionProps {
   content: ContentBlocks;

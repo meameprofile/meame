@@ -24,7 +24,7 @@ import {
   TabsTrigger,
   TabsContent,
 } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { PaletteSelector, TypographySelector, GeometrySelector } from "./";
 import { usePreviewStore } from "@/components/features/campaign-suite/_context/PreviewContext";
 import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";

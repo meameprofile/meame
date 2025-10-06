@@ -53,12 +53,9 @@ export async function getBaviI18nContentAction(
     }
     logger.traceEvent(traceId, "Contenido i18n validado.");
 
-    logger.success(
-      "[Action] Contenido i18n para BAVI obtenido con éxito.",
-      {
-        traceId,
-      }
-    );
+    logger.success("[Action] Contenido i18n para BAVI obtenido con éxito.", {
+      traceId,
+    });
     return {
       success: true,
       data: {

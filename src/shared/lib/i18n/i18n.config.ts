@@ -1,41 +1,24 @@
 // RUTA: src/shared/lib/i18n/i18n.config.ts
 /**
  * @file i18n.config.ts
- * @description Motor de Configuración Soberano para i18n. Consume el manifiesto
- *              global y deriva las constantes de configuración de la aplicación.
- *              Es resiliente al entorno (isomórfico).
- * @version 13.0.0 (Zod Enum Contract Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Motor de Configuración Soberano para i18n. Distingue entre
+ *              locales de enrutamiento (implementados) y locales de UI (soportados).
+ * @version 14.0.0 (Routing & UI Locale Distinction)
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
 import { logger } from "../logging";
-import { LANGUAGE_MANIFEST } from "./global.i18n.manifest"; // <-- IMPORTA LA SSoT DE DATOS
+import { IMPLEMENTED_LOCALES } from "./implemented-locales.manifest";
 
-logger.info(
-  "[i18n Config Engine] Cargando Motor de Configuración i18n v13.0..."
-);
+// SSoT para enrutamiento y generación de contenido.
+export const ROUTING_LOCALES = IMPLEMENTED_LOCALES;
+export type Locale = (typeof ROUTING_LOCALES)[number];
 
-// --- [INICIO DE REFACTORIZACIÓN DE TIPO SOBERANO v13.0.0] ---
-// Se extraen los códigos de locale en un formato que Zod.enum puede consumir.
-// Esto crea una tupla `readonly [string, ...string[]]`, que es el contrato exacto
-// que Zod espera, resolviendo el error de compilación TS2769 en todos los schemas consumidores.
-const localeCodes = LANGUAGE_MANIFEST.map((lang) => lang.code);
-export const supportedLocales = [
-  localeCodes[0],
-  ...localeCodes.slice(1),
-] as const;
-// --- [FIN DE REFACTORIZACIÓN DE TIPO SOBERANO v13.0.0] ---
-
-export type Locale = (typeof supportedLocales)[number];
-
-const LocaleEnum = z.enum(supportedLocales);
+const LocaleEnum = z.enum(ROUTING_LOCALES);
 
 function getValidatedDefaultLocale(): Locale {
   const traceId = logger.startTrace("i18n.getValidatedDefaultLocale");
-  const envLocale =
-    typeof process !== "undefined"
-      ? process.env.NEXT_PUBLIC_SITE_LOCALE
-      : undefined;
+  const envLocale = process.env.NEXT_PUBLIC_SITE_LOCALE;
 
   if (envLocale) {
     const validation = LocaleEnum.safeParse(envLocale);
@@ -45,22 +28,17 @@ function getValidatedDefaultLocale(): Locale {
         { traceId }
       );
       logger.endTrace(traceId);
-      return validation.data as Locale;
+      return validation.data;
     } else {
       logger.warn(
-        `[i18n Config] El locale en ENV ('${envLocale}') es inválido. Usando fallback.`,
+        `[i18n Config] El locale en ENV ('${envLocale}') no es un locale implementado. Usando fallback.`,
         { traceId }
       );
     }
-  } else {
-    logger.traceEvent(
-      traceId,
-      "NEXT_PUBLIC_SITE_LOCALE no está definido. Usando fallback."
-    );
   }
 
   logger.endTrace(traceId);
-  return "es-ES";
+  return "es-ES"; // Fallback definitivo y seguro
 }
 
 export const defaultLocale: Locale = getValidatedDefaultLocale();

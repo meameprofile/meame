@@ -16,7 +16,7 @@ import { getCart } from "@/shared/lib/commerce";
 import { reshapeCartForStore } from "@/shared/lib/commerce/shapers";
 import { logger } from "@/shared/lib/logging";
 import HeaderClient, { type HeaderClientProps } from "./HeaderClient";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import type {
   BaviAsset,
   BaviVariant,

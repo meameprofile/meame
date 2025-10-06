@@ -77,4 +77,45 @@ Para filtrado estructurado y de alto rendimiento. Los códigos cortos se traduce
 - **Ingesta de Activos:** Toda ingesta se realiza a través de `uploadAssetAction`, que orquesta la subida a Cloudinary y la creación **atómica** de registros en `bavi_assets` y `bavi_variants`, garantizando que no se creen activos huérfanos.
 - **Integración con RaZPrompts:** Todo activo generado por IA DEBE tener un `promptId` que lo vincule a su genoma creativo en RaZPrompts.
 - **Consumo en SDC y CogniRead:** El `AssetExplorer`, el editor de CogniRead y otros aparatos consumen la BAVI a través de `getBaviAssetsAction`, que ahora devuelve entidades de activos completas y validadas, con la garantía de que cada una posee al menos una variante.
+
+---
+
+// RUTA: \_docs/000_MANIFIESTO_CONSOL_BAVI.md
+/\*\*
+
+- @file 000_MANIFIESTO_CONSOL_BAVI.md
+- @description Manifiesto Canónico y SSoT Definitivo para la Biblioteca de Activos Visuales Integrada (BAVI).
+- @version 2.0.0 (Consolidado)
+- @author RaZ Podestá - MetaShark Tech
+  \*/
+
+# Manifiesto Consolidado: Biblioteca de Activos Visuales Integrada (BAVI)
+
+## 1. Filosofía Raíz: "Activos como Datos, Entrega como Servicio, Ecosistema Inteligente."
+
+**BAVI** es el sistema nervioso visual de nuestro ecosistema. Su misión es transformar la gestión tradicional de archivos multimedia en un ecosistema de activos centralizado, inteligente y agnóstico al proveedor. Cada activo es una entidad soberana con un genoma completo: metadatos, taxonomía, historial de versiones y vínculos con otros dominios.
+
+## 2. Arquitectura de Datos (SSoT en Supabase)
+
+La persistencia de BAVI se basa en dos tablas interconectadas para garantizar la integridad referencial.
+
+- **Tabla `public.bavi_assets`:** El contenedor conceptual del activo.
+  - `asset_id` (TEXT, PK): Identificador único SNIA.
+  - `workspace_id` (UUID, FK): Vínculo al equipo propietario.
+  - ... (otras columnas de metadatos como `prompt_id`, `tags`, `metadata`).
+- **Tabla `public.bavi_variants`:** La manifestación física del activo.
+  - `variant_id` (TEXT, PK compuesta con `asset_id`).
+  - `asset_id` (TEXT, FK a `bavi_assets.asset_id` con `ON DELETE CASCADE`): **Esta restricción es innegociable y previene los activos huérfanos.**
+  - `public_id` (TEXT): La ruta del archivo en el proveedor (ej. Cloudinary).
+  - ... (otras columnas como `width`, `height`).
+
+## 3. Protocolos de Identificación y Etiquetado
+
+- **SNIA (Sistema de Nomenclatura e Identificación de Activos):** Define la fórmula `[tipo]-[categoria]-[descriptor]-[secuencial]` para todos los `asset_id`.
+- **SESA (Protocolo de Etiquetado Semántico Atómico):** Utiliza códigos cortos y categorizados para un filtrado estructurado de alto rendimiento, definidos en `content/bavi/sesa-tags.manifest.json`.
+
+## 4. Flujo de Gestión
+
+Toda la ingesta de activos se realiza a través de `Server Actions` que garantizan la creación **atómica** de registros en ambas tablas (`bavi_assets` y `bavi_variants`), asegurando que ningún activo pueda existir sin al menos una variante.
+
 ---

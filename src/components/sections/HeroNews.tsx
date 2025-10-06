@@ -1,12 +1,5 @@
 // RUTA: src/components/sections/HeroNews.tsx
-/**
- * @file HeroNews.tsx
- * @description Sección Hero para la página de noticias, ahora dinámica y con contrato soberano.
- * @version 5.0.0 (Sovereign Contract & Focus-Aware)
- * @author RaZ Podestá - MetaShark Tech
- */
 "use client";
-
 import React, { forwardRef } from "react";
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
@@ -16,9 +9,8 @@ import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { cn } from "@/shared/lib/utils/cn";
-
 interface HeroNewsProps extends SectionProps<"heroNews"> {
   article?: CogniReadArticle;
   isFocused?: boolean;
@@ -44,7 +36,7 @@ const FADE_UP_ANIMATION_VARIANTS: Variants = {
 
 export const HeroNews = forwardRef<HTMLElement, HeroNewsProps>(
   ({ content, article, locale, isFocused }, ref) => {
-    logger.info("[HeroNews] Renderizando v5.0 (Focus-Aware).");
+    logger.info("[HeroNews] Renderizando v5.2 (Definitive Build Integrity).");
 
     if (!content) {
       logger.error("[Guardián] Prop 'content' no proporcionada a HeroNews.");

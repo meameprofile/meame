@@ -1,16 +1,13 @@
-// lib/schemas/components/thumbnail-carousel.schema.ts
+// RUTA: src/shared/lib/schemas/components/thumbnail-carousel.schema.ts
 /**
  * @file thumbnail-carousel.schema.ts
  * @description Esquema de Zod para el contenido i18n del componente ThumbnailCarousel.
- *              - v4.0.0 (Architectural Fix): Desacopla el schema de contenido del schema
- *                de locale.
- * @version 4.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              - v4.1.0 (Build Fix): Se elimina la llamada al logger para resolver
+ *                la violación de la frontera servidor-cliente.
+ * @version 4.1.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para [ThumbnailCarousel]");
 
 /**
  * @const ThumbnailSchema
@@ -48,4 +45,3 @@ export const ThumbnailCarouselI18nSchema = z.object({
   "en-US": ThumbnailCarouselLocaleSchema,
   "it-IT": ThumbnailCarouselLocaleSchema,
 });
-// lib/schemas/components/thumbnail-carousel.schema.ts

@@ -2,56 +2,45 @@
   "it-IT": {
     "devDashboardPage": {
       "pageHeader": {
-        "title": "Developer Command Center",
+        "title": "Centro di Comando dello Sviluppatore",
         "subtitle": "Strumenti forgiati per dominare l'intero ciclo di vita dello sviluppo di élite."
       },
-      "magicBento": {
-        "config": {
-          "textAutoHide": true,
-          "enableStars": true,
-          "enableSpotlight": true,
-          "enableBorderGlow": true,
-          "enableTilt": true,
-          "glowColor": "primary"
+      "mainActions": {
+        "title": "Crea un Nuovo Progetto",
+        "campaignButton": "Nuova Campagna"
+      },
+      "toolsTitle": "Il Tuo Arsenale di Sviluppo",
+      "tools": {
+        "sdc": {
+          "title": "La Fucina (SDC)",
+          "description": "Forgia campagne ad alta conversione.",
+          "href": "/it-IT/creator/campaign-suite"
         },
-        "cards": [
-          {
-            "label": "Creatività",
-            "title": "La Fucina (SDC)",
-            "description": "Forgia campagne ad alta conversione.",
-            "href": "/it-IT/creator/campaign-suite"
-          },
-          {
-            "label": "Asset",
-            "title": "L'Arsenale (BAVI)",
-            "description": "La SSoT per tutti gli asset visivi.",
-            "href": "/it-IT/dev/bavi"
-          },
-          {
-            "label": "Genoma",
-            "title": "La Cripta (RaZPrompts)",
-            "description": "Cataloga il DNA creativo dei tuoi asset.",
-            "href": "/it-IT/dev/raz-prompts"
-          },
-          {
-            "label": "Credibilità",
-            "title": "Il Motore (CogniRead)",
-            "description": "Trasforma la scienza in autorità.",
-            "href": "/it-IT/dev/cogniread"
-          },
-          {
-            "label": "UX",
-            "title": "Il Sistema Nervoso (Nos3)",
-            "description": "Guarda attraverso gli occhi dell'utente.",
-            "href": "/it-IT/dev/nos3"
-          },
-          {
-            "label": "Intelligenza",
-            "title": "La Cabina di Mando (Aura)",
-            "description": "Visualizza i dati e ottimizza le conversioni.",
-            "href": "/it-IT/dev/analytics"
-          }
-        ]
+        "bavi": {
+          "title": "L'Arsenale (BAVI)",
+          "description": "La SSoT per tutti gli asset visivi.",
+          "href": "/it-IT/dev/bavi"
+        },
+        "razprompts": {
+          "title": "La Cripta (RaZPrompts)",
+          "description": "Cataloga il DNA creativo dei tuoi asset.",
+          "href": "/it-IT/dev/raz-prompts"
+        },
+        "cogniread": {
+          "title": "Il Motore (CogniRead)",
+          "description": "Trasforma la scienza in autorità.",
+          "href": "/it-IT/dev/cogniread"
+        },
+        "nos3": {
+          "title": "Il Sistema Nervoso (Nos3)",
+          "description": "Guarda attraverso gli occhi dell'utente.",
+          "href": "/it-IT/dev/nos3"
+        },
+        "analytics": {
+          "title": "La Cabina di Pilotaggio (Aura)",
+          "description": "Visualizza i dati e ottimizza le conversioni.",
+          "href": "/it-IT/dev/analytics"
+        }
       }
     }
   },
@@ -61,165 +50,42 @@
         "title": "Centro de Comando del Desarrollador",
         "subtitle": "Herramientas forjadas para dominar el ciclo de vida completo del desarrollo de élite."
       },
-      "magicBento": {
-        "config": {
-          "textAutoHide": true,
-          "enableStars": true,
-          "enableSpotlight": true,
-          "enableBorderGlow": true,
-          "enableTilt": true,
-          "glowColor": "primary"
-        },
-        "cards": [
-          {
-            "label": "Creatividad",
-            "title": "La Forja (SDC)",
-            "description": "Forja campañas de alta conversión.",
-            "href": "/es-ES/creator/campaign-suite"
-          },
-          {
-            "label": "Activos",
-            "title": "El Arsenal (BAVI)",
-            "description": "La SSoT para todos los activos visuales.",
-            "href": "/es-ES/dev/bavi"
-          },
-          {
-            "label": "Genoma",
-            "title": "La Bóveda (RaZPrompts)",
-            "description": "Cataloga el ADN creativo de tus activos.",
-            "href": "/es-ES/dev/raz-prompts"
-          },
-          {
-            "label": "Credibilidad",
-            "title": "El Motor (CogniRead)",
-            "description": "Transforma la ciencia en autoridad.",
-            "href": "/es-ES/dev/cogniread"
-          },
-          {
-            "label": "UX",
-            "title": "El Sistema Nervioso (Nos3)",
-            "description": "Mira a través de los ojos del usuario.",
-            "href": "/es-ES/dev/nos3"
-          },
-          {
-            "label": "Inteligencia",
-            "title": "La Cabina de Mando (Aura)",
-            "description": "Visualiza los datos y optimiza las conversiones.",
-            "href": "/es-ES/dev/analytics"
-          }
-        ]
-      }
-    }
-  },
-  "en-US": {
-    "devDashboardPage": {
-      "pageHeader": {
-        "title": "Developer Command Center",
-        "subtitle": "Tools forged to master the entire elite development lifecycle."
+      "mainActions": {
+        "title": "Crear un Nuevo Diseño",
+        "campaignButton": "Nueva Campaña"
       },
-      "magicBento": {
-        "config": {
-          "textAutoHide": true,
-          "enableStars": true,
-          "enableSpotlight": true,
-          "enableBorderGlow": true,
-          "enableTilt": true,
-          "glowColor": "primary"
+      "toolsTitle": "Tu Arsenal de Desarrollo",
+      "tools": {
+        "sdc": {
+          "title": "La Forja (SDC)",
+          "description": "Forja campañas de alta conversión.",
+          "href": "/es-ES/creator/campaign-suite"
         },
-        "cards": [
-          {
-            "label": "Creativity",
-            "title": "The Forge (SDC)",
-            "description": "Forge high-conversion campaigns.",
-            "href": "/en-US/creator/campaign-suite"
-          },
-          {
-            "label": "Assets",
-            "title": "The Armory (BAVI)",
-            "description": "The SSoT for all visual assets.",
-            "href": "/en-US/dev/bavi"
-          },
-          {
-            "label": "Genome",
-            "title": "The Vault (RaZPrompts)",
-            "description": "Catalog the creative DNA of your assets.",
-            "href": "/en-US/dev/raz-prompts"
-          },
-          {
-            "label": "Credibility",
-            "title": "The Engine (CogniRead)",
-            "description": "Transform science into authority.",
-            "href": "/en-US/dev/cogniread"
-          },
-          {
-            "label": "UX",
-            "title": "The Nervous System (Nos3)",
-            "description": "See through the user's eyes.",
-            "href": "/en-US/dev/nos3"
-          },
-          {
-            "label": "Intelligence",
-            "title": "The Command Deck (Aura)",
-            "description": "Visualize data and optimize conversions.",
-            "href": "/en-US/dev/analytics"
-          }
-        ]
-      }
-    }
-  },
-  "pt-BR": {
-    "devDashboardPage": {
-      "pageHeader": {
-        "title": "Centro de Comando do Desenvolvedor",
-        "subtitle": "Ferramentas forjadas para dominar todo o ciclo de vida do desenvolvimento de elite."
-      },
-      "magicBento": {
-        "config": {
-          "textAutoHide": true,
-          "enableStars": true,
-          "enableSpotlight": true,
-          "enableBorderGlow": true,
-          "enableTilt": true,
-          "glowColor": "primary"
+        "bavi": {
+          "title": "El Arsenal (BAVI)",
+          "description": "La SSoT para todos los activos visuales.",
+          "href": "/es-ES/dev/bavi"
         },
-        "cards": [
-          {
-            "label": "Criatividade",
-            "title": "A Forja (SDC)",
-            "description": "Forje campanhas de alta conversão.",
-            "href": "/pt-BR/creator/campaign-suite"
-          },
-          {
-            "label": "Ativos",
-            "title": "O Arsenal (BAVI)",
-            "description": "A SSoT para todos os ativos visuais.",
-            "href": "/pt-BR/dev/bavi"
-          },
-          {
-            "label": "Genoma",
-            "title": "O Cofre (RaZPrompts)",
-            "description": "Catalogue o DNA criativo de seus ativos.",
-            "href": "/pt-BR/dev/raz-prompts"
-          },
-          {
-            "label": "Credibilidade",
-            "title": "O Motor (CogniRead)",
-            "description": "Transforme ciência em autoridade.",
-            "href": "/pt-BR/dev/cogniread"
-          },
-          {
-            "label": "UX",
-            "title": "O Sistema Nervoso (Nos3)",
-            "description": "Veja através dos olhos do usuário.",
-            "href": "/pt-BR/dev/nos3"
-          },
-          {
-            "label": "Inteligência",
-            "title": "A Cabine de Comando (Aura)",
-            "description": "Visualize os dados e otimize as conversões.",
-            "href": "/pt-BR/dev/analytics"
-          }
-        ]
+        "razprompts": {
+          "title": "La Bóveda (RaZPrompts)",
+          "description": "Cataloga el ADN creativo de tus activos.",
+          "href": "/es-ES/dev/raz-prompts"
+        },
+        "cogniread": {
+          "title": "El Motor (CogniRead)",
+          "description": "Transforma la ciencia en autoridad.",
+          "href": "/es-ES/dev/cogniread"
+        },
+        "nos3": {
+          "title": "El Sistema Nervioso (Nos3)",
+          "description": "Mira a través de los ojos del usuario.",
+          "href": "/es-ES/dev/nos3"
+        },
+        "analytics": {
+          "title": "La Cabina de Mando (Aura)",
+          "description": "Visualiza los datos y optimiza las conversiones.",
+          "href": "/es-ES/dev/analytics"
+        }
       }
     }
   }

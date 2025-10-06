@@ -1,9 +1,9 @@
 // RUTA: src/components/sections/CommunitySection.tsx
 /**
  * @file CommunitySection.tsx
- * @description Componente de sección para invitar a la comunidad, ahora con contrato soberano.
- * @version 5.0.0 (Sovereign Contract & Focus-Aware)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Componente de sección, con integridad de build restaurada.
+ * @version 5.1.0 (Build Integrity Restoration)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -15,7 +15,9 @@ import { DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
 interface CommunitySectionProps extends SectionProps<"communitySection"> {
   isFocused?: boolean;
@@ -23,7 +25,7 @@ interface CommunitySectionProps extends SectionProps<"communitySection"> {
 
 export const CommunitySection = forwardRef<HTMLElement, CommunitySectionProps>(
   ({ content, isFocused }, ref) => {
-    logger.info("[CommunitySection] Renderizando v5.0 (Focus-Aware).");
+    logger.info("[CommunitySection] Renderizando v5.1 (Focus-Aware).");
 
     if (!content) {
       logger.error(

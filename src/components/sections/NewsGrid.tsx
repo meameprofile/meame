@@ -1,10 +1,9 @@
 // RUTA: src/components/sections/NewsGrid.tsx
 /**
  * @file NewsGrid.tsx
- * @description Cuadrícula de noticias, ahora blindada con guardianes de resiliencia
- *              y alineada con el contrato de sección soberano.
- * @version 9.0.0 (Sovereign Contract & Focus-Aware)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Cuadrícula de noticias, nivelada para una integridad de build definitiva y observabilidad mejorada.
+ * @version 9.1.0 (Definitive Build Integrity & Nos3 Compliance)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -18,7 +17,10 @@ import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.sc
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v9.1.0] ---
+// Se realiza una importación quirúrgica para erradicar el riesgo de contaminación por "barrel files".
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v9.1.0] ---
 
 interface NewsGridProps extends SectionProps<"newsGrid"> {
   articles: CogniReadArticle[];
@@ -40,7 +42,7 @@ const cardVariants: Variants = {
 
 export const NewsGrid = forwardRef<HTMLElement, NewsGridProps>(
   ({ articles, locale, content, isFocused }, ref) => {
-    logger.info("[NewsGrid] Renderizando v9.0 (Sovereign Contract).");
+    logger.info("[NewsGrid] Renderizando v9.1.0 (Definitive Build Integrity).");
 
     if (!content) {
       logger.error("[Guardián] Prop 'content' no proporcionada a NewsGrid.");
@@ -92,6 +94,7 @@ export const NewsGrid = forwardRef<HTMLElement, NewsGridProps>(
                       slug: articleContent.slug,
                     })}
                     className="block group"
+                    data-nos3="article-card-link" // <-- MEJORA DE OBSERVABILIDAD
                   >
                     <div className="overflow-hidden rounded-lg shadow-lg border border-border bg-card h-full flex flex-col transition-all duration-300 hover:shadow-primary/20 hover:-translate-y-1">
                       <div className="relative w-full h-48 bg-muted/50">

@@ -16,7 +16,12 @@ import { useFullscreenManager } from "./aether/use-fullscreen-manager";
 import { useAetherTelemetry } from "./aether/use-aether-telemetry";
 import { logger } from "@/shared/lib/logging";
 
-export type PlaybackEventType = "play" | "pause" | "seek" | "ended" | "volumechange";
+export type PlaybackEventType =
+  | "play"
+  | "pause"
+  | "seek"
+  | "ended"
+  | "volumechange";
 export interface PlaybackEvent {
   type: PlaybackEventType;
   timestamp: number;
@@ -37,7 +42,10 @@ export function useCinematicRenderer({
   containerRef,
   onPlaybackEvent,
 }: CinematicRendererProps) {
-  const traceId = useMemo(() => logger.startTrace("useCinematicRenderer_v6.0"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("useCinematicRenderer_v6.0"),
+    []
+  );
   useEffect(() => {
     logger.info("[Hook] Orquestador Aether montado.", { traceId });
     return () => logger.endTrace(traceId);
@@ -45,7 +53,10 @@ export function useCinematicRenderer({
 
   const videoTexture = useVideoTexture(src);
   const audioRef = useRef<PositionalAudioImpl>(null);
-  logger.traceEvent(traceId, "Recursos (videoTexture, audioRef) inicializados.");
+  logger.traceEvent(
+    traceId,
+    "Recursos (videoTexture, audioRef) inicializados."
+  );
 
   const { isPlaying, isMuted, togglePlay, toggleMute } = usePlaybackControl({
     videoTexture,
@@ -55,7 +66,10 @@ export function useCinematicRenderer({
   const progress = useProgressTracker(videoTexture);
   const { isFullscreen, toggleFullscreen } = useFullscreenManager(containerRef);
   const { dispatchEvent } = useAetherTelemetry(videoTexture, onPlaybackEvent);
-  logger.traceEvent(traceId, "Sub-hooks de control, progreso y telemetría inicializados.");
+  logger.traceEvent(
+    traceId,
+    "Sub-hooks de control, progreso y telemetría inicializados."
+  );
 
   const onSeek = useCallback(
     (time: number) => {
@@ -69,7 +83,9 @@ export function useCinematicRenderer({
         audio.play();
       }
       dispatchEvent("seek");
-      logger.success(`[Aether] Seek completado a ${time.toFixed(2)}s.`, { traceId: seekTraceId });
+      logger.success(`[Aether] Seek completado a ${time.toFixed(2)}s.`, {
+        traceId: seekTraceId,
+      });
       logger.endTrace(seekTraceId);
     },
     [videoTexture, audioRef, dispatchEvent]

@@ -22,7 +22,7 @@ import type { ProductDetailPageContentSchema } from "@/shared/lib/schemas/pages/
 import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 import { cn } from "@/shared/lib/utils/cn";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 
 type ProductPageContent = z.infer<typeof ProductDetailPageContentSchema>;

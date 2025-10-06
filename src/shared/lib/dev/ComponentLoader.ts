@@ -2,11 +2,11 @@
 /**
  * @file ComponentLoader.ts
  * @description Módulo de servicio SOBERANO para la carga dinámica de componentes.
- *              v7.2.0 (Elite Type Safety): Se erradica el uso de 'any' en el tipo de
- *              retorno, reemplazándolo con `Record<string, unknown>` para una
- *              seguridad de tipos absoluta y cumplimiento de linter de élite.
- * @version 7.2.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v8.0.0 (Holistic Observability & Contract Integrity): Refactorizado para
+ *              cumplir con el contrato del logger soberano v20+ y enriquecido con
+ *              una trazabilidad de ejecución hiper-granular.
+ * @version 8.0.0
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import React from "react";
@@ -18,9 +18,7 @@ import { getFallbackProps } from "@/components/features/dev-tools/utils/componen
 import { logger } from "@/shared/lib/logging";
 
 interface ComponentLoadResult {
-  // --- [INICIO DE REFACTORIZACIÓN DE ÉLITE: SEGURIDAD DE TIPOS] ---
   ComponentToRender: React.ComponentType<Record<string, unknown>>;
-  // --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
   componentProps: Record<string, unknown>;
   entry: ComponentRegistryEntry;
 }
@@ -29,7 +27,11 @@ export async function loadComponentAndProps(
   componentName: string
 ): Promise<ComponentLoadResult> {
   const traceId = logger.startTrace(`loadComponentAndProps:${componentName}`);
-  logger.startGroup(`[Loader v7.2] Orquestando carga de "${componentName}"...`);
+  // --- [INICIO DE CORRECCIÓN DE CONTRATO v8.0.0] ---
+  const groupId = logger.startGroup(
+    `[Loader v8.0] Orquestando carga de "${componentName}"...`
+  );
+  // --- [FIN DE CORRECCIÓN DE CONTRATO v8.0.0] ---
 
   try {
     logger.traceEvent(traceId, "Obteniendo entrada del registro...");
@@ -80,7 +82,9 @@ export async function loadComponentAndProps(
       `No se pudo orquestar la carga del componente: ${errorMessage}`
     );
   } finally {
-    logger.endGroup();
+    // --- [INICIO DE CORRECCIÓN DE CONTRATO v8.0.0] ---
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
+    // --- [FIN DE CORRECCIÓN DE CONTRATO v8.0.0] ---
   }
 }

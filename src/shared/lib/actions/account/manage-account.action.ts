@@ -150,12 +150,9 @@ export async function deleteUserAccountAction(): Promise<ActionResult<null>> {
 
     // Aquí también se invalidaría la sesión del usuario.
 
-    logger.success(
-      "[Action] SIMULACIÓN: Cuenta programada para eliminación.",
-      {
-        traceId,
-      }
-    );
+    logger.success("[Action] SIMULACIÓN: Cuenta programada para eliminación.", {
+      traceId,
+    });
     return { success: true, data: null };
   } catch (error) {
     const errorMessage =

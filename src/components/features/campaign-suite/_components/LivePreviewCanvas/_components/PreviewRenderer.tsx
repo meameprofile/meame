@@ -21,7 +21,7 @@ import type {
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface PreviewRendererProps {
   draft: CampaignDraft;

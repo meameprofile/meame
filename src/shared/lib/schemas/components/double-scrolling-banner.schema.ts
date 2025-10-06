@@ -1,16 +1,13 @@
-// lib/schemas/components/double-scrolling-banner.schema.ts
+// RUTA: src/shared/lib/schemas/components/double-scrolling-banner.schema.ts
 /**
  * @file double-scrolling-banner.schema.ts
  * @description Esquema de Zod para el contenido del DoubleScrollingBanner.
- *              - v3.0.0 (Architectural Fix): Desacopla el schema de contenido del schema
- *                de locale.
- * @version 3.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              - v3.1.0 (Build Fix): Se elimina la llamada al logger para resolver
+ *                la violación de la frontera servidor-cliente.
+ * @version 3.1.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para [DoubleScrollingBanner]");
 
 const TestimonialItemSchema = z.object({
   imageSrc: z.string().startsWith("/"),
@@ -50,4 +47,3 @@ export const DoubleScrollingBannerI18nSchema = z.object({
   "en-US": DoubleScrollingBannerLocaleSchema,
   "pt-BR": DoubleScrollingBannerLocaleSchema,
 });
-// lib/schemas/components/double-scrolling-banner.schema.ts

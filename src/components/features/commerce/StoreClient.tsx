@@ -15,7 +15,7 @@ import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 // --- [INICIO] REFACTORIZACIÓN POR ERRADICACIÓN DE BARREL FILE ---
 import { ProductFilters } from "@/components/sections/ProductFilters";

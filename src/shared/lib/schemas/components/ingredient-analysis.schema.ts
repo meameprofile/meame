@@ -1,16 +1,13 @@
-// lib/schemas/components/ingredient-analysis.schema.ts
+// RUTA: src/shared/lib/schemas/components/ingredient-analysis.schema.ts
 /**
  * @file ingredient-analysis.schema.ts
  * @description Esquema de Zod para el contenido i18n del componente IngredientAnalysis.
- *              - v4.0.0 (Architectural Fix): Desacopla el schema de contenido del schema
- *                de locale.
- * @version 4.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              - v4.1.0 (Build Fix): Se elimina la llamada al logger para resolver
+ *                la violación de la frontera servidor-cliente.
+ * @version 4.1.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-
-logger.trace("[Schema] Definiendo contrato para [IngredientAnalysis]");
 
 /**
  * @const IngredientSchema
@@ -46,4 +43,3 @@ export const IngredientAnalysisI18nSchema = z.object({
   "en-US": IngredientAnalysisLocaleSchema,
   "it-IT": IngredientAnalysisLocaleSchema,
 });
-// lib/schemas/components/ingredient-analysis.schema.ts

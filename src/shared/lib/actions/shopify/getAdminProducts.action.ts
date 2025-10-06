@@ -40,7 +40,9 @@ export async function getAdminProductsAction(
 
   try {
     const supabase = createServerClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) return { success: false, error: "auth_required" };
     logger.traceEvent(traceId, `Usuario ${user.id} autorizado.`);
 
@@ -53,7 +55,8 @@ export async function getAdminProductsAction(
     });
     logger.traceEvent(traceId, "Respuesta de Shopify recibida.");
 
-    const productsData = response.body.data?.products?.edges.map(edge => edge.node) || [];
+    const productsData =
+      response.body.data?.products?.edges.map((edge) => edge.node) || [];
     const pageInfo = response.body.data?.products?.pageInfo;
 
     const finalProducts = reshapeAdminProducts(productsData, traceId);

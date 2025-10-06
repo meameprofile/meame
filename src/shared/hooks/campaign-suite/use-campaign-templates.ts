@@ -15,35 +15,61 @@ import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 export function useCampaignTemplates(draft: CampaignDraft) {
-  const traceId = useMemo(() => logger.startTrace("useCampaignTemplates_v4.0"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("useCampaignTemplates_v4.0"),
+    []
+  );
   useEffect(() => {
     logger.info("[Templates Hook] Montado.", { traceId });
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
   const [isSavingTemplate, startSaveTransition] = useTransition();
-  const activeWorkspaceId = useWorkspaceStore((state) => state.activeWorkspaceId);
+  const activeWorkspaceId = useWorkspaceStore(
+    (state) => state.activeWorkspaceId
+  );
 
   const onSaveAsTemplate = (name: string, description: string) => {
     const actionTraceId = logger.startTrace("templates.onSaveAsTemplate");
-    logger.startGroup("[Templates Action] Guardando como Plantilla...", actionTraceId);
+    logger.startGroup(
+      "[Templates Action] Guardando como Plantilla...",
+      actionTraceId
+    );
 
     if (!activeWorkspaceId) {
-      toast.error("Error de contexto", { description: "No se ha seleccionado un workspace." });
-      logger.error("[Guardián] Intento de guardado sin workspace.", { traceId: actionTraceId });
+      toast.error("Error de contexto", {
+        description: "No se ha seleccionado un workspace.",
+      });
+      logger.error("[Guardián] Intento de guardado sin workspace.", {
+        traceId: actionTraceId,
+      });
       logger.endGroup();
       logger.endTrace(actionTraceId);
       return;
     }
 
     startSaveTransition(async () => {
-      const result = await saveAsTemplateAction(draft, name, description, activeWorkspaceId);
+      const result = await saveAsTemplateAction(
+        draft,
+        name,
+        description,
+        activeWorkspaceId
+      );
       if (result.success) {
-        toast.success("¡Plantilla guardada con éxito!", { description: `La plantilla "${name}" ha sido creada.` });
-        logger.success(`[Templates] Plantilla '${name}' guardada.`, { traceId: actionTraceId });
+        toast.success("¡Plantilla guardada con éxito!", {
+          description: `La plantilla "${name}" ha sido creada.`,
+        });
+        logger.success(`[Templates] Plantilla '${name}' guardada.`, {
+          traceId: actionTraceId,
+        });
       } else {
-        toast.error("Fallo al guardar la plantilla", { description: result.error });
-        logger.error("[Templates] Fallo al guardar.", { error: result.error, traceId: actionTraceId });
+        toast.error("Fallo al guardar la plantilla", {
+          description: result.error,
+        });
+        logger.error("[Templates] Fallo al guardar.", {
+          error: result.error,
+          traceId: actionTraceId,
+        });
       }
       logger.endGroup();
       logger.endTrace(actionTraceId);

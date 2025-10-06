@@ -21,7 +21,7 @@ import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { FaqItem } from "@/shared/lib/schemas/components/faq-accordion.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface FaqAccordionProps extends SectionProps<"faqAccordion"> {
   isFocused?: boolean;

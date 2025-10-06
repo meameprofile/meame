@@ -1,14 +1,5 @@
 // RUTA: src/components/layout/HeaderClient.tsx
-/**
- * @file HeaderClient.tsx
- * @description Componente de Cliente Soberano para cabeceras, ahora con seguridad
- *              de tipos absoluta, un guardián de resiliencia holístico, observabilidad
- *              completa y cumplimiento estricto de las Reglas de los Hooks de React.
- * @version 48.1.0 (Hooks Contract Restoration)
- * @author RaZ Podestá - MetaShark Tech
- */
 "use client";
-
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,9 +23,10 @@ import { CartTrigger } from "./CartTrigger";
 import { CartSheet } from "./CartSheet";
 import { UserNavClient } from "@/components/features/auth/components/UserNavClient";
 import { NotificationBell } from "@/components/features/notifications/NotificationBell/NotificationBell";
-import { DeveloperErrorDisplay } from "../features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { useCartStore, type CartItem } from "@/shared/lib/stores/useCartStore";
 import type { NavLink } from "@/shared/lib/schemas/components/header.schema";
+import { ToggleTheme } from "../ui/ToggleTheme";
 
 export interface HeaderClientProps {
   user: User | null;
@@ -47,6 +39,7 @@ export interface HeaderClientProps {
     userNav: NonNullable<Dictionary["userNav"]>;
     notificationBell: NonNullable<Dictionary["notificationBell"]>;
     devLoginPage: NonNullable<Dictionary["devLoginPage"]>;
+    toggleTheme: NonNullable<Dictionary["toggleTheme"]>;
   };
   currentLocale: Locale;
   centerComponent?: React.ReactNode;
@@ -73,12 +66,17 @@ export default function HeaderClient({
   rightComponent,
   initialCart,
 }: HeaderClientProps): React.ReactElement | null {
-  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE HOOKS v48.1.0] ---
-  // Todas las llamadas a Hooks se agrupan en el nivel superior, antes de cualquier retorno condicional.
   const traceId = useMemo(
-    () => logger.startTrace("HeaderClient_Lifecycle_v48.1"),
+    () => logger.startTrace("HeaderClient_Lifecycle_v48.2"),
     []
   );
+  useEffect(() => {
+    logger.info("[HeaderClient] Componente montado y listo (v48.2).", {
+      traceId,
+    });
+    return () => logger.endTrace(traceId);
+  }, [traceId]);
+
   const pathname = usePathname();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { initialize: initializeCart } = useCartStore();
@@ -89,18 +87,12 @@ export default function HeaderClient({
   }, [traceId]);
 
   useEffect(() => {
-    logger.info("[HeaderClient] Componente montado y listo (v48.1).", {
-      traceId,
-    });
     if (!useCartStore.getState().isInitialized) {
       initializeCart(initialCart);
       logger.traceEvent(traceId, "Estado del carrito inicializado.");
     }
-    return () => logger.endTrace(traceId);
-  }, [traceId, initializeCart, initialCart]);
-  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE HOOKS v48.1.0] ---
+  }, [initializeCart, initialCart, traceId]);
 
-  // El Guardián de Resiliencia se ejecuta DESPUÉS de todas las llamadas a Hooks.
   if (
     !content ||
     !content.header ||
@@ -108,7 +100,8 @@ export default function HeaderClient({
     !content.cart ||
     !content.userNav ||
     !content.notificationBell ||
-    !content.devLoginPage
+    !content.devLoginPage ||
+    !content.toggleTheme
   ) {
     const errorMsg =
       "Contrato de UI violado: La prop 'content' para HeaderClient es nula, indefinida o incompleta.";
@@ -116,7 +109,6 @@ export default function HeaderClient({
       traceId,
       receivedContent: content,
     });
-
     if (process.env.NODE_ENV === "development") {
       return (
         <header className="py-3 border-b border-destructive">
@@ -139,6 +131,7 @@ export default function HeaderClient({
     userNav,
     notificationBell,
     devLoginPage,
+    toggleTheme,
   } = content;
   const isPublicView = !centerComponent;
 
@@ -192,11 +185,11 @@ export default function HeaderClient({
           </div>
           <div className="flex items-center justify-end gap-2 sm:gap-4 flex-shrink-0 w-1/3">
             {rightComponent}
+            <ToggleTheme content={toggleTheme} />
             <LanguageSwitcher
               currentLocale={currentLocale}
               content={languageSwitcher}
             />
-
             {isPublicView && (
               <>
                 <CartTrigger onClick={handleCartOpen} content={cart} />
@@ -208,7 +201,6 @@ export default function HeaderClient({
                 />
               </>
             )}
-
             <NotificationBell content={notificationBell} />
             <UserNavClient
               user={user}
@@ -217,7 +209,6 @@ export default function HeaderClient({
               loginContent={devLoginPage}
               locale={currentLocale}
             />
-
             {isPublicView && !user && (
               <Button asChild variant="ghost" size="sm">
                 <Link href={`/${currentLocale}/login?view=signup`}>

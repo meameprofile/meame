@@ -1,0 +1,82 @@
+{
+  "it-IT": {
+    "heimdallObservatory": {
+      "pageHeader": {
+        "title": "Osservatorio Heimdall",
+        "subtitle": "Il centro di comando per la telemetria e l'osservabilità dell'ecosistema."
+      },
+      "recentsPanel": {
+        "title": "Eventi Recenti"
+      },
+      "detailPanel": {
+        "title": "Dettaglio dell'Evento Selezionato"
+      },
+      "mimirPanel": {
+        "title": "Analista Conversazionale (Mimir)",
+        "analyzeButton": "Analizza con Temeo",
+        "thinkingButton": "Analisi in corso...",
+        "placeholder": "Seleziona un evento e clicca su 'Analizza' per ottenere un'analisi forense e un piano di livellamento dalla nostra IA."
+      }
+    }
+  },
+  "es-ES": {
+    "heimdallObservatory": {
+      "pageHeader": {
+        "title": "Observatorio Heimdall",
+        "subtitle": "El centro de mando para la telemetría y observabilidad del ecosistema."
+      },
+      "recentsPanel": {
+        "title": "Eventos Recientes"
+      },
+      "detailPanel": {
+        "title": "Detalle del Evento Seleccionado"
+      },
+      "mimirPanel": {
+        "title": "Analista Conversacional (Mimir)",
+        "analyzeButton": "Analizar con Temeo",
+        "thinkingButton": "Analizando...",
+        "placeholder": "Selecciona un evento y haz clic en 'Analizar' para obtener un análisis forense y un plan de nivelación de nuestra IA."
+      }
+    }
+  },
+  "en-US": {
+    "heimdallObservatory": {
+      "pageHeader": {
+        "title": "Heimdall Observatory",
+        "subtitle": "The command center for ecosystem telemetry and observability."
+      },
+      "recentsPanel": {
+        "title": "Recent Events"
+      },
+      "detailPanel": {
+        "title": "Selected Event Detail"
+      },
+      "mimirPanel": {
+        "title": "Conversational Analyst (Mimir)",
+        "analyzeButton": "Analyze with Temeo",
+        "thinkingButton": "Analyzing...",
+        "placeholder": "Select an event and click 'Analyze' to get a forensic analysis and an elite leveling plan from our AI."
+      }
+    }
+  },
+  "pt-BR": {
+    "heimdallObservatory": {
+      "pageHeader": {
+        "title": "Observatório Heimdall",
+        "subtitle": "O centro de comando para telemetria e observabilidade do ecossistema."
+      },
+      "recentsPanel": {
+        "title": "Eventos Recentes"
+      },
+      "detailPanel": {
+        "title": "Detalhe do Evento Selecionado"
+      },
+      "mimirPanel": {
+        "title": "Analista Conversacional (Mimir)",
+        "analyzeButton": "Analisar com Temeo",
+        "thinkingButton": "Analisando...",
+        "placeholder": "Selecione um evento e clique em 'Analisar' para obter uma análise forense e um plano de nivelamento da nossa IA."
+      }
+    }
+  }
+}

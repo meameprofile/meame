@@ -16,14 +16,14 @@
       "submitButtonText": "Crea Voce e Ottieni ID",
       "submitButtonLoadingText": "Creazione in corso...",
       "sesaLabels": {
-        "ai": "IA",
-        "sty": "Stile",
-        "fmt": "Formato",
-        "typ": "Tipo",
-        "sbj": "Soggetto",
-        "styleTypeLabel": "Tipo di Stile",
+        "ai": "Motore IA",
+        "sty": "Stile Visuale",
+        "fmt": "Proporzioni",
+        "typ": "Tipo di Asset",
+        "sbj": "Soggetto Principale",
+        "styleTypeLabel": "Tipo di Stile (Ideogram)",
         "styleTypePlaceholder": "Scegli tipo...",
-        "aspectRatioLabel": "Proporzioni",
+        "aspectRatioLabel": "Proporzioni (Ideogram)",
         "aspectRatioPlaceholder": "Scegli proporzioni..."
       },
       "sesaOptions": {
@@ -45,13 +45,16 @@
         "typ": [
           { "value": "ui", "label": "Interfaccia Utente" },
           { "value": "pht", "label": "Foto" },
-          { "value": "abs", "label": "Astratto" }
+          { "value": "abs", "label": "Astratto" },
+          { "value": "chr", "label": "Personaggio" }
         ],
         "sbj": [
           { "value": "abs", "label": "Astratto" },
           { "value": "wom", "label": "Donna" },
           { "value": "man", "label": "Uomo" },
-          { "value": "lsc", "label": "Paesaggio" }
+          { "value": "lsc", "label": "Paesaggio" },
+          { "value": "rob", "label": "Robot" },
+          { "value": "logo", "label": "Logo" }
         ]
       },
       "parameterOptions": {
@@ -87,14 +90,14 @@
       "submitButtonText": "Crear Entrada y Obtener ID",
       "submitButtonLoadingText": "Creando...",
       "sesaLabels": {
-        "ai": "IA",
-        "sty": "Estilo",
-        "fmt": "Formato",
-        "typ": "Tipo",
-        "sbj": "Sujeto",
-        "styleTypeLabel": "Tipo de Estilo",
+        "ai": "Motor IA",
+        "sty": "Estilo Visual",
+        "fmt": "Relación de Aspecto",
+        "typ": "Tipo de Activo",
+        "sbj": "Sujeto Principal",
+        "styleTypeLabel": "Tipo de Estilo (Ideogram)",
         "styleTypePlaceholder": "Elige tipo...",
-        "aspectRatioLabel": "Relación de Aspecto",
+        "aspectRatioLabel": "Relación de Aspecto (Ideogram)",
         "aspectRatioPlaceholder": "Elige relación..."
       },
       "sesaOptions": {
@@ -116,13 +119,16 @@
         "typ": [
           { "value": "ui", "label": "Interfaz de Usuario" },
           { "value": "pht", "label": "Foto" },
-          { "value": "abs", "label": "Abstracto" }
+          { "value": "abs", "label": "Abstracto" },
+          { "value": "chr", "label": "Personaje" }
         ],
         "sbj": [
           { "value": "abs", "label": "Abstracto" },
           { "value": "wom", "label": "Mujer" },
           { "value": "man", "label": "Hombre" },
-          { "value": "lsc", "label": "Paisaje" }
+          { "value": "lsc", "label": "Paisaje" },
+          { "value": "rob", "label": "Robot" },
+          { "value": "logo", "label": "Logo" }
         ]
       },
       "parameterOptions": {
@@ -158,14 +164,14 @@
       "submitButtonText": "Create Entry & Get ID",
       "submitButtonLoadingText": "Creating...",
       "sesaLabels": {
-        "ai": "AI",
-        "sty": "Style",
-        "fmt": "Format",
-        "typ": "Type",
-        "sbj": "Subject",
-        "styleTypeLabel": "Style Type",
+        "ai": "AI Engine",
+        "sty": "Visual Style",
+        "fmt": "Aspect Ratio",
+        "typ": "Asset Type",
+        "sbj": "Main Subject",
+        "styleTypeLabel": "Style Type (Ideogram)",
         "styleTypePlaceholder": "Choose type...",
-        "aspectRatioLabel": "Aspect Ratio",
+        "aspectRatioLabel": "Aspect Ratio (Ideogram)",
         "aspectRatioPlaceholder": "Choose ratio..."
       },
       "sesaOptions": {
@@ -187,13 +193,16 @@
         "typ": [
           { "value": "ui", "label": "User Interface" },
           { "value": "pht", "label": "Photo" },
-          { "value": "abs", "label": "Abstract" }
+          { "value": "abs", "label": "Abstract" },
+          { "value": "chr", "label": "Character" }
         ],
         "sbj": [
           { "value": "abs", "label": "Abstract" },
           { "value": "wom", "label": "Woman" },
           { "value": "man", "label": "Man" },
-          { "value": "lsc", "label": "Landscape" }
+          { "value": "lsc", "label": "Landscape" },
+          { "value": "rob", "label": "Robot" },
+          { "value": "logo", "label": "Logo" }
         ]
       },
       "parameterOptions": {
@@ -229,14 +238,14 @@
       "submitButtonText": "Criar Entrada e Obter ID",
       "submitButtonLoadingText": "Criando...",
       "sesaLabels": {
-        "ai": "IA",
-        "sty": "Estilo",
-        "fmt": "Formato",
-        "typ": "Tipo",
-        "sbj": "Assunto",
-        "styleTypeLabel": "Tipo de Estilo",
+        "ai": "Motor de IA",
+        "sty": "Estilo Visual",
+        "fmt": "Proporção da Imagem",
+        "typ": "Tipo de Ativo",
+        "sbj": "Assunto Principal",
+        "styleTypeLabel": "Tipo de Estilo (Ideogram)",
         "styleTypePlaceholder": "Escolha o tipo...",
-        "aspectRatioLabel": "Proporção da Imagem",
+        "aspectRatioLabel": "Proporção da Imagem (Ideogram)",
         "aspectRatioPlaceholder": "Escolha a proporção..."
       },
       "sesaOptions": {
@@ -258,13 +267,16 @@
         "typ": [
           { "value": "ui", "label": "Interface de Usuário" },
           { "value": "pht", "label": "Foto" },
-          { "value": "abs", "label": "Abstrato" }
+          { "value": "abs", "label": "Abstrato" },
+          { "value": "chr", "label": "Personagem" }
         ],
         "sbj": [
           { "value": "abs", "label": "Abstrato" },
           { "value": "wom", "label": "Mulher" },
           { "value": "man", "label": "Homem" },
-          { "value": "lsc", "label": "Paisagem" }
+          { "value": "lsc", "label": "Paisagem" },
+          { "value": "rob", "label": "Robô" },
+          { "value": "logo", "label": "Logo" }
         ]
       },
       "parameterOptions": {

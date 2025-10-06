@@ -15,7 +15,7 @@ Esta tabla es la **Bóveda Genómica Creativa** del ecosistema. Cada fila repres
 
 ## 2. Esquema DDL (CREATE TABLE)
 
-```sql
+````sql
 CREATE TABLE IF NOT EXISTS public.razprompts_entries (
     id TEXT PRIMARY KEY CHECK (id ~ '^c[a-z0-9]{24}$'),
     user_id UUID NOT NULL REFERENCES auth.users(id),
@@ -72,6 +72,47 @@ La tabla `razprompts_entries` actúa como un ancla contextual para las conversac
 -   **Flujo:** Un usuario puede iniciar un "chat" desde un prompt existente. El sistema creará o recuperará la conversación en `ai_conversations` usando esta clave, permitiendo a la IA tener el contexto completo del genoma del prompt y de los intercambios anteriores para refinarlo.
 
 ---
+// RUTA: _docs/supabase/004_MANIFIESTO_TABLA_RAZPROMPTS_ENTRIES.md
+/**
+ * @file 004_MANIFIESTO_TABLA_RAZPROMPTS_ENTRIES.md
+ * @description Manifiesto Canónico y SSoT para la tabla 'public.razprompts_entries'.
+ * @version 3.0.0 (Consolidado)
+ * @author RaZ Podestá - MetaShark Tech
+ */
+
+# Manifiesto de Tabla Soberana: `public.razprompts_entries` v3.0
+
+## 1. Visión y Propósito
+
+Esta tabla es la **Bóveda Genómica Creativa** del ecosistema. Cada fila representa el "genoma" de un activo visual: el prompt, los parámetros y el modelo de IA que lo generaron, garantizando la reproducibilidad, la trazabilidad y la contextualización conversacional.
+
+## 2. Esquema DDL (CREATE TABLE)
+
+```sql
+CREATE TABLE IF NOT EXISTS public.razprompts_entries (
+    id TEXT PRIMARY KEY CHECK (id ~ '^c[a-z0-9]{24}$'),
+    user_id UUID NOT NULL REFERENCES auth.users(id),
+    workspace_id UUID NOT NULL REFERENCES public.workspaces(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending_generation' CHECK (status IN ('pending_generation', 'generated', 'archived')),
+    ai_service TEXT NOT NULL,
+    keywords TEXT[],
+    versions JSONB NOT NULL,
+    tags JSONB,
+    bavi_asset_ids TEXT[],
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+COMMENT ON TABLE public.razprompts_entries IS 'Almacena el genoma creativo (prompts, parámetros) de los activos visuales.';
+3. Políticas de Seguridad (RLS) y Triggers
+Seguridad: El acceso total (ALL) a las entradas está restringido a los miembros del workspace_id al que pertenece el prompt, utilizando la función public.is_workspace_member(workspace_id).
+Automatización: Un trigger BEFORE UPDATE mantiene el campo updated_at siempre actualizado.
+4. Simbiosis con Conversaciones de IA
+Vínculo Contextual: La tabla ai_conversations puede vincularse a un prompt específico utilizando un context_key con el formato razprompt::<id>, permitiendo a la IA refinar prompts de forma conversacional.
+
+---
 
 
-```
+
+````

@@ -1,12 +1,10 @@
 // RUTA: src/components/features/auth/components/SignUpForm.tsx
 /**
  * @file SignUpForm.tsx
- * @description Componente de presentación puro para el formulario de registro de élite.
- *              v3.2.0 (Holistic Integrity Restoration): Se alinea el contrato de props
- *              y se elimina el código no utilizado para cumplir con todos los pilares
- *              de calidad y resolver errores de build.
- * @version 3.2.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description Componente de presentación puro para el formulario de registro de élite,
+ *              nivelado con observabilidad completa y cumplimiento de contratos.
+ * @version 4.0.0 (Holistic Observability & Contract Integrity)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -41,14 +39,14 @@ import {
 } from "@/shared/lib/schemas/auth/signup.schema";
 import { signUpAction } from "@/shared/lib/actions/auth/auth.actions";
 import { OAuthButtons } from "./OAuthButtons";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type AuthFormContent = NonNullable<Dictionary["devLoginPage"]>;
 type OAuthButtonsContent = NonNullable<Dictionary["oAuthButtons"]>;
 
 interface SignUpFormProps {
   content: AuthFormContent;
-  oAuthContent: OAuthButtonsContent; // <-- PROP AÑADIDA AL CONTRATO
+  oAuthContent: OAuthButtonsContent;
   locale: Locale;
   onSwitchView: () => void;
 }
@@ -69,7 +67,7 @@ export function SignUpForm({
   onSwitchView,
 }: SignUpFormProps) {
   const traceId = useMemo(
-    () => logger.startTrace("SignUpForm_Lifecycle_v3.2"),
+    () => logger.startTrace("SignUpForm_Lifecycle_v4.0"),
     []
   );
   useEffect(() => {
@@ -101,11 +99,16 @@ export function SignUpForm({
   }
 
   const onSubmit = (data: SignUpFormData) => {
-    const submitTraceId = logger.startTrace("SignUpForm_onSubmit");
-    logger.startGroup(
-      "[SignUpForm] Procesando envío de formulario de registro..."
+    const submitTraceId = logger.startTrace("SignUpForm.onSubmit");
+    // --- [INICIO DE CORRECCIÓN DE CONTRATO v4.0.0] ---
+    const groupId = logger.startGroup(
+      "[SignUpForm] Procesando envío de formulario de registro...",
+      submitTraceId
     );
+    // --- [FIN DE CORRECCIÓN DE CONTRATO v4.0.0] ---
+
     startTransition(async () => {
+      logger.traceEvent(submitTraceId, "Invocando 'signUpAction'...");
       const result = await signUpAction(data);
       if (result.success) {
         toast.success("¡Registro exitoso!", {
@@ -122,8 +125,10 @@ export function SignUpForm({
           traceId: submitTraceId,
         });
       }
-      logger.endGroup();
+      // --- [INICIO DE CORRECCIÓN DE CONTRATO v4.0.0] ---
+      logger.endGroup(groupId);
       logger.endTrace(submitTraceId);
+      // --- [FIN DE CORRECCIÓN DE CONTRATO v4.0.0] ---
     });
   };
 

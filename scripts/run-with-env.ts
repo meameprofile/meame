@@ -1,26 +1,25 @@
-// scripts/run-with-env.ts
+// RUTA: scripts/run-with-env.ts
 /**
  * @file run-with-env.ts
- * @description Orquestador original, ahora funcional y resiliente a comentarios en JSON.
- * @version 8.2.0 (JSON Comment Resilience)
+ * @description Orquestador soberano para la ejecución de scripts.
+ * @version 9.1.0 (Architectural Boundary Restoration)
+ * @author L.I.A. Legacy
  */
 import "dotenv/config";
 import path from "path";
 import { register } from "tsconfig-paths";
 import { readFileSync } from "fs";
 import { pathToFileURL } from "url";
-import { logger } from "@/shared/lib/logging"; // Ahora importa el SHIM
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v9.1.0] ---
+// Se importa el logger soberano para el entorno de scripts.
+import { scriptLogger as logger } from "./_utils/logger";
+// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v9.1.0] ---
 
 const tsconfigPath = path.resolve(process.cwd(), "tsconfig.scripts.json");
-
-// **INICIO DE LA CORRECCIÓN DE RESILIENCIA**
-// Esta expresión regular elimina los comentarios de un archivo JSON antes de parsearlo.
 const tsconfigFileContent = readFileSync(tsconfigPath, "utf-8").replace(
   /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
   (match, group1) => (group1 ? "" : match)
 );
-// **FIN DE LA CORRECCIÓN DE RESILIENCIA**
-
 const tsconfig = JSON.parse(tsconfigFileContent);
 
 register({
@@ -38,7 +37,6 @@ async function runScript() {
   try {
     const absolutePath = path.resolve(process.cwd(), scriptPath);
     const scriptUrl = pathToFileURL(absolutePath).href;
-    // La importación dinámica ejecutará el script exportado por defecto
     const scriptModule = await import(scriptUrl);
     if (typeof scriptModule.default === "function") {
       await scriptModule.default();

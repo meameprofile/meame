@@ -18,10 +18,14 @@ export function useTrufflePixel(enabled: boolean): void {
   const hasExecuted = useRef(false);
 
   useEffect(() => {
-    logger.info(`[Truffle Pixel] Hook montado. Estado: ${enabled ? 'HABILITADO' : 'DESHABILITADO'}.`, { traceId });
+    logger.info(
+      `[Truffle Pixel] Hook montado. Estado: ${enabled ? "HABILITADO" : "DESHABILITADO"}.`,
+      { traceId }
+    );
 
     if (!enabled || hasExecuted.current) {
-      if (!enabled) logger.traceEvent(traceId, "Tracker deshabilitado, omitiendo.");
+      if (!enabled)
+        logger.traceEvent(traceId, "Tracker deshabilitado, omitiendo.");
       return;
     }
 
@@ -29,17 +33,24 @@ export function useTrufflePixel(enabled: boolean): void {
     const truffleId = producerConfig.TRACKING.TRUFFLE_PIXEL_ID;
 
     if (!truffleId) {
-      logger.warn("[Guardián] ID de Truffle Pixel no configurado. Omitiendo.", { traceId });
+      logger.warn("[Guardián] ID de Truffle Pixel no configurado. Omitiendo.", {
+        traceId,
+      });
       return;
     }
 
     if (document.getElementById(TRUFFLE_SCRIPT_ID)) {
       hasExecuted.current = true;
-      logger.warn("[Guardián] Script de Truffle ya existe. Omitiendo re-inyección.", { traceId });
+      logger.warn(
+        "[Guardián] Script de Truffle ya existe. Omitiendo re-inyección.",
+        { traceId }
+      );
       return;
     }
 
-    logger.success(`[Tracking] Inyectando Truffle.bid con ID: ${truffleId}`, { traceId });
+    logger.success(`[Tracking] Inyectando Truffle.bid con ID: ${truffleId}`, {
+      traceId,
+    });
 
     const script = document.createElement("script");
     script.id = TRUFFLE_SCRIPT_ID;

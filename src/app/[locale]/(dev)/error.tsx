@@ -1,20 +1,9 @@
 // RUTA: src/app/[locale]/(dev)/error.tsx
-/**
- * @file error.tsx
- * @description Guardián de Resiliencia de Renderizado para el Developer Command Center (DCC).
- *              Este aparato intercepta cualquier error de tiempo de ejecución que ocurra
- *              durante el renderizado de los componentes de servidor dentro del grupo (dev),
- *              y muestra una interfaz de error detallada utilizando nuestro DeveloperErrorDisplay.
- * @version 1.0.0
- *@author RaZ Podestá - MetaShark Tech
- */
 "use client";
-
 import React, { useEffect } from "react";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { Button } from "@/components/ui";
-
 interface DevErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
@@ -22,7 +11,6 @@ interface DevErrorProps {
 
 export default function DevError({ error, reset }: DevErrorProps) {
   useEffect(() => {
-    // Pilar III: Observabilidad Profunda
     logger.error(
       "[Guardián de Renderizado DCC] Error de tiempo de ejecución capturado.",
       {

@@ -1,12 +1,9 @@
 // RUTA: scripts/generation/build-i18n-dictionaries.ts
 /**
  * @file build-i18n-dictionaries.ts
- * @description Script de build incremental e inteligente para la internacionalización.
- *              v6.1.0 (Elite Type Safety & Path Restoration): Refactorizado para
- *              erradicar errores de tipo 'any' y corregir rutas de importación,
- *              restaurando la integridad del build.
- * @version 6.1.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description Script de build para i18n, ahora definitivamente alineado con la SSoT de enrutamiento.
+ * @version 8.0.0 (Definitive Routing Contract Alignment)
+ * @author L.I.A. Legacy
  */
 import * as fs from "fs/promises";
 import * as path from "path";
@@ -14,8 +11,12 @@ import chalk from "chalk";
 import hash from "object-hash";
 import { register } from "tsconfig-paths";
 import { readFileSync } from "fs";
-
-// --- INICIO DE LÓGICA DESACOPLADA ---
+import { i18nSchema } from "@/shared/lib/schemas/i18n.schema";
+import { ROUTING_LOCALES } from "@/shared/lib/i18n/i18n.config";
+import {
+  discoverAndReadI18nFiles,
+  type I18nFileContent,
+} from "./i18n-discoverer";
 
 const tsconfigPath = path.resolve(process.cwd(), "tsconfig.json");
 const tsconfigFileContent = readFileSync(tsconfigPath, "utf-8").replace(
@@ -28,16 +29,6 @@ register({
   baseUrl: path.resolve(process.cwd(), tsconfig.compilerOptions.baseUrl || "."),
   paths: tsconfig.compilerOptions.paths,
 });
-
-// Se importa después de registrar los alias
-import { i18nSchema } from "@/shared/lib/schemas/i18n.schema";
-import { supportedLocales } from "@/shared/lib/i18n/i18n.config";
-import {
-  discoverAndReadI18nFiles,
-  type I18nFileContent,
-} from "./i18n-discoverer";
-
-// --- FIN DE LÓGICA DESACOPLADA ---
 
 const OUTPUT_DIR = path.resolve(process.cwd(), "public/locales");
 const CACHE_DIR = path.resolve(process.cwd(), ".i18n-cache");
@@ -62,7 +53,7 @@ async function writeHashCache(cache: HashCache): Promise<void> {
 async function buildDictionaries() {
   console.log(
     chalk.blue.bold(
-      "🚀 Iniciando compilación de diccionarios i18n (v6.1 - Type-Safe)..."
+      "🚀 Iniciando compilación de diccionarios i18n (v8.0 - Definitive)..."
     )
   );
 
@@ -103,7 +94,7 @@ async function buildDictionaries() {
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
   let validationFailed = false;
 
-  for (const locale of supportedLocales) {
+  for (const locale of ROUTING_LOCALES) {
     const fullDictionary = contents.reduce(
       (acc: Record<string, unknown>, moduleContent: I18nFileContent) => ({
         ...acc,

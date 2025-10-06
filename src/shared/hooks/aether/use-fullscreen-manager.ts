@@ -19,7 +19,9 @@ export function useFullscreenManager(
     const traceId = logger.startTrace("toggleFullscreen");
     const elem = containerRef.current;
     if (!elem) {
-      logger.warn("[FullscreenManager] Intento de toggle sin contenedor.", { traceId });
+      logger.warn("[FullscreenManager] Intento de toggle sin contenedor.", {
+        traceId,
+      });
       return;
     }
 
@@ -39,10 +41,13 @@ export function useFullscreenManager(
     const handleFullscreenChange = () => {
       const isCurrentlyFullscreen = !!document.fullscreenElement;
       setIsFullscreen(isCurrentlyFullscreen);
-      logger.info(`[FullscreenManager] Estado cambiado a: ${isCurrentlyFullscreen ? 'ACTIVADO' : 'DESACTIVADO'}.`);
+      logger.info(
+        `[FullscreenManager] Estado cambiado a: ${isCurrentlyFullscreen ? "ACTIVADO" : "DESACTIVADO"}.`
+      );
     };
     document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
   return { isFullscreen, toggleFullscreen };

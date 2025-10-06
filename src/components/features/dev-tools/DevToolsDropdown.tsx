@@ -1,50 +1,31 @@
 // RUTA: src/components/features/dev-tools/DevToolsDropdown.tsx
 /**
  * @file DevToolsDropdown.tsx
- * @description Orquestador de datos para el DevRouteMenu.
- *              v6.0.0 (Sovereign Path Restoration): Se corrigen las rutas de
- *              importación para alinearse con la ACS, restaurando la
- *              integridad del build del DCC.
- * @version 6.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description Componente de presentación 100% puro para el menú de desarrollo.
+ *              v7.0.0 (Holistic Refactor - Presentation-Only): Refactorizado para
+ *              ser un componente de presentación puro, recibiendo sus datos como props.
+ * @version 7.0.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import { usePathname } from "next/navigation";
+import React from "react";
 import { logger } from "@/shared/lib/logging";
-import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
-import { type Dictionary } from "@/shared/lib/schemas/i18n.schema";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// Se corrigen ambas rutas de importación a sus SSoT canónicas.
-import { generateDevRoutes } from "@/components/features/dev-tools/utils/route-menu.generator";
+import type { RouteGroup } from "@/components/features/dev-tools/utils/route-menu.generator";
 import { DevRouteMenu } from "@/components/features/dev-tools/DevRouteMenu";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
 interface DevToolsDropdownProps {
-  dictionary: NonNullable<Dictionary["devRouteMenu"]>;
+  routeGroups: RouteGroup[];
+  buttonLabel: string;
 }
 
 export default function DevToolsDropdown({
-  dictionary,
-}: DevToolsDropdownProps): React.ReactElement | null {
-  logger.info("[DevToolsDropdown] Renderizando orquestador smart (v6.0).");
-  const pathname = usePathname();
-  const currentLocale = getCurrentLocaleFromPathname(pathname);
-
-  if (!dictionary) {
-    logger.warn(
-      "[DevToolsDropdown] Diccionario no proporcionado. No se renderizará el menú."
-    );
-    return null;
-  }
-
-  logger.trace(
-    `[DevToolsDropdown] Orquestando menú para locale: ${currentLocale}`
+  routeGroups,
+  buttonLabel,
+}: DevToolsDropdownProps): React.ReactElement {
+  logger.info(
+    "[DevToolsDropdown] Renderizando componente de presentación (v7.0)."
   );
-
-  const routeGroups = generateDevRoutes(dictionary, currentLocale);
-  const buttonLabel = dictionary.devMenuLabel;
 
   return <DevRouteMenu routeGroups={routeGroups} buttonLabel={buttonLabel} />;
 }
-// RUTA: src/components/features/dev-tools/DevToolsDropdown.tsx

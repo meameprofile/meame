@@ -1,8 +1,8 @@
-// app/[locale]/(dev)/cogniread/editor/_components/tabs/ContentTab.tsx
+// RUTA: src/components/features/cogniread/editor/tabs/ContentTab.tsx
 /**
  * @file ContentTab.tsx
  * @description Componente de presentación para la pestaña "Contenido Multilingüe", ahora internacionalizado.
- * @version 2.0.0 (Full i18n Compliance)
+ * @version 3.0.0 (Contract Alignment)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -23,7 +23,12 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui";
-import { supportedLocales, type Locale } from "@/shared/lib/i18n/i18n.config";
+// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
+import {
+  ROUTING_LOCALES as supportedLocales,
+  type Locale,
+} from "@/shared/lib/i18n/i18n.config";
+// --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
 import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
@@ -42,7 +47,7 @@ export function ContentTab({
   content,
 }: ContentTabProps): React.ReactElement {
   logger.trace(
-    "[ContentTab] Renderizando formulario de contenido multilingüe v2.0."
+    "[ContentTab] Renderizando formulario de contenido multilingüe v3.0."
   );
 
   return (
@@ -50,7 +55,8 @@ export function ContentTab({
       <div className="space-y-8">
         <Tabs defaultValue={supportedLocales[0]} className="w-full">
           <TabsList>
-            {supportedLocales.map((locale) => (
+            {/* Se añade el tipo explícito para resolver TS7006 */}
+            {supportedLocales.map((locale: Locale) => (
               <TabsTrigger key={locale} value={locale}>
                 {locale.toUpperCase()}
               </TabsTrigger>
@@ -67,13 +73,11 @@ export function ContentTab({
                     <FormLabel>
                       {content.titleLabel} ({locale})
                     </FormLabel>{" "}
-                    {/* Consume i18n */}
                     <FormControl>
                       <Input
                         placeholder={content.titlePlaceholder}
                         {...field}
                       />{" "}
-                      {/* Consume i18n */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -87,10 +91,11 @@ export function ContentTab({
                     <FormLabel>
                       {content.slugLabel} ({locale})
                     </FormLabel>{" "}
-                    {/* Consume i18n */}
                     <FormControl>
-                      <Input placeholder={content.slugPlaceholder} {...field} />{" "}
-                      {/* Consume i18n */}
+                      <Input
+                        placeholder={content.slugPlaceholder}
+                        {...field}
+                      />{" "}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -104,10 +109,9 @@ export function ContentTab({
                     <FormLabel>
                       {content.summaryLabel} ({locale})
                     </FormLabel>{" "}
-                    {/* Consume i18n */}
                     <FormControl>
                       <Textarea
-                        placeholder={content.summaryPlaceholder} // Consume i18n
+                        placeholder={content.summaryPlaceholder}
                         className="min-h-[100px]"
                         {...field}
                       />
@@ -124,10 +128,9 @@ export function ContentTab({
                     <FormLabel>
                       {content.bodyLabel} ({locale})
                     </FormLabel>{" "}
-                    {/* Consume i18n */}
                     <FormControl>
                       <Textarea
-                        placeholder={content.bodyPlaceholder} // Consume i18n
+                        placeholder={content.bodyPlaceholder}
                         className="min-h-[300px]"
                         {...field}
                       />

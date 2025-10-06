@@ -1,9 +1,9 @@
-// RUTA: src/components/features/bavi/_components/AssetCard.tsx
+// RUTA: src/components/features/bavi/components/AssetCard.tsx
 /**
  * @file AssetCard.tsx
  * @description Componente de presentación puro para visualizar un activo de BAVI.
- * @version 5.1.0 (Holistic Type Safety & Contract Alignment)
- *@author RaZ Podestá - MetaShark Tech
+ * @version 6.0.0 (SESA Atomic Key Alignment)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -25,11 +25,10 @@ import { logger } from "@/shared/lib/logging";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import type { PromptCreatorContentSchema } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
 import type { z } from "zod";
+import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 
 type CreatorContent = z.infer<typeof PromptCreatorContentSchema>;
 type SesaOptions = CreatorContent["sesaOptions"];
-// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE: CONTRATOS DE TIPO EXPLÍCITOS] ---
-type DescriptiveTagKey = keyof NonNullable<BaviAsset["tags"]>;
 
 interface AssetCardProps {
   asset: BaviAsset;
@@ -49,7 +48,7 @@ export function AssetCard({
   selectButtonText,
 }: AssetCardProps): React.ReactElement {
   logger.trace(
-    `[AssetCard] Renderizando tarjeta v5.1 para activo: ${asset.assetId}`
+    `[AssetCard] Renderizando tarjeta v6.0 para activo: ${asset.assetId}`
   );
 
   const mainVariant = asset.variants[0];
@@ -57,24 +56,14 @@ export function AssetCard({
     asset.createdAt || new Date()
   ).toLocaleDateString();
 
-  const getTagLabel = (category: DescriptiveTagKey, value: string) => {
-    // Este mapa traduce las claves descriptivas del manifiesto a las claves
-    // abreviadas que utiliza el objeto de contenido i18n (sesaOptions).
-    const keyMap: Record<DescriptiveTagKey, keyof SesaOptions> = {
-      aiEngine: "ai",
-      visualStyle: "sty",
-      aspectRatio: "fmt",
-      assetType: "typ",
-      subject: "sbj",
-    };
-    const shortKey = keyMap[category];
-    if (!shortKey) return value; // Fallback seguro
-
+  const getTagLabel = (category: keyof RaZPromptsSesaTags, value: string) => {
+    if (!sesaOptions || !sesaOptions[category]) return value;
     return (
-      sesaOptions[shortKey]?.find((opt) => opt.value === value)?.label || value
+      (sesaOptions[category] as { value: string; label: string }[]).find(
+        (opt) => opt.value === value
+      )?.label || value
     );
   };
-  // --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
 
   return (
     <Card className="h-full flex flex-col hover:shadow-primary/20 transition-all duration-200 ease-in-out">
@@ -116,31 +105,12 @@ export function AssetCard({
       </CardContent>
       <CardFooter className="flex flex-wrap items-center justify-between pt-0 gap-2">
         <div className="flex flex-wrap gap-1">
-          {asset.tags?.aiEngine && (
-            <Badge variant="secondary">
-              {getTagLabel("aiEngine", asset.tags.aiEngine)}
-            </Badge>
-          )}
-          {asset.tags?.visualStyle && (
-            <Badge variant="secondary">
-              {getTagLabel("visualStyle", asset.tags.visualStyle)}
-            </Badge>
-          )}
-          {asset.tags?.aspectRatio && (
-            <Badge variant="secondary">
-              {getTagLabel("aspectRatio", asset.tags.aspectRatio)}
-            </Badge>
-          )}
-          {asset.tags?.assetType && (
-            <Badge variant="secondary">
-              {getTagLabel("assetType", asset.tags.assetType)}
-            </Badge>
-          )}
-          {asset.tags?.subject && (
-            <Badge variant="secondary">
-              {getTagLabel("subject", asset.tags.subject)}
-            </Badge>
-          )}
+          {asset.tags &&
+            Object.entries(asset.tags).map(([key, value]) => (
+              <Badge key={key} variant="secondary">
+                {getTagLabel(key as keyof RaZPromptsSesaTags, value)}
+              </Badge>
+            ))}
         </div>
         <div className="flex gap-2">
           <Button

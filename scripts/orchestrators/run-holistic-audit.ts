@@ -1,12 +1,9 @@
-// scripts/orchestrators/run-holistic-audit.ts
+// RUTA: scripts/orchestrators/run-holistic-audit.ts
 /**
  * @file run-holistic-audit.ts
  * @description Guardián de Integridad Total Resiliente con Informe Holístico.
- *              Orquesta la ejecución de todos los scripts de diagnóstico de dominio
- *              y de consistencia inter-dominio, generando un informe consolidado
- *              y proporcionando un veredicto final sobre la salud del ecosistema.
- * @version 5.0.0 (Deterministic & Regression-Free)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 7.2.0 (Type Contract Restoration)
+ * @author L.I.A. Legacy
  */
 import { exec } from "child_process";
 import { promises as fs } from "fs";
@@ -14,28 +11,26 @@ import path from "path";
 import chalk from "chalk";
 import { scriptLogger as logger } from "../_utils/logger";
 
-// SSoT de las auditorías a ejecutar, en un orden determinista y sin regresiones.
 const audits = [
-  // --- [FASE 1] GUARDIANES DE DOMINIO DE SERVICIOS (Aislados) ---
   {
     name: "Dominio: Visitor Intelligence (DB)",
     command: "pnpm diag:visitor-intelligence:all",
   },
   { name: "Dominio: Aura (DB)", command: "pnpm diag:aura:all" },
+  {
+    name: "Dominio: Telemetría Heimdall (DB)",
+    command: "pnpm diag:heimdall:all",
+  },
   { name: "Dominio: Cloudinary", command: "pnpm diag:cloudinary:all" },
   { name: "Dominio: MongoDB", command: "pnpm diag:mongo:all" },
   { name: "Dominio: Resend", command: "pnpm diag:resend:all" },
   { name: "Dominio: Shopify", command: "pnpm diag:shopify:all" },
   { name: "Dominio: Stripe", command: "pnpm diag:stripe:all" },
   { name: "Dominio: Nos3 (Vercel Blob)", command: "pnpm diag:nos3:all" },
-
-  // --- [FASE 2] GENERACIÓN DE ESQUEMA HOLÍSTICO (Prerrequisito) ---
   {
     name: "Consistencia: Generación de Schema Holístico DB",
     command: "pnpm diag:supabase:schema-all",
   },
-
-  // --- [FASE 3] GUARDIANES DE CONSISTENCIA INTER-DOMINIO (Dependientes) ---
   {
     name: "Consistencia: Vercel Blob (Nos3) <-> Supabase (Aura)",
     command: "tsx scripts/validation/validate-blob-db-consistency.ts",
@@ -46,7 +41,6 @@ const audits = [
   },
 ];
 
-// Contratos de datos para el informe y los resultados
 interface AuditResult {
   name: string;
   success: boolean;
@@ -62,20 +56,13 @@ interface HolisticReport {
     successCount: number;
     failureCount: number;
   };
-  summary: {
-    name: string;
-    status: "ÉXITO" | "FALLO";
-    durationMs: number;
-  }[];
-  failures: {
-    name: string;
-    error: string;
-  }[];
+  summary: { name: string; status: "ÉXITO" | "FALLO"; durationMs: number }[];
+  failures: { name: string; error: string }[];
 }
 
 async function runAudit(name: string, command: string): Promise<AuditResult> {
   const startTime = performance.now();
-  logger.startGroup(`[Auditoría] Ejecutando: ${name}`);
+  const groupId = logger.startGroup(`[Auditoría] Ejecutando: ${name}`);
 
   return new Promise((resolve) => {
     const child = exec(command, (error, stdout, stderr) => {
@@ -90,7 +77,7 @@ async function runAudit(name: string, command: string): Promise<AuditResult> {
       } else {
         logger.success(`[Auditoría] Éxito en '${name}'.`);
       }
-      logger.endGroup();
+      logger.endGroup(groupId);
       resolve({ name, success: !error, duration, error: errorMessage });
     });
 
@@ -100,15 +87,14 @@ async function runAudit(name: string, command: string): Promise<AuditResult> {
 }
 
 async function main() {
-  const mainTraceId = logger.startTrace("holistic-audit-orchestrator-v5.0");
+  const mainTraceId = logger.startTrace("holistic-audit-orchestrator-v7.2");
   const reportDir = path.resolve(process.cwd(), "reports");
   const holisticReportPath = path.resolve(
     reportDir,
     "holistic-audit-summary.json"
   );
-
-  logger.startGroup(
-    "🚀 Iniciando Auditoría Holística (v5.0 - Determinista)..."
+  const mainGroupId = logger.startGroup(
+    "🚀 Iniciando Auditoría Holística (v7.2 - Type Safe)..."
   );
 
   const results: AuditResult[] = [];
@@ -119,6 +105,7 @@ async function main() {
 
   const failures = results.filter((r) => !r.success);
 
+  // --- [INICIO DE CORRECCIÓN DE CONTRATO DE TIPO v7.2.0] ---
   const holisticReport: HolisticReport = {
     reportMetadata: {
       script: "scripts/orchestrators/run-holistic-audit.ts",
@@ -137,6 +124,7 @@ async function main() {
       error: f.error || "Error desconocido capturado.",
     })),
   };
+  // --- [FIN DE CORRECCIÓN DE CONTRATO DE TIPO v7.2.0] ---
 
   try {
     await fs.mkdir(reportDir, { recursive: true });
@@ -153,7 +141,7 @@ async function main() {
     });
   }
 
-  logger.startGroup("📊 INFORME FINAL DE CONSOLA");
+  const consoleGroupId = logger.startGroup("📊 INFORME FINAL DE CONSOLA");
   console.log("\n");
 
   const tableData = holisticReport.summary.map((s) => ({
@@ -177,7 +165,8 @@ async function main() {
     );
   }
 
-  logger.endGroup();
+  logger.endGroup(consoleGroupId);
+  logger.endGroup(mainGroupId);
   logger.endTrace(mainTraceId);
 }
 

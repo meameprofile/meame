@@ -1,12 +1,12 @@
 // RUTA: src/components/features/campaign-suite/Step5_Management/Step5.tsx
 /**
  * @file Step5.tsx
- * @description Ensamblador de Cliente para el Paso 5 de la SDC (Gestión).
- *              Forjado con un guardián de resiliencia y observabilidad de élite.
- * @version 6.0.0 (Elite Resilience & Full Observability)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Ensamblador de Cliente para el Paso 5 de la SDC (Gestión), nivelado
+ *              con observabilidad de élite y cumplimiento de contrato.
+ * @version 8.0.0 (Holistic Observability & Contract Integrity)
+ * @author L.I.A. Legacy
  */
-"use client";
+"use client"; // <-- DIRECTIVA SOBERANA DE FRONTERA CLIENTE-SERVIDOR
 
 import React from "react";
 import { logger } from "@/shared/lib/logging";
@@ -14,17 +14,20 @@ import { Step5Client } from "./Step5Client";
 import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
 import type { Step5ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step5.schema";
 import { type z } from "zod";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { usePathname } from "next/navigation";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
 
 type Content = z.infer<typeof Step5ContentSchema>;
 
 export function Step5({ content }: StepProps<Content>): React.ReactElement {
-  const traceId = logger.startTrace("Step5_Shell_Render_v6.0");
-  logger.startGroup(`[Step5 Shell] Ensamblando y delegando al cliente...`);
+  const traceId = logger.startTrace("Step5_Shell_Render_v8.0");
+  // --- [INICIO DE CORRECCIÓN DE CONTRATO v8.0.0] ---
+  const groupId = logger.startGroup(
+    `[Step5 Shell] Ensamblando y delegando al cliente...`
+  );
+  // --- [FIN DE CORRECCIÓN DE CONTRATO v8.0.0] ---
 
-  // Se obtiene el locale aquí para pasarlo al cliente, ya que es un Server Component "híbrido".
   const pathname = usePathname();
   const locale = getCurrentLocaleFromPathname(pathname);
 
@@ -56,7 +59,9 @@ export function Step5({ content }: StepProps<Content>): React.ReactElement {
       />
     );
   } finally {
-    logger.endGroup();
+    // --- [INICIO DE CORRECCIÓN DE CONTRATO v8.0.0] ---
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
+    // --- [FIN DE CORRECCIÓN DE CONTRATO v8.0.0] ---
   }
 }

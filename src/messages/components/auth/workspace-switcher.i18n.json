@@ -1,0 +1,42 @@
+{
+  "it-IT": {
+    "workspaceSwitcher": {
+      "activeWorkspaceLabel": "Workspace Attivo",
+      "loadingText": "Caricamento...",
+      "noWorkspacesTitle": "Nessun Workspace Trovato",
+      "noWorkspacesDescription": "Il tuo account non è associato a nessun workspace. Contatta il supporto.",
+      "errorTitle": "Errore nel Caricamento",
+      "errorDescription": "Impossibile caricare i tuoi workspace. Riprova più tardi."
+    }
+  },
+  "es-ES": {
+    "workspaceSwitcher": {
+      "activeWorkspaceLabel": "Workspace Activo",
+      "loadingText": "Cargando...",
+      "noWorkspacesTitle": "No se Encontraron Workspaces",
+      "noWorkspacesDescription": "Tu cuenta no está asociada a ningún workspace. Contacta con soporte.",
+      "errorTitle": "Error de Carga",
+      "errorDescription": "No se pudieron cargar tus workspaces. Inténtalo de nuevo más tarde."
+    }
+  },
+  "en-US": {
+    "workspaceSwitcher": {
+      "activeWorkspaceLabel": "Active Workspace",
+      "loadingText": "Loading...",
+      "noWorkspacesTitle": "No Workspaces Found",
+      "noWorkspacesDescription": "Your account is not associated with any workspace. Please contact support.",
+      "errorTitle": "Loading Error",
+      "errorDescription": "Could not load your workspaces. Please try again later."
+    }
+  },
+  "pt-BR": {
+    "workspaceSwitcher": {
+      "activeWorkspaceLabel": "Workspace Ativo",
+      "loadingText": "Carregando...",
+      "noWorkspacesTitle": "Nenhum Workspace Encontrado",
+      "noWorkspacesDescription": "Sua conta não está associada a nenhum workspace. Entre em contato com o suporte.",
+      "errorTitle": "Erro ao Carregar",
+      "errorDescription": "Não foi possível carregar seus workspaces. Tente novamente mais tarde."
+    }
+  }
+}

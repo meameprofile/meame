@@ -22,7 +22,7 @@ import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 import { getCampaignTemplatesAction } from "@/shared/lib/actions/campaign-suite";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { DeveloperErrorDisplay } from "../../dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type TemplateBrowserContent = NonNullable<Dictionary["campaignSuitePage"]>;
 

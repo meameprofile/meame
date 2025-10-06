@@ -9,7 +9,7 @@
 import React from "react";
 import { logger } from "@/shared/lib/logging";
 import { LanguageSelectorClient } from "./_components/LanguageSelectorClient";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
 import { SelectLanguagePageContentSchema } from "@/shared/lib/schemas/pages/select-language.schema";

@@ -21,7 +21,7 @@ import { DynamicIcon } from "@/components/ui";
 import { TiltCard } from "@/components/ui/TiltCard";
 import type { CampaignTemplate } from "@/shared/lib/schemas/campaigns/template.schema";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface TemplateCardProps {
   template: CampaignTemplate;

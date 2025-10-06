@@ -2,14 +2,17 @@
 /**
  * @file AppProviders.tsx
  * @description Orquestador de proveedores del lado del cliente.
- * @version 7.1.0 (ProducerLogic Filename Fix)
- * @author RaZ Podestá - MetaShark Tech
+ *              v8.0.0 (Client Boundary Enforcement): Se añade la directiva "use client"
+ *              para declarar explícitamente este componente como un límite de cliente,
+ *              resolviendo la violación de las Reglas de los Hooks.
+ * @version 8.0.0
+ * @author L.I.A. Legacy
  */
-"use client";
+"use client"; // <-- DIRECTIVA SOBERANA DE FRONTERA CLIENTE-SERVIDOR
 
 import React, { useEffect } from "react";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import { ProducerLogicWrapper } from "@/shared/hooks/producer-logic"; // <-- RUTA DE IMPORTACIÓN CORREGIDA
+import { ProducerLogicWrapper } from "@/shared/hooks/producer-logic";
 import { useUserPreferences } from "@/shared/hooks/use-user-preferences";
 import { CookieConsentBanner } from "./CookieConsentBanner";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
@@ -27,7 +30,7 @@ export default function AppProviders({
   locale,
   cookieConsentContent,
 }: AppProvidersProps): React.ReactElement {
-  logger.info("[AppProviders] Inicializando proveedores de cliente (v7.1).");
+  logger.info("[AppProviders] Inicializando proveedores de cliente (v8.0).");
 
   const { preferences, setPreference } = useUserPreferences();
   const safeLocale = locale || defaultLocale;

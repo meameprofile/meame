@@ -21,12 +21,19 @@ const EnhancePromptInputSchema = z
 let masterPromptCache: string | null = null;
 async function getMasterPrompt(): Promise<string> {
   if (masterPromptCache) return masterPromptCache;
-  const filePath = path.join(process.cwd(), "prompts", "enhance-user-prompt.md");
+  const filePath = path.join(
+    process.cwd(),
+    "prompts",
+    "enhance-user-prompt.md"
+  );
   try {
     masterPromptCache = await fs.readFile(filePath, "utf-8");
     return masterPromptCache;
   } catch (error) {
-    logger.error("[enhancePrompt] CRÍTICO: No se pudo cargar el prompt maestro.", { error });
+    logger.error(
+      "[enhancePrompt] CRÍTICO: No se pudo cargar el prompt maestro.",
+      { error }
+    );
     throw new Error("Configuración interna de IA incompleta.");
   }
 }
@@ -56,16 +63,23 @@ export async function enhancePromptAction(
     if (!result.success) return result;
     logger.traceEvent(traceId, "Respuesta de la IA recibida.");
 
-    const enhancedText = result.data.replace(/```(json|text)?\n?|\n?```/g, "").trim();
+    const enhancedText = result.data
+      .replace(/```(json|text)?\n?|\n?```/g, "")
+      .trim();
     if (!enhancedText) {
-      throw new Error("La respuesta de la IA estaba vacía después de la limpieza.");
+      throw new Error(
+        "La respuesta de la IA estaba vacía después de la limpieza."
+      );
     }
 
     logger.success("[AI Action] Prompt perfeccionado con éxito.", { traceId });
     return { success: true, data: enhancedText };
   } catch (error) {
     const msg = error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[AI Action] Fallo crítico al perfeccionar prompt.", { error: msg, traceId });
+    logger.error("[AI Action] Fallo crítico al perfeccionar prompt.", {
+      error: msg,
+      traceId,
+    });
     return {
       success: false,
       error: "No se pudo comunicar con el servicio de IA.",

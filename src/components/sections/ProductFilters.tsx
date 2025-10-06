@@ -17,7 +17,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { Slider } from "@/components/ui/Slider";
 import { Switch } from "@/components/ui/Switch";
 import type { ProductFiltersState } from "@/shared/hooks/use-product-filters";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type FilterData = NonNullable<
   z.infer<typeof StorePageLocaleSchema>["storePage"]

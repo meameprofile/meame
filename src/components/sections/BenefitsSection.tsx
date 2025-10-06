@@ -1,12 +1,5 @@
 // RUTA: src/components/sections/BenefitsSection.tsx
-/**
- * @file BenefitsSection.tsx
- * @description Componente de presentación para la sección de Beneficios.
- * @version 9.0.0 (Elite Contract & Focus-Aware)
- * @author RaZ Podestá - MetaShark Tech
- */
 "use client";
-
 import React, { forwardRef } from "react";
 import { motion, type Variants } from "framer-motion";
 import {
@@ -21,8 +14,7 @@ import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { BenefitItem } from "@/shared/lib/schemas/components/benefits-section.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
-
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 interface BenefitsSectionProps extends SectionProps<"benefitsSection"> {
   isFocused?: boolean;
 }
@@ -38,7 +30,7 @@ const sectionVariants: Variants = {
 
 export const BenefitsSection = forwardRef<HTMLElement, BenefitsSectionProps>(
   ({ content, isFocused }, ref) => {
-    const traceId = logger.startTrace("BenefitsSection_Render_v9.0");
+    const traceId = logger.startTrace("BenefitsSection_Render_v9.1");
     logger.info("[BenefitsSection] Renderizando (Focus-Aware).", { traceId });
 
     if (!content) {

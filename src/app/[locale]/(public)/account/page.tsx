@@ -14,7 +14,7 @@ import { ProfileForm } from "@/components/features/account/ProfileForm";
 import { PasswordForm } from "@/components/features/account/PasswordForm";
 import { DeleteAccountZone } from "@/components/features/account/DeleteAccountZone";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface AccountPageProps {
   params: { locale: Locale };

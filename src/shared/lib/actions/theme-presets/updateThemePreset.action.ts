@@ -75,9 +75,7 @@ export async function updateThemePresetAction(
       traceId
     );
 
-    logger.success(
-      `[Action] Preset '${updatedPreset.name}' actualizado.`
-    );
+    logger.success(`[Action] Preset '${updatedPreset.name}' actualizado.`);
     return { success: true, data: { updatedPreset } };
   } catch (error) {
     const msg = error instanceof Error ? error.message : "Error desconocido.";

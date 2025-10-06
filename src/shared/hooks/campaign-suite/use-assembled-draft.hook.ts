@@ -29,19 +29,31 @@ export function useAssembledDraft(): CampaignDraft {
 
   return useMemo((): CampaignDraft => {
     const traceId = logger.startTrace("assembleDraftFromStores_v2.0");
-    logger.traceEvent(traceId, "Dependencias cambiaron. Re-ensamblando borrador...");
+    logger.traceEvent(
+      traceId,
+      "Dependencias cambiaron. Re-ensamblando borrador..."
+    );
 
     const draft: CampaignDraft = {
-      draftId: metadata.draftId, baseCampaignId: metadata.baseCampaignId,
-      variantName: metadata.variantName, seoKeywords: metadata.seoKeywords,
-      completedSteps: metadata.completedSteps, updatedAt: metadata.updatedAt,
-      producer: identity.producer, campaignType: identity.campaignType,
-      headerConfig: structure.headerConfig, footerConfig: structure.footerConfig,
-      layoutConfig: layout.layoutConfig, themeConfig: theme.themeConfig,
+      draftId: metadata.draftId,
+      baseCampaignId: metadata.baseCampaignId,
+      variantName: metadata.variantName,
+      seoKeywords: metadata.seoKeywords,
+      completedSteps: metadata.completedSteps,
+      updatedAt: metadata.updatedAt,
+      producer: identity.producer,
+      campaignType: identity.campaignType,
+      headerConfig: structure.headerConfig,
+      footerConfig: structure.footerConfig,
+      layoutConfig: layout.layoutConfig,
+      themeConfig: theme.themeConfig,
       contentData: content.contentData,
     };
 
-    logger.success("[useAssembledDraft] Borrador re-ensamblado con éxito.", { traceId, draftId: draft.draftId });
+    logger.success("[useAssembledDraft] Borrador re-ensamblado con éxito.", {
+      traceId,
+      draftId: draft.draftId,
+    });
     logger.endTrace(traceId);
     return draft;
   }, [metadata, identity, structure, layout, theme, content]);

@@ -2,15 +2,13 @@
 /**
  * @file CampaignSuiteWizard.tsx
  * @description Orquestador de cliente y "Layout Shell" para la SDC.
- * @version 21.1.0 (Code Hygiene)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 22.0.0 (Holistic Sync & Elite Compliance)
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import React, { useMemo, useCallback, useEffect } from "react";
-// --- [INICIO DE CORRECCIÓN DE HIGIENE (no-unused-vars)] ---
 import { useRouter, usePathname } from "next/navigation";
-// --- [FIN DE CORRECCIÓN DE HIGIENE] ---
 import { logger } from "@/shared/lib/logging";
 import { stepsDataConfig } from "@/shared/lib/config/campaign-suite/wizard.data.config";
 import {
@@ -21,10 +19,11 @@ import { WizardProvider } from "./_context/WizardContext";
 import { ProgressContext, type ProgressStep } from "./_context/ProgressContext";
 import { WizardHeader } from "./_components/WizardHeader";
 import { WizardClientLayout } from "./_components/WizardClientLayout";
+import { CampaignDraftSubscriber } from "./_components/CampaignDraftSubscriber"; // <-- NUEVA IMPORTACIÓN
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { LoadedFragments } from "@/shared/lib/actions/campaign-suite";
-import { DeveloperErrorDisplay } from "../dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface CampaignSuiteWizardProps {
   children: React.ReactNode;
@@ -42,7 +41,7 @@ export function CampaignSuiteWizard({
   dictionary,
 }: CampaignSuiteWizardProps) {
   const traceId = useMemo(
-    () => logger.startTrace("CampaignSuiteWizard_v21.1"),
+    () => logger.startTrace("CampaignSuiteWizard_v22.0"),
     []
   );
   useEffect(() => {
@@ -134,6 +133,7 @@ export function CampaignSuiteWizard({
 
   return (
     <WizardProvider value={wizardContextValue}>
+      <CampaignDraftSubscriber /> {/* <-- INYECCIÓN ESTRATÉGICA */}
       <ProgressContext.Provider value={progressContextValue}>
         <WizardHeader />
         <WizardClientLayout

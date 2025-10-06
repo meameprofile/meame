@@ -1,8 +1,8 @@
 // RUTA: src/shared/hooks/campaign-suite/use-campaign-draft-context.store.ts
 /**
  * @file use-campaign-draft-context.store.ts
- * @description Store Orquestador de élite para la SDC.
- * @version 17.0.0 (Elite Observability & Resilience)
+ * @description Store Orquestador de élite para la SDC, ahora purificado de efectos secundarios.
+ * @version 18.0.0 (Pure & Side-Effect Free)
  * @author L.I.A. Legacy
  */
 "use client";
@@ -69,8 +69,10 @@ export const useCampaignDraftStore = create<
   ...initialState,
 
   initializeDraft: async () => {
-    const traceId = logger.startTrace("initializeDraft_v17.0");
-    logger.startGroup("[Orchestrator] Inicializando borrador...", traceId);
+    const traceId = logger.startTrace("initializeDraft_v18.0");
+    const groupId = logger.startGroup(
+      "[Orchestrator] Inicializando borrador..."
+    );
     set({ isLoading: true });
 
     try {
@@ -81,20 +83,29 @@ export const useCampaignDraftStore = create<
 
       if (result.data.draft) {
         hydrateAllStores(result.data.draft);
-        logger.success(`[Orchestrator] Borrador ${result.data.draft.draftId} hidratado desde DB.`, { traceId });
+        logger.success(
+          `[Orchestrator] Borrador ${result.data.draft.draftId} hidratado desde DB.`,
+          { traceId }
+        );
       } else {
         resetAllStores();
-        logger.info("[Orchestrator] No se encontró borrador remoto, iniciando uno nuevo.", { traceId });
+        logger.info(
+          "[Orchestrator] No se encontró borrador remoto, iniciando uno nuevo.",
+          { traceId }
+        );
       }
     } catch (error) {
-        const msg = error instanceof Error ? error.message : "Error desconocido.";
-        toast.error("Error al cargar el borrador", { description: msg });
-        logger.error("[Orchestrator] Fallo en la inicialización.", { error: msg, traceId });
-        resetAllStores();
+      const msg = error instanceof Error ? error.message : "Error desconocido.";
+      toast.error("Error al cargar el borrador", { description: msg });
+      logger.error("[Orchestrator] Fallo en la inicialización.", {
+        error: msg,
+        traceId,
+      });
+      resetAllStores();
     } finally {
-        set({ isLoading: false, isHydrated: true });
-        logger.endGroup();
-        logger.endTrace(traceId);
+      set({ isLoading: false, isHydrated: true });
+      logger.endGroup(groupId);
+      logger.endTrace(traceId);
     }
   },
 
@@ -103,8 +114,10 @@ export const useCampaignDraftStore = create<
     if (debounceTimeoutId) clearTimeout(debounceTimeoutId);
 
     const newTimeoutId = setTimeout(async () => {
-      const traceId = logger.startTrace("debouncedSave_v17.0");
-      logger.startGroup("[Orchestrator] Ejecutando guardado automático...", traceId);
+      const traceId = logger.startTrace("debouncedSave_v18.0");
+      const groupId = logger.startGroup(
+        "[Orchestrator] Ejecutando guardado automático..."
+      );
       set({ isSyncing: true });
 
       const activeWorkspaceId = useWorkspaceStore.getState().activeWorkspaceId;
@@ -112,28 +125,43 @@ export const useCampaignDraftStore = create<
 
       if (!metadata.draftId || !activeWorkspaceId) {
         set({ isSyncing: false });
-        logger.warn("[Orchestrator] Guardado omitido: falta draftId o workspaceId.", { traceId });
-        logger.endGroup();
+        logger.warn(
+          "[Orchestrator] Guardado omitido: falta draftId o workspaceId.",
+          { traceId }
+        );
+        logger.endGroup(groupId);
         logger.endTrace(traceId);
         return;
       }
 
       const draftToSave: CampaignDraft = {
-        ...metadata, ...useStep0IdentityStore.getState(), ...useStep1StructureStore.getState(),
-        ...useStep2LayoutStore.getState(), ...useStep3ThemeStore.getState(), ...useStep4ContentStore.getState(),
+        ...metadata,
+        ...useStep0IdentityStore.getState(),
+        ...useStep1StructureStore.getState(),
+        ...useStep2LayoutStore.getState(),
+        ...useStep3ThemeStore.getState(),
+        ...useStep4ContentStore.getState(),
       };
 
       const result = await saveDraftAction(draftToSave, activeWorkspaceId);
 
       if (result.success) {
-        useDraftMetadataStore.getState().setMetadata({ updatedAt: result.data.updatedAt });
-        logger.success(`[Orchestrator] Borrador ${metadata.draftId} guardado con éxito.`, { traceId });
+        useDraftMetadataStore
+          .getState()
+          .setMetadata({ updatedAt: result.data.updatedAt });
+        logger.success(
+          `[Orchestrator] Borrador ${metadata.draftId} guardado con éxito.`,
+          { traceId }
+        );
       } else {
         toast.error("Error al guardar", { description: result.error });
-        logger.error("[Orchestrator] Fallo el guardado automático.", { error: result.error, traceId });
+        logger.error("[Orchestrator] Fallo el guardado automático.", {
+          error: result.error,
+          traceId,
+        });
       }
       set({ isSyncing: false, debounceTimeoutId: null });
-      logger.endGroup();
+      logger.endGroup(groupId);
       logger.endTrace(traceId);
     }, 1500);
 
@@ -141,50 +169,44 @@ export const useCampaignDraftStore = create<
   },
 
   deleteCurrentDraft: async () => {
-    const traceId = logger.startTrace("deleteCurrentDraft_v17.0");
-    logger.startGroup("[Orchestrator] Eliminando borrador actual...", traceId);
+    const traceId = logger.startTrace("deleteCurrentDraft_v18.0");
+    const groupId = logger.startGroup(
+      "[Orchestrator] Eliminando borrador actual..."
+    );
     const draftId = useDraftMetadataStore.getState().draftId;
     if (!draftId) {
       logger.warn("[Orchestrator] No hay borrador para eliminar.", { traceId });
-      logger.endGroup();
+      logger.endGroup(groupId);
       logger.endTrace(traceId);
       return;
-    };
+    }
 
     const result = await deleteDraftAction(draftId);
     if (result.success) {
       resetAllStores();
       toast.success("Borrador eliminado con éxito.");
-      logger.success(`[Orchestrator] Borrador ${draftId} eliminado.`, { traceId });
+      logger.success(`[Orchestrator] Borrador ${draftId} eliminado.`, {
+        traceId,
+      });
     } else {
       toast.error("Error al eliminar", { description: result.error });
-      logger.error("[Orchestrator] Fallo al eliminar borrador.", { error: result.error, traceId });
+      logger.error("[Orchestrator] Fallo al eliminar borrador.", {
+        error: result.error,
+        traceId,
+      });
     }
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   },
 
   resetDraft: () => {
-    const traceId = logger.startTrace("resetDraft_v17.0");
-    logger.warn("[Orchestrator] Reiniciando borrador a estado inicial.", { traceId });
+    const traceId = logger.startTrace("resetDraft_v18.0");
+    logger.warn("[Orchestrator] Reiniciando borrador a estado inicial.", {
+      traceId,
+    });
     resetAllStores();
     logger.endTrace(traceId);
   },
 }));
 
-let isSubscribed = false;
-if (typeof window !== 'undefined' && !isSubscribed) {
-  const onChange = () => {
-    if (useCampaignDraftStore.getState().isHydrated) {
-      useCampaignDraftStore.getState().triggerDebouncedSave();
-    }
-  };
-  useDraftMetadataStore.subscribe(onChange);
-  useStep0IdentityStore.subscribe(onChange);
-  useStep1StructureStore.subscribe(onChange);
-  useStep2LayoutStore.subscribe(onChange);
-  useStep3ThemeStore.subscribe(onChange);
-  useStep4ContentStore.subscribe(onChange);
-  isSubscribed = true;
-  logger.info("[Orchestrator] Suscripción a los stores atómicos activada.");
-}
+// El bloque de código que causaba el efecto secundario a nivel de módulo ha sido ELIMINADO de aquí.

@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/Form";
 import { cn } from "@/shared/lib/utils/cn";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface FormFieldGroupProps {
   label: string;

@@ -1,23 +1,12 @@
 // RUTA: src/components/sections/ArticleBody.tsx
-/**
- * @file ArticleBody.tsx
- * @description Componente de presentación de élite para renderizar el cuerpo de un artículo.
- *              v3.0.0 (Sovereign Contract & Focus-Aware): Refactorizado para
- *              cumplir con la arquitectura de "Modo Enfoque" y con un guardián de
- *              resiliencia de contrato reforzado.
- * @version 3.0.0
- * @author RaZ Podestá - MetaShark Tech
- */
 "use client";
-
 import React, { forwardRef } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import { Container } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
-
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 interface ArticleBodyProps {
   content: string;
   isFocused?: boolean;
@@ -25,13 +14,12 @@ interface ArticleBodyProps {
 
 export const ArticleBody = forwardRef<HTMLElement, ArticleBodyProps>(
   ({ content, isFocused }, ref) => {
-    const traceId = logger.startTrace("ArticleBody_Render_v3.0");
+    const traceId = logger.startTrace("ArticleBody_Render_v3.1");
     logger.info(
       "[ArticleBody] Renderizando contenido Markdown (Focus-Aware).",
       { traceId }
     );
 
-    // --- [INICIO] GUARDIÁN DE RESILIENCIA DE CONTRATO ---
     if (typeof content !== "string") {
       logger.error(
         "[Guardián] Prop 'content' inválida para ArticleBody. Se esperaba un string.",
@@ -47,7 +35,6 @@ export const ArticleBody = forwardRef<HTMLElement, ArticleBodyProps>(
         </Container>
       );
     }
-    // --- [FIN] GUARDIÁN DE RESILIENCIA DE CONTRATO ---
 
     logger.endTrace(traceId);
 

@@ -14,7 +14,7 @@ import { Step3Client } from "./Step3Client";
 import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
 import type { Step3ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
 import type { z } from "zod";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { loadAllThemeFragmentsAction } from "@/shared/lib/actions/campaign-suite";
 
 type Content = z.infer<typeof Step3ContentSchema>;

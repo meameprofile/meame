@@ -1,4 +1,4 @@
-// Ruta correcta: src/shared/lib/schemas/components/contact-section.schema.ts
+// RUTA: src/shared/lib/schemas/components/contact-section.schema.ts
 /**
  * @file contact-section.schema.ts
  * @description Esquema de Zod para el contenido i18n de la ContactSection.
@@ -9,8 +9,6 @@
  */
 import { z } from "zod";
 import { LucideIconNameSchema } from "@/shared/lib/config/lucide-icon-names";
-
-// La llamada a logger.trace() ha sido eliminada de aquí.
 
 const ContactInfoItemSchema = z.object({
   iconName: LucideIconNameSchema,
@@ -44,4 +42,3 @@ export const ContactSectionContentSchema = z.object({
 export const ContactSectionLocaleSchema = z.object({
   contactSection: ContactSectionContentSchema.optional(),
 });
-// Ruta correcta: src/shared/lib/schemas/components/contact-section.schema.ts
