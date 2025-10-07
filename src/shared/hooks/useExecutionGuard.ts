@@ -3,7 +3,7 @@
  * @file useExecutionGuard.ts
  * @description Hook Soberano "Cortocircuito" para la prevención de bucles infinitos.
  * @version 2.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

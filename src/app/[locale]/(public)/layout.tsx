@@ -3,7 +3,7 @@
  * @file layout.tsx
  * @description Layout para el grupo de rutas públicas, con un Guardián de
  *              Resiliencia holístico y ahora alineado con el contrato de i18n soberano.
- * @version 2.1.0 (Holistic i18n Contract Alignment)
+ * @version 2.2.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
@@ -24,8 +24,10 @@ export default async function PublicLayout({
   children,
   params: { locale },
 }: PublicLayoutProps) {
-  const traceId = logger.startTrace(`PublicLayout_Render_v2.1:${locale}`);
-  logger.startGroup(`[PublicLayout] Ensamblando UI para [${locale}]...`);
+  const traceId = logger.startTrace(`PublicLayout_Render_v2.2:${locale}`);
+  const groupId = logger.startGroup(
+    `[PublicLayout] Ensamblando UI para [${locale}]...`
+  );
 
   try {
     const { dictionary, error } = await getDictionary(locale);
@@ -82,11 +84,7 @@ export default async function PublicLayout({
 
     return (
       <>
-        {/* --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v2.1.0] --- */}
-        {/* La prop 'supportedLocales' ha sido eliminada de la llamada,
-            resolviendo la fractura de contrato. */}
         <Header content={headerContent} currentLocale={locale} />
-        {/* --- [FIN DE REFACTORIZACIÓN DE CONTRATO v2.1.0] --- */}
         <main>{children}</main>
         <Footer content={footer} />
       </>
@@ -109,7 +107,7 @@ export default async function PublicLayout({
     }
     return <>{children}</>;
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

@@ -3,7 +3,7 @@
  * @file use-cookie-consent.ts
  * @description Hook soberano para gestionar el estado del consentimiento de cookies.
  * @version 3.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -3,7 +3,7 @@
  * @file use-playback-control.ts
  * @description Hook atómico para gestionar el estado de reproducción y volumen.
  * @version 3.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

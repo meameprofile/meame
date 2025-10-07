@@ -1,9 +1,9 @@
 // RUTA: src/components/features/campaign-suite/Step0_Identity/Step0Form.tsx
 /**
  * @file Step0Form.tsx
- * @description Componente de Presentación para el formulario del Paso 0, ahora
- *              inyectado con una animación de entrada en cascada para una MEA/UX de élite.
- * @version 8.0.0 (MEA/UX Injection & Elite Compliance)
+ * @description Componente de Presentación para el formulario del Paso 0,
+ *              alineado con el WizardNavigation v2.0 y restaurado a su integridad total.
+ * @version 9.1.0 (Build Integrity Restoration)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -32,12 +32,15 @@ import { producersConfig } from "@/shared/lib/config/campaign-suite/producers.co
 
 type Step0Content = z.infer<typeof Step0ContentSchema>;
 
+// --- [INICIO] RESTAURACIÓN DE INTEGRIDAD DE CONTRATO ---
+// Se define la interfaz de props que faltaba.
 interface Step0FormProps {
   form: UseFormReturn<Step0Data>;
   content: Step0Content;
   baseCampaigns: string[];
   onSubmit: (data: Step0Data) => void;
 }
+// --- [FIN] RESTAURACIÓN DE INTEGRIDAD DE CONTRATO ---
 
 const formVariants: Variants = {
   hidden: { opacity: 0 },
@@ -55,9 +58,7 @@ export function Step0Form({
   baseCampaigns,
   onSubmit,
 }: Step0FormProps): React.ReactElement {
-  logger.trace(
-    "[Step0Form] Renderizando formulario de presentación v8.0 (MEA/UX)."
-  );
+  logger.trace("[Step0Form] Renderizando formulario de presentación v9.1.");
 
   const selectedProducer = form.watch("producer");
   const campaignTypeOptions =
@@ -73,6 +74,7 @@ export function Step0Form({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <CardContent>
+            {/* --- [INICIO] RESTAURACIÓN DEL CUERPO LÓGICO --- */}
             <motion.div
               className="space-y-8"
               variants={formVariants}
@@ -134,11 +136,13 @@ export function Step0Form({
                 />
               </motion.div>
             </motion.div>
+            {/* --- [FIN] RESTAURACIÓN DEL CUERPO LÓGICO --- */}
           </CardContent>
           <CardFooter>
             <WizardNavigation
               onNext={form.handleSubmit(onSubmit)}
               onBack={() => {}}
+              isFirstStep={true}
             />
           </CardFooter>
         </form>

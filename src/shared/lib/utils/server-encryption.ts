@@ -6,7 +6,7 @@
  *              relacionados con los tipos CipherGCM/DecipherGCM del módulo 'crypto' de Node.js,
  *              garantizando una seguridad de tipos absoluta.
  * @version 4.1.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 //import { logger } from "@/shared/lib/logging";

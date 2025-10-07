@@ -3,7 +3,7 @@
  * @file bavi.ts
  * @description Script de siembra para poblar las tablas de la BAVI en Supabase,
  *              ahora con observabilidad y resiliencia de élite.
- * @version 8.0.0 (Great Refactoring Aligned)
+ * @version 8.1.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -46,8 +46,10 @@ const BaviManifestSchema = z.object({
 export default async function seedBavi(): Promise<
   ActionResult<{ seededAssets: number }>
 > {
-  const traceId = logger.startTrace("seedBavi_v8.0");
-  logger.startGroup("🌱 Iniciando siembra de DB para BAVI (Holistic)...");
+  const traceId = logger.startTrace("seedBavi_v8.1");
+  const groupId = logger.startGroup(
+    "🌱 Iniciando siembra de DB para BAVI (Holistic)..."
+  );
 
   try {
     const supabaseAdmin = createScriptClient();
@@ -148,7 +150,7 @@ export default async function seedBavi(): Promise<
     });
     return { success: false, error: errorMessage };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

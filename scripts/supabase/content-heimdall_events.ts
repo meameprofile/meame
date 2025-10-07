@@ -3,7 +3,7 @@
  * @file content-heimdall_events.ts
  * @description Guardián de Contenido para la tabla 'heimdall_events'.
  * @version 2.1.0 (Type Safety & Contract Integrity)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import path from "path";

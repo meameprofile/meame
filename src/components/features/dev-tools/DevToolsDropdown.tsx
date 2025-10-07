@@ -5,7 +5,7 @@
  *              v7.0.0 (Holistic Refactor - Presentation-Only): Refactorizado para
  *              ser un componente de presentación puro, recibiendo sus datos como props.
  * @version 7.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

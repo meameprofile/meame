@@ -3,7 +3,7 @@
  * @file bavi.shapers.ts
  * @description SSoT para la transformación de datos (shaping) del dominio BAVI.
  * @version 2.0.0 (Absolute Type Safety)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import {

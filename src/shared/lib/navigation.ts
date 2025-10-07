@@ -5,7 +5,7 @@
  *              v16.0.0 (Heimdall Observatory Integration): Se integra la nueva
  *              ruta soberana para el Observatorio Heimdall dentro del DCC.
  * @version 16.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { defaultLocale, type Locale } from "./i18n/i18n.config";
 import { logger } from "./logging";

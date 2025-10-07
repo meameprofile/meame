@@ -3,7 +3,7 @@
  * @file index.ts (Barrel File)
  * @description Fachada pública para las Server Actions de RaZPrompts.
  * @version 3.0.0 (Holistic Export)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 export * from "./createPromptEntry.action";
 export * from "./linkPromptToBaviAsset.action";

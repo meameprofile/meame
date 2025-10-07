@@ -3,7 +3,7 @@
  * @file analytics.shapers.ts
  * @description SSoT para la transformación de datos del dominio de Analytics.
  * @version 1.0.0 (Sovereign & Resilient)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import {

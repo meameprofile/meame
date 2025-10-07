@@ -3,7 +3,7 @@
  * @file use-sound.ts
  * @description Hook de utilidad para la reproducción de efectos de sonido.
  * @version 2.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

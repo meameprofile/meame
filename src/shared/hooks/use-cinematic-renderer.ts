@@ -3,7 +3,7 @@
  * @file use-cinematic-renderer.ts
  * @description Hook orquestador para el motor "Aether".
  * @version 6.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

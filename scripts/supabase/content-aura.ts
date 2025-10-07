@@ -4,7 +4,7 @@
  * @description Guardián de Contenido para el dominio Aura, forjado con una lógica de censo
  *              "consciente del esquema" para una resiliencia y precisión de élite.
  * @version 4.0.0 (Schema-Aware & Definitive)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";
@@ -42,7 +42,7 @@ interface Report {
 
 async function diagnoseAuraContent() {
   const traceId = logger.startTrace("diagnoseAuraContent_v4.0");
-  logger.startGroup(
+  const groupId = logger.startGroup(
     `[Guardián Aura] Realizando censo de contenido consciente del esquema...`
   );
 
@@ -74,8 +74,6 @@ async function diagnoseAuraContent() {
       "aura_insights",
     ];
 
-    // --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA v4.0.0] ---
-    // La consulta ahora selecciona dinámicamente la clave primaria correcta para cada tabla.
     const countPromises = tablesToCount.map(async (table) => {
       const primaryKey = primaryKeyMap[table];
       const { data, error } = await supabase.from(table).select(primaryKey);
@@ -84,7 +82,6 @@ async function diagnoseAuraContent() {
       }
       return { table, count: data?.length ?? 0 };
     });
-    // --- [FIN DE REFACTORIZACIÓN DE RESILIENCIA v4.0.0] ---
 
     logger.traceEvent(
       traceId,
@@ -110,7 +107,7 @@ async function diagnoseAuraContent() {
     logger.info(
       `Informe guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

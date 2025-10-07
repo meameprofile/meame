@@ -3,7 +3,7 @@
  * @file page.tsx
  * @description Página "Server Shell" soberana para el Observatorio Heimdall.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server-only";
 import React from "react";

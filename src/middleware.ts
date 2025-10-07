@@ -4,7 +4,7 @@
  * @description Guardián de la puerta de entrada, ahora completamente alineado con
  *              el Protocolo Heimdall v2.0 para una observabilidad de élite.
  * @version 20.0.0 (Heimdall Protocol Compliant)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { type NextRequest, NextResponse } from "next/server";
 import { logger } from "./shared/lib/logging";

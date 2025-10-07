@@ -3,7 +3,7 @@
  * @file enhancePrompt.action.ts
  * @description Server Action de élite para enriquecer un prompt de usuario.
  * @version 2.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

@@ -2,18 +2,19 @@
 /**
  * @file schema-aura-insights.ts
  * @description Guardián de Esquema para la tabla `aura_insights`.
- * @version 1.0.0
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-
 import { scriptLogger as logger } from "../_utils/logger";
 import { runTableAudit } from "./_utils/runTableAudit";
 
 const TARGET_TABLE = "aura_insights";
 
 async function diagnoseAuraInsightsSchema() {
-  const traceId = logger.startTrace(`diagnoseSchema:${TARGET_TABLE}`);
-  logger.startGroup(`🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`);
+  const traceId = logger.startTrace(`diagnoseSchema:${TARGET_TABLE}_v1.1`);
+  const groupId = logger.startGroup(
+    `🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`
+  );
 
   const instructionsForAI = [
     `Este es un informe de diagnóstico estructural para la tabla '${TARGET_TABLE}', la bóveda de inteligencia de Temeo AI.`,
@@ -24,7 +25,7 @@ async function diagnoseAuraInsightsSchema() {
 
   await runTableAudit(TARGET_TABLE, instructionsForAI, traceId);
 
-  logger.endGroup();
+  logger.endGroup(groupId);
   logger.endTrace(traceId);
 }
 

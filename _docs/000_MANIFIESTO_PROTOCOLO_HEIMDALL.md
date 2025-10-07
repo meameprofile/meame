@@ -6,7 +6,7 @@
 -              Define la visión, arquitectura y contratos para un sistema de
 -              observabilidad de élite, diseñado para la autonomía algorítmica.
 - @version 2.0.0 (Conciencia Espacio-Temporal)
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Soberano: Protocolo Heimdall v2.0
@@ -82,7 +82,7 @@ Una futura interfaz en el DCC que traducirá los datos crudos de la Bóveda de M
  *              Define la visión, arquitectura, contratos y el protocolo de nivelación
  *              gradual para una observabilidad de élite.
  * @version 2.1.0 (Nivelación Gradual y Adopción Holística)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 
 # Manifiesto Soberano: Protocolo Heimdall v2.1

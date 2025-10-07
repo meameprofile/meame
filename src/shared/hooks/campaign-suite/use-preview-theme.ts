@@ -3,7 +3,7 @@
  * @file use-preview-theme.ts
  * @description Hook atómico para ensamblar el tema de la vista previa.
  * @version 8.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

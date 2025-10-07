@@ -3,7 +3,7 @@
  * @file use-user-preferences.ts
  * @description Hook Soberano para la gestión de preferencias de usuario persistentes.
  * @version 2.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

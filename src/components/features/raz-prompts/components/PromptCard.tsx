@@ -4,7 +4,7 @@
  * @description Componente de presentación para visualizar un prompt, con seguridad
  *              de tipos absoluta y cumplimiento de contratos soberanos.
  * @version 9.0.0 (SESA Atomic Key Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

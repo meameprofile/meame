@@ -5,7 +5,7 @@
  *              que recibe las rutas pre-generadas y maneja de forma resiliente las plantillas de
  *              rutas dinámicas para prevenir errores de "dynamic href" en Next.js.
  * @version 5.0.0 (DRY & Dynamic Href Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

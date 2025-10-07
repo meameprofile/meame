@@ -5,7 +5,7 @@
  *              Nivelado para cumplir con la API v20+ y garantizar la integridad de
  *              contrato en todo el ecosistema de diagnóstico.
  * @version 20.0.0 (API Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import chalk from "chalk";
 

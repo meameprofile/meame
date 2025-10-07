@@ -32,7 +32,7 @@ export default async function diagnoseI18nContent(): Promise<
   ActionResult<{ count: number }>
 > {
   const traceId = logger.startTrace("diagnoseI18nContent_v2.0");
-  logger.startGroup(
+  const groupId = logger.startGroup(
     `[i18n Guardián] Auditando tabla 'i18n_content_entries'...`
   );
 
@@ -61,19 +61,14 @@ export default async function diagnoseI18nContent(): Promise<
 
   try {
     const supabase = createScriptClient();
-    // --- [INICIO DE REFACTORIZACIÓN DE TIPO] ---
-    // Se elimina la aserción 'as any'. La llamada a `select` con el cliente
-    // tipado es suficiente para garantizar la seguridad.
     const { data, error, count } = await supabase
       .from("i18n_content_entries")
       .select("entry_key", { count: "exact" });
-    // --- [FIN DE REFACTORIZACIÓN DE TIPO] ---
 
     if (error) {
       throw new Error(`Error de Supabase: ${error.message}`);
     }
 
-    // Se asegura de que 'data' no sea nulo antes de mapear.
     report.census.totalEntries = count ?? 0;
     report.census.entryKeys = data?.map((d) => d.entry_key) || [];
     report.auditStatus = "SUCCESS";
@@ -100,7 +95,7 @@ export default async function diagnoseI18nContent(): Promise<
         reportPath
       )}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 

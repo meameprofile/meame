@@ -5,7 +5,7 @@
  *              sincronizada con la API v20+ del logger soberano para
  *              garantizar la integridad de contrato en todo el ecosistema.
  * @version 2.0.0 (API Contract Alignment & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 /* eslint-env node */
 import chalk from "chalk";

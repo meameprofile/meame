@@ -4,7 +4,7 @@
  * @description Componente de presentación puro para el formulario de login, nivelado
  *              con observabilidad de élite y cumplimiento estricto de contratos.
  * @version 10.0.0 (Holistic Observability & Contract Integrity)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

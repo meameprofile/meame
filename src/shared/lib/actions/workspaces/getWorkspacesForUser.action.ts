@@ -4,7 +4,7 @@
  * @description Server Action para obtener los workspaces de un usuario, nivelada con
  *              observabilidad de élite y cumplimiento de contrato.
  * @version 3.0.0 (Holistic Observability & Contract Integrity)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

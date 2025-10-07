@@ -1,4 +1,4 @@
-// pnpm tsx scripts/run-with-env.ts scripts/resend/connect.ts
+// RUTA: scripts/resend/connect.ts
 /**
  * @file connect.ts
  * @description Guardián de Conexión para Resend. Verifica variables de entorno
@@ -10,7 +10,7 @@ import { Resend } from "resend";
 import { promises as fs } from "fs";
 import * as path from "path";
 import { loadEnvironment } from "../_utils/env";
-import { scriptLogger } from "../_utils/logger"; // <-- IMPORTACIÓN RESTAURADA
+import { scriptLogger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";
 
 // --- SSoT de Contratos de Datos ---
@@ -37,7 +37,7 @@ interface Report {
 
 async function diagnoseResendConnection(): Promise<ScriptActionResult<string>> {
   const traceId = scriptLogger.startTrace("diagnoseResendConnection_v2.0.3");
-  scriptLogger.startGroup(
+  const groupId = scriptLogger.startGroup(
     "✉️  Iniciando Guardián de Conexión a Resend (v2.0.3)..."
   );
 
@@ -146,7 +146,7 @@ async function diagnoseResendConnection(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.connectionStatus === "FAILED") process.exit(1);
   }

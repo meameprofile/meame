@@ -3,7 +3,7 @@
  * @file linkPromptToBaviAsset.action.ts
  * @description Server Action simbiótica para vincular un activo de BAVI a un genoma de prompt.
  * @version 11.0.0 (Elite Observability & Atomic Update)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

@@ -4,7 +4,7 @@
  * @description Guardián de Esquema SOBERANO para la tabla 'heimdall_events',
  *              nivelado para cumplir con el contrato del logger v20+.
  * @version 2.1.0 (Logger Contract Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

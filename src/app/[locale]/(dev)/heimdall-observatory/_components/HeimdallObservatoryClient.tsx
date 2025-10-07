@@ -3,7 +3,7 @@
  * @file HeimdallObservatoryClient.tsx
  * @description Orquestador de cliente para el Observatorio Heimdall.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 import React, { useState } from "react";

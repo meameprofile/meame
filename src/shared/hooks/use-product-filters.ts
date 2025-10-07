@@ -3,7 +3,7 @@
  * @file use-product-filters.ts
  * @description Hook soberano para gestionar el estado y la lógica de filtrado de productos.
  * @version 2.0.0 (Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

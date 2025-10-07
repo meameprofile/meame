@@ -6,7 +6,7 @@
 -              Define su rol como motor de carga dinámica para el Developer Command
 -              Center (DCC) y su posición crítica en la frontera Cliente-Servidor.
 - @version 1.0.0
-- @author L.I.A. Legacy
+- @author RaZ Podestá - MetaShark Tech
   \*/
 
 # Manifiesto Conceptual Espejo: ComponentLoader.ts

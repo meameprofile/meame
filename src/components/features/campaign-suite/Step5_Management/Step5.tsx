@@ -4,7 +4,7 @@
  * @description Ensamblador de Cliente para el Paso 5 de la SDC (Gestión), nivelado
  *              con observabilidad de élite y cumplimiento de contrato.
  * @version 8.0.0 (Holistic Observability & Contract Integrity)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client"; // <-- DIRECTIVA SOBERANA DE FRONTERA CLIENTE-SERVIDOR
 

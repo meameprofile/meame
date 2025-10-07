@@ -4,7 +4,7 @@
  * @description Guardián de Conexión para Cloudinary. Verifica variables de entorno
  *              y la conectividad con la API, generando un informe de diagnóstico.
  * @version 4.1.0 (Type Contract Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { v2 as cloudinary } from "cloudinary";
 import { promises as fs } from "fs";
@@ -43,7 +43,6 @@ async function diagnoseCloudinaryConnection() {
   const reportDir = path.resolve(process.cwd(), "reports", "cloudinary");
   const reportPath = path.resolve(reportDir, "connect-diagnostics.json");
 
-  // --- [INICIO DE CORRECCIÓN DE CONTRATO DE TIPO v4.1.0] ---
   const report: Report = {
     reportMetadata: {
       script: "scripts/cloudinary/connect.ts",
@@ -65,7 +64,6 @@ async function diagnoseCloudinaryConnection() {
     },
     summary: "",
   };
-  // --- [FIN DE CORRECCIÓN DE CONTRATO DE TIPO v4.1.0] ---
 
   try {
     loadEnvironment();

@@ -3,7 +3,7 @@
  * @file getAdminProducts.action.ts
  * @description Server Action soberana para obtener productos de la Admin API.
  * @version 5.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

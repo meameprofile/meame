@@ -4,7 +4,7 @@
  * @description Server Action de producción para obtener el borrador más reciente
  *              de un usuario, forjada con observabilidad de élite y resiliencia.
  * @version 3.0.0 (Hyper-Granular Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

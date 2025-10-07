@@ -3,7 +3,7 @@
  * @file index.ts (Barrel File)
  * @description Fachada pública para las Server Actions del dominio Cogniread.
  * @version 4.0.0 (Holistic & Correct Export)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

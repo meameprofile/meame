@@ -3,7 +3,7 @@
  * @file use-progress-tracker.ts
  * @description Hook atómico para rastrear el progreso de reproducción del vídeo.
  * @version 2.0.0 (Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

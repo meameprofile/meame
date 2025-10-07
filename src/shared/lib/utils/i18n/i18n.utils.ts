@@ -4,7 +4,7 @@
  * @description Aparato de utilidades puras y sin estado para la lógica de i18n,
  *              ahora alineado con la SSoT de enrutamiento.
  * @version 3.0.0 (Routing Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import {
   ROUTING_LOCALES,

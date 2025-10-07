@@ -1,9 +1,9 @@
-// pnpm tsx scripts/run-with-env.ts scripts/resend/schema.ts
+// RUTA: scripts/resend/schema.ts
 /**
  * @file schema.ts
  * @description Guardián de Esquema para Resend. Audita los dominios de envío
  *              verificados en la cuenta y genera un informe de diagnóstico.
- * @version 1.0.0 (Resilient & AI-Consumable)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { Resend } from "resend";
@@ -29,8 +29,8 @@ interface Report {
 }
 
 async function diagnoseResendSchema(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace("diagnoseResendSchema_v1.0");
-  scriptLogger.startGroup(
+  const traceId = scriptLogger.startTrace("diagnoseResendSchema_v1.1");
+  const groupId = scriptLogger.startGroup(
     "🔬 Auditando Esquema (Dominios Verificados) de Resend..."
   );
 
@@ -106,7 +106,7 @@ async function diagnoseResendSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

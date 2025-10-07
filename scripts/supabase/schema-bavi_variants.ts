@@ -1,9 +1,9 @@
-// pnpm tsx scripts/run-with-env.ts scripts/supabase/schema-bavi_variants.ts
+// RUTA: scripts/supabase/schema-bavi_variants.ts
 /**
  * @file schema-bavi_variants.ts
  * @description Guardián de Esquema para la tabla `bavi_variants`. Realiza una
  *              auditoría estructural completa, enfocándose en su relación con `bavi_assets`.
- * @version 1.0.0 (Granular & AI-Consumable Reports)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -61,8 +61,10 @@ async function diagnoseBaviVariantsSchema(): Promise<
   ScriptActionResult<string>
 > {
   const TARGET_TABLE = "bavi_variants";
-  const traceId = scriptLogger.startTrace(`diagnoseSchema:${TARGET_TABLE}`);
-  scriptLogger.startGroup(
+  const traceId = scriptLogger.startTrace(
+    `diagnoseSchema:${TARGET_TABLE}_v1.1`
+  );
+  const groupId = scriptLogger.startGroup(
     `🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`
   );
 
@@ -160,7 +162,7 @@ async function diagnoseBaviVariantsSchema(): Promise<
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

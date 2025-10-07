@@ -3,7 +3,7 @@
  * @file i18n.ts
  * @description Orquestador de i18n "isomórfico", ahora alineado con la SSoT de enrutamiento.
  * @version 21.0.0 (Routing Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { cache } from "react";

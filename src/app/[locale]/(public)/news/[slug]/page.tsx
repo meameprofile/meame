@@ -3,7 +3,7 @@
  * @file page.tsx
  * @description Página de artículo de blog, blindada con un Guardián de Resiliencia
  *              Verboso, observabilidad de élite e importaciones soberanas.
- * @version 5.0.0 (Holistic Elite Leveling)
+ * @version 5.1.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
@@ -13,10 +13,8 @@ import type { Metadata } from "next";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 import { PageHeader } from "@/components/layout/PageHeader";
-// --- [INICIO] REFACTORIZACIÓN POR ERRADICACIÓN DE BARREL FILE ---
 import { ArticleBody } from "@/components/sections/ArticleBody";
 import { CommentSection } from "@/components/sections/CommentSection";
-// --- [FIN] REFACTORIZACIÓN POR ERRADICACIÓN DE BARREL FILE ---
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { SectionAnimator } from "@/components/layout/SectionAnimator";
 import {
@@ -60,8 +58,8 @@ export async function generateMetadata({
 export default async function NewsArticlePage({
   params: { locale, slug },
 }: NewsArticlePageProps): Promise<React.ReactElement> {
-  const traceId = logger.startTrace(`NewsArticlePage_Render_v5.0:${slug}`);
-  logger.startGroup(
+  const traceId = logger.startTrace(`NewsArticlePage_Render_v5.1:${slug}`);
+  const groupId = logger.startGroup(
     `[NewsArticlePage Shell] Ensamblando datos para slug: "${slug}"...`,
     traceId
   );
@@ -71,9 +69,7 @@ export default async function NewsArticlePage({
     const articleResult = await getArticleBySlugAction(slug, locale);
     logger.traceEvent(traceId, "Obtención de datos completada.");
 
-    // --- [INICIO] GUARDIÁN DE RESILIENCIA Y OBSERVABILIDAD ---
     if (!articleResult.success) {
-      // Este error es crítico y debe detener el renderizado.
       throw new Error(articleResult.error);
     }
 
@@ -98,7 +94,6 @@ export default async function NewsArticlePage({
       return notFound();
     }
     logger.traceEvent(traceId, "Datos y contenido del artículo validados.");
-    // --- [FIN] GUARDIÁN DE RESILIENCIA Y OBSERVABILIDAD ---
 
     logger.success(
       `[NewsArticlePage Shell] Ensamblaje completado. Renderizando UI para "${content.title}".`,
@@ -144,7 +139,7 @@ export default async function NewsArticlePage({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

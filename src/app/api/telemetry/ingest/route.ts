@@ -4,7 +4,7 @@
  * @description Endpoint de Ingesta del Protocolo Heimdall (El Puente Bifröst).
  *              Recibe lotes de eventos de telemetría y los persiste en la Bóveda de Mimir.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@/shared/lib/supabase/server";

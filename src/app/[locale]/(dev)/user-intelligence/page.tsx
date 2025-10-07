@@ -2,7 +2,7 @@
 /**
  * @file page.tsx
  * @description Página "Server Shell" soberana para el dashboard de Inteligencia de Usuarios.
- * @version 2.2.0 (Holistic Type & Hygiene Restoration)
+ * @version 2.3.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -17,13 +17,10 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getProfiledUsersAction } from "@/shared/lib/actions/user-intelligence/getProfiledUsers.action";
 import { UserIntelligenceClient } from "@/components/features/user-intelligence/UserIntelligenceClient";
-// --- [INICIO DE REFACTORIZACIÓN DE INTEGRIDAD DE CONTRATO v2.2.0] ---
-// Se importa el TIPO explícito 'UserIntelligenceContent' en lugar del schema.
 import {
   UserIntelligenceContentSchema,
   type UserIntelligenceContent,
 } from "@/shared/lib/schemas/pages/dev-user-intelligence.i18n.schema";
-// --- [FIN DE REFACTORIZACIÓN DE INTEGRIDAD DE CONTRATO v2.2.0] ---
 
 interface UserIntelligencePageProps {
   params: { locale: Locale };
@@ -39,7 +36,7 @@ async function UserIntelligenceDataLoader({
   page: number;
   limit: number;
   locale: Locale;
-  content: UserIntelligenceContent; // <-- El tipo ahora es correcto y seguro.
+  content: UserIntelligenceContent;
 }) {
   const result = await getProfiledUsersAction({ page, limit });
 
@@ -66,8 +63,11 @@ export default async function UserIntelligencePage({
   params: { locale },
   searchParams,
 }: UserIntelligencePageProps) {
-  const traceId = logger.startTrace("UserIntelligencePage_Shell_v2.2");
-  logger.startGroup(`[UserInt Shell] Ensamblando dashboard...`, traceId);
+  const traceId = logger.startTrace("UserIntelligencePage_Shell_v2.3");
+  const groupId = logger.startGroup(
+    `[UserInt Shell] Ensamblando dashboard...`,
+    traceId
+  );
 
   try {
     const page =
@@ -117,7 +117,7 @@ export default async function UserIntelligencePage({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

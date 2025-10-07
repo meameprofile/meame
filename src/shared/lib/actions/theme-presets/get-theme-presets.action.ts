@@ -3,7 +3,7 @@
  * @file get-theme-presets.action.ts
  * @description Server Action para obtener presets de tema.
  * @version 5.0.0 (Sovereign Shaper & Granular Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

@@ -3,8 +3,8 @@
  * @file page.tsx
  * @description Página de índice del blog ("Server Shell"), forjada con resiliencia,
  *              observabilidad de élite y una arquitectura de importación soberana.
- * @version 1.0.0 (Holistic Elite Leveling)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 1.1.0 (Logger v20+ Contract Compliance)
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import React from "react";
@@ -13,10 +13,8 @@ import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { SectionAnimator } from "@/components/layout/SectionAnimator";
-// --- [INICIO] REFACTORIZACIÓN POR ERRADICACIÓN DE BARREL FILE ---
 import { HeroNews } from "@/components/sections/HeroNews";
 import { NewsGrid } from "@/components/sections/NewsGrid";
-// --- [FIN] REFACTORIZACIÓN POR ERRADICACIÓN DE BARREL FILE ---
 import { getPublishedArticlesAction } from "@/shared/lib/actions/cogniread";
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
 
@@ -25,8 +23,8 @@ interface NewsPageProps {
 }
 
 export default async function NewsPage({ params: { locale } }: NewsPageProps) {
-  const traceId = logger.startTrace("NewsPage_Render_v1.0");
-  logger.startGroup(
+  const traceId = logger.startTrace("NewsPage_Render_v1.1");
+  const groupId = logger.startGroup(
     `[NewsPage Shell] Ensamblando datos para locale: ${locale}...`,
     traceId
   );
@@ -39,11 +37,10 @@ export default async function NewsPage({ params: { locale } }: NewsPageProps) {
     const [{ dictionary, error: dictError }, articlesResult] =
       await Promise.all([
         getDictionary(locale),
-        getPublishedArticlesAction({ page: 1, limit: 10 }), // Cargar más artículos para la página principal del blog
+        getPublishedArticlesAction({ page: 1, limit: 10 }),
       ]);
     logger.traceEvent(traceId, "Obtención de datos completada.");
 
-    // --- [INICIO] GUARDIÁN DE RESILIENCIA ---
     if (dictError) throw dictError;
 
     const { heroNews, newsGrid } = dictionary;
@@ -58,7 +55,6 @@ export default async function NewsPage({ params: { locale } }: NewsPageProps) {
     }
 
     if (!articlesResult.success) {
-      // Este es un fallo recuperable en producción (mostramos la página sin artículos)
       logger.error(
         "[NewsPage Shell] No se pudieron obtener los artículos de CogniRead.",
         { error: articlesResult.error, traceId }
@@ -73,7 +69,6 @@ export default async function NewsPage({ params: { locale } }: NewsPageProps) {
         );
       }
     }
-    // --- [FIN] GUARDIÁN DE RESILIENCIA ---
 
     const articles: CogniReadArticle[] = articlesResult.success
       ? articlesResult.data.articles
@@ -111,7 +106,6 @@ export default async function NewsPage({ params: { locale } }: NewsPageProps) {
       error: errorMessage,
       traceId,
     });
-    // En un fallo crítico (ej. diccionario), mostramos el error en desarrollo.
     return (
       <DeveloperErrorDisplay
         context="NewsPage Server Shell"
@@ -120,7 +114,7 @@ export default async function NewsPage({ params: { locale } }: NewsPageProps) {
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

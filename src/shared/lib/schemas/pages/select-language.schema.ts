@@ -3,7 +3,7 @@
  * @file select-language.schema.ts
  * @description SSoT para el contrato de datos del contenido i18n de la página de selección de idioma.
  * @version 5.0.0 (Routing Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { ROUTING_LOCALES } from "@/shared/lib/i18n/i18n.config"; // <-- CONTRATO CORREGIDO

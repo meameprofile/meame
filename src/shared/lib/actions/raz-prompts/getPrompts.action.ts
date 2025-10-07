@@ -3,7 +3,7 @@
  * @file getPrompts.action.ts
  * @description Server Action (Agregador) para obtener y enriquecer prompts.
  * @version 14.3.0 (Definitive Type Safety Restoration via flatMap)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

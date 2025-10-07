@@ -3,7 +3,7 @@
  * @file raz-prompts.shapers.ts
  * @description SSoT para la transformación de datos (shaping) del dominio RaZPrompts.
  * @version 1.0.0 (Sovereign & Type-Safe)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import {

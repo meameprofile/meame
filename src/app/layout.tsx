@@ -4,7 +4,7 @@
  * @description Layout Raíz Soberano, nivelado a un estándar de élite con
  *              observabilidad hiper-granular y resiliencia de contrato.
  * @version 5.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

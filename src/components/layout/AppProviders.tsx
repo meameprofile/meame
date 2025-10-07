@@ -6,7 +6,7 @@
  *              para declarar explícitamente este componente como un límite de cliente,
  *              resolviendo la violación de las Reglas de los Hooks.
  * @version 8.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client"; // <-- DIRECTIVA SOBERANA DE FRONTERA CLIENTE-SERVIDOR
 

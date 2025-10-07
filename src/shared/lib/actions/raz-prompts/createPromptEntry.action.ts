@@ -3,7 +3,7 @@
  * @file createPromptEntry.action.ts
  * @description Server Action de producción para crear una nueva entrada de prompt.
  * @version 13.0.0 (Absolute Type Safety & Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

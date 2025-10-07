@@ -2,7 +2,7 @@
 /**
  * @file schema-visitor-sessions.ts
  * @description Guardián de Esquema para la tabla `visitor_sessions`.
- * @version 1.0.0
+ * @version 2.0.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { scriptLogger as logger } from "../_utils/logger";
@@ -12,7 +12,9 @@ const TARGET_TABLE = "visitor_sessions";
 
 async function diagnoseVisitorSessionsSchema() {
   const traceId = logger.startTrace(`diagnoseSchema:${TARGET_TABLE}`);
-  logger.startGroup(`🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`);
+  const groupId = logger.startGroup(
+    `🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`
+  );
 
   const instructionsForAI = [
     `Este es un informe para la tabla '${TARGET_TABLE}', la SSoT de sesiones de visitantes.`,
@@ -22,7 +24,7 @@ async function diagnoseVisitorSessionsSchema() {
 
   await runTableAudit(TARGET_TABLE, instructionsForAI, traceId);
 
-  logger.endGroup();
+  logger.endGroup(groupId);
   logger.endTrace(traceId);
 }
 

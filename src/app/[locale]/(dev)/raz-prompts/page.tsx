@@ -4,7 +4,7 @@
  * @description Página de RaZPrompts, nivelada con observabilidad hiper-granular
  *              y resiliencia de contrato de élite.
  * @version 16.0.0 (Holistic Observability & Contract Integrity)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import { getDictionary } from "@/shared/lib/i18n/i18n";

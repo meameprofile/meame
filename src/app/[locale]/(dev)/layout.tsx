@@ -5,7 +5,7 @@
  *              de orquestación de datos pura, observabilidad hiper-granular y
  *              resiliencia de contrato de élite.
  * @version 28.0.0 (Holistic Observability & Contract Integrity)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React, { Suspense } from "react";

@@ -3,7 +3,7 @@
  * @file use-cogniread-cache.ts
  * @description Hook "cerebro" para la gestión de la caché de CogniRead.
  * @version 6.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

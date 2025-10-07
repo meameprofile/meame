@@ -3,7 +3,7 @@
  * @file use-prompt-vault.ts
  * @description Hook "cerebro" para la lógica de la Bóveda de Prompts.
  * @version 6.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

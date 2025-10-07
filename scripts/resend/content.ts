@@ -1,9 +1,9 @@
-// pnpm tsx scripts/run-with-env.ts scripts/resend/content.ts
+// RUTA: scripts/resend/content.ts
 /**
  * @file content.ts
  * @description Guardián de Contenido para Resend. Realiza un censo de los
  *              emails enviados recientemente y genera un informe de diagnóstico.
- * @version 1.0.0 (Resilient & AI-Consumable)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { Resend } from "resend";
@@ -29,8 +29,8 @@ interface Report {
 }
 
 async function diagnoseResendContent(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace("diagnoseResendContent_v1.0");
-  scriptLogger.startGroup(
+  const traceId = scriptLogger.startTrace("diagnoseResendContent_v1.1");
+  const groupId = scriptLogger.startGroup(
     "📊 Realizando censo de contenido (emails enviados) en Resend..."
   );
 
@@ -107,7 +107,7 @@ async function diagnoseResendContent(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.censusStatus === "FAILED") process.exit(1);
   }

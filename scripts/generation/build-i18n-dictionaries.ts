@@ -3,7 +3,7 @@
  * @file build-i18n-dictionaries.ts
  * @description Script de build para i18n, ahora definitivamente alineado con la SSoT de enrutamiento.
  * @version 8.0.0 (Definitive Routing Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import * as fs from "fs/promises";
 import * as path from "path";

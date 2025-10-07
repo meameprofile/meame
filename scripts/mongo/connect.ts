@@ -1,9 +1,9 @@
-// pnpm tsx scripts/run-with-env.ts scripts/mongo/connect.ts
+// RUTA: scripts/mongo/connect.ts
 /**
  * @file connect.ts
  * @description Guardián de Conexión para MongoDB. Verifica variables de entorno
  *              y la conectividad con el clúster, generando un informe de diagnóstico.
- * @version 1.0.0 (Elite & AI-Consumable)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { MongoClient } from "mongodb";
@@ -36,8 +36,10 @@ interface Report {
 }
 
 async function diagnoseMongoConnection(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace("diagnoseMongoConnection_v1.0");
-  scriptLogger.startGroup("🍃 Iniciando Guardián de Conexión a MongoDB...");
+  const traceId = scriptLogger.startTrace("diagnoseMongoConnection_v1.1");
+  const groupId = scriptLogger.startGroup(
+    "🍃 Iniciando Guardián de Conexión a MongoDB..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "mongodb");
   const reportPath = path.resolve(reportDir, "connect-diagnostics.json");
@@ -130,7 +132,7 @@ async function diagnoseMongoConnection(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.connectionStatus === "FAILED") process.exit(1);
   }

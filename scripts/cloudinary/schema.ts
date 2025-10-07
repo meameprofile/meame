@@ -1,8 +1,8 @@
-// pnpm tsx scripts/run-with-env.ts scripts/cloudinary/schema.ts
+// RUTA: scripts/cloudinary/schema.ts
 /**
  * @file schema.ts
  * @description Herramienta de auditoría para inspeccionar la configuración de Cloudinary.
- * @version 10.0.0 (Simplified Structure & AI Reports)
+ * @version 10.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { v2 as cloudinary } from "cloudinary";
@@ -40,8 +40,8 @@ interface CorrectMetadataFieldsApiResponse {
 }
 
 async function diagnoseCloudinarySchema(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace("diagnoseCloudinarySchema_v10.0");
-  scriptLogger.startGroup(
+  const traceId = scriptLogger.startTrace("diagnoseCloudinarySchema_v10.1");
+  const groupId = scriptLogger.startGroup(
     "🔬 Auditando configuración estructural de Cloudinary..."
   );
 
@@ -120,7 +120,7 @@ async function diagnoseCloudinarySchema(): Promise<ScriptActionResult<string>> {
       `Informe de diagnóstico (fallido) guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
 
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     return { success: false, error: errorMessage };
   }
@@ -131,7 +131,7 @@ async function diagnoseCloudinarySchema(): Promise<ScriptActionResult<string>> {
   const successMessage = `Informe de esquema guardado en: ${path.relative(process.cwd(), reportPath)}`;
   scriptLogger.info(successMessage);
 
-  scriptLogger.endGroup();
+  scriptLogger.endGroup(groupId);
   scriptLogger.endTrace(traceId);
   return { success: true, data: successMessage };
 }

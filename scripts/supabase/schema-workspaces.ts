@@ -3,7 +3,7 @@
  * @file schema-workspaces.ts
  * @description Guardián de Esquema para la tabla `workspaces`. Realiza una
  *              auditoría estructural completa y genera un informe de diagnóstico.
- * @version 1.0.0 (Granular & AI-Consumable Reports)
+ * @version 2.0.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -60,7 +60,7 @@ interface Report {
 async function diagnoseWorkspacesSchema(): Promise<ScriptActionResult<string>> {
   const TARGET_TABLE = "workspaces";
   const traceId = scriptLogger.startTrace(`diagnoseSchema:${TARGET_TABLE}`);
-  scriptLogger.startGroup(
+  const groupId = scriptLogger.startGroup(
     `🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`
   );
 
@@ -155,7 +155,7 @@ async function diagnoseWorkspacesSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

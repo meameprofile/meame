@@ -1,9 +1,9 @@
-// RUTA: scripts/supabase/seeding/superuser.ts
+// RUTA: src/shared/lib/actions/supabase/seeding/superuser.ts
 /**
  * @file superuser.ts
  * @description Script de seed para crear un superusuario de desarrollo en Supabase,
  *              ahora con observabilidad y resiliencia de élite.
- * @version 6.0.0 (Great Refactoring Aligned)
+ * @version 6.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { createScriptClient } from "../../_utils/supabaseClient";
@@ -14,8 +14,10 @@ import type { User } from "@supabase/supabase-js";
 export default async function createSuperUser(): Promise<
   ActionResult<{ userId: string }>
 > {
-  const traceId = logger.startTrace("createSuperUser_v6.0");
-  logger.startGroup("🌱 Iniciando creación de Superusuario en Supabase...");
+  const traceId = logger.startTrace("createSuperUser_v6.1");
+  const groupId = logger.startGroup(
+    "🌱 Iniciando creación de Superusuario en Supabase..."
+  );
 
   try {
     const supabaseAdmin = createScriptClient();
@@ -75,7 +77,7 @@ export default async function createSuperUser(): Promise<
     );
     return { success: false, error: errorMessage };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

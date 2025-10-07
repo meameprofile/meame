@@ -3,12 +3,12 @@
  * @file Step0.tsx
  * @description Ensamblador y Cargador de Datos para el Paso 0 de la SDC.
  *              Forjado con un guardián de resiliencia y observabilidad de élite.
- * @version 6.0.0 (Elite Resilience & Observability)
+ * @version 7.0.0 (Logger Contract Compliance & Elite Resilience)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { toast } from "sonner";
 import { logger } from "@/shared/lib/logging";
 import { Step0Client } from "./Step0Client";
@@ -24,14 +24,19 @@ type Content = z.infer<typeof Step0ContentSchema>;
 export default function Step0({
   content,
 }: StepProps<Content>): React.ReactElement {
-  const traceId = logger.startTrace("Step0_ServerShell_v6.0");
-  logger.startGroup(`[Step0 Shell] Ensamblando datos...`, traceId);
-
+  const traceId = useMemo(() => logger.startTrace("Step0_Shell_v7.0"), []);
   const [baseCampaigns, setBaseCampaigns] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // --- [INICIO DE CORRECCIÓN DE CONTRATO v7.0.0] ---
+    const groupId = logger.startGroup(
+      `[Step0 Shell] Ensamblando datos...`,
+      traceId
+    );
+    // --- [FIN DE CORRECCIÓN DE CONTRATO v7.0.0] ---
+
     const fetchCampaigns = async () => {
       logger.traceEvent(traceId, "Iniciando fetch de campañas base...");
       const result = await getBaseCampaignsAction();
@@ -50,10 +55,16 @@ export default function Step0({
         });
       }
       setIsLoading(false);
-      logger.endGroup();
-      logger.endTrace(traceId);
     };
+
     fetchCampaigns();
+
+    return () => {
+      // --- [INICIO DE CORRECCIÓN DE CONTRATO v7.0.0] ---
+      logger.endGroup(groupId);
+      logger.endTrace(traceId);
+      // --- [FIN DE CORRECCIÓN DE CONTRATO v7.0.0] ---
+    };
   }, [traceId]);
 
   if (isLoading) {

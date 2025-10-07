@@ -6,7 +6,7 @@
  *              cumplir con el contrato de API del logger soberano v20+ y enriquecido
  *              con una trazabilidad hiper-granular de su ciclo de vida.
  * @version 4.2.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server-only";
 import React from "react";

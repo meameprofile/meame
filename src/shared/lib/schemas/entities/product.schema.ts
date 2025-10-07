@@ -6,7 +6,7 @@
  *              llamada al logger para cumplir con el principio de pureza de los
  *              módulos de schema y resolver un error crítico de build.
  * @version 2.2.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { z } from "zod";

@@ -3,7 +3,7 @@
  * @file use-notification-bell.ts
  * @description Hook "cerebro" soberano para la lógica del NotificationBell.
  * @version 4.0.0 (Elite Code Hygiene & Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

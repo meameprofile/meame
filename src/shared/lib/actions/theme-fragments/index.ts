@@ -5,7 +5,7 @@
  *              La lógica de transformación reside en `_shapers/` pero no se
  *              expone, cumpliendo el principio de encapsulación.
  * @version 3.0.0 (Holistic CRUD API & Encapsulation)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 export * from "./getThemeFragments.action";
 export * from "./createThemeFragment.action";

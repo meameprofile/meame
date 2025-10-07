@@ -6,7 +6,7 @@
  *              explícitamente las variables de entorno en el proceso hijo,
  *              resolviendo fallos de autenticación de la CLI de Supabase.
  * @version 4.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 /* eslint-env node */
 import { exec } from "child_process";

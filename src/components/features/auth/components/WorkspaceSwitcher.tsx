@@ -5,7 +5,7 @@
  *              Maneja de forma resiliente la carga, el estado vacío y los errores,
  *              garantizando que el usuario siempre tenga un contexto de trabajo claro.
  * @version 2.0.0 (Elite Resilience & Full Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

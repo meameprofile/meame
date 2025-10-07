@@ -5,7 +5,7 @@
  *              - v3.1.0 (Build Fix): Se elimina la llamada al logger para resolver
  *                la violación de la frontera servidor-cliente.
  * @version 3.1.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { LucideIconNameSchema } from "@/shared/lib/config/lucide-icon-names";

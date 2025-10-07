@@ -1,4 +1,4 @@
-// pnpm tsx scripts/run-with-env.ts scripts/shopify/connect.ts
+// RUTA: scripts/shopify/connect.ts
 /**
  * @file connect.ts
  * @description Guardián de Conexión para Shopify. Verifica variables de entorno
@@ -40,7 +40,9 @@ async function diagnoseShopifyConnection(): Promise<
   ScriptActionResult<string>
 > {
   const traceId = scriptLogger.startTrace("diagnoseShopifyConnection_v1.0.1");
-  scriptLogger.startGroup("🛍️  Iniciando Guardián de Conexión a Shopify...");
+  const groupId = scriptLogger.startGroup(
+    "🛍️  Iniciando Guardián de Conexión a Shopify..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "shopify");
   const reportPath = path.resolve(reportDir, "connect-diagnostics.json");
@@ -202,7 +204,7 @@ async function diagnoseShopifyConnection(): Promise<
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.connectionStatus === "FAILED") process.exit(1);
   }

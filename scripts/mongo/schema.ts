@@ -1,9 +1,9 @@
-// pnpm tsx scripts/run-with-env.ts scripts/mongo/schema.ts
+// RUTA: scripts/mongo/schema.ts
 /**
  * @file schema.ts
  * @description Guardián de Esquema para MongoDB. Infiere y reporta la
  *              estructura de cada colección basándose en un documento de muestra.
- * @version 1.0.0 (Inferential & AI-Consumable)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { MongoClient, type Document } from "mongodb";
@@ -58,8 +58,8 @@ function inferSchema(
 }
 
 async function diagnoseMongoSchema(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace("diagnoseMongoSchema_v1.0");
-  scriptLogger.startGroup(
+  const traceId = scriptLogger.startTrace("diagnoseMongoSchema_v1.1");
+  const groupId = scriptLogger.startGroup(
     "🔬 Auditando Esquemas (inferidos) de Colecciones en MongoDB..."
   );
 
@@ -139,7 +139,7 @@ async function diagnoseMongoSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

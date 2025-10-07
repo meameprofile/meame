@@ -3,7 +3,7 @@
  * @file use-truffle-pixel.ts
  * @description Hook Atómico de Efecto para el píxel de Truffle.bid.
  * @version 5.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

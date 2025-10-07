@@ -3,7 +3,7 @@
  * @file admin.shapers.ts
  * @description SSoT para la transformación de datos de la Admin API de Shopify.
  * @version 3.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { z } from "zod";

@@ -1,9 +1,9 @@
-// pnpm tsx scripts/run-with-env.ts scripts/cloudinary/content.ts
+// RUTA: scripts/cloudinary/content.ts
 /**
  * @file content.ts
  * @description Guardián de Contenido para Cloudinary. Realiza un censo de los
  *              activos y el uso de la cuenta, generando un informe consumible por IA.
- * @version 4.0.0 (Elite & AI-Consumable Reports)
+ * @version 4.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { v2 as cloudinary } from "cloudinary";
@@ -30,8 +30,10 @@ interface Report {
 async function diagnoseCloudinaryContent(): Promise<
   ScriptActionResult<string>
 > {
-  const traceId = scriptLogger.startTrace("diagnoseCloudinaryContent_v4.0");
-  scriptLogger.startGroup("📊 Realizando censo de contenido en Cloudinary...");
+  const traceId = scriptLogger.startTrace("diagnoseCloudinaryContent_v4.1");
+  const groupId = scriptLogger.startGroup(
+    "📊 Realizando censo de contenido en Cloudinary..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "cloudinary");
   const reportPath = path.resolve(reportDir, "content-diagnostics.json");
@@ -99,7 +101,7 @@ async function diagnoseCloudinaryContent(): Promise<
       `Informe de diagnóstico (fallido) guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
 
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     return { success: false, error: errorMessage };
   }
@@ -110,7 +112,7 @@ async function diagnoseCloudinaryContent(): Promise<
   const successMessage = `Informe de contenido guardado en: ${path.relative(process.cwd(), reportPath)}`;
   scriptLogger.info(successMessage);
 
-  scriptLogger.endGroup();
+  scriptLogger.endGroup(groupId);
   scriptLogger.endTrace(traceId);
   return { success: true, data: successMessage };
 }

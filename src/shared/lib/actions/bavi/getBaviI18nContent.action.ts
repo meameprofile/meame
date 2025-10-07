@@ -3,7 +3,7 @@
  * @file getBaviI18nContent.action.ts
  * @description Server Action para obtener el contenido i18n del ecosistema BAVI.
  * @version 2.0.0 (Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

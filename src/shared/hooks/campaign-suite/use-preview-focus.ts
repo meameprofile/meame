@@ -3,7 +3,7 @@
  * @file use-preview-focus.ts
  * @description Hook atómico para el "Modo Enfoque Sincronizado".
  * @version 2.0.0 (Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

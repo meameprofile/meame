@@ -1,4 +1,4 @@
-// pnpm tsx scripts/supabase/connect.ts
+// RUTA: scripts/supabase/connect.ts
 /**
  * @file connect.ts
  * @description Guardián de Conexión para Supabase. Verifica variables de entorno
@@ -13,7 +13,6 @@ import { loadEnvironment } from "../_utils/env";
 import { scriptLogger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";
 
-// (Las interfaces y contratos de Zod permanecen sin cambios)
 interface Report {
   reportMetadata: {
     script: string;
@@ -39,7 +38,9 @@ async function diagnoseSupabaseConnection(): Promise<
   ScriptActionResult<string>
 > {
   const traceId = scriptLogger.startTrace("diagnoseSupabaseConnection_v2.0.1");
-  scriptLogger.startGroup("🔐 Iniciando Guardián de Conexión a Supabase...");
+  const groupId = scriptLogger.startGroup(
+    "🔐 Iniciando Guardián de Conexión a Supabase..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "supabase");
   const reportPath = path.resolve(reportDir, "connect-diagnostics.json");
@@ -144,20 +145,18 @@ async function diagnoseSupabaseConnection(): Promise<
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.connectionStatus === "FAILED") {
       process.exit(1);
     }
   }
 
-  // --- [INICIO DE REFACTORIZACIÓN DE INFERENCIA DE TIPO] ---
   if (report.connectionStatus === "SUCCESS") {
     return { success: true, data: report.summary };
   } else {
     return { success: false, error: report.summary };
   }
-  // --- [FIN DE REFACTORIZACIÓN DE INFERENCIA DE TIPO] ---
 }
 
 diagnoseSupabaseConnection();

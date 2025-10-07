@@ -1,8 +1,7 @@
-// RUTA: scripts/supabase/seeding/i18n.ts
 /**
  * @file i18n.ts
  * @description Inyector Soberano para el contenido de i18n.
- * @version 2.0.0 (Type-Safe & Elite Compliance)
+ * @version 2.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { createScriptClient } from "../../_utils/supabaseClient";
@@ -18,8 +17,10 @@ import type { TablesInsert, Json } from "@/shared/lib/supabase/database.types";
 export default async function seedI18nContent(): Promise<
   ActionResult<{ syncedEntries: number }>
 > {
-  const traceId = logger.startTrace("seedI18nContent_v2.0");
-  logger.startGroup(`[i18n Inyector] Sincronizando contenido con Supabase...`);
+  const traceId = logger.startTrace("seedI18nContent_v2.1");
+  const groupId = logger.startGroup(
+    `[i18n Inyector] Sincronizando contenido con Supabase...`
+  );
 
   try {
     const supabase = createScriptClient();
@@ -37,11 +38,7 @@ export default async function seedI18nContent(): Promise<
           .replace(/\\/g, "/");
         return {
           entry_key,
-          // --- [INICIO DE REFACTORIZACIÓN DE TIPO] ---
-          // Se realiza una aserción de tipo explícita para satisfacer el
-          // contrato estricto del tipo 'Json' de Supabase.
           translations: contents[index] as I18nFileContent as Json,
-          // --- [FIN DE REFACTORIZACIÓN DE TIPO] ---
         };
       }
     );
@@ -64,7 +61,7 @@ export default async function seedI18nContent(): Promise<
     });
     return { success: false, error: msg };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

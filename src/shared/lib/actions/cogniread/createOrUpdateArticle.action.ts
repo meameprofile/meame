@@ -3,7 +3,7 @@
  * @file createOrUpdateArticle.action.ts
  * @description Server Action para crear o actualizar un artículo, ahora isomórfica.
  * @version 3.2.0 (Routing Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

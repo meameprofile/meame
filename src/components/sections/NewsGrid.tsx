@@ -3,7 +3,7 @@
  * @file NewsGrid.tsx
  * @description Cuadrícula de noticias, nivelada para una integridad de build definitiva y observabilidad mejorada.
  * @version 9.1.0 (Definitive Build Integrity & Nos3 Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

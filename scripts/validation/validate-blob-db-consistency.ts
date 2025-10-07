@@ -4,7 +4,7 @@
  * @description Guardián de Integridad Inter-Dominio. Verifica la consistencia
  *              referencial entre las grabaciones de Vercel Blob y la tabla
  *              'visitor_sessions' de Supabase.
- * @version 1.0.0 (Production Ready)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { list } from "@vercel/blob";
@@ -15,8 +15,8 @@ import { loadEnvironment } from "../_utils/env";
 import { scriptLogger as logger } from "../_utils/logger";
 
 async function validateBlobDbConsistency() {
-  const traceId = logger.startTrace("validateBlobDbConsistency_v1.0");
-  logger.startGroup(
+  const traceId = logger.startTrace("validateBlobDbConsistency_v1.1");
+  const groupId = logger.startGroup(
     "🔗 Iniciando Guardián de Integridad Inter-Dominio (Blob <-> DB)..."
   );
 
@@ -25,12 +25,15 @@ async function validateBlobDbConsistency() {
 
   const report = {
     reportMetadata: {
-      /* ... */
+      script: "scripts/validation/validate-blob-db-consistency.ts",
+      purpose:
+        "Auditoría de consistencia entre Vercel Blob (Nos3) y Supabase (Aura)",
+      generatedAt: new Date().toISOString(),
     },
     instructionsForAI: [
       "Este informe audita la consistencia entre Vercel Blob y Supabase.",
-      "Analiza 'orphanBlobs' (sesiones en Blob que no están en la DB).",
-      "Analiza 'ghostSessions' (sesiones en la DB que no tienen grabaciones en Blob).",
+      "Analiza 'orphanBlobs' (sesiones en Blob que no están en la DB). Estos son candidatos para ser purgados.",
+      "Analiza 'ghostSessions' (sesiones en la DB que no tienen grabaciones en Blob). Esto puede indicar un fallo en el pipeline de grabación de rrweb.",
     ],
     auditStatus: "FAILED",
     analysis: {
@@ -101,7 +104,7 @@ async function validateBlobDbConsistency() {
     logger.info(
       `Informe de consistencia guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
     if (report.auditStatus === "FAILED") {
       process.exit(1);

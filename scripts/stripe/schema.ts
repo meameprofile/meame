@@ -1,4 +1,4 @@
-// pnpm tsx scripts/run-with-env.ts scripts/stripe/schema.ts
+// RUTA: scripts/stripe/schema.ts
 /**
  * @file schema.ts
  * @description Guardián de Esquema para Stripe. Audita los productos y precios
@@ -31,7 +31,7 @@ interface Report {
 
 async function diagnoseStripeSchema(): Promise<ScriptActionResult<string>> {
   const traceId = scriptLogger.startTrace("diagnoseStripeSchema_v1.0.2");
-  scriptLogger.startGroup(
+  const groupId = scriptLogger.startGroup(
     "🔬 Auditando Esquema (Productos y Precios) de Stripe..."
   );
 
@@ -112,7 +112,7 @@ async function diagnoseStripeSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") {
       process.exit(1);

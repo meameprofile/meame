@@ -3,7 +3,7 @@
  * @file validate-all-schema-contracts.ts
  * @description Orquestador de Auditoría Holística de Esquemas. Valida TODOS
  *              los schemas registrados contra el estado real de la base de datos.
- * @version 6.0.0 (Definitive & Purified)
+ * @version 7.0.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -18,7 +18,10 @@ const SchemaColumnSchema = z.object({
   type: z.string(),
 });
 const SchemaReportSchema = z.object({
-  schemaDetails: z.object({ schema_columns: z.array(SchemaColumnSchema) }),
+  schemaDetails: z.object({
+    // La SSoT es schema_columns, no columns
+    schema_columns: z.array(SchemaColumnSchema),
+  }),
 });
 type ParsedColumn = { column: string; type: string };
 interface MismatchedColumn {
@@ -26,7 +29,6 @@ interface MismatchedColumn {
   expected: string;
   actual: string | undefined;
 }
-
 interface Report {
   reportMetadata: { script: string; purpose: string; generatedAt: string };
   instructionsForAI: string[];
@@ -78,14 +80,16 @@ async function auditTable(
   allActualColumns: { column: string; type: string; table: string }[]
 ): Promise<boolean> {
   const traceId = logger.startTrace(`audit:${tableName}`);
-  logger.startGroup(`[Auditoría] Verificando tabla: '${tableName}'`);
-
+  // --- [INICIO DE NIVELACIÓN DE CONTRATO] ---
+  const groupId = logger.startGroup(
+    `[Auditoría] Verificando tabla: '${tableName}'`
+  );
+  // --- [FIN DE NIVELACIÓN DE CONTRATO] ---
   const reportDir = path.resolve(process.cwd(), "reports", "consistency");
   const reportPath = path.resolve(
     reportDir,
     `${tableName}-consistency-report.json`
   );
-
   const report: Report = {
     reportMetadata: {
       script: "scripts/validation/validate-all-schema-contracts.ts",
@@ -106,12 +110,10 @@ async function auditTable(
     },
     summary: "",
   };
-
   try {
     const actualColumns = allActualColumns
       .filter((c) => c.table === tableName)
       .map((c) => ({ column: c.column, type: c.type.toLowerCase() }));
-
     if (actualColumns.length === 0) {
       throw new Error(`Tabla no encontrada en el informe de diagnóstico.`);
     }
@@ -191,7 +193,9 @@ async function auditTable(
     logger.info(
       `Informe guardado: ${path.relative(process.cwd(), reportPath)}`
     );
-    logger.endGroup();
+    // --- [INICIO DE NIVELACIÓN DE CONTRATO] ---
+    logger.endGroup(groupId);
+    // --- [FIN DE NIVELACIÓN DE CONTRATO] ---
     logger.endTrace(traceId);
   }
   return report.auditStatus === "SUCCESS";
@@ -199,8 +203,11 @@ async function auditTable(
 
 async function main() {
   const mainTraceId = logger.startTrace("validate-all-schemas");
-  logger.startGroup(`[Orquestador de Auditoría Holística v6.0] Iniciando...`);
-
+  // --- [INICIO DE NIVELACIÓN DE CONTRATO] ---
+  const mainGroupId = logger.startGroup(
+    "[Orquestador de Auditoría Holística v7.0] Iniciando..."
+  );
+  // --- [FIN DE NIVELACIÓN DE CONTRATO] ---
   try {
     const schemaReportPath = path.resolve(
       process.cwd(),
@@ -211,7 +218,6 @@ async function main() {
       JSON.parse(schemaReportContent)
     );
     const allActualColumns = schemaReport.schemaDetails.schema_columns;
-
     const tableNamesToAudit = Object.keys(schemaRegistry);
 
     logger.info(
@@ -226,7 +232,11 @@ async function main() {
 
     const failures = results.filter((res) => !res).length;
 
-    logger.startGroup("[Resumen de Auditoría Holística]");
+    // --- [INICIO DE NIVELACIÓN DE CONTRATO] ---
+    const summaryGroupId = logger.startGroup(
+      "[Resumen de Auditoría Holística]"
+    );
+    // --- [FIN DE NIVELACIÓN DE CONTRATO] ---
     if (failures === 0) {
       logger.success(
         "✅ ¡VERIFICACIÓN COMPLETA! Todos los esquemas de tabla están alineados con sus contratos de Zod."
@@ -237,7 +247,9 @@ async function main() {
       );
       process.exitCode = 1;
     }
-    logger.endGroup();
+    // --- [INICIO DE NIVELACIÓN DE CONTRATO] ---
+    logger.endGroup(summaryGroupId);
+    // --- [FIN DE NIVELACIÓN DE CONTRATO] ---
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
@@ -247,6 +259,9 @@ async function main() {
     });
     process.exit(1);
   } finally {
+    // --- [INICIO DE NIVELACIÓN DE CONTRATO] ---
+    logger.endGroup(mainGroupId);
+    // --- [FIN DE NIVELACIÓN DE CONTRATO] ---
     logger.endTrace(mainTraceId);
   }
 }

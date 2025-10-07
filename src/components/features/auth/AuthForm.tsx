@@ -3,7 +3,7 @@
  * @file AuthForm.tsx
  * @description Orquestador de UI para autenticación, con integridad de build restaurada.
  * @version 5.2.0 (Definitive Build Integrity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

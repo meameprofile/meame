@@ -1,9 +1,9 @@
 // RUTA: src/components/features/campaign-suite/Step5_Management/Step5Client.tsx
 /**
  * @file Step5Client.tsx
- * @description Orquestador de cliente para el Paso 5, con observabilidad holística
- *              y cumplimiento de los 8 Pilares de Calidad.
- * @version 11.0.0 (Holistic Observability & Elite Compliance)
+ * @description Orquestador de cliente para el Paso 5, nivelado para consumir
+ *              el store centralizado `useCampaignDraft` y cumplir con los 8 Pilares de Calidad.
+ * @version 12.0.0 (Centralized Forge Compliance & Elite Observability)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -23,7 +23,7 @@ import { logger } from "@/shared/lib/logging";
 import { DeveloperErrorDisplay } from "../../dev-tools";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 import { ArtifactHistory } from "./_components/ArtifactHistory";
-import { useAssembledDraft } from "@/shared/hooks/campaign-suite/use-assembled-draft.hook";
+import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
 
 type Content = z.infer<typeof Step5ContentSchema>;
 
@@ -37,7 +37,7 @@ export function Step5Client({
   stepContent,
 }: Step5ClientProps): React.ReactElement {
   const traceId = useMemo(
-    () => logger.startTrace("Step5Client_Lifecycle_v11.0"),
+    () => logger.startTrace("Step5Client_Lifecycle_v12.0"),
     []
   );
   useEffect(() => {
@@ -45,7 +45,11 @@ export function Step5Client({
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
-  const assembledDraft = useAssembledDraft();
+  // --- [INICIO] REFACTORIZACIÓN ARQUITECTÓNICA: FORJA CENTRALIZADA ---
+  // Se consume el hook soberano que interactúa con el store central.
+  const { draft: assembledDraft } = useCampaignDraft();
+  // --- [FIN] REFACTORIZACIÓN ARQUITECTÓNICA ---
+
   const { isCelebrating, endCelebration } = useCelebrationStore();
   const { goToPrevStep } = useWizard();
   const activeWorkspaceId = useWorkspaceStore((s) => s.activeWorkspaceId);

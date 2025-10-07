@@ -3,7 +3,7 @@
  * @file updateThemeFragment.action.ts
  * @description Server Action de élite para actualizar un fragmento de tema.
  * @version 2.1.0 (Payload Contract Fix)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

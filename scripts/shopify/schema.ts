@@ -1,9 +1,9 @@
-// pnpm tsx scripts/run-with-env.ts scripts/shopify/schema.ts
+// RUTA: scripts/shopify/schema.ts
 /**
  * @file schema.ts
  * @description Guardián de Esquema para Shopify. Audita las colecciones de la
  *              tienda y genera un informe de diagnóstico.
- * @version 1.0.1 (Type-Safe & Linter-Compliant)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -53,8 +53,10 @@ type ShopifyCollectionsOperation = {
 };
 
 async function diagnoseShopifySchema(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace("diagnoseShopifySchema_v1.0.1");
-  scriptLogger.startGroup("🔬 Auditando Esquema (Colecciones) de Shopify...");
+  const traceId = scriptLogger.startTrace("diagnoseShopifySchema_v1.1");
+  const groupId = scriptLogger.startGroup(
+    "🔬 Auditando Esquema (Colecciones) de Shopify..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "shopify");
   const reportPath = path.resolve(reportDir, "schema-diagnostics.json");
@@ -109,7 +111,7 @@ async function diagnoseShopifySchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

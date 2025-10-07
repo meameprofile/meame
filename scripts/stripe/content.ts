@@ -23,7 +23,7 @@ interface Report {
 
 async function diagnoseStripeContent(): Promise<ScriptActionResult<string>> {
   const traceId = logger.startTrace("diagnoseStripeContent_v2.1");
-  logger.startGroup(
+  const groupId = logger.startGroup(
     "📊 Realizando censo de contenido (Transacciones) en Stripe..."
   );
 
@@ -92,18 +92,16 @@ async function diagnoseStripeContent(): Promise<ScriptActionResult<string>> {
     logger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
     if (report.censusStatus === "FAILED") process.exit(1);
   }
 
-  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RETORNO] ---
   if (report.censusStatus === "SUCCESS") {
     return { success: true, data: report.summary };
   } else {
     return { success: false, error: report.summary };
   }
-  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RETORNO] ---
 }
 
 diagnoseStripeContent();

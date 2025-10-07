@@ -3,7 +3,7 @@
  * @file run-holistic-audit.ts
  * @description Guardián de Integridad Total Resiliente con Informe Holístico.
  * @version 7.2.0 (Type Contract Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { exec } from "child_process";
 import { promises as fs } from "fs";

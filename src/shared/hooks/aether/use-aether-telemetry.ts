@@ -3,7 +3,7 @@
  * @file use-aether-telemetry.ts
  * @description Hook atómico para la telemetría de eventos de reproducción.
  * @version 3.0.0 (Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

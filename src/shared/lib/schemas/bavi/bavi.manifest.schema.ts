@@ -3,7 +3,7 @@
  * @file bavi.manifest.schema.ts
  * @description SSoT para el contrato de datos del manifiesto BAVI.
  * @version 5.0.0 (SESA Atomic Keys)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { RaZPromptsSesaTagsSchema } from "../raz-prompts/atomic.schema";

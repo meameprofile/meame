@@ -6,7 +6,7 @@
  *              que dependen de lógica de servidor ("server-only") para prevenir la
  *              contaminación de la frontera Cliente-Servidor.
  * @version 3.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 export * from "./DeveloperErrorDisplay";
 export * from "./ComponentCanvasHeader";

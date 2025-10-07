@@ -4,7 +4,7 @@
  * @description Manejador "Perfilador y Persistencia". Identifica, enriquece y
  *              persiste los datos del visitante en segundo plano.
  * @version 10.0.0 (Holistic Persistence & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { createId } from "@paralleldrive/cuid2";

@@ -5,7 +5,7 @@
  *              - v4.1.0 (Build Fix): Se elimina la llamada al logger para resolver
  *                la violación de la frontera servidor-cliente.
  * @version 4.1.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 

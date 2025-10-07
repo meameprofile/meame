@@ -1,10 +1,9 @@
-// pnpm tsx scripts/run-with-env.ts scripts/mongo/content.ts
-// Para un volcado completo: pnpm tsx scripts/run-with-env.ts scripts/mongo/content.ts --full-dump
+// RUTA: scripts/mongo/content.ts
 /**
  * @file content.ts
  * @description Guardián de Contenido para MongoDB. Realiza un censo o un volcado
  *              completo de todas las colecciones y genera un informe de diagnóstico.
- * @version 1.0.0 (Census & Full Dump Capability)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { MongoClient, type Document } from "mongodb";
@@ -34,8 +33,10 @@ interface Report {
 async function diagnoseMongoContent(): Promise<ScriptActionResult<string>> {
   const isFullDump = process.argv.includes("--full-dump");
   const mode = isFullDump ? "full-dump" : "census";
-  const traceId = scriptLogger.startTrace(`diagnoseMongoContent_v1.0_${mode}`);
-  scriptLogger.startGroup(`📊 Realizando ${mode} de contenido en MongoDB...`);
+  const traceId = scriptLogger.startTrace(`diagnoseMongoContent_v1.1_${mode}`);
+  const groupId = scriptLogger.startGroup(
+    `📊 Realizando ${mode} de contenido en MongoDB...`
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "mongodb");
   const reportPath = path.resolve(reportDir, "content-diagnostics.json");
@@ -122,7 +123,7 @@ async function diagnoseMongoContent(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.dumpStatus === "FAILED") process.exit(1);
   }

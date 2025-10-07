@@ -3,7 +3,7 @@
  * @file theme-fragments.shapers.ts
  * @description SSoT para la transformación de datos del dominio Theme Fragments.
  * @version 2.0.0 (Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import {

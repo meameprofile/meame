@@ -12,7 +12,7 @@ import { scriptLogger as logger } from "../../_utils/logger";
 
 async function fixOrphanBlobs() {
   const traceId = logger.startTrace("fixOrphanBlobs_v1.1");
-  logger.startGroup(`[Nivelación] Purgando blobs huérfanos...`);
+  const groupId = logger.startGroup(`[Nivelación] Purgando blobs huérfanos...`);
 
   try {
     // Pilar de Calidad: Carga y validación explícita de variables de entorno.
@@ -77,7 +77,7 @@ async function fixOrphanBlobs() {
     });
     process.exit(1);
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

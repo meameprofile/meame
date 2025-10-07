@@ -4,7 +4,7 @@
  * @description Manifiesto Soberano y SSoT para los locales que tienen contenido
  *              implementado y para los cuales se debe generar enrutamiento.
  * @version 2.0.0 (Architectural Purity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 // "server-only"; // <-- ESTA LÍNEA DEBE SER ELIMINADA
 

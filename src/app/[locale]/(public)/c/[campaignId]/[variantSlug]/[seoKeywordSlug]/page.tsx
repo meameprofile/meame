@@ -3,7 +3,7 @@
  * @file page.tsx
  * @description SSoT para el renderizado de campañas. Forjado con seguridad de
  *              tipos absoluta, erradicando el error de indexación por 'symbol'.
- * @version 12.0.0 (Absolute Type Safety & Indexing Fix)
+ * @version 12.1.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
@@ -74,10 +74,10 @@ export async function generateMetadata({
 export default async function CampaignPage({ params }: CampaignPageProps) {
   const { locale, campaignId, variantSlug } = params;
   const traceId = logger.startTrace(
-    `CampaignPage_v12.0:${campaignId}-${variantSlug}`
+    `CampaignPage_v12.1:${campaignId}-${variantSlug}`
   );
-  logger.startGroup(
-    `[CampaignPage Shell] Ensamblando v12.0 para: ${variantSlug}`
+  const groupId = logger.startGroup(
+    `[CampaignPage Shell] Ensamblando v12.1 para: ${variantSlug}`
   );
 
   try {
@@ -111,13 +111,9 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
 
         const Component = config.component as AnySectionComponent;
 
-        // --- [INICIO DE REFACTORIZACIÓN POR SEGURIDAD DE TIPOS] ---
-        // Se realiza una aserción de tipo sobre el objeto `dictionary` para
-        // garantizar a TypeScript que estamos indexando con un string.
         const contentData = (dictionary as Record<string, unknown>)[
           config.dictionaryKey
         ];
-        // --- [FIN DE REFACTORIZACIÓN POR SEGURIDAD DE TIPOS] ---
 
         const validation = config.schema.safeParse(contentData);
 
@@ -175,7 +171,7 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
     });
     return notFound();
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

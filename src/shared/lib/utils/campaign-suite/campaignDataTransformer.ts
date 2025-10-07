@@ -3,7 +3,7 @@
  * @file campaignDataTransformer.ts
  * @description Utilidad pura para transformar el borrador de campaña en el objeto de contenido final.
  * @version 4.0.0 (Absolute Type Safety)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";

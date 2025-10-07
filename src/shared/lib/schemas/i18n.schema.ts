@@ -6,7 +6,7 @@
  *              del schema para `oAuthButtons`, resolviendo una regresión crítica
  *              y garantizando la integridad total del contrato de datos de autenticación.
  * @version 37.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 

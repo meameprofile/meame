@@ -3,7 +3,7 @@
  * @file use-prompt-creator.ts
  * @description Hook "cerebro" para la lógica de creación de prompts.
  * @version 10.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

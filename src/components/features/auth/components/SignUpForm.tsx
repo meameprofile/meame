@@ -4,7 +4,7 @@
  * @description Componente de presentación puro para el formulario de registro de élite,
  *              nivelado con observabilidad completa y cumplimiento de contratos.
  * @version 4.0.0 (Holistic Observability & Contract Integrity)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

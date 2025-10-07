@@ -3,7 +3,7 @@
  * @file manage-account.action.ts
  * @description Server Actions seguras para la gestión de la cuenta del usuario.
  * @version 2.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

@@ -3,7 +3,7 @@
  * @file index.ts (Barrel File)
  * @description Fachada pública para las Server Actions del dominio Analytics.
  * @version 3.0.0 (Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { logger } from "@/shared/lib/logging";
 

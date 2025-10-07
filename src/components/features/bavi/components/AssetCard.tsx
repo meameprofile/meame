@@ -3,7 +3,7 @@
  * @file AssetCard.tsx
  * @description Componente de presentación puro para visualizar un activo de BAVI.
  * @version 6.0.0 (SESA Atomic Key Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

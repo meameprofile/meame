@@ -3,7 +3,7 @@
  * @file getThemeFragments.action.ts
  * @description Server Action para obtener los fragmentos de tema.
  * @version 3.0.0 (Granular Resilience & Sovereign Shaper)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

@@ -3,7 +3,7 @@
  * @file schema.ts
  * @description Guardián de Esquema para Vercel Blob, con lógica de validación
  *              de CUID2 restaurada y observabilidad de élite.
- * @version 2.0.0 (CUID2 Validation Fix & Elite Observability)
+ * @version 2.1.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { list } from "@vercel/blob";
@@ -13,8 +13,10 @@ import { loadEnvironment } from "../_utils/env";
 import { scriptLogger as logger } from "../_utils/logger";
 
 async function diagnoseBlobSchema() {
-  const traceId = logger.startTrace("diagnoseBlobSchema_v2.0");
-  logger.startGroup("📂 Iniciando Guardián de Esquema de Vercel Blob...");
+  const traceId = logger.startTrace("diagnoseBlobSchema_v2.1");
+  const groupId = logger.startGroup(
+    "📂 Iniciando Guardián de Esquema de Vercel Blob..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "vercel-blob");
   const reportPath = path.resolve(reportDir, "schema-diagnostics.json");
@@ -51,11 +53,7 @@ async function diagnoseBlobSchema() {
       return;
     }
 
-    // --- [INICIO DE REFACTORIZACIÓN v2.0.0] ---
-    // La expresión regular ahora valida correctamente un CUID2 (24 caracteres alfanuméricos)
-    // sin asumir que debe empezar con 'c'.
     const pathRegex = /^sessions\/[a-z0-9]{24}\/\d{13,}\.json$/;
-    // --- [FIN DE REFACTORIZACIÓN v2.0.0] ---
 
     for (const blob of blobs) {
       if (!pathRegex.test(blob.pathname)) {
@@ -90,7 +88,7 @@ async function diagnoseBlobSchema() {
     logger.info(
       `Informe guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
     if (report.auditStatus === "FAILED") {
       process.exit(1);

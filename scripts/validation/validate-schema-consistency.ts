@@ -3,7 +3,7 @@
  * @file validate-schema-consistency.ts
  * @description Guardián de Consistencia de Esquema. Compara el manifiesto
  *              conceptual de una tabla con su estado real en la base de datos y genera un informe.
- * @version 4.0.0 (Elite DDL Parser & Finalized Logic)
+ * @version 4.1.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -104,8 +104,8 @@ async function main() {
   }
 
   const traceId = logger.startTrace(`validate-schema:${tableName}`);
-  logger.startGroup(
-    `[Guardián de Consistencia v4.0] Auditando tabla: '${tableName}'`
+  const groupId = logger.startGroup(
+    `[Guardián de Consistencia v4.1] Auditando tabla: '${tableName}'`
   );
 
   const reportDir = path.resolve(process.cwd(), "reports", "consistency");
@@ -150,7 +150,6 @@ async function main() {
     if (actualColumns.length === 0)
       throw new Error(`Tabla '${tableName}' no encontrada.`);
 
-    // Ajuste de ruta para encontrar los manifiestos de tabla correctos
     const manifestFileName = `001_MANIFIESTO_TABLA_${tableName.toUpperCase()}.md`;
     const manifestPath = path.resolve(
       process.cwd(),
@@ -227,7 +226,7 @@ async function main() {
     logger.info(
       `Informe de consistencia guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

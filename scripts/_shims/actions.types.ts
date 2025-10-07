@@ -4,7 +4,7 @@
  * @description Implementación de reemplazo (shim) de los tipos de acción,
  *              segura para el entorno de scripts de Node.js.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 /* eslint-env node */
 

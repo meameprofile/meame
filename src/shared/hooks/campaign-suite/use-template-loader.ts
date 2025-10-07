@@ -3,7 +3,7 @@
  * @file use-template-loader.ts
  * @description Hook de élite para orquestar la carga de plantillas.
  * @version 7.0.0 (Elite Observability & Data-Driven Navigation)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -3,7 +3,7 @@
  * @file workspace-switcher.schema.ts
  * @description SSoT para el contrato de datos i18n del componente WorkspaceSwitcher.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 

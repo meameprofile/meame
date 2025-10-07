@@ -3,7 +3,7 @@
  * @file user-nav.schema.ts
  * @description SSoT para el contrato de datos del contenido i18n del ecosistema UserNav.
  * @version 3.0.0 (Workspace Switcher Integration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { WorkspaceSwitcherContentSchema } from "./workspace-switcher.schema"; // <-- NUEVA IMPORTACIÓN

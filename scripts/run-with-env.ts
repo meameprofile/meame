@@ -3,7 +3,7 @@
  * @file run-with-env.ts
  * @description Orquestador soberano para la ejecución de scripts.
  * @version 9.1.0 (Architectural Boundary Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "dotenv/config";
 import path from "path";

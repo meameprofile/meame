@@ -3,7 +3,7 @@
  * @file sesa-taxonomy.schema.ts
  * @description SSoT para el contrato de datos del manifiesto de taxonomía SESA.
  * @version 2.0.0 (Global & Agnostic)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 

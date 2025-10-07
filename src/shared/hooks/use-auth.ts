@@ -3,7 +3,7 @@
  * @file use-auth.ts
  * @description Hook de cliente de élite para la gestión del estado de autenticación.
  * @version 5.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

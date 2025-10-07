@@ -4,7 +4,7 @@
  * @description Servicio de servidor soberano para la persistencia de la inteligencia de visitantes.
  *              Contiene la lógica "pesada" que requiere el runtime de Node.js.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

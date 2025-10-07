@@ -1,9 +1,9 @@
-// pnpm tsx scripts/run-with-env.ts scripts/supabase/schema-triggers.ts
+// RUTA: scripts/supabase/schema-triggers.ts
 /**
  * @file schema-triggers.ts
  * @description Guardián de Esquema para los triggers de la base de datos Supabase.
  *              Realiza una auditoría completa y genera un informe de diagnóstico.
- * @version 1.0.0 (Granular & AI-Consumable Reports)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -41,8 +41,10 @@ interface Report {
 }
 
 async function diagnoseTriggersSchema(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace(`diagnoseSchema:triggers`);
-  scriptLogger.startGroup(`🔬 Auditando Triggers de la Base de Datos...`);
+  const traceId = scriptLogger.startTrace(`diagnoseSchema:triggers_v1.1`);
+  const groupId = scriptLogger.startGroup(
+    `🔬 Auditando Triggers de la Base de Datos...`
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "supabase");
   const reportPath = path.resolve(reportDir, `schema-triggers.json`);
@@ -112,7 +114,7 @@ async function diagnoseTriggersSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

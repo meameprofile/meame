@@ -1,8 +1,8 @@
-// RUTA: scripts/supabase/seeding/razprompts.ts
+// RUTA: src/shared/lib/actions/supabase/seeding/razprompts.ts
 /**
  * @file razprompts.ts
  * @description Script de siembra soberano para RaZPrompts, con observabilidad de élite.
- * @version 9.0.0 (Great Refactoring Aligned)
+ * @version 9.1.0 (Elite Observability & Type Safety)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -18,8 +18,10 @@ const PROMPTS_DIR = path.resolve(process.cwd(), "content/raz-prompts");
 export default async function seedRaZPrompts(): Promise<
   ActionResult<{ seededCount: number }>
 > {
-  const traceId = logger.startTrace("seedRaZPrompts_v9.0");
-  logger.startGroup(`[RaZPrompts Seeder] Iniciando siembra de la Bóveda...`);
+  const traceId = logger.startTrace("seedRaZPrompts_v9.1");
+  const groupId = logger.startGroup(
+    `[RaZPrompts Seeder] Iniciando siembra de la Bóveda...`
+  );
 
   try {
     const supabase = createScriptClient();
@@ -74,7 +76,7 @@ export default async function seedRaZPrompts(): Promise<
       } catch (fileError) {
         logger.error(
           `[RaZPrompts Seeder] Fallo al procesar el archivo ${fileName}.`,
-          fileError as object
+          { error: fileError }
         );
       }
     }
@@ -88,7 +90,7 @@ export default async function seedRaZPrompts(): Promise<
     });
     return { success: false, error: errorMessage };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

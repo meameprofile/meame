@@ -3,7 +3,7 @@
  * @file get-current-user-profile.action.ts
  * @description Server Action soberana para obtener los datos del perfil del usuario.
  * @version 9.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

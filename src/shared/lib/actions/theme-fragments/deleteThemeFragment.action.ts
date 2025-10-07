@@ -3,7 +3,7 @@
  * @file deleteThemeFragment.action.ts
  * @description Server Action de élite para eliminar un fragmento de tema.
  * @version 2.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

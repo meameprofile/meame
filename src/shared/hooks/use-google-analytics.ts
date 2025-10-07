@@ -3,7 +3,7 @@
  * @file use-google-analytics.ts
  * @description Hook Atómico de Efecto para el píxel de Google Analytics.
  * @version 5.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

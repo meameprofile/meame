@@ -2,9 +2,7 @@
 /**
  * @file page.tsx
  * @description Página "Server Shell" soberana para la vista de detalle de un perfil de usuario.
- * @version 3.1.0 (Elite Type Safety in Error Boundary): Implementa un manejo de
- *              tipos explícito en el bloque catch para cumplir con el contrato de
- *              la prop 'errorDetails' y garantizar una seguridad de tipos absoluta.
+ * @version 3.2.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -26,8 +24,8 @@ interface UserDetailPageProps {
 export default async function UserDetailPage({
   params: { locale, sessionId },
 }: UserDetailPageProps) {
-  const traceId = logger.startTrace(`UserDetailPage_Shell_v3.1:${sessionId}`);
-  logger.startGroup(
+  const traceId = logger.startTrace(`UserDetailPage_Shell_v3.2:${sessionId}`);
+  const groupId = logger.startGroup(
     `[UserInt Detail Shell] Ensamblando perfil para ${sessionId}...`
   );
 
@@ -77,7 +75,7 @@ export default async function UserDetailPage({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

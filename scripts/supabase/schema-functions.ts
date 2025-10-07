@@ -3,7 +3,7 @@
  * @file schema-functions.ts
  * @description Guardián de Esquema para las funciones y procedimientos de Supabase.
  *              Realiza una auditoría completa y genera un informe de diagnóstico.
- * @version 1.0.0 (Granular & AI-Consumable Reports)
+ * @version 2.0.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -39,7 +39,7 @@ interface Report {
 
 async function diagnoseFunctionsSchema(): Promise<ScriptActionResult<string>> {
   const traceId = scriptLogger.startTrace(`diagnoseSchema:functions`);
-  scriptLogger.startGroup(
+  const groupId = scriptLogger.startGroup(
     `🔬 Auditando Funciones y Procedimientos de la Base de Datos...`
   );
 
@@ -112,7 +112,7 @@ async function diagnoseFunctionsSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

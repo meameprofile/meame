@@ -6,7 +6,7 @@
  *              cumplir con el contrato del logger soberano v20+ y enriquecido con
  *              una trazabilidad de ejecución hiper-granular.
  * @version 8.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

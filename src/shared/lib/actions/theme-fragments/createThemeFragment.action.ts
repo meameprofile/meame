@@ -3,7 +3,7 @@
  * @file createThemeFragment.action.ts
  * @description Server Action para crear un nuevo fragmento de tema.
  * @version 7.0.0 (Holistic Refactoring & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

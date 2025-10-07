@@ -4,7 +4,7 @@
  * @description Guardián de Seguridad para las políticas RLS de Supabase.
  *              Realiza una auditoría completa de todas las reglas de seguridad
  *              a nivel de fila y genera un informe de diagnóstico.
- * @version 1.0.0 (Granular & AI-Consumable Reports)
+ * @version 2.0.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -43,7 +43,7 @@ interface Report {
 
 async function diagnoseRlsSchema(): Promise<ScriptActionResult<string>> {
   const traceId = scriptLogger.startTrace(`diagnoseSchema:rls`);
-  scriptLogger.startGroup(
+  const groupId = scriptLogger.startGroup(
     `🛡️  Auditando Políticas de Seguridad (RLS) de la Base de Datos...`
   );
 
@@ -117,7 +117,7 @@ async function diagnoseRlsSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

@@ -2,7 +2,7 @@
 /**
  * @file connect.ts
  * @description Guardián de Conexión para Vercel Blob.
- * @version 1.0.0 (Production Ready)
+ * @version 1.1.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { list } from "@vercel/blob";
@@ -12,8 +12,10 @@ import { loadEnvironment } from "../_utils/env";
 import { scriptLogger as logger } from "../_utils/logger";
 
 async function diagnoseBlobConnection() {
-  const traceId = logger.startTrace("diagnoseBlobConnection_v1.0");
-  logger.startGroup("🌍 Iniciando Guardián de Conexión a Vercel Blob...");
+  const traceId = logger.startTrace("diagnoseBlobConnection_v1.1");
+  const groupId = logger.startGroup(
+    "🌍 Iniciando Guardián de Conexión a Vercel Blob..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "vercel-blob");
   const reportPath = path.resolve(reportDir, "connect-diagnostics.json");
@@ -81,7 +83,7 @@ async function diagnoseBlobConnection() {
     logger.info(
       `Informe guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
     if (report.connectionStatus === "FAILED") {
       process.exit(1);

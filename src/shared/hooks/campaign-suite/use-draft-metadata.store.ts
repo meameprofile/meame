@@ -3,7 +3,7 @@
  * @file use-draft-metadata.store.ts
  * @description Store atómico para la metadata y el progreso del borrador.
  * @version 3.0.0 (Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";

@@ -1,10 +1,10 @@
-// pnpm tsx scripts/run-with-env.ts scripts/supabase/schema-all.ts
+// RUTA: scripts/supabase/schema-all.ts
 /**
  * @file schema-all.ts
  * @description Guardián de Esquema Holístico para Supabase. Realiza una auditoría
  *              estructural completa de TODAS las tablas, funciones, triggers y
  *              políticas, y genera un único informe de diagnóstico maestro.
- * @version 1.0.0 (Holistic & AI-Consumable)
+ * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -67,8 +67,8 @@ interface Report {
 }
 
 async function diagnoseFullSchema(): Promise<ScriptActionResult<string>> {
-  const traceId = scriptLogger.startTrace(`diagnoseSchema:all_v1.0`);
-  scriptLogger.startGroup(
+  const traceId = scriptLogger.startTrace(`diagnoseSchema:all_v1.1`);
+  const groupId = scriptLogger.startGroup(
     `🔬 Auditando Esquema COMPLETO de la Base de Datos...`
   );
 
@@ -145,7 +145,7 @@ async function diagnoseFullSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") {
       process.exit(1);

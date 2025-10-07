@@ -3,7 +3,7 @@
  * @file producer-logic.tsx
  * @description Orquestador de lógica de tracking, con integridad de build restaurada.
  * @version 10.1.0 (Build Integrity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

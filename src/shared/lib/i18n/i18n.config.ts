@@ -4,7 +4,7 @@
  * @description Motor de Configuración Soberano para i18n. Distingue entre
  *              locales de enrutamiento (implementados) y locales de UI (soportados).
  * @version 14.0.0 (Routing & UI Locale Distinction)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { logger } from "../logging";

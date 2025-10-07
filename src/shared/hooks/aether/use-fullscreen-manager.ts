@@ -3,7 +3,7 @@
  * @file use-fullscreen-manager.ts
  * @description Hook atómico para gestionar el estado de pantalla completa.
  * @version 2.0.0 (Elite Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

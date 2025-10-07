@@ -3,7 +3,7 @@
  * @file theme-presets.shapers.ts
  * @description SSoT para la transformación de datos del dominio Theme Presets.
  * @version 1.0.0 (Sovereign & DRY)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import {

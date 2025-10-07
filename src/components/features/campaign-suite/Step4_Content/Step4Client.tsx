@@ -1,25 +1,24 @@
 // RUTA: src/components/features/campaign-suite/Step4_Content/Step4Client.tsx
 /**
  * @file Step4Client.tsx
- * @description Componente Contenedor de Cliente para el Paso 4 (Contenido),
- *              reconstruido para consumir el hook soberano `useAssembledDraft`
- *              y blindado con guardianes y observabilidad de élite.
- * @version 8.0.0 (Sovereign Draft Consumption & Elite Observability)
+ * @description Orquestador de cliente para el Paso 4, nivelado con un guardián
+ *              de validación proactivo y observabilidad de élite.
+ * @version 15.0.0 (Validation Guardian & Holistic Elite Leveling)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import type { z } from "zod";
+import { toast } from "sonner";
 import { logger } from "@/shared/lib/logging";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { useWizard } from "@/components/features/campaign-suite/_context/WizardContext";
-import { useStep4ContentStore } from "@/shared/hooks/campaign-suite/use-step4-content.store";
-import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
+import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
 import { Step4Form } from "./Step4Form";
 import type { Step4ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step4.schema";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { useAssembledDraft } from "@/shared/hooks/campaign-suite/use-assembled-draft.hook";
+import { validateStep4 } from "./step4.validator";
 
 type Step4Content = z.infer<typeof Step4ContentSchema>;
 
@@ -29,17 +28,20 @@ interface Step4ClientProps {
 
 export function Step4Client({ content }: Step4ClientProps): React.ReactElement {
   const traceId = useMemo(
-    () => logger.startTrace("Step4Client_Lifecycle_v8.0"),
+    () => logger.startTrace("Step4Client_Lifecycle_v15.0"),
     []
   );
   useEffect(() => {
-    logger.info("[Step4Client] Componente montado.", { traceId });
-    return () => logger.endTrace(traceId);
+    const groupId = logger.startGroup(
+      `[Step4Client] Orquestador de cliente montado.`
+    );
+    return () => {
+      logger.endGroup(groupId);
+      logger.endTrace(traceId);
+    };
   }, [traceId]);
 
-  const assembledDraft = useAssembledDraft();
-  const { setSectionContent } = useStep4ContentStore();
-  const { completeStep } = useDraftMetadataStore();
+  const { draft, updateDraft } = useCampaignDraft();
   const wizardContext = useWizard();
   const [editingSection, setEditingSection] = useState<string | null>(null);
 
@@ -50,18 +52,52 @@ export function Step4Client({ content }: Step4ClientProps): React.ReactElement {
         locale,
         field,
       });
-      setSectionContent(sectionName, locale, field, value);
+      const newContentData = structuredClone(draft.contentData);
+      if (!newContentData[sectionName]) newContentData[sectionName] = {};
+      if (!newContentData[sectionName][locale])
+        newContentData[sectionName][locale] = {};
+      newContentData[sectionName][locale]![field] = value;
+      updateDraft({ contentData: newContentData });
     },
-    [setSectionContent, traceId]
+    [updateDraft, draft.contentData, traceId]
   );
 
   const handleNext = useCallback(() => {
+    const nextTraceId = logger.startTrace("Step4Client.handleNext");
     if (wizardContext) {
-      logger.traceEvent(traceId, "Acción: Usuario avanza al Paso 5.");
-      completeStep(4);
-      wizardContext.goToNextStep();
+      try {
+        // --- [INICIO] GUARDIÁN DE VALIDACIÓN ---
+        const { isValid, message } = validateStep4(draft);
+        if (!isValid) {
+          toast.error("Contenido Incompleto", { description: message });
+          logger.warn(
+            `[Guardián Step4] Navegación bloqueada. Causa: ${message}`,
+            { traceId: nextTraceId }
+          );
+          return;
+        }
+        logger.traceEvent(nextTraceId, "Validación de paso superada.");
+        // --- [FIN] GUARDIÁN DE VALIDACIÓN ---
+
+        logger.traceEvent(nextTraceId, "Acción: Usuario avanza al Paso 5.");
+        const newCompletedSteps = Array.from(
+          new Set([...draft.completedSteps, 4])
+        );
+        updateDraft({ completedSteps: newCompletedSteps });
+        wizardContext.goToNextStep();
+      } catch (error) {
+        const msg =
+          error instanceof Error ? error.message : "Error desconocido";
+        logger.error("[Guardián] Fallo en handleNext.", {
+          error: msg,
+          traceId: nextTraceId,
+        });
+        toast.error("Error", { description: "No se pudo procesar la acción." });
+      } finally {
+        logger.endTrace(nextTraceId);
+      }
     }
-  }, [completeStep, wizardContext, traceId]);
+  }, [wizardContext, draft, updateDraft]);
 
   const handleBack = useCallback(() => {
     if (wizardContext) {
@@ -70,27 +106,25 @@ export function Step4Client({ content }: Step4ClientProps): React.ReactElement {
     }
   }, [wizardContext, traceId]);
 
-  if (!wizardContext) {
-    const errorMsg =
-      "Guardián de Contexto: Renderizado fuera de WizardProvider.";
-    logger.error(`[Step4Client] ${errorMsg}`, { traceId });
+  if (!wizardContext)
     return (
-      <DeveloperErrorDisplay context="Step4Client" errorMessage={errorMsg} />
+      <DeveloperErrorDisplay
+        context="Step4Client"
+        errorMessage="Renderizado fuera de WizardProvider."
+      />
     );
-  }
-  if (!content) {
-    const errorMsg =
-      "Guardián de Contrato: La prop 'content' es nula o indefinida.";
-    logger.error(`[Step4Client] ${errorMsg}`, { traceId });
+  if (!content)
     return (
-      <DeveloperErrorDisplay context="Step4Client" errorMessage={errorMsg} />
+      <DeveloperErrorDisplay
+        context="Step4Client"
+        errorMessage="Prop 'content' nula o indefinida."
+      />
     );
-  }
 
   return (
     <Step4Form
       content={content}
-      draft={assembledDraft}
+      draft={draft}
       onEditSection={setEditingSection}
       onCloseEditor={() => setEditingSection(null)}
       editingSection={editingSection}

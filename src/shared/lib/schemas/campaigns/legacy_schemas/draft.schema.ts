@@ -3,7 +3,7 @@
  * @file draft.schema.ts
  * @description SSoT para los schemas que componen un CampaignDraft (Legacy).
  * @version 2.1.0 (i18n Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---

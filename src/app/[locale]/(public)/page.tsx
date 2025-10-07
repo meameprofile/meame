@@ -1,10 +1,10 @@
-// RUTA (SIN CAMBIOS): src/app/[locale]/(public)/page.tsx
+// RUTA: src/app/[locale]/(public)/page.tsx
 /**
  * @file page.tsx
  * @description Homepage del portal, actuando como un "Ensamblador de Servidor"
  *              de élite. No requiere modificaciones.
- * @version 16.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 16.1.0 (Logger v20+ Contract Compliance)
+ * @author L.I.A. Legacy
  */
 import React from "react";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
@@ -15,7 +15,6 @@ import { SectionAnimator } from "@/components/layout/SectionAnimator";
 import { SocialProofLogos } from "@/components/sections/SocialProofLogos";
 import { CommunitySection } from "@/components/sections/CommunitySection";
 import { ScrollingBanner } from "@/components/sections/ScrollingBanner";
-import { getPublishedArticlesAction } from "@/shared/lib/actions/cogniread";
 import { HomePageClient } from "../HomePageClient";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
@@ -24,9 +23,9 @@ interface HomePageProps {
 }
 
 export default async function HomePage({ params: { locale } }: HomePageProps) {
-  const traceId = logger.startTrace("HomePage_Render_v16.0");
-  logger.startGroup(
-    `[HomePage Shell] Renderizando v16.0 para locale: ${locale}`
+  const traceId = logger.startTrace("HomePage_Render_v16.1");
+  const groupId = logger.startGroup(
+    `[HomePage Shell] Renderizando v16.1 para locale: ${locale}`
   );
 
   try {
@@ -39,7 +38,6 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
       newsGrid,
     } = dictionary;
 
-    // --- GUARDIÁN DE RESILIENCIA DE CONTRATO ---
     if (
       dictError ||
       !socialProofLogos ||
@@ -63,21 +61,6 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
       );
     }
 
-    // El servidor pre-carga los artículos para el primer renderizado (SSR).
-    const articlesResult = await getPublishedArticlesAction({
-      page: 1,
-      limit: 4,
-    });
-    if (!articlesResult.success && process.env.NODE_ENV === "development") {
-      return (
-        <DeveloperErrorDisplay
-          context="HomePage Data Fetching"
-          errorMessage="Fallo al obtener artículos publicados."
-          errorDetails={articlesResult.error}
-        />
-      );
-    }
-
     const fullDictionary = dictionary as Dictionary;
     logger.success(
       "[HomePage Shell] Datos obtenidos. Delegando a HomePageClient...",
@@ -88,7 +71,6 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
       <SectionAnimator>
         <ScrollingBanner content={scrollingBanner} locale={locale} />
         <SocialProofLogos content={socialProofLogos} locale={locale} />
-        {/* HomePageClient gestionará la caché y la UI de noticias */}
         <HomePageClient locale={locale} dictionary={fullDictionary} />
         <CommunitySection content={communitySection} locale={locale} />
       </SectionAnimator>
@@ -105,7 +87,7 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

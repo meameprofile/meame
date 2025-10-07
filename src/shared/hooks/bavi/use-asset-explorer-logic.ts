@@ -3,7 +3,7 @@
  * @file use-asset-explorer-logic.ts
  * @description Hook de lógica de élite para el AssetExplorer.
  * @version 4.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

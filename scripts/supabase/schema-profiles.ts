@@ -3,7 +3,7 @@
  * @file schema-profiles.ts
  * @description Guardián de Esquema para la tabla `profiles`. Realiza una
  *              auditoría estructural completa y genera un informe de diagnóstico.
- * @version 2.0.0 (Type-Safe & Resilient)
+ * @version 3.0.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -61,9 +61,9 @@ interface Report {
 async function diagnoseProfilesSchema(): Promise<ScriptActionResult<string>> {
   const TARGET_TABLE = "profiles";
   const traceId = scriptLogger.startTrace(
-    `diagnoseSchema:${TARGET_TABLE}_v2.0`
+    `diagnoseSchema:${TARGET_TABLE}_v3.0`
   );
-  scriptLogger.startGroup(
+  const groupId = scriptLogger.startGroup(
     `🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`
   );
 
@@ -72,7 +72,7 @@ async function diagnoseProfilesSchema(): Promise<ScriptActionResult<string>> {
 
   const report: Report = {
     reportMetadata: {
-      script: `scripts/supabase/schema-profiles.ts`,
+      script: `scripts/supabase/schema-${TARGET_TABLE}.ts`,
       targetTable: TARGET_TABLE,
       purpose: `Diagnóstico estructural completo de la tabla '${TARGET_TABLE}'.`,
       generatedAt: new Date().toISOString(),
@@ -106,7 +106,6 @@ async function diagnoseProfilesSchema(): Promise<ScriptActionResult<string>> {
         `Fallo en RPC 'get_system_diagnostics': ${error.message}`
       );
 
-    // --- Guardián de Resiliencia de Datos ---
     const validation = SystemDiagnosticsSchema.safeParse(data);
     if (!validation.success) {
       throw new Error(
@@ -119,7 +118,6 @@ async function diagnoseProfilesSchema(): Promise<ScriptActionResult<string>> {
       "Datos de diagnóstico del sistema obtenidos y validados."
     );
 
-    // Filtrado seguro con datos validados
     report.schemaDetails.columns = diagnosticsData.schema_columns.filter(
       (c) => c.table === TARGET_TABLE
     );
@@ -162,7 +160,7 @@ async function diagnoseProfilesSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

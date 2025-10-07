@@ -3,7 +3,7 @@
  * @file use-nos3-tracker.ts
  * @description Hook soberano y orquestador para el colector de `nos3`.
  * @version 8.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

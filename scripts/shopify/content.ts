@@ -1,9 +1,8 @@
-// RUTA: scripts/shopify/content.ts
 /**
  * @file content.ts
  * @description Guardián de Contenido para Shopify. Realiza un censo de los
  *              productos de la tienda a través de la Admin API.
- * @version 2.1.0 (Definitive Return Contract)
+ * @version 2.2.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -32,8 +31,10 @@ interface Report {
 }
 
 async function diagnoseShopifyContent(): Promise<ScriptActionResult<string>> {
-  const traceId = logger.startTrace("diagnoseShopifyContent_v2.1");
-  logger.startGroup("🛍️  Iniciando Censo de Contenido en Shopify...");
+  const traceId = logger.startTrace("diagnoseShopifyContent_v2.2");
+  const groupId = logger.startGroup(
+    "🛍️  Iniciando Censo de Contenido en Shopify..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "shopify");
   const reportPath = path.resolve(reportDir, "content-diagnostics.json");
@@ -110,20 +111,18 @@ async function diagnoseShopifyContent(): Promise<ScriptActionResult<string>> {
     logger.info(
       `Informe de censo guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
     if (report.censusStatus === "FAILED") {
       process.exit(1);
     }
   }
 
-  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RETORNO] ---
   if (report.censusStatus === "SUCCESS") {
     return { success: true, data: report.summary };
   } else {
     return { success: false, error: report.summary };
   }
-  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RETORNO] ---
 }
 
 diagnoseShopifyContent();

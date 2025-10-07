@@ -3,7 +3,7 @@
  * @file heimdall.contracts.ts
  * @description SSoT para los contratos de datos del Protocolo Heimdall.
  * @version 1.2.0 (Database Row Contracts)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import type {

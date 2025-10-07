@@ -3,7 +3,7 @@
  * @file CommunitySection.tsx
  * @description Componente de sección, con integridad de build restaurada.
  * @version 5.1.0 (Build Integrity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

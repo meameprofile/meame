@@ -3,7 +3,7 @@
  * @file auth.actions.ts
  * @description SSoT para las Server Actions de autenticación.
  * @version 13.0.0 (Holistic Auth Flow & Elite Error Handling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

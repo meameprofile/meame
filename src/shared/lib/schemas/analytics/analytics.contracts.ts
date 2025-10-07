@@ -3,7 +3,7 @@
  * @file analytics.contracts.ts
  * @description SSoT para los contratos de tipo de las tablas del dominio de Analytics.
  * @version 4.0.0 (Tracking Fields Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import type {

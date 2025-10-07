@@ -3,25 +3,22 @@
  * @file validate-theme-fragments.ts
  * @description Guardián de Integridad de Temas. Audita los `campaign.map.json`
  *              y reporta cualquier inconsistencia o desviación de la SSoT.
- * @version 3.0.0 (Node Runtime Compatibility)
+ * @version 3.1.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";
 import chalk from "chalk";
-// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE: RUTAS RELATIVAS] ---
-// Se reemplazan los alias por rutas relativas para compatibilidad con Node/tsx.
 import { parseThemeNetString } from "../../src/shared/lib/utils/theming/theme-utils";
 import { netTracePrefixToPathMap } from "../../src/shared/lib/config/theming.config";
 import { logger } from "../../src/shared/lib/logging";
-// --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
 
 const CAMPAIGNS_DIR = path.resolve(process.cwd(), "content/campaigns");
 const FRAGMENTS_DIR = path.resolve(process.cwd(), "content/theme-fragments");
 
 async function validateAllCampaignThemes() {
-  logger.startGroup(
-    "🛡️  Iniciando Guardián de Integridad de Temas (v3.0 - Node Compatible)..."
+  const groupId = logger.startGroup(
+    "🛡️  Iniciando Guardián de Integridad de Temas (v3.1)..."
   );
   let totalErrors = 0;
 
@@ -94,8 +91,6 @@ async function validateAllCampaignThemes() {
       }
     }
 
-    logger.endGroup();
-
     if (totalErrors > 0) {
       console.error(
         chalk.red.bold(
@@ -113,6 +108,8 @@ async function validateAllCampaignThemes() {
   } catch (error) {
     logger.error("Error fatal durante la validación de temas:", { error });
     process.exit(1);
+  } finally {
+    logger.endGroup(groupId);
   }
 }
 

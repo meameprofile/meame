@@ -3,10 +3,9 @@
  * @file schema-aura-functions.ts
  * @description Guardián de Esquema soberano para las funciones de base de datos
  *              del dominio Aura y de Inteligencia de Visitantes.
- * @version 2.0.0 (Elite Compliance & Bug Fix)
+ * @version 2.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-
 import { promises as fs } from "fs";
 import * as path from "path";
 import { z } from "zod";
@@ -51,11 +50,10 @@ const AURA_RELATED_FUNCTION_KEYWORDS = [
 async function diagnoseAuraFunctionsSchema(): Promise<
   ScriptActionResult<string>
 > {
-  const traceId = logger.startTrace("diagnoseAuraFunctionsSchema_v2.0");
-  // --- [INICIO DE CORRECCIÓN TS2554] ---
-  // La función `startGroup` en `scriptLogger` solo acepta un argumento.
-  logger.startGroup(`[Guardián Aura] Auditando funciones de BD...`);
-  // --- [FIN DE CORRECCIÓN TS2554] ---
+  const traceId = logger.startTrace("diagnoseAuraFunctionsSchema_v2.1");
+  const groupId = logger.startGroup(
+    `[Guardián Aura] Auditando funciones de BD...`
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "supabase");
   const reportPath = path.resolve(reportDir, "schema-aura-functions.json");
@@ -109,7 +107,7 @@ async function diagnoseAuraFunctionsSchema(): Promise<
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
     report.summary = `Auditoría de funciones de Aura fallida: ${errorMessage}`;
-    logger.error(report.summary, { traceId }); // Inyección de traceId para observabilidad
+    logger.error(report.summary, { traceId });
   } finally {
     await fs.mkdir(reportDir, { recursive: true }).catch(() => {});
     await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
@@ -119,7 +117,7 @@ async function diagnoseAuraFunctionsSchema(): Promise<
         reportPath
       )}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
     if (report.auditStatus === "FAILED") {
       process.exit(1);

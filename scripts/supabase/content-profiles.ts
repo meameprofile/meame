@@ -1,4 +1,4 @@
-// pnpm tsx scripts/run-with-env.ts scripts/supabase/content-profiles.ts
+// RUTA: scripts/supabase/content-profiles.ts
 /**
  * @file content-profiles.ts
  * @description Guardián de Contenido para la tabla `profiles`. Realiza un volcado
@@ -16,7 +16,6 @@ import type { ScriptActionResult } from "../_utils/types";
 // --- SSoT de Contratos de Datos (Sincronizado con la DB Real) ---
 const ProfileSchema = z.object({
   id: z.string().uuid(),
-  user_id: z.string().uuid(),
   full_name: z.string().nullable(),
   avatar_url: z.string().nullable(),
   updated_at: z.string().datetime(),
@@ -24,8 +23,8 @@ const ProfileSchema = z.object({
   last_sign_in_ip: z.string().nullable(),
   last_sign_in_location: z.string().nullable(),
   created_at: z.string().datetime(),
-  // Las columnas 'provider_name' y 'provider_avatar_url' han sido eliminadas
-  // para coincidir con el esquema real de la base de datos.
+  provider_name: z.string().nullable(),
+  provider_avatar_url: z.string().nullable(),
 });
 
 type Profile = z.infer<typeof ProfileSchema>;
@@ -51,7 +50,7 @@ async function diagnoseProfilesContent(): Promise<ScriptActionResult<string>> {
   const traceId = scriptLogger.startTrace(
     `diagnoseContent:${TARGET_TABLE}_v1.1`
   );
-  scriptLogger.startGroup(
+  const groupId = scriptLogger.startGroup(
     `💾 Volcando contenido de la Tabla: '${TARGET_TABLE}'...`
   );
 
@@ -125,7 +124,7 @@ async function diagnoseProfilesContent(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de volcado guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.dumpStatus === "FAILED") process.exit(1);
   }

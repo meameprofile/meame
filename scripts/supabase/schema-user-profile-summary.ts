@@ -2,7 +2,7 @@
 /**
  * @file schema-user-profile-summary.ts
  * @description Guardián de Esquema para la tabla `user_profile_summary`.
- * @version 1.0.0
+ * @version 2.0.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { scriptLogger as logger } from "../_utils/logger";
@@ -12,7 +12,9 @@ const TARGET_TABLE = "user_profile_summary";
 
 async function diagnoseUserProfileSummarySchema() {
   const traceId = logger.startTrace(`diagnoseSchema:${TARGET_TABLE}`);
-  logger.startGroup(`🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`);
+  const groupId = logger.startGroup(
+    `🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`
+  );
 
   const instructionsForAI = [
     `Este es un informe de diagnóstico estructural para la tabla '${TARGET_TABLE}', el Data Mart de perfiles de usuario.`,
@@ -23,7 +25,7 @@ async function diagnoseUserProfileSummarySchema() {
 
   await runTableAudit(TARGET_TABLE, instructionsForAI, traceId);
 
-  logger.endGroup();
+  logger.endGroup(groupId);
   logger.endTrace(traceId);
 }
 

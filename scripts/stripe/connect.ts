@@ -1,4 +1,4 @@
-// pnpm tsx scripts/run-with-env.ts scripts/stripe/connect.ts
+// RUTA: scripts/stripe/connect.ts
 /**
  * @file connect.ts
  * @description Guardián de Conexión para Stripe. Verifica variables de entorno
@@ -37,7 +37,9 @@ interface Report {
 
 async function diagnoseStripeConnection(): Promise<ScriptActionResult<string>> {
   const traceId = scriptLogger.startTrace("diagnoseStripeConnection_v1.0.2");
-  scriptLogger.startGroup("💳 Iniciando Guardián de Conexión a Stripe...");
+  const groupId = scriptLogger.startGroup(
+    "💳 Iniciando Guardián de Conexión a Stripe..."
+  );
 
   const reportDir = path.resolve(process.cwd(), "reports", "stripe");
   const reportPath = path.resolve(reportDir, "connect-diagnostics.json");
@@ -136,7 +138,7 @@ async function diagnoseStripeConnection(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.connectionStatus === "FAILED") process.exit(1);
   }

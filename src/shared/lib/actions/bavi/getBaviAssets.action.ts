@@ -3,7 +3,7 @@
  * @file getBaviAssets.action.ts
  * @description Server Action de producción para obtener activos de la BAVI.
  * @version 4.0.0 (Absolute Type Safety & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

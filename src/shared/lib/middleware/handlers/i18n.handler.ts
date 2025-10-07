@@ -3,7 +3,7 @@
  * @file i18n.handler.ts
  * @description Manejador de middleware i18n, ahora con consumo de la SSoT de rutas.
  * @version 12.1.0 (SSoT Route Consumption)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { NextResponse } from "next/server";

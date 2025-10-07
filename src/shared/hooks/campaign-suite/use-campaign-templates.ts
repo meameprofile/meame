@@ -3,7 +3,7 @@
  * @file use-campaign-templates.ts
  * @description Hook para la lógica de gestión de plantillas.
  * @version 4.0.0 (Elite Observability & Resilience)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

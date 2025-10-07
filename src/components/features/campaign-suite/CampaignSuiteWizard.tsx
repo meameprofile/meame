@@ -2,8 +2,11 @@
 /**
  * @file CampaignSuiteWizard.tsx
  * @description Orquestador de cliente y "Layout Shell" para la SDC.
- * @version 22.0.0 (Holistic Sync & Elite Compliance)
- * @author L.I.A. Legacy
+ *              v22.3.0 (Definitive Build Integrity): Se elimina el último
+ *              aparato obsoleto ('CampaignDraftSubscriber'), completando
+ *              la refactorización y garantizando un build limpio.
+ * @version 22.3.0
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -11,19 +14,21 @@ import React, { useMemo, useCallback, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { logger } from "@/shared/lib/logging";
 import { stepsDataConfig } from "@/shared/lib/config/campaign-suite/wizard.data.config";
-import {
-  useCampaignDraftStore,
-  useDraftMetadataStore,
-} from "@/shared/hooks/campaign-suite";
+import { useCampaignDraftStore } from "@/shared/hooks/campaign-suite/use-campaign-draft.store";
+import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
 import { WizardProvider } from "./_context/WizardContext";
 import { ProgressContext, type ProgressStep } from "./_context/ProgressContext";
 import { WizardHeader } from "./_components/WizardHeader";
 import { WizardClientLayout } from "./_components/WizardClientLayout";
-import { CampaignDraftSubscriber } from "./_components/CampaignDraftSubscriber"; // <-- NUEVA IMPORTACIÓN
+// --- [INICIO DE PURGA FINAL] ---
+// La importación del componente obsoleto ha sido eliminada.
+// --- [FIN DE PURGA FINAL] ---
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { LoadedFragments } from "@/shared/lib/actions/campaign-suite";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { routes } from "@/shared/lib/navigation";
+import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
 
 interface CampaignSuiteWizardProps {
   children: React.ReactNode;
@@ -41,7 +46,7 @@ export function CampaignSuiteWizard({
   dictionary,
 }: CampaignSuiteWizardProps) {
   const traceId = useMemo(
-    () => logger.startTrace("CampaignSuiteWizard_v22.0"),
+    () => logger.startTrace("CampaignSuiteWizard_v22.3"),
     []
   );
   useEffect(() => {
@@ -53,12 +58,9 @@ export function CampaignSuiteWizard({
 
   const router = useRouter();
   const pathname = usePathname();
-  const { initializeDraft, isLoading } = useCampaignDraftStore();
-  const { completedSteps } = useDraftMetadataStore();
-
-  useEffect(() => {
-    initializeDraft();
-  }, [initializeDraft]);
+  const locale = getCurrentLocaleFromPathname(pathname);
+  const isLoading = useCampaignDraftStore((state) => state.isLoading);
+  const completedSteps = useDraftMetadataStore((state) => state.completedSteps);
 
   const currentStepId = useMemo(() => {
     const pathSegments = pathname.split("/");
@@ -69,11 +71,14 @@ export function CampaignSuiteWizard({
 
   const handleNavigation = useCallback(
     (newStepId: number) => {
-      const newPath =
-        pathname.substring(0, pathname.lastIndexOf("/") + 1) + newStepId;
-      router.push(newPath);
+      router.push(
+        routes.creatorCampaignSuite.path({
+          locale,
+          stepId: [String(newStepId)],
+        })
+      );
     },
-    [router, pathname]
+    [router, locale]
   );
 
   const handleNextStep = useCallback(
@@ -133,7 +138,9 @@ export function CampaignSuiteWizard({
 
   return (
     <WizardProvider value={wizardContextValue}>
-      <CampaignDraftSubscriber /> {/* <-- INYECCIÓN ESTRATÉGICA */}
+      {/* --- [INICIO DE PURGA FINAL] --- */}
+      {/* La invocación al componente obsoleto ha sido eliminada. */}
+      {/* --- [FIN DE PURGA FINAL] --- */}
       <ProgressContext.Provider value={progressContextValue}>
         <WizardHeader />
         <WizardClientLayout

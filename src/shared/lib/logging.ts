@@ -5,7 +5,7 @@
  *              con conciencia espacio-temporal, batching en cliente y persistencia
  *              directa en servidor. Es isomórfico, autónomo y de producción pura.
  * @version 20.4.0 (Definitive & Holistically Aligned)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { createId } from "@paralleldrive/cuid2";
 import {
@@ -97,9 +97,6 @@ function emitHeimdallEvent(
     }
   } else {
     const supabase = createServerClient();
-    // --- [INICIO DE CORRECCIÓN DE CONTRATO DE DB v20.4.0] ---
-    // Se elimina la propiedad 'path', que ya no existe como columna de primer nivel.
-    // La información del path ya está contenida dentro del objeto 'context'.
     const recordToInsert: HeimdallEventInsert = {
       event_id: fullEvent.eventId,
       trace_id: fullEvent.traceId,
@@ -110,7 +107,6 @@ function emitHeimdallEvent(
       payload: fullEvent.payload as Json,
       context: fullEvent.context as Json,
     };
-    // --- [FIN DE CORRECCIÓN DE CONTRATO DE DB v20.4.0] ---
     supabase
       .from("heimdall_events")
       .insert(recordToInsert)

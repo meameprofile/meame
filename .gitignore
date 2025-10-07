@@ -53,8 +53,10 @@ playwright/.cache/
 # 6. Documentación de Desarrollo y Reportes del Proyecto (Petición Específica)
 # ------------------------------------------------------------------------------
 # Se excluyen los manifiestos de desarrollo y los reportes de snapshot.
-.docs/
-snapshot-reports/
+.docs
+_docs
+reports
+snapshot-reports
 reports
 
 # 7. Archivos de Sistema Operativo y Editor de Código

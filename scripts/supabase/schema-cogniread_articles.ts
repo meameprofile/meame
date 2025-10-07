@@ -3,7 +3,7 @@
  * @file schema-cogniread_articles.ts
  * @description Guardián de Esquema para la tabla `cogniread_articles`. Realiza una
  *              auditoría estructural completa y genera un informe de diagnóstico.
- * @version 1.0.1 (Type-Safe & Linter-Compliant)
+ * @version 2.0.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
@@ -38,10 +38,7 @@ const TriggerSchema = z.object({
   event: z.string(),
 });
 
-// --- [INICIO DE REFACTORIZACIÓN DE TIPO] ---
-// Se infiere el tipo explícito para su uso en la función filter.
 type Trigger = z.infer<typeof TriggerSchema>;
-// --- [FIN DE REFACTORIZACIÓN DE TIPO] ---
 
 const SystemDiagnosticsSchema = z.object({
   schema_columns: z.array(ColumnSchema),
@@ -73,7 +70,7 @@ interface Report {
 async function diagnoseCogniReadSchema(): Promise<ScriptActionResult<string>> {
   const TARGET_TABLE = "cogniread_articles";
   const traceId = scriptLogger.startTrace(`diagnoseSchema:${TARGET_TABLE}`);
-  scriptLogger.startGroup(
+  const groupId = scriptLogger.startGroup(
     `🔬 Auditando Esquema de la Tabla: '${TARGET_TABLE}'...`
   );
 
@@ -130,8 +127,6 @@ async function diagnoseCogniReadSchema(): Promise<ScriptActionResult<string>> {
       "Datos de diagnóstico del sistema obtenidos y validados."
     );
 
-    // --- [INICIO DE REFACTORIZACIÓN DE TIPO] ---
-    // Se utiliza el tipo `Trigger` explícito, eliminando el `any`.
     report.schemaDetails.columns = diagnosticsData.schema_columns.filter(
       (c) => c.table === TARGET_TABLE
     );
@@ -147,7 +142,6 @@ async function diagnoseCogniReadSchema(): Promise<ScriptActionResult<string>> {
     report.schemaDetails.triggers = diagnosticsData.triggers.filter(
       (t: Trigger) => t.table === TARGET_TABLE
     );
-    // --- [FIN DE REFACTORIZACIÓN DE TIPO] ---
 
     if (report.schemaDetails.columns.length === 0) {
       throw new Error(`La tabla '${TARGET_TABLE}' no fue encontrada.`);
@@ -178,7 +172,7 @@ async function diagnoseCogniReadSchema(): Promise<ScriptActionResult<string>> {
     scriptLogger.info(
       `Informe de diagnóstico guardado en: ${path.relative(process.cwd(), reportPath)}`
     );
-    scriptLogger.endGroup();
+    scriptLogger.endGroup(groupId);
     scriptLogger.endTrace(traceId);
     if (report.auditStatus === "FAILED") process.exit(1);
   }

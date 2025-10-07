@@ -3,7 +3,7 @@
  * @file use-asset-uploader.ts
  * @description Hook "cerebro" soberano para la lógica de subida de activos a la BAVI.
  * @version 8.0.0 (Holistic Elite Leveling)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
