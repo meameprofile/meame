@@ -2,8 +2,8 @@
 /**
  * @file get-current-user-profile.action.ts
  * @description Server Action soberana para obtener los datos del perfil del usuario.
- * @version 9.0.0 (Elite Observability & Resilience)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 10.0.0 (Holistic Observability & Elite Compliance)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -15,8 +15,12 @@ import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts
 export async function getCurrentUserProfile_Action(): Promise<
   ActionResult<ProfilesRow | null>
 > {
-  const traceId = logger.startTrace("getCurrentUserProfile_Action_v9.0");
-  logger.startGroup(`[Action] Solicitando perfil de usuario...`, traceId);
+  const traceId = logger.startTrace("getCurrentUserProfile_Action_v10.0");
+  // --- [INICIO DE NIVELACIÓN DE OBSERVABILIDAD v10.0.0] ---
+  const groupId = logger.startGroup(
+    `[Action] Solicitando perfil de usuario...`
+  );
+  // --- [FIN DE NIVELACIÓN DE OBSERVABILIDAD v10.0.0] ---
 
   try {
     const supabase = createServerClient();
@@ -64,7 +68,9 @@ export async function getCurrentUserProfile_Action(): Promise<
       error: "No se pudo obtener la información del perfil.",
     };
   } finally {
-    logger.endGroup();
+    // --- [INICIO DE NIVELACIÓN DE OBSERVABILIDAD v10.0.0] ---
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
+    // --- [FIN DE NIVELACIÓN DE OBSERVABILIDAD v10.0.0] ---
   }
 }

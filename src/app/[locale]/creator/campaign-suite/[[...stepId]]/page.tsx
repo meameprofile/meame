@@ -3,8 +3,8 @@
  * @file page.tsx
  * @description Despachador de Pasos dinámico para la SDC. Renderiza el
  *              componente de paso correcto del lado del servidor.
- * @version 2.0.0 (Server-Side Dispatcher)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Observability Contract v20+ Compliance)
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import React, { Suspense } from "react";
@@ -22,12 +22,12 @@ interface StepPageProps {
 export default async function StepPage({
   params: { locale, stepId },
 }: StepPageProps) {
-  const traceId = logger.startTrace("SDC_StepPage_v2.0");
+  const traceId = logger.startTrace("SDC_StepPage_v3.0");
 
   const currentStepId = parseInt(stepId?.[0] || "0", 10);
   const stepConfig = stepsConfig.find((s) => s.id === currentStepId);
 
-  logger.startGroup(
+  const groupId = logger.startGroup(
     `[Step Page] Renderizando paso ${currentStepId} en el servidor...`
   );
 
@@ -71,7 +71,7 @@ export default async function StepPage({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

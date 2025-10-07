@@ -3,22 +3,23 @@
  * @file validate-theme-fragments.ts
  * @description Guardián de Integridad de Temas. Audita los `campaign.map.json`
  *              y reporta cualquier inconsistencia o desviación de la SSoT.
- * @version 3.1.0 (Logger v20+ Contract Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 4.1.0 (Orchestrator Compliance)
+ * @author L.I.A. Legacy
  */
 import { promises as fs } from "fs";
 import * as path from "path";
 import chalk from "chalk";
-import { parseThemeNetString } from "../../src/shared/lib/utils/theming/theme-utils";
-import { netTracePrefixToPathMap } from "../../src/shared/lib/config/theming.config";
-import { logger } from "../../src/shared/lib/logging";
+import { parseThemeNetString } from "@/shared/lib/utils/theming/theme-utils";
+import { netTracePrefixToPathMap } from "@/shared/lib/config/theming.config";
+import { logger } from "@/shared/lib/logging";
 
 const CAMPAIGNS_DIR = path.resolve(process.cwd(), "content/campaigns");
 const FRAGMENTS_DIR = path.resolve(process.cwd(), "content/theme-fragments");
 
-async function validateAllCampaignThemes() {
+export default async function validateAllCampaignThemes() {
+  const traceId = logger.startTrace("validateThemes_v4.1");
   const groupId = logger.startGroup(
-    "🛡️  Iniciando Guardián de Integridad de Temas (v3.1)..."
+    "🛡️  Iniciando Guardián de Integridad de Temas (v4.1)..."
   );
   let totalErrors = 0;
 
@@ -52,7 +53,7 @@ async function validateAllCampaignThemes() {
             if (!name) {
               logger.error(
                 `[Guardián] ¡Anomalía! Falta el prefijo '${prefix}' en el trazo NET.`,
-                { Campaña: campaignId, Variante: variant.name }
+                { Campaña: campaignId, Variante: variant.name, traceId }
               );
               variantErrors++;
               continue;
@@ -74,6 +75,7 @@ async function validateAllCampaignThemes() {
                 "Trazo NET": variant.theme,
                 "Fragmento Faltante": `${prefix}-${name}`,
                 "Ruta Esperada": path.relative(process.cwd(), fragmentPath),
+                traceId,
               });
               variantErrors++;
             }
@@ -86,31 +88,34 @@ async function validateAllCampaignThemes() {
           `No se pudo procesar ${path.relative(
             process.cwd(),
             mapPath
-          )}. Causa: ${errorMessage}`
+          )}. Causa: ${errorMessage}`,
+          { traceId }
         );
       }
     }
 
     if (totalErrors > 0) {
-      console.error(
-        chalk.red.bold(
-          `\n❌ Auditoría fallida. Se encontraron ${totalErrors} errores críticos de congruencia.`
-        )
+      throw new Error(
+        `Auditoría fallida. Se encontraron ${totalErrors} errores críticos de congruencia.`
       );
-      process.exit(1);
     } else {
-      console.log(
-        chalk.green.bold(
-          "\n✅ Auditoría completada. Todos los temas son congruentes."
-        )
+      logger.success(
+        "\n✅ Auditoría completada. Todos los temas son congruentes."
       );
     }
   } catch (error) {
-    logger.error("Error fatal durante la validación de temas:", { error });
-    process.exit(1);
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
+    logger.error("Error fatal durante la validación de temas:", {
+      error: errorMessage,
+      traceId,
+    });
+    totalErrors++; // Asegurarse de que el proceso falle
   } finally {
     logger.endGroup(groupId);
+    logger.endTrace(traceId);
+    if (totalErrors > 0) {
+      process.exit(1);
+    }
   }
 }
-
-validateAllCampaignThemes();

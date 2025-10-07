@@ -1,8 +1,8 @@
-// RUTA: shared/lib/services/notification.service.ts
+// RUTA: src/shared/lib/services/notification.service.ts
 /**
  * @file notification.service.ts
  * @description Servicio de backend centralizado para la gestión de notificaciones.
- * @version 1.0.0
+ * @version 1.1.0 (Observability Contract Fix)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -31,10 +31,9 @@ interface CreateNotificationPayload {
  *              operación "fire-and-forget" para no bloquear el hilo principal.
  */
 export function createNotification(payload: CreateNotificationPayload): void {
-  logger.trace(
-    "[NotificationService] Solicitud para crear notificación.",
-    payload
-  );
+  logger.trace("[NotificationService] Solicitud para crear notificación.", {
+    payload,
+  });
 
   // No usamos await aquí intencionadamente. La creación de una notificación
   // es una tarea secundaria y no debe bloquear la respuesta al cliente.

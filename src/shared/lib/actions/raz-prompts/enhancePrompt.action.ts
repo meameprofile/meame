@@ -2,7 +2,7 @@
 /**
  * @file enhancePrompt.action.ts
  * @description Server Action de élite para enriquecer un prompt de usuario.
- * @version 2.0.0 (Elite Observability & Resilience)
+ * @version 2.1.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -41,8 +41,11 @@ async function getMasterPrompt(): Promise<string> {
 export async function enhancePromptAction(
   promptText: string
 ): Promise<ActionResult<string>> {
-  const traceId = logger.startTrace("enhancePromptAction_v2.0");
-  logger.startGroup(`[AI Action] Solicitando perfeccionamiento...`, traceId);
+  const traceId = logger.startTrace("enhancePromptAction_v2.1");
+  const groupId = logger.startGroup(
+    `[AI Action] Solicitando perfeccionamiento...`,
+    traceId
+  );
 
   try {
     const validation = EnhancePromptInputSchema.safeParse(promptText);
@@ -85,7 +88,7 @@ export async function enhancePromptAction(
       error: "No se pudo comunicar con el servicio de IA.",
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

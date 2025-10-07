@@ -2,11 +2,11 @@
 /**
  * @file DevHomepageHeader.tsx
  * @description Header de desarrollo para la página de inicio.
- *              v9.0.0 (Sovereign Path Restoration): Se corrige la ruta de
- *              importación para alinearse con la Arquitectura Canónica Soberana
- *              (ACS), restaurando la integridad del build.
- * @version 9.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v10.0.0 (Data-Driven Contract Restoration): Refactorizado para
+ *              generar dinámicamente las props requeridas por DevToolsDropdown,
+ *              restaurando la integridad del contrato de datos.
+ * @version 10.0.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -18,10 +18,8 @@ import { logger } from "@/shared/lib/logging";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
 import { routes } from "@/shared/lib/navigation";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// Se corrige la ruta de importación a la SSoT canónica utilizando un alias soberano.
 import DevToolsDropdown from "@/components/features/dev-tools/DevToolsDropdown";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
+import { generateDevRoutes } from "@/components/features/dev-tools/utils/route-menu.generator";
 
 interface DevHomepageHeaderProps {
   dictionary: NonNullable<Dictionary["devHomepageHeader"]>;
@@ -33,7 +31,7 @@ export function DevHomepageHeader({
   devRouteMenuDictionary,
 }: DevHomepageHeaderProps): React.ReactElement | null {
   logger.info(
-    "[DevHomepageHeader] Renderizando v9.0 (Sovereign Path Restoration)."
+    "[DevHomepageHeader] Renderizando v10.0 (Data-Driven Contract Restoration)."
   );
   const pathname = usePathname();
   const currentLocale = getCurrentLocaleFromPathname(pathname);
@@ -44,6 +42,10 @@ export function DevHomepageHeader({
     );
     return null;
   }
+
+  // Se generan las rutas dinámicamente a partir del diccionario.
+  const routeGroups = generateDevRoutes(devRouteMenuDictionary, currentLocale);
+  const buttonLabel = devRouteMenuDictionary.devMenuLabel;
 
   return (
     <header className="py-3 sticky top-0 z-50 bg-destructive/90 backdrop-blur-lg border-b border-destructive/50">
@@ -77,11 +79,14 @@ export function DevHomepageHeader({
           </nav>
 
           <div className="ml-auto">
-            <DevToolsDropdown dictionary={devRouteMenuDictionary} />
+            {/* Se pasan las props correctas al componente hijo. */}
+            <DevToolsDropdown
+              routeGroups={routeGroups}
+              buttonLabel={buttonLabel}
+            />
           </div>
         </div>
       </Container>
     </header>
   );
 }
-// RUTA: src/components/layout/DevHomepageHeader.tsx

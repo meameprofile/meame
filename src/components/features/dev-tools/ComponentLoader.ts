@@ -2,11 +2,11 @@
 /**
  * @file ComponentLoader.ts
  * @description Módulo de servicio SOBERANO para la carga dinámica de componentes.
- *              v6.1.0 (Code Hygiene): Se elimina la importación no utilizada del
- *              tipo 'Dictionary' para cumplir con los estándares de limpieza del
- *              código y las reglas de linting.
- * @version 6.1.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v7.0.0 (Observability Contract v20+ Compliance): Refactorizado para
+ *              cumplir con el contrato de API del logger soberano, capturando y
+ *              pasando el groupId para una trazabilidad de rendimiento precisa.
+ * @version 7.0.0
+ * @author L.I.A. Legacy
  */
 import React from "react";
 import {
@@ -15,9 +15,6 @@ import {
 } from "@/components/features/dev-tools/ComponentRegistry";
 import { getFallbackProps } from "@/components/features/dev-tools/utils/component-props";
 import { logger } from "@/shared/lib/logging";
-// --- [INICIO DE REFACTORIZACIÓN DE HIGIENE] ---
-// Se ha eliminado la importación no utilizada de 'Dictionary'.
-// --- [FIN DE REFACTORIZACIÓN DE HIGIENE] ---
 
 interface ComponentLoadResult {
   ComponentToRender: React.ComponentType<Record<string, unknown>>;
@@ -28,19 +25,20 @@ interface ComponentLoadResult {
 export async function loadComponentAndProps(
   componentName: string
 ): Promise<ComponentLoadResult> {
-  logger.startGroup(`[Loader v6.1] Cargando "${componentName}"`);
-
-  const entry = getComponentByName(componentName);
-  if (!entry) {
-    const errorMsg = `Componente "${componentName}" no encontrado en ComponentRegistry.`;
-    logger.error(errorMsg);
-    logger.endGroup();
-    throw new Error(errorMsg);
-  }
-
-  const componentProps = getFallbackProps(componentName);
+  const groupId = logger.startGroup(
+    `[Loader v7.0] Cargando "${componentName}"`
+  );
 
   try {
+    const entry = getComponentByName(componentName);
+    if (!entry) {
+      throw new Error(
+        `Componente "${componentName}" no encontrado en ComponentRegistry.`
+      );
+    }
+
+    const componentProps = getFallbackProps(componentName);
+
     const dynamicPath = `@/` + entry.componentPath.replace("@/", "");
     const componentModule = await import(dynamicPath);
 
@@ -59,16 +57,17 @@ export async function loadComponentAndProps(
     logger.success(
       `Componente "${componentName}" cargado dinámicamente con éxito.`
     );
-    logger.endGroup();
 
     return { ComponentToRender, componentProps, entry };
   } catch (error) {
-    const errorMsg = `Error crítico al importar dinámicamente el módulo para "${componentName}".`;
-    logger.error(errorMsg, { path: entry.componentPath, error });
-    logger.endGroup();
-    throw new Error(
-      `No se pudo cargar el módulo del componente: ${entry.componentPath}`
-    );
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
+    logger.error(`[Loader] Fallo crítico al cargar "${componentName}".`, {
+      error: errorMessage,
+    });
+    // El error se propaga para que el consumidor (ComponentCanvas) lo maneje.
+    throw error;
+  } finally {
+    logger.endGroup(groupId);
   }
 }
-// RUTA: src/components/features/dev-tools/ComponentLoader.ts

@@ -44,7 +44,7 @@ export function PreviewRenderer({
     () => logger.startTrace("PreviewRenderer_Render_v3.0"),
     []
   );
-  logger.startGroup(
+  const groupId = logger.startGroup(
     `[PreviewRenderer] Ensamblando previsualización...`,
     traceId
   );
@@ -154,7 +154,7 @@ export function PreviewRenderer({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

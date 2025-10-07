@@ -2,7 +2,7 @@
 /**
  * @file i18n.ts
  * @description Orquestador de i18n "isomórfico", ahora alineado con la SSoT de enrutamiento.
- * @version 21.0.0 (Routing Contract Alignment)
+ * @version 21.1.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
@@ -33,7 +33,7 @@ const getProductionDictionaryFn = cache(
     error: ZodError | Error | null;
   }> => {
     const traceId = logger.startTrace(`getProductionDictionary:${locale}`);
-    logger.startGroup(
+    const groupId = logger.startGroup(
       `[i18n.prod] Ensamblando diccionario desde Supabase para [${locale}]...`
     );
 
@@ -51,6 +51,8 @@ const getProductionDictionaryFn = cache(
             locale
           ];
           if (entryContent) {
+            // Extrae la última parte de la ruta del archivo y elimina la extensión
+            // para usarla como clave de nivel superior en el diccionario.
             const key = entry.entry_key
               .split("/")
               .pop()
@@ -82,7 +84,7 @@ const getProductionDictionaryFn = cache(
       );
       return { dictionary: {}, error: typedError };
     } finally {
-      logger.endGroup();
+      logger.endGroup(groupId);
       logger.endTrace(traceId);
     }
   }

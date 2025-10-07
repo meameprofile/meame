@@ -2,7 +2,9 @@
 /**
  * @file createThemeFragment.action.ts
  * @description Server Action para crear un nuevo fragmento de tema.
- * @version 7.0.0 (Holistic Refactoring & Elite Compliance)
+ *              v8.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 8.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -32,8 +34,11 @@ type CreateFragmentInput = z.infer<typeof CreateFragmentInputSchema>;
 export async function createThemeFragmentAction(
   input: CreateFragmentInput
 ): Promise<ActionResult<{ newFragment: ThemeFragment }>> {
-  const traceId = logger.startTrace("createThemeFragmentAction_v7.0");
-  logger.startGroup(`[Action] Creando fragmento de tema...`, traceId);
+  const traceId = logger.startTrace("createThemeFragmentAction_v8.0");
+  const groupId = logger.startGroup(
+    `[Action] Creando fragmento de tema...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -102,7 +107,7 @@ export async function createThemeFragmentAction(
     });
     return { success: false, error: "No se pudo guardar el nuevo estilo." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

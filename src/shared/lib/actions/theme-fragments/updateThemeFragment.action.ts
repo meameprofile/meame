@@ -2,7 +2,9 @@
 /**
  * @file updateThemeFragment.action.ts
  * @description Server Action de élite para actualizar un fragmento de tema.
- * @version 2.1.0 (Payload Contract Fix)
+ *              v3.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 3.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -32,8 +34,11 @@ type UpdateFragmentInput = z.infer<typeof UpdateFragmentInputSchema>;
 export async function updateThemeFragmentAction(
   input: UpdateFragmentInput
 ): Promise<ActionResult<{ updatedFragment: ThemeFragment }>> {
-  const traceId = logger.startTrace("updateThemeFragmentAction_v2.1");
-  logger.startGroup(`[Action] Actualizando fragmento de tema...`, traceId);
+  const traceId = logger.startTrace("updateThemeFragmentAction_v3.0");
+  const groupId = logger.startGroup(
+    `[Action] Actualizando fragmento de tema...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -55,14 +60,11 @@ export async function updateThemeFragmentAction(
     if (memberError || !memberCheck)
       throw new Error("Acceso denegado al workspace.");
 
-    // --- [INICIO DE CORRECCIÓN DE CONTRATO] ---
-    // El payload ahora actualiza la columna 'data', no 'theme_config'.
     const supabasePayload: ThemeFragmentUpdate = {
       name: updateData.name,
       data: updateData.data as Json,
       updated_at: new Date().toISOString(),
     };
-    // --- [FIN DE CORRECCIÓN DE CONTRATO] ---
 
     const { data: updatedFragmentRow, error } = await supabase
       .from("theme_fragments")
@@ -86,7 +88,7 @@ export async function updateThemeFragmentAction(
     });
     return { success: false, error: "No se pudo actualizar el estilo." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

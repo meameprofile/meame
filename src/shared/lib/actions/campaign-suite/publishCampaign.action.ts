@@ -1,11 +1,11 @@
-// Ruta correcta: src/shared/lib/actions/campaign-suite/publishCampaign.action.ts
+// RUTA: src/shared/lib/actions/campaign-suite/publishCampaign.action.ts
 /**
  * @file publishCampaign.action.ts
  * @description Server Action orquestadora para publicar los activos de una campaña.
- * @version 7.1.0 (Sovereign Path Restoration)
+ * @version 7.2.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-"use server";
+"use server-only";
 
 import path from "path";
 import { logger } from "@/shared/lib/logging";
@@ -27,23 +27,24 @@ export async function publishCampaignAction(
   draft: CampaignDraft
 ): Promise<ActionResult<PublishSuccessPayload>> {
   const { baseCampaignId, draftId } = draft;
-
-  const validation = CampaignDraftDataSchema.safeParse(draft);
-  if (!validation.success || !baseCampaignId) {
-    logger.error("[publishCampaignAction] Borrador inválido o sin ID base.", {
-      draftId,
-      errors: validation.success === false && validation.error.flatten(),
-    });
-    return {
-      success: false,
-      error: "Faltan datos fundamentales del borrador.",
-    };
-  }
-
   const traceId = logger.startTrace(`publishCampaign:${draftId}`);
-  logger.startGroup(`[Action] Publicando activos para draft: ${draftId}`);
+  const groupId = logger.startGroup(
+    `[Action] Publicando activos para draft: ${draftId}`
+  );
 
   try {
+    const validation = CampaignDraftDataSchema.safeParse(draft);
+    if (!validation.success || !baseCampaignId) {
+      logger.error("[publishCampaignAction] Borrador inválido o sin ID base.", {
+        draftId,
+        errors: validation.success === false && validation.error.flatten(),
+      });
+      return {
+        success: false,
+        error: "Faltan datos fundamentales del borrador.",
+      };
+    }
+
     const productionCampaignDir = path.join(
       process.cwd(),
       "content",
@@ -75,8 +76,6 @@ export async function publishCampaignAction(
       "Mapa de campaña de producción actualizado en disco."
     );
 
-    logger.endGroup();
-    logger.endTrace(traceId);
     return {
       success: true,
       data: {
@@ -91,12 +90,12 @@ export async function publishCampaignAction(
       error: errorMessage,
       draftId,
     });
-    logger.endGroup();
-    logger.endTrace(traceId);
     return {
       success: false,
       error: `No se pudo publicar la campaña: ${errorMessage}`,
     };
+  } finally {
+    logger.endGroup(groupId);
+    logger.endTrace(traceId);
   }
 }
-// Ruta correcta: src/shared/lib/actions/campaign-suite/publishCampaign.action.ts

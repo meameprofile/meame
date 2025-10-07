@@ -2,7 +2,7 @@
 /**
  * @file getPrompts.action.ts
  * @description Server Action (Agregador) para obtener y enriquecer prompts.
- * @version 14.3.0 (Definitive Type Safety Restoration via flatMap)
+ * @version 14.4.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -35,8 +35,11 @@ export async function getPromptsAction(
 ): Promise<
   ActionResult<{ prompts: EnrichedRaZPromptsEntry[]; total: number }>
 > {
-  const traceId = logger.startTrace("getPromptsAction_v14.3");
-  logger.startGroup(`[Action] Obteniendo y enriqueciendo prompts...`, traceId);
+  const traceId = logger.startTrace("getPromptsAction_v14.4");
+  const groupId = logger.startGroup(
+    `[Action] Obteniendo y enriqueciendo prompts...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -145,7 +148,7 @@ export async function getPromptsAction(
       error: `No se pudieron cargar los prompts: ${msg}`,
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

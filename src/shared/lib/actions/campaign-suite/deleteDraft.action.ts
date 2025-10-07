@@ -3,7 +3,7 @@
  * @file deleteDraft.action.ts
  * @description Server Action de producción para eliminar un borrador de campaña.
  *              Forjada con observabilidad de élite y resiliencia.
- * @version 2.0.0 (Elite Observability & Resilience)
+ * @version 2.1.0 (Elite Observability & Contract Compliance)
  *@author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -16,8 +16,8 @@ import { logger } from "@/shared/lib/logging";
 export async function deleteDraftAction(
   draftId: string
 ): Promise<ActionResult<{ deletedCount: number }>> {
-  const traceId = logger.startTrace("deleteDraftAction_v2.0");
-  logger.startGroup(`[Action] Eliminando borrador: ${draftId}`);
+  const traceId = logger.startTrace("deleteDraftAction_v2.1");
+  const groupId = logger.startGroup(`[Action] Eliminando borrador: ${draftId}`);
 
   try {
     const supabase = createServerClient();
@@ -66,8 +66,6 @@ export async function deleteDraftAction(
     );
     return { success: true, data: { deletedCount: count ?? 0 } };
   } catch (error) {
-    // --- [INICIO DE CORRECCIÓN DE HIGIENE Y OBSERVABILIDAD] ---
-    // Se utiliza la variable 'error' para un log detallado.
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
     logger.error(
@@ -81,9 +79,8 @@ export async function deleteDraftAction(
       success: false,
       error: "No se pudo completar la eliminación en la base de datos.",
     };
-    // --- [FIN DE CORRECCIÓN DE HIGIENE Y OBSERVABILIDAD] ---
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

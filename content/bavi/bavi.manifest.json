@@ -1,6 +1,31 @@
 {
   "assets": [
     {
+      "assetId": "i-sybl-global-fitwell-logo-01",
+      "status": "active",
+      "provider": "cloudinary",
+      "description": "Logo oficial de Global Fitwell para el encabezado del sitio.",
+      "tags": { "typ": "ui", "sbj": "logo" },
+      "variants": [
+        {
+          "versionId": "v1-orig",
+          "publicId": "webvork/assets/i-sybl-global-fitwell-logo-01/v1-original",
+          "state": "orig",
+          "dimensions": { "width": 150, "height": 28 }
+        }
+      ],
+      "metadata": {
+        "altText": {
+          "it-IT": "Logo di Global Fitwell",
+          "es-ES": "Logo de Global Fitwell",
+          "en-US": "Global Fitwell Logo",
+          "pt-BR": "Logo da Global Fitwell"
+        }
+      },
+      "createdAt": "2025-10-07T20:00:00.000Z",
+      "updatedAt": "2025-10-07T20:00:00.000Z"
+    },
+    {
       "assetId": "i-prv-standard-header-01",
       "status": "active",
       "provider": "cloudinary",

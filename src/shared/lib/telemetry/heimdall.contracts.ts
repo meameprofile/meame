@@ -2,8 +2,10 @@
 /**
  * @file heimdall.contracts.ts
  * @description SSoT para los contratos de datos del Protocolo Heimdall.
- * @version 1.2.0 (Database Row Contracts)
- * @author RaZ Podestá - MetaShark Tech
+ *              v2.0.0 (Architectural Purity Restoration): Se eliminan las
+ *              importaciones circulares para restaurar la integridad del módulo.
+ * @version 2.0.0
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
 import type {
@@ -11,6 +13,12 @@ import type {
   TablesInsert,
   TablesUpdate,
 } from "@/shared/lib/supabase/database.types";
+
+// --- [INICIO DE REFACTORIZACIÓN DE PUREZA ARQUITECTÓNICA v2.0.0] ---
+// Se eliminan las siguientes importaciones circulares que causaban el error:
+// import type { HeimdallEvent } from "@/shared/lib/telemetry/heimdall.contracts";
+// import type { HeimdallEventInsert } from "@/shared/lib/telemetry/heimdall.contracts";
+// --- [FIN DE REFACTORIZACIÓN DE PUREZA ARQUITECTÓNICA v2.0.0] ---
 
 // Contratos de Aplicación (Zod)
 export const EventStatusSchema = z.enum(["SUCCESS", "FAILURE", "IN_PROGRESS"]);

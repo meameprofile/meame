@@ -2,12 +2,10 @@
 /**
  * @file uploadAsset.action.ts
  * @description Server Action orquestadora de élite para la ingesta completa
- *              de activos. v12.0.0 (Transactional Rollback & Elite Resilience):
- *              Implementa un mecanismo de rollback transaccional manual. Si las
- *              operaciones de base de datos fallan post-subida, el activo
- *              huérfano es destruido de Cloudinary para garantizar la
- *              integridad de los datos.
- * @version 12.0.0
+ *              de activos. v12.1.0 (Holistic Observability & Contract Integrity):
+ *              Implementa un mecanismo de rollback transaccional y se alinea con
+ *              el contrato del logger soberano.
+ * @version 12.1.0
  *@author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -39,8 +37,11 @@ cloudinary.config({
 export async function uploadAssetAction(
   formData: FormData
 ): Promise<ActionResult<UploadApiResponse>> {
-  const traceId = logger.startTrace("uploadAssetOrchestration_v12.0");
-  logger.startGroup(`[Action] Orquestando ingesta de activo...`, traceId);
+  const traceId = logger.startTrace("uploadAssetOrchestration_v12.1");
+  const groupId = logger.startGroup(
+    `[Action] Orquestando ingesta de activo...`,
+    traceId
+  );
 
   let uploadedPublicId: string | null = null;
 
@@ -175,7 +176,7 @@ export async function uploadAssetAction(
       error: `Fallo el proceso de ingesta del activo: ${errorMessage}`,
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

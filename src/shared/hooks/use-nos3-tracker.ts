@@ -1,15 +1,16 @@
 // RUTA: src/shared/hooks/use-nos3-tracker.ts
 /**
  * @file use-nos3-tracker.ts
- * @description Hook soberano y orquestador para el colector de `nos3`.
- * @version 8.0.0 (Elite Observability & Resilience)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Hook soberano y orquestador para el colector de `nos3`, forjado con
+ *              un guardián de entorno, carga diferida de dependencias, resiliencia
+ *              de élite y observabilidad hiper-granular.
+ * @version 13.0.0 (Definitive Environment Guard & Build Integrity)
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import { useEffect, useRef, useCallback, useMemo } from "react";
 import { usePathname } from "next/navigation";
-import * as rrweb from "rrweb";
 import { createId } from "@paralleldrive/cuid2";
 import { logger } from "@/shared/lib/logging";
 import type { eventWithTime } from "@/shared/lib/types/rrweb.types";
@@ -18,7 +19,7 @@ const SESSION_STORAGE_KEY = "nos3_session_id";
 const BATCH_INTERVAL_MS = 15000;
 
 export function useNos3Tracker(enabled: boolean): void {
-  const traceId = useMemo(() => logger.startTrace("useNos3Tracker_v8.0"), []);
+  const traceId = useMemo(() => logger.startTrace("useNos3Tracker_v13.0"), []);
   const isRecording = useRef(false);
   const eventsBuffer = useRef<eventWithTime[]>([]);
   const pathname = usePathname();
@@ -29,17 +30,11 @@ export function useNos3Tracker(enabled: boolean): void {
       if (!sessionId) {
         sessionId = createId();
         sessionStorage.setItem(SESSION_STORAGE_KEY, sessionId);
-        logger.traceEvent(
-          traceId,
-          `[nos3] Nueva sesión iniciada: ${sessionId}`
-        );
+        logger.traceEvent(traceId, `[nos3] Nueva sesión iniciada: ${sessionId}`);
       }
       return sessionId;
     } catch (error) {
-      logger.warn("[nos3] sessionStorage no disponible. Usando ID efímero.", {
-        error,
-        traceId,
-      });
+      logger.warn("[nos3] sessionStorage no disponible. Usando ID efímero.", { error, traceId });
       return createId();
     }
   }, [traceId]);
@@ -47,46 +42,26 @@ export function useNos3Tracker(enabled: boolean): void {
   const flushEvents = useCallback(
     async (isUnloading = false) => {
       if (eventsBuffer.current.length === 0) return;
-
       const flushTraceId = logger.startTrace("nos3.flushEvents");
+      const groupId = logger.startGroup(`[nos3] Vaciando ${eventsBuffer.current.length} eventos...`, flushTraceId);
       const eventsToSend = [...eventsBuffer.current];
       eventsBuffer.current = [];
       const sessionId = getOrCreateSessionId();
-      logger.traceEvent(
-        flushTraceId,
-        `[nos3] Vaciando ${eventsToSend.length} eventos para ${sessionId}.`
-      );
-
-      const payload = {
-        sessionId,
-        events: eventsToSend,
-        metadata: { pathname, timestamp: Date.now() },
-      };
-
+      const payload = { sessionId, events: eventsToSend, metadata: { pathname, timestamp: Date.now() } };
+      const body = new Blob([JSON.stringify(payload)], { type: "application/json" });
       try {
-        const body = JSON.stringify(payload);
         if (isUnloading && navigator.sendBeacon) {
-          navigator.sendBeacon("/api/nos3/ingest", body);
-          logger.traceEvent(flushTraceId, "Lote enviado vía sendBeacon.");
+          if (!navigator.sendBeacon("/api/nos3/ingest", body)) throw new Error("navigator.sendBeacon devolvió 'false'.");
         } else {
-          await fetch("/api/nos3/ingest", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body,
-            keepalive: true,
-          });
-          logger.traceEvent(flushTraceId, "Lote enviado vía fetch.");
+          const response = await fetch("/api/nos3/ingest", { method: "POST", body, keepalive: true });
+          if (!response.ok) throw new Error(`El servidor respondió con estado ${response.status}`);
         }
-        logger.success("[nos3] Lote de eventos enviado con éxito.", {
-          traceId: flushTraceId,
-        });
+        logger.success("[nos3] Lote de eventos enviado con éxito.", { traceId: flushTraceId });
       } catch (error) {
-        logger.error("[nos3] Fallo al enviar lote. Re-encolando eventos.", {
-          error,
-          traceId: flushTraceId,
-        });
+        logger.error("[nos3] Fallo al enviar lote. Re-encolando eventos.", { error, traceId: flushTraceId });
         eventsBuffer.current = [...eventsToSend, ...eventsBuffer.current];
       } finally {
+        logger.endGroup(groupId);
         logger.endTrace(flushTraceId);
       }
     },
@@ -94,44 +69,74 @@ export function useNos3Tracker(enabled: boolean): void {
   );
 
   useEffect(() => {
-    logger.info(
-      `[useNos3Tracker] Hook montado. Estado: ${enabled ? "HABILITADO" : "DESHABILITADO"}.`,
-      { traceId }
-    );
-
-    if (!enabled || isRecording.current) {
-      if (!enabled)
-        logger.traceEvent(traceId, "Grabación deshabilitada, no se iniciará.");
+    // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v13.0.0] ---
+    // Este Guardián de Entorno es la solución definitiva. Previene que CUALQUIER
+    // código de este efecto se ejecute o sea analizado en el servidor.
+    if (!enabled || isRecording.current || typeof window === 'undefined') {
+      logger.trace("[nos3] Guardián de Entorno: Ejecución omitida (no habilitado, ya grabando, o no es un navegador).", { traceId });
       return;
     }
+    // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v13.0.0] ---
 
-    logger.success("[nos3] Condiciones cumplidas. Iniciando grabación.", {
-      traceId,
-    });
-    isRecording.current = true;
+    const groupId = logger.startGroup("[nos3] Orquestando inicialización de grabador...", traceId);
+    let stopRecording: (() => void) | undefined;
+
+    const initializeRecorder = async () => {
+      const initTraceId = logger.startTrace("nos3.initializeRecorder");
+      try {
+        logger.traceEvent(initTraceId, "Condiciones cumplidas. Iniciando grabación en el cliente...");
+
+        logger.traceEvent(initTraceId, "Cargando dinámicamente la librería rrweb...");
+        const rrweb = await import("rrweb");
+        logger.traceEvent(initTraceId, "Librería rrweb cargada en el cliente.");
+
+        stopRecording = rrweb.record({
+          emit(event) {
+            eventsBuffer.current.push(event);
+          },
+        });
+
+        if (stopRecording) {
+          isRecording.current = true;
+          logger.success("[nos3] Grabación iniciada con éxito.", { traceId: initTraceId });
+        } else {
+          throw new Error("rrweb.record no devolvió una función de 'stop'.");
+        }
+
+      } catch (error) {
+        logger.error("[Guardián de Resiliencia][nos3] Fallo CRÍTICO al inicializar rrweb. La grabación está deshabilitada.", {
+          error: error instanceof Error ? error.message : String(error),
+          traceId: initTraceId,
+        });
+        isRecording.current = false;
+      } finally {
+        logger.endTrace(initTraceId);
+      }
+    };
+
+    initializeRecorder();
+    logger.endGroup(groupId);
 
     const intervalId = setInterval(() => flushEvents(false), BATCH_INTERVAL_MS);
-    const stopRecording = rrweb.record({
-      emit(event) {
-        eventsBuffer.current.push(event as eventWithTime);
-      },
-      maskAllInputs: true,
-      blockClass: "nos3-block",
-      maskTextClass: "nos3-mask",
-    });
-
     const handleVisibilityChange = () => {
-      if (document.visibilityState === "hidden") flushEvents(true);
+      if (document.visibilityState === "hidden") {
+        flushEvents(true);
+      }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      logger.info("[nos3] Desmontando y deteniendo grabación.", { traceId });
+      const cleanupGroupId = logger.startGroup("[nos3] Desmontando y limpiando recursos...", traceId);
       clearInterval(intervalId);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
-      if (stopRecording) stopRecording();
+      if (stopRecording) {
+        stopRecording();
+        logger.traceEvent(traceId, "Función de 'stop' de rrweb invocada.");
+      }
       flushEvents(true);
       isRecording.current = false;
+      logger.success("[nos3] Recursos limpiados con éxito.", { traceId });
+      logger.endGroup(cleanupGroupId);
       logger.endTrace(traceId);
     };
   }, [enabled, flushEvents, traceId]);

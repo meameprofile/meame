@@ -3,8 +3,8 @@
  * @file page.tsx
  * @description Página de detalle para la analítica de una variante de campaña específica.
  *              Forjada con observabilidad de élite y un guardián de resiliencia.
- * @version 3.2.0 (Logger v20+ Contract Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 4.0.0 (Observability Contract v20+ Compliance)
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import React from "react";

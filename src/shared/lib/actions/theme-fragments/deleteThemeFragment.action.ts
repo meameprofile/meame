@@ -2,7 +2,9 @@
 /**
  * @file deleteThemeFragment.action.ts
  * @description Server Action de élite para eliminar un fragmento de tema.
- * @version 2.0.0 (Elite Observability & Resilience)
+ *              v3.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 3.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -23,8 +25,11 @@ type DeleteFragmentInput = z.infer<typeof DeleteFragmentInputSchema>;
 export async function deleteThemeFragmentAction(
   input: DeleteFragmentInput
 ): Promise<ActionResult<{ deletedId: string }>> {
-  const traceId = logger.startTrace("deleteThemeFragmentAction_v2.0");
-  logger.startGroup(`[Action] Eliminando fragmento de tema...`, traceId);
+  const traceId = logger.startTrace("deleteThemeFragmentAction_v3.0");
+  const groupId = logger.startGroup(
+    `[Action] Eliminando fragmento de tema...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -78,7 +83,7 @@ export async function deleteThemeFragmentAction(
     });
     return { success: false, error: "No se pudo eliminar el estilo." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

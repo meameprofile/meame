@@ -3,8 +3,8 @@
  * @file pipeline.ts
  * @description Motor de Pipeline Genérico y Soberano. Orquesta la ejecución
  *              secuencial y transaccional de cualquier tipo de tarea.
- * @version 1.0.0 (Sovereign & DRY)
- *@author RaZ Podestá - MetaShark Tech
+ * @version 1.1.0 (Observability Contract Compliance)
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { logger } from "@/shared/lib/logging";
 
@@ -29,7 +29,7 @@ export class Pipeline<TContext> {
   async run(
     traceId: string
   ): Promise<{ success: true } | { success: false; error: string }> {
-    logger.startGroup(
+    const groupId = logger.startGroup(
       `[Pipeline Engine] Iniciando ejecución de pipeline...`,
       `traceId: ${traceId}`
     );
@@ -48,7 +48,7 @@ export class Pipeline<TContext> {
           `[Pipeline Engine] Fallo crítico en la tarea "${task.name}". Abortando.`,
           { error: errorMessage, traceId }
         );
-        logger.endGroup();
+        logger.endGroup(groupId);
         return {
           success: false,
           error: `Fallo en el paso: ${task.name}. Detalles: ${errorMessage}`,
@@ -59,7 +59,7 @@ export class Pipeline<TContext> {
     logger.success(`[Pipeline Engine] Pipeline completado con éxito.`, {
       traceId,
     });
-    logger.endGroup();
+    logger.endGroup(groupId);
     return { success: true };
   }
 }

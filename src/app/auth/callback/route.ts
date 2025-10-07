@@ -3,8 +3,8 @@
  * @file route.ts
  * @description Manejador de ruta soberano para el callback de OAuth, forjado con
  *              observabilidad de élite y un guardián de resiliencia.
- * @version 2.0.0 (Elite Observability & Resilience)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Observability Contract v20+ Compliance)
+ * @author L.I.A. Legacy
  */
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
@@ -14,8 +14,10 @@ import { routes } from "@/shared/lib/navigation";
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
 
 export async function GET(request: Request) {
-  const traceId = logger.startTrace("authCallbackRoute_v2.0");
-  logger.startGroup("[Auth Callback] Procesando callback de OAuth...");
+  const traceId = logger.startTrace("authCallbackRoute_v3.0");
+  const groupId = logger.startGroup(
+    "[Auth Callback] Procesando callback de OAuth..."
+  );
 
   try {
     const { searchParams, origin } = new URL(request.url);
@@ -99,7 +101,7 @@ export async function GET(request: Request) {
     );
     return NextResponse.redirect(errorUrl);
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

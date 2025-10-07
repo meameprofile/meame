@@ -1,8 +1,9 @@
 // RUTA: src/shared/hooks/campaign-suite/use-template-loader.ts
 /**
  * @file use-template-loader.ts
- * @description Hook de élite para orquestar la carga de plantillas.
- * @version 7.0.0 (Elite Observability & Data-Driven Navigation)
+ * @description Hook de élite para orquestar la carga de plantillas, ahora alineado
+ *              con la arquitectura de estado centralizado "Forja Centralizada".
+ * @version 8.0.0 (Centralized Forge Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -12,16 +13,11 @@ import { useRouter, usePathname } from "next/navigation";
 import { toast } from "sonner";
 import { loadTemplateAction } from "@/shared/lib/actions/campaign-suite";
 import { logger } from "@/shared/lib/logging";
-import { useDraftMetadataStore } from "./use-draft-metadata.store";
-import { useStep0IdentityStore } from "./use-step0-identity.store";
-import { useStep1StructureStore } from "./use-step1-structure.store";
-import { useStep2LayoutStore } from "./use-step2-layout.store";
-import { useStep3ThemeStore } from "./use-step3-theme.store";
-import { useStep4ContentStore } from "./use-step4-content.store";
-import { generateDraftId } from "@/shared/lib/utils/campaign-suite/draft.utils";
+import { useCampaignDraftStore } from "./use-campaign-draft.store";
 import { routes } from "@/shared/lib/navigation";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
 import { stepsDataConfig } from "@/shared/lib/config/campaign-suite/wizard.data.config";
+import { generateDraftId } from "@/shared/lib/utils/campaign-suite/draft.utils";
 
 export function useTemplateLoader(onLoadComplete?: () => void) {
   const [isPending, startTransition] = useTransition();
@@ -29,10 +25,14 @@ export function useTemplateLoader(onLoadComplete?: () => void) {
   const pathname = usePathname();
   const locale = getCurrentLocaleFromPathname(pathname);
   const firstStepId = stepsDataConfig[0].id;
+  const setDraft = useCampaignDraftStore((state) => state.setDraft);
 
   const loadTemplate = (templateId: string, copySuffix: string) => {
     const traceId = logger.startTrace(`loadTemplate:${templateId}`);
-    logger.startGroup(`[TemplateLoader] Orquestando carga v7.0...`, traceId);
+    const groupId = logger.startGroup(
+      `[TemplateLoader] Orquestando carga v8.0...`,
+      traceId
+    );
 
     startTransition(async () => {
       try {
@@ -42,30 +42,21 @@ export function useTemplateLoader(onLoadComplete?: () => void) {
         const { draftData } = result.data;
         logger.traceEvent(
           traceId,
-          "Datos de plantilla recibidos. Hidratando stores..."
+          "Datos de plantilla recibidos. Hidratando store centralizado..."
         );
 
-        useDraftMetadataStore.setState({
-          baseCampaignId: draftData.baseCampaignId,
-          variantName: `${draftData.variantName}${copySuffix}`,
-          seoKeywords: draftData.seoKeywords,
-          completedSteps: [],
-          updatedAt: new Date().toISOString(),
+        // Se ensambla el nuevo estado del borrador y se hidrata el store de una sola vez.
+        const newDraftState = {
+          ...draftData,
           draftId: generateDraftId(draftData.baseCampaignId || "template"),
-        });
-        useStep0IdentityStore.setState({
-          producer: draftData.producer,
-          campaignType: draftData.campaignType,
-        });
-        useStep1StructureStore.setState({
-          headerConfig: draftData.headerConfig,
-          footerConfig: draftData.footerConfig,
-        });
-        useStep2LayoutStore.setState({ layoutConfig: draftData.layoutConfig });
-        useStep3ThemeStore.setState({ themeConfig: draftData.themeConfig });
-        useStep4ContentStore.setState({ contentData: draftData.contentData });
+          variantName: `${draftData.variantName}${copySuffix}`,
+          completedSteps: [], // Un nuevo borrador siempre empieza desde cero.
+          updatedAt: new Date().toISOString(),
+        };
 
-        logger.success("[TemplateLoader] Stores hidratados con éxito.", {
+        setDraft(newDraftState);
+
+        logger.success("[TemplateLoader] Store centralizado hidratado.", {
           traceId,
         });
         toast.success("Plantilla cargada con éxito.");
@@ -88,7 +79,7 @@ export function useTemplateLoader(onLoadComplete?: () => void) {
           description: errorMessage,
         });
       } finally {
-        logger.endGroup();
+        logger.endGroup(groupId);
         logger.endTrace(traceId);
       }
     });

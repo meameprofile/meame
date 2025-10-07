@@ -1,9 +1,10 @@
-// src/hooks/tracking/useUtmTracker.ts
+// RUTA: src/shared/hooks/use-utm-tracker.ts
 /**
- * @file useUtmTracker.ts
+ * @file use-utm-tracker.ts
  * @description Hook Atómico de Efecto. Captura parámetros UTM y los persiste en cookies.
- *              Diseñado para ser activado una sola vez por un hook orquestador.
- * @version 3.0.0
+ *              v4.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 4.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -48,36 +49,36 @@ export function useUtmTracker(enabled: boolean): void {
   const hasExecuted = useRef(false);
 
   useEffect(() => {
-    // El hook solo se ejecuta si está habilitado Y no se ha ejecutado antes.
     if (!enabled || hasExecuted.current) {
       return;
     }
 
-    logger.startGroup("Hook: useUtmTracker");
-    logger.trace("Activado. Rastreando parâmetros UTM na URL...");
+    const groupId = logger.startGroup("Hook: useUtmTracker");
+    try {
+      logger.trace("Activado. Rastreando parâmetros UTM na URL...");
 
-    const collectedParams: Partial<Record<UtmParam, string>> = {};
+      const collectedParams: Partial<Record<UtmParam, string>> = {};
 
-    UTM_PARAMS.forEach((paramName) => {
-      const value = getParamFromUrl(paramName);
-      if (value) {
-        collectedParams[paramName] = value;
-        setCookie(`wv_${paramName}`, value);
+      UTM_PARAMS.forEach((paramName) => {
+        const value = getParamFromUrl(paramName);
+        if (value) {
+          collectedParams[paramName] = value;
+          setCookie(`wv_${paramName}`, value);
+        }
+      });
+
+      if (Object.keys(collectedParams).length > 0) {
+        logger.info(
+          "Parámetros UTM capturados y persistidos en cookies.",
+          collectedParams
+        );
+      } else {
+        logger.trace("No se encontraron parámetros UTM en la URL.");
       }
-    });
 
-    if (Object.keys(collectedParams).length > 0) {
-      logger.info(
-        "Parámetros UTM capturados y persistidos en cookies.",
-        collectedParams
-      );
-    } else {
-      logger.trace("No se encontraron parámetros UTM en la URL.");
+      hasExecuted.current = true;
+    } finally {
+      logger.endGroup(groupId);
     }
-
-    // Marcamos como ejecutado para prevenir futuras ejecuciones.
-    hasExecuted.current = true;
-    logger.endGroup();
-  }, [enabled]); // La única dependencia es el interruptor de activación.
+  }, [enabled]);
 }
-// src/hooks/tracking/useUtmTracker.ts

@@ -2,7 +2,7 @@
 /**
  * @file i18n.handler.ts
  * @description Manejador de middleware i18n, ahora con consumo de la SSoT de rutas.
- * @version 12.1.0 (SSoT Route Consumption)
+ * @version 12.2.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
@@ -17,7 +17,7 @@ import { getLocaleFromCountry } from "../../i18n/country-locale-map";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { type MiddlewareHandler } from "../engine";
-import { routes } from "../../navigation"; // La importación ahora tiene un propósito.
+import { routes } from "../../navigation";
 import { logger } from "../../logging";
 
 const PUBLIC_FILE = /\.(.*)$/;
@@ -26,9 +26,11 @@ const LOCALE_FREE_PATHS = ["/select-language", "/api", "/auth"];
 const allPossibleLocales = LANGUAGE_MANIFEST.map((lang) => lang.code);
 
 export const i18nHandler: MiddlewareHandler = (req, res) => {
-  const traceId = logger.startTrace("i18nHandler_v12.1");
+  const traceId = logger.startTrace("i18nHandler_v12.2");
   const { pathname } = req.nextUrl;
-  logger.startGroup(`[i18nHandler] Procesando ruta: ${pathname}`);
+  const groupId = logger.startGroup(
+    `[i18nHandler] Procesando ruta: ${pathname}`
+  );
 
   try {
     if (
@@ -100,10 +102,6 @@ export const i18nHandler: MiddlewareHandler = (req, res) => {
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
-
-    // --- [INICIO DE REFACTORIZACIÓN DE SSoT Y RESILIENCIA v12.1.0] ---
-    // En caso de un error inesperado, redirigimos a la página de selección de idioma
-    // utilizando el manifiesto de rutas, en lugar de simplemente no hacer nada.
     logger.error(
       "[i18nHandler] Fallo crítico no controlado. Redirigiendo a selector de idioma.",
       { error: errorMessage, pathname, traceId }
@@ -111,9 +109,8 @@ export const i18nHandler: MiddlewareHandler = (req, res) => {
     const selectLangUrl = new URL(routes.selectLanguage.path(), req.url);
     selectLangUrl.searchParams.set("returnUrl", pathname);
     return NextResponse.redirect(selectLangUrl);
-    // --- [FIN DE REFACTORIZACIÓN DE SSoT Y RESILIENCIA v12.1.0] ---
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 };

@@ -2,8 +2,25 @@
 /**
  * @file use-asset-uploader.ts
  * @description Hook "cerebro" soberano para la lógica de subida de activos a la BAVI.
- * @version 8.0.0 (Holistic Elite Leveling)
- * @author RaZ Podestá - MetaShark Tech
+ *              Este aparato encapsula toda la gestión de estado del formulario (react-hook-form),
+ *              la lógica de arrastrar y soltar (react-dropzone), y la orquestación
+ *              de la acción de servidor para la ingesta de activos.
+ *
+ * @version 10.1.0 (Elite Documentation & Finalized Contract)
+ * @author L.I.A. Legacy
+ *
+ * @architecture_notes
+ * - **Pilar I (Hiper-Atomización)**: Abstrae toda la complejidad lógica del componente de
+ *   presentación `AssetUploaderForm`, que se convierte en un componente "puro".
+ * - **Pilar II (Contrato Estricto)**: Utiliza `zodResolver` para una validación de formulario
+ *   robusta y segura a nivel de tipos.
+ * - **Pilar III (Observabilidad Profunda)**: Implementa un sistema de tracing anidado. Un
+ *   `traceId` principal monitorea el ciclo de vida del hook, mientras que trazas
+ *   atómicas y eventos granulares monitorean cada acción del usuario.
+ * - **Pilar VI (Documentación Soberana)**: Proporciona documentación TSDoc/JSDoc exhaustiva
+ *   para el hook, sus parámetros y cada propiedad de su valor de retorno.
+ * - **Pilar VIII (Resiliencia)**: Incluye guardianes de contrato para validar la
+ *   existencia de un `workspaceId` activo antes de intentar una subida.
  */
 "use client";
 
@@ -28,6 +45,8 @@ import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { logger } from "@/shared/lib/logging";
 
+// --- Contratos de Tipo para el Hook ---
+
 type UploaderContent = NonNullable<Dictionary["baviUploader"]>;
 type SesaLabels = NonNullable<Dictionary["promptCreator"]>["sesaLabels"];
 type SesaOptions = NonNullable<Dictionary["promptCreator"]>["sesaOptions"];
@@ -38,30 +57,34 @@ interface UseAssetUploaderProps {
   sesaOptions: SesaOptions;
 }
 
+/**
+ * @function useAssetUploader
+ * @description Hook "cerebro" que encapsula toda la lógica para el componente de subida de activos.
+ * @param {UseAssetUploaderProps} props - Propiedades de configuración y contenido i18n.
+ * @returns Un objeto que contiene el estado del formulario, manejadores de eventos y
+ *          todas las propiedades necesarias para el componente de presentación.
+ */
 export function useAssetUploader({
   content,
   sesaLabels,
   sesaOptions,
 }: UseAssetUploaderProps) {
-  const traceId = useMemo(() => logger.startTrace("useAssetUploader_v8.0"), []);
+  const traceId = useMemo(() => logger.startTrace("useAssetUploader_Lifecycle_v10.1"), []);
   useEffect(() => {
-    logger.info("[useAssetUploader] Hook montado.", { traceId });
-    return () => logger.endTrace(traceId);
+    const groupId = logger.startGroup(`[useAssetUploader] Hook montado y listo.`);
+    logger.info("Hook de subida de activos inicializado.", { traceId });
+    return () => {
+      logger.endGroup(groupId);
+      logger.endTrace(traceId);
+    };
   }, [traceId]);
 
   const [isPending, startTransition] = useTransition();
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [uploadResult, setUploadResult] = useState<UploadApiResponse | null>(
-    null
-  );
-  const activeWorkspaceId = useWorkspaceStore(
-    (state) => state.activeWorkspaceId
-  );
-  const [extractedMetadata, setExtractedMetadata] = useState<Record<
-    string,
-    string | number
-  > | null>(null);
+  const [uploadResult, setUploadResult] = useState<UploadApiResponse | null>(null);
+  const activeWorkspaceId = useWorkspaceStore((state) => state.activeWorkspaceId);
+  const [extractedMetadata, setExtractedMetadata] = useState<Record<string, string | number> | null>(null);
 
   const form = useForm<AssetUploadMetadata>({
     resolver: zodResolver(assetUploadMetadataSchema),
@@ -77,113 +100,122 @@ export function useAssetUploader({
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      const selectedFile = acceptedFiles[0];
-      if (selectedFile) {
-        logger.traceEvent(traceId, "Archivo seleccionado vía dropzone.", {
-          name: selectedFile.name,
-          size: selectedFile.size,
-        });
-        setFile(selectedFile);
-        if (preview) URL.revokeObjectURL(preview);
-        const previewUrl = URL.createObjectURL(selectedFile);
-        setPreview(previewUrl);
+      const dropTraceId = logger.startTrace("useAssetUploader.onDrop");
+      const groupId = logger.startGroup("[AssetUploader] Procesando archivo soltado...", dropTraceId);
+      try {
+        const selectedFile = acceptedFiles[0];
+        if (selectedFile) {
+          logger.traceEvent(dropTraceId, "Archivo seleccionado.", { name: selectedFile.name, size: selectedFile.size });
+          setFile(selectedFile);
+          if (preview) URL.revokeObjectURL(preview);
+          const previewUrl = URL.createObjectURL(selectedFile);
+          setPreview(previewUrl);
 
-        const baseName = selectedFile.name.split(".").slice(0, -1).join(".");
-        const sanitizedBaseName = baseName
-          .toLowerCase()
-          .replace(/[^a-z0-9]/g, "-");
+          const baseName = selectedFile.name.split(".").slice(0, -1).join(".");
+          const sanitizedBaseName = baseName.toLowerCase().replace(/[^a-z0-9-]/g, "-");
 
-        form.setValue("finalFileName", selectedFile.name);
-        form.setValue("assetId", `i-generic-${sanitizedBaseName}-01`);
-        setExtractedMetadata({
-          Tipo: selectedFile.type,
-          Tamaño: `${(selectedFile.size / 1024).toFixed(2)} KB`,
-          Modificado: new Date(selectedFile.lastModified).toLocaleString(),
-        });
+          form.setValue("finalFileName", selectedFile.name);
+          form.setValue("assetId", `i-generic-${sanitizedBaseName}-01`);
+          setExtractedMetadata({
+            Tipo: selectedFile.type,
+            Tamaño: `${(selectedFile.size / 1024).toFixed(2)} KB`,
+            Modificado: new Date(selectedFile.lastModified).toLocaleString(),
+          });
+        }
+      } finally {
+        logger.endGroup(groupId);
+        logger.endTrace(dropTraceId);
       }
     },
-    [form, preview, traceId]
+    [form, preview]
   );
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    maxFiles: 1,
-  });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, maxFiles: 1 });
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    // Limpieza del objeto URL para prevenir fugas de memoria.
+    return () => {
       if (preview) URL.revokeObjectURL(preview);
-    },
-    [preview]
-  );
+    };
+  }, [preview]);
 
   const onSubmit = (data: AssetUploadMetadata) => {
     const submitTraceId = logger.startTrace("useAssetUploader.onSubmit");
-    logger.startGroup(`[AssetUploader] Procesando envío...`, submitTraceId);
+    const groupId = logger.startGroup(`[AssetUploader] Procesando envío de formulario...`, submitTraceId);
 
     if (!file) {
-      toast.error("Ningún archivo seleccionado.");
-      logger.endGroup();
+      toast.error("Ningún archivo seleccionado para subir.");
+      logger.endGroup(groupId);
+      logger.endTrace(submitTraceId, { error: true });
       return;
     }
     if (!activeWorkspaceId) {
-      toast.error("Error de contexto", {
-        description: "No hay un workspace activo.",
-      });
-      logger.error("[Guardián] Envío abortado: falta workspaceId.", {
-        traceId: submitTraceId,
-      });
-      logger.endGroup();
+      toast.error("Error de Contexto", { description: "No hay un workspace activo para asociar el activo." });
+      logger.error("[Guardián] Envío abortado: falta workspaceId.", { traceId: submitTraceId });
+      logger.endGroup(groupId);
+      logger.endTrace(submitTraceId, { error: true });
       return;
     }
 
     startTransition(async () => {
-      const formData = new FormData();
-      const finalFile = new File([file], data.finalFileName, {
-        type: file.type,
-      });
-      formData.append("file", finalFile);
-      formData.append("metadata", JSON.stringify(data));
-      formData.append("workspaceId", activeWorkspaceId);
+      try {
+        const formData = new FormData();
+        // Se reconstruye el objeto File con el nombre final para que el servidor lo reciba correctamente.
+        const finalFile = new File([file], data.finalFileName, { type: file.type });
+        formData.append("file", finalFile);
+        formData.append("metadata", JSON.stringify(data));
+        formData.append("workspaceId", activeWorkspaceId);
 
-      logger.traceEvent(submitTraceId, "Invocando uploadAssetAction...");
-      const result = await uploadAssetAction(formData);
+        logger.traceEvent(submitTraceId, "Invocando 'uploadAssetAction'...");
+        const result = await uploadAssetAction(formData);
 
-      if (result.success) {
-        toast.success("¡Ingestión del activo completada!");
-        setUploadResult(result.data);
-        form.reset();
-        setFile(null);
-        setPreview(null);
-        setExtractedMetadata(null);
-        logger.success("[AssetUploader] Ingestión de activo exitosa.", {
-          traceId: submitTraceId,
-        });
-      } else {
-        toast.error("Error de ingestión", { description: result.error });
-        logger.error("[AssetUploader] Fallo en la ingestión.", {
-          error: result.error,
-          traceId: submitTraceId,
-        });
+        if (result.success) {
+          toast.success("¡Ingestión del activo completada con éxito!");
+          setUploadResult(result.data);
+          form.reset();
+          setFile(null);
+          setPreview(null);
+          setExtractedMetadata(null);
+          logger.success("[AssetUploader] Ingestión de activo exitosa.", { traceId: submitTraceId });
+        } else {
+          toast.error("Error en la Ingestión del Activo", { description: result.error });
+          logger.error("[AssetUploader] Fallo en la acción 'uploadAssetAction'.", { error: result.error, traceId: submitTraceId });
+        }
+      } catch (exception) {
+        const errorMessage = exception instanceof Error ? exception.message : "Error desconocido.";
+        toast.error("Error Inesperado", { description: "Ocurrió un fallo no controlado." });
+        logger.error("[AssetUploader] Excepción no controlada durante la subida.", { error: errorMessage, traceId: submitTraceId });
+      } finally {
+        logger.endGroup(groupId);
+        logger.endTrace(submitTraceId);
       }
-      logger.endGroup();
-      logger.endTrace(submitTraceId);
     });
   };
 
   const sesaContentForForm = { sesaLabels, sesaOptions };
 
   return {
+    /** @property {object} form - La instancia de `react-hook-form` para gestionar el estado del formulario. */
     form,
+    /** @property {function} onSubmit - El manejador de envío del formulario que orquesta la validación y la acción de servidor. */
     onSubmit: form.handleSubmit(onSubmit),
+    /** @property {boolean} isPending - Estado booleano que indica si una transición (subida) está en progreso. */
     isPending,
+    /** @property {string | null} preview - La URL del objeto para la previsualización de la imagen seleccionada. */
     preview,
+    /** @property {object | null} uploadResult - La respuesta completa de la API de Cloudinary tras una subida exitosa. */
     uploadResult,
+    /** @property {function} getRootProps - Función de `react-dropzone` para aplicar a la zona de arrastre. */
     getRootProps,
+    /** @property {function} getInputProps - Función de `react-dropzone` para aplicar al input de archivo oculto. */
     getInputProps,
+    /** @property {boolean} isDragActive - Estado de `react-dropzone` que indica si un archivo se está arrastrando sobre la zona. */
     isDragActive,
+    /** @property {object} content - El objeto de contenido i18n para la UI del uploader. */
     content,
+    /** @property {object} sesaContent - El objeto de contenido i18n para los selectores SESA. */
     sesaContent: sesaContentForForm,
+    /** @property {object | null} extractedMetadata - Metadatos extraídos del archivo seleccionado (tipo, tamaño, etc.). */
     extractedMetadata,
   };
 }

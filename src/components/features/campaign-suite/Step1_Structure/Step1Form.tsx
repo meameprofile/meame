@@ -1,8 +1,8 @@
 // RUTA: src/components/features/campaign-suite/Step1_Structure/Step1Form.tsx
 /**
  * @file Step1Form.tsx
- * @description Componente de Presentación para la UI del Paso 1, ahora inyectado
- *              con una animación de entrada en cascada para una MEA/UX de élite.
+ * @description Componente de Presentación para la UI del Paso 1 (Estructura),
+ *              inyectado con una animación de entrada en cascada para una MEA/UX de élite.
  * @version 10.0.0 (MEA/UX Injection & Elite Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */

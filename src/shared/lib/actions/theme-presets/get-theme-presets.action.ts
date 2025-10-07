@@ -2,7 +2,9 @@
 /**
  * @file get-theme-presets.action.ts
  * @description Server Action para obtener presets de tema.
- * @version 5.0.0 (Sovereign Shaper & Granular Resilience)
+ *              v6.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 6.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -18,8 +20,11 @@ import { mapSupabaseToThemePreset } from "./_shapers/theme-presets.shapers";
 export async function getThemePresetsAction(
   workspaceId: string
 ): Promise<ActionResult<{ global: ThemePreset[]; workspace: ThemePreset[] }>> {
-  const traceId = logger.startTrace("getThemePresetsAction_v5.0");
-  logger.startGroup(`[Action] Obteniendo presets de tema...`, traceId);
+  const traceId = logger.startTrace("getThemePresetsAction_v6.0");
+  const groupId = logger.startGroup(
+    `[Action] Obteniendo presets de tema...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -79,7 +84,7 @@ export async function getThemePresetsAction(
     logger.error("[Action] Fallo al obtener presets.", { error: msg, traceId });
     return { success: false, error: "No se pudieron cargar los presets." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

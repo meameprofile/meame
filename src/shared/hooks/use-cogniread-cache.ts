@@ -2,7 +2,9 @@
 /**
  * @file use-cogniread-cache.ts
  * @description Hook "cerebro" para la gestión de la caché de CogniRead.
- * @version 6.0.0 (Elite Observability & Resilience)
+ *              v7.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 7.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -23,7 +25,7 @@ type ArticleIndex = Record<string, string>; // articleId -> updatedAt
 
 export function useCogniReadCache() {
   const traceId = useMemo(
-    () => logger.startTrace("useCogniReadCache_v6.0"),
+    () => logger.startTrace("useCogniReadCache_v7.0"),
     []
   );
   const [articles, setArticles] = useState<CogniReadArticle[]>([]);
@@ -31,7 +33,7 @@ export function useCogniReadCache() {
 
   const syncCache = useCallback(async () => {
     const syncTraceId = logger.startTrace("useCogniReadCache.sync");
-    logger.startGroup(
+    const groupId = logger.startGroup(
       "[CogniRead Cache] Iniciando sincronización...",
       syncTraceId
     );
@@ -128,7 +130,7 @@ export function useCogniReadCache() {
         traceId: syncTraceId,
       });
     } finally {
-      logger.endGroup();
+      logger.endGroup(groupId);
       logger.endTrace(syncTraceId);
     }
   }, []);

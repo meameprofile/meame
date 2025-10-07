@@ -2,7 +2,9 @@
 /**
  * @file updateThemePreset.action.ts
  * @description Server Action de élite para actualizar un preset de tema.
- * @version 3.0.0 (Sovereign Shaper Consumption)
+ *              v4.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 4.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -33,8 +35,11 @@ type UpdatePresetInput = z.infer<typeof UpdatePresetInputSchema>;
 export async function updateThemePresetAction(
   input: UpdatePresetInput
 ): Promise<ActionResult<{ updatedPreset: ThemePreset }>> {
-  const traceId = logger.startTrace("updateThemePresetAction_v3.0");
-  logger.startGroup(`[Action] Actualizando preset de tema...`, traceId);
+  const traceId = logger.startTrace("updateThemePresetAction_v4.0");
+  const groupId = logger.startGroup(
+    `[Action] Actualizando preset de tema...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -85,7 +90,7 @@ export async function updateThemePresetAction(
     });
     return { success: false, error: "No se pudo actualizar el preset." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

@@ -3,8 +3,8 @@
  * @file extractStudyDna.action.ts
  * @description Server Action para orquestar la extracción de StudyDNA
  *              utilizando el motor de IA TEMA.
- * @version 2.0.0 (Architectural Integrity Restoration & Elite Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Holistic Observability & Elite Compliance)
+ * @author L.I.A. Legacy
  */
 "use server";
 
@@ -13,10 +13,7 @@ import path from "path";
 import { z } from "zod";
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// La importación ahora apunta a la fachada pública y soberana del módulo de IA.
 import { gemini } from "@/shared/lib/ai";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 import {
   StudyDnaSchema,
   type StudyDna,
@@ -57,39 +54,32 @@ async function getPromptMaster(): Promise<string> {
 export async function extractStudyDnaAction(
   input: ExtractDnaInput
 ): Promise<ActionResult<StudyDna>> {
-  const traceId = logger.startTrace("extractStudyDnaAction_v2.0");
-  logger.startGroup(
+  const traceId = logger.startTrace("extractStudyDnaAction_v3.0");
+  // --- [INICIO DE NIVELACIÓN DE OBSERVABILIDAD v3.0.0] ---
+  const groupId = logger.startGroup(
     `[CogniRead Action] Iniciando extracción de StudyDNA con TEMA...`
   );
+  // --- [FIN DE NIVELACIÓN DE OBSERVABILIDAD v3.0.0] ---
 
   try {
-    // --- Guardián de Resiliencia: Validación de Entrada ---
     const validation = ExtractDnaInputSchema.safeParse(input);
     if (!validation.success) {
       const firstError = validation.error.errors[0].message;
-      logger.warn("[CogniRead Action] Validación de entrada fallida.", {
-        error: firstError,
-        traceId,
-      });
       return { success: false, error: firstError };
     }
     const { studyText, modelId } = validation.data;
     logger.traceEvent(traceId, "Payload de entrada validado con éxito.");
 
-    // --- Carga y Ensamblaje del Prompt ---
     const promptMaster = await getPromptMaster();
     const finalPrompt = `${promptMaster}\n\n--- INICIO DEL TEXTO DEL ESTUDIO ---\n\n${studyText}\n\n--- FIN DEL TEXTO DEL ESTUDIO ---`;
     logger.traceEvent(traceId, "Prompt maestro cargado y ensamblado.");
 
-    // --- Delegación a la Capa de Servicio de IA Soberana ---
     const result = await gemini.generateText({ prompt: finalPrompt, modelId });
     if (!result.success) {
-      // El error ya fue logueado dentro de la DAL de Gemini, aquí lo propagamos de forma segura.
       return result;
     }
     logger.traceEvent(traceId, "Respuesta de la IA recibida con éxito.");
 
-    // --- Procesamiento y Validación de la Respuesta de la IA ---
     const rawJson = result.data.replace(/```json\n?|\n?```/g, "").trim();
     if (!rawJson) {
       throw new Error(
@@ -101,14 +91,6 @@ export async function extractStudyDnaAction(
     const studyDnaValidation = StudyDnaSchema.safeParse(parsedJson);
 
     if (!studyDnaValidation.success) {
-      logger.error(
-        "[Guardián de Contrato] La respuesta de la IA no cumple con el StudyDnaSchema.",
-        {
-          errors: studyDnaValidation.error.flatten(),
-          rawResponse: rawJson,
-          traceId,
-        }
-      );
       throw new Error("La IA devolvió datos en un formato inesperado.");
     }
 
@@ -118,7 +100,6 @@ export async function extractStudyDnaAction(
     );
     return { success: true, data: studyDnaValidation.data };
   } catch (error) {
-    // --- Guardián de Resiliencia: Captura de Errores Holística ---
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
     logger.error(
@@ -130,7 +111,9 @@ export async function extractStudyDnaAction(
       error: `No se pudo procesar la extracción del estudio: ${errorMessage}`,
     };
   } finally {
-    logger.endGroup();
+    // --- [INICIO DE NIVELACIÓN DE OBSERVABILIDAD v3.0.0] ---
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
+    // --- [FIN DE NIVELACIÓN DE OBSERVABILIDAD v3.0.0] ---
   }
 }

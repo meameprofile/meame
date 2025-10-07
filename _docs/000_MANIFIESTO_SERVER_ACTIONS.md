@@ -82,5 +82,11 @@ sequenceDiagram
     SA-->>C: Retorna SuccessResult<T> o ErrorResult
 
     ---
+ACTUALIZACION:
+"Pilar VII: Pureza de la Fachada de Acciones" que contenga la siguiente directiva:
+"Los archivos de fachada (index.ts) que agrupan Server Actions y utilizan la directiva "use server" NUNCA deben usar la re-exportación de estrella (export * from '...'). Esta práctica contamina el módulo con exportaciones que no son funciones asíncronas (como type o interface), violando el contrato de los Server Modules y causando errores críticos de build. La práctica soberana es importar explícitamente cada función de acción y re-exportarla por su nombre, garantizando la pureza del módulo."
+
+---
+
 
 ```

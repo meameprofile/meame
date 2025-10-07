@@ -2,7 +2,7 @@
 /**
  * @file getAdminProducts.action.ts
  * @description Server Action soberana para obtener productos de la Admin API.
- * @version 5.0.0 (Holistic Elite Leveling)
+ * @version 5.1.0 (Holistic Observability & Contract Integrity)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -32,8 +32,8 @@ export async function getAdminProductsAction(
     endCursor: string | null;
   }>
 > {
-  const traceId = logger.startTrace("getAdminProductsAction_v5.0");
-  logger.startGroup(
+  const traceId = logger.startTrace("getAdminProductsAction_v5.1");
+  const groupId = logger.startGroup(
     `[Shopify Action] Solicitando productos de Admin API...`,
     traceId
   );
@@ -77,7 +77,7 @@ export async function getAdminProductsAction(
     logger.error("[Shopify Action] Fallo crítico.", { error: msg, traceId });
     return { success: false, error: `Error al cargar productos: ${msg}` };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

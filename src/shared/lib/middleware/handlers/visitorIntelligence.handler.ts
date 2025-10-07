@@ -1,17 +1,16 @@
 // RUTA: src/shared/lib/middleware/handlers/visitorIntelligence.handler.ts
 /**
  * @file visitorIntelligence.handler.ts
- * @description Manejador "Perfilador y Persistencia". Identifica, enriquece y
- *              persiste los datos del visitante en segundo plano.
- * @version 10.0.0 (Holistic Persistence & Elite Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Manejador "Perfilador" de élite. Identifica y enriquece la petición
+ *              del visitante. Es ultraligero y no realiza operaciones de persistencia.
+ * @version 11.0.0 (Decoupled & High-Performance)
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import { createId } from "@paralleldrive/cuid2";
 import { type MiddlewareHandler } from "../engine";
 import { logger } from "../../logging";
 import { KNOWN_BOTS } from "./config/known-bots";
-import { persistVisitorIntelligence } from "../../services/visitor.service";
 
 const FINGERPRINT_COOKIE = "visitor_fingerprint";
 const FINGERPRINT_MAX_AGE = 63072000; // 2 años
@@ -20,17 +19,21 @@ export const visitorIntelligenceHandler: MiddlewareHandler = async (
   req,
   res
 ) => {
-  const traceId = logger.startTrace("visitorIntelligenceHandler_v10.0");
+  const traceId = logger.startTrace("visitorIntelligenceHandler_v11.0");
 
   try {
     const userAgent = req.headers.get("user-agent") || "";
     if (KNOWN_BOTS.some((bot) => userAgent.toLowerCase().includes(bot))) {
-      return res; // No procesar bots
+      logger.trace("[VisitorInt Handler] Bot detectado. Omitiendo perfilado.", {
+        traceId,
+      });
+      return res;
     }
 
     let fingerprint = req.cookies.get(FINGERPRINT_COOKIE)?.value;
     if (!fingerprint) {
       fingerprint = createId();
+      // Se establece la cookie en la respuesta que se pasará al siguiente manejador
       res.cookies.set(FINGERPRINT_COOKIE, fingerprint, {
         path: "/",
         maxAge: FINGERPRINT_MAX_AGE,
@@ -43,32 +46,18 @@ export const visitorIntelligenceHandler: MiddlewareHandler = async (
     const geo = req.headers.get("x-vercel-ip-country") || "unknown";
     const referer = req.headers.get("referer") || "direct";
 
-    // Enriquecer las cabeceras de la RESPUESTA para el pipeline y la APP
+    // Enriquecer las cabeceras de la RESPUESTA para que el siguiente manejador
+    // y la aplicación final (vía `headers()`) puedan acceder a los datos.
     res.headers.set("x-visitor-fingerprint", fingerprint);
     res.headers.set("x-visitor-ip", ip);
     res.headers.set("x-visitor-ua", userAgent);
     res.headers.set("x-visitor-geo", geo);
     res.headers.set("x-visitor-referer", referer);
 
-    logger.trace("[VisitorInt Handler] Cabeceras de respuesta enriquecidas.", {
-      traceId,
-    });
-
-    // --- LÓGICA DE PERSISTENCIA MOVILIZADA AQUÍ ---
-    // Se ejecuta de forma asíncrona ("fire-and-forget") para no bloquear
-    // el pipeline del middleware, pero se inicia desde el contexto correcto.
-    persistVisitorIntelligence({
-      fingerprint,
-      ip,
-      userAgent,
-      // userId se determinará dentro del servicio con su propio cliente de Supabase
-      userId: null,
-    }).catch((e) => {
-      logger.error(
-        "[VisitorInt Handler] Fallo en la persistencia en segundo plano.",
-        { error: e, traceId }
-      );
-    });
+    logger.trace(
+      "[VisitorInt Handler] Cabeceras de respuesta enriquecidas con datos del visitante.",
+      { traceId }
+    );
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
@@ -80,5 +69,6 @@ export const visitorIntelligenceHandler: MiddlewareHandler = async (
     logger.endTrace(traceId);
   }
 
-  return res; // Siempre devuelve la respuesta para no bloquear el pipeline
+  // Se devuelve siempre la respuesta (modificada o no) para continuar el pipeline.
+  return res;
 };

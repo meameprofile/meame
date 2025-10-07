@@ -2,7 +2,9 @@
 /**
  * @file create-theme-preset.action.ts
  * @description Server Action para crear un nuevo preset de tema.
- * @version 5.0.0 (Sovereign Shaper Consumption)
+ *              v6.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 6.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -28,8 +30,11 @@ interface CreatePresetInput {
 export async function createThemePresetAction(
   input: CreatePresetInput
 ): Promise<ActionResult<{ newPreset: ThemePreset }>> {
-  const traceId = logger.startTrace("createThemePresetAction_v5.0");
-  logger.startGroup(`[Action] Creando preset de tema...`, traceId);
+  const traceId = logger.startTrace("createThemePresetAction_v6.0");
+  const groupId = logger.startGroup(
+    `[Action] Creando preset de tema...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -81,7 +86,7 @@ export async function createThemePresetAction(
     });
     return { success: false, error: "No se pudo guardar el preset." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

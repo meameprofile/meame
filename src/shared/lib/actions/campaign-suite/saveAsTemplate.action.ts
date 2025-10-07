@@ -3,7 +3,7 @@
  * @file saveAsTemplate.action.ts
  * @description Server Action para persistir un borrador como plantilla, ahora
  *              alineada con la Arquitectura de Contratos de Dominio Soberanos.
- * @version 5.0.0 (Sovereign Contract & Type-Safe)
+ * @version 5.1.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -30,8 +30,11 @@ export async function saveAsTemplateAction(
   description: string,
   workspaceId: string
 ): Promise<ActionResult<{ templateId: string }>> {
-  const traceId = logger.startTrace("saveAsTemplateAction_v5.0");
-  logger.startGroup(`[Action] Guardando borrador como plantilla...`, traceId);
+  const traceId = logger.startTrace("saveAsTemplateAction_v5.1");
+  const groupId = logger.startGroup(
+    `[Action] Guardando borrador como plantilla...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -119,7 +122,7 @@ export async function saveAsTemplateAction(
     });
     return { success: false, error: "No se pudo guardar la plantilla." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

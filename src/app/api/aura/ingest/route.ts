@@ -3,8 +3,8 @@
  * @file route.ts
  * @description Endpoint para la ingesta de eventos de "Aura", ahora con contratos
  *              soberanos, observabilidad de élite y trazabilidad de Vercel.
- * @version 6.0.0 (Sovereign Contract & Vercel Traceability)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 7.0.0 (Observability Contract v20+ Compliance)
+ * @author L.I.A. Legacy
  */
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@/shared/lib/supabase/server";
@@ -18,9 +18,11 @@ export async function POST(request: NextRequest) {
   // Pilar III: Observabilidad de Élite con Tracing Holístico
   const vercelRequestId = request.headers.get("x-vercel-id");
   const traceId = logger.startTrace(
-    `auraIngestEndpoint_v6.0:${vercelRequestId}`
+    `auraIngestEndpoint_v7.0:${vercelRequestId}`
   );
-  logger.startGroup(`[Aura Ingest] Procesando lote de eventos...`);
+  const groupId = logger.startGroup(
+    `[Aura Ingest] Procesando lote de eventos...`
+  );
 
   try {
     const supabase = createServerClient();
@@ -105,7 +107,7 @@ export async function POST(request: NextRequest) {
     });
     return new NextResponse("Internal Server Error", { status: 500 });
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

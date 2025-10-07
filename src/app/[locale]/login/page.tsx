@@ -3,7 +3,7 @@
  * @file page.tsx
  * @description Página de login para el DCC, con resiliencia de datos, logging
  *              verboso y una UX más limpia y enfocada.
- * @version 8.0.0 (Holistic Data Propagation & Elite Observability)
+ * @version 9.0.0 (Observability Contract v20+ Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
@@ -27,9 +27,9 @@ interface DevLoginPageProps {
 export default async function DevLoginPage({
   params: { locale },
 }: DevLoginPageProps) {
-  const traceId = logger.startTrace("DevLoginPage_Render_v8.0");
-  logger.startGroup(
-    `[DevLoginPage Shell] Renderizando v8.0 para locale: ${locale}`
+  const traceId = logger.startTrace("DevLoginPage_Render_v9.0");
+  const groupId = logger.startGroup(
+    `[DevLoginPage Shell] Renderizando v9.0 para locale: ${locale}`
   );
 
   let backgroundImageUrl = "/img/dev/login/bg-1.png"; // Fallback estático robusto
@@ -126,7 +126,7 @@ export default async function DevLoginPage({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

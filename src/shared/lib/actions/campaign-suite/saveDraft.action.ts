@@ -2,10 +2,9 @@
 /**
  * @file saveDraft.action.ts
  * @description Server Action de producción para guardar/actualizar un borrador.
- *              v5.0.0 (Decoupled API Contract): Refactorizado para aceptar
- *              el workspaceId como un argumento separado, mejorando la claridad
- *              y la seguridad de tipos.
- * @version 5.0.0
+ *              v5.1.0 (Observability Contract Compliance): Se alinea con el
+ *              nuevo contrato de la API del logger soberano.
+ * @version 5.1.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -24,8 +23,10 @@ export async function saveDraftAction(
   draftData: CampaignDraft,
   workspaceId: string
 ): Promise<ActionResult<{ draftId: string; updatedAt: string }>> {
-  const traceId = logger.startTrace("saveDraftAction_v5.0");
-  logger.startGroup(`[Action] Guardando borrador: ${draftData.draftId}`);
+  const traceId = logger.startTrace("saveDraftAction_v5.1");
+  const groupId = logger.startGroup(
+    `[Action] Guardando borrador: ${draftData.draftId}`
+  );
 
   try {
     const supabase = createServerClient();
@@ -93,7 +94,7 @@ export async function saveDraftAction(
       error: `No se pudo guardar el borrador: ${errorMessage}`,
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

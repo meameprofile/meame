@@ -1,4 +1,4 @@
-// RUTA: components/razBits/LightRays/use-light-rays.ts
+// RUTA: src/components/razBits/LightRays/use-light-rays.ts
 /**
  * @file use-light-rays.ts
  * @description Hook de React para renderizar un efecto de rayos de luz volumétricos
@@ -133,19 +133,17 @@ export const useLightRays = (
       const w = container.clientWidth * renderer.dpr;
       const h = container.clientHeight * renderer.dpr;
       uniforms.iResolution.value = [w, h];
-      // --- INICIO DE REFACTORIZACIÓN DE RESILIENCIA ---
       const { anchor, dir } = getAnchorAndDir(
         config.raysOrigin || "top-center",
         w,
         h
       );
-      // --- FIN DE REFACTORIZACIÓN DE RESILIENCIA ---
       uniforms.rayPos.value = anchor;
       uniforms.rayDir.value = dir;
     };
 
     const initializeWebGL = () => {
-      logger.startGroup("useLightRays: WebGL Initialization");
+      const groupId = logger.startGroup("useLightRays: WebGL Initialization");
       renderer = new Renderer({
         dpr: Math.min(window.devicePixelRatio, 2),
         alpha: true,
@@ -155,7 +153,6 @@ export const useLightRays = (
       gl.canvas.style.height = "100%";
       container.appendChild(gl.canvas);
 
-      // --- INICIO DE REFACTORIZACIÓN DE RESILIENCIA ---
       const hslColor = getCssVariableHsl(config.raysColor || "primary");
       const rgbColor = hslToRgb(hslColor[0], hslColor[1], hslColor[2]);
 
@@ -176,7 +173,6 @@ export const useLightRays = (
         noiseAmount: { value: config.noiseAmount ?? 0.1 },
         distortion: { value: config.distortion ?? 0.05 },
       };
-      // --- FIN DE REFACTORIZACIÓN DE RESILIENCIA ---
 
       const geometry = new Triangle(gl);
       const program = new Program(gl, {
@@ -189,7 +185,7 @@ export const useLightRays = (
       window.addEventListener("resize", updateSize);
       updateSize();
       logger.info("WebGL inicializado correctamente.");
-      logger.endGroup();
+      logger.endGroup(groupId);
 
       if (isVisible) {
         animationFrameId.current = requestAnimationFrame(loop);
@@ -229,7 +225,7 @@ export const useLightRays = (
     }
 
     return () => {
-      logger.startGroup("useLightRays: WebGL Cleanup");
+      const groupId = logger.startGroup("useLightRays: WebGL Cleanup");
       observer.disconnect();
       window.removeEventListener("resize", updateSize);
       if (config.followMouse) {
@@ -250,7 +246,7 @@ export const useLightRays = (
         }
       }
       logger.info("Recursos de WebGL liberados.");
-      logger.endGroup();
+      logger.endGroup(groupId);
     };
   }, [containerRef, config]);
 };

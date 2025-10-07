@@ -2,7 +2,7 @@
 /**
  * @file createPromptEntry.action.ts
  * @description Server Action de producción para crear una nueva entrada de prompt.
- * @version 13.0.0 (Absolute Type Safety & Contract Alignment)
+ * @version 13.1.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -59,8 +59,11 @@ function assembleFullPrompt(
 export async function createPromptEntryAction(
   input: CreatePromptInput
 ): Promise<ActionResult<{ promptId: string }>> {
-  const traceId = logger.startTrace("createPromptEntry_v13.0");
-  logger.startGroup(`[Action] Creando nueva entrada de prompt...`, traceId);
+  const traceId = logger.startTrace("createPromptEntry_v13.1");
+  const groupId = logger.startGroup(
+    `[Action] Creando nueva entrada de prompt...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -168,7 +171,7 @@ export async function createPromptEntryAction(
       error: `No se pudo crear la entrada del prompt: ${errorMessage}`,
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

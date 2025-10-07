@@ -3,7 +3,7 @@
  * @file visitor.service.ts
  * @description Servicio de servidor soberano para la persistencia de la inteligencia de visitantes.
  *              Contiene la lógica "pesada" que requiere el runtime de Node.js.
- * @version 1.0.0
+ * @version 1.1.0 (Observability Contract Fix)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -27,7 +27,7 @@ export async function persistVisitorIntelligence(
   data: VisitorData
 ): Promise<void> {
   const traceId = logger.startTrace("persistVisitorIntelligence");
-  logger.startGroup(
+  const groupId = logger.startGroup(
     "[Visitor Service] Persistiendo datos de sesión...",
     traceId
   );
@@ -77,9 +77,8 @@ export async function persistVisitorIntelligence(
       error: errorMessage,
       traceId,
     });
-    // No relanzamos el error para no romper el renderizado de la página.
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

@@ -2,7 +2,7 @@
 /**
  * @file manage-account.action.ts
  * @description Server Actions seguras para la gestión de la cuenta del usuario.
- * @version 2.0.0 (Holistic Elite Leveling)
+ * @version 2.1.0 (Holistic Observability & Contract Integrity)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -19,8 +19,11 @@ import {
 export async function updateUserProfileAction(
   formData: FormData
 ): Promise<ActionResult<null>> {
-  const traceId = logger.startTrace("updateUserProfileAction_v2.0");
-  logger.startGroup("[Action] Actualizando perfil de usuario...", traceId);
+  const traceId = logger.startTrace("updateUserProfileAction_v2.1");
+  const groupId = logger.startGroup(
+    "[Action] Actualizando perfil de usuario...",
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -64,7 +67,7 @@ export async function updateUserProfileAction(
     });
     return { success: false, error: "No se pudo actualizar el perfil." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }
@@ -72,8 +75,11 @@ export async function updateUserProfileAction(
 export async function updateUserPasswordAction(
   formData: FormData
 ): Promise<ActionResult<null>> {
-  const traceId = logger.startTrace("updateUserPasswordAction_v2.0");
-  logger.startGroup("[Action] Actualizando contraseña de usuario...", traceId);
+  const traceId = logger.startTrace("updateUserPasswordAction_v2.1");
+  const groupId = logger.startGroup(
+    "[Action] Actualizando contraseña de usuario...",
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -124,14 +130,17 @@ export async function updateUserPasswordAction(
     });
     return { success: false, error: "No se pudo actualizar la contraseña." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }
 
 export async function deleteUserAccountAction(): Promise<ActionResult<null>> {
-  const traceId = logger.startTrace("deleteUserAccountAction_v2.0");
-  logger.startGroup("[Action] Eliminando cuenta de usuario...", traceId);
+  const traceId = logger.startTrace("deleteUserAccountAction_v2.1");
+  const groupId = logger.startGroup(
+    "[Action] Eliminando cuenta de usuario...",
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -163,7 +172,7 @@ export async function deleteUserAccountAction(): Promise<ActionResult<null>> {
     });
     return { success: false, error: "No se pudo eliminar la cuenta." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

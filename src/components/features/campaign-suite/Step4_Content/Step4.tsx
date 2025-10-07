@@ -22,7 +22,9 @@ export default function Step4({
   content,
 }: StepProps<Content>): React.ReactElement {
   const traceId = logger.startTrace("Step4_Shell_Render_v5.0");
-  logger.startGroup(`[Step4 Shell] Ensamblando y delegando al cliente...`);
+  const groupId = logger.startGroup(
+    `[Step4 Shell] Ensamblando y delegando al cliente...`
+  );
 
   try {
     // --- [INICIO] GUARDIÁN DE RESILIENCIA DE CONTRATO ---
@@ -54,7 +56,7 @@ export default function Step4({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

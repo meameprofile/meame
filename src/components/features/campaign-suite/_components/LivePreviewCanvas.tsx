@@ -2,8 +2,9 @@
 /**
  * @file LivePreviewCanvas.tsx
  * @description Orquestador de élite para el lienzo de previsualización (EDVI),
- *              ahora con cumplimiento estricto de las Reglas de los Hooks de React.
- * @version 22.0.0 (React Hooks Contract Restoration)
+ *              ahora con cumplimiento estricto de las Reglas de los Hooks de React
+ *              y alineado con la arquitectura de "Forja Centralizada".
+ * @version 22.0.0 (React Hooks & Centralized Forge Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -19,7 +20,7 @@ import {
   PreviewContent,
   PreviewErrorOverlay,
 } from "./LivePreviewCanvas/_components";
-import { useAssembledDraft } from "@/shared/hooks/campaign-suite/use-assembled-draft.hook";
+import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { logger } from "@/shared/lib/logging";
 import type { LoadedFragments } from "@/shared/lib/actions/campaign-suite";
@@ -45,18 +46,15 @@ export function LivePreviewCanvas({
     () => logger.startTrace("LivePreviewCanvas_Render_v22.0"),
     []
   );
-  logger.startGroup(
+  const groupId = logger.startGroup(
     `[LivePreviewCanvas] Renderizando orquestador v22.0...`,
     traceId
   );
 
-  // --- [INICIO] REFACTORIZACIÓN: CUMPLIMIENTO DE REGLAS DE HOOKS ---
-  // Todos los hooks se invocan incondicionalmente en el nivel superior.
-  const draft = useAssembledDraft();
+  const { draft } = useCampaignDraft();
   const { theme, error: themeError } = usePreviewTheme(loadedFragments);
   const { iframeRef, iframeBody } = useIframe();
   const { focusedSection, sectionRefs } = usePreviewFocus();
-  // --- [FIN] REFACTORIZACIÓN: CUMPLIMIENTO DE REGLAS DE HOOKS ---
 
   try {
     logger.traceEvent(traceId, "Hooks de estado y efectos inicializados.");
@@ -126,7 +124,7 @@ export function LivePreviewCanvas({
       </div>
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

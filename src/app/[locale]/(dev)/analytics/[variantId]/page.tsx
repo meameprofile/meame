@@ -3,9 +3,8 @@
  * @file page.tsx
  * @description Página de detalle para la analítica de una variante de campaña específica.
  *              Forjada con observabilidad de élite y un guardián de resiliencia.
- * @version 3.1.0 (Elite Error Handling & Type Safety): Implementa un manejo
- *              de tipos explícito en el bloque catch para una seguridad de tipos absoluta.
- * @author RaZ Podestá - MetaShark Tech
+ * @version 4.0.0 (Observability Contract v20+ Compliance)
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import React from "react";
@@ -23,7 +22,10 @@ export default async function AnalyticsDetailPage({
   params,
 }: AnalyticsDetailPageProps) {
   const traceId = logger.startTrace(`AnalyticsDetailShell:${params.variantId}`);
-  logger.startGroup(`[Analytics Detail Shell] Ensamblando datos...`, traceId);
+  const groupId = logger.startGroup(
+    `[Analytics Detail Shell] Ensamblando datos...`,
+    traceId
+  );
 
   try {
     const result = await getCampaignAnalyticsAction();
@@ -92,7 +94,7 @@ export default async function AnalyticsDetailPage({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

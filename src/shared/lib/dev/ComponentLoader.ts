@@ -27,11 +27,9 @@ export async function loadComponentAndProps(
   componentName: string
 ): Promise<ComponentLoadResult> {
   const traceId = logger.startTrace(`loadComponentAndProps:${componentName}`);
-  // --- [INICIO DE CORRECCIÓN DE CONTRATO v8.0.0] ---
   const groupId = logger.startGroup(
     `[Loader v8.0] Orquestando carga de "${componentName}"...`
   );
-  // --- [FIN DE CORRECCIÓN DE CONTRATO v8.0.0] ---
 
   try {
     logger.traceEvent(traceId, "Obteniendo entrada del registro...");
@@ -82,9 +80,7 @@ export async function loadComponentAndProps(
       `No se pudo orquestar la carga del componente: ${errorMessage}`
     );
   } finally {
-    // --- [INICIO DE CORRECCIÓN DE CONTRATO v8.0.0] ---
     logger.endGroup(groupId);
     logger.endTrace(traceId);
-    // --- [FIN DE CORRECCIÓN DE CONTRATO v8.0.0] ---
   }
 }

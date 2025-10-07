@@ -17,8 +17,6 @@ import { Container, Separator } from "@/components/ui";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { CommentSectionClient } from "./comments/CommentSectionClient";
 
-// A diferencia de los componentes de cliente puros, las props de este
-// Server Shell son específicas para su función de obtención de datos.
 interface CommentSectionProps {
   articleId: string;
   articleSlug: string;
@@ -29,7 +27,7 @@ export async function CommentSection({
   articleSlug,
 }: CommentSectionProps) {
   const traceId = logger.startTrace(`CommentSection_Shell_v4.0:${articleId}`);
-  logger.startGroup(
+  const groupId = logger.startGroup(
     `[CommentSection Shell] Ensamblando datos para artículo ${articleId}...`
   );
 
@@ -38,7 +36,7 @@ export async function CommentSection({
       await Promise.all([
         getCommentsByArticleIdAction(articleId),
         createServerClient(),
-        getDictionary(defaultLocale), // El idioma de los comentarios no depende del `locale` de la URL
+        getDictionary(defaultLocale),
       ]);
     const {
       data: { user },
@@ -103,7 +101,7 @@ export async function CommentSection({
     }
     return null;
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

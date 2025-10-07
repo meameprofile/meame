@@ -2,7 +2,7 @@
 /**
  * @file auth.actions.ts
  * @description SSoT para las Server Actions de autenticación.
- * @version 13.0.0 (Holistic Auth Flow & Elite Error Handling)
+ * @version 13.1.0 (Holistic Observability & Contract Integrity)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -28,8 +28,11 @@ import {
 export async function loginWithPasswordAction(
   data: LoginFormData
 ): Promise<ActionResult<null>> {
-  const traceId = logger.startTrace("loginWithPasswordAction_v13.0");
-  logger.startGroup("[AuthAction] Iniciando flujo de login...", traceId);
+  const traceId = logger.startTrace("loginWithPasswordAction_v13.1");
+  const groupId = logger.startGroup(
+    "[AuthAction] Iniciando flujo de login...",
+    traceId
+  );
 
   try {
     const validation = LoginSchema.safeParse(data);
@@ -71,7 +74,7 @@ export async function loginWithPasswordAction(
         "Credenciales inválidas. Por favor, verifica tu email y contraseña.",
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }
@@ -79,8 +82,8 @@ export async function loginWithPasswordAction(
 export async function signUpAction(
   data: SignUpFormData
 ): Promise<ActionResult<{ success: true }>> {
-  const traceId = logger.startTrace("signUpAction_v13.0");
-  logger.startGroup(
+  const traceId = logger.startTrace("signUpAction_v13.1");
+  const groupId = logger.startGroup(
     "[AuthAction] Iniciando flujo de registro de nuevo usuario...",
     traceId
   );
@@ -129,7 +132,7 @@ export async function signUpAction(
     });
     return { success: false, error: "No se pudo registrar el usuario." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }
@@ -137,8 +140,8 @@ export async function signUpAction(
 export async function sendPasswordResetAction(
   data: ForgotPasswordFormData
 ): Promise<ActionResult<null>> {
-  const traceId = logger.startTrace("sendPasswordResetAction_v13.0");
-  logger.startGroup(
+  const traceId = logger.startTrace("sendPasswordResetAction_v13.1");
+  const groupId = logger.startGroup(
     "[AuthAction] Iniciando flujo de reseteo de contraseña...",
     traceId
   );
@@ -184,7 +187,7 @@ export async function sendPasswordResetAction(
         "No se pudo enviar el email de recuperación. Por favor, verifica el email e inténtalo de nuevo.",
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

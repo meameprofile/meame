@@ -2,7 +2,7 @@
 /**
  * @file linkPromptToBaviAsset.action.ts
  * @description Server Action simbiótica para vincular un activo de BAVI a un genoma de prompt.
- * @version 11.0.0 (Elite Observability & Atomic Update)
+ * @version 11.1.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -24,8 +24,11 @@ export async function linkPromptToBaviAssetAction({
   baviAssetId,
   workspaceId,
 }: LinkPromptInput): Promise<ActionResult<{ updatedCount: number }>> {
-  const traceId = logger.startTrace("linkPromptToBaviAsset_v11.0");
-  logger.startGroup(`[Action] Vinculando prompt ${promptId}...`, traceId);
+  const traceId = logger.startTrace("linkPromptToBaviAsset_v11.1");
+  const groupId = logger.startGroup(
+    `[Action] Vinculando prompt ${promptId}...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -79,7 +82,7 @@ export async function linkPromptToBaviAssetAction({
     });
     return { success: false, error: `No se pudo vincular el prompt: ${msg}` };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

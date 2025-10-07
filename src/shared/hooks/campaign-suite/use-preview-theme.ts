@@ -1,20 +1,21 @@
 // RUTA: src/shared/hooks/campaign-suite/use-preview-theme.ts
 /**
  * @file use-preview-theme.ts
- * @description Hook atómico para ensamblar el tema de la vista previa.
- * @version 8.0.0 (Elite Observability & Resilience)
+ * @description Hook atómico para ensamblar el tema de la vista previa, ahora
+ *              alineado con la arquitectura de "Forja Centralizada".
+ * @version 9.0.0 (Centralized Forge Compliance & Elite Observability)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import { useMemo } from "react";
-import { useStep3ThemeStore } from "./use-step3-theme.store";
 import { usePreviewStore } from "@/components/features/campaign-suite/_context/PreviewContext";
 import { deepMerge } from "@/shared/lib/utils";
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import { AssembledThemeSchema } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import type { LoadedFragments } from "@/shared/lib/actions/campaign-suite";
 import { logger } from "@/shared/lib/logging";
+import { useCampaignDraft } from "./use-campaign-draft.hook"; // <-- ARQUITECTURA SOBERANA
 
 interface UsePreviewThemeReturn {
   theme: AssembledTheme | null;
@@ -24,11 +25,16 @@ interface UsePreviewThemeReturn {
 export function usePreviewTheme(
   allThemeFragments: LoadedFragments | null
 ): UsePreviewThemeReturn {
-  const themeConfig = useStep3ThemeStore((state) => state.themeConfig);
+  // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v9.0.0] ---
+  // Se obtiene el themeConfig directamente del borrador centralizado.
+  const {
+    draft: { themeConfig },
+  } = useCampaignDraft();
+  // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v9.0.0] ---
   const previewThemeFromStore = usePreviewStore((state) => state.previewTheme);
 
   const { theme, error } = useMemo(() => {
-    const traceId = logger.startTrace("usePreviewTheme.assemble_v8.0");
+    const traceId = logger.startTrace("usePreviewTheme.assemble_v9.0");
     try {
       if (previewThemeFromStore) {
         logger.traceEvent(

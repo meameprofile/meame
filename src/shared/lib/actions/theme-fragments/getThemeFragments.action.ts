@@ -2,7 +2,9 @@
 /**
  * @file getThemeFragments.action.ts
  * @description Server Action para obtener los fragmentos de tema.
- * @version 3.0.0 (Granular Resilience & Sovereign Shaper)
+ *              v4.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 4.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -15,8 +17,6 @@ import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { mapSupabaseToThemeFragment } from "./_shapers/theme-fragments.shapers";
 import type { ThemeFragmentRow } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 
-// --- [INICIO DE CORRECCIÓN DE VISIBILIDAD DE MÓDULO] ---
-// Se exportan el schema y el tipo para que sean consumibles por otros módulos.
 export const ThemeFragmentSchema = z.object({
   id: z.string().uuid(),
   workspace_id: z.string().uuid().nullable(),
@@ -29,7 +29,6 @@ export const ThemeFragmentSchema = z.object({
 });
 
 export type ThemeFragment = z.infer<typeof ThemeFragmentSchema>;
-// --- [FIN DE CORRECCIÓN DE VISIBILIDAD DE MÓDULO] ---
 
 export async function getThemeFragmentsAction(
   workspaceId: string,
@@ -37,8 +36,11 @@ export async function getThemeFragmentsAction(
 ): Promise<
   ActionResult<{ global: ThemeFragment[]; workspace: ThemeFragment[] }>
 > {
-  const traceId = logger.startTrace("getThemeFragmentsAction_v3.0");
-  logger.startGroup(`[Action] Obteniendo fragmentos de tema...`, traceId);
+  const traceId = logger.startTrace("getThemeFragmentsAction_v4.0");
+  const groupId = logger.startGroup(
+    `[Action] Obteniendo fragmentos de tema...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -108,7 +110,7 @@ export async function getThemeFragmentsAction(
     );
     return { success: false, error: "No se pudieron cargar los estilos." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

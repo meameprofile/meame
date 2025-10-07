@@ -2,53 +2,68 @@
 /**
  * @file use-fullscreen-manager.ts
  * @description Hook atómico para gestionar el estado de pantalla completa.
- * @version 2.0.0 (Elite Observability)
- * @author RaZ Podestá - MetaShark Tech
+ *              v3.0.0 (Holistic Observability): Inyectado con una traza de ciclo de
+ *              vida para monitorear el montaje y la suscripción a eventos del DOM,
+ *              cumpliendo con el Pilar III de Calidad.
+ * @version 3.0.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { logger } from "@/shared/lib/logging";
 
 export function useFullscreenManager(
   containerRef: React.RefObject<HTMLDivElement | null>
 ) {
+  // --- [INICIO DE REFACTORIZACIÓN DE OBSERVABILIDAD v3.0.0] ---
+  const traceId = useMemo(
+    () => logger.startTrace("useFullscreenManager_Lifecycle_v3.0"),
+    []
+  );
+  useEffect(() => {
+    logger.info("[FullscreenManager Hook] Montado y listo.", { traceId });
+    return () => logger.endTrace(traceId);
+  }, [traceId]);
+  // --- [FIN DE REFACTORIZACIÓN DE OBSERVABILIDAD v3.0.0] ---
+
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const toggleFullscreen = useCallback(() => {
-    const traceId = logger.startTrace("toggleFullscreen");
-    const elem = containerRef.current;
-    if (!elem) {
-      logger.warn("[FullscreenManager] Intento de toggle sin contenedor.", {
-        traceId,
+    const actionTraceId = logger.startTrace("toggleFullscreen_Action");
+    const element = containerRef.current;
+    if (!element) {
+      logger.warn("[FullscreenManager] Intento de toggle sin un elemento contenedor.", {
+        traceId: actionTraceId,
       });
+      logger.endTrace(actionTraceId, { error: true });
       return;
     }
 
     if (!document.fullscreenElement) {
-      logger.traceEvent(traceId, "Solicitando entrada a pantalla completa...");
-      elem.requestFullscreen().catch((err) => {
-        logger.error("Error al entrar en pantalla completa", { err, traceId });
+      logger.traceEvent(actionTraceId, "Solicitando entrada a pantalla completa...");
+      element.requestFullscreen().catch((error) => {
+        logger.error("Error al intentar entrar en pantalla completa.", { error, traceId: actionTraceId });
       });
     } else {
-      logger.traceEvent(traceId, "Solicitando salida de pantalla completa...");
+      logger.traceEvent(actionTraceId, "Solicitando salida de pantalla completa...");
       document.exitFullscreen();
     }
-    logger.endTrace(traceId);
+    logger.endTrace(actionTraceId);
   }, [containerRef]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
       const isCurrentlyFullscreen = !!document.fullscreenElement;
       setIsFullscreen(isCurrentlyFullscreen);
-      logger.info(
-        `[FullscreenManager] Estado cambiado a: ${isCurrentlyFullscreen ? "ACTIVADO" : "DESACTIVADO"}.`
-      );
+      logger.traceEvent(traceId, `Evento de DOM: fullscreenchange`, {
+        isCurrentlyFullscreen,
+      });
     };
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     return () =>
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
-  }, []);
+  }, [traceId]);
 
   return { isFullscreen, toggleFullscreen };
 }

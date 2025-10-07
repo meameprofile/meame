@@ -2,7 +2,7 @@
 /**
  * @file linkAnonymousSessionToUser.action.ts
  * @description Server Action que orquesta el "Traspaso de Identidad".
- * @version 2.0.0 (Elite Observability & Resilience)
+ * @version 2.1.0 (Holistic Observability & Contract Integrity)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -23,8 +23,11 @@ type LinkSessionInput = z.infer<typeof LinkSessionInputSchema>;
 export async function linkAnonymousSessionToUserAction(
   input: LinkSessionInput
 ): Promise<ActionResult<null>> {
-  const traceId = logger.startTrace("linkAnonymousSessionToUserAction_v2.0");
-  logger.startGroup(`[Auth Action] Vinculando sesión anónima...`, traceId);
+  const traceId = logger.startTrace("linkAnonymousSessionToUserAction_v2.1");
+  const groupId = logger.startGroup(
+    `[Auth Action] Vinculando sesión anónima...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -81,7 +84,7 @@ export async function linkAnonymousSessionToUserAction(
       error: "No se pudo vincular el historial de la sesión.",
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

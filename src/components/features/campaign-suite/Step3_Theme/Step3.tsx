@@ -23,13 +23,15 @@ export default async function Step3({
   content,
 }: StepProps<Content>): Promise<React.ReactElement> {
   const traceId = logger.startTrace("Step3_ServerShell_Render_v9.0");
-  logger.startGroup(`[Step3 Shell] Ensamblando datos para el Paso 3...`);
+  const groupId = logger.startGroup(
+    `[Step3 Shell] Ensamblando datos para el Paso 3...`
+  );
 
   try {
     if (!content) {
       throw new Error("Contrato de UI violado: La prop 'content' es nula.");
     }
-    logger.traceEvent(traceId, "Contenido i18n validado.");
+    logger.traceEvent(traceId, "Contrato de contenido i18n validado.");
 
     const fragmentsResult = await loadAllThemeFragmentsAction();
 
@@ -56,7 +58,7 @@ export default async function Step3({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

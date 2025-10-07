@@ -22,8 +22,6 @@ import type {
   BaviVariant,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 
-// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v42.1.0] ---
-// La prop 'supportedLocales' se elimina del contrato del "Server Shell".
 type HeaderShellProps = Omit<
   HeaderClientProps,
   "user" | "profile" | "logoUrl" | "initialCart"
@@ -35,9 +33,8 @@ export default async function Header({
   centerComponent,
   rightComponent,
 }: HeaderShellProps) {
-  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO v42.1.0] ---
   const traceId = logger.startTrace("Header_Shell_v42.1");
-  logger.startGroup(
+  const groupId = logger.startGroup(
     `[Header Shell] Orquestando obtención de datos para cabecera...`,
     traceId
   );
@@ -141,7 +138,7 @@ export default async function Header({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

@@ -9,7 +9,7 @@
  */
 "use client";
 
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { logger } from "@/shared/lib/logging";
 import { Step1Client } from "./Step1Client";
 import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
@@ -22,18 +22,27 @@ type Content = z.infer<typeof Step1ContentSchema>;
 export default function Step1({
   content,
 }: StepProps<Content>): React.ReactElement {
-  const traceId = logger.startTrace("Step1_Shell_Render_v7.0");
-  logger.startGroup(`[Step1 Shell] Ensamblando y delegando al cliente...`);
+  const traceId = useMemo(
+    () => logger.startTrace("Step1_Shell_Render_v7.0"),
+    []
+  );
+
+  useEffect(() => {
+    const groupId = logger.startGroup(
+      `[Step1 Shell] Ensamblando y delegando al cliente...`
+    );
+    return () => {
+      logger.endGroup(groupId);
+    };
+  }, []);
 
   try {
-    // --- [INICIO] GUARDIÁN DE RESILIENCIA DE CONTRATO ---
     if (!content) {
       throw new Error(
         "Contrato de UI violado: La prop 'content' para Step1 es nula o indefinida."
       );
     }
     logger.traceEvent(traceId, "Contrato de contenido validado con éxito.");
-    // --- [FIN] GUARDIÁN DE RESILIENCIA DE CONTRATO ---
 
     logger.success(
       "[Step1 Shell] Datos validados. Renderizando Step1Client...",
@@ -55,7 +64,6 @@ export default function Step1({
       />
     );
   } finally {
-    logger.endGroup();
     logger.endTrace(traceId);
   }
 }

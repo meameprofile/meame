@@ -12,7 +12,7 @@ import {
   useCinematicRenderer,
   type PlaybackEvent,
   type CinematicRendererHook,
-  type CinematicRendererProps as HookProps, // Se usa un alias para evitar colisiones
+  type CinematicRendererProps as HookProps,
 } from "@/shared/hooks/use-cinematic-renderer";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
@@ -23,7 +23,6 @@ import {
 } from "@/components/ui/cinematic-controls";
 import { VideoPlane } from "./VideoPlane";
 
-// El contrato de props del componente
 interface CinematicRendererProps {
   src: string;
   audioSrc?: string;
@@ -40,16 +39,15 @@ export function CinematicRenderer({
   );
   const containerRef = useRef<HTMLDivElement>(null);
   const handlePlaybackEvent = useCallback((event: PlaybackEvent) => {
-    logger.info(`[Aether Telemetry] Evento de Reproducción`, event);
+    logger.info(`[Aether Telemetry] Evento de Reproducción`, { event });
   }, []);
 
-  // Se pasan todas las props requeridas al hook.
   const hookState = useCinematicRenderer({
     src,
     audioSrc,
     containerRef,
     onPlaybackEvent: handlePlaybackEvent,
-  } as HookProps); // Se usa una aserción de tipo para satisfacer al hook
+  } as HookProps);
 
   type ControlsBarProps = Pick<
     CinematicRendererHook,

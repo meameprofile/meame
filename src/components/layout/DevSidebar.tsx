@@ -1,15 +1,14 @@
 // RUTA: src/components/layout/DevSidebar.tsx
 /**
  * @file DevSidebar.tsx
- * @description Barra lateral soberana para el DCC. Ahora es un componente de presentación puro
- *              que recibe las rutas pre-generadas y maneja de forma resiliente las plantillas de
- *              rutas dinámicas para prevenir errores de "dynamic href" en Next.js.
- * @version 5.0.0 (DRY & Dynamic Href Resilience)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Barra lateral soberana para el DCC, ahora con observabilidad de
+ *              intención de navegación y una higiene de código impecable.
+ * @version 6.2.0 (Elite Code Hygiene)
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserNavClient } from "@/components/features/auth/components/UserNavClient";
@@ -29,7 +28,6 @@ import {
 } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import { cn } from "@/shared/lib/utils/cn";
 import { Separator } from "@/components/ui/Separator";
 import {
   Tooltip,
@@ -63,15 +61,9 @@ export function DevSidebar({
   content,
   routeGroups,
 }: DevSidebarProps) {
-  const traceId = useMemo(
-    () => logger.startTrace("DevSidebar_Lifecycle_v5.0"),
-    []
-  );
+  const traceId = useMemo(() => logger.startTrace("DevSidebar_Lifecycle_v6.2"), []);
   useEffect(() => {
-    logger.info(
-      "[DevSidebar] Componente de presentación puro montado (v5.0).",
-      { traceId }
-    );
+    logger.info("[DevSidebar] Componente de presentación puro montado (v6.2).", { traceId });
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
@@ -84,12 +76,17 @@ export function DevSidebar({
 
   const activeWorkspace = workspaces.find((ws) => ws.id === activeWorkspaceId);
 
+  const handleLinkClick = useCallback((path: string, name: string) => {
+    logger.info(`[DevSidebar] INTENCIÓN DE NAVEGACIÓN: El usuario ha hecho clic para ir a '${name}' (${path})`, { traceId });
+  }, [traceId]);
+
   return (
     <aside className="h-full w-72 flex-col border-r bg-card p-4 hidden md:flex">
       <div className="flex h-16 items-center px-2">
         <Link
           href={`/${currentLocale}/dev`}
           className="flex items-center gap-2 font-semibold"
+          onClick={() => handleLinkClick(`/${currentLocale}/dev`, "DCC Dashboard")}
         >
           <span className="text-primary font-black text-lg">DCC</span>
           <span className="text-muted-foreground">/</span>
@@ -129,36 +126,20 @@ export function DevSidebar({
                           >
                             {isDynamic ? (
                               <span className="flex w-full items-center">
-                                <DynamicIcon
-                                  name={item.iconName}
-                                  className={cn("mr-2 h-4 w-4")}
-                                />
+                                <DynamicIcon name={item.iconName} className="mr-2 h-4 w-4" />
                                 {item.name}
-                                <Badge
-                                  variant="outline"
-                                  className="ml-auto text-xs font-mono"
-                                >
-                                  tpl
-                                </Badge>
+                                <Badge variant="outline" className="ml-auto text-xs font-mono">tpl</Badge>
                               </span>
                             ) : (
-                              <Link href={item.path}>
-                                <DynamicIcon
-                                  name={item.iconName}
-                                  className={cn("mr-2 h-4 w-4")}
-                                />
+                              <Link href={item.path} onClick={() => handleLinkClick(item.path, item.name)}>
+                                <DynamicIcon name={item.iconName} className="mr-2 h-4 w-4" />
                                 {item.name}
                               </Link>
                             )}
                           </Button>
                         </TooltipTrigger>
                         {isDynamic && (
-                          <TooltipContent>
-                            <p>
-                              Esta es una plantilla de ruta dinámica y no se
-                              puede navegar directamente.
-                            </p>
-                          </TooltipContent>
+                          <TooltipContent><p>Esta es una plantilla de ruta dinámica y no se puede navegar directamente.</p></TooltipContent>
                         )}
                       </Tooltip>
                     </TooltipProvider>

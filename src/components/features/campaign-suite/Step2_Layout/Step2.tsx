@@ -2,8 +2,8 @@
 /**
  * @file Step2.tsx
  * @description Ensamblador de Cliente para el Paso 2 de la SDC (Layout).
- *              Forjado con un guardián de resiliencia y observabilidad de ciclo de
- *              vida completo para una robustez y depuración de nivel de producción.
+ *              Forjado con un guardián de resiliencia, observabilidad de ciclo de
+ *              vida completo y cumplimiento de los 8 Pilares de Calidad.
  * @version 7.0.0 (Elite Resilience & Full Observability)
  * @author RaZ Podestá - MetaShark Tech
  */
@@ -23,7 +23,9 @@ export default function Step2({
   content,
 }: StepProps<Content>): React.ReactElement {
   const traceId = logger.startTrace("Step2_Shell_Render_v7.0");
-  logger.startGroup(`[Step2 Shell] Ensamblando y delegando al cliente...`);
+  const groupId = logger.startGroup(
+    `[Step2 Shell] Ensamblando y delegando al cliente...`
+  );
 
   try {
     // --- [INICIO] GUARDIÁN DE RESILIENCIA DE CONTRATO ---
@@ -55,7 +57,7 @@ export default function Step2({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

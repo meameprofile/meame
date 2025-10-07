@@ -3,7 +3,7 @@
  * @file getArtifactsForDraft.action.ts
  * @description Server Action soberana para obtener el historial de artefactos,
  *              ahora alineada con la Arquitectura de Contratos de Dominio Soberanos.
- * @version 2.0.0 (Sovereign Contract Aligned & Type-Safe)
+ * @version 2.1.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -23,8 +23,11 @@ export interface ArtifactMetadata {
 export async function getArtifactsForDraftAction(
   draftId: string
 ): Promise<ActionResult<ArtifactMetadata[]>> {
-  const traceId = logger.startTrace(`getArtifactsForDraft:${draftId}_v2.0`);
-  logger.startGroup(`[Action] Obteniendo historial de artefactos...`, traceId);
+  const traceId = logger.startTrace(`getArtifactsForDraft:${draftId}_v2.1`);
+  const groupId = logger.startGroup(
+    `[Action] Obteniendo historial de artefactos...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -68,7 +71,7 @@ export async function getArtifactsForDraftAction(
       error: "No se pudo cargar el historial de compilaciones.",
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

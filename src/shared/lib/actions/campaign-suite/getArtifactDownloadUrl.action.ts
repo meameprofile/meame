@@ -3,7 +3,7 @@
  * @file getArtifactDownloadUrl.action.ts
  * @description Server Action soberana para generar una URL de descarga segura,
  *              ahora alineada con la Arquitectura de Contratos de Dominio Soberanos.
- * @version 2.0.0 (Sovereign Contract Aligned & Type-Safe)
+ * @version 2.1.0 (Observability Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -19,9 +19,12 @@ export async function getArtifactDownloadUrlAction(
   artifactId: string
 ): Promise<ActionResult<{ downloadUrl: string }>> {
   const traceId = logger.startTrace(
-    `getArtifactDownloadUrl:${artifactId}_v2.0`
+    `getArtifactDownloadUrl:${artifactId}_v2.1`
   );
-  logger.startGroup(`[Action] Generando URL de descarga...`, traceId);
+  const groupId = logger.startGroup(
+    `[Action] Generando URL de descarga...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -71,7 +74,7 @@ export async function getArtifactDownloadUrlAction(
     });
     return { success: false, error: errorMessage };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

@@ -3,8 +3,8 @@
  * @file layout.tsx
  * @description Layout Orquestador y "Server Shell" de élite para la SDC,
  *              con una arquitectura de composición Cliente-Servidor soberana.
- * @version 2.0.0 (Server Shell Pattern & Elite Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Observability Contract v20+ Compliance)
+ * @author L.I.A. Legacy
  */
 import React from "react";
 import { notFound } from "next/navigation";
@@ -26,8 +26,10 @@ export default async function WizardLayout({
   children,
   params: { locale },
 }: WizardLayoutProps) {
-  const traceId = logger.startTrace("SDC_SovereignLayout_v2.0");
-  logger.startGroup(`[SDC Layout Shell] Ensamblando datos para [${locale}]...`);
+  const traceId = logger.startTrace("SDC_SovereignLayout_v3.0");
+  const groupId = logger.startGroup(
+    `[SDC Layout Shell] Ensamblando datos para [${locale}]...`
+  );
 
   try {
     const [dictionaryResult, fragmentsResult, baviManifestResult] =
@@ -92,7 +94,7 @@ export default async function WizardLayout({
       />
     );
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

@@ -2,10 +2,9 @@
 /**
  * @file addAssetToManifests.action.ts
  * @description Server Action atómica para registrar un nuevo activo en Supabase.
- *              v6.0.0 (Elite Observability & Resilience): Inyectado con un sistema
- *              de tracing completo y un guardián de resiliencia que propaga
- *              errores de forma controlada al orquestador principal.
- * @version 6.0.0
+ *              v6.1.0 (Holistic Observability & Contract Integrity): Se alinea
+ *              con el contrato del logger soberano para una observabilidad de élite.
+ * @version 6.1.0
  *@author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -29,8 +28,8 @@ export async function addAssetToManifestsAction({
   userId,
   workspaceId,
 }: AddAssetToDbInput): Promise<ActionResult<{ assetId: string }>> {
-  const traceId = logger.startTrace("addAssetToDb_v6.0");
-  logger.startGroup(
+  const traceId = logger.startTrace("addAssetToDb_v6.1");
+  const groupId = logger.startGroup(
     `[DB Action] Persistiendo activo '${metadata.assetId}'...`,
     traceId
   );
@@ -99,7 +98,7 @@ export async function addAssetToManifestsAction({
       error: `No se pudo registrar el activo en la base de datos: ${errorMessage}`,
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

@@ -3,7 +3,7 @@
  * @file build-pipeline.ts
  * @description El motor del pipeline para el Motor de Forja. Orquesta la
  *              ejecución secuencial y transaccional de las tareas de build.
- * @version 1.0.0
+ * @version 1.1.0 (Observability Contract Fix)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { logger } from "@/shared/lib/logging";
@@ -26,7 +26,7 @@ export class BuildPipeline {
     const traceId = logger.startTrace(
       `BuildPipeline:${this.context.draft.draftId}`
     );
-    logger.startGroup(
+    const groupId = logger.startGroup(
       `[Motor de Forja] Iniciando pipeline para draft: ${this.context.draft.draftId}`
     );
 
@@ -44,7 +44,7 @@ export class BuildPipeline {
           `[Motor de Forja] Fallo crítico en la tarea "${task.name}". Abortando pipeline.`,
           { error: errorMessage }
         );
-        logger.endGroup();
+        logger.endGroup(groupId);
         logger.endTrace(traceId);
         return {
           success: false,
@@ -56,7 +56,7 @@ export class BuildPipeline {
     logger.success(
       `[Motor de Forja] Pipeline completado con éxito para draft: ${this.context.draft.draftId}`
     );
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
     return { success: true };
   }

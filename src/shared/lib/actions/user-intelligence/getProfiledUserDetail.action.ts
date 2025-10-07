@@ -2,8 +2,9 @@
 /**
  * @file getProfiledUserDetail.action.ts
  * @description Server Action soberana para obtener la vista de 360 grados de un perfil de usuario.
- * @version 3.1.0 (Resilient Fallback & Elite Compliance): Proporciona un fallback
- *              seguro a nivel de tipo para datos de user-agent nulos, resolviendo TS2322.
+ *              v4.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 4.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -60,8 +61,8 @@ export interface ProfiledUserDetail {
 export async function getProfiledUserDetailAction(
   sessionId: string
 ): Promise<ActionResult<ProfiledUserDetail>> {
-  const traceId = logger.startTrace("getProfiledUserDetailAction_v3.1");
-  logger.startGroup(
+  const traceId = logger.startTrace("getProfiledUserDetailAction_v4.0");
+  const groupId = logger.startGroup(
     `[UserInt Action] Obteniendo detalle para sesión: ${sessionId}`
   );
 
@@ -107,13 +108,9 @@ export async function getProfiledUserDetailAction(
         : null,
     ]);
 
-    // --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA v3.1.0] ---
-    // Se proporciona un valor de fallback que cumple con el contrato del schema,
-    // garantizando que 'userAgent' nunca sea un objeto vacío inválido.
     const userAgent = userAgentString
       ? UaParserResultSchema.parse(JSON.parse(userAgentString))
       : UaParserResultSchema.parse({ ua: "" }); // Fallback seguro
-    // --- [FIN DE REFACTORIZACIÓN DE RESILIENCIA v3.1.0] ---
 
     const result: ProfiledUserDetail = {
       sessionId: sessionData.session_id,
@@ -149,7 +146,7 @@ export async function getProfiledUserDetailAction(
       error: "No se pudo recuperar el perfil de usuario.",
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

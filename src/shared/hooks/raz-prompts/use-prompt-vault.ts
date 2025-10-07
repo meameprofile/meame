@@ -1,9 +1,22 @@
 // RUTA: src/shared/hooks/raz-prompts/use-prompt-vault.ts
 /**
  * @file use-prompt-vault.ts
- * @description Hook "cerebro" para la lógica de la Bóveda de Prompts.
- * @version 6.0.0 (Holistic Elite Leveling)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Hook "cerebro" para la lógica de la Bóveda de Prompts (Prompt Vault).
+ *              Este aparato orquesta la obtención de datos, el filtrado, la búsqueda y
+ *              la paginación de los "genomas creativos" almacenados.
+ *
+ * @version 7.0.0 (Holistic Observability & Elite Documentation)
+ * @author L.I.A. Legacy
+ *
+ * @architecture_notes
+ * - **Pilar I (Hiper-Atomización)**: Desacopla toda la lógica de estado y obtención
+ *   de datos del componente de presentación `PromptVaultDisplay`.
+ * - **Pilar III (Observabilidad Profunda)**: Implementa un sistema de tracing robusto
+ *   para monitorear el ciclo de vida del hook, cada operación de fetch, y cada
+ *   interacción del usuario que desencadena una nueva obtención de datos.
+ * - **Pilar VIII (Resiliencia)**: Maneja los estados de error de la Server Action de
+ *   forma elegante, notificando al usuario y registrando logs detallados, además
+ *   de incluir un `try/catch` para excepciones no esperadas.
  */
 "use client";
 
@@ -24,14 +37,21 @@ import {
 import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 
+/**
+ * @function usePromptVault
+ * @description Hook orquestador para la lógica de la Bóveda de Prompts.
+ * @returns Un objeto que contiene el estado de la bóveda (prompts, paginación, filtros)
+ *          y los manejadores para interactuar con ella.
+ */
 export function usePromptVault() {
-  const traceId = useMemo(
-    () => logger.startTrace("usePromptVault_Lifecycle_v6.0"),
-    []
-  );
+  const traceId = useMemo(() => logger.startTrace("usePromptVault_Lifecycle_v7.0"), []);
   useEffect(() => {
-    logger.info("[Hook] usePromptVault montado.", { traceId });
-    return () => logger.endTrace(traceId);
+    const groupId = logger.startGroup(`[Hook] usePromptVault montado.`);
+    logger.info("Hook para la Bóveda de Prompts inicializado.", { traceId });
+    return () => {
+      logger.endGroup(groupId);
+      logger.endTrace(traceId);
+    };
   }, [traceId]);
 
   const [prompts, setPrompts] = useState<EnrichedRaZPromptsEntry[]>([]);
@@ -39,46 +59,46 @@ export function usePromptVault() {
   const [isPending, startTransition] = useTransition();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilters, setActiveFilters] = useState<
-    Partial<RaZPromptsSesaTags>
-  >({});
-  const activeWorkspaceId = useWorkspaceStore(
-    (state) => state.activeWorkspaceId
-  );
+  const [activeFilters, setActiveFilters] = useState<Partial<RaZPromptsSesaTags>>({});
+  const activeWorkspaceId = useWorkspaceStore((state) => state.activeWorkspaceId);
   const limit = 9;
 
   const fetchPrompts = useCallback((input: GetPromptsInput) => {
     startTransition(async () => {
       const fetchTraceId = logger.startTrace("promptVault.fetchPrompts");
-      logger.info("[PromptVault] Iniciando fetch de prompts...", {
-        input,
-        traceId: fetchTraceId,
-      });
-
-      const result = await getPromptsAction(input);
-      if (result.success) {
-        setPrompts(result.data.prompts);
-        setTotalPrompts(result.data.total);
-        logger.success(
-          `[PromptVault] Fetch exitoso: ${result.data.prompts.length} prompts.`,
-          { traceId: fetchTraceId }
-        );
-      } else {
-        toast.error("Error al cargar prompts", { description: result.error });
-        setPrompts([]);
-        setTotalPrompts(0);
-        logger.error("[PromptVault] Fetch fallido.", {
-          error: result.error,
-          traceId: fetchTraceId,
-        });
+      const groupId = logger.startGroup("[Action Flow] Iniciando fetch de prompts...", fetchTraceId);
+      try {
+        const result = await getPromptsAction(input);
+        if (result.success) {
+          setPrompts(result.data.prompts);
+          setTotalPrompts(result.data.total);
+          logger.success(
+            `[Action Flow] Fetch exitoso. Se cargaron ${result.data.prompts.length} de un total de ${result.data.total} prompts.`,
+            { traceId: fetchTraceId }
+          );
+        } else {
+          toast.error("Error al Cargar Prompts", { description: result.error });
+          setPrompts([]);
+          setTotalPrompts(0);
+          logger.error("[Action Flow] Fetch de prompts fallido.", {
+            error: result.error,
+            traceId: fetchTraceId,
+          });
+        }
+      } catch (exception) {
+        const errorMessage = exception instanceof Error ? exception.message : "Error desconocido.";
+        toast.error("Error Inesperado", { description: "Ocurrió un fallo no controlado al buscar prompts." });
+        logger.error("[Action Flow] Excepción no controlada durante el fetch de prompts.", { error: errorMessage, traceId: fetchTraceId });
+      } finally {
+        logger.endGroup(groupId);
+        logger.endTrace(fetchTraceId);
       }
-      logger.endTrace(fetchTraceId);
     });
   }, []);
 
   useEffect(() => {
     if (!activeWorkspaceId) {
-      logger.warn("[Guardián] Fetch omitido: no hay workspace activo.", {
+      logger.warn("[Guardián] Fetch de prompts omitido: no hay un workspace activo seleccionado.", {
         traceId,
       });
       setPrompts([]);
@@ -92,20 +112,12 @@ export function usePromptVault() {
       tags: activeFilters,
       workspaceId: activeWorkspaceId,
     });
-  }, [
-    fetchPrompts,
-    currentPage,
-    searchQuery,
-    activeFilters,
-    limit,
-    activeWorkspaceId,
-    traceId,
-  ]);
+  }, [fetchPrompts, currentPage, searchQuery, activeFilters, limit, activeWorkspaceId, traceId]);
 
   const handleSearch = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
-      logger.traceEvent(traceId, "Acción: Búsqueda ejecutada.", {
+    (event: React.FormEvent) => {
+      event.preventDefault();
+      logger.traceEvent(traceId, "Acción de Usuario: Búsqueda de prompts ejecutada.", {
         query: searchQuery,
       });
       setCurrentPage(1);
@@ -115,14 +127,19 @@ export function usePromptVault() {
 
   const handleFilterChange = useCallback(
     (category: keyof RaZPromptsSesaTags, value: string) => {
-      logger.traceEvent(traceId, "Acción: Filtro cambiado.", {
+      logger.traceEvent(traceId, "Acción de Usuario: Filtro de bóveda cambiado.", {
         category,
         value,
       });
-      setActiveFilters((prev) => ({
-        ...prev,
-        [category]: value === "all" ? undefined : value,
-      }));
+      setActiveFilters((previousFilters) => {
+        const newFilters = { ...previousFilters };
+        if (value === "all") {
+          delete newFilters[category];
+        } else {
+          newFilters[category] = value;
+        }
+        return newFilters;
+      });
       setCurrentPage(1);
     },
     [traceId]
@@ -130,7 +147,7 @@ export function usePromptVault() {
 
   const handlePageChange = useCallback(
     (page: number) => {
-      logger.traceEvent(traceId, "Acción: Paginación.", { newPage: page });
+      logger.traceEvent(traceId, "Acción de Usuario: Cambio de página.", { newPage: page });
       setCurrentPage(page);
     },
     [traceId]
@@ -139,15 +156,25 @@ export function usePromptVault() {
   const totalPages = Math.ceil(totalPrompts / limit);
 
   return {
+    /** @property {EnrichedRaZPromptsEntry[]} prompts - El array de prompts enriquecidos para la página actual. */
     prompts,
+    /** @property {boolean} isPending - Estado booleano que es `true` mientras se obtienen nuevos datos de prompts. */
     isPending,
+    /** @property {number} currentPage - El número de la página de resultados actual. */
     currentPage,
+    /** @property {string} searchQuery - El valor actual del campo de búsqueda de texto libre. */
     searchQuery,
+    /** @property {number} totalPages - El número total de páginas de resultados disponibles. */
     totalPages,
+    /** @property {Partial<RaZPromptsSesaTags>} activeFilters - Un objeto que representa los filtros SESA actualmente aplicados. */
     activeFilters,
+    /** @property {function} setSearchQuery - Callback para actualizar el estado de la consulta de búsqueda. */
     setSearchQuery,
+    /** @property {function} handleSearch - Manejador de evento para ejecutar la búsqueda. */
     handleSearch,
+    /** @property {function} handleFilterChange - Callback para actualizar el estado de los filtros SESA. */
     handleFilterChange,
+    /** @property {function} handlePageChange - Callback para cambiar la página de resultados. */
     handlePageChange,
   };
 }

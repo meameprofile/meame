@@ -35,7 +35,6 @@ export const logger = {
       );
       traces.delete(groupId);
     } else {
-      // Fallback por si se llama sin un ID válido en algún caso extremo
       console.log(chalk.blue.bold(`◀ G-END\n`));
     }
   },

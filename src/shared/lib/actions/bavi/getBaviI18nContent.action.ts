@@ -2,7 +2,7 @@
 /**
  * @file getBaviI18nContent.action.ts
  * @description Server Action para obtener el contenido i18n del ecosistema BAVI.
- * @version 2.0.0 (Elite Observability)
+ * @version 2.1.0 (Holistic Observability & Contract Integrity)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -22,8 +22,8 @@ export type BaviI18nContent = {
 export async function getBaviI18nContentAction(
   locale: Locale
 ): Promise<ActionResult<BaviI18nContent>> {
-  const traceId = logger.startTrace("getBaviI18nContentAction_v2.0");
-  logger.startGroup(
+  const traceId = logger.startTrace("getBaviI18nContentAction_v2.1");
+  const groupId = logger.startGroup(
     `[Action] Obteniendo contenido i18n para BAVI [${locale}]...`,
     traceId
   );
@@ -73,7 +73,7 @@ export async function getBaviI18nContentAction(
     });
     return { success: false, error: errorMessage };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

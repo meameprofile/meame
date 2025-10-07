@@ -10,7 +10,7 @@
 import React, { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ProgressContext } from "../_context/ProgressContext";
-import { useCampaignDraftStore } from "@/shared/hooks/campaign-suite/use-campaign-draft-context.store";
+import { useCampaignDraftStore } from "@/shared/hooks/campaign-suite/use-campaign-draft.store";
 import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
 import { ProgressStepper } from "./ProgressStepper";
 import { DynamicIcon } from "@/components/ui";
@@ -18,8 +18,12 @@ import { logger } from "@/shared/lib/logging";
 import { DeveloperErrorDisplay } from "../../dev-tools";
 
 const SyncStatusIndicator = () => {
-  const isSyncing = useCampaignDraftStore((state) => state.isSyncing);
-  const updatedAt = useDraftMetadataStore((state) => state.updatedAt);
+  const isSyncing = useCampaignDraftStore(
+    (state: { isSyncing: boolean }) => state.isSyncing
+  );
+  const updatedAt = useDraftMetadataStore(
+    (state: { updatedAt: string }) => state.updatedAt
+  );
   const lastSavedTime = new Date(updatedAt).toLocaleTimeString();
 
   return (
@@ -57,18 +61,14 @@ const SyncStatusIndicator = () => {
 };
 
 export function WizardHeader(): React.ReactElement {
-  // --- INICIO: PILAR III (FULL OBSERVABILIDAD) ---
   logger.info("[Observabilidad][CLIENTE] Renderizando WizardHeader v7.0.");
 
   const progressContext = useContext(ProgressContext);
 
-  // --- INICIO: GUARDIÁN DE RESILIENCIA ---
   if (!progressContext) {
     const errorMessage =
       "WizardHeader renderizado fuera de ProgressContext. El stepper no puede funcionar.";
     logger.error(`[Guardián de Resiliencia] ${errorMessage}`);
-    // En lugar de retornar null, retornamos un error visible en desarrollo
-    // para una depuración inmediata.
     return (
       <DeveloperErrorDisplay
         context="WizardHeader"
@@ -76,7 +76,6 @@ export function WizardHeader(): React.ReactElement {
       />
     );
   }
-  // --- FIN: GUARDIÁN DE RESILIENCIA ---
 
   return (
     <div className="flex w-full items-center justify-between">

@@ -2,9 +2,9 @@
 /**
  * @file getProfiledUsers.action.ts
  * @description Server Action soberana para obtener una lista paginada de perfiles de usuario.
- * @version 3.3.0 (Sovereign Type Assertion): Implementa una aserción de tipo explícita
- *              post-validación para resolver definitivamente las limitaciones de inferencia
- *              de tipos del compilador de TypeScript, garantizando una seguridad de tipos absoluta.
+ *              v4.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 4.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -76,8 +76,8 @@ function mapSupabaseToProfiledUser(row: JoinedRow): ProfiledUser {
 export async function getProfiledUsersAction(
   input: GetProfiledUsersInput
 ): Promise<ActionResult<{ users: ProfiledUser[]; total: number }>> {
-  const traceId = logger.startTrace("getProfiledUsersAction_v3.3");
-  logger.startGroup(
+  const traceId = logger.startTrace("getProfiledUsersAction_v4.0");
+  const groupId = logger.startGroup(
     `[UserInt Action] Obteniendo lista de perfiles...`,
     traceId
   );
@@ -122,12 +122,9 @@ export async function getProfiledUsersAction(
       });
     }
 
-    // --- [INICIO DE REFACTORIZACIÓN DE ASERCIÓN DE TIPO v3.3.0] ---
-    // Esta doble aserción es la solución definitiva y segura.
     const users = (validData as unknown as JoinedRow[]).map(
       mapSupabaseToProfiledUser
     );
-    // --- [FIN DE REFACTORIZACIÓN DE ASERCIÓN DE TIPO v3.3.0] ---
 
     const usersValidation = z.array(ProfiledUserSchema).safeParse(users);
 
@@ -159,7 +156,7 @@ export async function getProfiledUsersAction(
       error: "No se pudieron recuperar los perfiles de usuario.",
     };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }

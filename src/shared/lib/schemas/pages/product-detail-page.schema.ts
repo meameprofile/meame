@@ -2,9 +2,10 @@
 /**
  * @file product-detail-page.schema.ts
  * @description SSoT para el contrato de datos del contenido i18n de una
- *              página de detalle de producto, ahora con contenido estructurado.
- * @version 3.0.0 (Structured Content Blocks)
- *@author RaZ Podestá - MetaShark Tech
+ *              página de detalle de producto, ahora con contenido estructurado y
+ *              exportación de tipo soberana.
+ * @version 3.1.0 (Sovereign Type Export)
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
 import { ProductSchema } from "@/shared/lib/schemas/entities/product.schema";
@@ -29,6 +30,13 @@ export const ProductDetailPageContentSchema = z.object({
   }),
   shareButton: ShareButtonContentSchema,
 });
+
+// --- [INICIO DE NIVELACIÓN HOLÍSTICA v3.1.0] ---
+// Se infiere y exporta el tipo directamente desde el schema, estableciendo la SSoT.
+export type ProductDetailPageContent = z.infer<
+  typeof ProductDetailPageContentSchema
+>;
+// --- [FIN DE NIVELACIÓN HOLÍSTICA v3.1.0] ---
 
 export const ProductDetailPageLocaleSchema = z.record(
   ProductDetailPageContentSchema

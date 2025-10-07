@@ -2,12 +2,15 @@
 /**
  * @file use-playback-control.ts
  * @description Hook atómico para gestionar el estado de reproducción y volumen.
- * @version 3.0.0 (Elite Observability & Resilience)
- * @author RaZ Podestá - MetaShark Tech
+ *              v4.0.0 (Holistic Observability & Elite Compliance): Inyectado con una
+ *              traza de ciclo de vida completa y eventos de telemetría granulares
+ *              para cumplir con el Pilar III (Observabilidad Profunda).
+ * @version 4.0.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { logger } from "@/shared/lib/logging";
 import type {
   VideoTexture,
@@ -25,26 +28,39 @@ export function usePlaybackControl({
   audioRef,
   audioSrc,
 }: UsePlaybackControlProps) {
+  // --- [INICIO DE REFACTORIZACIÓN DE OBSERVABILIDAD v4.0.0] ---
+  const traceId = useMemo(
+    () => logger.startTrace("usePlaybackControl_Lifecycle_v4.0"),
+    []
+  );
+  useEffect(() => {
+    logger.info("[PlaybackControl Hook] Montado y listo.", { traceId });
+    return () => logger.endTrace(traceId);
+  }, [traceId]);
+  // --- [FIN DE REFACTORIZACIÓN DE OBSERVABILIDAD v4.0.0] ---
+
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
 
   const togglePlay = useCallback(() => {
-    setIsPlaying((prev) => {
-      logger.info(
-        `[PlaybackControl] Toggle play. Nuevo estado: ${!prev ? "Playing" : "Paused"}`
-      );
-      return !prev;
+    setIsPlaying((previousState) => {
+      const newState = !previousState;
+      logger.traceEvent(traceId, `Acción de Usuario: togglePlay`, {
+        newState: newState ? "Playing" : "Paused",
+      });
+      return newState;
     });
-  }, []);
+  }, [traceId]);
 
   const toggleMute = useCallback(() => {
-    setIsMuted((prev) => {
-      logger.info(
-        `[PlaybackControl] Toggle mute. Nuevo estado: ${!prev ? "Unmuted" : "Muted"}`
-      );
-      return !prev;
+    setIsMuted((previousState) => {
+      const newState = !previousState;
+      logger.traceEvent(traceId, `Acción de Usuario: toggleMute`, {
+        newState: newState ? "Unmuted" : "Muted",
+      });
+      return newState;
     });
-  }, []);
+  }, [traceId]);
 
   useEffect(() => {
     const videoElement = videoTexture.image as HTMLVideoElement;
@@ -53,8 +69,8 @@ export function usePlaybackControl({
     if (isPlaying) {
       videoElement
         .play()
-        .catch((e) =>
-          logger.warn("[PlaybackControl] Autoplay de vídeo bloqueado.", { e })
+        .catch((error) =>
+          logger.warn("[PlaybackControl] El autoplay del vídeo fue bloqueado por el navegador.", { error, traceId })
         );
       if (audioSrc && audioObject?.source && !audioObject.isPlaying) {
         audioObject.play();
@@ -69,8 +85,9 @@ export function usePlaybackControl({
     if (audioObject) {
       audioObject.setVolume(isMuted ? 0 : 1);
     }
+    // El vídeo siempre está silenciado para que el control de audio sea manejado por el PositionalAudio 3D.
     videoElement.muted = true;
-  }, [isPlaying, isMuted, videoTexture, audioRef, audioSrc]);
+  }, [isPlaying, isMuted, videoTexture, audioRef, audioSrc, traceId]);
 
   return { isPlaying, isMuted, togglePlay, toggleMute };
 }

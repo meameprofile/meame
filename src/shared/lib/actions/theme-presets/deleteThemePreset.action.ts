@@ -2,7 +2,9 @@
 /**
  * @file deleteThemePreset.action.ts
  * @description Server Action de élite para eliminar un preset de tema.
- * @version 2.0.0 (Elite Observability)
+ *              v3.0.0 (Holistic Observability & Contract Compliance): Nivelado para
+ *              cumplir con el contrato de API del logger soberano v20+.
+ * @version 3.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -23,8 +25,11 @@ type DeletePresetInput = z.infer<typeof DeletePresetInputSchema>;
 export async function deleteThemePresetAction(
   input: DeletePresetInput
 ): Promise<ActionResult<{ deletedId: string }>> {
-  const traceId = logger.startTrace("deleteThemePresetAction_v2.0");
-  logger.startGroup(`[Action] Eliminando preset de tema...`, traceId);
+  const traceId = logger.startTrace("deleteThemePresetAction_v3.0");
+  const groupId = logger.startGroup(
+    `[Action] Eliminando preset de tema...`,
+    traceId
+  );
 
   try {
     const supabase = createServerClient();
@@ -68,7 +73,7 @@ export async function deleteThemePresetAction(
     });
     return { success: false, error: "No se pudo eliminar el preset." };
   } finally {
-    logger.endGroup();
+    logger.endGroup(groupId);
     logger.endTrace(traceId);
   }
 }
