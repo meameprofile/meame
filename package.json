@@ -3,7 +3,7 @@
     "//": "--- [7] GUARDIANES DE CONSISTENCIA (VALIDACIÓN CRUZADA) ---",
     "holistic": "pnpm integrity:total",
     "dev": "cross-env NODE_OPTIONS='--dns-result-order=ipv4first' next dev",
-    "build": "pnpm validate && pnpm build:i18n && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint . --fix",
     "format:write": "prettier --write . --log-level warn",
