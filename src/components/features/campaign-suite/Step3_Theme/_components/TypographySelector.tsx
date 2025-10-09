@@ -2,35 +2,33 @@
 /**
  * @file TypographySelector.tsx
  * @description Aparato de UI de élite para la selección visual de tipografías.
- *              Inyectado con MEA/UX para una experiencia de usuario superior,
- *              orquestando una animación de entrada en cascada.
- * @version 2.0.0 (Elite Leveling & MEA/UX Injection)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (Preset Management UI)
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import React from "react";
 import { motion, type Variants } from "framer-motion";
 import { cn } from "@/shared/lib/utils/cn";
-import { DynamicIcon } from "@/components/ui";
+import {
+  DynamicIcon,
+  Button,
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
-
-// --- SSoT de Contratos de Datos y Animaciones ---
-
-interface Typography {
-  name: string;
-  fonts?: {
-    sans?: string;
-    serif?: string;
-  };
-}
+import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
 
 interface TypographySelectorProps {
-  typographies: Typography[];
+  typographies: ThemePreset[];
   selectedTypographyName: string | null;
   onSelect: (typographyName: string) => void;
-  onPreview: (typography: Typography | null) => void;
+  onPreview: (typography: ThemePreset | null) => void;
   onCreate: () => void;
+  onEdit: (typography: ThemePreset) => void;
+  onDelete: (typography: ThemePreset) => void;
   emptyPlaceholder: string;
   createNewFontSetButton: string;
 }
@@ -40,7 +38,7 @@ const gridVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05, // Orquesta la animación de los hijos
+      staggerChildren: 0.05,
     },
   },
 };
@@ -50,22 +48,21 @@ const itemVariants: Variants = {
   visible: { opacity: 1, y: 0 },
 };
 
-// --- Componente de Élite ---
-
 export function TypographySelector({
   typographies,
   selectedTypographyName,
   onSelect,
   onPreview,
   onCreate,
+  onEdit,
+  onDelete,
   emptyPlaceholder,
   createNewFontSetButton,
 }: TypographySelectorProps): React.ReactElement {
   logger.trace(
-    "[TypographySelector] Renderizando selector de tipografía v2.0."
+    "[TypographySelector] Renderizando selector de tipografía v3.0."
   );
 
-  // --- Renderizado del Estado Vacío (Pilar de Resiliencia) ---
   if (typographies.length === 0) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -75,6 +72,8 @@ export function TypographySelector({
         </div>
         <motion.button
           variants={itemVariants}
+          initial="hidden"
+          animate="visible"
           onClick={onCreate}
           className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-muted/50 p-4 transition-all duration-200 hover:border-primary hover:bg-primary/5 hover:text-primary"
         >
@@ -85,7 +84,6 @@ export function TypographySelector({
     );
   }
 
-  // --- Renderizado Principal (MEA/UX) ---
   return (
     <motion.div
       variants={gridVariants}
@@ -94,21 +92,70 @@ export function TypographySelector({
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
     >
       {typographies.map((typography) => {
-        const fonts = typography.fonts ?? {}; // Guardia de resiliencia
+        const fonts =
+          (
+            typography.themeConfig as {
+              fonts?: { sans?: string; serif?: string };
+            }
+          )?.fonts ?? {};
+        const isWorkspacePreset = !!typography.workspaceId;
+
         return (
           <motion.div
-            key={typography.name}
+            key={typography.id}
             variants={itemVariants}
             onMouseEnter={() => onPreview(typography)}
             onMouseLeave={() => onPreview(null)}
             onClick={() => onSelect(typography.name)}
             className={cn(
-              "cursor-pointer rounded-lg border-2 p-4 transition-all duration-200 hover:scale-105 hover:shadow-xl",
+              "group relative cursor-pointer rounded-lg border-2 p-4 transition-all duration-200 hover:scale-105 hover:shadow-xl",
               selectedTypographyName === typography.name
                 ? "border-primary ring-2 ring-primary/50"
                 : "border-border"
             )}
           >
+            {isWorkspacePreset && (
+              <div className="absolute top-1 right-1 z-10 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onEdit(typography);
+                        }}
+                      >
+                        <DynamicIcon name="Pencil" className="h-3 w-3" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Editar Preset</p>
+                    </TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6 text-destructive hover:text-destructive"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDelete(typography);
+                        }}
+                      >
+                        <DynamicIcon name="Trash2" className="h-3 w-3" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Eliminar Preset</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            )}
             <div className="h-20 w-full flex flex-col items-center justify-center rounded-md bg-muted/20 p-2">
               {fonts.sans && (
                 <p

@@ -6,7 +6,7 @@
  *              la paginación de los "genomas creativos" almacenados.
  *
  * @version 7.0.0 (Holistic Observability & Elite Documentation)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  *
  * @architecture_notes
  * - **Pilar I (Hiper-Atomización)**: Desacopla toda la lógica de estado y obtención
@@ -44,7 +44,10 @@ import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
  *          y los manejadores para interactuar con ella.
  */
 export function usePromptVault() {
-  const traceId = useMemo(() => logger.startTrace("usePromptVault_Lifecycle_v7.0"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("usePromptVault_Lifecycle_v7.0"),
+    []
+  );
   useEffect(() => {
     const groupId = logger.startGroup(`[Hook] usePromptVault montado.`);
     logger.info("Hook para la Bóveda de Prompts inicializado.", { traceId });
@@ -59,14 +62,21 @@ export function usePromptVault() {
   const [isPending, startTransition] = useTransition();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilters, setActiveFilters] = useState<Partial<RaZPromptsSesaTags>>({});
-  const activeWorkspaceId = useWorkspaceStore((state) => state.activeWorkspaceId);
+  const [activeFilters, setActiveFilters] = useState<
+    Partial<RaZPromptsSesaTags>
+  >({});
+  const activeWorkspaceId = useWorkspaceStore(
+    (state) => state.activeWorkspaceId
+  );
   const limit = 9;
 
   const fetchPrompts = useCallback((input: GetPromptsInput) => {
     startTransition(async () => {
       const fetchTraceId = logger.startTrace("promptVault.fetchPrompts");
-      const groupId = logger.startGroup("[Action Flow] Iniciando fetch de prompts...", fetchTraceId);
+      const groupId = logger.startGroup(
+        "[Action Flow] Iniciando fetch de prompts...",
+        fetchTraceId
+      );
       try {
         const result = await getPromptsAction(input);
         if (result.success) {
@@ -86,9 +96,15 @@ export function usePromptVault() {
           });
         }
       } catch (exception) {
-        const errorMessage = exception instanceof Error ? exception.message : "Error desconocido.";
-        toast.error("Error Inesperado", { description: "Ocurrió un fallo no controlado al buscar prompts." });
-        logger.error("[Action Flow] Excepción no controlada durante el fetch de prompts.", { error: errorMessage, traceId: fetchTraceId });
+        const errorMessage =
+          exception instanceof Error ? exception.message : "Error desconocido.";
+        toast.error("Error Inesperado", {
+          description: "Ocurrió un fallo no controlado al buscar prompts.",
+        });
+        logger.error(
+          "[Action Flow] Excepción no controlada durante el fetch de prompts.",
+          { error: errorMessage, traceId: fetchTraceId }
+        );
       } finally {
         logger.endGroup(groupId);
         logger.endTrace(fetchTraceId);
@@ -98,9 +114,12 @@ export function usePromptVault() {
 
   useEffect(() => {
     if (!activeWorkspaceId) {
-      logger.warn("[Guardián] Fetch de prompts omitido: no hay un workspace activo seleccionado.", {
-        traceId,
-      });
+      logger.warn(
+        "[Guardián] Fetch de prompts omitido: no hay un workspace activo seleccionado.",
+        {
+          traceId,
+        }
+      );
       setPrompts([]);
       setTotalPrompts(0);
       return;
@@ -112,14 +131,26 @@ export function usePromptVault() {
       tags: activeFilters,
       workspaceId: activeWorkspaceId,
     });
-  }, [fetchPrompts, currentPage, searchQuery, activeFilters, limit, activeWorkspaceId, traceId]);
+  }, [
+    fetchPrompts,
+    currentPage,
+    searchQuery,
+    activeFilters,
+    limit,
+    activeWorkspaceId,
+    traceId,
+  ]);
 
   const handleSearch = useCallback(
     (event: React.FormEvent) => {
       event.preventDefault();
-      logger.traceEvent(traceId, "Acción de Usuario: Búsqueda de prompts ejecutada.", {
-        query: searchQuery,
-      });
+      logger.traceEvent(
+        traceId,
+        "Acción de Usuario: Búsqueda de prompts ejecutada.",
+        {
+          query: searchQuery,
+        }
+      );
       setCurrentPage(1);
     },
     [traceId, searchQuery]
@@ -127,10 +158,14 @@ export function usePromptVault() {
 
   const handleFilterChange = useCallback(
     (category: keyof RaZPromptsSesaTags, value: string) => {
-      logger.traceEvent(traceId, "Acción de Usuario: Filtro de bóveda cambiado.", {
-        category,
-        value,
-      });
+      logger.traceEvent(
+        traceId,
+        "Acción de Usuario: Filtro de bóveda cambiado.",
+        {
+          category,
+          value,
+        }
+      );
       setActiveFilters((previousFilters) => {
         const newFilters = { ...previousFilters };
         if (value === "all") {
@@ -147,7 +182,9 @@ export function usePromptVault() {
 
   const handlePageChange = useCallback(
     (page: number) => {
-      logger.traceEvent(traceId, "Acción de Usuario: Cambio de página.", { newPage: page });
+      logger.traceEvent(traceId, "Acción de Usuario: Cambio de página.", {
+        newPage: page,
+      });
       setCurrentPage(page);
     },
     [traceId]

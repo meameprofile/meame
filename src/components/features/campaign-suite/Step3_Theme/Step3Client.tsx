@@ -1,46 +1,31 @@
 // RUTA: src/components/features/campaign-suite/Step3_Theme/Step3Client.tsx
 /**
  * @file Step3Client.tsx
- * @description Orquestador de cliente para el Paso 3, nivelado con un guardián
- *              de validación proactivo y observabilidad de élite.
- * @version 14.0.0 (Validation Guardian & Holistic Elite Leveling)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Orquestador de presentación puro para el Paso 3, nivelado a un
+ *              estándar de élite con full logging, resiliencia e i18n.
+ * @version 18.0.0 (Elite Compliance & Full i18n)
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-  useTransition,
-} from "react";
-import { toast } from "sonner";
-import { logger } from "@/shared/lib/logging";
-import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
-import { useWizard } from "@/components/features/campaign-suite/_context/WizardContext";
+import React, { useMemo, useEffect } from "react";
+import { useStep3Logic } from "@/shared/hooks/campaign-suite/useStep3Logic";
 import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
-import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
-import {
-  getThemePresetsAction,
-  createThemePresetAction,
-} from "@/shared/lib/actions/theme-presets";
 import { Step3Form } from "./Step3Form";
-import { ThemeComposerModal } from "./_components/ThemeComposerModal";
+import {
+  ThemeComposerModal,
+  CreatePresetDialog,
+  DeletePresetDialog,
+  EditPresetDialog,
+} from "./_components";
 import { DynamicIcon } from "@/components/ui";
+import { DeveloperErrorDisplay } from "../../dev-tools";
 import type { z } from "zod";
 import type { Step3ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
-import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
-import type { LoadedFragments } from "@/shared/lib/actions/campaign-suite";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { validateStep3 } from "./step3.validator";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
+import { logger } from "@/shared/lib/logging";
 
 type Step3Content = z.infer<typeof Step3ContentSchema>;
-
-export type CategorizedPresets = {
-  global: ThemePreset[];
-  workspace: ThemePreset[];
-};
 
 interface Step3ClientProps {
   content: Step3Content;
@@ -52,137 +37,52 @@ export function Step3Client({
   loadedFragments,
 }: Step3ClientProps): React.ReactElement {
   const traceId = useMemo(
-    () => logger.startTrace("Step3Client_Lifecycle_v14.0"),
+    () => logger.startTrace("Step3Client_Lifecycle_v18.0"),
     []
   );
   useEffect(() => {
-    const groupId = logger.startGroup(
-      `[Step3Client] Orquestador de cliente montado.`
-    );
-    logger.info("Estado inicial del borrador consumido.", { traceId });
-    return () => {
-      logger.endGroup(groupId);
-      logger.endTrace(traceId);
-    };
+    logger.info("[Step3Client] Orquestador de cliente montado.", { traceId });
+    return () => logger.endTrace(traceId);
   }, [traceId]);
 
-  const { draft, updateDraft } = useCampaignDraft();
-  const { themeConfig, completedSteps } = draft;
+  const {
+    isFetching,
+    presets,
+    isComposerOpen,
+    setIsComposerOpen,
+    isCreateModalOpen,
+    setIsCreateModalOpen,
+    isEditModalOpen,
+    setIsEditModalOpen,
+    creationType,
+    isSaving,
+    presetToManage,
+    setPresetToManage,
+    handleDeletePreset,
+    handleUpdatePreset,
+    localConfig,
+    handleConfigChange,
+    handleThemeConfigSave,
+    handleLaunchCreator,
+    handleCreateAndSavePreset,
+    onBack,
+    onNext,
+  } = useStep3Logic(loadedFragments);
 
-  const wizardContext = useWizard();
-  const activeWorkspaceId = useWorkspaceStore((s) => s.activeWorkspaceId);
-  const [isComposerOpen, setIsComposerOpen] = useState(false);
-  const [presets, setPresets] = useState<CategorizedPresets | null>(null);
-  const [isFetching, startFetchingTransition] = useTransition();
+  const { draft } = useCampaignDraft();
 
-  const fetchPresets = useCallback(() => {
-    if (!activeWorkspaceId) return;
-    startFetchingTransition(async () => {
-      const fetchTraceId = logger.startTrace("Step3Client.fetchPresets");
-      const result = await getThemePresetsAction(activeWorkspaceId);
-      if (result.success) {
-        setPresets(result.data);
-        logger.success(
-          `[Step3Client] Se cargaron ${result.data.global.length + result.data.workspace.length} presets.`,
-          { traceId: fetchTraceId }
-        );
-      } else {
-        toast.error("Error al cargar los estilos del workspace.", {
-          description: result.error,
-        });
-        logger.error("[Step3Client] Fallo al cargar presets.", {
-          error: result.error,
-          traceId: fetchTraceId,
-        });
-      }
-      logger.endTrace(fetchTraceId);
+  if (!draft || !content || !loadedFragments) {
+    const errorMsg =
+      "Contrato de UI violado: Faltan props esenciales (draft, content, o loadedFragments).";
+    logger.error(`[Guardián] ${errorMsg}`, {
+      traceId,
+      hasDraft: !!draft,
+      hasContent: !!content,
     });
-  }, [activeWorkspaceId]);
-
-  useEffect(() => {
-    fetchPresets();
-  }, [fetchPresets]);
-
-  const handleThemeConfigSave = useCallback(
-    (newConfig: ThemeConfig) => {
-      logger.traceEvent(
-        traceId,
-        "Acción: Guardando configuración de tema desde el compositor."
-      );
-      updateDraft({ themeConfig: newConfig });
-    },
-    [updateDraft, traceId]
-  );
-
-  const handleCreatePreset = useCallback(
-    async (
-      name: string,
-      description: string,
-      type: "color" | "font" | "geometry",
-      config: ThemeConfig
-    ) => {
-      if (!activeWorkspaceId) return;
-      const result = await createThemePresetAction({
-        workspaceId: activeWorkspaceId,
-        name,
-        description,
-        type,
-        themeConfig: config,
-      });
-      if (result.success) {
-        toast.success(`Preset "${name}" creado con éxito.`);
-        fetchPresets();
-      } else {
-        toast.error("Error al crear el preset", { description: result.error });
-      }
-    },
-    [activeWorkspaceId, fetchPresets]
-  );
-
-  const handleNext = useCallback(() => {
-    const nextTraceId = logger.startTrace("Step3Client.handleNext");
-    if (wizardContext) {
-      try {
-        // --- [INICIO] GUARDIÁN DE VALIDACIÓN ---
-        const { isValid, message } = validateStep3(draft);
-        if (!isValid) {
-          toast.error("Paso Incompleto", { description: message });
-          logger.warn(
-            `[Guardián Step3] Navegación bloqueada. Causa: ${message}`,
-            { traceId: nextTraceId }
-          );
-          return;
-        }
-        logger.traceEvent(nextTraceId, "Validación de paso superada.");
-        // --- [FIN] GUARDIÁN DE VALIDACIÓN ---
-
-        logger.traceEvent(nextTraceId, "Acción: Usuario avanza al Paso 4.");
-        const newCompletedSteps = Array.from(new Set([...completedSteps, 3]));
-        updateDraft({ completedSteps: newCompletedSteps });
-        wizardContext.goToNextStep();
-      } catch (error) {
-        const msg =
-          error instanceof Error ? error.message : "Error desconocido";
-        logger.error("[Guardián] Fallo en handleNext.", {
-          error: msg,
-          traceId: nextTraceId,
-        });
-        toast.error("Error", { description: "No se pudo procesar la acción." });
-      } finally {
-        logger.endTrace(nextTraceId);
-      }
-    }
-  }, [wizardContext, completedSteps, updateDraft, draft]);
-
-  if (!wizardContext) {
     return (
-      <DeveloperErrorDisplay
-        context="Step3Client"
-        errorMessage="Renderizado fuera de WizardProvider."
-      />
+      <DeveloperErrorDisplay context="Step3Client" errorMessage={errorMsg} />
     );
   }
-  const { goToPrevStep } = wizardContext;
 
   if (isFetching || !presets) {
     return (
@@ -192,10 +92,10 @@ export function Step3Client({
           className="w-8 h-8 animate-spin text-primary"
         />
         <p className="mt-4 text-lg font-semibold text-foreground">
-          Cargando Bóveda de Estilos...
+          {content.loadingTitle}
         </p>
         <p className="text-sm text-muted-foreground">
-          Sincronizando con la base de datos.
+          {content.loadingDescription}
         </p>
       </div>
     );
@@ -205,20 +105,52 @@ export function Step3Client({
     <>
       <Step3Form
         content={content}
-        themeConfig={themeConfig}
-        onBack={goToPrevStep}
-        onNext={handleNext}
+        themeConfig={draft.themeConfig}
+        onBack={onBack}
+        onNext={onNext}
         onLaunchComposer={() => setIsComposerOpen(true)}
       />
       <ThemeComposerModal
         isOpen={isComposerOpen}
         onClose={() => setIsComposerOpen(false)}
         presets={presets}
-        currentConfig={themeConfig}
+        localConfig={localConfig}
         onSave={handleThemeConfigSave}
-        onCreatePreset={handleCreatePreset}
+        onLaunchCreator={handleLaunchCreator}
+        onConfigChange={handleConfigChange}
+        onEdit={(preset) => {
+          setPresetToManage(preset);
+          setIsEditModalOpen(true);
+        }}
+        onDelete={(preset) => setPresetToManage(preset)}
         content={content}
-        loadedFragments={loadedFragments}
+      />
+      <CreatePresetDialog
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSave={handleCreateAndSavePreset}
+        isSaving={isSaving}
+        type={creationType}
+        content={content.createPresetDialog}
+      />
+      <EditPresetDialog
+        preset={presetToManage}
+        isOpen={isEditModalOpen}
+        onClose={() => {
+          setIsEditModalOpen(false);
+          setPresetToManage(null);
+        }}
+        onSave={handleUpdatePreset}
+        isSaving={isSaving}
+        content={content.editPresetDialog}
+      />
+      <DeletePresetDialog
+        preset={presetToManage}
+        isOpen={!!presetToManage && !isEditModalOpen && !isCreateModalOpen}
+        onClose={() => setPresetToManage(null)}
+        onConfirm={handleDeletePreset}
+        isDeleting={isSaving}
+        content={content.deletePresetDialog}
       />
     </>
   );

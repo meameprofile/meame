@@ -4,7 +4,7 @@
  * @description Guardián de Integridad de Temas. Audita los `campaign.map.json`
  *              y reporta cualquier inconsistencia o desviación de la SSoT.
  * @version 4.1.0 (Orchestrator Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { promises as fs } from "fs";
 import * as path from "path";

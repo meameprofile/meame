@@ -11,7 +11,7 @@ import { RaZPromptsSesaTagsSchema } from "@/shared/lib/schemas/raz-prompts/atomi
 export const assetUploadMetadataSchema = z.object({
   finalFileName: z
     .string()
-    .min(1, "El nombre del archivo no puede estar vacío."), // <-- NUEVO
+    .min(1, "El nombre del archivo no puede estar vacío."),
   assetId: z.string().min(1, "Se requiere un assetId único."),
   keywords: z.array(z.string()),
   sesaTags: RaZPromptsSesaTagsSchema.partial(),

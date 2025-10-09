@@ -1,15 +1,15 @@
-// RUTA: src/shared/lib/telemetry/heimdall.server.ts
+// src/shared/lib/telemetry/heimdall.server.ts
 /**
  * @file heimdall.server.ts
- * @description Módulo soberano y de servidor para la persistencia de eventos de telemetría.
- *              v1.1.0 (Database Contract Alignment): Se alinea el payload de inserción
- *              con el contrato real de la tabla 'heimdall_events'.
- * @version 1.1.0
- * @author L.I.A. Legacy
+ * @description Módulo soberano para la persistencia de eventos, con un
+ *              Guardián de Contexto de Petición y una higiene de código de élite.
+ * @version 2.1.0 (Elite Hygiene & Context-Aware Logging)
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 
 import { createServerClient } from "@/shared/lib/supabase/server";
+import { headers } from "next/headers";
 import type { HeimdallEvent } from "@/shared/lib/telemetry/heimdall.contracts";
 import type { HeimdallEventInsert } from "@/shared/lib/telemetry/heimdall.contracts";
 import type { Json } from "@/shared/lib/supabase/database.types";
@@ -18,11 +18,24 @@ export async function persistHeimdallEvent(
   event: HeimdallEvent
 ): Promise<void> {
   try {
+    // --- Guardián de Contexto de Petición ---
+    try {
+      headers();
+    } catch (error) {
+      // --- [INICIO] REFACTORIZACIÓN DE HIGIENE Y LÓGICA ---
+      // Se utiliza la variable `error` capturada para un log más informativo.
+      if (process.env.NODE_ENV === "development") {
+        console.warn(
+          `[Heimdall Server] Persistencia omitida para el evento "${event.eventName}" (fuera de ámbito de petición).`,
+          { error: error instanceof Error ? error.message : "Context error" }
+        );
+      }
+      // --- [FIN] REFACTORIZACIÓN DE HIGIENE Y LÓGICA ---
+      return;
+    }
+
     const supabase = createServerClient();
 
-    // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v1.1.0] ---
-    // La columna 'path' no existe en la tabla. El path es parte del 'context'.
-    // El payload de inserción ahora refleja el schema de 'HeimdallEventInsert' correctamente.
     const recordToInsert: HeimdallEventInsert = {
       event_id: event.eventId,
       trace_id: event.traceId,
@@ -31,9 +44,8 @@ export async function persistHeimdallEvent(
       timestamp: event.timestamp,
       duration_ms: event.duration,
       payload: event.payload as Json,
-      context: event.context as Json, // 'path' está contenido aquí dentro.
+      context: event.context as Json,
     };
-    // --- [FIN DE REFACTORIZACIÓN DE CONTRATO v1.1.0] ---
 
     const { error } = await supabase
       .from("heimdall_events")

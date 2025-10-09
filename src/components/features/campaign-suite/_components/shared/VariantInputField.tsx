@@ -1,26 +1,33 @@
 // RUTA: src/components/features/campaign-suite/_components/shared/VariantInputField.tsx
 /**
  * @file VariantInputField.tsx
- * @description Componente atómico para un campo <Input>, con integridad de ruta restaurada.
- * @version 3.0.0 (Architectural Integrity Restoration)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Componente atómico para un campo <Input>.
+ *              v5.1.0 (Generic Type Integrity Restoration): Se corrige la firma
+ *              de la función para pasar correctamente el tipo genérico a las props,
+ *              resolviendo un error crítico de TypeScript (TS2314).
+ * @version 5.1.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import React from "react";
 import type { Control, FieldValues, Path } from "react-hook-form";
-import { FormControl, FormField } from "@/components/ui/Form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormDescription,
+} from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
-// --- [INICIO DE RESTAURACIÓN DE INTEGRIDAD ARQUITECTÓNICA] ---
-import { FormFieldGroup } from "@/components/features/form-builder/FormFieldGroup";
-// --- [FIN DE RESTAURACIÓN DE INTEGRIDAD ARQUITECTÓNICA] ---
 
 interface VariantInputFieldProps<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: Path<TFieldValues>;
-  label: string;
+  label: React.ReactNode;
   placeholder: string;
-  description?: string;
+  description?: React.ReactNode;
 }
 
 export function VariantInputField<TFieldValues extends FieldValues>({
@@ -35,11 +42,14 @@ export function VariantInputField<TFieldValues extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormFieldGroup label={label} description={description}>
+        <FormItem>
+          <FormLabel>{label}</FormLabel>
           <FormControl>
             <Input placeholder={placeholder} {...field} />
           </FormControl>
-        </FormFieldGroup>
+          {description && <FormDescription>{description}</FormDescription>}
+          <FormMessage />
+        </FormItem>
       )}
     />
   );

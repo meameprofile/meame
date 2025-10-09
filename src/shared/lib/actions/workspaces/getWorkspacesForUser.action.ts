@@ -4,7 +4,7 @@
  * @description Server Action para obtener los workspaces de un usuario, nivelada con
  *              seguridad de tipos explícita para resolver la fuga de 'any'.
  * @version 3.1.0 (Explicit Type Injection)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

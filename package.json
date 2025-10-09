@@ -1,8 +1,7 @@
 {
   "scripts": {
-    "//": "--- [0] COMANDOS DE ÉLITE (NIVEL DESARROLLADOR) ---",
+    "//": "--- [7] GUARDIANES DE CONSISTENCIA (VALIDACIÓN CRUZADA) ---",
     "holistic": "pnpm integrity:total",
-    "//": "--- [1] ORQUESTADORES DE CICLO DE VIDA Y VALIDACIÓN HOLÍSTICA ---",
     "dev": "cross-env NODE_OPTIONS='--dns-result-order=ipv4first' next dev",
     "build": "pnpm validate && pnpm build:i18n && next build",
     "start": "next start",
@@ -13,29 +12,23 @@
     "validate": "pnpm supabase:gen-types && pnpm format:write && pnpm lint && pnpm check-types && pnpm validate:themes && pnpm validate:sdc && pnpm diag:supabase:schema-all && pnpm validate:schema:consistency",
     "audit:holistic": "tsx --tsconfig tsconfig.scripts.json scripts/orchestrators/run-holistic-audit.ts",
     "integrity:total": "pnpm validate && pnpm audit:holistic",
-    "//": "--- [2] GENERACIÓN DE CÓDIGO ---",
     "build:i18n": "tsx --tsconfig tsconfig.scripts.json scripts/generation/build-i18n-dictionaries.ts",
     "gen:icons": "tsx --tsconfig tsconfig.scripts.json scripts/generation/generate-lucide-icon-enum.ts",
     "gen:routes": "tsx --tsconfig tsconfig.scripts.json scripts/generation/generate-navigation-manifest.ts",
     "generate": "pnpm gen:icons && pnpm gen:routes",
-    "//": "--- [3] ORQUESTACIÓN DE SUPABASE (CLI & TIPOS) ---",
     "supabase:login": "pnpm supabase login",
     "supabase:link": "pnpm supabase link --project-ref lbdhtkfsnosfttorlblh",
     "supabase:gen-types": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/generation/generate-db-types.ts",
-    "//": "--- [4] SEEDING DE BASE DE DATOS (INGESTA DE DATOS) ---",
     "db:seed:superuser": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/seeding/superuser.ts",
     "db:seed:bavi": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/seeding/bavi.ts",
     "db:seed:razprompts": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/seeding/razprompts.ts",
     "db:seed:i18n": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/seeding/i18n.ts",
     "db:seed:all": "pnpm db:seed:superuser && pnpm db:seed:bavi && pnpm db:seed:razprompts && pnpm db:seed:i18n",
     "db:fix:orphans": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/seeding/fix-orphan-blobs.ts",
-    "//": "--- [5] GUARDIANES DE DIAGNÓSTICO POR DOMINIO (GRUPOS) ---",
     "diag:supabase:all": "tsx --tsconfig tsconfig.scripts.json scripts/orchestrators/run-supabase-domain-audit.ts",
     "diag:cloudinary:all": "tsx --tsconfig tsconfig.scripts.json scripts/orchestrators/run-cloudinary-domain-audit.ts",
-    "//": "--- [6] GUARDIANES DE DIAGNÓSTICO GRANULARES (ATÓMICOS) ---",
     "diag:supabase:connect": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/connect.ts",
     "diag:supabase:schema-all": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/schema-all.ts",
-    "//": "--- [7] GUARDIANES DE CONSISTENCIA (VALIDACIÓN CRUZADA) ---",
     "validate:themes": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/validation/validate-theme-fragments.ts",
     "validate:sdc": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/validation/validate-sdc-config.ts",
     "validate:schema:consistency": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/validation/validate-all-schema-contracts.ts"
@@ -70,8 +63,8 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.8",
     "@react-email/components": "^0.5.3",
-    "@react-three/drei": "^10.7.6",
-    "@react-three/fiber": "^9.3.0",
+    "@react-three/drei": "9.105.0",
+    "@react-three/fiber": "8.16.0",
     "@rrweb/types": "2.0.0-alpha.18",
     "@stripe/react-stripe-js": "^4.0.2",
     "@stripe/stripe-js": "^7.9.0",
@@ -164,5 +157,11 @@
     "typescript": "^5",
     "typescript-eslint": "^8.44.0"
   },
-  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
+  "pnpm": {
+    "overrides": {
+      "react": "18.3.1",
+      "react-dom": "18.3.1"
+    }
+  }
 }

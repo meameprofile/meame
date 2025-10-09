@@ -4,7 +4,7 @@
  * @description Página de índice del blog ("Server Shell"), forjada con resiliencia,
  *              observabilidad de élite y una arquitectura de importación soberana.
  * @version 1.1.0 (Logger v20+ Contract Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

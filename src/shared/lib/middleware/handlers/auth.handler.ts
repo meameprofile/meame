@@ -5,7 +5,7 @@
  * @version 11.0.0 (Holistic Hygiene & Elite Observability)
  * @author RaZ Podestá - MetaShark Tech
  */
-import "server-only";
+"use server-only";
 
 import { NextResponse } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
@@ -50,7 +50,6 @@ export const authHandler: MiddlewareHandler = async (req, res) => {
       { traceId }
     );
 
-    // --- Instanciación de Supabase Client con manejo de cookies completo ---
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,

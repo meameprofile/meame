@@ -1,10 +1,9 @@
 // RUTA: src/shared/lib/utils/campaign-suite/draft.validator.ts
 /**
  * @file draft.validator.ts
- * @description SSoT para la lógica de validación de un borrador de campaña
- *              antes de su publicación. Es una función pura y sin efectos secundarios.
- * @version 2.0.0 (Elite Leveling)
- * @author RaZ Podestá - MetaShark Tech
+ * @description SSoT para la lógica de validación de un borrador de campaña.
+ * @version 2.1.0 (CampaignDraft v7.0 Contract Alignment)
+ * @author L.I.A. Legacy
  */
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
@@ -18,13 +17,16 @@ export interface ChecklistItem {
 }
 
 export function validateDraftForLaunch(draft: CampaignDraft): ChecklistItem[] {
-  logger.trace("[DraftValidator] Ejecutando checklist de pre-lanzamiento...");
+  const traceId = logger.startTrace("validateDraftForLaunch_v2.1");
+  logger.trace("[DraftValidator] Ejecutando checklist de pre-lanzamiento...", {
+    traceId,
+  });
   const checklist: ChecklistItem[] = [];
 
   // Regla 1: Identidad Básica Definida
   const isIdentityComplete = !!(
     draft.baseCampaignId &&
-    draft.variantName &&
+    draft.campaignName && // --- CORREGIDO ---
     draft.seoKeywords
   );
   checklist.push({
@@ -78,6 +80,8 @@ export function validateDraftForLaunch(draft: CampaignDraft): ChecklistItem[] {
   logger.trace("[DraftValidator] Checklist completado.", {
     completed: checklist.filter((c) => c.isCompleted).length,
     total: checklist.length,
+    traceId,
   });
+  logger.endTrace(traceId);
   return checklist;
 }

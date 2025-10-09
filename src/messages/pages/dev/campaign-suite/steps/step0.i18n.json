@@ -1,78 +1,96 @@
 {
   "it-IT": {
     "step0": {
-      "title": "Passo 0: Identificazione",
+      "title": "Passo 0: Identità della Campagna",
       "description": "Questo è il passo fondazionale. Le informazioni qui definiscono l'identità e la strategia della tua campagna.",
-      "baseCampaignLabel": "Campagna Base",
-      "baseCampaignPlaceholder": "Seleziona un prodotto",
-      "baseCampaignDescription": "Seleziona il prodotto base per questa nuova variante.",
-      "variantNameLabel": "Nome Variante",
-      "variantNamePlaceholder": "Es. 'Vitalità', 'Approccio Scientifico'",
+      "originGroupLabel": "Punto di Partenza",
+      "originScratchLabel": "Crea da Zero",
+      "originTemplateLabel": "Usa un Template",
+      "originCloneLabel": "Clona Campagna Esistente",
+      "templateSelectLabel": "Seleziona Template",
+      "templateSelectPlaceholder": "Scegli un template...",
+      "baseCampaignLabel": "Campagna Base da Clonare",
+      "baseCampaignPlaceholder": "Seleziona una campagna...",
+      "campaignNameLabel": "Nome della Campagna",
+      "campaignNamePlaceholder": "Es. 'Lancio Vitalità Q4'",
       "seoKeywordsLabel": "Parole Chiave SEO",
-      "seoKeywordsPlaceholder": "Es. 'benessere, energia, naturale'",
-      "seoKeywordsDescription": "Separate da virgole. Verranno usate per generare l'URL.",
+      "seoKeywordsPlaceholder": "Aggiungi parole e premi Invio...",
+      "seoKeywordsDescription": "Queste parole chiave aiuteranno a generare uno slug URL amichevole per i motori di ricerca.",
+      "seoKeywordsTooltip": {
+        "trigger": "Aiuto parole chiave",
+        "content": "Inserisci parole o frasi brevi. Saranno usate per costruire l'URL.",
+        "linkText": "Scopri di più sul SEO"
+      },
       "producerLabel": "Produttore / Rete",
       "producerPlaceholder": "Seleziona un produttore",
       "campaignTypeLabel": "Tipo di Campagna",
       "campaignTypePlaceholder": "Seleziona un tipo",
-      "passportStampLabel": "Passaporto Approvato"
+      "passportStampLabel": "Passaporto Approvato",
+      "producerLabels": {
+        "producer_webvork": "Webvork",
+        "producer_clickdealer": "ClickDealer",
+        "producer_maxbounty": "MaxBounty",
+        "producer_clickbank": "ClickBank",
+        "producer_moreniche": "MoreNiche",
+        "producer_shopify": "Shopify (Prossimamente)"
+      },
+      "campaignTypeLabels": {
+        "campaignType_direct_conversion": "Conversione Diretta (Formulario)",
+        "campaignType_lead_generation_quiz": "Generazione di Lead (Quiz)",
+        "campaignType_content_engagement_vsl": "Interazione con Contenuto (VSL)",
+        "campaignType_lead_generation_form": "Generazione di Leads (Formulario)",
+        "campaignType_direct_conversion_cpa": "Conversione Diretta (CPA)",
+        "campaignType_content_engagement_article": "Interazione con Contenuto (Articolo)",
+        "campaignType_direct_conversion_cps": "Conversione Diretta (CPS)",
+        "campaignType_product_launch": "Lancio di Prodotto"
+      }
     }
   },
   "es-ES": {
     "step0": {
-      "title": "Paso 0: Identificación",
+      "title": "Paso 0: Identidad de la Campaña",
       "description": "Este es el paso fundacional. La información aquí define la identidad y estrategia de tu campaña.",
-      "baseCampaignLabel": "Campaña Base",
-      "baseCampaignPlaceholder": "Selecciona un producto",
-      "baseCampaignDescription": "Selecciona el producto base para esta nueva variante.",
-      "variantNameLabel": "Nombre de la Variante",
-      "variantNamePlaceholder": "Ej. 'Vitalidad', 'Enfoque Científico'",
+      "originGroupLabel": "Punto de Partida",
+      "originScratchLabel": "Crear desde Cero",
+      "originTemplateLabel": "Usar una Plantilla",
+      "originCloneLabel": "Clonar Campaña Existente",
+      "templateSelectLabel": "Seleccionar Plantilla",
+      "templateSelectPlaceholder": "Elige una plantilla...",
+      "baseCampaignLabel": "Campaña Base a Clonar",
+      "baseCampaignPlaceholder": "Selecciona una campaña...",
+      "campaignNameLabel": "Nombre de la Campaña",
+      "campaignNamePlaceholder": "Ej. 'Lanzamiento Vitalidad Q4'",
       "seoKeywordsLabel": "Palabras Clave SEO",
-      "seoKeywordsPlaceholder": "Ej. 'bienestar, energía, natural'",
-      "seoKeywordsDescription": "Separadas por comas. Se usarán para generar la URL.",
+      "seoKeywordsPlaceholder": "Añade palabras y presiona Enter...",
+      "seoKeywordsDescription": "Estas palabras clave ayudarán a generar un slug de URL amigable para SEO.",
+      "seoKeywordsTooltip": {
+        "trigger": "Ayuda sobre palabras clave",
+        "content": "Introduce palabras o frases cortas. Se usarán para construir la URL.",
+        "linkText": "Aprende más sobre SEO"
+      },
       "producerLabel": "Productor / Red",
       "producerPlaceholder": "Selecciona un productor",
       "campaignTypeLabel": "Tipo de Campaña",
       "campaignTypePlaceholder": "Selecciona un tipo",
-      "passportStampLabel": "Pasaporte Aprobado"
-    }
-  },
-  "en-US": {
-    "step0": {
-      "title": "Step 0: Identification",
-      "description": "This is the foundational step. The information here defines your campaign's identity and strategy.",
-      "baseCampaignLabel": "Base Campaign",
-      "baseCampaignPlaceholder": "Select a product",
-      "baseCampaignDescription": "Select the base product for this new variant.",
-      "variantNameLabel": "Variant Name",
-      "variantNamePlaceholder": "E.g., 'Vitality', 'Scientific Approach'",
-      "seoKeywordsLabel": "SEO Keywords",
-      "seoKeywordsPlaceholder": "E.g., 'wellness, energy, natural'",
-      "seoKeywordsDescription": "Separated by commas. They will be used to generate the URL.",
-      "producerLabel": "Producer / Network",
-      "producerPlaceholder": "Select a producer",
-      "campaignTypeLabel": "Campaign Type",
-      "campaignTypePlaceholder": "Select a type",
-      "passportStampLabel": "Passport Approved"
-    }
-  },
-  "pt-BR": {
-    "step0": {
-      "title": "Passo 0: Identificação",
-      "description": "Este é o passo fundamental. As informações aqui definem a identidade e a estratégia da sua campanha.",
-      "baseCampaignLabel": "Campanha Base",
-      "baseCampaignPlaceholder": "Selecione um produto",
-      "baseCampaignDescription": "Selecione o produto base para esta nova variante.",
-      "variantNameLabel": "Nome da Variante",
-      "variantNamePlaceholder": "Ex: 'Vitalidade', 'Foco Científico'",
-      "seoKeywordsLabel": "Palavras-chave de SEO",
-      "seoKeywordsPlaceholder": "Ex: 'bem-estar, energia, natural'",
-      "keywordsDescription": "Separadas por vírgulas. Serão usadas para gerar a URL.",
-      "producerLabel": "Produtor / Rede",
-      "producerPlaceholder": "Selecione um produtor",
-      "campaignTypeLabel": "Tipo de Campanha",
-      "campaignTypePlaceholder": "Selecione um tipo",
-      "passportStampLabel": "Passaporte Aprovado"
+      "passportStampLabel": "Pasaporte Aprobado",
+      "producerLabels": {
+        "producer_webvork": "Webvork",
+        "producer_clickdealer": "ClickDealer",
+        "producer_maxbounty": "MaxBounty",
+        "producer_clickbank": "ClickBank",
+        "producer_moreniche": "MoreNiche",
+        "producer_shopify": "Shopify (Próximamente)"
+      },
+      "campaignTypeLabels": {
+        "campaignType_direct_conversion": "Conversión Directa (Formulario)",
+        "campaignType_lead_generation_quiz": "Generación de Leads (Quiz)",
+        "campaignType_content_engagement_vsl": "Interacción con Contenido (VSL)",
+        "campaignType_lead_generation_form": "Generación de Leads (Formulario)",
+        "campaignType_direct_conversion_cpa": "Conversión Directa (CPA)",
+        "campaignType_content_engagement_article": "Interacción con Contenido (Artículo)",
+        "campaignType_direct_conversion_cps": "Conversión Directa (CPS)",
+        "campaignType_product_launch": "Lanzamiento de Producto"
+      }
     }
   }
 }

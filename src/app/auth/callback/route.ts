@@ -4,7 +4,7 @@
  * @description Manejador de ruta soberano para el callback de OAuth, forjado con
  *              observabilidad de élite y un guardián de resiliencia.
  * @version 3.0.0 (Observability Contract v20+ Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";

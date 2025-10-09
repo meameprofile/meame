@@ -1,23 +1,26 @@
 // RUTA: src/shared/hooks/campaign-suite/use-template-loader.ts
 /**
  * @file use-template-loader.ts
- * @description Hook de élite para orquestar la carga de plantillas, ahora alineado
- *              con la arquitectura de estado centralizado "Forja Centralizada".
- * @version 8.0.0 (Centralized Forge Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Hook de élite para orquestar la carga de plantillas.
+ *              v9.3.0 (Absolute Type Safety): Implementa una lógica de
+ *              transformación explícita y resiliente para `seoKeywords`,
+ *              erradicando el error de tipo 'never' de forma definitiva.
+ * @version 9.3.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import { useTransition } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { toast } from "sonner";
-import { loadTemplateAction } from "@/shared/lib/actions/campaign-suite";
+import { loadTemplateAction } from "@/shared/lib/actions/campaign-suite/loadTemplate.action";
 import { logger } from "@/shared/lib/logging";
 import { useCampaignDraftStore } from "./use-campaign-draft.store";
 import { routes } from "@/shared/lib/navigation";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
 import { stepsDataConfig } from "@/shared/lib/config/campaign-suite/wizard.data.config";
 import { generateDraftId } from "@/shared/lib/utils/campaign-suite/draft.utils";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 export function useTemplateLoader(onLoadComplete?: () => void) {
   const [isPending, startTransition] = useTransition();
@@ -28,11 +31,8 @@ export function useTemplateLoader(onLoadComplete?: () => void) {
   const setDraft = useCampaignDraftStore((state) => state.setDraft);
 
   const loadTemplate = (templateId: string, copySuffix: string) => {
-    const traceId = logger.startTrace(`loadTemplate:${templateId}`);
-    const groupId = logger.startGroup(
-      `[TemplateLoader] Orquestando carga v8.0...`,
-      traceId
-    );
+    const traceId = logger.startTrace(`loadTemplate:${templateId}_v9.3`);
+    const groupId = logger.startGroup(`[TemplateLoader] Orquestando carga...`);
 
     startTransition(async () => {
       try {
@@ -45,12 +45,19 @@ export function useTemplateLoader(onLoadComplete?: () => void) {
           "Datos de plantilla recibidos. Hidratando store centralizado..."
         );
 
-        // Se ensambla el nuevo estado del borrador y se hidrata el store de una sola vez.
-        const newDraftState = {
+        const newDraftState: CampaignDraft = {
           ...draftData,
           draftId: generateDraftId(draftData.baseCampaignId || "template"),
-          variantName: `${draftData.variantName}${copySuffix}`,
-          completedSteps: [], // Un nuevo borrador siempre empieza desde cero.
+          campaignOrigin: "template",
+          templateId: templateId,
+          campaignName: `${draftData.campaignName}${copySuffix}`,
+          // --- [INICIO DE REFACTORIZACIÓN DE TIPO v9.3.0] ---
+          // Se comprueba explícitamente si es un array; de lo contrario, se usa un fallback seguro.
+          seoKeywords: Array.isArray(draftData.seoKeywords)
+            ? draftData.seoKeywords
+            : [],
+          // --- [FIN DE REFACTORIZACIÓN DE TIPO v9.3.0] ---
+          completedSteps: [],
           updatedAt: new Date().toISOString(),
         };
 

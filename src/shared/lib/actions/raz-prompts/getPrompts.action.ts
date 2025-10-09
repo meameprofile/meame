@@ -2,7 +2,7 @@
 /**
  * @file getPrompts.action.ts
  * @description Server Action (Agregador) para obtener y enriquecer prompts.
- * @version 14.4.0 (Observability Contract Compliance)
+ * @version 15.2.0 (Security Logic Restoration & Elite Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -35,11 +35,8 @@ export async function getPromptsAction(
 ): Promise<
   ActionResult<{ prompts: EnrichedRaZPromptsEntry[]; total: number }>
 > {
-  const traceId = logger.startTrace("getPromptsAction_v14.4");
-  const groupId = logger.startGroup(
-    `[Action] Obteniendo y enriqueciendo prompts...`,
-    traceId
-  );
+  const traceId = logger.startTrace("getPromptsAction_v15.2");
+  const groupId = logger.startGroup(`[Action] Obteniendo prompts...`, traceId);
 
   try {
     const supabase = createServerClient();
@@ -54,16 +51,20 @@ export async function getPromptsAction(
 
     const { page, limit, query, tags, workspaceId } = validatedInput.data;
 
+    // --- [INICIO DE RESTAURACIÓN DE LÓGICA DE SEGURIDAD v15.2.0] ---
     const { data: memberCheck, error: memberError } = await supabase.rpc(
       "is_workspace_member",
       { workspace_id_to_check: workspaceId }
     );
-    if (memberError || !memberCheck)
+    if (memberError || !memberCheck) {
+      // La condición ahora es correcta y soberana.
       throw new Error("Acceso denegado al workspace.");
+    }
+    // --- [FIN DE RESTAURACIÓN DE LÓGICA DE SEGURIDAD v15.2.0] ---
 
     let queryBuilder = supabase
       .from("razprompts_entries")
-      .select("*, count()", { count: "exact" })
+      .select("*")
       .eq("workspace_id", workspaceId);
 
     if (query)
@@ -75,11 +76,25 @@ export async function getPromptsAction(
         ([k, v]) => v && queryBuilder.eq(`tags->>${k}`, v)
       );
 
-    const { data, error, count } = await queryBuilder
-      .order("updated_at", { ascending: false })
-      .range((page - 1) * limit, page * limit - 1);
+    const [promptsResult, countResult] = await Promise.all([
+      queryBuilder
+        .order("updated_at", { ascending: false })
+        .range((page - 1) * limit, page * limit - 1),
+      supabase.rpc("get_prompts_count", {
+        p_workspace_id: workspaceId,
+        p_query: query,
+        p_tags: tags,
+      }),
+    ]);
 
-    if (error) throw new Error(error.message);
+    if (promptsResult.error) throw new Error(promptsResult.error.message);
+    if (countResult.error)
+      throw new Error(
+        `Error en RPC get_prompts_count: ${countResult.error.message}`
+      );
+
+    const data = promptsResult.data;
+    const count = countResult.data;
 
     const validatedPrompts: RaZPromptsEntry[] = (
       (data as RazPromptsEntryRow[]) || []
@@ -109,7 +124,6 @@ export async function getPromptsAction(
         .select("asset_id, public_id")
         .in("asset_id", assetIdsToFetch)
         .eq("state", "orig");
-
       if (variantsError)
         logger.warn("[Action] Fallo parcial al obtener variantes de BAVI.", {
           error: variantsError.message,

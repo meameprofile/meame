@@ -1,57 +1,106 @@
 // RUTA: src/shared/lib/config/campaign-suite/producers.config.ts
 /**
  * @file producers.config.ts
- * @description SSoT para la configuración de proveedores y tipos de campaña. Define
- *              la lógica de negocio para la modularización de la SDC.
- * @version 1.0.0
+ * @description SSoT para la configuración de productores y la nueva nomenclatura soberana de tipos de campaña.
+ * @version 2.0.0 (Sovereign Campaign Type Nomenclature)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { logger } from "@/shared/lib/logging";
 
-// Pilar III (Observabilidad): Se traza la carga de este módulo de configuración crítico.
 logger.trace(
-  "[Producers Config] Módulo de configuración de proveedores cargado."
+  "[Producers Config] Módulo de configuración de productores v2.0 cargado."
 );
 
 /**
- * @interface ProducerConfig
- * @description Contrato de tipo para la configuración de un único proveedor.
+ * @interface CampaignType
+ * @description Contrato para un tipo de campaña soportado.
+ * @property {string} id - Identificador técnico único.
+ * @property {string} nameKey - Clave i18n para el nombre descriptivo en la UI.
+ *
+ * @nomenclature
+ * La nomenclatura de 'id' está inspirada en los objetivos de campaña de plataformas
+ * líderes (Google, Meta) pero adaptada a nuestro ecosistema:
+ * - `direct-conversion`: Campañas enfocadas en una acción inmediata (venta, CPL). Similar a "Sales" o "Conversions".
+ * - `lead-generation`: Campañas cuyo objetivo principal es la captura de datos (ej. quizzes). Similar a "Leads".
+ * - `content-engagement`: Campañas de pre-venta que educan o entretienen antes de la conversión (artículos, VSLs). Similar a "Consideration" o "Engagement".
  */
-export interface ProducerConfig {
+export interface CampaignType {
   id: string;
-  name: string;
-  supportedCampaignTypes: {
-    id: string;
-    name: string;
-  }[];
+  nameKey: string;
 }
 
-/**
- * @const producersConfig
- * @description El manifiesto inmutable de todos los proveedores soportados por la SDC.
- */
+export interface ProducerConfig {
+  id: string;
+  nameKey: string;
+  supportedCampaignTypes: readonly CampaignType[];
+}
+
 export const producersConfig: readonly ProducerConfig[] = [
   {
     id: "webvork",
-    name: "Webvork",
+    nameKey: "producer_webvork",
     supportedCampaignTypes: [
-      { id: "direct-sale", name: "Venta Directa (Formulario)" },
-      { id: "presell-quiz", name: "Página de Quiz (Presell)" },
+      { id: "direct-conversion", nameKey: "campaignType_direct_conversion" },
+      {
+        id: "lead-generation-quiz",
+        nameKey: "campaignType_lead_generation_quiz",
+      },
+    ],
+  },
+  {
+    id: "clickdealer",
+    nameKey: "producer_clickdealer",
+    supportedCampaignTypes: [
+      { id: "direct-conversion", nameKey: "campaignType_direct_conversion" },
+      {
+        id: "content-engagement-vsl",
+        nameKey: "campaignType_content_engagement_vsl",
+      },
+    ],
+  },
+  {
+    id: "maxbounty",
+    nameKey: "producer_maxbounty",
+    supportedCampaignTypes: [
+      {
+        id: "lead-generation-form",
+        nameKey: "campaignType_lead_generation_form",
+      },
+      {
+        id: "direct-conversion-cpa",
+        nameKey: "campaignType_direct_conversion_cpa",
+      },
     ],
   },
   {
     id: "clickbank",
-    name: "ClickBank",
+    nameKey: "producer_clickbank",
     supportedCampaignTypes: [
-      { id: "presell-article", name: "Artículo (Presell)" },
-      { id: "vsl", name: "Página de VSL" },
+      {
+        id: "content-engagement-article",
+        nameKey: "campaignType_content_engagement_article",
+      },
+      {
+        id: "content-engagement-vsl",
+        nameKey: "campaignType_content_engagement_vsl",
+      },
+    ],
+  },
+  {
+    id: "moreniche",
+    nameKey: "producer_moreniche",
+    supportedCampaignTypes: [
+      {
+        id: "direct-conversion-cps",
+        nameKey: "campaignType_direct_conversion_cps",
+      },
     ],
   },
   {
     id: "shopify",
-    name: "Shopify",
+    nameKey: "producer_shopify",
     supportedCampaignTypes: [
-      { id: "product-launch", name: "Lanzamiento de Producto" },
+      { id: "product-launch", nameKey: "campaignType_product_launch" },
     ],
   },
 ] as const;

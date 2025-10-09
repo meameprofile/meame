@@ -4,7 +4,7 @@
  * @description Página de Detalle de Producto ("Server Shell"), forjada con
  *              resiliencia, observabilidad de élite y una arquitectura soberana.
  * @version 12.0.0 (Observability Contract v20+ Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

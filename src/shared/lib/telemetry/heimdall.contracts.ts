@@ -5,7 +5,7 @@
  *              v2.0.0 (Architectural Purity Restoration): Se eliminan las
  *              importaciones circulares para restaurar la integridad del módulo.
  * @version 2.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import type {

@@ -6,7 +6,7 @@
  *              el payload de inserción con el contrato de la tabla de la base de
  *              datos, resolviendo un error crítico de "columna no encontrada".
  * @version 2.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@/shared/lib/supabase/server";

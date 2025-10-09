@@ -1089,6 +1089,10 @@ export type Database = {
         Args: Record<PropertyKey, never>;
         Returns: Json;
       };
+      get_prompts_count: {
+        Args: { p_query?: string; p_tags?: Json; p_workspace_id: string };
+        Returns: number;
+      };
       get_public_table_names: {
         Args: Record<PropertyKey, never>;
         Returns: {

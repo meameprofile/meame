@@ -1,5 +1,14 @@
 // RUTA: src/components/layout/HeaderClient.tsx
+/**
+ * @file HeaderClient.tsx
+ * @description Orquestador de cliente y SSoT para la UI interactiva de la cabecera.
+ *              Forjado con un flujo de registro optimizado, observabilidad de
+ *              ciclo de vida completo y un guardián de resiliencia de contrato de datos.
+ * @version 48.2.0 (Sign-Up Flow & Elite Leveling)
+ * @author RaZ Podestá - MetaShark Tech
+ */
 "use client";
+
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -210,7 +219,7 @@ export default function HeaderClient({
               locale={currentLocale}
             />
             {isPublicView && !user && (
-              <Button asChild variant="ghost" size="sm">
+              <Button asChild variant="default" size="sm">
                 <Link href={`/${currentLocale}/login?view=signup`}>
                   {header.signUpButton.label}
                 </Link>

@@ -4,7 +4,7 @@
  * @description Componente de presentación puro para la UI de carga del DCC.
  *              Actúa como la SSoT visual para todos los estados de carga del layout.
  * @version 2.0.0 (Pure & Reusable)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import { DotsWave } from "@/components/ui/Loaders";

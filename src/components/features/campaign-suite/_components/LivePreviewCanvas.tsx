@@ -23,7 +23,7 @@ import {
 import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { logger } from "@/shared/lib/logging";
-import type { LoadedFragments } from "@/shared/lib/actions/campaign-suite";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import { DeveloperErrorDisplay } from "../../dev-tools";
 

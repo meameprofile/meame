@@ -5,7 +5,7 @@
  *              Consume el hook 'useGlobalPageLoader' y renderiza una
  *              superposición animada para una MEA/UX de élite.
  * @version 1.0.0 (Elite & MEA/UX)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

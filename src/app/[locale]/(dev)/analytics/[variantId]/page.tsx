@@ -4,7 +4,7 @@
  * @description Página de detalle para la analítica de una variante de campaña específica.
  *              Forjada con observabilidad de élite y un guardián de resiliencia.
  * @version 4.0.0 (Observability Contract v20+ Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React from "react";

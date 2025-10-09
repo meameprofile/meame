@@ -1,9 +1,9 @@
 // RUTA: src/components/features/campaign-suite/Step5_Management/_components/CampaignSummary.tsx
 /**
  * @file CampaignSummary.tsx
- * @description Aparato atómico para la vista de resumen de la campaña en el Paso 5.
- * @version 2.0.0 (MEA/UX Injection & Resilience)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Aparato atómico para la vista de resumen, alineado con el contrato de CampaignDraft v7.0+.
+ * @version 2.1.0 (CampaignDraft v7.0 Contract Alignment)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -44,7 +44,7 @@ export function CampaignSummary({
   title,
   placeholder,
 }: CampaignSummaryProps): React.ReactElement {
-  logger.trace("[CampaignSummary] Renderizando resumen de campaña v2.0.");
+  logger.trace("[CampaignSummary] Renderizando resumen de campaña v2.1.");
 
   const hasHeader = draft.headerConfig?.useHeader;
   const headerName = draft.headerConfig?.componentName;
@@ -75,8 +75,12 @@ export function CampaignSummary({
             </h4>
             <div className="pl-6 border-l space-y-1">
               <SummaryItem label="ID Base" value={draft.baseCampaignId} />
-              <SummaryItem label="Variante" value={draft.variantName} />
-              <SummaryItem label="Keywords" value={draft.seoKeywords} />
+              <SummaryItem label="Nombre Campaña" value={draft.campaignName} />
+              <SummaryItem
+                label="Keywords"
+                value={draft.seoKeywords.join(", ")}
+              />
+              {/* --- FIN --- */}
               <SummaryItem label="Productor" value={draft.producer} />
               <SummaryItem label="Tipo" value={draft.campaignType} />
             </div>

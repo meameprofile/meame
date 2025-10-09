@@ -5,7 +5,7 @@
  *              página de detalle de producto, ahora con contenido estructurado y
  *              exportación de tipo soberana.
  * @version 3.1.0 (Sovereign Type Export)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { ProductSchema } from "@/shared/lib/schemas/entities/product.schema";

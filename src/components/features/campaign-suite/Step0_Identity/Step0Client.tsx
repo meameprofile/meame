@@ -1,10 +1,12 @@
 // RUTA: src/components/features/campaign-suite/Step0_Identity/Step0Client.tsx
 /**
  * @file Step0Client.tsx
- * @description Orquestador de cliente para el Paso 0, nivelado con
- *              observabilidad Heimdall y Guardianes de Resiliencia y Validación.
- * @version 14.1.0 (Hook Declaration Order Fix)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Orquestador de cliente para el Paso 0.
+ *              v19.0.0 (Architectural Integrity & Type Safety Restoration): Se
+ *              corrige la ruta de importación de la Server Action, se erradica
+ *              un tipo 'any' implícito y se purga una variable no utilizada.
+ * @version 19.0.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -28,10 +30,16 @@ import {
 import { useWizard } from "@/components/features/campaign-suite/_context/WizardContext";
 import { Step0Form } from "./Step0Form";
 import { PassportStamp } from "@/components/ui/PassportStamp";
-import { Card, CardContent } from "@/components/ui/Card";
+import { Card, CardFooter } from "@/components/ui/Card";
 import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
 import { DeveloperErrorDisplay } from "../../dev-tools";
 import { validateStep0 } from "./step0.validator";
+import { WizardNavigation } from "../_components/WizardNavigation";
+import { getCampaignTemplatesAction } from "@/shared/lib/actions/campaign-suite/getCampaignTemplates.action";
+import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
+import type { CampaignTemplate } from "@/shared/lib/schemas/campaigns/template.schema";
+import { normalizeStringForId } from "@/shared/lib/utils/text-processing/normalization";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 type Step0Content = z.infer<typeof Step0ContentSchema>;
 
@@ -44,56 +52,89 @@ export function Step0Client({
   content,
   baseCampaigns,
 }: Step0ClientProps): React.ReactElement {
-  // --- [INICIO] REFACTORIZACIÓN ARQUITECTÓNICA: ORDEN DE HOOKS ---
-  // Se declara el hook 'useCampaignDraft' ANTES de cualquier hook que lo utilice.
   const { draft, updateDraft } = useCampaignDraft();
-  // --- [FIN] REFACTORIZACIÓN ARQUITECTÓNICA ---
-
-  // --- [INICIO] PILAR III: OBSERVABILIDAD DE CICLO DE VIDA COMPLETO ---
   const traceId = useMemo(
-    () => logger.startTrace("Step0Client_Lifecycle_v14.1"),
+    () => logger.startTrace("Step0Client_Lifecycle_v19.0"),
     []
   );
+  const [submissionState, setSubmissionState] = useState<
+    "form" | "stamping" | "complete"
+  >("form");
+  const [templates, setTemplates] = useState<CampaignTemplate[]>([]);
+  const activeWorkspaceId = useWorkspaceStore((s) => s.activeWorkspaceId);
+  const wizardContext = useWizard();
+
   useEffect(() => {
     const groupId = logger.startGroup(
       `[Step0Client] Orquestador de cliente montado.`
     );
-    logger.info("Estado inicial del borrador consumido.", {
-      traceId,
-      draftId: draft.draftId,
-    });
+    if (activeWorkspaceId) {
+      getCampaignTemplatesAction(activeWorkspaceId).then(
+        (result: ActionResult<CampaignTemplate[]>) => {
+          if (result.success) setTemplates(result.data);
+        }
+      );
+    }
     return () => {
       logger.endGroup(groupId);
       logger.endTrace(traceId);
     };
-  }, [traceId, draft.draftId]);
-  // --- [FIN] PILAR III ---
-
-  const wizardContext = useWizard();
-  const [submissionState, setSubmissionState] = useState<
-    "form" | "stamping" | "complete"
-  >("form");
+  }, [traceId, activeWorkspaceId]);
 
   const form = useForm<Step0Data>({
     resolver: zodResolver(step0Schema),
     defaultValues: {
-      baseCampaignId: draft.baseCampaignId ?? baseCampaigns[0] ?? "",
-      variantName: draft.variantName ?? "",
-      seoKeywords: draft.seoKeywords ?? "",
-      producer: draft.producer ?? "",
-      campaignType: draft.campaignType ?? "",
+      campaignOrigin: draft.campaignOrigin ?? "scratch",
+      templateId: draft.templateId ?? undefined,
+      baseCampaignId: draft.baseCampaignId ?? baseCampaigns[0] ?? undefined,
+      campaignName:
+        draft.campaignName ??
+        (process.env.NODE_ENV === "development"
+          ? "Campaña de Prueba (Vitalidad)"
+          : ""),
+      seoKeywords:
+        draft.seoKeywords ??
+        (process.env.NODE_ENV === "development"
+          ? ["bienestar", "energia", "natural"]
+          : []),
+      producer: draft.producer ?? "webvork",
+      campaignType: draft.campaignType ?? "direct-conversion",
     },
   });
 
+  const campaignOrigin = form.watch("campaignOrigin");
+  const seoKeywordsInput = form.watch("seoKeywords");
+
   useEffect(() => {
-    form.reset({
-      baseCampaignId: draft.baseCampaignId ?? baseCampaigns[0] ?? "",
-      variantName: draft.variantName ?? "",
-      seoKeywords: draft.seoKeywords ?? "",
-      producer: draft.producer ?? "",
-      campaignType: draft.campaignType ?? "",
-    });
-  }, [draft, baseCampaigns, form]);
+    const normalizedKeywords = seoKeywordsInput.map((k) =>
+      normalizeStringForId(k)
+    );
+    if (
+      JSON.stringify(normalizedKeywords) !== JSON.stringify(seoKeywordsInput)
+    ) {
+      form.setValue("seoKeywords", normalizedKeywords, {
+        shouldValidate: true,
+      });
+    }
+  }, [seoKeywordsInput, form]);
+
+  const onSubmit = (data: Step0Data) => {
+    const { isValid, message } = validateStep0(data);
+    if (!isValid) {
+      toast.error("Formulario Incompleto", { description: message });
+      return;
+    }
+
+    const finalData = {
+      ...data,
+      campaignName: normalizeStringForId(data.campaignName || ""),
+      seoKeywords: data.seoKeywords.map(normalizeStringForId).filter(Boolean),
+    };
+
+    const newCompletedSteps = Array.from(new Set([...draft.completedSteps, 0]));
+    updateDraft({ ...finalData, completedSteps: newCompletedSteps });
+    setSubmissionState("stamping");
+  };
 
   const handleNavigation = useCallback(() => {
     if (submissionState === "stamping") {
@@ -109,53 +150,6 @@ export function Step0Client({
     const cleanup = handleNavigation();
     return cleanup;
   }, [handleNavigation]);
-
-  const onSubmit = (data: Step0Data) => {
-    const submitTraceId = logger.startTrace("Step0Client.onSubmit_v14.1");
-    const groupId = logger.startGroup(
-      "[Step0Client] Procesando envío...",
-      submitTraceId
-    );
-
-    try {
-      const { isValid, message } = validateStep0(data);
-      if (!isValid) {
-        toast.error("Formulario Incompleto", { description: message });
-        logger.warn(`[Guardián Step0] Envío bloqueado. Causa: ${message}`, {
-          traceId: submitTraceId,
-        });
-        return;
-      }
-      logger.traceEvent(
-        submitTraceId,
-        "Validación de datos de formulario exitosa."
-      );
-
-      const newCompletedSteps = Array.from(
-        new Set([...draft.completedSteps, 0])
-      );
-      updateDraft({ ...data, completedSteps: newCompletedSteps });
-      logger.success(
-        "[Step0Client] Store centralizado actualizado. Cambiando a 'stamping'.",
-        { traceId: submitTraceId }
-      );
-
-      setSubmissionState("stamping");
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Error desconocido.";
-      logger.error(
-        "[Guardián] Fallo inesperado durante la actualización de estado.",
-        { error: errorMessage, traceId: submitTraceId }
-      );
-      toast.error("Error Interno", {
-        description: "No se pudieron guardar los datos.",
-      });
-    } finally {
-      logger.endGroup(groupId);
-      logger.endTrace(submitTraceId);
-    }
-  };
 
   if (!wizardContext) {
     return (
@@ -184,12 +178,22 @@ export function Step0Client({
           exit="exit"
           transition={transitionConfig}
         >
-          <Step0Form
-            form={form}
-            content={content}
-            baseCampaigns={baseCampaigns}
-            onSubmit={onSubmit}
-          />
+          <Card>
+            <Step0Form
+              form={form}
+              content={content}
+              baseCampaigns={baseCampaigns}
+              templates={templates}
+              campaignOrigin={campaignOrigin}
+            />
+            <CardFooter>
+              <WizardNavigation
+                onNext={form.handleSubmit(onSubmit)}
+                onBack={() => {}}
+                isFirstStep={true}
+              />
+            </CardFooter>
+          </Card>
         </motion.div>
       )}
       {submissionState === "stamping" && (
@@ -202,9 +206,9 @@ export function Step0Client({
           transition={transitionConfig}
         >
           <Card>
-            <CardContent className="pt-6 min-h-[500px] flex items-center justify-center relative overflow-hidden">
+            <div className="pt-6 min-h-[500px] flex items-center justify-center relative overflow-hidden">
               <PassportStamp label={content.passportStampLabel} />
-            </CardContent>
+            </div>
           </Card>
         </motion.div>
       )}

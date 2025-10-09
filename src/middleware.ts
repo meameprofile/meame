@@ -1,12 +1,14 @@
 // RUTA: src/middleware.ts
 /**
  * @file middleware.ts
- * @description Guardián de la puerta de entrada, completamente alineado con
- *              el contrato de observabilidad de élite del logger v20+.
- * @version 21.0.0 (Observability Contract Compliance)
- * @author L.I.A. Legacy
+ * @description Guardián de la puerta de entrada, ahora con gestión de sesión soberana de Supabase.
+ *              v22.0.0 (Supabase Session Integrity): Se integra el manejador `updateSession`
+ *              al inicio del pipeline para centralizar el refresco de sesión, resolviendo
+ *              el error crítico "Body has already been consumed".
+ * @version 22.0.0
+ * @author RaZ Podestá - MetaShark Tech
  */
-import { type NextRequest, NextResponse } from "next/server";
+import { type NextRequest, type NextResponse } from "next/server";
 import { logger } from "./shared/lib/logging";
 import { createPipeline } from "./shared/lib/middleware/engine";
 import {
@@ -14,6 +16,9 @@ import {
   i18nHandler,
   authHandler,
 } from "./shared/lib/middleware/handlers";
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v22.0.0] ---
+import { updateSession } from "./shared/lib/supabase/middleware";
+// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v22.0.0] ---
 
 export const runtime = "nodejs";
 
@@ -25,17 +30,19 @@ const pipeline = createPipeline([
 
 export async function middleware(request: NextRequest): Promise<NextResponse> {
   const traceId = logger.startTrace(`middleware:${request.nextUrl.pathname}`);
-  // --- [INICIO DE NIVELACIÓN DE OBSERVABILIDAD v21.0.0] ---
   const groupId = logger.startGroup(
-    `[Middleware v21.0] Procesando: ${request.method} ${request.nextUrl.pathname}`
+    `[Middleware v22.0] Procesando: ${request.method} ${request.nextUrl.pathname}`
   );
-  // --- [FIN DE NIVELACIÓN DE OBSERVABILIDAD v21.0.0] ---
 
   try {
-    const initialResponse = NextResponse.next({
-      request: { headers: request.headers },
-    });
-    const finalResponse = await pipeline(request, initialResponse);
+    // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v22.0.0] ---
+    // 1. Se invoca primero el manejador de sesión de Supabase. Este leerá las cookies
+    //    y devolverá una respuesta con las cookies de sesión actualizadas.
+    const responseWithSession = await updateSession(request);
+
+    // 2. La respuesta del manejador de sesión se pasa como la base para el resto del pipeline.
+    const finalResponse = await pipeline(request, responseWithSession);
+    // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v22.0.0] ---
     return finalResponse;
   } catch (error) {
     const errorMessage =
@@ -44,12 +51,14 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
       error: errorMessage,
       traceId,
     });
-    return new NextResponse("Internal Server Error", { status: 500 });
+    // En caso de un error inesperado, se crea una nueva respuesta para evitar conflictos.
+    const errorResponse = new Response("Internal Server Error", {
+      status: 500,
+    });
+    return errorResponse as NextResponse;
   } finally {
-    // --- [INICIO DE NIVELACIÓN DE OBSERVABILIDAD v21.0.0] ---
     logger.endGroup(groupId);
     logger.endTrace(traceId);
-    // --- [FIN DE NIVELACIÓN DE OBSERVABILIDAD v21.0.0] ---
   }
 }
 

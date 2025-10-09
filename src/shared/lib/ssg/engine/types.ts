@@ -1,21 +1,19 @@
-// RUTA: shared/lib/ssg/engine/types.ts
+// RUTA: src/shared/lib/ssg/engine/types.ts
 /**
  * @file types.ts
  * @description SSoT para los contratos de tipos del Motor de Forja.
- *              v1.1.0 (Module Load Observability): Se añade un log de traza
- *              al inicio del módulo para confirmar su carga, cumpliendo con el
- *              Pilar III de Observabilidad.
- * @version 1.1.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v2.0.0 (Theming Sovereignty): Se enriquece el BuildContext para
+ *              incluir el tema ya ensamblado, centralizando la lógica de theming.
+ * @version 2.0.0
+ * @author L.I.A. Legacy
  */
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types"; // Correcto: se mantiene la ruta de importación desde @shared
-import { logger } from "@/shared/lib/logging"; // Importa el logger
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import { logger } from "@/shared/lib/logging";
 
-// --- INICIO DE MEJORA: OBSERVABILIDAD DE CARGA DE MÓDULO ---
 logger.trace(
-  "[ssg/engine/types.ts] Módulo de tipos del motor SSG cargado y listo para usar."
+  "[ssg/engine/types.ts] Módulo de tipos del motor SSG v2.0 cargado."
 );
-// --- FIN DE MEJORA: OBSERVABILIDAD DE CARGA DE MÓDULO ---
 
 /**
  * @interface BuildContext
@@ -24,9 +22,10 @@ logger.trace(
  */
 export interface BuildContext {
   draft: CampaignDraft;
-  tempDir: string; // Directorio temporal principal para el build
-  buildDir: string; // Directorio de salida de Next.js (`/out`)
-  zipPath: string; // Ruta final del archivo .zip
+  theme: AssembledTheme; // <-- APARATO NIVELADO: El tema ensamblado es ahora parte del contrato.
+  tempDir: string;
+  buildDir: string;
+  zipPath: string;
 }
 
 /**

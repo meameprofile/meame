@@ -6,7 +6,7 @@
  *              vida para monitorear el montaje y la suscripción a eventos del DOM,
  *              cumpliendo con el Pilar III de Calidad.
  * @version 3.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -16,7 +16,6 @@ import { logger } from "@/shared/lib/logging";
 export function useFullscreenManager(
   containerRef: React.RefObject<HTMLDivElement | null>
 ) {
-  // --- [INICIO DE REFACTORIZACIÓN DE OBSERVABILIDAD v3.0.0] ---
   const traceId = useMemo(
     () => logger.startTrace("useFullscreenManager_Lifecycle_v3.0"),
     []
@@ -25,7 +24,6 @@ export function useFullscreenManager(
     logger.info("[FullscreenManager Hook] Montado y listo.", { traceId });
     return () => logger.endTrace(traceId);
   }, [traceId]);
-  // --- [FIN DE REFACTORIZACIÓN DE OBSERVABILIDAD v3.0.0] ---
 
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -33,20 +31,32 @@ export function useFullscreenManager(
     const actionTraceId = logger.startTrace("toggleFullscreen_Action");
     const element = containerRef.current;
     if (!element) {
-      logger.warn("[FullscreenManager] Intento de toggle sin un elemento contenedor.", {
-        traceId: actionTraceId,
-      });
+      logger.warn(
+        "[FullscreenManager] Intento de toggle sin un elemento contenedor.",
+        {
+          traceId: actionTraceId,
+        }
+      );
       logger.endTrace(actionTraceId, { error: true });
       return;
     }
 
     if (!document.fullscreenElement) {
-      logger.traceEvent(actionTraceId, "Solicitando entrada a pantalla completa...");
+      logger.traceEvent(
+        actionTraceId,
+        "Solicitando entrada a pantalla completa..."
+      );
       element.requestFullscreen().catch((error) => {
-        logger.error("Error al intentar entrar en pantalla completa.", { error, traceId: actionTraceId });
+        logger.error("Error al intentar entrar en pantalla completa.", {
+          error,
+          traceId: actionTraceId,
+        });
       });
     } else {
-      logger.traceEvent(actionTraceId, "Solicitando salida de pantalla completa...");
+      logger.traceEvent(
+        actionTraceId,
+        "Solicitando salida de pantalla completa..."
+      );
       document.exitFullscreen();
     }
     logger.endTrace(actionTraceId);

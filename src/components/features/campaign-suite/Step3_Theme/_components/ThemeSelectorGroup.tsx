@@ -10,12 +10,13 @@
 "use client";
 
 import React from "react";
-import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
-// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
-import type { DiscoveredFragments } from "@/shared/lib/actions/campaign-suite/getThemeFragments.action";
-// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
+// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA v2.0.0] ---
+// Se importa el contrato de tipo desde su SSoT soberana en la capa de schemas.
+import type { DiscoveredFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
+// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA v2.0.0] ---
 import { ThemeFragmentSelector } from "./ThemeFragmentSelector";
 import { logger } from "@/shared/lib/logging";
+import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
 import type { Step3ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
 import type { z } from "zod";
 

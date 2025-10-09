@@ -2,22 +2,17 @@
 /**
  * @file types.ts
  * @description SSoT para los contratos de tipos compartidos del ecosistema SuiteStyleComposer.
- * @version 1.0.0
+ * @version 2.0.0 (Sovereign Contract Import)
  * @author RaZ Podestá - MetaShark Tech
  */
-import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 
-export type LoadedFragments = {
-  base: Partial<AssembledTheme>;
-  colors: Record<string, Partial<AssembledTheme>>;
-  fonts: Record<string, Partial<AssembledTheme>>;
-  radii: Record<string, Partial<AssembledTheme>>;
-};
+// Se re-exporta el tipo soberano para que los componentes locales puedan usarlo.
+export type { LoadedFragments };
 
 export interface SuiteThemeConfig extends ThemeConfig {
   granularColors?: Record<string, string>;
   granularFonts?: Record<string, string>;
   granularGeometry?: Record<string, string>;
 }
-// RUTA: src/components/features/dev-tools/SuiteStyleComposer/types.ts

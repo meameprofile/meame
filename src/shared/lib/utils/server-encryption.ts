@@ -5,7 +5,7 @@
  *              v5.0.0 (Universal Web Crypto API): Refactorizado para usar exclusivamente
  *              la Web Crypto API, garantizando la compatibilidad con Node.js y Edge Runtime.
  * @version 5.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { webcrypto as crypto } from "crypto";

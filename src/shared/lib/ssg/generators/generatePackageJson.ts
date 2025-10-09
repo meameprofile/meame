@@ -2,21 +2,17 @@
 /**
  * @file generatePackageJson.ts
  * @description Módulo generador soberano para el archivo package.json.
- *              v3.0.0 (Dependency Symmetry): Refactorizado para leer
- *              dinámicamente las dependencias del proyecto principal,
- *              garantizando la simetría de versiones.
- * @version 3.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v3.1.0 (CampaignDraft v7.0 Contract Alignment): Se alinea con el
+ *              nuevo contrato de CampaignDraft, usando `campaignName`.
+ * @version 3.1.0
+ * @author L.I.A. Legacy
  */
 "use server-only";
 
 import { promises as fs } from "fs";
 import path from "path";
 import { logger } from "@/shared/lib/logging";
-import type { z } from "zod";
-import type { CampaignDraftDataSchema } from "@/shared/lib/schemas/campaigns/draft.schema";
-
-type ValidatedDraft = z.infer<typeof CampaignDraftDataSchema>;
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 const sanitizeForPackageName = (name: string): string => {
   return name
@@ -24,8 +20,6 @@ const sanitizeForPackageName = (name: string): string => {
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "");
 };
-
-// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE] ---
 
 const DEPENDENCY_WHITELIST = [
   "next",
@@ -76,15 +70,13 @@ async function getProjectDependencies(): Promise<{
   return { dependencies, devDependencies };
 }
 
-// --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
-
 export async function generatePackageJson(
-  draft: ValidatedDraft,
+  draft: CampaignDraft,
   targetDir: string
 ): Promise<void> {
-  logger.trace("[Generator] Iniciando generación de package.json (v3.0)...");
+  logger.trace("[Generator] Iniciando generación de package.json (v3.1)...");
 
-  const packageName = sanitizeForPackageName(draft.variantName || "campaign");
+  const packageName = sanitizeForPackageName(draft.campaignName || "campaign");
   const projectDeps = await getProjectDependencies();
 
   const packageJsonTemplate = {

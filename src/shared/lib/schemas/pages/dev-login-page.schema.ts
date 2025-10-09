@@ -2,8 +2,8 @@
 /**
  * @file dev-login-page.schema.ts
  * @description SSoT para el contrato de datos i18n del dominio de login del DCC.
- * @version 6.1.0 (Fallback Content Contract)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 8.0.0 (Interactive Inactivity Toast Contract)
+ * @author L.I.A. Legacy
  */
 import { z } from "zod";
 
@@ -40,11 +40,18 @@ export const DevLoginPageContentSchema = z.object({
     title: z.string(),
     location: z.string().includes("{{location}}"),
     ip: z.string().includes("{{ip}}"),
-    // --- [INICIO DE RESTAURACIÓN DE CONTRATO] ---
     unknownLocation: z.string(),
     unknownIp: z.string(),
-    // --- [FIN DE RESTAURACIÓN DE CONTRATO] ---
   }),
+  // --- [INICIO DE NIVELACIÓN DE CONTRATO v8.0.0] ---
+  inactivityToast: z.object({
+    title: z.string(),
+    description: z.string(),
+    renewButton: z.string(),
+    redirectNowButton: z.string(),
+  }),
+  // Se elimina la propiedad obsoleta `inactivityRedirect`.
+  // --- [FIN DE NIVELACIÓN DE CONTRATO v8.0.0] ---
 });
 
 export const DevLoginPageLocaleSchema = z.object({

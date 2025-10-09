@@ -1,17 +1,16 @@
 // RUTA: src/app/[locale]/login/page.tsx
 /**
  * @file page.tsx
- * @description Página de login para el DCC, con resiliencia de datos, logging
- *              verboso y una UX más limpia y enfocada.
- * @version 9.0.0 (Observability Contract v20+ Compliance)
+ * @description Página "Server Shell" para el login, que delega la lógica al orquestador de cliente.
+ * @version 10.0.0 (Client Orchestrator Pattern & Elite Leveling)
  * @author RaZ Podestá - MetaShark Tech
  */
+import "server-only";
 import React from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { AuthForm } from "@/components/features/auth/AuthForm";
 import { logger } from "@/shared/lib/logging";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getBaviManifest } from "@/shared/lib/bavi";
@@ -19,6 +18,7 @@ import type {
   BaviAsset,
   BaviVariant,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import { LoginClientOrchestrator } from "./_components/LoginClientOrchestrator";
 
 interface DevLoginPageProps {
   params: { locale: Locale };
@@ -27,12 +27,13 @@ interface DevLoginPageProps {
 export default async function DevLoginPage({
   params: { locale },
 }: DevLoginPageProps) {
-  const traceId = logger.startTrace("DevLoginPage_Render_v9.0");
+  const traceId = logger.startTrace("DevLoginPage_Render_v10.0");
   const groupId = logger.startGroup(
-    `[DevLoginPage Shell] Renderizando v9.0 para locale: ${locale}`
+    `[DevLoginPage Shell] Renderizando v10.0 para locale: ${locale}`
   );
 
-  let backgroundImageUrl = "/img/dev/login/bg-1.png"; // Fallback estático robusto
+  // Se define una URL de fallback robusta como guardián inicial.
+  let backgroundImageUrl = "/img/dev/login/bg-1.png";
 
   try {
     logger.traceEvent(
@@ -47,7 +48,7 @@ export default async function DevLoginPage({
 
     const { devLoginPage: content, oAuthButtons: oAuthContent } = dictionary;
 
-    // Guardián de Resiliencia Holístico
+    // Guardián de Resiliencia de Contenido
     if (dictError || !content || !oAuthContent) {
       const missingKeys = [
         !content && "devLoginPage",
@@ -61,6 +62,7 @@ export default async function DevLoginPage({
     }
     logger.traceEvent(traceId, "Contenido i18n validado.");
 
+    // Lógica de Resolución de Activo en Servidor
     if (content.backgroundImageAssetId) {
       logger.traceEvent(
         traceId,
@@ -87,7 +89,11 @@ export default async function DevLoginPage({
       }
     }
 
-    logger.traceEvent(traceId, "Renderizando UI principal...");
+    logger.success(
+      "[DevLoginPage Shell] Ensamblaje de datos completado. Delegando al orquestador de cliente...",
+      { traceId }
+    );
+
     return (
       <div className="relative min-h-screen w-full overflow-hidden bg-background flex flex-col items-center justify-center p-4">
         <div className="absolute inset-0 z-0 opacity-20">
@@ -102,7 +108,7 @@ export default async function DevLoginPage({
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
         </div>
         <main className="relative z-10 flex w-full max-w-sm flex-col items-center">
-          <AuthForm
+          <LoginClientOrchestrator
             content={content}
             oAuthContent={oAuthContent}
             locale={locale}

@@ -2,79 +2,53 @@
 /**
  * @file page.tsx
  * @description Página principal de la Central de Operaciones BAVI.
- * @version 5.0.0 (Sovereign Path Restoration)
+ * @version 6.0.0 (Cloudinary-Inspired Refactor)
  * @author RaZ Podestá - MetaShark Tech
  */
+import "server-only";
 import React from "react";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { PageHeader } from "@/components/layout/PageHeader";
-import {
-  Container,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui";
-import { AssetUploader } from "@/components/features/bavi/components/AssetUploader";
 import { logger } from "@/shared/lib/logging";
-// --- [FIN DE NIVELACIÓN DE RUTAS v5.0.0] ---
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { getBaviI18nContentAction } from "@/shared/lib/actions/bavi/getBaviI18nContent.action";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { BaviPageClient } from "./_components/BaviPageClient";
 
 export default async function BaviHomePage({
   params: { locale },
 }: {
   params: { locale: Locale };
 }) {
-  logger.info(
-    "[BaviHomePage] Renderizando la página principal de la BAVI (v5.0)."
-  );
-  const { dictionary } = await getDictionary(locale);
-  const pageContent = dictionary.baviHomePage;
-  const uploaderContent = dictionary.baviUploader;
-  const promptCreatorContent = dictionary.promptCreator;
+  const traceId = logger.startTrace("BaviHomePage_Shell_v6.0");
+  const groupId = logger.startGroup("[BaviPage Shell] Ensamblando datos...");
 
-  if (!uploaderContent || !promptCreatorContent || !pageContent) {
-    // En un escenario real, aquí se usaría un DeveloperErrorDisplay.
-    return <div>Error: Contenido de la página BAVI no encontrado.</div>;
-  }
+  try {
+    const i18nResult = await getBaviI18nContentAction(locale);
 
-  return (
-    <>
-      <PageHeader
-        content={{
-          title: pageContent.title,
-          subtitle: pageContent.subtitle,
-        }}
+    if (!i18nResult.success) {
+      throw new Error(i18nResult.error);
+    }
+
+    logger.success("[BaviPage Shell] Datos obtenidos. Delegando a cliente...", {
+      traceId,
+    });
+
+    return <BaviPageClient locale={locale} content={i18nResult.data} />;
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
+    logger.error("[BaviPage Shell] Fallo crítico.", {
+      error: errorMessage,
+      traceId,
+    });
+    return (
+      <DeveloperErrorDisplay
+        context="BaviHomePage Shell"
+        errorMessage="No se pudieron cargar los recursos para la BAVI."
+        errorDetails={error instanceof Error ? error : errorMessage}
       />
-      <Container className="py-12 space-y-12">
-        <Card>
-          <CardHeader>
-            <CardTitle>{pageContent.ingestCardTitle}</CardTitle>
-            <CardDescription>
-              {pageContent.ingestCardDescription}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <AssetUploader
-              content={uploaderContent}
-              sesaLabels={promptCreatorContent.sesaLabels}
-              sesaOptions={promptCreatorContent.sesaOptions}
-            />
-          </CardContent>
-        </Card>
-
-        <Card className="border-dashed">
-          <CardHeader>
-            <CardTitle className="text-muted-foreground">
-              {pageContent.aiBoilerCardTitle}
-            </CardTitle>
-            <CardDescription>
-              {pageContent.aiBoilerCardDescription}
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </Container>
-    </>
-  );
+    );
+  } finally {
+    logger.endGroup(groupId);
+    logger.endTrace(traceId);
+  }
 }

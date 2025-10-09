@@ -1,17 +1,15 @@
 // RUTA: src/shared/hooks/aether/use-progress-tracker.ts
 /**
  * @file use-progress-tracker.ts
- * @description Hook atómico para rastrear el progreso de reproducción del vídeo.
- *              v3.0.0 (Holistic Observability): Inyectado con una traza de ciclo de
- *              vida para monitorear la suscripción a eventos del elemento de vídeo
- *              y la actualización del estado de progreso.
- * @version 3.0.0
- * @author L.I.A. Legacy
+ * @description Hook atómico y puro para rastrear el progreso de un elemento de vídeo,
+ *              forjado con observabilidad de ciclo de vida completo y una arquitectura
+ *              desacoplada de élite.
+ * @version 5.0.0 (Holistic Fusion & Elite Observability)
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import type { VideoTexture } from "three";
 import { logger } from "@/shared/lib/logging";
 
 export interface ProgressState {
@@ -19,13 +17,18 @@ export interface ProgressState {
   duration: number;
 }
 
-export function useProgressTracker(videoTexture: VideoTexture) {
-  // --- [INICIO DE REFACTORIZACIÓN DE OBSERVABILIDAD v3.0.0] ---
+/**
+ * @function useProgressTracker
+ * @description Hook puro que se suscribe a los eventos de tiempo de un
+ *              HTMLVideoElement para rastrear su progreso de reproducción.
+ * @param {HTMLVideoElement | null} videoEl - El elemento de vídeo a rastrear.
+ * @returns {ProgressState} El estado actual del progreso del vídeo.
+ */
+export function useProgressTracker(videoEl: HTMLVideoElement | null) {
   const traceId = useMemo(
-    () => logger.startTrace("useProgressTracker_Lifecycle_v3.0"),
+    () => logger.startTrace("useProgressTracker_Lifecycle_v5.0"),
     []
   );
-  // --- [FIN DE REFACTORIZACIÓN DE OBSERVABILIDAD v3.0.0] ---
 
   const [progress, setProgress] = useState<ProgressState>({
     currentTime: 0,
@@ -33,34 +36,46 @@ export function useProgressTracker(videoTexture: VideoTexture) {
   });
 
   useEffect(() => {
-    logger.info("[ProgressTracker Hook] Montado, suscribiendo a eventos de tiempo.", { traceId });
-    const videoElement = videoTexture.image as HTMLVideoElement;
+    if (!videoEl) {
+      return;
+    }
+
+    const groupId = logger.startGroup(
+      "[ProgressTracker Hook] Suscribiendo a eventos de tiempo...",
+      traceId
+    );
 
     const handleTimeUpdate = () => {
-      setProgress((previousProgress) => ({ ...previousProgress, currentTime: videoElement.currentTime }));
+      setProgress((prev) => ({ ...prev, currentTime: videoEl.currentTime }));
     };
 
     const handleDurationChange = () => {
-      const newDuration = videoElement.duration;
+      const newDuration = videoEl.duration;
       if (!isNaN(newDuration)) {
-        setProgress((previousProgress) => ({ ...previousProgress, duration: newDuration }));
-        logger.traceEvent(traceId, "Evento de DOM: durationchange", { newDuration });
+        setProgress((prev) => ({ ...prev, duration: newDuration }));
+        logger.traceEvent(traceId, "Evento de DOM: durationchange", {
+          newDuration,
+        });
       }
     };
 
-    videoElement.addEventListener("timeupdate", handleTimeUpdate);
-    videoElement.addEventListener("durationchange", handleDurationChange);
-    // Dispara una vez al inicio en caso de que la duración ya esté disponible
-    if (videoElement.duration) {
+    videoEl.addEventListener("timeupdate", handleTimeUpdate);
+    videoEl.addEventListener("durationchange", handleDurationChange);
+    if (videoEl.duration) {
       handleDurationChange();
     }
 
+    logger.success("[ProgressTracker Hook] Suscrito y operacional.", {
+      traceId,
+    });
+
     return () => {
-      videoElement.removeEventListener("timeupdate", handleTimeUpdate);
-      videoElement.removeEventListener("durationchange", handleDurationChange);
+      videoEl.removeEventListener("timeupdate", handleTimeUpdate);
+      videoEl.removeEventListener("durationchange", handleDurationChange);
+      logger.endGroup(groupId);
       logger.endTrace(traceId);
     };
-  }, [videoTexture, traceId]);
+  }, [videoEl, traceId]);
 
   return progress;
 }

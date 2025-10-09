@@ -1,12 +1,10 @@
 // RUTA: src/components/features/campaign-suite/CampaignSuiteWizard.tsx
 /**
  * @file CampaignSuiteWizard.tsx
- * @description Orquestador de cliente y "Layout Shell" para la SDC.
- *              v22.3.0 (Definitive Build Integrity): Se elimina el último
- *              aparato obsoleto ('CampaignDraftSubscriber'), completando
- *              la refactorización y garantizando un build limpio.
- * @version 22.3.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description Orquestador de cliente y "Layout Shell" para la SDC,
+ *              alineado con la nueva arquitectura zonal inspirada en Canva.
+ * @version 23.0.0 (Zoned Layout Architecture)
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -20,12 +18,9 @@ import { WizardProvider } from "./_context/WizardContext";
 import { ProgressContext, type ProgressStep } from "./_context/ProgressContext";
 import { WizardHeader } from "./_components/WizardHeader";
 import { WizardClientLayout } from "./_components/WizardClientLayout";
-// --- [INICIO DE PURGA FINAL] ---
-// La importación del componente obsoleto ha sido eliminada.
-// --- [FIN DE PURGA FINAL] ---
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
-import type { LoadedFragments } from "@/shared/lib/actions/campaign-suite";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { routes } from "@/shared/lib/navigation";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
@@ -46,7 +41,7 @@ export function CampaignSuiteWizard({
   dictionary,
 }: CampaignSuiteWizardProps) {
   const traceId = useMemo(
-    () => logger.startTrace("CampaignSuiteWizard_v22.3"),
+    () => logger.startTrace("CampaignSuiteWizard_v23.0"),
     []
   );
   useEffect(() => {
@@ -138,20 +133,19 @@ export function CampaignSuiteWizard({
 
   return (
     <WizardProvider value={wizardContextValue}>
-      {/* --- [INICIO DE PURGA FINAL] --- */}
-      {/* La invocación al componente obsoleto ha sido eliminada. */}
-      {/* --- [FIN DE PURGA FINAL] --- */}
       <ProgressContext.Provider value={progressContextValue}>
-        <WizardHeader />
-        <WizardClientLayout
-          previewContent={content.preview}
-          isLoadingDraft={isLoading}
-          loadedFragments={loadedFragments}
-          baviManifest={baviManifest}
-          dictionary={dictionary}
-        >
-          {children}
-        </WizardClientLayout>
+        <div className="space-y-6">
+          <WizardHeader />
+          <WizardClientLayout
+            previewContent={content.preview}
+            isLoadingDraft={isLoading}
+            loadedFragments={loadedFragments}
+            baviManifest={baviManifest}
+            dictionary={dictionary}
+          >
+            {children}
+          </WizardClientLayout>
+        </div>
       </ProgressContext.Provider>
     </WizardProvider>
   );

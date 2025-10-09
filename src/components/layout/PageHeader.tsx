@@ -1,12 +1,9 @@
 // RUTA: src/components/layout/PageHeader.tsx
 /**
  * @file PageHeader.tsx
- * @description Componente de élite para encabezados de página.
- *              v4.2.0 (Explicit Module Resolution): Se corrige la ruta de
- *              importación para apuntar directamente al archivo del componente,
- *              resolviendo el error TS2307 y eliminando la dependencia de un
- *              "barrel file" inexistente.
- * @version 4.2.0
+ * @description Componente de élite para encabezados de página, ahora con
+ *              capacidad de anulación de estilos para máxima flexibilidad.
+ * @version 5.0.0 (Style Override Capability & Elite Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -19,11 +16,14 @@ import { logger } from "@/shared/lib/logging";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import type { PageHeaderContentSchema } from "@/shared/lib/schemas/components/page-header.schema";
 import type { z } from "zod";
+import { cn } from "@/shared/lib/utils/cn";
 
 type PageHeaderContent = z.infer<typeof PageHeaderContentSchema>;
 
 export interface PageHeaderProps {
   content?: PageHeaderContent;
+  titleClassName?: string; // <-- NUEVA PROP
+  subtitleClassName?: string; // <-- NUEVA PROP
 }
 
 const containerVariants: Variants = {
@@ -43,7 +43,11 @@ const itemVariants: Variants = {
   },
 };
 
-export function PageHeader({ content }: PageHeaderProps): React.ReactElement {
+export function PageHeader({
+  content,
+  titleClassName,
+  subtitleClassName,
+}: PageHeaderProps): React.ReactElement {
   if (!content) {
     const errorMessage =
       "Componente 'PageHeader' renderizado sin la prop 'content' requerida.";
@@ -60,7 +64,7 @@ export function PageHeader({ content }: PageHeaderProps): React.ReactElement {
     return <></>;
   }
 
-  logger.info("[PageHeader] Renderizando v4.2 (Explicit Module Resolution).");
+  logger.info("[PageHeader] Renderizando v5.0 (Style Override Capable).");
   const { title, subtitle, lightRays } = content;
 
   return (
@@ -79,13 +83,19 @@ export function PageHeader({ content }: PageHeaderProps): React.ReactElement {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-4xl font-bold tracking-tight text-primary sm:text-5xl"
+            className={cn(
+              "text-4xl font-bold tracking-tight text-primary sm:text-5xl",
+              titleClassName // <-- FUSIÓN DE ESTILOS
+            )}
           >
             {title}
           </motion.h1>
           <motion.p
             variants={itemVariants}
-            className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto"
+            className={cn(
+              "mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto",
+              subtitleClassName // <-- FUSIÓN DE ESTILOS
+            )}
           >
             {subtitle}
           </motion.p>

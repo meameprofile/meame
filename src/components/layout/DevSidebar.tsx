@@ -4,7 +4,7 @@
  * @description Barra lateral soberana para el DCC, ahora con observabilidad de
  *              intención de navegación y una higiene de código impecable.
  * @version 6.2.0 (Elite Code Hygiene)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -61,9 +61,15 @@ export function DevSidebar({
   content,
   routeGroups,
 }: DevSidebarProps) {
-  const traceId = useMemo(() => logger.startTrace("DevSidebar_Lifecycle_v6.2"), []);
+  const traceId = useMemo(
+    () => logger.startTrace("DevSidebar_Lifecycle_v6.2"),
+    []
+  );
   useEffect(() => {
-    logger.info("[DevSidebar] Componente de presentación puro montado (v6.2).", { traceId });
+    logger.info(
+      "[DevSidebar] Componente de presentación puro montado (v6.2).",
+      { traceId }
+    );
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
@@ -76,9 +82,15 @@ export function DevSidebar({
 
   const activeWorkspace = workspaces.find((ws) => ws.id === activeWorkspaceId);
 
-  const handleLinkClick = useCallback((path: string, name: string) => {
-    logger.info(`[DevSidebar] INTENCIÓN DE NAVEGACIÓN: El usuario ha hecho clic para ir a '${name}' (${path})`, { traceId });
-  }, [traceId]);
+  const handleLinkClick = useCallback(
+    (path: string, name: string) => {
+      logger.info(
+        `[DevSidebar] INTENCIÓN DE NAVEGACIÓN: El usuario ha hecho clic para ir a '${name}' (${path})`,
+        { traceId }
+      );
+    },
+    [traceId]
+  );
 
   return (
     <aside className="h-full w-72 flex-col border-r bg-card p-4 hidden md:flex">
@@ -86,7 +98,9 @@ export function DevSidebar({
         <Link
           href={`/${currentLocale}/dev`}
           className="flex items-center gap-2 font-semibold"
-          onClick={() => handleLinkClick(`/${currentLocale}/dev`, "DCC Dashboard")}
+          onClick={() =>
+            handleLinkClick(`/${currentLocale}/dev`, "DCC Dashboard")
+          }
         >
           <span className="text-primary font-black text-lg">DCC</span>
           <span className="text-muted-foreground">/</span>
@@ -126,20 +140,41 @@ export function DevSidebar({
                           >
                             {isDynamic ? (
                               <span className="flex w-full items-center">
-                                <DynamicIcon name={item.iconName} className="mr-2 h-4 w-4" />
+                                <DynamicIcon
+                                  name={item.iconName}
+                                  className="mr-2 h-4 w-4"
+                                />
                                 {item.name}
-                                <Badge variant="outline" className="ml-auto text-xs font-mono">tpl</Badge>
+                                <Badge
+                                  variant="outline"
+                                  className="ml-auto text-xs font-mono"
+                                >
+                                  tpl
+                                </Badge>
                               </span>
                             ) : (
-                              <Link href={item.path} onClick={() => handleLinkClick(item.path, item.name)}>
-                                <DynamicIcon name={item.iconName} className="mr-2 h-4 w-4" />
+                              <Link
+                                href={item.path}
+                                onClick={() =>
+                                  handleLinkClick(item.path, item.name)
+                                }
+                              >
+                                <DynamicIcon
+                                  name={item.iconName}
+                                  className="mr-2 h-4 w-4"
+                                />
                                 {item.name}
                               </Link>
                             )}
                           </Button>
                         </TooltipTrigger>
                         {isDynamic && (
-                          <TooltipContent><p>Esta es una plantilla de ruta dinámica y no se puede navegar directamente.</p></TooltipContent>
+                          <TooltipContent>
+                            <p>
+                              Esta es una plantilla de ruta dinámica y no se
+                              puede navegar directamente.
+                            </p>
+                          </TooltipContent>
                         )}
                       </Tooltip>
                     </TooltipProvider>

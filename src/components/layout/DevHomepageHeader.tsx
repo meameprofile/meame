@@ -6,7 +6,7 @@
  *              generar dinámicamente las props requeridas por DevToolsDropdown,
  *              restaurando la integridad del contrato de datos.
  * @version 10.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

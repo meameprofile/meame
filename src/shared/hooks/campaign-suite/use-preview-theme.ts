@@ -13,7 +13,7 @@ import { usePreviewStore } from "@/components/features/campaign-suite/_context/P
 import { deepMerge } from "@/shared/lib/utils";
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import { AssembledThemeSchema } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import type { LoadedFragments } from "@/shared/lib/actions/campaign-suite";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import { logger } from "@/shared/lib/logging";
 import { useCampaignDraft } from "./use-campaign-draft.hook"; // <-- ARQUITECTURA SOBERANA
 

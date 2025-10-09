@@ -5,7 +5,7 @@
  *              un guardián de entorno, carga diferida de dependencias, resiliencia
  *              de élite y observabilidad hiper-granular.
  * @version 13.0.0 (Definitive Environment Guard & Build Integrity)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -30,11 +30,17 @@ export function useNos3Tracker(enabled: boolean): void {
       if (!sessionId) {
         sessionId = createId();
         sessionStorage.setItem(SESSION_STORAGE_KEY, sessionId);
-        logger.traceEvent(traceId, `[nos3] Nueva sesión iniciada: ${sessionId}`);
+        logger.traceEvent(
+          traceId,
+          `[nos3] Nueva sesión iniciada: ${sessionId}`
+        );
       }
       return sessionId;
     } catch (error) {
-      logger.warn("[nos3] sessionStorage no disponible. Usando ID efímero.", { error, traceId });
+      logger.warn("[nos3] sessionStorage no disponible. Usando ID efímero.", {
+        error,
+        traceId,
+      });
       return createId();
     }
   }, [traceId]);
@@ -43,22 +49,44 @@ export function useNos3Tracker(enabled: boolean): void {
     async (isUnloading = false) => {
       if (eventsBuffer.current.length === 0) return;
       const flushTraceId = logger.startTrace("nos3.flushEvents");
-      const groupId = logger.startGroup(`[nos3] Vaciando ${eventsBuffer.current.length} eventos...`, flushTraceId);
+      const groupId = logger.startGroup(
+        `[nos3] Vaciando ${eventsBuffer.current.length} eventos...`,
+        flushTraceId
+      );
       const eventsToSend = [...eventsBuffer.current];
       eventsBuffer.current = [];
       const sessionId = getOrCreateSessionId();
-      const payload = { sessionId, events: eventsToSend, metadata: { pathname, timestamp: Date.now() } };
-      const body = new Blob([JSON.stringify(payload)], { type: "application/json" });
+      const payload = {
+        sessionId,
+        events: eventsToSend,
+        metadata: { pathname, timestamp: Date.now() },
+      };
+      const body = new Blob([JSON.stringify(payload)], {
+        type: "application/json",
+      });
       try {
         if (isUnloading && navigator.sendBeacon) {
-          if (!navigator.sendBeacon("/api/nos3/ingest", body)) throw new Error("navigator.sendBeacon devolvió 'false'.");
+          if (!navigator.sendBeacon("/api/nos3/ingest", body))
+            throw new Error("navigator.sendBeacon devolvió 'false'.");
         } else {
-          const response = await fetch("/api/nos3/ingest", { method: "POST", body, keepalive: true });
-          if (!response.ok) throw new Error(`El servidor respondió con estado ${response.status}`);
+          const response = await fetch("/api/nos3/ingest", {
+            method: "POST",
+            body,
+            keepalive: true,
+          });
+          if (!response.ok)
+            throw new Error(
+              `El servidor respondió con estado ${response.status}`
+            );
         }
-        logger.success("[nos3] Lote de eventos enviado con éxito.", { traceId: flushTraceId });
+        logger.success("[nos3] Lote de eventos enviado con éxito.", {
+          traceId: flushTraceId,
+        });
       } catch (error) {
-        logger.error("[nos3] Fallo al enviar lote. Re-encolando eventos.", { error, traceId: flushTraceId });
+        logger.error("[nos3] Fallo al enviar lote. Re-encolando eventos.", {
+          error,
+          traceId: flushTraceId,
+        });
         eventsBuffer.current = [...eventsToSend, ...eventsBuffer.current];
       } finally {
         logger.endGroup(groupId);
@@ -72,21 +100,33 @@ export function useNos3Tracker(enabled: boolean): void {
     // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v13.0.0] ---
     // Este Guardián de Entorno es la solución definitiva. Previene que CUALQUIER
     // código de este efecto se ejecute o sea analizado en el servidor.
-    if (!enabled || isRecording.current || typeof window === 'undefined') {
-      logger.trace("[nos3] Guardián de Entorno: Ejecución omitida (no habilitado, ya grabando, o no es un navegador).", { traceId });
+    if (!enabled || isRecording.current || typeof window === "undefined") {
+      logger.trace(
+        "[nos3] Guardián de Entorno: Ejecución omitida (no habilitado, ya grabando, o no es un navegador).",
+        { traceId }
+      );
       return;
     }
     // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v13.0.0] ---
 
-    const groupId = logger.startGroup("[nos3] Orquestando inicialización de grabador...", traceId);
+    const groupId = logger.startGroup(
+      "[nos3] Orquestando inicialización de grabador...",
+      traceId
+    );
     let stopRecording: (() => void) | undefined;
 
     const initializeRecorder = async () => {
       const initTraceId = logger.startTrace("nos3.initializeRecorder");
       try {
-        logger.traceEvent(initTraceId, "Condiciones cumplidas. Iniciando grabación en el cliente...");
+        logger.traceEvent(
+          initTraceId,
+          "Condiciones cumplidas. Iniciando grabación en el cliente..."
+        );
 
-        logger.traceEvent(initTraceId, "Cargando dinámicamente la librería rrweb...");
+        logger.traceEvent(
+          initTraceId,
+          "Cargando dinámicamente la librería rrweb..."
+        );
         const rrweb = await import("rrweb");
         logger.traceEvent(initTraceId, "Librería rrweb cargada en el cliente.");
 
@@ -98,16 +138,20 @@ export function useNos3Tracker(enabled: boolean): void {
 
         if (stopRecording) {
           isRecording.current = true;
-          logger.success("[nos3] Grabación iniciada con éxito.", { traceId: initTraceId });
+          logger.success("[nos3] Grabación iniciada con éxito.", {
+            traceId: initTraceId,
+          });
         } else {
           throw new Error("rrweb.record no devolvió una función de 'stop'.");
         }
-
       } catch (error) {
-        logger.error("[Guardián de Resiliencia][nos3] Fallo CRÍTICO al inicializar rrweb. La grabación está deshabilitada.", {
-          error: error instanceof Error ? error.message : String(error),
-          traceId: initTraceId,
-        });
+        logger.error(
+          "[Guardián de Resiliencia][nos3] Fallo CRÍTICO al inicializar rrweb. La grabación está deshabilitada.",
+          {
+            error: error instanceof Error ? error.message : String(error),
+            traceId: initTraceId,
+          }
+        );
         isRecording.current = false;
       } finally {
         logger.endTrace(initTraceId);
@@ -126,7 +170,10 @@ export function useNos3Tracker(enabled: boolean): void {
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      const cleanupGroupId = logger.startGroup("[nos3] Desmontando y limpiando recursos...", traceId);
+      const cleanupGroupId = logger.startGroup(
+        "[nos3] Desmontando y limpiando recursos...",
+        traceId
+      );
       clearInterval(intervalId);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (stopRecording) {

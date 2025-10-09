@@ -3,7 +3,7 @@
  * @file AssetUploaderForm.tsx
  * @description Componente de presentación puro para la UI del AssetUploader.
  * @version 3.0.0 (Holistic Data Flow & Elite Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -25,6 +25,7 @@ type SesaContent = {
   sesaOptions: NonNullable<Dictionary["promptCreator"]>["sesaOptions"];
 };
 
+// Contrato de props explícito que recibe TODO el estado del hook.
 interface AssetUploaderFormProps {
   form: UseFormReturn<AssetUploadMetadata>;
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
@@ -63,11 +64,7 @@ export function AssetUploaderForm({
           getInputProps={getInputProps}
           isDragActive={isDragActive}
           preview={preview}
-          text={
-            isDragActive
-              ? "Suelta para iniciar la magia..."
-              : content.dropzoneDefault
-          }
+          text={isDragActive ? "Suelta para iniciar..." : content.dropzoneDefault}
         />
         <div className="space-y-6">
           <MetadataForm

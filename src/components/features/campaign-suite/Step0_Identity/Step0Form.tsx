@@ -1,152 +1,222 @@
 // RUTA: src/components/features/campaign-suite/Step0_Identity/Step0Form.tsx
 /**
  * @file Step0Form.tsx
- * @description Componente de Presentación para el formulario del Paso 0,
- *              alineado con el WizardNavigation v2.0 y restaurado a su integridad total.
- * @version 9.1.0 (Build Integrity Restoration)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Componente de presentación puro para el formulario del Paso 0.
+ *              v3.0.0 (Architectural Restoration): Se elimina el uso del
+ *              componente obsoleto FormFieldGroup, alineándose con el patrón
+ *              de composición soberano de react-hook-form.
+ * @version 3.0.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import React from "react";
 import type { UseFormReturn } from "react-hook-form";
-import { z } from "zod";
-import { motion, type Variants } from "framer-motion";
 import {
-  Card,
   CardContent,
   CardHeader,
   CardTitle,
   CardDescription,
-  CardFooter,
-} from "@/components/ui/Card";
-import { Form } from "@/components/ui/Form";
-import { logger } from "@/shared/lib/logging";
-import {
-  type Step0Data,
-  type Step0ContentSchema,
-} from "@/shared/lib/schemas/campaigns/steps/step0.schema";
+  FormField,
+  FormItem,
+  FormControl,
+  RadioGroup,
+  RadioGroupItem,
+  Label,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+  Button,
+  DynamicIcon,
+  FormLabel,
+  FormDescription,
+  FormMessage,
+} from "@/components/ui";
 import { CampaignSelectField, VariantInputField } from "../_components/shared";
-import { WizardNavigation } from "@/components/features/campaign-suite/_components/WizardNavigation";
+import { TagInput } from "@/components/ui/TagInput";
+import type { z } from "zod";
+import type {
+  Step0ContentSchema,
+  Step0Data,
+} from "@/shared/lib/schemas/campaigns/steps/step0.schema";
+import type { CampaignTemplate } from "@/shared/lib/schemas/campaigns/template.schema";
 import { producersConfig } from "@/shared/lib/config/campaign-suite/producers.config";
 
 type Step0Content = z.infer<typeof Step0ContentSchema>;
 
-// --- [INICIO] RESTAURACIÓN DE INTEGRIDAD DE CONTRATO ---
-// Se define la interfaz de props que faltaba.
 interface Step0FormProps {
   form: UseFormReturn<Step0Data>;
   content: Step0Content;
   baseCampaigns: string[];
-  onSubmit: (data: Step0Data) => void;
+  templates: CampaignTemplate[];
+  campaignOrigin: "scratch" | "template" | "clone";
 }
-// --- [FIN] RESTAURACIÓN DE INTEGRIDAD DE CONTRATO ---
-
-const formVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-};
-
-const fieldVariants: Variants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } },
-};
 
 export function Step0Form({
   form,
   content,
   baseCampaigns,
-  onSubmit,
-}: Step0FormProps): React.ReactElement {
-  logger.trace("[Step0Form] Renderizando formulario de presentación v9.1.");
-
-  const selectedProducer = form.watch("producer");
+  templates,
+  campaignOrigin,
+}: Step0FormProps) {
+  const producerOptions = producersConfig.map((p) => ({
+    value: p.id,
+    label: content.producerLabels[p.nameKey] || p.id,
+  }));
   const campaignTypeOptions =
-    producersConfig.find((p) => p.id === selectedProducer)
-      ?.supportedCampaignTypes || [];
+    producersConfig
+      .find((p) => p.id === form.watch("producer"))
+      ?.supportedCampaignTypes.map((ct) => ({
+        value: ct.id,
+        label: content.campaignTypeLabels[ct.nameKey] || ct.id,
+      })) || [];
 
   return (
-    <Card>
+    <>
       <CardHeader>
         <CardTitle>{content.title}</CardTitle>
         <CardDescription>{content.description}</CardDescription>
       </CardHeader>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <CardContent>
-            {/* --- [INICIO] RESTAURACIÓN DEL CUERPO LÓGICO --- */}
-            <motion.div
-              className="space-y-8"
-              variants={formVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.div variants={fieldVariants}>
-                <CampaignSelectField
-                  control={form.control}
-                  name="producer"
-                  label={content.producerLabel}
-                  placeholder={content.producerPlaceholder}
-                  options={producersConfig.map((p) => ({
-                    value: p.id,
-                    label: p.name,
-                  }))}
-                />
-              </motion.div>
-              <motion.div variants={fieldVariants}>
-                <CampaignSelectField
-                  control={form.control}
-                  name="campaignType"
-                  label={content.campaignTypeLabel}
-                  placeholder={content.campaignTypePlaceholder}
-                  options={campaignTypeOptions.map((t) => ({
-                    value: t.id,
-                    label: t.name,
-                  }))}
-                />
-              </motion.div>
-              <motion.div variants={fieldVariants}>
-                <CampaignSelectField
-                  control={form.control}
-                  name="baseCampaignId"
-                  label={content.baseCampaignLabel}
-                  placeholder={content.baseCampaignPlaceholder}
-                  description={content.baseCampaignDescription}
-                  options={baseCampaigns.map((id) => ({
-                    value: id,
-                    label: `Campaña ${id}`,
-                  }))}
-                />
-              </motion.div>
-              <motion.div variants={fieldVariants}>
-                <VariantInputField
-                  control={form.control}
-                  name="variantName"
-                  label={content.variantNameLabel}
-                  placeholder={content.variantNamePlaceholder}
-                />
-              </motion.div>
-              <motion.div variants={fieldVariants}>
-                <VariantInputField
-                  control={form.control}
-                  name="seoKeywords"
-                  label={content.seoKeywordsLabel}
+      <CardContent className="space-y-8">
+        <FormField
+          control={form.control}
+          name="campaignOrigin"
+          render={({ field }) => (
+            <FormItem className="space-y-3">
+              <FormLabel>{content.originGroupLabel}</FormLabel>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex flex-col sm:flex-row gap-4"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="scratch" />
+                    </FormControl>
+                    <Label className="font-normal">
+                      {content.originScratchLabel}
+                    </Label>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem
+                        value="template"
+                        disabled={templates.length === 0}
+                      />
+                    </FormControl>
+                    <Label className="font-normal">
+                      {content.originTemplateLabel}
+                    </Label>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem
+                        value="clone"
+                        disabled={baseCampaigns.length === 0}
+                      />
+                    </FormControl>
+                    <Label className="font-normal">
+                      {content.originCloneLabel}
+                    </Label>
+                  </FormItem>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {campaignOrigin === "template" && (
+          <CampaignSelectField
+            control={form.control}
+            name="templateId"
+            label={content.templateSelectLabel}
+            placeholder={content.templateSelectPlaceholder}
+            options={templates.map((t) => ({ value: t.id, label: t.name }))}
+          />
+        )}
+
+        {campaignOrigin === "clone" && (
+          <CampaignSelectField
+            control={form.control}
+            name="baseCampaignId"
+            label={content.baseCampaignLabel}
+            placeholder={content.baseCampaignPlaceholder}
+            options={baseCampaigns.map((id) => ({
+              value: id,
+              label: `Campaña ${id}`,
+            }))}
+          />
+        )}
+
+        <VariantInputField
+          control={form.control}
+          name="campaignName"
+          label={content.campaignNameLabel}
+          placeholder={content.campaignNamePlaceholder}
+        />
+
+        <FormField
+          control={form.control}
+          name="seoKeywords"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                <div className="flex items-center gap-2">
+                  <span>{content.seoKeywordsLabel}</span>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="h-5 w-5"
+                        >
+                          <DynamicIcon name="CircleHelp" className="h-4 w-4" />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{content.seoKeywordsTooltip.content}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+              </FormLabel>
+              <FormControl>
+                <TagInput
                   placeholder={content.seoKeywordsPlaceholder}
-                  description={content.seoKeywordsDescription}
+                  value={field.value}
+                  onChange={field.onChange}
                 />
-              </motion.div>
-            </motion.div>
-            {/* --- [FIN] RESTAURACIÓN DEL CUERPO LÓGICO --- */}
-          </CardContent>
-          <CardFooter>
-            <WizardNavigation
-              onNext={form.handleSubmit(onSubmit)}
-              onBack={() => {}}
-              isFirstStep={true}
-            />
-          </CardFooter>
-        </form>
-      </Form>
-    </Card>
+              </FormControl>
+              <FormDescription>
+                {content.seoKeywordsDescription}
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <CampaignSelectField
+            control={form.control}
+            name="producer"
+            label={content.producerLabel}
+            placeholder={content.producerPlaceholder}
+            options={producerOptions}
+          />
+          <CampaignSelectField
+            control={form.control}
+            name="campaignType"
+            label={content.campaignTypeLabel}
+            placeholder={content.campaignTypePlaceholder}
+            options={campaignTypeOptions}
+          />
+        </div>
+      </CardContent>
+    </>
   );
 }

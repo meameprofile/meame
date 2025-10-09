@@ -12,7 +12,7 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { toast } from "sonner";
 import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
-import { saveCampaignAssetAction } from "@/shared/lib/actions/campaign-suite";
+import { saveCampaignAssetAction } from "@/shared/lib/actions/campaign-suite/saveCampaignAsset.action";
 import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { FieldValues, Path } from "react-hook-form";
 import { logger } from "@/shared/lib/logging";

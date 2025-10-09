@@ -188,7 +188,10 @@
       },
       "categorization": {
         "primary": "Desempenho",
-        "secondary": ["recuperacao", "forca"]
+        "secondary": [
+          "recuperacao",
+          "forca"
+        ]
       },
       "targetProfile": {
         "userType": "Atletas",
@@ -409,6 +412,30 @@
       "ip": "IP: {{ip}}",
       "unknownLocation": "Localização desconhecida",
       "unknownIp": "IP desconhecido"
+    },
+    "inactivityToast": {
+      "title": "Aviso de Inatividade",
+      "description": "Você será redirecionado em breve. Deseja permanecer nesta página?",
+      "renewButton": "Permanecer",
+      "redirectNowButton": "Redirecionar Agora"
+    }
+  },
+  "heimdallObservatory": {
+    "pageHeader": {
+      "title": "Observatório Heimdall",
+      "subtitle": "O centro de comando para telemetria e observabilidade do ecossistema."
+    },
+    "recentsPanel": {
+      "title": "Eventos Recentes"
+    },
+    "detailPanel": {
+      "title": "Detalhe do Evento Selecionado"
+    },
+    "mimirPanel": {
+      "title": "Analista Conversacional (Mimir)",
+      "analyzeButton": "Analisar com Temeo",
+      "thinkingButton": "Analisando...",
+      "placeholder": "Selecione um evento e clique em 'Analisar' para obter uma análise forense e um plano de nivelamento da nossa IA."
     }
   },
   "nos3Dashboard": {
@@ -428,23 +455,6 @@
   "razPromptsHomePage": {
     "createPromptTab": "Criar Prompt",
     "viewVaultTab": "Ver Cofre"
-  },
-  "step0": {
-    "title": "Passo 0: Identificação",
-    "description": "Este é o passo fundamental. As informações aqui definem a identidade e a estratégia da sua campanha.",
-    "baseCampaignLabel": "Campanha Base",
-    "baseCampaignPlaceholder": "Selecione um produto",
-    "baseCampaignDescription": "Selecione o produto base para esta nova variante.",
-    "variantNameLabel": "Nome da Variante",
-    "variantNamePlaceholder": "Ex: 'Vitalidade', 'Foco Científico'",
-    "seoKeywordsLabel": "Palavras-chave de SEO",
-    "seoKeywordsPlaceholder": "Ex: 'bem-estar, energia, natural'",
-    "keywordsDescription": "Separadas por vírgulas. Serão usadas para gerar a URL.",
-    "producerLabel": "Produtor / Rede",
-    "producerPlaceholder": "Selecione um produtor",
-    "campaignTypeLabel": "Tipo de Campanha",
-    "campaignTypePlaceholder": "Selecione um tipo",
-    "passportStampLabel": "Passaporte Aprovado"
   },
   "step1": {
     "title": "Passo 1: Estrutura da Página",
@@ -474,6 +484,8 @@
   "step3": {
     "title": "Passo 3: Tema Visual",
     "description": "Defina a personalidade da sua campanha. Suas escolhas aqui serão refletidas instantaneamente na pré-visualização ao vivo.",
+    "loadingTitle": "Carregando Cofre de Estilos...",
+    "loadingDescription": "Sincronizando com o banco de dados.",
     "themeSelectorTitle": "Selecione os Fragmentos de Tema",
     "colorsLabel": "Paleta de Cores",
     "fontsLabel": "Tipografia",
@@ -493,7 +505,31 @@
     "createNewFontSetButton": "Criar Novo Conjunto de Fontes",
     "createNewRadiusStyleButton": "Criar Novo Estilo de Raio",
     "placeholderFontsNone": "Nenhum conjunto de fontes disponível",
-    "placeholderRadiiNone": "Nenhum estilo de raio disponível"
+    "placeholderRadiiNone": "Nenhum estilo de raio disponível",
+    "deletePresetDialog": {
+      "title": "Tem certeza de que deseja excluir este preset?",
+      "description": "Esta ação é irreversível. O preset será excluído permanentemente.",
+      "cancelButton": "Cancelar",
+      "confirmButton": "Sim, Excluir Preset"
+    },
+    "editPresetDialog": {
+      "title": "Editar Preset '{{presetName}}'",
+      "description": "Atualize o nome e a descrição deste preset.",
+      "nameLabel": "Nome do Preset",
+      "descriptionLabel": "Descrição",
+      "saveButton": "Salvar Alterações",
+      "cancelButton": "Cancelar"
+    },
+    "createPresetDialog": {
+      "title": "Criar Novo Preset de {{type}}",
+      "description": "Defina um novo estilo reutilizável para seu workspace.",
+      "nameLabel": "Nome",
+      "namePlaceholder": "Ex. Estilo Corporativo Azul",
+      "descriptionLabel": "Descrição",
+      "descriptionPlaceholder": "Para campanhas sérias e profissionais...",
+      "saveButton": "Salvar Preset",
+      "cancelButton": "Cancelar"
+    }
   },
   "step4": {
     "title": "Passo 4: Conteúdo",
@@ -552,11 +588,33 @@
     "loadingAssets": "Carregando ativos...",
     "noAssetsFoundTitle": "Nenhum ativo encontrado.",
     "noAssetsFoundDescription": "Tente ajustar sua pesquisa ou filtros.",
+    "clearFiltersButton": "Limpar Filtros",
     "previousPageButton": "Anterior",
     "nextPageButton": "Próximo",
     "pageInfo": "Página {{currentPage}} de {{totalPages}}",
     "viewDetailsButton": "Ver Detalhes",
     "selectAssetButton": "Selecionar"
+  },
+  "baviHeader": {
+    "searchPlaceholder": "Pesquisar ativos...",
+    "uploadButton": "Carregar",
+    "filterByAILabel": "Filtrar por IA",
+    "allAIsOption": "Todas as IAs"
+  },
+  "aetherControls": {
+    "playLabel": "Reproduzir",
+    "pauseLabel": "Pausar",
+    "muteLabel": "Silenciar",
+    "unmuteLabel": "Ativar som",
+    "enterFullscreenLabel": "Tela cheia",
+    "exitFullscreenLabel": "Sair da tela cheia",
+    "enterPipLabel": "Picture-in-Picture",
+    "exitPipLabel": "Sair do Picture-in-Picture",
+    "expandLabel": "Expandir",
+    "collapseLabel": "Recolher",
+    "progressBarLabel": "Barra de progresso do vídeo",
+    "preloaderText": "Carregando experiência...",
+    "errorText": "Não foi possível carregar o recurso de vídeo."
   },
   "orderConfirmationEmail": {
     "previewText": "Confirmação do seu pedido Global Fitwell #{{orderId}}",
@@ -603,7 +661,10 @@
         "imageUrl": "/pravatar/58",
         "firstName": "Leo",
         "lastName": "Miranda",
-        "positions": ["Desenvolvedor Frontend", "Criador Deste Site"],
+        "positions": [
+          "Desenvolvedor Frontend",
+          "Criador Deste Site"
+        ],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -1240,7 +1301,11 @@
       "emailPlaceholder": "joao.silva@example.com",
       "subjectLabel": "Assunto",
       "subjectPlaceholder": "Selecione um assunto",
-      "subjectOptions": ["Desenvolvimento Web", "Marketing Digital", "Outro"],
+      "subjectOptions": [
+        "Desenvolvimento Web",
+        "Marketing Digital",
+        "Outro"
+      ],
       "messageLabel": "Mensagem",
       "messagePlaceholder": "Sua mensagem...",
       "submitButtonText": "Enviar Mensagem"

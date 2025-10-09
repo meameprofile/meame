@@ -1,8 +1,8 @@
-// RUTA: src/shared/lib/actions/bavi/getBaviAssets.action.ts
+// src/shared/lib/actions/bavi/getBaviAssets.action.ts
 /**
  * @file getBaviAssets.action.ts
  * @description Server Action de producción para obtener activos de la BAVI.
- * @version 4.0.0 (Absolute Type Safety & Elite Compliance)
+ * @version 5.0.0 (Workspace Scoping & Elite Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -15,19 +15,22 @@ import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import { RaZPromptsSesaTagsSchema } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import { mapSupabaseToBaviAsset } from "./_shapers/bavi.shapers";
 
+// --- [INICIO DE NIVELACIÓN DE CONTRATO v5.0.0] ---
 const GetBaviAssetsInputSchema = z.object({
+  workspaceId: z.string().uuid("Se requiere un ID de workspace válido."),
   page: z.number().int().min(1).default(1),
   limit: z.number().int().min(1).max(100).default(9),
   query: z.string().optional(),
   tags: RaZPromptsSesaTagsSchema.partial().optional(),
 });
+// --- [FIN DE NIVELACIÓN DE CONTRATO v5.0.0] ---
 
 export type GetBaviAssetsInput = z.infer<typeof GetBaviAssetsInputSchema>;
 
 export async function getBaviAssetsAction(
   input: GetBaviAssetsInput
 ): Promise<ActionResult<{ assets: BaviAsset[]; total: number }>> {
-  const traceId = logger.startTrace("getBaviAssetsAction_v4.0");
+  const traceId = logger.startTrace("getBaviAssetsAction_v5.0");
   const supabase = createServerClient();
   const {
     data: { user },
@@ -44,18 +47,19 @@ export async function getBaviAssetsAction(
       return { success: false, error: "Parámetros de búsqueda inválidos." };
     }
 
-    const { page, limit, query, tags } = validatedInput.data;
+    const { page, limit, query, tags, workspaceId } = validatedInput.data;
     const start = (page - 1) * limit;
     const end = start + limit - 1;
 
+    // La consulta ahora filtra por workspaceId, reforzando la seguridad y el aislamiento de datos.
     let queryBuilder = supabase
       .from("bavi_assets")
       .select("*, bavi_variants(*)", { count: "exact" })
-      .eq("user_id", user.id);
+      .eq("workspace_id", workspaceId);
 
     if (query) {
       queryBuilder = queryBuilder.or(
-        `asset_id.ilike.%${query}%,keywords.cs.{${query}}`
+        `asset_id.ilike.%${query}%,description.ilike.%${query}%`
       );
     }
     if (tags) {
@@ -74,11 +78,7 @@ export async function getBaviAssetsAction(
     const validAssets: BaviAsset[] = [];
     for (const row of data || []) {
       try {
-        // --- [INICIO DE CORRECCIÓN DE TIPO] ---
-        // La aserción 'as any' ya no es necesaria. El tipo de 'row' es ahora
-        // inferido correctamente por TypeScript a partir de la consulta.
         const asset = mapSupabaseToBaviAsset(row, traceId);
-        // --- [FIN DE CORRECCIÓN DE TIPO] ---
         validAssets.push(asset);
       } catch (validationError) {
         logger.warn(

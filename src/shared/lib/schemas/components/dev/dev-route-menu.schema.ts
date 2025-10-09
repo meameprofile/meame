@@ -4,13 +4,13 @@
  * @description SSoT para el contrato i18n del DevRouteMenu.
  *              v7.1.0 (Logger Purge): Se elimina la llamada al logger para
  *              cumplir con la arquitectura de schemas puros y resolver el
- *              error de build "Attempted to call a client-side function from the server".
+ *              error de build "Server Functions cannot be called during initial render".
  * @version 7.1.0
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 
-// La llamada a `logger.trace` ha sido eliminada.
+// La llamada a `logger.trace` ha sido eliminada para garantizar la pureza del módulo.
 
 export const DevRouteMenuContentSchema = z
   .object({

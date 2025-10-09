@@ -2,11 +2,11 @@
 /**
  * @file ImageField.tsx
  * @description Componente de campo de imagen de élite, como un Client Component soberano.
- *              v12.0.0 (Architectural Integrity Restoration): Se corrige la ruta de
- *              importación de AssetSelectorModal a su SSoT canónica en la feature BAVI,
- *              resolviendo un error crítico de build TS2307.
- * @version 12.0.0
- *@author RaZ Podestá - MetaShark Tech
+ *              v12.1.0 (API Contract Restoration): Se implementa la prop faltante
+ *              'onViewDetails' en la invocación de AssetSelectorModal para restaurar
+ *              la integridad del contrato y resolver el error de build TS2741.
+ * @version 12.1.0
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -18,10 +18,7 @@ import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils
 import type { FieldComponentProps } from "../../../_types/field.types";
 import { useImageField } from "./_hooks/use-image-field";
 import { ImagePreview, ImageFieldActions } from "./_components";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// La importación ahora consume la fachada pública de la feature BAVI.
 import { AssetSelectorModal } from "@/components/features/bavi/components";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
 export function ImageField<TFieldValues extends FieldValues>({
   field,
@@ -29,7 +26,9 @@ export function ImageField<TFieldValues extends FieldValues>({
   fieldName,
 }: FieldComponentProps<TFieldValues>) {
   logger.trace(
-    `[ImageField] Renderizando componente de presentación v12.0 para: ${String(fieldName)}`
+    `[ImageField] Renderizando componente de presentación v12.1 para: ${String(
+      fieldName
+    )}`
   );
 
   const pathname = usePathname();
@@ -43,6 +42,17 @@ export function ImageField<TFieldValues extends FieldValues>({
     handleRemoveImage,
     handleAssetSelected,
   } = useImageField(onValueChange, fieldName);
+
+  // --- [INICIO DE RESTAURACIÓN DE CONTRATO v12.1.0] ---
+  // Se crea una función para satisfacer la prop 'onViewDetails' requerida.
+  const handleViewDetails = (assetId: string) => {
+    logger.info(
+      `[ImageField] Intención de usuario: Ver detalles para el activo ${assetId}. (Funcionalidad no implementada en este contexto)`
+    );
+    // En este flujo, no se abre un panel de detalles, pero se registra la intención.
+    // Se podría añadir una notificación toast si fuera necesario.
+  };
+  // --- [FIN DE RESTAURACIÓN DE CONTRATO v12.1.0] ---
 
   const currentImageValue = field.value as string | null;
 
@@ -62,12 +72,12 @@ export function ImageField<TFieldValues extends FieldValues>({
         hasImage={!!currentImageValue}
       />
 
-      {/* El modal se renderiza condicionalmente y recibe sus props de forma segura */}
       {isSelectorOpen && (
         <AssetSelectorModal
           isOpen={isSelectorOpen}
           onClose={() => setIsSelectorOpen(false)}
           onAssetSelect={handleAssetSelected}
+          onViewDetails={handleViewDetails} // <-- Prop obligatoria ahora proveída
           locale={locale}
         />
       )}

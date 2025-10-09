@@ -1,10 +1,10 @@
 // RUTA: src/components/features/campaign-suite/TemplateBrowser/TemplateBrowser.tsx
 /**
  * @file TemplateBrowser.tsx
- * @description Interfaz para seleccionar una plantilla o empezar de cero.
- *              Forjada con caché inteligente, observabilidad profunda y MEA/UX.
- * @version 7.0.0 (Architectural & API Contract Restoration)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Interfaz para seleccionar una plantilla o empezar de cero, ahora
+ *              con importaciones soberanas para garantizar la integridad del build.
+ * @version 7.1.0 (Build Integrity Restoration)
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -20,7 +20,9 @@ import { TemplateCard } from "./_components/TemplateCard";
 import { routes } from "@/shared/lib/navigation";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
-import { getCampaignTemplatesAction } from "@/shared/lib/actions/campaign-suite";
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v7.1.0] ---
+import { getCampaignTemplatesAction } from "@/shared/lib/actions/campaign-suite/getCampaignTemplates.action";
+// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v7.1.0] ---
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
@@ -42,11 +44,11 @@ const itemVariants: Variants = {
 
 export function TemplateBrowser({ content }: TemplateBrowserProps) {
   const traceId = useMemo(
-    () => logger.startTrace("TemplateBrowser_Lifecycle_v7.0"),
+    () => logger.startTrace("TemplateBrowser_Lifecycle_v7.1"),
     []
   );
   useEffect(() => {
-    logger.info("[TemplateBrowser] Componente montado.", { traceId });
+    logger.info("[TemplateBrowser] Componente montado (v7.1).", { traceId });
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
@@ -122,7 +124,6 @@ export function TemplateBrowser({ content }: TemplateBrowserProps) {
   const handleTemplateSelect = (templateId: string) => {
     logger.traceEvent(traceId, `Acción: Seleccionando plantilla ${templateId}`);
     setSelectedTemplateId(templateId);
-    // La llamada ahora es correcta y segura a nivel de tipos.
     loadTemplate(templateId, content.templateCopySuffix);
   };
 

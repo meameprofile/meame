@@ -2,11 +2,10 @@
 /**
  * @file SchemaFieldRenderer.tsx
  * @description Orquestador de élite que integra RHF con el motor de renderizado de UI.
- *              v4.0.0 (Architectural Integrity Restoration & Elite Observability): Se
- *              corrige la ruta de importación del FieldControl a su SSoT canónica
- *              y se inyecta logging de observabilidad granular.
- * @version 4.0.0
- *@author RaZ Podestá - MetaShark Tech
+ *              v5.0.0 (Barrel File Eradication & Elite Compliance): Se refactorizan
+ *              las importaciones para que sean explícitas y se inyecta logging granular.
+ * @version 5.0.0
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -15,7 +14,12 @@ import { z } from "zod";
 import type { Control, FieldValues, Path } from "react-hook-form";
 import { FormField } from "@/components/ui/Form";
 import { logger } from "@/shared/lib/logging";
-import { FieldControl } from "./components";
+
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v5.0.0] ---
+// Se eliminó la dependencia del archivo barril (.../components/index.ts).
+// Cada componente ahora se importa directamente desde su archivo soberano.
+import { FieldControl } from "./components/FieldControl";
+// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v5.0.0] ---
 
 interface SchemaFieldRendererProps<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
@@ -33,7 +37,9 @@ export function SchemaFieldRenderer<TFieldValues extends FieldValues>({
   onValueChange,
 }: SchemaFieldRendererProps<TFieldValues>): React.ReactElement {
   logger.trace(
-    `[SchemaFieldRenderer v4.0] Orquestando campo: ${String(fieldName)} en sección: ${sectionName}`
+    `[SchemaFieldRenderer v5.0] Orquestando campo: ${String(
+      fieldName
+    )} en sección: ${sectionName}`
   );
 
   return (

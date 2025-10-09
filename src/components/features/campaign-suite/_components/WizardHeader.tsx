@@ -2,15 +2,14 @@
 /**
  * @file WizardHeader.tsx
  * @description Header de la SDC, con observabilidad y resiliencia de élite.
- * @version 7.0.0 (Resilient & Observable)
- *@author RaZ Podestá - MetaShark Tech
+ * @version 7.1.0 (State Source Correction)
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React, { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ProgressContext } from "../_context/ProgressContext";
-import { useCampaignDraftStore } from "@/shared/hooks/campaign-suite/use-campaign-draft.store";
 import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
 import { ProgressStepper } from "./ProgressStepper";
 import { DynamicIcon } from "@/components/ui";
@@ -18,12 +17,11 @@ import { logger } from "@/shared/lib/logging";
 import { DeveloperErrorDisplay } from "../../dev-tools";
 
 const SyncStatusIndicator = () => {
-  const isSyncing = useCampaignDraftStore(
-    (state: { isSyncing: boolean }) => state.isSyncing
-  );
-  const updatedAt = useDraftMetadataStore(
-    (state: { updatedAt: string }) => state.updatedAt
-  );
+  // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v7.1.0] ---
+  // Se consume 'isSyncing' desde el store de metadata, su SSoT correcta.
+  const isSyncing = useDraftMetadataStore((state) => state.isSyncing);
+  const updatedAt = useDraftMetadataStore((state) => state.updatedAt);
+  // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v7.1.0] ---
   const lastSavedTime = new Date(updatedAt).toLocaleTimeString();
 
   return (
@@ -61,7 +59,7 @@ const SyncStatusIndicator = () => {
 };
 
 export function WizardHeader(): React.ReactElement {
-  logger.info("[Observabilidad][CLIENTE] Renderizando WizardHeader v7.0.");
+  logger.info("[Observabilidad][CLIENTE] Renderizando WizardHeader v7.1.");
 
   const progressContext = useContext(ProgressContext);
 

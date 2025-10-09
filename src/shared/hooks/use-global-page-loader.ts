@@ -4,7 +4,7 @@
  * @description Hook soberano para gestionar un estado de carga global durante
  *              las transiciones de página del App Router de Next.js.
  * @version 1.0.0 (Elite & MEA/UX)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -24,21 +24,29 @@ export function useGlobalPageLoader(): { isLoading: boolean } {
     const groupId = logger.startGroup("[Page Loader] Detectando transición...");
 
     if (currentPath !== previousPath.current) {
-      logger.info("[Page Loader] Transición de página iniciada.", { from: previousPath.current, to: currentPath, traceId });
+      logger.info("[Page Loader] Transición de página iniciada.", {
+        from: previousPath.current,
+        to: currentPath,
+        traceId,
+      });
       setIsLoading(true);
       previousPath.current = currentPath;
     } else {
-       logger.trace("[Page Loader] Render inicial o sin cambio de ruta.", { currentPath, traceId });
+      logger.trace("[Page Loader] Render inicial o sin cambio de ruta.", {
+        currentPath,
+        traceId,
+      });
     }
 
     // El efecto se completa cuando el nuevo componente se renderiza,
     // lo que significa que la carga ha terminado.
     setIsLoading(false);
-    logger.success("[Page Loader] Transición de página completada.", { traceId });
+    logger.success("[Page Loader] Transición de página completada.", {
+      traceId,
+    });
 
     logger.endGroup(groupId);
     logger.endTrace(traceId);
-
   }, [pathname, searchParams]);
 
   return { isLoading };

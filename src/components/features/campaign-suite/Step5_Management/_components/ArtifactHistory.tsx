@@ -3,24 +3,27 @@
  * @file ArtifactHistory.tsx
  * @description Componente de UI para mostrar y descargar el historial de artefactos.
  *              Forjado con observabilidad de élite, resiliencia y un contrato de datos i18n.
- * @version 2.0.0 (Elite Observability & Resilience)
- *@author RaZ Podestá - MetaShark Tech
+ * @version 2.1.0 (Barrel File Eradication)
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import React, { useState, useEffect, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v2.1.0] ---
+// Se eliminó la dependencia del archivo barril. Cada acción y tipo ahora se importa
+// directamente desde su archivo soberano para garantizar la integridad del build.
 import {
   getArtifactsForDraftAction,
-  getArtifactDownloadUrlAction,
   type ArtifactMetadata,
-} from "@/shared/lib/actions/campaign-suite";
+} from "@/shared/lib/actions/campaign-suite/getArtifactsForDraft.action";
+import { getArtifactDownloadUrlAction } from "@/shared/lib/actions/campaign-suite/getArtifactDownloadUrl.action";
+// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v2.1.0] ---
 import { logger } from "@/shared/lib/logging";
 import { Button, DynamicIcon, Skeleton } from "@/components/ui";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
-// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO I18N] ---
 interface ArtifactHistoryContent {
   title: string;
   loadingHistoryText: string;
@@ -35,7 +38,6 @@ interface ArtifactHistoryProps {
   draftId: string;
   content: ArtifactHistoryContent;
 }
-// --- [FIN DE REFACTORIZACIÓN DE CONTRATO I18N] ---
 
 const formatBytes = (bytes: number, decimals = 2): string => {
   if (bytes === 0) return "0 Bytes";
@@ -51,7 +53,7 @@ export function ArtifactHistory({
   content,
 }: ArtifactHistoryProps): React.ReactElement {
   logger.info(
-    `[ArtifactHistory] Renderizando historial para draft: ${draftId}`
+    `[ArtifactHistory] Renderizando historial v2.1 para draft: ${draftId}`
   );
 
   const [artifacts, setArtifacts] = useState<ArtifactMetadata[]>([]);

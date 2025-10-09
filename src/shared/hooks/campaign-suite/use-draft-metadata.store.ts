@@ -2,8 +2,11 @@
 /**
  * @file use-draft-metadata.store.ts
  * @description Store atómico para la metadata y el progreso del borrador.
- * @version 3.0.0 (Elite Observability)
- * @author RaZ Podestá - MetaShark Tech
+ *              v5.0.0 (CampaignDraft v7.0 Contract Alignment): Se alinea el
+ *              contrato de datos con la SSoT de CampaignDraft, corrigiendo
+ *              los tipos de `campaignName` y `seoKeywords`.
+ * @version 5.0.0
+ * @author L.I.A. Legacy
  */
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
@@ -13,14 +16,16 @@ import { generateDraftId } from "@/shared/lib/utils/campaign-suite/draft.utils";
 interface DraftMetadata {
   draftId: string | null;
   baseCampaignId: string | null;
-  variantName: string | null;
-  seoKeywords: string | null;
+  campaignName: string | null; // <-- CORREGIDO: de 'variantName' a 'campaignName'
+  seoKeywords: string[]; // <-- CORREGIDO: de 'string | null' a 'string[]'
   completedSteps: number[];
   updatedAt: string;
+  isSyncing: boolean;
 }
 
 interface DraftMetadataActions {
   setMetadata: (data: Partial<Omit<DraftMetadata, "completedSteps">>) => void;
+  setIsSyncing: (isSyncing: boolean) => void;
   completeStep: (stepId: number) => void;
   resetMetadata: () => void;
 }
@@ -28,10 +33,11 @@ interface DraftMetadataActions {
 const initialState: DraftMetadata = {
   draftId: null,
   baseCampaignId: null,
-  variantName: null,
-  seoKeywords: null,
+  campaignName: null,
+  seoKeywords: [],
   completedSteps: [],
   updatedAt: new Date(0).toISOString(),
+  isSyncing: false,
 };
 
 export const useDraftMetadataStore = create<
@@ -61,6 +67,10 @@ export const useDraftMetadataStore = create<
           draftId: newDraftId,
           updatedAt: data.updatedAt || new Date().toISOString(),
         }));
+      },
+      setIsSyncing: (isSyncing) => {
+        logger.trace(`[MetadataStore] Estado de sincronización: ${isSyncing}`);
+        set({ isSyncing });
       },
       completeStep: (stepId) => {
         logger.info(`[MetadataStore] Marcando paso ${stepId} como completado.`);

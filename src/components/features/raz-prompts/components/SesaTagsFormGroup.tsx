@@ -1,12 +1,11 @@
-// RUTA: src/components/features/raz-prompts/_components/SesaTagsFormGroup.tsx
+// RUTA: src/components/features/raz-prompts/components/SesaTagsFormGroup.tsx
 /**
  * @file SesaTagsFormGroup.tsx
  * @description Aparato de presentación atómico para la cuadrícula de selectores SESA.
- *              v4.0.0 (Atomic Refactor): Se extrae la lógica del FormFieldGroup a su
- *              componente padre, adhiriéndose estrictamente al Principio de
- *              Responsabilidad Única.
- * @version 4.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v5.0.0 (Architectural Restoration): Se elimina el componente
+ *              FormFieldGroup obsoleto para adherirse al PRU.
+ * @version 5.0.0
+ * @author L.I.A. Legacy
  */
 "use client";
 import React from "react";
@@ -54,11 +53,9 @@ export function SesaTagsFormGroup<TFieldValues extends FieldValues>({
   content,
 }: SesaTagsFormGroupProps<TFieldValues>) {
   logger.trace(
-    "[SesaTagsFormGroup] Renderizando cuadrícula de tags SESA v4.0."
+    "[SesaTagsFormGroup] Renderizando cuadrícula de tags SESA v5.0."
   );
 
-  // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-  // El FormFieldGroup ha sido eliminado. Este componente ahora solo renderiza la cuadrícula.
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
       {sesaFields.map((tagName) => (
@@ -90,5 +87,4 @@ export function SesaTagsFormGroup<TFieldValues extends FieldValues>({
       ))}
     </div>
   );
-  // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 }

@@ -35,6 +35,12 @@
         "ip": "IP: {{ip}}",
         "unknownLocation": "Località sconosciuta",
         "unknownIp": "IP sconosciuto"
+      },
+      "inactivityToast": {
+        "title": "Avviso di Inattività",
+        "description": "Verrai reindirizzato tra poco. Desideri rimanere in questa pagina?",
+        "renewButton": "Rimani",
+        "redirectNowButton": "Reindirizza Ora"
       }
     }
   },
@@ -74,6 +80,12 @@
         "ip": "IP: {{ip}}",
         "unknownLocation": "Ubicación desconocida",
         "unknownIp": "IP desconocida"
+      },
+      "inactivityToast": {
+        "title": "Aviso de Inactividad",
+        "description": "Serás redirigido en breve. ¿Deseas permanecer en esta página?",
+        "renewButton": "Permanecer",
+        "redirectNowButton": "Redirigir Ahora"
       }
     }
   },
@@ -113,6 +125,12 @@
         "ip": "IP: {{ip}}",
         "unknownLocation": "Unknown location",
         "unknownIp": "Unknown IP"
+      },
+      "inactivityToast": {
+        "title": "Inactivity Warning",
+        "description": "You will be redirected shortly. Do you wish to stay on this page?",
+        "renewButton": "Stay",
+        "redirectNowButton": "Redirect Now"
       }
     }
   },
@@ -152,6 +170,12 @@
         "ip": "IP: {{ip}}",
         "unknownLocation": "Localização desconhecida",
         "unknownIp": "IP desconhecido"
+      },
+      "inactivityToast": {
+        "title": "Aviso de Inatividade",
+        "description": "Você será redirecionado em breve. Deseja permanecer nesta página?",
+        "renewButton": "Permanecer",
+        "redirectNowButton": "Redirecionar Agora"
       }
     }
   }

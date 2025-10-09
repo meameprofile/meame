@@ -2,7 +2,7 @@
 /**
  * @file getThemeFragments.action.ts
  * @description Server Action para descubrir y cargar fragmentos de tema.
- * @version 2.2.0 (Code Hygiene Restoration)
+ * @version 3.0.0 (Sovereign Type Contracts)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -14,19 +14,10 @@ import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import { loadJsonAsset } from "@/shared/lib/i18n/campaign.data.loader";
-
-export type DiscoveredFragments = {
-  colors: string[];
-  fonts: string[];
-  radii: string[];
-};
-
-export type LoadedFragments = {
-  base: Partial<AssembledTheme>;
-  colors: Record<string, Partial<AssembledTheme>>;
-  fonts: Record<string, Partial<AssembledTheme>>;
-  radii: Record<string, Partial<AssembledTheme>>;
-};
+import type {
+  DiscoveredFragments,
+  LoadedFragments,
+} from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 
 export async function getThemeFragmentsAction(): Promise<
   ActionResult<DiscoveredFragments>
@@ -53,18 +44,17 @@ export async function getThemeFragmentsAction(): Promise<
     }
     return { success: true, data: results };
   } catch {
-    // --- [INICIO DE REFACTORIZACIÓN DE HIGIENE] --- Se elimina la variable 'error' no utilizada.
     return {
       success: false,
       error: "No se pudieron cargar las opciones de tema.",
     };
-  } // --- [FIN DE REFACTORIZACIÓN DE HIGIENE] ---
+  }
 }
 
 export async function loadAllThemeFragmentsAction(): Promise<
   ActionResult<LoadedFragments>
 > {
-  const traceId = logger.startTrace("loadAllThemeFragmentsAction");
+  const traceId = logger.startTrace("loadAllThemeFragmentsAction_v3.0");
   try {
     const discoveryResult = await getThemeFragmentsAction();
     if (!discoveryResult.success) throw new Error(discoveryResult.error);
@@ -131,4 +121,3 @@ export async function loadAllThemeFragmentsAction(): Promise<
     logger.endTrace(traceId);
   }
 }
-// RUTA: src/shared/lib/actions/campaign-suite/getThemeFragments.action.ts

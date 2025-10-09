@@ -1,8 +1,8 @@
-// RUTA: src/components/features/bavi/components/AssetCard.tsx
+// src/components/features/bavi/components/AssetCard.tsx
 /**
  * @file AssetCard.tsx
  * @description Componente de presentación puro para visualizar un activo de BAVI.
- * @version 6.0.0 (SESA Atomic Key Alignment)
+ * @version 7.0.0 (Holistic API Contract Restoration)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -30,6 +30,7 @@ import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic
 type CreatorContent = z.infer<typeof PromptCreatorContentSchema>;
 type SesaOptions = CreatorContent["sesaOptions"];
 
+// --- [INICIO DE NIVELACIÓN DE CONTRATO v7.0.0] ---
 interface AssetCardProps {
   asset: BaviAsset;
   locale: Locale;
@@ -37,7 +38,9 @@ interface AssetCardProps {
   onSelectAsset?: (asset: BaviAsset) => void;
   sesaOptions: SesaOptions;
   selectButtonText?: string;
+  viewDetailsButtonText: string; // Propiedad añadida al contrato
 }
+// --- [FIN DE NIVELACIÓN DE CONTRATO v7.0.0] ---
 
 export function AssetCard({
   asset,
@@ -46,9 +49,10 @@ export function AssetCard({
   onSelectAsset,
   sesaOptions,
   selectButtonText,
+  viewDetailsButtonText, // Propiedad recibida
 }: AssetCardProps): React.ReactElement {
   logger.trace(
-    `[AssetCard] Renderizando tarjeta v6.0 para activo: ${asset.assetId}`
+    `[AssetCard] Renderizando tarjeta v7.0 para activo: ${asset.assetId}`
   );
 
   const mainVariant = asset.variants[0];
@@ -68,7 +72,7 @@ export function AssetCard({
   return (
     <Card className="h-full flex flex-col hover:shadow-primary/20 transition-all duration-200 ease-in-out">
       <CardHeader>
-        <CardTitle className="text-lg">{asset.assetId}</CardTitle>
+        <CardTitle className="text-lg truncate">{asset.assetId}</CardTitle>
         <CardDescription className="flex items-center text-xs text-muted-foreground">
           <DynamicIcon name="Image" className="h-3 w-3 mr-1" />
           {asset.provider.toUpperCase()}
@@ -100,10 +104,10 @@ export function AssetCard({
           )}
         </div>
         <p className="text-sm text-muted-foreground line-clamp-3">
-          {asset.metadata?.altText?.[locale] || "No alt text provided."}
+          {asset.description || "Sin descripción."}
         </p>
       </CardContent>
-      <CardFooter className="flex flex-wrap items-center justify-between pt-0 gap-2">
+      <CardFooter className="flex flex-wrap items-center justify-between pt-0 gap-2 mt-auto">
         <div className="flex flex-wrap gap-1">
           {asset.tags &&
             Object.entries(asset.tags).map(([key, value]) => (
@@ -113,14 +117,16 @@ export function AssetCard({
             ))}
         </div>
         <div className="flex gap-2">
+          {/* --- [INICIO DE NIVELACIÓN DE LÓGICA v7.0.0] --- */}
           <Button
             variant="outline"
             size="sm"
             onClick={() => onViewDetails(asset.assetId)}
           >
             <DynamicIcon name="Eye" className="h-4 w-4 mr-2" />
-            Ver Detalles
+            {viewDetailsButtonText}
           </Button>
+          {/* --- [FIN DE NIVELACIÓN DE LÓGICA v7.0.0] --- */}
           {onSelectAsset && (
             <Button
               variant="default"

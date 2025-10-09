@@ -10,7 +10,7 @@
 
 import { useTransition, useMemo, useEffect } from "react";
 import { toast } from "sonner";
-import { saveAsTemplateAction } from "@/shared/lib/actions/campaign-suite";
+import { saveAsTemplateAction } from "@/shared/lib/actions/campaign-suite/saveAsTemplate.action";
 import { logger } from "@/shared/lib/logging";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";

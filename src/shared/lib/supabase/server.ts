@@ -5,7 +5,7 @@
  *              v7.0.0 (Explicit Type Sovereignty): Se fuerza explícitamente el tipo
  *              de retorno para resolver el error de inferencia circular TS7022.
  * @version 7.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import {

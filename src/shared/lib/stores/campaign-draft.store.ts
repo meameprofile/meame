@@ -8,10 +8,7 @@
 import { create } from "zustand";
 import { logger } from "@/shared/lib/logging";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
-// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
-// Se importa el estado inicial desde su SSoT canónica en la capa de configuración.
 import { initialCampaignDraftState } from "@/shared/lib/config/campaign-suite/draft.initial-state";
-// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
 
 // Se define la interfaz del estado y las acciones para un contrato claro.
 interface CampaignDraftState {
@@ -33,19 +30,16 @@ const initialState: CampaignDraftState = {
 
 export const useCampaignDraftStore = create<
   CampaignDraftState & CampaignDraftActions
-  // --- [INICIO DE CORRECCIÓN DE HIGIENE DE CÓDIGO] ---
-  // Se elimina el parámetro 'get' que no se está utilizando para satisfacer al linter.
 >((set) => ({
-  // --- [FIN DE CORRECCIÓN DE HIGIENE DE CÓDIGO] ---
   ...initialState,
 
-  // --- [INICIO DE CORRECCIÓN DE SEGURIDAD DE TIPOS] ---
-  // Se añade un tipo explícito al parámetro 'templateDraft'.
   applyTemplate: (templateDraft: CampaignDraft) => {
-    // --- [FIN DE CORRECCIÓN DE SEGURIDAD DE TIPOS] ---
+    // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v3.1.0] ---
+    // Se utiliza 'campaignName' en lugar de 'variantName' para alinear con la SSoT.
     logger.info("[Store] Aplicando plantilla al borrador...", {
-      templateName: templateDraft.variantName,
+      templateName: templateDraft.campaignName,
     });
+    // --- [FIN DE REFACTORIZACIÓN DE CONTRATO v3.1.0] ---
     set({
       draft: { ...initialCampaignDraftState, ...templateDraft },
       isHydratedFromTemplate: true,

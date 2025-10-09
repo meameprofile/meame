@@ -1,18 +1,18 @@
 // RUTA: src/components/features/auth/components/LoginForm.tsx
 /**
  * @file LoginForm.tsx
- * @description Componente de presentación puro para el formulario de login, nivelado
- *              con observabilidad de élite y cumplimiento estricto de contratos.
- * @version 10.0.0 (Holistic Observability & Contract Integrity)
+ * @description Componente de presentación puro para el formulario de login.
+ *              v12.0.0 (Pure Presentation & State Decoupling): Desacoplado de la
+ *              lógica de transición y enrutamiento, que ahora es gestionada por
+ *              el orquestador padre.
+ * @version 12.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React, { useState, useTransition, useMemo, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useMemo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
 import { motion, type Variants, AnimatePresence } from "framer-motion";
 import {
   Card,
@@ -33,18 +33,16 @@ import {
   DialogContent,
   Separator,
 } from "@/components/ui";
-import { logger } from "@/shared/lib/logging";
-import { routes } from "@/shared/lib/navigation";
+import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import {
   LoginSchema,
   type LoginFormData,
 } from "@/shared/lib/schemas/auth/login.schema";
-import { loginWithPasswordAction } from "@/shared/lib/actions/auth/auth.actions";
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
 import { OAuthButtons } from "./OAuthButtons";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { DeveloperErrorDisplay } from "../../dev-tools";
 
 type LoginFormContent = NonNullable<Dictionary["devLoginPage"]>;
 type OAuthButtonsContent = NonNullable<Dictionary["oAuthButtons"]>;
@@ -54,7 +52,8 @@ interface LoginFormProps {
   oAuthContent: OAuthButtonsContent;
   locale: Locale;
   onSwitchView: () => void;
-  redirectUrl?: string;
+  onSubmit: (data: LoginFormData) => void;
+  isPending: boolean;
 }
 
 const formVariants: Variants = {
@@ -70,21 +69,19 @@ const fieldVariants: Variants = {
 export function LoginForm({
   content,
   oAuthContent,
-  locale,
   onSwitchView,
-  redirectUrl,
+  onSubmit,
+  isPending,
 }: LoginFormProps) {
   const traceId = useMemo(
-    () => logger.startTrace("LoginForm_Lifecycle_v10.0"),
+    () => logger.startTrace("LoginForm_Lifecycle_v12.0"),
     []
   );
   useEffect(() => {
-    logger.info("[LoginForm] Componente montado.", { traceId, redirectUrl });
+    logger.info("[LoginForm] Componente de presentación montado.", { traceId });
     return () => logger.endTrace(traceId);
-  }, [traceId, redirectUrl]);
+  }, [traceId]);
 
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
   const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -102,48 +99,10 @@ export function LoginForm({
     return (
       <DeveloperErrorDisplay
         context="LoginForm"
-        errorMessage="Contenido i18n incompleto."
+        errorMessage="Contrato de UI violado: Contenido i18n incompleto."
       />
     );
   }
-
-  const onSubmit = (data: LoginFormData) => {
-    const submitTraceId = logger.startTrace("LoginForm.onSubmit");
-    // --- [INICIO DE CORRECCIÓN DE CONTRATO v10.0.0] ---
-    const groupId = logger.startGroup(
-      "[LoginForm] Procesando envío de credenciales...",
-      submitTraceId
-    );
-    // --- [FIN DE CORRECCIÓN DE CONTRATO v10.0.0] ---
-
-    startTransition(async () => {
-      logger.traceEvent(
-        submitTraceId,
-        "Invocando 'loginWithPasswordAction'..."
-      );
-      const result = await loginWithPasswordAction(data);
-      if (result.success) {
-        toast.success("Login exitoso. Redirigiendo...");
-        const redirectTo = redirectUrl || routes.devDashboard.path({ locale });
-        logger.success(
-          `[LoginForm] Autenticación exitosa. Redirigiendo a: ${redirectTo}`,
-          { traceId: submitTraceId }
-        );
-        router.push(redirectTo);
-      } else {
-        toast.error("Error de Login", { description: result.error });
-        form.setError("root", { message: result.error });
-        logger.error("[LoginForm] Fallo en la autenticación.", {
-          error: result.error,
-          traceId: submitTraceId,
-        });
-      }
-      // --- [INICIO DE CORRECCIÓN DE CONTRATO v10.0.0] ---
-      logger.endGroup(groupId);
-      logger.endTrace(submitTraceId);
-      // --- [FIN DE CORRECCIÓN DE CONTRATO v10.0.0] ---
-    });
-  };
 
   return (
     <>

@@ -5,7 +5,7 @@
  *              v7.0.0 (Resilient & Standardized): Simplificado para consumir la
  *              lógica de persistencia resiliente del logger soberano.
  * @version 7.0.0
- *@author L.I.A. Legacy
+ *@author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

@@ -2,42 +2,37 @@
 /**
  * @file use-playback-control.ts
  * @description Hook atómico para gestionar el estado de reproducción y volumen.
- *              v4.0.0 (Holistic Observability & Elite Compliance): Inyectado con una
- *              traza de ciclo de vida completa y eventos de telemetría granulares
- *              para cumplir con el Pilar III (Observabilidad Profunda).
- * @version 4.0.0
- * @author L.I.A. Legacy
+ *              v5.0.0 (Holistic Observability & Decoupled Contract): Refactorizado
+ *              para recibir el elemento de video directamente, mejorando el
+ *              desacoplamiento y cumpliendo con el Pilar I (Hiper-Atomización).
+ * @version 5.0.0
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { logger } from "@/shared/lib/logging";
-import type {
-  VideoTexture,
-  PositionalAudio as PositionalAudioImpl,
-} from "three";
+import type { PositionalAudio as PositionalAudioImpl } from "three";
 
 interface UsePlaybackControlProps {
-  videoTexture: VideoTexture;
-  audioRef: React.RefObject<PositionalAudioImpl>;
+  videoEl: HTMLVideoElement | null;
+  audioRef: React.RefObject<PositionalAudioImpl | null>; // El audio puede no estar siempre
   audioSrc?: string;
 }
 
 export function usePlaybackControl({
-  videoTexture,
+  videoEl,
   audioRef,
   audioSrc,
 }: UsePlaybackControlProps) {
-  // --- [INICIO DE REFACTORIZACIÓN DE OBSERVABILIDAD v4.0.0] ---
   const traceId = useMemo(
-    () => logger.startTrace("usePlaybackControl_Lifecycle_v4.0"),
+    () => logger.startTrace("usePlaybackControl_Lifecycle_v5.0"),
     []
   );
   useEffect(() => {
     logger.info("[PlaybackControl Hook] Montado y listo.", { traceId });
     return () => logger.endTrace(traceId);
   }, [traceId]);
-  // --- [FIN DE REFACTORIZACIÓN DE OBSERVABILIDAD v4.0.0] ---
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
@@ -63,31 +58,39 @@ export function usePlaybackControl({
   }, [traceId]);
 
   useEffect(() => {
-    const videoElement = videoTexture.image as HTMLVideoElement;
     const audioObject = audioRef.current;
 
-    if (isPlaying) {
-      videoElement
-        .play()
-        .catch((error) =>
-          logger.warn("[PlaybackControl] El autoplay del vídeo fue bloqueado por el navegador.", { error, traceId })
-        );
-      if (audioSrc && audioObject?.source && !audioObject.isPlaying) {
-        audioObject.play();
+    if (videoEl) {
+      if (isPlaying) {
+        videoEl
+          .play()
+          .catch((error) =>
+            logger.warn(
+              "[PlaybackControl] El autoplay del vídeo fue bloqueado por el navegador.",
+              { error, traceId }
+            )
+          );
+      } else {
+        videoEl.pause();
       }
-    } else {
-      videoElement.pause();
-      if (audioObject?.isPlaying) {
-        audioObject.pause();
-      }
+      // El vídeo siempre está silenciado; el audio 3D lo maneja.
+      videoEl.muted = true;
     }
 
     if (audioObject) {
+      if (
+        isPlaying &&
+        audioSrc &&
+        audioObject.source &&
+        !audioObject.isPlaying
+      ) {
+        audioObject.play();
+      } else if (!isPlaying && audioObject.isPlaying) {
+        audioObject.pause();
+      }
       audioObject.setVolume(isMuted ? 0 : 1);
     }
-    // El vídeo siempre está silenciado para que el control de audio sea manejado por el PositionalAudio 3D.
-    videoElement.muted = true;
-  }, [isPlaying, isMuted, videoTexture, audioRef, audioSrc, traceId]);
+  }, [isPlaying, isMuted, videoEl, audioRef, audioSrc, traceId]);
 
   return { isPlaying, isMuted, togglePlay, toggleMute };
 }

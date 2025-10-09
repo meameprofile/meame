@@ -6,7 +6,7 @@
  *              cumplir con el contrato de API del logger soberano, capturando y
  *              pasando el groupId para una trazabilidad de rendimiento precisa.
  * @version 7.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import {

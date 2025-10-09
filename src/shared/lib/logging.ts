@@ -6,7 +6,7 @@
  *              captura de eventos de manera isomórfica (cliente/servidor) y resiliente.
  *
  * @version 26.0.0 (Atomic Client-Side Flush & Holistic Refactor)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  *
  * @architecture_notes
  * - **Protocolo Heimdall**: Este módulo es la implementación del emisor del protocolo,
@@ -87,7 +87,9 @@ async function flushTelemetryQueue(isUnloading = false): Promise<void> {
     if (isUnloading && navigator.sendBeacon) {
       // 2a. Envío No Bloqueante: Ideal para cuando el usuario abandona la página.
       if (!navigator.sendBeacon("/api/telemetry/ingest", blob)) {
-        throw new Error("navigator.sendBeacon devolvió 'false', indicando fallo.");
+        throw new Error(
+          "navigator.sendBeacon devolvió 'false', indicando fallo."
+        );
       }
     } else {
       // 2b. Envío Estándar: Utiliza fetch para envíos durante la sesión activa.
@@ -415,19 +417,35 @@ const productionLogger: Logger = {
   },
   success: (message, context) => {
     if (context?.traceId)
-      productionLogger.track(message, { status: "SUCCESS", traceId: context.traceId, payload: context });
+      productionLogger.track(message, {
+        status: "SUCCESS",
+        traceId: context.traceId,
+        payload: context,
+      });
   },
   info: (message, context) => {
     if (context?.traceId)
-      productionLogger.track(message, { status: "IN_PROGRESS", traceId: context.traceId, payload: context });
+      productionLogger.track(message, {
+        status: "IN_PROGRESS",
+        traceId: context.traceId,
+        payload: context,
+      });
   },
   warn: (message, context) => {
     if (context?.traceId)
-      productionLogger.track(message, { status: "FAILURE", traceId: context.traceId, payload: context });
+      productionLogger.track(message, {
+        status: "FAILURE",
+        traceId: context.traceId,
+        payload: context,
+      });
   },
   error: (message, context) => {
     if (context?.traceId)
-      productionLogger.track(message, { status: "FAILURE", traceId: context.traceId, payload: context });
+      productionLogger.track(message, {
+        status: "FAILURE",
+        traceId: context.traceId,
+        payload: context,
+      });
   },
   trace: () => {
     // El trace es una operación de depuración y no se ejecuta en producción por performance.
@@ -438,7 +456,11 @@ const productionLogger: Logger = {
     return traceId;
   },
   traceEvent: (traceId, eventName, context) => {
-    productionLogger.track(eventName, { status: "IN_PROGRESS", traceId, payload: context });
+    productionLogger.track(eventName, {
+      status: "IN_PROGRESS",
+      traceId,
+      payload: context,
+    });
   },
   endTrace: (traceId, context) => {
     const status: EventStatus = context?.error ? "FAILURE" : "SUCCESS";

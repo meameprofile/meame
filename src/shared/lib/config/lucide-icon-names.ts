@@ -4,8 +4,8 @@
  * @description Manifiesto de Nombres de Iconos de Lucide y SSoT.
  *              ESTE ARCHIVO ES GENERADO AUTOMÁTICAMENTE. NO LO EDITE MANUALMENTE.
  *              Ejecute 'pnpm gen:icons' para actualizarlo.
- * @author Script de Generación Automática
- * @version 2025-10-04T22:19:35.122Z
+ * @version 19.0.0 (Sovereign Type Export)
+ * @author Script de Generación Automática & L.I.A. Legacy
  */
 import { z } from "zod";
 
@@ -1477,4 +1477,7 @@ export const lucideIconNames = [
 
 export const LucideIconNameSchema = z.enum(lucideIconNames);
 
+// --- [INICIO DE REFACTORIZACIÓN SOBERANA] ---
+// Se añade la exportación del tipo, estableciendo este archivo como la SSoT.
 export type LucideIconName = z.infer<typeof LucideIconNameSchema>;
+// --- [FIN DE REFACTORIZACIÓN SOBERANA] ---

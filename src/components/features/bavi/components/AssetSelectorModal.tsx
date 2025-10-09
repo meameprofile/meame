@@ -1,8 +1,8 @@
-// RUTA: src/components/features/bavi/_components/AssetSelectorModal.tsx
+// RUTA: src/components/features/bavi/components/AssetSelectorModal.tsx
 /**
  * @file AssetSelectorModal.tsx
  * @description Orquestador modal de élite para seleccionar un activo de la BAVI.
- * @version 1.0.0
+ * @version 2.0.0 (Holistic Contract Alignment)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -25,17 +25,21 @@ import {
   type BaviI18nContent,
 } from "@/shared/lib/actions/bavi/getBaviI18nContent.action";
 
+// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v2.0.0] ---
 interface AssetSelectorModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAssetSelect: (asset: BaviAsset) => void;
+  onViewDetails: (assetId: string) => void; // <-- Prop requerida añadida al contrato
   locale: Locale;
 }
+// --- [FIN DE REFACTORIZACIÓN DE CONTRATO v2.0.0] ---
 
 export function AssetSelectorModal({
   isOpen,
   onClose,
   onAssetSelect,
+  onViewDetails, // <-- Prop recibida
   locale,
 }: AssetSelectorModalProps) {
   const [i18nContent, setI18nContent] = useState<BaviI18nContent | null>(null);
@@ -85,6 +89,7 @@ export function AssetSelectorModal({
                 content={i18nContent.assetExplorer}
                 sesaOptions={i18nContent.sesaOptions}
                 onAssetSelect={onAssetSelect}
+                onViewDetails={onViewDetails} // <-- Prop delegada al componente hijo
               />
             </div>
           </>

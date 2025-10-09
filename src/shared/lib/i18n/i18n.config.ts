@@ -5,7 +5,7 @@
  *              v14.2.0 (Code Hygiene): Se elimina la importación no utilizada
  *              del logger para cumplir con el Pilar 10 de Calidad.
  * @version 14.2.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 import { IMPLEMENTED_LOCALES } from "./implemented-locales.manifest";

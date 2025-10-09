@@ -4,7 +4,7 @@
  * @description Motor de i18n para desarrollo, ahora con una caché de módulo
  *              persistente para una experiencia de desarrollo de élite (DX).
  * @version 5.0.0 (Elite DX with Persistent Module Cache)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { type ZodError } from "zod";

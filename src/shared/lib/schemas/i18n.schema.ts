@@ -2,10 +2,7 @@
 /**
  * @file i18n.schema.ts
  * @description Aparato ensamblador y SSoT para el contrato del diccionario i18n.
- *              v37.0.0 (Holistic Regression Fix): Restaura la importación y fusión
- *              del schema para `oAuthButtons`, resolviendo una regresión crítica
- *              y garantizando la integridad total del contrato de datos de autenticación.
- * @version 37.0.0
+ * @version 39.0.0 (Aether Engine Contract Integration)
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
@@ -24,6 +21,7 @@ import { DevTestPageLocaleSchema } from "./pages/dev-test-page.schema";
 import { CampaignSuiteLocaleSchema } from "./pages/dev-campaign-suite.schema";
 import { BaviHomePageLocaleSchema } from "./pages/bavi-home-page.schema";
 import { BaviAssetExplorerLocaleSchema } from "./pages/bavi-asset-explorer.i18n.schema";
+import { BaviHeaderLocaleSchema } from "./pages/dev/bavi/bavi-header.i18n.schema";
 import { RaZPromptsHomePageLocaleSchema } from "./pages/raz-prompts-home-page.schema";
 import { CinematicDemoPageLocaleSchema } from "./pages/dev-cinematic-demo-page.schema";
 import { CogniReadDashboardLocaleSchema } from "./pages/cogniread-dashboard.schema";
@@ -92,6 +90,9 @@ import { MagicBentoLocaleSchema } from "./components/razBits/MagicBento/magic-be
 import { CheckoutFormLocaleSchema } from "./components/commerce/checkout-form.schema";
 import { CampaignsTableLocaleSchema } from "./components/analytics/campaigns-table.schema";
 import { DashboardHeaderLocaleSchema } from "./components/analytics/dashboard-header.schema";
+// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v39.0.0] ---
+import { AetherLocaleSchema } from "./aether/aether.schema";
+// --- [FIN DE REFACTORIZACIÓN DE CONTRATO v39.0.0] ---
 
 const baseSchema = z.object({
   ...GlobalsLocaleSchema.shape,
@@ -108,6 +109,7 @@ const baseSchema = z.object({
   ...CampaignSuiteLocaleSchema.shape,
   ...BaviHomePageLocaleSchema.shape,
   ...BaviAssetExplorerLocaleSchema.shape,
+  ...BaviHeaderLocaleSchema.shape,
   ...RaZPromptsHomePageLocaleSchema.shape,
   ...CinematicDemoPageLocaleSchema.shape,
   ...CogniReadDashboardLocaleSchema.shape,
@@ -170,6 +172,9 @@ const baseSchema = z.object({
   ...CheckoutFormLocaleSchema.shape,
   ...CampaignsTableLocaleSchema.shape,
   ...DashboardHeaderLocaleSchema.shape,
+  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v39.0.0] ---
+  ...AetherLocaleSchema.shape,
+  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO v39.0.0] ---
 });
 
 export const i18nSchema = baseSchema.passthrough();

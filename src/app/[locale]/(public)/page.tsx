@@ -4,7 +4,7 @@
  * @description Homepage del portal, actuando como un "Ensamblador de Servidor"
  *              de élite. No requiere modificaciones.
  * @version 16.1.0 (Logger v20+ Contract Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
 import { getDictionary } from "@/shared/lib/i18n/i18n";

@@ -1,9 +1,8 @@
 // RUTA: src/shared/lib/schemas/campaigns/steps/step0.schema.ts
 /**
  * @file step0.schema.ts
- * @description SSoT para los contratos de datos del Paso 0, ahora con
- *              modularización de proveedores y tipos de campaña.
- * @version 4.0.0
+ * @description SSoT para los contratos de datos del Paso 0, refactorizado para el nuevo flujo de "Punto de Partida".
+ * @version 6.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
@@ -12,31 +11,45 @@ import { z } from "zod";
 export const Step0ContentSchema = z.object({
   title: z.string(),
   description: z.string(),
-  // Campos existentes
+  originGroupLabel: z.string(),
+  originScratchLabel: z.string(),
+  originTemplateLabel: z.string(),
+  originCloneLabel: z.string(),
+  templateSelectLabel: z.string(),
+  templateSelectPlaceholder: z.string(),
   baseCampaignLabel: z.string(),
   baseCampaignPlaceholder: z.string(),
-  baseCampaignDescription: z.string(),
-  variantNameLabel: z.string(),
-  variantNamePlaceholder: z.string(),
+  campaignNameLabel: z.string(),
+  campaignNamePlaceholder: z.string(),
   seoKeywordsLabel: z.string(),
   seoKeywordsPlaceholder: z.string(),
   seoKeywordsDescription: z.string(),
-  // --- Nuevos Campos para Modularización ---
+  seoKeywordsTooltip: z.object({
+    trigger: z.string(),
+    content: z.string(),
+    linkText: z.string(),
+  }),
   producerLabel: z.string(),
   producerPlaceholder: z.string(),
   campaignTypeLabel: z.string(),
   campaignTypePlaceholder: z.string(),
-  // --- Fin Nuevos Campos ---
   passportStampLabel: z.string(),
+  producerLabels: z.record(z.string()),
+  campaignTypeLabels: z.record(z.string()),
 });
 
 // --- Validación del Formulario ---
 export const step0Schema = z.object({
-  baseCampaignId: z.string().min(1, "Debes seleccionar una campaña base."),
-  variantName: z.string().min(3, "El nombre debe tener al menos 3 caracteres."),
-  seoKeywords: z.string().min(5, "Debes añadir al menos una palabra clave."),
-  // --- Nuevos Campos de Validación ---
-  producer: z.string().min(1, "Debes seleccionar un proveedor."),
+  campaignOrigin: z.enum(["scratch", "template", "clone"]),
+  templateId: z.string().optional(),
+  baseCampaignId: z.string().optional(),
+  campaignName: z
+    .string()
+    .min(3, "El nombre de la campaña debe tener al menos 3 caracteres."),
+  seoKeywords: z
+    .array(z.string())
+    .min(1, "Debes añadir al menos una palabra clave."),
+  producer: z.string().min(1, "Debes seleccionar un productor."),
   campaignType: z.string().min(1, "Debes seleccionar un tipo de campaña."),
 });
 

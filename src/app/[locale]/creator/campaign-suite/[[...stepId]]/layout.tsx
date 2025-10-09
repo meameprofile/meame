@@ -1,11 +1,12 @@
 // RUTA: src/app/[locale]/creator/campaign-suite/[[...stepId]]/layout.tsx
 /**
  * @file layout.tsx
- * @description Layout Orquestador y "Server Shell" de élite para la SDC,
- *              con una arquitectura de composición Cliente-Servidor soberana.
- * @version 3.0.0 (Observability Contract v20+ Compliance)
+ * @description Layout soberano de la SDC, con la nueva arquitectura inspirada en Canva.
+ * @version 4.0.0 (Canva-Inspired Architecture)
  * @author L.I.A. Legacy
  */
+"use server-only";
+
 import React from "react";
 import { notFound } from "next/navigation";
 import { CampaignSuiteWizard } from "@/components/features/campaign-suite";
@@ -13,9 +14,10 @@ import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { loadAllThemeFragmentsAction } from "@/shared/lib/actions/campaign-suite";
+import { loadAllThemeFragmentsAction } from "@/shared/lib/actions/campaign-suite/getThemeFragments.action";
 import { getBaviManifest } from "@/shared/lib/bavi";
 import { i18nSchema } from "@/shared/lib/schemas/i18n.schema";
+import { WizardSidebar } from "@/components/features/campaign-suite/_components/WizardSidebar";
 
 interface WizardLayoutProps {
   children: React.ReactNode;
@@ -26,7 +28,7 @@ export default async function WizardLayout({
   children,
   params: { locale },
 }: WizardLayoutProps) {
-  const traceId = logger.startTrace("SDC_SovereignLayout_v3.0");
+  const traceId = logger.startTrace("SDC_SovereignLayout_v4.0");
   const groupId = logger.startGroup(
     `[SDC Layout Shell] Ensamblando datos para [${locale}]...`
   );
@@ -68,14 +70,19 @@ export default async function WizardLayout({
     }
 
     return (
-      <CampaignSuiteWizard
-        content={pageContent}
-        loadedFragments={fragmentsResult.data}
-        baviManifest={baviManifestResult}
-        dictionary={dictionary}
-      >
-        {children}
-      </CampaignSuiteWizard>
+      <div className="relative pl-20 bg-muted/20">
+        <WizardSidebar />
+        <main className="min-h-screen p-4 sm:p-6 lg:p-8">
+          <CampaignSuiteWizard
+            content={pageContent}
+            loadedFragments={fragmentsResult.data}
+            baviManifest={baviManifestResult}
+            dictionary={dictionary}
+          >
+            {children}
+          </CampaignSuiteWizard>
+        </main>
+      </div>
     );
   } catch (error) {
     const errorMessage =

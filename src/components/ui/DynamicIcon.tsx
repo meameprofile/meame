@@ -1,11 +1,10 @@
 // RUTA: src/components/ui/DynamicIcon.tsx
 /**
  * @file DynamicIcon.tsx
- * @description SSoT para el renderizado dinámico de iconos de lucide-react.
- *              v18.0.0 (Holistic Restoration & Build Stability): Refactorizado para
- *              usar una exportación nombrada y una implementación de `next/dynamic`
- *              más robusta. Ahora incluye un fallback para nombres de icono inválidos.
- * @version 18.0.0
+ * @description SSoT para el renderizado dinámico de iconos, ahora con integridad de tipo absoluta.
+ *              Consume el tipo 'LucideIconName' desde su SSoT canónica, eliminando
+ *              la declaración local y previniendo desalineamientos arquitectónicos.
+ * @version 19.0.0 (Absolute Type Integrity)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -15,13 +14,16 @@ import dynamic from "next/dynamic";
 import { LucideProps } from "lucide-react";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { cn } from "@/shared/lib/utils/cn";
+// --- [INICIO DE REFACTORIZACIÓN SOBERANA] ---
+// Se importa el tipo desde su SSoT canónica.
 import { type LucideIconName } from "@/shared/lib/config/lucide-icon-names";
+// --- [FIN DE REFACTORIZACIÓN SOBERANA] ---
 import { logger } from "@/shared/lib/logging";
 
 const DYNAMIC_ICON_CONFIG = {
   DEFAULT_SIZE: 24,
   DEFAULT_PROPS: { strokeWidth: 2, "aria-hidden": true, focusable: false },
-  FALLBACK_ICON_NAME: "HelpCircle", // Un fallback seguro
+  FALLBACK_ICON_NAME: "HelpCircle",
 };
 
 const pascalToKebab = (str: string): string => {
@@ -82,4 +84,3 @@ const DynamicIconComponent: FunctionComponent<DynamicIconProps> = ({
 };
 
 export const DynamicIcon = memo(DynamicIconComponent);
-// RUTA: src/components/ui/DynamicIcon.tsx

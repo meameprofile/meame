@@ -1,9 +1,9 @@
 // RUTA: src/components/features/campaign-suite/Step5_Management/Step5Client.tsx
 /**
  * @file Step5Client.tsx
- * @description Orquestador de cliente para el Paso 5, nivelado para consumir
- *              el store centralizado `useCampaignDraft` y cumplir con los 8 Pilares de Calidad.
- * @version 12.0.0 (Centralized Forge Compliance & Elite Observability)
+ * @description Orquestador de cliente para el Paso 5, nivelado para recibir
+ *              Server Actions como props y restaurar la integridad arquitectónica.
+ * @version 14.0.0 (Dependency Inversion & Architectural Integrity)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -24,20 +24,37 @@ import { DeveloperErrorDisplay } from "../../dev-tools";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 import { ArtifactHistory } from "./_components/ArtifactHistory";
 import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 type Content = z.infer<typeof Step5ContentSchema>;
+
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v14.0.0] ---
+// Se define un contrato explícito para las acciones que el componente recibirá como props.
+interface Step5Actions {
+  publish: (
+    draft: CampaignDraft
+  ) => Promise<ActionResult<{ message: string; variantId: string }>>;
+  package: (
+    draft: CampaignDraft
+  ) => Promise<ActionResult<{ downloadUrl: string }>>;
+  delete: (draftId: string) => Promise<ActionResult<{ deletedCount: number }>>;
+}
 
 interface Step5ClientProps {
   locale: Locale;
   stepContent: Content;
+  actions: Step5Actions;
 }
+// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v14.0.0] ---
 
 export function Step5Client({
   locale,
   stepContent,
+  actions, // Las acciones ahora se reciben como props.
 }: Step5ClientProps): React.ReactElement {
   const traceId = useMemo(
-    () => logger.startTrace("Step5Client_Lifecycle_v12.0"),
+    () => logger.startTrace("Step5Client_Lifecycle_v14.0"),
     []
   );
   useEffect(() => {
@@ -45,15 +62,12 @@ export function Step5Client({
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
-  // --- [INICIO] REFACTORIZACIÓN ARQUITECTÓNICA: FORJA CENTRALIZADA ---
-  // Se consume el hook soberano que interactúa con el store central.
   const { draft: assembledDraft } = useCampaignDraft();
-  // --- [FIN] REFACTORIZACIÓN ARQUITECTÓNICA ---
-
   const { isCelebrating, endCelebration } = useCelebrationStore();
   const { goToPrevStep } = useWizard();
   const activeWorkspaceId = useWorkspaceStore((s) => s.activeWorkspaceId);
 
+  // El hook de ciclo de vida ahora recibe las acciones pasadas desde el servidor.
   const {
     onPublish,
     onPackage,
@@ -61,7 +75,8 @@ export function Step5Client({
     isPublishing,
     isPackaging,
     isDeleting,
-  } = useCampaignLifecycle(locale, assembledDraft);
+  } = useCampaignLifecycle(locale, actions);
+
   const { onSaveAsTemplate, isSavingTemplate } =
     useCampaignTemplates(assembledDraft);
 
@@ -75,6 +90,7 @@ export function Step5Client({
     [checklistItems]
   );
 
+  // Callbacks para los eventos de UI. Siguen siendo los mismos.
   const handlePublish = useCallback(() => {
     logger.traceEvent(traceId, "Acción de usuario: Iniciar Publicación.");
     onPublish();
@@ -103,6 +119,7 @@ export function Step5Client({
     [onSaveAsTemplate, traceId]
   );
 
+  // Guardianes de Resiliencia
   if (!stepContent) {
     return (
       <DeveloperErrorDisplay

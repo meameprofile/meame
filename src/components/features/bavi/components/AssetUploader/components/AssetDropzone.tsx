@@ -3,13 +3,14 @@
  * @file AssetDropzone.tsx
  * @description Componente de presentación puro para la zona de arrastre de archivos.
  *              Forjado con observabilidad de élite y MEA/UX.
- * @version 3.0.0
- *@author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (MEA/UX Injected & Elite Compliance)
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 
@@ -44,13 +45,19 @@ export function AssetDropzone({
     >
       <input {...getInputProps()} />
       {preview ? (
-        <Image
-          src={preview}
-          alt="Vista previa del activo a subir"
-          width={240}
-          height={240}
-          className="object-contain max-h-48 rounded-md transition-transform duration-300 group-hover:scale-105"
-        />
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          <Image
+            src={preview}
+            alt="Vista previa del activo a subir"
+            width={240}
+            height={240}
+            className="object-contain max-h-48 rounded-md transition-transform duration-300 group-hover:scale-105"
+          />
+        </motion.div>
       ) : (
         <p className="text-muted-foreground">{text}</p>
       )}

@@ -1,15 +1,25 @@
 // RUTA: src/components/features/campaign-suite/_components/shared/CampaignSelectField.tsx
 /**
  * @file CampaignSelectField.tsx
- * @description Componente atómico para un campo <Select>, con integridad de ruta restaurada.
- * @version 3.0.0 (Architectural Integrity Restoration)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Componente atómico para un campo <Select>.
+ *              v5.1.0 (Generic Type Integrity Restoration): Se corrige la firma
+ *              de la función para pasar correctamente el tipo genérico a las props,
+ *              resolviendo un error crítico de TypeScript (TS2314).
+ * @version 5.1.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import React from "react";
 import type { Control, FieldValues, Path } from "react-hook-form";
-import { FormControl, FormField } from "@/components/ui/Form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormDescription,
+} from "@/components/ui/Form";
 import {
   Select,
   SelectContent,
@@ -17,16 +27,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-// --- [INICIO DE RESTAURACIÓN DE INTEGRIDAD ARQUITECTÓNICA] ---
-import { FormFieldGroup } from "@/components/features/form-builder/FormFieldGroup";
-// --- [FIN DE RESTAURACIÓN DE INTEGRIDAD ARQUITECTÓNICA] ---
 
 interface CampaignSelectFieldProps<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: Path<TFieldValues>;
-  label: string;
+  label: React.ReactNode;
   placeholder: string;
-  description?: string;
+  description?: React.ReactNode;
   options: { value: string; label: string }[];
 }
 
@@ -43,22 +50,25 @@ export function CampaignSelectField<TFieldValues extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormFieldGroup label={label} description={description}>
-          <FormControl>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <SelectTrigger className="w-full md:w-1/2">
+        <FormItem>
+          <FormLabel>{label}</FormLabel>
+          <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <FormControl>
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
-              <SelectContent>
-                {options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </FormControl>
-        </FormFieldGroup>
+            </FormControl>
+            <SelectContent>
+              {options.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {description && <FormDescription>{description}</FormDescription>}
+          <FormMessage />
+        </FormItem>
       )}
     />
   );

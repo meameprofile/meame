@@ -11,7 +11,7 @@
 import React, { useMemo } from "react";
 import type { Control } from "react-hook-form";
 import { motion, type Variants } from "framer-motion";
-import { FormFieldGroup } from "@/components/features/form-builder/FormFieldGroup";
+import { FormLabel } from "@/components/ui"; // <-- SE AÑADE FormLabel
 import type { CreatePromptFormData } from "@/shared/hooks/raz-prompts/use-prompt-creator";
 import type { z } from "zod";
 import { logger } from "@/shared/lib/logging";
@@ -56,7 +56,9 @@ export function ParameterSelectorsGroup({
   }
 
   return (
-    <FormFieldGroup label={content.parametersGroupLabel} className="space-y-4">
+    // Se reemplaza FormFieldGroup por un div y un FormLabel soberano.
+    <div className="space-y-3">
+      <FormLabel>{content.parametersGroupLabel}</FormLabel>
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 gap-4"
         variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
@@ -86,6 +88,6 @@ export function ParameterSelectorsGroup({
           );
         })}
       </motion.div>
-    </FormFieldGroup>
+    </div>
   );
 }

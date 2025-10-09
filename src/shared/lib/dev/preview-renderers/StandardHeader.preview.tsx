@@ -1,11 +1,12 @@
 // RUTA: src/shared/lib/dev/preview-renderers/StandardHeader.preview.tsx
 /**
  * @file StandardHeader.preview.tsx
- * @description Renderizador de previsualización atómico, purificado y desacoplado
- *              para el componente StandardHeader. Consume la SSoT de estilos para
- *              un theming completo y se alinea con el contrato de datos v7.1.0.
- * @version 4.1.0 (API Contract Alignment)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Renderizador de previsualización atómico, puro y desacoplado.
+ *              v5.1.0 (Architectural Purity Restoration): Este componente ahora
+ *              solo se preocupa por generar el JSX y sus dimensiones, delegando
+ *              la creación de ImageResponse al orquestador.
+ * @version 5.1.0
+ * @author L.I.A. Legacy
  */
 import * as React from "react";
 import type { PreviewRenderResult, PreviewRenderer } from "./_types";
@@ -18,16 +19,13 @@ export const StandardHeaderPreview: PreviewRenderer = async (
   locale,
   theme: AssembledTheme
 ): Promise<PreviewRenderResult | null> => {
-  // Pilar III (Observabilidad)
   logger.trace(
-    `[StandardHeader.preview] Renderizando para locale: ${locale} (v4.1)`
+    `[StandardHeader.preview] Renderizando para locale: ${locale} (v5.1)`
   );
   const { dictionary } = await getEdgeDictionary(locale);
-  // Pilar I (i18n): Guardia de resiliencia
   const content = dictionary.header;
   if (!content) return null;
 
-  // Pilar II (Theming): Consume la SSoT de transformación de estilos
   const styles = getStyleFromTheme(theme);
 
   return {
@@ -78,4 +76,5 @@ export const StandardHeaderPreview: PreviewRenderer = async (
     width: 1200,
     height: 84,
   };
+  // --- [FIN DE RESTAURACIÓN DE CONTRATO] ---
 };

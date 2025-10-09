@@ -4,7 +4,7 @@
  * @description Layout Soberano y Guardián del DCC, ahora con una higiene de
  *              código impecable y observabilidad de ciclo de vida completo.
  * @version 29.2.0 (Elite Code Hygiene & Full Lifecycle Observability)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import React, { Suspense } from "react";
@@ -21,11 +21,9 @@ import Header from "@/components/layout/Header";
 import { DevSidebar } from "@/components/layout/DevSidebar";
 import Loading from "./loading";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-// --- [INICIO DE REFACTORIZACIÓN DE HIGIENE v29.2.0] ---
-// Se elimina la importación del tipo 'RouteGroup' no utilizado.
 import { generateDevRoutes } from "@/components/features/dev-tools/utils/route-menu.generator";
-// --- [FIN DE REFACTORIZACIÓN DE HIGIENE v29.2.0] ---
 import { GlobalLoader } from "@/components/layout/GlobalLoader";
+import "@/components/features/aether/Aether";
 
 async function DevLayoutDataOrchestrator({
   children,
@@ -54,21 +52,32 @@ async function DevLayoutDataOrchestrator({
     ]);
 
     const requiredI18nKeys: (keyof Dictionary)[] = [
-      "userNav", "notificationBell", "devLoginPage", "cart", "header",
-      "languageSwitcher", "devRouteMenu", "toggleTheme",
+      "userNav",
+      "notificationBell",
+      "devLoginPage",
+      "cart",
+      "header",
+      "languageSwitcher",
+      "devRouteMenu",
+      "toggleTheme",
     ];
     const missingKeys = requiredI18nKeys.filter((key) => !dictionary[key]);
     if (dictError || missingKeys.length > 0) {
-      throw new Error(`Faltan datos de i18n esenciales. Claves ausentes: ${missingKeys.join(", ")}`);
+      throw new Error(
+        `Faltan datos de i18n esenciales. Claves ausentes: ${missingKeys.join(", ")}`
+      );
     }
 
     if (!workspacesResult.success) throw new Error(workspacesResult.error);
     const routeGroups = generateDevRoutes(dictionary.devRouteMenu!, locale);
 
     const headerContent: HeaderClientProps["content"] = {
-      header: dictionary.header!, toggleTheme: dictionary.toggleTheme!,
-      languageSwitcher: dictionary.languageSwitcher!, userNav: dictionary.userNav!,
-      notificationBell: dictionary.notificationBell!, devLoginPage: dictionary.devLoginPage!,
+      header: dictionary.header!,
+      toggleTheme: dictionary.toggleTheme!,
+      languageSwitcher: dictionary.languageSwitcher!,
+      userNav: dictionary.userNav!,
+      notificationBell: dictionary.notificationBell!,
+      devLoginPage: dictionary.devLoginPage!,
       cart: dictionary.cart!,
     };
 
@@ -86,7 +95,11 @@ async function DevLayoutDataOrchestrator({
           <Header
             content={headerContent}
             currentLocale={locale}
-            centerComponent={<h1 className="font-semibold text-lg">Centro de Comando del Desarrollador</h1>}
+            centerComponent={
+              <h1 className="font-semibold text-lg">
+                Centro de Comando del Desarrollador
+              </h1>
+            }
           />
           <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 relative">
             <GlobalLoader />
@@ -96,8 +109,12 @@ async function DevLayoutDataOrchestrator({
       </div>
     );
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[DCC Orchestrator] Fallo crítico irrecuperable.", { error: errorMessage, traceId });
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido.";
+    logger.error("[DCC Orchestrator] Fallo crítico irrecuperable.", {
+      error: errorMessage,
+      traceId,
+    });
     return (
       <DeveloperErrorDisplay
         context="DevLayout Orchestrator"
@@ -123,14 +140,21 @@ export default async function DevLayout({
 
   try {
     const supabase = createServerClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      logger.warn("[Auth Guard] Usuario no autenticado. Redirigiendo a /login...", { traceId });
+      logger.warn(
+        "[Auth Guard] Usuario no autenticado. Redirigiendo a /login...",
+        { traceId }
+      );
       redirect(`/${locale}/login`);
     }
 
-    logger.success("[Auth Guard] Sesión válida. Renderizando layout del DCC.", { traceId });
+    logger.success("[Auth Guard] Sesión válida. Renderizando layout del DCC.", {
+      traceId,
+    });
     return (
       <Suspense fallback={<Loading />}>
         <DevLayoutDataOrchestrator locale={locale}>

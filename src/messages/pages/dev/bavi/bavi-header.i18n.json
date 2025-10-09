@@ -1,0 +1,34 @@
+{
+  "it-IT": {
+    "baviHeader": {
+      "searchPlaceholder": "Cerca asset...",
+      "uploadButton": "Carica",
+      "filterByAILabel": "Filtra per IA",
+      "allAIsOption": "Tutte le IA"
+    }
+  },
+  "es-ES": {
+    "baviHeader": {
+      "searchPlaceholder": "Buscar activos...",
+      "uploadButton": "Subir",
+      "filterByAILabel": "Filtrar por IA",
+      "allAIsOption": "Todas las IAs"
+    }
+  },
+  "en-US": {
+    "baviHeader": {
+      "searchPlaceholder": "Search assets...",
+      "uploadButton": "Upload",
+      "filterByAILabel": "Filter by AI",
+      "allAIsOption": "All AIs"
+    }
+  },
+  "pt-BR": {
+    "baviHeader": {
+      "searchPlaceholder": "Pesquisar ativos...",
+      "uploadButton": "Carregar",
+      "filterByAILabel": "Filtrar por IA",
+      "allAIsOption": "Todas as IAs"
+    }
+  }
+}

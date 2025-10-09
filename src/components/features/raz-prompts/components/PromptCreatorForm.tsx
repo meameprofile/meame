@@ -2,9 +2,11 @@
 /**
  * @file PromptCreatorForm.tsx
  * @description Orquestador de presentación de élite para el creador de prompts.
- *              Ensambla grupos de campos atómicos para una máxima granularidad.
- * @version 9.0.0 (Architectural Integrity & Elite Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ *              v10.0.0 (Architectural Integrity Restoration): Se elimina el
+ *              anti-patrón FormFieldGroup para restaurar la integridad del
+ *              contexto de react-hook-form.
+ * @version 10.0.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
@@ -20,8 +22,8 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
+  FormLabel, // Se importa FormLabel para reemplazar FormFieldGroup
 } from "@/components/ui";
-import { FormFieldGroup } from "@/components/features/form-builder/FormFieldGroup";
 import { SesaTagsFormGroup } from "./SesaTagsFormGroup";
 import { ParameterSelectorsGroup } from "./ParameterSelectorsGroup";
 import { PromptIdentityGroup } from "./PromptIdentityGroup";
@@ -62,14 +64,13 @@ export function PromptCreatorForm({
   content,
 }: PromptCreatorFormProps) {
   const traceId = useMemo(
-    () => logger.startTrace("PromptCreatorForm_v9.0"),
+    () => logger.startTrace("PromptCreatorForm_v10.0"),
     []
   );
-  logger.info("[PromptCreatorForm] Renderizando orquestador v9.0.", {
+  logger.info("[PromptCreatorForm] Renderizando orquestador v10.0.", {
     traceId,
   });
 
-  // --- Guardián de Resiliencia de Contrato ---
   if (!content) {
     const errorMsg = "Contrato de UI violado: La prop 'content' es requerida.";
     logger.error(`[Guardián] ${errorMsg}`, { traceId });
@@ -102,17 +103,18 @@ export function PromptCreatorForm({
               variants={fieldVariants}
             />
 
-            <motion.div variants={fieldVariants}>
-              <FormFieldGroup label={content.tagsGroupLabel}>
-                <SesaTagsFormGroup
-                  control={form.control}
-                  content={{
-                    ...content.sesaLabels,
-                    options: content.sesaOptions,
-                  }}
-                />
-              </FormFieldGroup>
+            {/* --- INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA --- */}
+            <motion.div variants={fieldVariants} className="space-y-3">
+              <FormLabel>{content.tagsGroupLabel}</FormLabel>
+              <SesaTagsFormGroup
+                control={form.control}
+                content={{
+                  ...content.sesaLabels,
+                  options: content.sesaOptions,
+                }}
+              />
             </motion.div>
+            {/* --- FIN DE REFACTORIZACIÓN ARQUITECTÓNICA --- */}
 
             <motion.div variants={fieldVariants}>
               <ParameterSelectorsGroup

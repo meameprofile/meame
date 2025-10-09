@@ -188,7 +188,10 @@
       },
       "categorization": {
         "primary": "Performance",
-        "secondary": ["recovery", "strength"]
+        "secondary": [
+          "recovery",
+          "strength"
+        ]
       },
       "targetProfile": {
         "userType": "Athletes",
@@ -409,6 +412,30 @@
       "ip": "IP: {{ip}}",
       "unknownLocation": "Unknown location",
       "unknownIp": "Unknown IP"
+    },
+    "inactivityToast": {
+      "title": "Inactivity Warning",
+      "description": "You will be redirected shortly. Do you wish to stay on this page?",
+      "renewButton": "Stay",
+      "redirectNowButton": "Redirect Now"
+    }
+  },
+  "heimdallObservatory": {
+    "pageHeader": {
+      "title": "Heimdall Observatory",
+      "subtitle": "The command center for ecosystem telemetry and observability."
+    },
+    "recentsPanel": {
+      "title": "Recent Events"
+    },
+    "detailPanel": {
+      "title": "Selected Event Detail"
+    },
+    "mimirPanel": {
+      "title": "Conversational Analyst (Mimir)",
+      "analyzeButton": "Analyze with Temeo",
+      "thinkingButton": "Analyzing...",
+      "placeholder": "Select an event and click 'Analyze' to get a forensic analysis and an elite leveling plan from our AI."
     }
   },
   "nos3Dashboard": {
@@ -428,23 +455,6 @@
   "razPromptsHomePage": {
     "createPromptTab": "Create Prompt",
     "viewVaultTab": "View Vault"
-  },
-  "step0": {
-    "title": "Step 0: Identification",
-    "description": "This is the foundational step. The information here defines your campaign's identity and strategy.",
-    "baseCampaignLabel": "Base Campaign",
-    "baseCampaignPlaceholder": "Select a product",
-    "baseCampaignDescription": "Select the base product for this new variant.",
-    "variantNameLabel": "Variant Name",
-    "variantNamePlaceholder": "E.g., 'Vitality', 'Scientific Approach'",
-    "seoKeywordsLabel": "SEO Keywords",
-    "seoKeywordsPlaceholder": "E.g., 'wellness, energy, natural'",
-    "seoKeywordsDescription": "Separated by commas. They will be used to generate the URL.",
-    "producerLabel": "Producer / Network",
-    "producerPlaceholder": "Select a producer",
-    "campaignTypeLabel": "Campaign Type",
-    "campaignTypePlaceholder": "Select a type",
-    "passportStampLabel": "Passport Approved"
   },
   "step1": {
     "title": "Step 1: Page Structure",
@@ -474,6 +484,8 @@
   "step3": {
     "title": "Step 3: Visual Theme",
     "description": "Define the personality of your campaign. Your choices here will be instantly reflected in the live preview.",
+    "loadingTitle": "Loading Style Vault...",
+    "loadingDescription": "Syncing with the database.",
     "themeSelectorTitle": "Select Theme Fragments",
     "colorsLabel": "Color Palette",
     "fontsLabel": "Typography",
@@ -493,7 +505,31 @@
     "createNewFontSetButton": "Create New Font Set",
     "createNewRadiusStyleButton": "Create New Radius Style",
     "placeholderFontsNone": "No font sets available",
-    "placeholderRadiiNone": "No radius styles available"
+    "placeholderRadiiNone": "No radius styles available",
+    "deletePresetDialog": {
+      "title": "Are you sure you want to delete this preset?",
+      "description": "This action is irreversible. The preset will be permanently deleted.",
+      "cancelButton": "Cancel",
+      "confirmButton": "Yes, Delete Preset"
+    },
+    "editPresetDialog": {
+      "title": "Edit Preset '{{presetName}}'",
+      "description": "Update the name and description for this preset.",
+      "nameLabel": "Preset Name",
+      "descriptionLabel": "Description",
+      "saveButton": "Save Changes",
+      "cancelButton": "Cancel"
+    },
+    "createPresetDialog": {
+      "title": "Create New {{type}} Preset",
+      "description": "Define a new reusable style for your workspace.",
+      "nameLabel": "Name",
+      "namePlaceholder": "e.g. Corporate Blue Style",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "For serious and professional campaigns...",
+      "saveButton": "Save Preset",
+      "cancelButton": "Cancel"
+    }
   },
   "step4": {
     "title": "Step 4: Content",
@@ -552,11 +588,33 @@
     "loadingAssets": "Loading assets...",
     "noAssetsFoundTitle": "No assets found.",
     "noAssetsFoundDescription": "Try adjusting your search or filters.",
+    "clearFiltersButton": "Clear Filters",
     "previousPageButton": "Previous",
     "nextPageButton": "Next",
     "pageInfo": "Page {{currentPage}} of {{totalPages}}",
     "viewDetailsButton": "View Details",
     "selectAssetButton": "Select"
+  },
+  "baviHeader": {
+    "searchPlaceholder": "Search assets...",
+    "uploadButton": "Upload",
+    "filterByAILabel": "Filter by AI",
+    "allAIsOption": "All AIs"
+  },
+  "aetherControls": {
+    "playLabel": "Play",
+    "pauseLabel": "Pause",
+    "muteLabel": "Mute",
+    "unmuteLabel": "Unmute",
+    "enterFullscreenLabel": "Enter fullscreen",
+    "exitFullscreenLabel": "Exit fullscreen",
+    "enterPipLabel": "Enter Picture-in-Picture",
+    "exitPipLabel": "Exit Picture-in-Picture",
+    "expandLabel": "Expand",
+    "collapseLabel": "Collapse",
+    "progressBarLabel": "Video progress bar",
+    "preloaderText": "Loading experience...",
+    "errorText": "Could not load the video resource."
   },
   "orderConfirmationEmail": {
     "previewText": "Confirmation of your Global Fitwell order #{{orderId}}",
@@ -603,7 +661,10 @@
         "imageUrl": "/pravatar/58",
         "firstName": "Leo",
         "lastName": "Miranda",
-        "positions": ["Frontend Developer", "Creator Of This Website"],
+        "positions": [
+          "Frontend Developer",
+          "Creator Of This Website"
+        ],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -1240,7 +1301,11 @@
       "emailPlaceholder": "john.doe@example.com",
       "subjectLabel": "Subject",
       "subjectPlaceholder": "Select a subject",
-      "subjectOptions": ["Web Development", "Digital Marketing", "Other"],
+      "subjectOptions": [
+        "Web Development",
+        "Digital Marketing",
+        "Other"
+      ],
       "messageLabel": "Message",
       "messagePlaceholder": "Your message...",
       "submitButtonText": "Send Message"

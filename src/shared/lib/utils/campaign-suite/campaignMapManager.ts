@@ -1,11 +1,12 @@
-// app/[locale]/(dev)/dev/campaign-suite/_actions/_utils/campaignMapManager.ts
+// RUTA: src/shared/lib/utils/campaign-suite/campaignMapManager.ts
 /**
  * @file campaignMapManager.ts
  * @description Utilidad para gestionar la lectura y escritura del campaign.map.json.
- * @version 2.0.0 (Atomic & Resilient Logic)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 3.0.0 (CampaignDraft v7.0 Contract Alignment)
+ * @author L.I.A. Legacy
  */
-import "server-only";
+"use server-only";
+
 import { promises as fs } from "fs";
 import path from "path";
 import {
@@ -69,14 +70,18 @@ export function generateCampaignFileNames(
   draft: CampaignDraft,
   newVariantId: string
 ): CampaignVariantFileNames {
-  const { baseCampaignId, variantName } = draft;
-  if (!baseCampaignId || !variantName || !draft.themeConfig) {
+  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
+  const { baseCampaignId, campaignName } = draft;
+  if (!baseCampaignId || !campaignName || !draft.themeConfig) {
+    // --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
     throw new Error(
       "[MapManager] Datos del borrador incompletos para generar nombres de archivo."
     );
   }
   const dateStamp = new Date().toISOString().split("T")[0].replace(/-/g, "");
-  const safeVariantName = variantName.replace(/\s+/g, "_");
+  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
+  const safeVariantName = campaignName.replace(/\s+/g, "_");
+  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
   const themeFileName = `${baseCampaignId}_${dateStamp}_THEME_${newVariantId}_${safeVariantName}.json`;
   const contentFileName = `${baseCampaignId}_${dateStamp}_CONTENT_${newVariantId}_${safeVariantName}.json`;
   return { themeFileName, contentFileName };
@@ -91,4 +96,3 @@ export async function updateCampaignMap(
     `[MapManager] '${path.basename(mapPath)}' actualizado con éxito.`
   );
 }
-// app/[locale]/(dev)/dev/campaign-suite/_actions/_utils/campaignMapManager.ts

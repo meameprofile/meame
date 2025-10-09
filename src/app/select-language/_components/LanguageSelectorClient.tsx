@@ -4,7 +4,7 @@
  * @description Componente de cliente para la selección de idioma, con persistencia
  *              de preferencia y navegación contextual.
  * @version 4.0.0 (Observability Contract v20+ Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 

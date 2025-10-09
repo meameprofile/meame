@@ -2,22 +2,14 @@
 /**
  * @file route.ts
  * @description Endpoint de API para generar vistas previas de componentes.
- *              v5.0.0 (Runtime Integrity Restoration): Se elimina la directiva 'edge'
- *              para restaurar la compatibilidad con el runtime de Node.js,
- *              necesario para las operaciones de sistema de archivos (fs).
- * @version 5.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 6.0.0 (Sovereign Contract Alignment & Pure Passthrough)
+ * @author L.I.A. Legacy
  */
 import { ImageResponse } from "@vercel/og";
-import React from "react";
 import { renderPreviewComponent } from "@/shared/lib/dev/preview-renderer";
-import { ErrorPreview } from "@/components/features/dev-tools/ErrorPreview";
 import { logger } from "@/shared/lib/logging";
-
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-// La directiva 'export const runtime = "edge";' ha sido eliminada.
-// La ruta ahora se ejecutará en el entorno Serverless de Node.js por defecto.
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
+import React from "react";
+import { ErrorPreview } from "@/components/features/dev-tools/ErrorPreview";
 
 export async function GET(
   request: Request,
@@ -31,28 +23,23 @@ export async function GET(
   );
 
   try {
-    const renderResult = await renderPreviewComponent(componentName);
-
-    const { jsx, width, height } = renderResult || {
-      jsx: React.createElement(ErrorPreview, { componentName }),
-      width: 600,
-      height: 338,
-    };
+    // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
+    // La función ahora devuelve directamente la ImageResponse, incluyendo el manejo de errores.
+    const imageResponse = await renderPreviewComponent(componentName);
     logger.success(
       `[API Preview] Previsualización generada para: ${componentName}`,
       { traceId }
     );
-    return new ImageResponse(jsx, {
-      width,
-      height,
-    });
+    return imageResponse;
+    // --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
     logger.error(
-      `[API Preview] Fallo crítico al generar previsualización para: ${componentName}`,
+      `[API Preview] Fallo crítico en la orquestación de ${componentName}`,
       { error: errorMessage, traceId }
     );
+    // Fallback de emergencia si el propio renderizador falla catastróficamente.
     return new ImageResponse(
       React.createElement(ErrorPreview, { componentName }),
       {

@@ -8,7 +8,7 @@
  */
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { CldImage } from "next-cloudinary";
 import type { UseFormReturn } from "react-hook-form";
 import { usePathname } from "next/navigation";
@@ -40,25 +40,63 @@ interface EcosystemTabProps {
 }
 
 export function EcosystemTab({ form, content }: EcosystemTabProps) {
+  // --- [INICIO DE REFACTORIZACIÓN DE REGLAS DE HOOKS v3.0.0] ---
+  // Todos los hooks se declaran incondicionalmente en el nivel superior del componente.
   const traceId = useMemo(
     () => logger.startTrace("EcosystemTab_Lifecycle_v3.0"),
     []
   );
+  const [isSelectorOpen, setIsSelectorOpen] = useState(false);
+  const pathname = usePathname();
+  const locale = getCurrentLocaleFromPathname(pathname);
+  const heroImageId = form.watch("baviHeroImageId");
 
   useEffect(() => {
     logger.info("[EcosystemTab] Componente montado y listo.", { traceId });
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
-  // --- [INICIO DE RESTAURACIÓN DE CONTRATO DE HOOKS] ---
-  // Todos los hooks se invocan en el nivel superior, antes de cualquier lógica condicional.
-  const [isSelectorOpen, setIsSelectorOpen] = useState(false);
-  const pathname = usePathname();
-  const locale = getCurrentLocaleFromPathname(pathname);
-  const heroImageId = form.watch("baviHeroImageId");
-  // --- [FIN DE RESTAURACIÓN DE CONTRATO DE HOOKS] ---
+  const handleAssetSelect = useCallback(
+    (asset: BaviAsset) => {
+      logger.traceEvent(
+        traceId,
+        `Acción: Usuario seleccionó el activo BAVI: ${asset.assetId}`
+      );
+      const primaryVariant = asset.variants.find((v) => v.state === "orig");
+      if (primaryVariant?.publicId) {
+        form.setValue("baviHeroImageId", primaryVariant.publicId, {
+          shouldDirty: true,
+        });
+        setIsSelectorOpen(false);
+        logger.success(
+          `[EcosystemTab] Activo BAVI '${asset.assetId}' aplicado al formulario.`,
+          { publicId: primaryVariant.publicId, traceId }
+        );
+      } else {
+        logger.error(
+          `[Guardián] El activo BAVI '${asset.assetId}' no tiene una variante 'orig' con 'publicId'.`,
+          { traceId, asset }
+        );
+        toast.error("Activo Inválido", {
+          description:
+            "El activo seleccionado no tiene una imagen principal válida y no puede ser utilizado.",
+        });
+      }
+    },
+    [form, traceId]
+  );
 
-  // --- [INICIO] GUARDIÁN DE RESILIENCIA DE CONTRATO ---
+  const handleViewDetails = useCallback(
+    (assetId: string) => {
+      logger.info(
+        `[EcosystemTab] Intención de usuario: Ver detalles del activo ${assetId}. (Acción no-op en este contexto)`,
+        { traceId }
+      );
+    },
+    [traceId]
+  );
+  // --- [FIN DE REFACTORIZACIÓN DE REGLAS DE HOOKS v3.0.0] ---
+
   if (!content) {
     const errorMsg =
       "Contrato de UI violado: La prop 'content' para EcosystemTab es requerida.";
@@ -72,37 +110,8 @@ export function EcosystemTab({ form, content }: EcosystemTabProps) {
         />
       );
     }
-    return null; // Falla silenciosamente en producción
+    return null;
   }
-  // --- [FIN] GUARDIÁN DE RESILIENCIA DE CONTRATO ---
-
-  const handleAssetSelect = (asset: BaviAsset) => {
-    logger.traceEvent(
-      traceId,
-      `Acción: Usuario seleccionó el activo BAVI: ${asset.assetId}`
-    );
-
-    const primaryVariant = asset.variants.find((v) => v.state === "orig");
-    if (primaryVariant?.publicId) {
-      form.setValue("baviHeroImageId", primaryVariant.publicId, {
-        shouldDirty: true,
-      });
-      setIsSelectorOpen(false);
-      logger.success(
-        `[EcosystemTab] Activo BAVI '${asset.assetId}' aplicado al formulario.`,
-        { publicId: primaryVariant.publicId, traceId }
-      );
-    } else {
-      logger.error(
-        `[Guardián] El activo BAVI '${asset.assetId}' no tiene una variante 'orig' con 'publicId'.`,
-        { traceId, asset }
-      );
-      toast.error("Activo Inválido", {
-        description:
-          "El activo seleccionado no tiene una imagen principal válida y no puede ser utilizado.",
-      });
-    }
-  };
 
   const openSelector = () => {
     logger.traceEvent(
@@ -158,6 +167,7 @@ export function EcosystemTab({ form, content }: EcosystemTabProps) {
         isOpen={isSelectorOpen}
         onClose={() => setIsSelectorOpen(false)}
         onAssetSelect={handleAssetSelect}
+        onViewDetails={handleViewDetails}
         locale={locale}
       />
     </div>

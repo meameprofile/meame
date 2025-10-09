@@ -1,8 +1,8 @@
 // RUTA: src/components/features/auth/AuthForm.tsx
 /**
  * @file AuthForm.tsx
- * @description Orquestador de UI para autenticación, con integridad de build restaurada.
- * @version 5.2.0 (Definitive Build Integrity Restoration)
+ * @description Orquestador de UI para autenticación, nivelado para un flujo de datos unidireccional.
+ * @version 6.0.0 (Unidirectional Data Flow & Elite State Management)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -13,14 +13,12 @@ import { TiltCard } from "@/components/ui/TiltCard";
 import { LoginForm } from "./components/LoginForm";
 import { SignUpForm } from "./components/SignUpForm";
 import { logger } from "@/shared/lib/logging";
-// --- [INICIO DE REFACTORIZACIÓN DE ÉLITE v5.2.0] ---
-// Se realiza la importación quirúrgica para erradicar la contaminación del barrel file.
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-// --- [FIN DE REFACTORIZACIÓN DE ÉLITE v5.2.0] ---
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
 import { DynamicIcon } from "@/components/ui";
+import type { LoginFormData } from "@/shared/lib/schemas/auth/login.schema";
 
 type AuthFormContent = NonNullable<Dictionary["devLoginPage"]>;
 type OAuthButtonsContent = NonNullable<Dictionary["oAuthButtons"]>;
@@ -30,7 +28,8 @@ interface AuthFormProps {
   oAuthContent: OAuthButtonsContent;
   locale: Locale;
   contextualMessage?: string;
-  redirectUrl?: string;
+  onLoginSubmit: (data: LoginFormData) => void;
+  isPending: boolean;
 }
 
 export function AuthForm({
@@ -38,14 +37,15 @@ export function AuthForm({
   oAuthContent,
   locale,
   contextualMessage,
-  redirectUrl,
+  onLoginSubmit,
+  isPending,
 }: AuthFormProps) {
   const traceId = useMemo(
-    () => logger.startTrace("AuthForm_Lifecycle_v5.2"),
+    () => logger.startTrace("AuthForm_Lifecycle_v6.0"),
     []
   );
   useEffect(() => {
-    logger.info("[AuthForm] Orquestador montado.", {
+    logger.info("[AuthForm] Orquestador de UI montado.", {
       traceId,
       hasContextualMessage: !!contextualMessage,
     });
@@ -113,7 +113,8 @@ export function AuthForm({
                 oAuthContent={oAuthContent}
                 locale={locale}
                 onSwitchView={() => handleSwitchView("signup")}
-                redirectUrl={redirectUrl}
+                onSubmit={onLoginSubmit}
+                isPending={isPending}
               />
             ) : (
               <SignUpForm

@@ -2,17 +2,14 @@
 /**
  * @file navigation.ts
  * @description Manifiesto y SSoT para la definición de rutas del ecosistema.
- *              v16.0.0 (Heimdall Observatory Integration): Se integra la nueva
- *              ruta soberana para el Observatorio Heimdall dentro del DCC.
- * @version 16.0.0
+ *              v22.0.0 (Isomorphic Purity Restoration): Se elimina la directiva 'server-only'
+ *              para restaurar la naturaleza isomórfica del módulo, permitiendo su
+ *              consumo seguro tanto en componentes de servidor como de cliente.
+ * @version 22.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
+// La directiva "server-only" ha sido eliminada.
 import { defaultLocale, type Locale } from "./i18n/i18n.config";
-import { logger } from "./logging";
-
-logger.info(
-  "[Observabilidad][ARQUITECTURA-RAIZ] Cargando Manifiesto de Rutas v16.0..."
-);
 
 export const RouteType = {
   Public: "public",
@@ -55,6 +52,7 @@ const buildPath = (
 };
 
 export const routes = {
+  // --- Rutas Públicas ---
   home: {
     path: (params: RouteParams) => buildPath(params.locale, "/"),
     template: "/",
@@ -148,26 +146,22 @@ export const routes = {
     template: "/not-found",
     type: RouteType.Public,
   },
+
+  // --- Rutas del DCC ---
   devDashboard: {
     path: (params: RouteParams) => buildPath(params.locale, "/dev"),
     template: "/dev",
     type: RouteType.DevOnly,
   },
-  devTestPage: {
-    path: (params: RouteParams) => buildPath(params.locale, "/dev/test-page"),
-    template: "/dev/test-page",
-    type: RouteType.DevOnly,
-  },
   devComponentShowcase: {
     path: (params: RouteParams) =>
-      buildPath(params.locale, "/dev/component-showcase"),
-    template: "/dev/component-showcase",
+      buildPath(params.locale, "/component-showcase"),
+    template: "/component-showcase",
     type: RouteType.DevOnly,
   },
   devCinematicDemo: {
-    path: (params: RouteParams) =>
-      buildPath(params.locale, "/dev/cinematic-demo"),
-    template: "/dev/cinematic-demo",
+    path: (params: RouteParams) => buildPath(params.locale, "/cinematic-demo"),
+    template: "/cinematic-demo",
     type: RouteType.DevOnly,
   },
   creatorCampaignSuite: {
@@ -177,66 +171,64 @@ export const routes = {
     type: RouteType.DevOnly,
   },
   analytics: {
-    path: (params: RouteParams) => buildPath(params.locale, "/dev/analytics"),
-    template: "/dev/analytics",
+    path: (params: RouteParams) => buildPath(params.locale, "/analytics"),
+    template: "/analytics",
     type: RouteType.DevOnly,
   },
   analyticsByVariant: {
     path: (params: RouteParams & { variantId: string }) =>
-      buildPath(params.locale, "/dev/analytics/[variantId]", params),
-    template: "/dev/analytics/[variantId]",
+      buildPath(params.locale, "/analytics/[variantId]", params),
+    template: "/analytics/[variantId]",
     type: RouteType.DevOnly,
   },
   bavi: {
-    path: (params: RouteParams) => buildPath(params.locale, "/dev/bavi"),
-    template: "/dev/bavi",
+    path: (params: RouteParams) => buildPath(params.locale, "/bavi"),
+    template: "/bavi",
     type: RouteType.DevOnly,
   },
   razPrompts: {
-    path: (params: RouteParams) => buildPath(params.locale, "/dev/raz-prompts"),
-    template: "/dev/raz-prompts",
+    path: (params: RouteParams) => buildPath(params.locale, "/raz-prompts"),
+    template: "/raz-prompts",
     type: RouteType.DevOnly,
   },
   cogniReadDashboard: {
-    path: (params: RouteParams) => buildPath(params.locale, "/dev/cogniread"),
-    template: "/dev/cogniread",
+    path: (params: RouteParams) => buildPath(params.locale, "/cogniread"),
+    template: "/cogniread",
     type: RouteType.DevOnly,
   },
   cogniReadEditor: {
     path: (params: RouteParams) =>
-      buildPath(params.locale, "/dev/cogniread/editor"),
-    template: "/dev/cogniread/editor",
+      buildPath(params.locale, "/cogniread/editor"),
+    template: "/cogniread/editor",
     type: RouteType.DevOnly,
   },
   nos3Dashboard: {
-    path: (params: RouteParams) => buildPath(params.locale, "/dev/nos3"),
-    template: "/dev/nos3",
+    path: (params: RouteParams) => buildPath(params.locale, "/nos3"),
+    template: "/nos3",
     type: RouteType.DevOnly,
   },
   nos3SessionPlayer: {
     path: (params: RouteParams & { sessionId: string }) =>
-      buildPath(params.locale, "/dev/nos3/[sessionId]", params),
-    template: "/dev/nos3/[sessionId]",
+      buildPath(params.locale, "/nos3/[sessionId]", params),
+    template: "/nos3/[sessionId]",
     type: RouteType.DevOnly,
   },
   userIntelligence: {
     path: (params: RouteParams) =>
-      buildPath(params.locale, "/dev/user-intelligence"),
-    template: "/dev/user-intelligence",
+      buildPath(params.locale, "/user-intelligence"),
+    template: "/user-intelligence",
     type: RouteType.DevOnly,
   },
   userIntelligenceDetail: {
     path: (params: RouteParams & { sessionId: string }) =>
-      buildPath(params.locale, "/dev/user-intelligence/[sessionId]", params),
-    template: "/dev/user-intelligence/[sessionId]",
+      buildPath(params.locale, "/user-intelligence/[sessionId]", params),
+    template: "/user-intelligence/[sessionId]",
     type: RouteType.DevOnly,
   },
-  // --- [INICIO DE NIVELACIÓN DE RUTA v16.0.0] ---
   heimdallObservatory: {
     path: (params: RouteParams) =>
-      buildPath(params.locale, "/dev/heimdall-observatory"),
-    template: "/dev/heimdall-observatory",
+      buildPath(params.locale, "/heimdall-observatory"),
+    template: "/heimdall-observatory",
     type: RouteType.DevOnly,
   },
-  // --- [FIN DE NIVELACIÓN DE RUTA v16.0.0] ---
 } as const;

@@ -4,7 +4,7 @@
  * @description Endpoint para la ingesta de eventos de "Aura", ahora con contratos
  *              soberanos, observabilidad de élite y trazabilidad de Vercel.
  * @version 7.0.0 (Observability Contract v20+ Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@/shared/lib/supabase/server";

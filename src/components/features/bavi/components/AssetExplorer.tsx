@@ -1,8 +1,8 @@
-// RUTA: src/components/features/bavi/_components/AssetExplorer.tsx
+// src/components/features/bavi/components/AssetExplorer.tsx
 /**
  * @file AssetExplorer.tsx
  * @description Orquestador de élite para la exploración de activos de BAVI.
- * @version 5.0.0 (Sovereign Hook Import Restoration)
+ * @version 8.0.0 (Functional Integrity Restoration)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
@@ -11,77 +11,49 @@ import React from "react";
 import { logger } from "@/shared/lib/logging";
 import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { PromptCreatorContentSchema } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
+import type { BaviAssetExplorerContentSchema } from "@/shared/lib/schemas/pages/bavi-asset-explorer.i18n.schema";
 import type { z } from "zod";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
-// Se corrige la ruta de importación para apuntar a la SSoT soberana del hook.
 import { useAssetExplorerLogic } from "@/shared/hooks/bavi/use-asset-explorer-logic";
-// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
 import { AssetExplorerDisplay } from "./AssetExplorerDisplay";
 
 type CreatorContent = z.infer<typeof PromptCreatorContentSchema>;
+type ExplorerContent = z.infer<typeof BaviAssetExplorerContentSchema>;
 
+// --- [INICIO DE NIVELACIÓN DE CONTRATO v8.0.0] ---
 interface AssetExplorerProps {
   locale: Locale;
-  content: {
-    title: string;
-    description: string;
-    searchPlaceholder: string;
-    searchButton: string;
-    filterByAILabel: string;
-    allAIsOption: string;
-    loadingAssets: string;
-    noAssetsFoundTitle: string;
-    noAssetsFoundDescription: string;
-    previousPageButton: string;
-    nextPageButton: string;
-    pageInfo: string;
-    selectAssetButton: string;
-  };
+  content: ExplorerContent;
   sesaOptions: CreatorContent["sesaOptions"];
   onAssetSelect?: (asset: BaviAsset) => void;
+  onViewDetails: (assetId: string) => void; // Prop restaurada
 }
+// --- [FIN DE NIVELACIÓN DE CONTRATO v8.0.0] ---
 
 export function AssetExplorer({
   locale,
   content,
   sesaOptions,
   onAssetSelect,
+  onViewDetails, // Prop recibida
 }: AssetExplorerProps): React.ReactElement {
   logger.info(
-    "[AssetExplorer] Renderizando orquestador v5.0 (Sovereign Hook Import)."
+    "[AssetExplorer] Renderizando orquestador v8.0 (Functional Integrity)."
   );
 
-  const {
-    assets,
-    isPending,
-    currentPage,
-    searchQuery,
-    activeFilters,
-    totalPages,
-    setSearchQuery,
-    handleSearch,
-    handleFilterChange,
-    handlePageChange,
-  } = useAssetExplorerLogic();
+  const hookState = useAssetExplorerLogic();
 
   return (
     <AssetExplorerDisplay
       locale={locale}
       content={content}
       sesaOptions={sesaOptions}
-      assets={assets}
-      isPending={isPending}
-      currentPage={currentPage}
-      searchQuery={searchQuery}
-      activeFilters={activeFilters}
-      totalPages={totalPages}
-      setSearchQuery={setSearchQuery}
-      handleSearch={handleSearch}
-      handleFilterChange={handleFilterChange}
-      handlePageChange={handlePageChange}
       onAssetSelect={onAssetSelect}
+      // --- [INICIO DE NIVELACIÓN DE FLUJO DE DATOS v8.0.0] ---
+      // Se pasa la función real en lugar del placeholder.
+      onViewDetails={onViewDetails}
+      // --- [FIN DE NIVELACIÓN DE FLUJO DE DATOS v8.0.0] ---
+      {...hookState}
     />
   );
 }
-// RUTA: src/components/features/bavi/_components/AssetExplorer.tsx

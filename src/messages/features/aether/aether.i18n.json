@@ -1,0 +1,70 @@
+{
+  "it-IT": {
+    "aetherControls": {
+      "playLabel": "Riproduci",
+      "pauseLabel": "Pausa",
+      "muteLabel": "Muto",
+      "unmuteLabel": "Riattiva audio",
+      "enterFullscreenLabel": "Schermo intero",
+      "exitFullscreenLabel": "Esci da schermo intero",
+      "enterPipLabel": "Picture-in-Picture",
+      "exitPipLabel": "Esci da Picture-in-Picture",
+      "expandLabel": "Espandi",
+      "collapseLabel": "Comprimi",
+      "progressBarLabel": "Barra di avanzamento del video",
+      "preloaderText": "Caricamento esperienza...",
+      "errorText": "Impossibile caricare la risorsa video."
+    }
+  },
+  "es-ES": {
+    "aetherControls": {
+      "playLabel": "Reproducir",
+      "pauseLabel": "Pausar",
+      "muteLabel": "Silenciar",
+      "unmuteLabel": "Activar sonido",
+      "enterFullscreenLabel": "Pantalla completa",
+      "exitFullscreenLabel": "Salir de pantalla completa",
+      "enterPipLabel": "Picture-in-Picture",
+      "exitPipLabel": "Salir de Picture-in-Picture",
+      "expandLabel": "Expandir",
+      "collapseLabel": "Contraer",
+      "progressBarLabel": "Barra de progreso del video",
+      "preloaderText": "Cargando experiencia...",
+      "errorText": "No se pudo cargar el recurso de vídeo."
+    }
+  },
+  "en-US": {
+    "aetherControls": {
+      "playLabel": "Play",
+      "pauseLabel": "Pause",
+      "muteLabel": "Mute",
+      "unmuteLabel": "Unmute",
+      "enterFullscreenLabel": "Enter fullscreen",
+      "exitFullscreenLabel": "Exit fullscreen",
+      "enterPipLabel": "Enter Picture-in-Picture",
+      "exitPipLabel": "Exit Picture-in-Picture",
+      "expandLabel": "Expand",
+      "collapseLabel": "Collapse",
+      "progressBarLabel": "Video progress bar",
+      "preloaderText": "Loading experience...",
+      "errorText": "Could not load the video resource."
+    }
+  },
+  "pt-BR": {
+    "aetherControls": {
+      "playLabel": "Reproduzir",
+      "pauseLabel": "Pausar",
+      "muteLabel": "Silenciar",
+      "unmuteLabel": "Ativar som",
+      "enterFullscreenLabel": "Tela cheia",
+      "exitFullscreenLabel": "Sair da tela cheia",
+      "enterPipLabel": "Picture-in-Picture",
+      "exitPipLabel": "Sair do Picture-in-Picture",
+      "expandLabel": "Expandir",
+      "collapseLabel": "Recolher",
+      "progressBarLabel": "Barra de progresso do vídeo",
+      "preloaderText": "Carregando experiência...",
+      "errorText": "Não foi possível carregar o recurso de vídeo."
+    }
+  }
+}

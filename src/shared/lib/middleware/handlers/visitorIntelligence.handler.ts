@@ -4,7 +4,7 @@
  * @description Manejador "Perfilador" de élite. Identifica y enriquece la petición
  *              del visitante. Es ultraligero y no realiza operaciones de persistencia.
  * @version 11.0.0 (Decoupled & High-Performance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { createId } from "@paralleldrive/cuid2";

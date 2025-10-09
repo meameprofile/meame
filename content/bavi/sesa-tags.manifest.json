@@ -1,21 +1,14 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "categories": {
-    "ai": {
-      "label": "AI Engine"
-    },
-    "sty": {
-      "label": "Visual Style"
-    },
-    "fmt": {
-      "label": "Aspect Ratio"
-    },
-    "typ": {
-      "label": "Asset Type"
-    },
-    "sbj": {
-      "label": "Subject"
-    }
+    "ai": { "label": "AI Engine" },
+    "sty": { "label": "Visual Style" },
+    "fmt": { "label": "Aspect Ratio" },
+    "typ": { "label": "Asset Type" },
+    "sbj": { "label": "Subject" },
+    "dur": { "label": "Duration" },
+    "res": { "label": "Resolution" },
+    "aud": { "label": "Audio Content" }
   },
   "codes": {
     "ai": [
@@ -37,7 +30,9 @@
       { "value": "ui", "label": "User Interface" },
       { "value": "pht", "label": "Photo" },
       { "value": "abs", "label": "Abstract" },
-      { "value": "chr", "label": "Character" }
+      { "value": "chr", "label": "Character" },
+      { "value": "vid", "label": "Video" },
+      { "value": "aud", "label": "Audio" }
     ],
     "sbj": [
       { "value": "abs", "label": "Abstract" },
@@ -46,6 +41,21 @@
       { "value": "lsc", "label": "Landscape" },
       { "value": "rob", "label": "Robot" },
       { "value": "logo", "label": "Logo" }
+    ],
+    "dur": [
+      { "value": "short", "label": "< 1 min" },
+      { "value": "medium", "label": "1-5 min" },
+      { "value": "long", "label": "> 5 min" }
+    ],
+    "res": [
+      { "value": "720p", "label": "HD (720p)" },
+      { "value": "1080p", "label": "Full HD (1080p)" },
+      { "value": "4k", "label": "4K" }
+    ],
+    "aud": [
+      { "value": "music", "label": "Music" },
+      { "value": "sfx", "label": "Sound Effect" },
+      { "value": "voice", "label": "Voiceover" }
     ]
   }
 }

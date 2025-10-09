@@ -204,6 +204,12 @@
       "ip": "IP: {{ip}}",
       "unknownLocation": "Ubicación desconocida",
       "unknownIp": "IP desconocida"
+    },
+    "inactivityToast": {
+      "title": "Aviso de Inactividad",
+      "description": "Serás redirigido en breve. ¿Deseas permanecer en esta página?",
+      "renewButton": "Permanecer",
+      "redirectNowButton": "Redirigir Ahora"
     }
   },
   "devTestPage": {
@@ -262,11 +268,18 @@
     "loadingAssets": "Cargando activos...",
     "noAssetsFoundTitle": "No se encontraron activos.",
     "noAssetsFoundDescription": "Intenta ajustar tu búsqueda o filtros.",
+    "clearFiltersButton": "Limpiar Filtros",
     "previousPageButton": "Anterior",
     "nextPageButton": "Siguiente",
     "pageInfo": "Página {{currentPage}} de {{totalPages}}",
     "viewDetailsButton": "Ver Detalles",
     "selectAssetButton": "Seleccionar"
+  },
+  "baviHeader": {
+    "searchPlaceholder": "Buscar activos...",
+    "uploadButton": "Subir",
+    "filterByAILabel": "Filtrar por IA",
+    "allAIsOption": "Todas las IAs"
   },
   "razPromptsHomePage": {
     "createPromptTab": "Crear Prompt",
@@ -692,7 +705,11 @@
       "emailPlaceholder": "juan.perez@example.com",
       "subjectLabel": "Asunto",
       "subjectPlaceholder": "Selecciona un asunto",
-      "subjectOptions": ["Desarrollo Web", "Marketing Digital", "Otro"],
+      "subjectOptions": [
+        "Desarrollo Web",
+        "Marketing Digital",
+        "Otro"
+      ],
       "messageLabel": "Mensaje",
       "messagePlaceholder": "Tu mensaje...",
       "submitButtonText": "Enviar Mensaje"
@@ -975,7 +992,10 @@
         "imageUrl": "/pravatar/58",
         "firstName": "Leo",
         "lastName": "Miranda",
-        "positions": ["Desarrollador Frontend", "Creador de Este Sitio Web"],
+        "positions": [
+          "Desarrollador Frontend",
+          "Creador de Este Sitio Web"
+        ],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -998,7 +1018,9 @@
         "imageUrl": "/unsplash/woman-portrait",
         "firstName": "Elizabeth",
         "lastName": "Moore",
-        "positions": ["Diseñadora UI/UX"],
+        "positions": [
+          "Diseñadora UI/UX"
+        ],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -1298,6 +1320,21 @@
     "dateRangeButton": "Últimos 30 días",
     "exportButton": "Exportar"
   },
+  "aetherControls": {
+    "playLabel": "Reproducir",
+    "pauseLabel": "Pausar",
+    "muteLabel": "Silenciar",
+    "unmuteLabel": "Activar sonido",
+    "enterFullscreenLabel": "Pantalla completa",
+    "exitFullscreenLabel": "Salir de pantalla completa",
+    "enterPipLabel": "Picture-in-Picture",
+    "exitPipLabel": "Salir de Picture-in-Picture",
+    "expandLabel": "Expandir",
+    "collapseLabel": "Contraer",
+    "progressBarLabel": "Barra de progreso del video",
+    "preloaderText": "Cargando experiencia...",
+    "errorText": "No se pudo cargar el recurso de vídeo."
+  },
   "devCampaignSimulatorPage": {
     "title": "Simulador de Campañas",
     "subtitle": "Seleccione una variante de campaña para previsualizar la landing page.",
@@ -1352,7 +1389,10 @@
       },
       "categorization": {
         "primary": "Rendimiento",
-        "secondary": ["recuperacion", "fuerza"]
+        "secondary": [
+          "recuperacion",
+          "fuerza"
+        ]
       },
       "targetProfile": {
         "userType": "Atletas",
@@ -1441,22 +1481,68 @@
     "saveButtonLoading": "Guardando...",
     "articleNotFoundError": "Artículo no encontrado."
   },
+  "heimdallObservatory": {
+    "pageHeader": {
+      "title": "Observatorio Heimdall",
+      "subtitle": "El centro de mando para la telemetría y observabilidad del ecosistema."
+    },
+    "recentsPanel": {
+      "title": "Eventos Recientes"
+    },
+    "detailPanel": {
+      "title": "Detalle del Evento Seleccionado"
+    },
+    "mimirPanel": {
+      "title": "Analista Conversacional (Mimir)",
+      "analyzeButton": "Analizar con Temeo",
+      "thinkingButton": "Analizando...",
+      "placeholder": "Selecciona un evento y haz clic en 'Analizar' para obtener un análisis forense y un plan de nivelación de nuestra IA."
+    }
+  },
   "step0": {
-    "title": "Paso 0: Identificación",
+    "title": "Paso 0: Identidad de la Campaña",
     "description": "Este es el paso fundacional. La información aquí define la identidad y estrategia de tu campaña.",
-    "baseCampaignLabel": "Campaña Base",
-    "baseCampaignPlaceholder": "Selecciona un producto",
-    "baseCampaignDescription": "Selecciona el producto base para esta nueva variante.",
-    "variantNameLabel": "Nombre de la Variante",
-    "variantNamePlaceholder": "Ej. 'Vitalidad', 'Enfoque Científico'",
+    "originGroupLabel": "Punto de Partida",
+    "originScratchLabel": "Crear desde Cero",
+    "originTemplateLabel": "Usar una Plantilla",
+    "originCloneLabel": "Clonar Campaña Existente",
+    "templateSelectLabel": "Seleccionar Plantilla",
+    "templateSelectPlaceholder": "Elige una plantilla...",
+    "baseCampaignLabel": "Campaña Base a Clonar",
+    "baseCampaignPlaceholder": "Selecciona una campaña...",
+    "campaignNameLabel": "Nombre de la Campaña",
+    "campaignNamePlaceholder": "Ej. 'Lanzamiento Vitalidad Q4'",
     "seoKeywordsLabel": "Palabras Clave SEO",
-    "seoKeywordsPlaceholder": "Ej. 'bienestar, energía, natural'",
-    "seoKeywordsDescription": "Separadas por comas. Se usarán para generar la URL.",
+    "seoKeywordsPlaceholder": "Añade palabras y presiona Enter...",
+    "seoKeywordsDescription": "Estas palabras clave ayudarán a generar un slug de URL amigable para SEO.",
+    "seoKeywordsTooltip": {
+      "trigger": "Ayuda sobre palabras clave",
+      "content": "Introduce palabras o frases cortas. Se usarán para construir la URL.",
+      "linkText": "Aprende más sobre SEO"
+    },
     "producerLabel": "Productor / Red",
     "producerPlaceholder": "Selecciona un productor",
     "campaignTypeLabel": "Tipo de Campaña",
     "campaignTypePlaceholder": "Selecciona un tipo",
-    "passportStampLabel": "Pasaporte Aprobado"
+    "passportStampLabel": "Pasaporte Aprobado",
+    "producerLabels": {
+      "producer_webvork": "Webvork",
+      "producer_clickdealer": "ClickDealer",
+      "producer_maxbounty": "MaxBounty",
+      "producer_clickbank": "ClickBank",
+      "producer_moreniche": "MoreNiche",
+      "producer_shopify": "Shopify (Próximamente)"
+    },
+    "campaignTypeLabels": {
+      "campaignType_direct_conversion": "Conversión Directa (Formulario)",
+      "campaignType_lead_generation_quiz": "Generación de Leads (Quiz)",
+      "campaignType_content_engagement_vsl": "Interacción con Contenido (VSL)",
+      "campaignType_lead_generation_form": "Generación de Leads (Formulario)",
+      "campaignType_direct_conversion_cpa": "Conversión Directa (CPA)",
+      "campaignType_content_engagement_article": "Interacción con Contenido (Artículo)",
+      "campaignType_direct_conversion_cps": "Conversión Directa (CPS)",
+      "campaignType_product_launch": "Lanzamiento de Producto"
+    }
   },
   "step1": {
     "title": "Paso 1: Estructura de la Página",
@@ -1486,6 +1572,8 @@
   "step3": {
     "title": "Paso 3: Tema Visual",
     "description": "Define la personalidad de tu campaña. Tus elecciones aquí se reflejarán instantáneamente en la vista previa en vivo.",
+    "loadingTitle": "Cargando Bóveda de Estilos...",
+    "loadingDescription": "Sincronizando con la base de datos.",
     "themeSelectorTitle": "Selecciona los Fragmentos de Tema",
     "colorsLabel": "Paleta de Colores",
     "fontsLabel": "Tipografía",
@@ -1505,7 +1593,31 @@
     "createNewFontSetButton": "Crear Nuevo Set de Fuentes",
     "createNewRadiusStyleButton": "Crear Nuevo Estilo de Radio",
     "placeholderFontsNone": "Ningún set de fuentes disponible",
-    "placeholderRadiiNone": "Ningún estilo de radio disponible"
+    "placeholderRadiiNone": "Ningún estilo de radio disponible",
+    "deletePresetDialog": {
+      "title": "¿Estás seguro de que quieres eliminar este preset?",
+      "description": "Esta acción es irreversible. El preset será eliminado permanentemente.",
+      "cancelButton": "Cancelar",
+      "confirmButton": "Sí, Eliminar Preset"
+    },
+    "editPresetDialog": {
+      "title": "Editar Preset '{{presetName}}'",
+      "description": "Actualiza el nombre y la descripción de este preset.",
+      "nameLabel": "Nombre del Preset",
+      "descriptionLabel": "Descripción",
+      "saveButton": "Guardar Cambios",
+      "cancelButton": "Cancelar"
+    },
+    "createPresetDialog": {
+      "title": "Crear Nuevo Preset de {{type}}",
+      "description": "Define un nuevo estilo reutilizable para tu workspace.",
+      "nameLabel": "Nombre",
+      "namePlaceholder": "Ej. Estilo Corporativo Azul",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Para campañas serias y profesionales...",
+      "saveButton": "Guardar Preset",
+      "cancelButton": "Cancelar"
+    }
   },
   "step4": {
     "title": "Paso 4: Contenido",

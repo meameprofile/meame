@@ -58,11 +58,9 @@ La RaZWiki se organizará de forma jerárquica y modular, facilitando tanto la e
 
 3.1. Jerarquía de Contenido
 
-1.
-Homepage: Punto de entrada principal.
+1.  Homepage: Punto de entrada principal.
 
-2.
-Dominios de RaZSuite: Páginas dedicadas a cada uno de los 10 dominios principales (DCC, RaZPrompts, BAVI, SDC, SSG, Aether Engine, Heimdall, Nos3, Aura, Temeo AI). Cada página de dominio incluirá:
+2.  Dominios de RaZSuite: Páginas dedicadas a cada uno de los 10 dominios principales (DCC, RaZPrompts, BAVI, SDC, SSG, Aether Engine, Heimdall, Nos3, Aura, Temeo AI). Cada página de dominio incluirá:
 
 •
 Visión y Propósito (Lenguaje Comprensible).
@@ -85,27 +83,19 @@ Potencialidad Global (Visión Futura como SaaS).
 •
 Aporte y Sinergia con el Ecosistema.
 
+3.  Guías y Tutoriales: Artículos paso a paso sobre cómo realizar tareas específicas o utilizar funcionalidades avanzadas (ej., "Crear una Campaña con SDC", "Gestionar Activos en BAVI").
 
+4.  Casos de Uso: Ejemplos reales o hipotéticos de cómo RaZSuite resuelve problemas específicos de marketing y ventas.
 
-3.
-Guías y Tutoriales: Artículos paso a paso sobre cómo realizar tareas específicas o utilizar funcionalidades avanzadas (ej., "Crear una Campaña con SDC", "Gestionar Activos en BAVI").
+5.  Conceptos Fundamentales: Explicaciones de términos clave, metodologías (ej., Growth Flywheel, SSoT, RLS) y principios de diseño (ej., Soberanía Coesa, IA como Tejido Conectivo).
 
-4.
-Casos de Uso: Ejemplos reales o hipotéticos de cómo RaZSuite resuelve problemas específicos de marketing y ventas.
+6.  Preguntas Frecuentes (FAQ): Respuestas a consultas comunes, organizadas por dominio o tema.
 
-5.
-Conceptos Fundamentales: Explicaciones de términos clave, metodologías (ej., Growth Flywheel, SSoT, RLS) y principios de diseño (ej., Soberanía Coesa, IA como Tejido Conectivo).
+7.  Glosario: Definiciones de la terminología específica de RaZSuite.
 
-6.
-Preguntas Frecuentes (FAQ): Respuestas a consultas comunes, organizadas por dominio o tema.
+8.  Historial de Versiones y Actualizaciones: Un registro de los cambios y mejoras en RaZSuite y la propia RaZWiki.
 
-7.
-Glosario: Definiciones de la terminología específica de RaZSuite.
-
-8.
-Historial de Versiones y Actualizaciones: Un registro de los cambios y mejoras en RaZSuite y la propia RaZWiki.
-
-3.2. Navegación
+    3.2. Navegación
 
 •
 Barra de Navegación Principal (Header): Enlaces a Homepage, Dominios, Guías, Casos de Uso, Búsqueda.
@@ -183,73 +173,67 @@ Uso de Componentes Compartidos: Explorar la posibilidad de compartir componentes
 
 Plain Text
 
-
 razwiki/
 ├── public/
-│   ├── images/ (para iconos, logos, etc. no gestionados por BAVI)
-│   └── favicon.ico
+│ ├── images/ (para iconos, logos, etc. no gestionados por BAVI)
+│ └── favicon.ico
 ├── src/
-│   ├── app/
-│   │   ├── (main)/
-│   │   │   ├── page.tsx (Homepage)
-│   │   │   ├── layout.tsx
-│   │   │   └── error.tsx
-│   │   ├── [domainSlug]/
-│   │   │   ├── page.tsx (Página de dominio específico)
-│   │   │   └── [articleSlug]/
-│   │   │       └── page.tsx (Artículos dentro de un dominio)
-│   │   ├── guides/
-│   │   │   └── [guideSlug]/
-│   │   │       └── page.tsx
-│   │   ├── concepts/
-│   │   │   └── [conceptSlug]/
-│   │   │       └── page.tsx
-│   │   ├── faq/
-│   │   │   └── page.tsx
-│   │   ├── search/
-│   │   │   └── page.tsx
-│   │   ├── api/
-│   │   │   └── bavi-proxy/ (Endpoint para interactuar con BAVI API)
-│   │   │       └── route.ts
-│   │   ├── globals.css
-│   │   └── layout.tsx (Layout global con Header, Sidebar, Footer)
-│   ├── components/
-│   │   ├── layout/
-│   │   │   ├── Header.tsx
-│   │   │   ├── Sidebar.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   └── Breadcrumbs.tsx
-│   │   ├── ui/ (Componentes reutilizables: Button, Card, Input, etc.)
-│   │   ├── domain-card/ (Componente para mostrar un dominio en la homepage)
-│   │   ├── search-bar/ (Componente de la barra de búsqueda)
-│   │   └── ...otros componentes específicos de la wiki
-│   ├── lib/
-│   │   ├── bavi/ (Funciones para interactuar con BAVI API)
-│   │   ├── content/ (Funciones para cargar y parsear contenido Markdown)
-│   │   ├── utils/ (Utilidades varias)
-│   │   └── auth/ (Lógica de autenticación, si se integra con Supabase)
-│   ├── styles/
-│   │   └── tailwind.config.ts
-│   └── types/
-│       └── ...definiciones de tipos
+│ ├── app/
+│ │ ├── (main)/
+│ │ │ ├── page.tsx (Homepage)
+│ │ │ ├── layout.tsx
+│ │ │ └── error.tsx
+│ │ ├── [domainSlug]/
+│ │ │ ├── page.tsx (Página de dominio específico)
+│ │ │ └── [articleSlug]/
+│ │ │ └── page.tsx (Artículos dentro de un dominio)
+│ │ ├── guides/
+│ │ │ └── [guideSlug]/
+│ │ │ └── page.tsx
+│ │ ├── concepts/
+│ │ │ └── [conceptSlug]/
+│ │ │ └── page.tsx
+│ │ ├── faq/
+│ │ │ └── page.tsx
+│ │ ├── search/
+│ │ │ └── page.tsx
+│ │ ├── api/
+│ │ │ └── bavi-proxy/ (Endpoint para interactuar con BAVI API)
+│ │ │ └── route.ts
+│ │ ├── globals.css
+│ │ └── layout.tsx (Layout global con Header, Sidebar, Footer)
+│ ├── components/
+│ │ ├── layout/
+│ │ │ ├── Header.tsx
+│ │ │ ├── Sidebar.tsx
+│ │ │ ├── Footer.tsx
+│ │ │ └── Breadcrumbs.tsx
+│ │ ├── ui/ (Componentes reutilizables: Button, Card, Input, etc.)
+│ │ ├── domain-card/ (Componente para mostrar un dominio en la homepage)
+│ │ ├── search-bar/ (Componente de la barra de búsqueda)
+│ │ └── ...otros componentes específicos de la wiki
+│ ├── lib/
+│ │ ├── bavi/ (Funciones para interactuar con BAVI API)
+│ │ ├── content/ (Funciones para cargar y parsear contenido Markdown)
+│ │ ├── utils/ (Utilidades varias)
+│ │ └── auth/ (Lógica de autenticación, si se integra con Supabase)
+│ ├── styles/
+│ │ └── tailwind.config.ts
+│ └── types/
+│ └── ...definiciones de tipos
 ├── content/
-│   ├── domains/
-│   │   ├── dcc.mdx
-│   │   ├── razprompts.mdx
-│   │   ├── bavi.mdx
-│   │   └── ...otros dominios
-│   ├── guides/
-│   │   ├── getting-started.mdx
-│   │   └── ...otras guías
-│   ├── concepts/
-│   │   ├── growth-flywheel.mdx
-│   │   └── ...otros conceptos
-│   └── faq.mdx
+│ ├── domains/
+│ │ ├── dcc.mdx
+│ │ ├── razprompts.mdx
+│ │ ├── bavi.mdx
+│ │ └── ...otros dominios
+│ ├── guides/
+│ │ ├── getting-started.mdx
+│ │ └── ...otras guías
+│ ├── concepts/
+│ │ ├── growth-flywheel.mdx
+│ │ └── ...otros conceptos
+│ └── faq.mdx
 ├── package.json
 ├── tsconfig.json
 └── next.config.js
-
-
-
-
-

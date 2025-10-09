@@ -2,33 +2,44 @@
   "it-IT": {
     "devDashboardPage": {
       "pageHeader": {
-        "title": "Developer Command Center",
-        "subtitle": "Strumenti per lo sviluppo e la simulazione delle campagne.",
-        "lightRays": {
-          "raysColor": "primary",
-          "raysOrigin": "top-center",
-          "raysSpeed": 0.8,
-          "lightSpread": 0.5,
-          "rayLength": 1.1,
-          "mouseInfluence": 0.05
-        }
+        "title": "Centro di Comando dello Sviluppatore",
+        "subtitle": "Strumenti forgiati per dominare l'intero ciclo di vita dello sviluppo di élite."
       },
+      "mainActions": {
+        "title": "Crea un Nuovo Progetto",
+        "campaignButton": "Nuova Campagna"
+      },
+      "toolsTitle": "Il Tuo Arsenale di Sviluppo",
       "tools": {
-        "campaignDesignSuite": {
-          "name": "Suite di Progettazione",
-          "description": "Crea, configura e genera asset di campagna validati."
+        "sdc": {
+          "title": "La Fucina (SDC)",
+          "description": "Forgia campagne ad alta conversione.",
+          "href": "/it-IT/creator/campaign-suite"
         },
         "bavi": {
-          "name": "BAVI - Biblioteca Asset",
-          "description": "Gestisci, indicizza e servi tutti gli asset visivi dell'ecosistema."
+          "title": "L'Arsenale (BAVI)",
+          "description": "La SSoT per tutti gli asset visivi.",
+          "href": "/it-IT/dev/bavi"
         },
-        "razPrompts": {
-          "name": "RaZPrompts - Bóveda",
-          "description": "Il genoma dei tuoi asset. Crea, cataloga e versiona i tuoi prompt."
+        "razprompts": {
+          "title": "La Cripta (RaZPrompts)",
+          "description": "Cataloga il DNA creativo dei tuoi asset.",
+          "href": "/it-IT/dev/raz-prompts"
         },
-        "resilienceShowcase": {
-          "name": "Vetrina di Resilienza",
-          "description": "Renderizza tutti i componenti per verificare la stabilità e la compatibilità."
+        "cogniread": {
+          "title": "Il Motore (CogniRead)",
+          "description": "Trasforma la scienza in autorità.",
+          "href": "/it-IT/dev/cogniread"
+        },
+        "nos3": {
+          "title": "Il Sistema Nervoso (Nos3)",
+          "description": "Guarda attraverso gli occhi dell'utente.",
+          "href": "/it-IT/dev/nos3"
+        },
+        "analytics": {
+          "title": "La Cabina di Pilotaggio (Aura)",
+          "description": "Visualizza i dati e ottimizza le conversioni.",
+          "href": "/it-IT/dev/analytics"
         }
       }
     }
@@ -37,32 +48,43 @@
     "devDashboardPage": {
       "pageHeader": {
         "title": "Centro de Comando del Desarrollador",
-        "subtitle": "Herramientas para el desarrollo y simulación de campañas.",
-        "lightRays": {
-          "raysColor": "primary",
-          "raysOrigin": "top-center",
-          "raysSpeed": 0.8,
-          "lightSpread": 0.5,
-          "rayLength": 1.1,
-          "mouseInfluence": 0.05
-        }
+        "subtitle": "Herramientas forjadas para dominar el ciclo de vida completo del desarrollo de élite."
       },
+      "mainActions": {
+        "title": "Crear un Nuevo Diseño",
+        "campaignButton": "Nueva Campaña"
+      },
+      "toolsTitle": "Tu Arsenal de Desarrollo",
       "tools": {
-        "campaignDesignSuite": {
-          "name": "Suite de Diseño",
-          "description": "Crea, configura y genera activos de campaña validados."
+        "sdc": {
+          "title": "La Forja (SDC)",
+          "description": "Forja campañas de alta conversión.",
+          "href": "/es-ES/creator/campaign-suite"
         },
         "bavi": {
-          "name": "BAVI - Biblioteca de Activos",
-          "description": "Gestiona, indexa y sirve todos los activos visuales del ecosistema."
+          "title": "El Arsenal (BAVI)",
+          "description": "La SSoT para todos los activos visuales.",
+          "href": "/es-ES/dev/bavi"
         },
-        "razPrompts": {
-          "name": "RaZPrompts - Bóveda",
-          "description": "El genoma de tus activos. Crea, cataloga y versiona tus prompts."
+        "razprompts": {
+          "title": "La Bóveda (RaZPrompts)",
+          "description": "Cataloga el ADN creativo de tus activos.",
+          "href": "/es-ES/dev/raz-prompts"
         },
-        "resilienceShowcase": {
-          "name": "Vitrina de Resiliencia",
-          "description": "Renderiza todos los componentes para verificar la estabilidad y compatibilidad."
+        "cogniread": {
+          "title": "El Motor (CogniRead)",
+          "description": "Transforma la ciencia en autoridad.",
+          "href": "/es-ES/dev/cogniread"
+        },
+        "nos3": {
+          "title": "El Sistema Nervioso (Nos3)",
+          "description": "Mira a través de los ojos del usuario.",
+          "href": "/es-ES/dev/nos3"
+        },
+        "analytics": {
+          "title": "La Cabina de Mando (Aura)",
+          "description": "Visualiza los datos y optimiza las conversiones.",
+          "href": "/es-ES/dev/analytics"
         }
       }
     }
@@ -71,32 +93,43 @@
     "devDashboardPage": {
       "pageHeader": {
         "title": "Developer Command Center",
-        "subtitle": "Tools for campaign development and simulation.",
-        "lightRays": {
-          "raysColor": "primary",
-          "raysOrigin": "top-center",
-          "raysSpeed": 0.8,
-          "lightSpread": 0.5,
-          "rayLength": 1.1,
-          "mouseInfluence": 0.05
-        }
+        "subtitle": "Tools forged to master the entire elite development lifecycle."
       },
+      "mainActions": {
+        "title": "Create a New Design",
+        "campaignButton": "New Campaign"
+      },
+      "toolsTitle": "Your Development Arsenal",
       "tools": {
-        "campaignDesignSuite": {
-          "name": "Design Suite",
-          "description": "Create, configure, and generate validated campaign assets."
+        "sdc": {
+          "title": "The Forge (SDC)",
+          "description": "Forge high-conversion campaigns.",
+          "href": "/en-US/creator/campaign-suite"
         },
         "bavi": {
-          "name": "BAVI - Asset Library",
-          "description": "Manage, index, and serve all visual assets of the ecosystem."
+          "title": "The Armory (BAVI)",
+          "description": "The SSoT for all visual assets.",
+          "href": "/en-US/dev/bavi"
         },
-        "razPrompts": {
-          "name": "RaZPrompts - Vault",
-          "description": "The genome of your assets. Create, catalog, and version your prompts."
+        "razprompts": {
+          "title": "The Vault (RaZPrompts)",
+          "description": "Catalog the creative DNA of your assets.",
+          "href": "/en-US/dev/raz-prompts"
         },
-        "resilienceShowcase": {
-          "name": "Resilience Showcase",
-          "description": "Renders all components to verify stability and data compatibility."
+        "cogniread": {
+          "title": "The Engine (CogniRead)",
+          "description": "Transform science into authority.",
+          "href": "/en-US/dev/cogniread"
+        },
+        "nos3": {
+          "title": "The Nervous System (Nos3)",
+          "description": "See through the user's eyes.",
+          "href": "/en-US/dev/nos3"
+        },
+        "analytics": {
+          "title": "The Cockpit (Aura)",
+          "description": "Visualize data and optimize conversions.",
+          "href": "/en-US/dev/analytics"
         }
       }
     }
@@ -105,32 +138,43 @@
     "devDashboardPage": {
       "pageHeader": {
         "title": "Centro de Comando do Desenvolvedor",
-        "subtitle": "Ferramentas para o desenvolvimento e simulação de campanhas.",
-        "lightRays": {
-          "raysColor": "primary",
-          "raysOrigin": "top-center",
-          "raysSpeed": 0.8,
-          "lightSpread": 0.5,
-          "rayLength": 1.1,
-          "mouseInfluence": 0.05
-        }
+        "subtitle": "Ferramentas forjadas para dominar todo o ciclo de vida de desenvolvimento de elite."
       },
+      "mainActions": {
+        "title": "Criar um Novo Design",
+        "campaignButton": "Nova Campanha"
+      },
+      "toolsTitle": "Seu Arsenal de Desenvolvimento",
       "tools": {
-        "campaignDesignSuite": {
-          "name": "Suite de Design",
-          "description": "Crie, configure e gere ativos de campanha validados."
+        "sdc": {
+          "title": "A Forja (SDC)",
+          "description": "Forje campanhas de alta conversão.",
+          "href": "/pt-BR/creator/campaign-suite"
         },
         "bavi": {
-          "name": "BAVI - Biblioteca de Ativos",
-          "description": "Gerencie, indexe e sirva todos os ativos visuais do ecossistema."
+          "title": "O Arsenal (BAVI)",
+          "description": "A SSoT para todos os ativos visuais.",
+          "href": "/pt-BR/dev/bavi"
         },
-        "razPrompts": {
-          "name": "RaZPrompts - Cofre",
-          "description": "O genoma dos seus ativos. Crie, catalogue e versione seus prompts."
+        "razprompts": {
+          "title": "O Cofre (RaZPrompts)",
+          "description": "Catalogue o DNA criativo de seus ativos.",
+          "href": "/pt-BR/dev/raz-prompts"
         },
-        "resilienceShowcase": {
-          "name": "Vitrine de Resiliência",
-          "description": "Renderiza todos os componentes para verificar a estabilidade e a compatibilidade dos dados."
+        "cogniread": {
+          "title": "O Motor (CogniRead)",
+          "description": "Transforme ciência em autoridade.",
+          "href": "/pt-BR/dev/cogniread"
+        },
+        "nos3": {
+          "title": "O Sistema Nervoso (Nos3)",
+          "description": "Veja através dos olhos do usuário.",
+          "href": "/pt-BR/dev/nos3"
+        },
+        "analytics": {
+          "title": "A Cabine de Comando (Aura)",
+          "description": "Visualize os dados e otimize as conversões.",
+          "href": "/pt-BR/dev/analytics"
         }
       }
     }

@@ -135,7 +135,7 @@ export function Step5Form({
       </Card>
       <DeleteDraftDialog
         content={content.deleteDialog}
-        draftName={draft.variantName || ""}
+        draftName={draft.campaignName || ""}
         onConfirmDelete={onConfirmDelete}
         isDeleting={isDeleting}
       />

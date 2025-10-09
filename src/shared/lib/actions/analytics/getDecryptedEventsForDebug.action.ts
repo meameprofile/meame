@@ -7,7 +7,7 @@
  *              de procesamiento y fortalecer el guardián de resiliencia ante fallos
  *              de desencriptación o transformación de datos.
  * @version 7.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 
@@ -50,12 +50,18 @@ export async function getDecryptedEventsForDebugAction(
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) return { success: false, error: "auth_required" };
-    logger.traceEvent(traceId, `Paso 1/5 Completado: Usuario ${user.id} autorizado.`);
+    logger.traceEvent(
+      traceId,
+      `Paso 1/5 Completado: Usuario ${user.id} autorizado.`
+    );
 
     const { campaignId, sessionId, limit = 20, page = 1 } = input;
     const offset = (page - 1) * limit;
 
-    logger.traceEvent(traceId, "Paso 2/5: Construyendo y ejecutando consulta a Supabase...");
+    logger.traceEvent(
+      traceId,
+      "Paso 2/5: Construyendo y ejecutando consulta a Supabase..."
+    );
     let queryBuilder = supabase
       .from("visitor_campaign_events")
       .select("*, count", { count: "exact" })
@@ -68,16 +74,26 @@ export async function getDecryptedEventsForDebugAction(
 
     if (error) throw new Error(error.message);
     if (!data) return { success: true, data: { events: [], total: 0 } };
-    logger.traceEvent(traceId, `Paso 2/5 Completado: Se obtuvieron ${data.length} eventos encriptados.`);
+    logger.traceEvent(
+      traceId,
+      `Paso 2/5 Completado: Se obtuvieron ${data.length} eventos encriptados.`
+    );
 
-    logger.traceEvent(traceId, "Paso 3/5: Iniciando proceso de desencriptación y transformación en paralelo...");
+    logger.traceEvent(
+      traceId,
+      "Paso 3/5: Iniciando proceso de desencriptación y transformación en paralelo..."
+    );
     const decryptedEventsPromises = data.map(
       async (event: VisitorCampaignEventRow) => {
-        const eventTraceId = logger.startTrace(`decryptEvent:${event.event_id}`);
+        const eventTraceId = logger.startTrace(
+          `decryptEvent:${event.event_id}`
+        );
         try {
           if (!event.payload) throw new Error("Payload nulo o indefinido.");
 
-          const decryptedPayloadString = await decryptServerData(event.payload as string);
+          const decryptedPayloadString = await decryptServerData(
+            event.payload as string
+          );
           const decryptedPayloadObject = JSON.parse(decryptedPayloadString);
 
           const transformedEvent = mapSupabaseToAuraEventPayload(
@@ -85,18 +101,27 @@ export async function getDecryptedEventsForDebugAction(
             decryptedPayloadObject,
             eventTraceId
           );
-          logger.success(`[Action] Evento ${event.event_id} procesado con éxito.`, { traceId: eventTraceId });
+          logger.success(
+            `[Action] Evento ${event.event_id} procesado con éxito.`,
+            { traceId: eventTraceId }
+          );
           return transformedEvent;
         } catch (decryptionError) {
-          const errorMessage = decryptionError instanceof Error ? decryptionError.message : "Error desconocido.";
-          logger.warn(`[Guardián] Fallo al procesar evento ${event.event_id}. Será omitido.`, {
-            traceId: eventTraceId, // Correlaciona el error del evento con la traza principal.
-            error: errorMessage,
-            originalEvent: event,
-          });
+          const errorMessage =
+            decryptionError instanceof Error
+              ? decryptionError.message
+              : "Error desconocido.";
+          logger.warn(
+            `[Guardián] Fallo al procesar evento ${event.event_id}. Será omitido.`,
+            {
+              traceId: eventTraceId, // Correlaciona el error del evento con la traza principal.
+              error: errorMessage,
+              originalEvent: event,
+            }
+          );
           return null;
         } finally {
-            logger.endTrace(eventTraceId);
+          logger.endTrace(eventTraceId);
         }
       }
     );
@@ -104,11 +129,17 @@ export async function getDecryptedEventsForDebugAction(
     const decryptedEvents = (await Promise.all(decryptedEventsPromises)).filter(
       (event): event is AuraEventPayload => event !== null
     );
-    logger.traceEvent(traceId, `Paso 3/5 Completado: ${decryptedEvents.length} eventos procesados con éxito.`);
+    logger.traceEvent(
+      traceId,
+      `Paso 3/5 Completado: ${decryptedEvents.length} eventos procesados con éxito.`
+    );
 
     logger.traceEvent(traceId, "Paso 4/5: Ensamblando respuesta final...");
     const responseData = { events: decryptedEvents, total: count ?? 0 };
-    logger.success(`[Action] Se procesaron ${decryptedEvents.length} de ${data.length} eventos válidos.`, { traceId });
+    logger.success(
+      `[Action] Se procesaron ${decryptedEvents.length} de ${data.length} eventos válidos.`,
+      { traceId }
+    );
     return { success: true, data: responseData };
   } catch (error) {
     const errorMessage =
