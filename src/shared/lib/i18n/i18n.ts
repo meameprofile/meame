@@ -1,8 +1,8 @@
 // RUTA: src/shared/lib/i18n/i18n.ts
 /**
  * @file i18n.ts
- * @description Orquestador de i18n "isomórfico", ahora con lógica de ensamblaje de producción corregida.
- * @version 22.0.0 (Production Key-Casing Fix)
+ * @description Orquestador de i18n "isomórfico", con lógica de ensamblaje de producción reparada.
+ * @version 23.0.0 (Production Assembly Logic Fix & Strict Contract)
  * @author L.I.A. Legacy
  */
 import "server-only";
@@ -25,17 +25,6 @@ type I18nEntry = Pick<
   "entry_key" | "translations"
 >;
 
-// --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA DE BUILD v22.0.0] ---
-/**
- * @function kebabToCamel
- * @description Utilidad pura para convertir una cadena de kebab-case a camelCase.
- * @param {string} s - La cadena en kebab-case.
- * @returns {string} La cadena convertida a camelCase.
- */
-const kebabToCamel = (s: string): string =>
-  s.replace(/-./g, (x) => x[1].toUpperCase());
-// --- [FIN DE REFACTORIZACIÓN DE RESILIENCIA DE BUILD v22.0.0] ---
-
 const getProductionDictionaryFn = cache(
   async (
     locale: Locale
@@ -43,7 +32,9 @@ const getProductionDictionaryFn = cache(
     dictionary: Partial<Dictionary>;
     error: ZodError | Error | null;
   }> => {
-    const traceId = logger.startTrace(`getProductionDictionary:${locale}`);
+    const traceId = logger.startTrace(
+      `getProductionDictionary:${locale}_v23.0`
+    );
     const groupId = logger.startGroup(
       `[i18n.prod] Ensamblando diccionario desde Supabase para [${locale}]...`
     );
@@ -62,17 +53,16 @@ const getProductionDictionaryFn = cache(
             locale
           ];
           if (entryContent) {
-            const fileName = entry.entry_key
-              .split("/")
-              .pop()
-              ?.replace(".i18n.json", "");
-            if (fileName) {
-              // --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA DE BUILD v22.0.0] ---
-              // Se aplica la transformación a camelCase para generar la clave correcta.
-              const key = kebabToCamel(fileName);
-              // --- [FIN DE REFACTORIZACIÓN DE RESILIENCIA DE BUILD v22.0.0] ---
-              (acc as Record<string, unknown>)[key] = entryContent;
-            }
+            // --- [INICIO DE REFACTORIZACIÓN DE LÓGICA DE ENSAMBLAJE] ---
+            // En lugar de crear una clave basada en el nombre del archivo,
+            // fusionamos directamente el objeto de contenido, que ya contiene
+            // la clave de nivel superior correcta (ej. { socialProofLogos: {...} }).
+            logger.traceEvent(
+              traceId,
+              `Fusionando contenido para clave(s): ${Object.keys(entryContent).join(", ")}`
+            );
+            Object.assign(acc, entryContent);
+            // --- [FIN DE REFACTORIZACIÓN DE LÓGICA DE ENSAMBLAJE] ---
           }
           return acc;
         },

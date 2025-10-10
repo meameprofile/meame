@@ -1,3 +1,4 @@
+// RUTA: src/components/features/dev-tools/utils/route-menu.generator.ts
 /**
  * @file route-menu.generator.ts
  * @description Motor de generación de menú anti-frágil.
@@ -102,7 +103,10 @@ export function generateDevRoutes(
       const label = dictionary[key as keyof typeof dictionary] || key;
       const params = getMockParams(key, locale);
 
+      // --- [INICIO DE REFACTORIZACIÓN DE SEGURIDAD DE TIPOS v6.2.0] ---
+      // Se utiliza una aserción de tipo explícita y segura para invocar la función `path`.
       const path = (route.path as (p: RouteParams) => string)(params);
+      // --- [FIN DE REFACTORIZACIÓN DE SEGURIDAD DE TIPOS v6.2.0] ---
 
       groups[groupKey].push({
         name: String(label),

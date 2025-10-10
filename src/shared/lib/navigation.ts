@@ -8,7 +8,6 @@
  * @version 22.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
-// La directiva "server-only" ha sido eliminada.
 import { defaultLocale, type Locale } from "./i18n/i18n.config";
 
 export const RouteType = {
@@ -43,6 +42,7 @@ const buildPath = (
       }
     }
   }
+  // Limpieza de placeholders opcionales no resueltos y barras duplicadas
   path = path.replace(/\/\[\[\.\.\..*?\]\]/g, "");
   path = path.replace(/\/+/g, "/");
   if (path !== "/" && path.endsWith("/")) {
@@ -147,7 +147,7 @@ export const routes = {
     type: RouteType.Public,
   },
 
-  // --- Rutas del DCC ---
+  // --- Rutas del DCC (ahora con rutas correctas) ---
   devDashboard: {
     path: (params: RouteParams) => buildPath(params.locale, "/dev"),
     template: "/dev",
