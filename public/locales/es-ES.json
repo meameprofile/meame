@@ -705,11 +705,7 @@
       "emailPlaceholder": "juan.perez@example.com",
       "subjectLabel": "Asunto",
       "subjectPlaceholder": "Selecciona un asunto",
-      "subjectOptions": [
-        "Desarrollo Web",
-        "Marketing Digital",
-        "Otro"
-      ],
+      "subjectOptions": ["Desarrollo Web", "Marketing Digital", "Otro"],
       "messageLabel": "Mensaje",
       "messagePlaceholder": "Tu mensaje...",
       "submitButtonText": "Enviar Mensaje"
@@ -992,10 +988,7 @@
         "imageUrl": "/pravatar/58",
         "firstName": "Leo",
         "lastName": "Miranda",
-        "positions": [
-          "Desarrollador Frontend",
-          "Creador de Este Sitio Web"
-        ],
+        "positions": ["Desarrollador Frontend", "Creador de Este Sitio Web"],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -1018,9 +1011,7 @@
         "imageUrl": "/unsplash/woman-portrait",
         "firstName": "Elizabeth",
         "lastName": "Moore",
-        "positions": [
-          "Diseñadora UI/UX"
-        ],
+        "positions": ["Diseñadora UI/UX"],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -1389,10 +1380,7 @@
       },
       "categorization": {
         "primary": "Rendimiento",
-        "secondary": [
-          "recuperacion",
-          "fuerza"
-        ]
+        "secondary": ["recuperacion", "fuerza"]
       },
       "targetProfile": {
         "userType": "Atletas",

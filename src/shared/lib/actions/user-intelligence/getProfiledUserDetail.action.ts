@@ -2,66 +2,25 @@
 /**
  * @file getProfiledUserDetail.action.ts
  * @description Server Action soberana para obtener la vista de 360 grados de un perfil de usuario.
- *              v4.0.0 (Holistic Observability & Contract Compliance): Nivelado para
- *              cumplir con el contrato de API del logger soberano v20+.
- * @version 4.0.0
+ * @version 5.0.0 (Architectural Integrity & Elite Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 
-import { z } from "zod";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import { decryptServerData } from "@/shared/lib/utils/server-encryption";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { VisitorCampaignEventRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
-
-const UaParserResultSchema = z
-  .object({
-    ua: z.string(),
-    browser: z
-      .object({ name: z.string().optional(), version: z.string().optional() })
-      .optional(),
-    engine: z
-      .object({ name: z.string().optional(), version: z.string().optional() })
-      .optional(),
-    os: z
-      .object({ name: z.string().optional(), version: z.string().optional() })
-      .optional(),
-    device: z
-      .object({
-        vendor: z.string().optional(),
-        model: z.string().optional(),
-        type: z.string().optional(),
-      })
-      .optional(),
-    cpu: z.object({ architecture: z.string().optional() }).optional(),
-  })
-  .passthrough();
-
-type UaParserResult = z.infer<typeof UaParserResultSchema>;
-
-export interface ProfiledUserDetail {
-  sessionId: string;
-  userId: string | null;
-  fingerprintId: string;
-  userType: "Registered" | "Anonymous";
-  displayName: string;
-  avatarUrl: string | null;
-  ip: string | null;
-  geo: {
-    countryCode: string | null;
-    city: string | null;
-    region: string | null;
-  } | null;
-  userAgent: UaParserResult;
-  events: VisitorCampaignEventRow[];
-}
+import {
+  UaParserResultSchema,
+  type ProfiledUserDetail,
+} from "./user-intelligence.contracts";
 
 export async function getProfiledUserDetailAction(
   sessionId: string
 ): Promise<ActionResult<ProfiledUserDetail>> {
-  const traceId = logger.startTrace("getProfiledUserDetailAction_v4.0");
+  const traceId = logger.startTrace("getProfiledUserDetailAction_v5.0");
   const groupId = logger.startGroup(
     `[UserInt Action] Obteniendo detalle para sesión: ${sessionId}`
   );
@@ -110,7 +69,7 @@ export async function getProfiledUserDetailAction(
 
     const userAgent = userAgentString
       ? UaParserResultSchema.parse(JSON.parse(userAgentString))
-      : UaParserResultSchema.parse({ ua: "" }); // Fallback seguro
+      : UaParserResultSchema.parse({ ua: "" });
 
     const result: ProfiledUserDetail = {
       sessionId: sessionData.session_id,

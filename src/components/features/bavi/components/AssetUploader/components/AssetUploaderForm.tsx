@@ -64,7 +64,9 @@ export function AssetUploaderForm({
           getInputProps={getInputProps}
           isDragActive={isDragActive}
           preview={preview}
-          text={isDragActive ? "Suelta para iniciar..." : content.dropzoneDefault}
+          text={
+            isDragActive ? "Suelta para iniciar..." : content.dropzoneDefault
+          }
         />
         <div className="space-y-6">
           <MetadataForm

@@ -2,9 +2,7 @@
 /**
  * @file getProfiledUsers.action.ts
  * @description Server Action soberana para obtener una lista paginada de perfiles de usuario.
- *              v4.0.0 (Holistic Observability & Contract Compliance): Nivelado para
- *              cumplir con el contrato de API del logger soberano v20+.
- * @version 4.0.0
+ * @version 5.0.0 (Architectural Integrity & Elite Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -14,19 +12,10 @@ import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { UserProfileSummaryRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
-
-export const ProfiledUserSchema = z.object({
-  userId: z.string().uuid().nullable(),
-  sessionId: z.string(),
-  userType: z.enum(["Registered", "Anonymous"]),
-  displayName: z.string(),
-  avatarUrl: z.string().nullable(),
-  firstSeenAt: z.string().datetime(),
-  lastSeenAt: z.string().datetime(),
-  totalEvents: z.number().int(),
-});
-
-export type ProfiledUser = z.infer<typeof ProfiledUserSchema>;
+import {
+  ProfiledUserSchema,
+  type ProfiledUser,
+} from "./user-intelligence.contracts";
 
 const GetProfiledUsersInputSchema = z.object({
   page: z.number().int().min(1).default(1),
@@ -76,10 +65,9 @@ function mapSupabaseToProfiledUser(row: JoinedRow): ProfiledUser {
 export async function getProfiledUsersAction(
   input: GetProfiledUsersInput
 ): Promise<ActionResult<{ users: ProfiledUser[]; total: number }>> {
-  const traceId = logger.startTrace("getProfiledUsersAction_v4.0");
+  const traceId = logger.startTrace("getProfiledUsersAction_v5.0");
   const groupId = logger.startGroup(
-    `[UserInt Action] Obteniendo lista de perfiles...`,
-    traceId
+    `[UserInt Action] Obteniendo lista de perfiles...`
   );
 
   try {

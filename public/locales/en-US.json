@@ -188,10 +188,7 @@
       },
       "categorization": {
         "primary": "Performance",
-        "secondary": [
-          "recovery",
-          "strength"
-        ]
+        "secondary": ["recovery", "strength"]
       },
       "targetProfile": {
         "userType": "Athletes",
@@ -661,10 +658,7 @@
         "imageUrl": "/pravatar/58",
         "firstName": "Leo",
         "lastName": "Miranda",
-        "positions": [
-          "Frontend Developer",
-          "Creator Of This Website"
-        ],
+        "positions": ["Frontend Developer", "Creator Of This Website"],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -1301,11 +1295,7 @@
       "emailPlaceholder": "john.doe@example.com",
       "subjectLabel": "Subject",
       "subjectPlaceholder": "Select a subject",
-      "subjectOptions": [
-        "Web Development",
-        "Digital Marketing",
-        "Other"
-      ],
+      "subjectOptions": ["Web Development", "Digital Marketing", "Other"],
       "messageLabel": "Message",
       "messagePlaceholder": "Your message...",
       "submitButtonText": "Send Message"

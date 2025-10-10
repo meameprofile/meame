@@ -58,7 +58,10 @@ export function MetadataForm({
             <FormItem>
               <FormLabel>{content.finalFileNameLabel}</FormLabel>
               <FormControl>
-                <Input placeholder={content.finalFileNamePlaceholder} {...field} />
+                <Input
+                  placeholder={content.finalFileNamePlaceholder}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -107,9 +110,13 @@ export function MetadataForm({
                   placeholder={content.keywordsPlaceholder}
                   {...field}
                   onChange={(e) =>
-                    field.onChange(e.target.value.split(",").map((k) => k.trim()))
+                    field.onChange(
+                      e.target.value.split(",").map((k) => k.trim())
+                    )
                   }
-                  value={Array.isArray(field.value) ? field.value.join(", ") : ""}
+                  value={
+                    Array.isArray(field.value) ? field.value.join(", ") : ""
+                  }
                 />
               </FormControl>
               <FormMessage />

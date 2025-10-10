@@ -10,12 +10,10 @@
 import React from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { UserIntelligenceTable } from "./UserIntelligenceTable";
-import type { ProfiledUser } from "@/shared/lib/actions/user-intelligence/getProfiledUsers.action";
-// --- [INICIO DE REFACTORIZACIÓN DE INTEGRIDAD DE RUTA v2.1.0] ---
 import type { UserIntelligenceContentSchema } from "@/shared/lib/schemas/pages/dev-user-intelligence.i18n.schema";
-// --- [FIN DE REFACTORIZACIÓN DE INTEGRIDAD DE RUTA v2.1.0] ---
 import type { z } from "zod";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import type { ProfiledUser } from "@/shared/lib/actions/user-intelligence/user-intelligence.contracts";
 
 type Content = z.infer<typeof UserIntelligenceContentSchema>;
 

@@ -188,10 +188,7 @@
       },
       "categorization": {
         "primary": "Desempenho",
-        "secondary": [
-          "recuperacao",
-          "forca"
-        ]
+        "secondary": ["recuperacao", "forca"]
       },
       "targetProfile": {
         "userType": "Atletas",
@@ -661,10 +658,7 @@
         "imageUrl": "/pravatar/58",
         "firstName": "Leo",
         "lastName": "Miranda",
-        "positions": [
-          "Desenvolvedor Frontend",
-          "Criador Deste Site"
-        ],
+        "positions": ["Desenvolvedor Frontend", "Criador Deste Site"],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -1301,11 +1295,7 @@
       "emailPlaceholder": "joao.silva@example.com",
       "subjectLabel": "Assunto",
       "subjectPlaceholder": "Selecione um assunto",
-      "subjectOptions": [
-        "Desenvolvimento Web",
-        "Marketing Digital",
-        "Outro"
-      ],
+      "subjectOptions": ["Desenvolvimento Web", "Marketing Digital", "Outro"],
       "messageLabel": "Mensagem",
       "messagePlaceholder": "Sua mensagem...",
       "submitButtonText": "Enviar Mensagem"

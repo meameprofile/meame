@@ -23,11 +23,11 @@ import {
   TableRow,
 } from "@/components/ui/Table";
 import { routes } from "@/shared/lib/navigation";
-import type { ProfiledUserDetail } from "@/shared/lib/actions/user-intelligence/getProfiledUserDetail.action";
 import type { VisitorCampaignEventRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
 import type { z } from "zod";
 import type { UserIntelligenceDetailContentSchema } from "@/shared/lib/schemas/pages/dev-user-intelligence-detail.i18n.schema";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import type { ProfiledUserDetail } from "@/shared/lib/actions/user-intelligence/user-intelligence.contracts";
 
 type Content = z.infer<typeof UserIntelligenceDetailContentSchema>;
 
@@ -117,11 +117,15 @@ export function UserDetailClient({
             <DetailItem label={content.labels.city} value={user.geo?.city} />
             <DetailItem
               label={content.labels.browser}
-              value={`${user.userAgent?.browser?.name || "?"} ${user.userAgent?.browser?.version || ""}`}
+              value={`${user.userAgent?.browser?.name || "?"} ${
+                user.userAgent?.browser?.version || ""
+              }`}
             />
             <DetailItem
               label={content.labels.os}
-              value={`${user.userAgent?.os?.name || "?"} ${user.userAgent?.os?.version || ""}`}
+              value={`${user.userAgent?.os?.name || "?"} ${
+                user.userAgent?.os?.version || ""
+              }`}
             />
             <DetailItem
               label={content.labels.device}
