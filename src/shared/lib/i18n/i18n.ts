@@ -1,9 +1,9 @@
 // RUTA: src/shared/lib/i18n/i18n.ts
 /**
  * @file i18n.ts
- * @description Orquestador de i18n "isomórfico", ahora alineado con la SSoT de enrutamiento.
- * @version 21.1.0 (Observability Contract Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Orquestador de i18n "isomórfico", ahora con lógica de ensamblaje de producción corregida.
+ * @version 22.0.0 (Production Key-Casing Fix)
+ * @author L.I.A. Legacy
  */
 import "server-only";
 import { cache } from "react";
@@ -24,6 +24,17 @@ type I18nEntry = Pick<
   Tables<"i18n_content_entries">,
   "entry_key" | "translations"
 >;
+
+// --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA DE BUILD v22.0.0] ---
+/**
+ * @function kebabToCamel
+ * @description Utilidad pura para convertir una cadena de kebab-case a camelCase.
+ * @param {string} s - La cadena en kebab-case.
+ * @returns {string} La cadena convertida a camelCase.
+ */
+const kebabToCamel = (s: string): string =>
+  s.replace(/-./g, (x) => x[1].toUpperCase());
+// --- [FIN DE REFACTORIZACIÓN DE RESILIENCIA DE BUILD v22.0.0] ---
 
 const getProductionDictionaryFn = cache(
   async (
@@ -51,13 +62,15 @@ const getProductionDictionaryFn = cache(
             locale
           ];
           if (entryContent) {
-            // Extrae la última parte de la ruta del archivo y elimina la extensión
-            // para usarla como clave de nivel superior en el diccionario.
-            const key = entry.entry_key
+            const fileName = entry.entry_key
               .split("/")
               .pop()
               ?.replace(".i18n.json", "");
-            if (key) {
+            if (fileName) {
+              // --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA DE BUILD v22.0.0] ---
+              // Se aplica la transformación a camelCase para generar la clave correcta.
+              const key = kebabToCamel(fileName);
+              // --- [FIN DE REFACTORIZACIÓN DE RESILIENCIA DE BUILD v22.0.0] ---
               (acc as Record<string, unknown>)[key] = entryContent;
             }
           }

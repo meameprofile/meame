@@ -1,6 +1,4 @@
 // RUTA: .pnpmfile.cjs
-/* eslint-env node */
-
 /**
  * @file .pnpmfile.cjs
  * @description Manifiesto de Hooks de PNPM y SSoT para la anulación de
@@ -9,6 +7,7 @@
  * @version 1.1.0 (Build Integrity Enforcement)
  * @author RaZ Podestá - MetaShark Tech
  */
+/* eslint-env node */
 
 /**
  * @see https://pnpm.io/pnpmfile
