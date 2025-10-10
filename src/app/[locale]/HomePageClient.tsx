@@ -7,27 +7,21 @@ import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { HeroNews } from "@/components/sections/HeroNews";
 import { NewsGrid } from "@/components/sections/NewsGrid";
-import { Skeleton } from "@/components/ui";
+
 interface HomePageClientProps {
   locale: Locale;
   dictionary: Dictionary;
 }
 
 export function HomePageClient({ locale, dictionary }: HomePageClientProps) {
-  const { articles, isLoading: isLoadingArticles } = useCogniReadCache();
+  // --- [INICIO DE REFACTORIZACIÓN DE HIGIENE] ---
+  // Se deconstruye únicamente la variable 'articles' que se utiliza.
+  const { articles } = useCogniReadCache();
 
-  if (isLoadingArticles) {
-    return (
-      <div className="container py-12 space-y-8">
-        <Skeleton className="h-64 w-full" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-          <Skeleton className="h-80 w-full" />
-          <Skeleton className="h-80 w-full" />
-          <Skeleton className="h-80 w-full" />
-        </div>
-      </div>
-    );
-  }
+  // El bloque 'if (isLoadingArticles)' y los componentes 'Skeleton' han sido eliminados.
+  // En una arquitectura de élite, el manejo de estados de carga globales o
+  // de nivel superior se delega a los Suspense Boundaries de React en el Server Shell.
+  // --- [FIN DE REFACTORIZACIÓN DE HIGIENE] ---
 
   const { heroNews, newsGrid } = dictionary;
   if (!heroNews || !newsGrid) {

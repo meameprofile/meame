@@ -25,12 +25,16 @@ export default async function SelectLanguagePage() {
     "[SelectLanguagePage] Renderizando v5.0 (Dynamic Rendering Enforcement)."
   );
 
+  // Se obtiene el diccionario usando el locale por defecto como base.
   const { dictionary, error: dictError } = await getDictionary(defaultLocale);
 
+  // --- [INICIO DE GUARDIÁN DE CONTRATO DE ÉLITE] ---
+  // 1. Se valida la estructura del contenido contra el schema soberano.
   const contentValidation = SelectLanguagePageContentSchema.safeParse(
     dictionary.selectLanguage
   );
 
+  // 2. Se comprueba tanto el error de carga como el fallo de validación.
   if (dictError || !contentValidation.success) {
     const errorDetails = dictError || contentValidation.error;
     logger.error(
@@ -45,7 +49,9 @@ export default async function SelectLanguagePage() {
       />
     );
   }
+  // --- [FIN DE GUARDIÁN DE CONTRATO DE ÉLITE] ---
 
+  // 3. Se pasa el objeto `validation.data` ya validado y tipado al componente cliente.
   return (
     <div className="flex items-center justify-center min-h-screen bg-background text-foreground">
       <LanguageSelectorClient content={contentValidation.data} />

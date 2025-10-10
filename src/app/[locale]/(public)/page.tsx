@@ -30,6 +30,9 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
 
   try {
     const { dictionary, error: dictError } = await getDictionary(locale);
+
+    // --- ¡AQUÍ ESTÁ EL GUARDIÁN QUE PROVOCA EL ERROR! ---
+    // Exige que estas claves existan en el diccionario que recibe.
     const {
       socialProofLogos,
       communitySection,
@@ -46,6 +49,7 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
       !heroNews ||
       !newsGrid
     ) {
+      // Si alguna clave falta, lanza el error que estás viendo.
       const missingKeys = [
         !socialProofLogos && "socialProofLogos",
         !communitySection && "communitySection",
@@ -69,9 +73,16 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
 
     return (
       <SectionAnimator>
+        {/* COMPONENTE 1: Usa la clave 'scrollingBanner' */}
         <ScrollingBanner content={scrollingBanner} locale={locale} />
+
+        {/* COMPONENTE 2: Usa la clave 'socialProofLogos' */}
         <SocialProofLogos content={socialProofLogos} locale={locale} />
+
+        {/* DELEGACIÓN A CLIENTE: Pasa el diccionario completo, incluyendo 'heroNews' y 'newsGrid' */}
         <HomePageClient locale={locale} dictionary={fullDictionary} />
+
+        {/* COMPONENTE 3: Usa la clave 'communitySection' */}
         <CommunitySection content={communitySection} locale={locale} />
       </SectionAnimator>
     );
