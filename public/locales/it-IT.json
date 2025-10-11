@@ -446,9 +446,17 @@
     "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campagna (ID 12157)",
     "devDashboard": "Dashboard Sviluppo",
     "devLogin": "Pagina di Login",
-    "devTestPage": "Pagina di Test",
-    "devComponentShowcase": "Vetrina Componenti",
-    "devCampaignSuiteCreate": "Suite di Progettazione"
+    "componentShowcase": "Vetrina Componenti",
+    "creatorCampaignSuiteWithStepId": "Suite di Progettazione",
+    "bavi": "BAVI - Biblioteca Asset",
+    "razPrompts": "RaZPrompts - Bóveda",
+    "cogniReadDashboard": "CogniRead - Dashboard",
+    "cogniReadEditor": "CogniRead - Editor",
+    "nos3": "Nos3 - Session Replay",
+    "analytics": "Aura - Analytics",
+    "userIntelligence": "Temeo - User Intelligence",
+    "heimdallObservatory": "Heimdall - Osservatorio",
+    "heimdallObservatorySystemHealth": "Sismografo di Salute"
   },
   "toggleTheme": {
     "light": "Chiaro",
@@ -653,7 +661,11 @@
       "emailPlaceholder": "mario.rossi@example.com",
       "subjectLabel": "Oggetto",
       "subjectPlaceholder": "Seleziona un oggetto",
-      "subjectOptions": ["Sviluppo Web", "Marketing Digitale", "Altro"],
+      "subjectOptions": [
+        "Sviluppo Web",
+        "Marketing Digitale",
+        "Altro"
+      ],
       "messageLabel": "Messaggio",
       "messagePlaceholder": "Il tuo messaggio...",
       "submitButtonText": "Invia Messaggio"
@@ -936,7 +948,10 @@
         "imageUrl": "/pravatar/58",
         "firstName": "Leo",
         "lastName": "Miranda",
-        "positions": ["Sviluppatore Frontend", "Creatore di Questo Sito"],
+        "positions": [
+          "Sviluppatore Frontend",
+          "Creatore di Questo Sito"
+        ],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -959,7 +974,9 @@
         "imageUrl": "/unsplash/woman-portrait",
         "firstName": "Elizabeth",
         "lastName": "Moore",
-        "positions": ["Designer UI/UX"],
+        "positions": [
+          "Designer UI/UX"
+        ],
         "socialNetworks": [
           {
             "name": "LinkedIn",
@@ -1328,7 +1345,10 @@
       },
       "categorization": {
         "primary": "Prestazione",
-        "secondary": ["recupero", "forza"]
+        "secondary": [
+          "recupero",
+          "forza"
+        ]
       },
       "targetProfile": {
         "userType": "Atleti",

@@ -2,7 +2,7 @@
   "scripts": {
     "//": "--- [10] ORQUESTADORES DE CI/CD Y ENTORNOS ---",
     "dev": "cross-env NODE_OPTIONS='--dns-result-order=ipv4first' next dev",
-    "build": "next build",
+     "build": "pnpm build:i18n && next build", 
     "start": "next start",
     "lint": "eslint . --fix",
     "format:write": "prettier --write . --log-level warn",
