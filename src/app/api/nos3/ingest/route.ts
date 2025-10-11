@@ -1,26 +1,28 @@
 // RUTA: src/app/api/nos3/ingest/route.ts
 /**
  * @file route.ts
- * @description Endpoint de Ingestión para el sistema `nos3`.
- * @version 1.3.0 (Architectural Boundary Fix)
- *@author RaZ Podestá - MetaShark Tech
+ * @description Endpoint de Ingestión soberano y transaccional para el sistema `nos3`.
+ *              v2.2.0 (Type Integrity Restoration): Se corrige la lógica de asignación
+ *              de promesas para resolver los errores de tipo TS2322 y garantizar la
+ *              seguridad de tipos absoluta en el manejo de datos encriptados.
+ * @version 2.2.0
+ * @author L.I.A. Legacy - Asistente de Refactorización
  */
-// --- [INICIO DE RESTAURACIÓN ARQUITECTÓNICA] ---
-// Se ha eliminado la directiva "use client". Las rutas de API son exclusivamente
-// de servidor y no pueden ser Componentes de Cliente.
-// --- [FIN DE RESTAURACIÓN ARQUITECTÓNICA] ---
 import { put } from "@vercel/blob";
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { UAParser } from "ua-parser-js";
 import { z } from "zod";
 
-import { logger } from "@/shared/lib/logging";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
+import { getIpIntelligence } from "@/shared/lib/services/ip-intelligence.service";
+import { encryptServerData } from "@/shared/lib/utils/server-encryption";
+import type { VisitorSessionInsert } from "@/shared/lib/schemas/analytics/analytics.contracts";
+import type { Json } from "@/shared/lib/supabase/database.types";
 
-export const runtime = "edge";
+export const runtime = "nodejs"; // Se requiere Node.js para las operaciones de criptografía.
 
-const IngestPayloadSchema = z.object({
-  sessionId: z
-    .string()
-    .cuid2({ message: "El ID de sesión debe ser un CUID2 válido." }),
+const Nos3IngestPayloadSchema = z.object({
   events: z.array(z.any()),
   metadata: z.object({
     pathname: z.string(),
@@ -28,58 +30,98 @@ const IngestPayloadSchema = z.object({
   }),
 });
 
-export async function POST(request: Request): Promise<NextResponse> {
+export async function POST(request: NextRequest): Promise<NextResponse> {
+  const taskId = logger.startTask(
+    { domain: "AURA_NOS3", entity: "SESSION_RECORDING", action: "INGEST" },
+    "Ingesting Nos3 Session Recording"
+  );
+  let finalStatus: "SUCCESS" | "FAILURE" = "SUCCESS";
+  let blobPath: string | null = null;
+
   try {
+    // --- PASO 1: VALIDACIÓN Y EXTRACCIÓN DE DATOS ---
+    logger.taskStep(taskId, "EXTRACT_AND_VALIDATE", "IN_PROGRESS");
     const body = await request.json();
-    const validation = IngestPayloadSchema.safeParse(body);
+    const validation = Nos3IngestPayloadSchema.safeParse(body);
 
-    if (!validation.success) {
-      logger.warn("[nos3-ingestor] Payload de ingestión inválido.", {
-        errors: validation.error.flatten(),
+    const fingerprint = request.headers.get("x-visitor-fingerprint");
+    const ip = request.headers.get("x-visitor-ip");
+    const uaString = request.headers.get("x-visitor-ua");
+    const userId = request.headers.get("x-user-id") || null;
+
+    if (!validation.success || !fingerprint || !ip || !uaString) {
+      finalStatus = "FAILURE";
+      logger.taskStep(taskId, "EXTRACT_AND_VALIDATE", "FAILURE", {
+        error: "Payload o cabeceras requeridas ausentes.",
+        validationErrors: validation.success
+          ? null
+          : validation.error.flatten(),
       });
-      return NextResponse.json(
-        { error: "Bad Request: Invalid payload structure." },
-        { status: 400 }
-      );
+      return new NextResponse("Bad Request: Payload o cabeceras inválidas.", {
+        status: 400,
+      });
     }
+    const { events, metadata } = validation.data;
+    logger.taskStep(taskId, "EXTRACT_AND_VALIDATE", "SUCCESS");
 
-    const { sessionId, events, metadata } = validation.data;
-    const blobPath = `sessions/${sessionId}/${metadata.timestamp}.json`;
+    // --- PASO 2: PERSISTENCIA DE LA SESIÓN (TRANSACCIÓN - PARTE 1) ---
+    logger.taskStep(taskId, "PERSIST_SESSION", "IN_PROGRESS");
+    const supabase = createServerClient();
 
+    // --- [INICIO DE REFACTORIZACIÓN DE INTEGRIDAD DE TIPOS v2.2.0] ---
+    // Primero, obtenemos los objetos de datos crudos.
+    const [geoIntelligence, uaResult] = await Promise.all([
+      getIpIntelligence(ip),
+      new UAParser(uaString).getResult(),
+    ]);
+
+    // Luego, en un segundo paso, realizamos las operaciones de encriptación.
+    const [encryptedIp, encryptedUa, encryptedGeo] = await Promise.all([
+      encryptServerData(ip),
+      encryptServerData(JSON.stringify(uaResult)),
+      geoIntelligence ? encryptServerData(JSON.stringify(geoIntelligence)) : null,
+    ]);
+    // --- [FIN DE REFACTORIZACIÓN DE INTEGRIDAD DE TIPOS v2.2.0] ---
+
+    const sessionPayload: VisitorSessionInsert = {
+      session_id: fingerprint,
+      fingerprint_id: fingerprint,
+      user_id: userId,
+      ip_address_encrypted: encryptedIp,
+      user_agent_encrypted: encryptedUa,
+      geo_encrypted: encryptedGeo as Json,
+      last_seen_at: new Date().toISOString(),
+    };
+
+    const { error: upsertError } = await supabase
+      .from("visitor_sessions")
+      .upsert(sessionPayload, { onConflict: "session_id" });
+
+    if (upsertError) {
+      throw new Error(`Fallo en Supabase upsert: ${upsertError.message}`);
+    }
+    logger.taskStep(taskId, "PERSIST_SESSION", "SUCCESS");
+
+    // --- PASO 3: SUBIDA DE LA GRABACIÓN (TRANSACCIÓN - PARTE 2) ---
+    logger.taskStep(taskId, "UPLOAD_RECORDING", "IN_PROGRESS");
+    blobPath = `sessions/${fingerprint}/${metadata.timestamp}.json`;
     await put(blobPath, JSON.stringify(events), {
       access: "public",
       contentType: "application/json",
     });
+    logger.taskStep(taskId, "UPLOAD_RECORDING", "SUCCESS");
 
-    logger.trace(
-      `[nos3-ingestor] Lote de sesión ${sessionId} enviado a Vercel Blob.`,
-      {
-        path: blobPath,
-        eventCount: events.length,
-      }
-    );
-
-    return NextResponse.json(
-      { message: "Payload accepted for processing." },
-      { status: 202 }
-    );
+    return new NextResponse("Payload accepted and processed.", { status: 202 });
   } catch (error) {
+    finalStatus = "FAILURE";
     const errorMessage =
-      error instanceof Error ? error.message : "Unknown ingest error";
-    let requestBodyForLog: unknown = "Could not re-parse body for logging.";
-    try {
-      requestBodyForLog = await request.json();
-    } catch {
-      /* Ignorar error de parseo secundario */
-    }
-
-    logger.error("[nos3-ingestor] Fallo crítico en el endpoint de ingestión.", {
-      error: errorMessage,
-      requestBody: requestBodyForLog,
-    });
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
+      error instanceof Error ? error.message : "Error desconocido.";
+    logger.error(
+      "[Nos3 Ingest] Fallo crítico durante la ingestión transaccional.",
+      { error: errorMessage, taskId }
     );
+    return new NextResponse("Internal Server Error", { status: 500 });
+  } finally {
+    logger.endTask(taskId, finalStatus);
   }
 }
