@@ -17,7 +17,7 @@ import {
   type Locale,
 } from "@/shared/lib/i18n/i18n.config";
 import { getDevDictionary } from "@/shared/lib/i18n/i18n.dev";
-import { getEdgeDictionary } from "@/shared/lib/i18n/i18n.edge"; // Se reutiliza el cargador del Edge
+import { getEdgeDictionary } from "@/shared/lib/i18n/i18n.edge";
 import { logger } from "@/shared/lib/logging";
 import { i18nSchema, type Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
@@ -36,10 +36,7 @@ const getProductionDictionaryFn = cache(
     );
 
     try {
-      // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v24.0.0] ---
-      // Se reemplaza la lógica de Supabase por una llamada al cargador de archivos estáticos.
       const { dictionary } = await getEdgeDictionary(locale);
-      // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v24.0.0] ---
 
       const validation = i18nSchema.safeParse(dictionary);
       if (!validation.success) {

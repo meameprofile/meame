@@ -2,7 +2,7 @@
   "scripts": {
     "//": "--- [10] ORQUESTADORES DE CI/CD Y ENTORNOS ---",
     "dev": "cross-env NODE_OPTIONS='--dns-result-order=ipv4first' next dev",
-     "build": "pnpm build:i18n && next build", 
+    "build": "pnpm build:i18n && next build",
     "start": "next start",
     "lint": "eslint . --fix",
     "format:write": "prettier --write . --log-level warn",
@@ -55,9 +55,6 @@
     "validate:themes": "tsx --tsconfig tsconfig.scripts.json scripts/validation/validate-theme-fragments.ts",
     "validate:sdc": "tsx --tsconfig tsconfig.scripts.json scripts/validation/validate-sdc-config.ts",
     "validate:schema:consistency": "tsx --tsconfig tsconfig.scripts.json scripts/validation/validate-all-schema-contracts.ts",
-      "diag:i18n:schema": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/schema-i18n_content_entries.ts",
-    "diag:i18n:content": "tsx --tsconfig tsconfig.scripts.json scripts/run-with-env.ts scripts/supabase/content-i18n.ts",
-    "diag:i18n:all": "pnpm diag:supabase:connect && pnpm diag:i18n:schema && pnpm diag:i18n:content",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:debug": "jest --verbose",
@@ -207,9 +204,6 @@
     "overrides": {
       "react": "18.3.1",
       "react-dom": "18.3.1"
-    },
-    "onlyBuiltDependencies": [
-      "@swc/core"
-    ]
+    }
   }
 }
