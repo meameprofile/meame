@@ -9,13 +9,14 @@
  */
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import { useCartTotals } from "@/shared/lib/stores/useCartStore";
 import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { useCartTotals } from "@/shared/lib/stores/useCartStore";
 
 type CartContent = NonNullable<Dictionary["cart"]>;
 

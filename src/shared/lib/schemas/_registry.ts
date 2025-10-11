@@ -7,7 +7,8 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { z } from "zod";
+import type { z } from "zod";
+
 import { ProfilesRowSchema } from "./account/account.contracts";
 // --- La importación ahora es válida gracias a la nivelación del aparato anterior ---
 import {

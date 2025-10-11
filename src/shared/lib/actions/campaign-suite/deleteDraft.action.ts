@@ -9,9 +9,10 @@
 "use server";
 
 import { z } from "zod";
+
+import { logger } from "@/shared/lib/logging";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-import { logger } from "@/shared/lib/logging";
 
 export async function deleteDraftAction(
   draftId: string

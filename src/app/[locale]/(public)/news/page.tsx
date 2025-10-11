@@ -8,14 +8,15 @@
  */
 import "server-only";
 import React from "react";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { logger } from "@/shared/lib/logging";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { SectionAnimator } from "@/components/layout/SectionAnimator";
 import { HeroNews } from "@/components/sections/HeroNews";
 import { NewsGrid } from "@/components/sections/NewsGrid";
 import { getPublishedArticlesAction } from "@/shared/lib/actions/cogniread";
+import { getDictionary } from "@/shared/lib/i18n/i18n";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
 
 interface NewsPageProps {

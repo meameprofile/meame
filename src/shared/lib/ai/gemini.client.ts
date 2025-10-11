@@ -11,10 +11,12 @@
 "use server";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
+
 import { logger } from "@/shared/lib/logging";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
+
 import { GenerateTextRequestSchema } from "./gemini.schemas";
 import type { GenerateTextRequest } from "./gemini.schemas";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 // --- GUARDIA DE CONFIGURACIÓN A NIVEL DE MÓDULO ---
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;

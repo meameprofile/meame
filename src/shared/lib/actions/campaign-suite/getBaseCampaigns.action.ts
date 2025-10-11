@@ -10,13 +10,13 @@
  */
 "use server";
 
-import { logger } from "@/shared/lib/logging";
-// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
-// Se corrige la ruta de importación y se importa el tipo necesario.
 import {
   getAllCampaignsAndVariants,
   type CampaignVariantInfo,
 } from "@/shared/lib/dev/campaign-utils";
+import { logger } from "@/shared/lib/logging";
+// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
+// Se corrige la ruta de importación y se importa el tipo necesario.
 // --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 

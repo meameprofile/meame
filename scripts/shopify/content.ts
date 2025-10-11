@@ -7,16 +7,18 @@
  */
 import { promises as fs } from "fs";
 import path from "path";
-import { loadEnvironment } from "../_utils/env";
-import { scriptLogger as logger } from "../_utils/logger";
-import type { ScriptActionResult } from "../_utils/types";
+
 import { shopifyAdminFetch } from "@/shared/lib/shopify/admin-client";
-import { getAdminProductsQuery } from "@/shared/lib/shopify/queries/admin-product";
-import type { ShopifyAdminProductsOperation } from "@/shared/lib/shopify/types/admin.types";
 import {
   reshapeAdminProducts,
   type AdminProduct,
 } from "@/shared/lib/shopify/admin.shapers";
+import { getAdminProductsQuery } from "@/shared/lib/shopify/queries/admin-product";
+import type { ShopifyAdminProductsOperation } from "@/shared/lib/shopify/types/admin.types";
+
+import { loadEnvironment } from "../_utils/env";
+import { scriptLogger as logger } from "../_utils/logger";
+import type { ScriptActionResult } from "../_utils/types";
 
 interface Report {
   reportMetadata: { script: string; purpose: string; generatedAt: string };

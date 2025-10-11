@@ -3,11 +3,11 @@
  * @file draft.validator.ts
  * @description SSoT para la lógica de validación de un borrador de campaña.
  * @version 2.1.0 (CampaignDraft v7.0 Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 export interface ChecklistItem {
   id: string;

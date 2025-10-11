@@ -9,9 +9,10 @@
 
 import React from "react";
 import type { UseFormReturn } from "react-hook-form";
-import { z } from "zod";
-import { Form, Tabs, TabsList, TabsTrigger } from "@/components/ui";
+import type { z } from "zod";
+
 import { SchemaFieldRenderer } from "@/components/features/form-builder/builder/SchemaFieldRenderer";
+import { Form, Tabs, TabsList, TabsTrigger } from "@/components/ui";
 // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
 import {
   ROUTING_LOCALES as supportedLocales,

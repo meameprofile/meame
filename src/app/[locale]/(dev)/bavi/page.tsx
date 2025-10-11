@@ -7,10 +7,12 @@
  */
 import "server-only";
 import React from "react";
-import { logger } from "@/shared/lib/logging";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { getBaviI18nContentAction } from "@/shared/lib/actions/bavi/getBaviI18nContent.action";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools";
+import { getBaviI18nContentAction } from "@/shared/lib/actions/bavi/getBaviI18nContent.action";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+
 import { BaviPageClient } from "./_components/BaviPageClient";
 
 export default async function BaviHomePage({

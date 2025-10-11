@@ -7,13 +7,14 @@
  */
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
+import React, { useState, useCallback, useEffect } from "react";
 import { useDropzone, type Accept } from "react-dropzone";
-import { cn } from "@/shared/lib/utils/cn";
-import { DynamicIcon } from "@/components/ui";
 import { toast } from "sonner";
+
+import { DynamicIcon } from "@/components/ui";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface ImageUploaderProps {
   onUpload: (formData: FormData) => Promise<ActionResult<{ path: string }>>;

@@ -8,10 +8,11 @@
  */
 import { promises as fs } from "fs";
 import * as path from "path";
+
+import { shopifyAdminFetch } from "../../src/shared/lib/shopify/admin-client";
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";
-import { shopifyAdminFetch } from "../../src/shared/lib/shopify/admin-client";
 
 // --- SSoT de Contratos de Datos ---
 interface Report {
@@ -44,13 +45,13 @@ const getCollectionsQuery = /* GraphQL */ `
   }
 `;
 
-type ShopifyCollectionsOperation = {
+interface ShopifyCollectionsOperation {
   data: {
     collections: {
-      edges: Array<{ node: unknown }>;
+      edges: { node: unknown }[];
     };
   };
-};
+}
 
 async function diagnoseShopifySchema(): Promise<ScriptActionResult<string>> {
   const traceId = scriptLogger.startTrace("diagnoseShopifySchema_v1.1");

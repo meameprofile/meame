@@ -7,12 +7,13 @@
  */
 "use client";
 
+import { motion } from "framer-motion";
 import React from "react";
+
 import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
 import { logger } from "@/shared/lib/logging";
-import { motion } from "framer-motion";
+import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
 
 interface SectionListProps {
   layoutConfig: LayoutConfigItem[];

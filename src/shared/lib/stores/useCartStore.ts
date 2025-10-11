@@ -8,8 +8,9 @@
  *@author RaZ Podestá - MetaShark Tech
  */
 import { create } from "zustand";
-import type { Product } from "@/shared/lib/schemas/entities/product.schema";
+
 import { logger } from "@/shared/lib/logging";
+import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 
 // El contrato de CartItem permanece igual.
 export interface CartItem extends Product {

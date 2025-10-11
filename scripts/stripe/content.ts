@@ -6,9 +6,11 @@
  * @version 2.1.0 (Definitive Return Contract)
  * @author RaZ Podestá - MetaShark Tech
  */
-import Stripe from "stripe";
 import { promises as fs } from "fs";
 import path from "path";
+
+import Stripe from "stripe";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger as logger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";

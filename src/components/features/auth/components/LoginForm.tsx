@@ -10,10 +10,11 @@
  */
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, type Variants, AnimatePresence } from "framer-motion";
+import React, { useState, useMemo, useEffect } from "react";
+import { useForm } from "react-hook-form";
+
 import {
   Card,
   CardContent,
@@ -33,16 +34,18 @@ import {
   DialogContent,
   Separator,
 } from "@/components/ui";
-import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import {
   LoginSchema,
   type LoginFormData,
 } from "@/shared/lib/schemas/auth/login.schema";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
+
+import { DeveloperErrorDisplay } from "../../dev-tools";
+
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
 import { OAuthButtons } from "./OAuthButtons";
-import { DeveloperErrorDisplay } from "../../dev-tools";
 
 type LoginFormContent = NonNullable<Dictionary["devLoginPage"]>;
 type OAuthButtonsContent = NonNullable<Dictionary["oAuthButtons"]>;

@@ -7,17 +7,18 @@
  */
 "use server";
 
-import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
+
+import { getCart } from "@/shared/lib/commerce/cart"; // <-- IMPORTACIÓN SOBERANA
 import { logger } from "@/shared/lib/logging";
-import { TAGS } from "@/shared/lib/utils/constants";
 import {
   addToCart,
   createCart,
   removeFromCart,
   updateCart,
 } from "@/shared/lib/shopify";
-import { getCart } from "@/shared/lib/commerce/cart"; // <-- IMPORTACIÓN SOBERANA
+import { TAGS } from "@/shared/lib/utils/constants";
 
 export async function addItem(
   prevState: unknown,

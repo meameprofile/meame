@@ -7,14 +7,15 @@
  */
 "use server";
 
-import { createServerClient } from "@/shared/lib/supabase/server";
+import { z } from "zod";
+
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import {
   CampaignTemplateSchema,
   type CampaignTemplate,
 } from "@/shared/lib/schemas/campaigns/template.schema";
-import { z } from "zod";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 export async function getCampaignTemplatesAction(
   workspaceId: string

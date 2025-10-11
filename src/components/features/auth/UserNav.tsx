@@ -10,13 +10,13 @@
  */
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/shared/hooks/use-auth";
-import { createClient } from "@/shared/lib/supabase/client";
+import React from "react";
+import type { z } from "zod";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
-import { Skeleton } from "@/components/ui/Skeleton";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,10 +25,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { useAuth } from "@/shared/hooks/use-auth";
 import { logger } from "@/shared/lib/logging";
 import type { UserNavContentSchema } from "@/shared/lib/schemas/components/auth/user-nav.schema";
-import type { z } from "zod";
+import { createClient } from "@/shared/lib/supabase/client";
 
 // --- SSoT del Contrato de Contenido ---
 type Content = z.infer<typeof UserNavContentSchema>;

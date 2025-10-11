@@ -3,13 +3,14 @@
  * @file route.ts
  * @description Endpoint de API para generar vistas previas de componentes.
  * @version 6.0.0 (Sovereign Contract Alignment & Pure Passthrough)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { ImageResponse } from "@vercel/og";
+import React from "react";
+
+import { ErrorPreview } from "@/components/features/dev-tools/ErrorPreview";
 import { renderPreviewComponent } from "@/shared/lib/dev/preview-renderer";
 import { logger } from "@/shared/lib/logging";
-import React from "react";
-import { ErrorPreview } from "@/components/features/dev-tools/ErrorPreview";
 
 export async function GET(
   request: Request,

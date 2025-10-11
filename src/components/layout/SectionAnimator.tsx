@@ -8,8 +8,9 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
+import React from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 interface SectionAnimatorProps {

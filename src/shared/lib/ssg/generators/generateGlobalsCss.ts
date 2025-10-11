@@ -5,15 +5,16 @@
  *              v2.0.0 (DRY Principle): Refactorizado para ser un generador puro que
  *              consume el tema ensamblado desde el BuildContext.
  * @version 2.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server-only";
 
 import { promises as fs } from "fs";
 import path from "path";
+
 import { logger } from "@/shared/lib/logging";
-import { generateCssVariablesFromTheme } from "@/shared/lib/utils/theming/theme-utils";
 import type { BuildContext } from "@/shared/lib/ssg/engine/types";
+import { generateCssVariablesFromTheme } from "@/shared/lib/utils/theming/theme-utils";
 
 export async function generateGlobalsCss(context: BuildContext): Promise<void> {
   logger.trace(

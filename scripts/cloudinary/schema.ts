@@ -5,9 +5,11 @@
  * @version 10.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { v2 as cloudinary } from "cloudinary";
 import { promises as fs } from "fs";
 import * as path from "path";
+
+import { v2 as cloudinary } from "cloudinary";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";

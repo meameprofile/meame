@@ -9,19 +9,21 @@
  */
 "use client";
 
-import React from "react";
-import { useRouter } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
+import React from "react";
+
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/Sheet";
-import { useCartStore, type CartItem } from "@/shared/lib/stores/useCartStore";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { useCartStore, type CartItem } from "@/shared/lib/stores/useCartStore";
+
 import {
   CartEmptyState,
   CartItemRow,

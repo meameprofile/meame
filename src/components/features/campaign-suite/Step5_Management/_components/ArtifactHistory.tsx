@@ -4,25 +4,26 @@
  * @description Componente de UI para mostrar y descargar el historial de artefactos.
  *              Forjado con observabilidad de élite, resiliencia y un contrato de datos i18n.
  * @version 2.1.0 (Barrel File Eradication)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React, { useState, useEffect, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useTransition } from "react";
 import { toast } from "sonner";
+
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v2.1.0] ---
 // Se eliminó la dependencia del archivo barril. Cada acción y tipo ahora se importa
 // directamente desde su archivo soberano para garantizar la integridad del build.
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { Button, DynamicIcon, Skeleton } from "@/components/ui";
+import { getArtifactDownloadUrlAction } from "@/shared/lib/actions/campaign-suite/getArtifactDownloadUrl.action";
 import {
   getArtifactsForDraftAction,
   type ArtifactMetadata,
 } from "@/shared/lib/actions/campaign-suite/getArtifactsForDraft.action";
-import { getArtifactDownloadUrlAction } from "@/shared/lib/actions/campaign-suite/getArtifactDownloadUrl.action";
 // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v2.1.0] ---
 import { logger } from "@/shared/lib/logging";
-import { Button, DynamicIcon, Skeleton } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface ArtifactHistoryContent {
   title: string;

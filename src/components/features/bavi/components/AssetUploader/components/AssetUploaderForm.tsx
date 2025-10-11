@@ -3,27 +3,29 @@
  * @file AssetUploaderForm.tsx
  * @description Componente de presentación puro para la UI del AssetUploader.
  * @version 3.0.0 (Holistic Data Flow & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React from "react";
-import type { UseFormReturn } from "react-hook-form";
-import type { DropzoneRootProps, DropzoneInputProps } from "react-dropzone";
 import type { UploadApiResponse } from "cloudinary";
-import { Form, Button, DynamicIcon } from "@/components/ui";
-import { AssetDropzone } from "./AssetDropzone";
-import { MetadataForm } from "./MetadataForm";
-import { UploadPreview } from "./UploadPreview";
+import React from "react";
+import type { DropzoneRootProps, DropzoneInputProps } from "react-dropzone";
+import type { UseFormReturn } from "react-hook-form";
+
 import { SesaTagsFormGroup } from "@/components/features/raz-prompts/components/SesaTagsFormGroup";
+import { Form, Button, DynamicIcon } from "@/components/ui";
 import type { AssetUploadMetadata } from "@/shared/lib/schemas/bavi/upload.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
+import { AssetDropzone } from "./AssetDropzone";
+import { MetadataForm } from "./MetadataForm";
+import { UploadPreview } from "./UploadPreview";
+
 type UploaderContent = NonNullable<Dictionary["baviUploader"]>;
-type SesaContent = {
+interface SesaContent {
   sesaLabels: NonNullable<Dictionary["promptCreator"]>["sesaLabels"];
   sesaOptions: NonNullable<Dictionary["promptCreator"]>["sesaOptions"];
-};
+}
 
 // Contrato de props explícito que recibe TODO el estado del hook.
 interface AssetUploaderFormProps {

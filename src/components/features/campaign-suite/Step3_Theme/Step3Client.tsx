@@ -4,26 +4,29 @@
  * @description Orquestador de presentación puro para el Paso 3, nivelado a un
  *              estándar de élite con full logging, resiliencia e i18n.
  * @version 18.0.0 (Elite Compliance & Full i18n)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React, { useMemo, useEffect } from "react";
-import { useStep3Logic } from "@/shared/hooks/campaign-suite/useStep3Logic";
+import type { z } from "zod";
+
+import { DynamicIcon } from "@/components/ui";
 import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
-import { Step3Form } from "./Step3Form";
+import { useStep3Logic } from "@/shared/hooks/campaign-suite/useStep3Logic";
+import { logger } from "@/shared/lib/logging";
+import type { Step3ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
+
+import { DeveloperErrorDisplay } from "../../dev-tools";
+
 import {
   ThemeComposerModal,
   CreatePresetDialog,
   DeletePresetDialog,
   EditPresetDialog,
 } from "./_components";
-import { DynamicIcon } from "@/components/ui";
-import { DeveloperErrorDisplay } from "../../dev-tools";
-import type { z } from "zod";
-import type { Step3ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
-import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
-import { logger } from "@/shared/lib/logging";
+import { Step3Form } from "./Step3Form";
 
 type Step3Content = z.infer<typeof Step3ContentSchema>;
 

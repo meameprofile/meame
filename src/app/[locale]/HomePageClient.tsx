@@ -1,12 +1,13 @@
 // RUTA: src/app/[locale]/HomePageClient.tsx
 "use client";
 import React from "react";
-import { useCogniReadCache } from "@/shared/hooks/use-cogniread-cache";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { HeroNews } from "@/components/sections/HeroNews";
 import { NewsGrid } from "@/components/sections/NewsGrid";
+import { useCogniReadCache } from "@/shared/hooks/use-cogniread-cache";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 interface HomePageClientProps {
   locale: Locale;

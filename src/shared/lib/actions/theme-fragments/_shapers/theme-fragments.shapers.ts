@@ -10,8 +10,8 @@ import {
   ThemeFragmentSchema,
   type ThemeFragment,
 } from "@/shared/lib/actions/theme-fragments/getThemeFragments.action";
-import type { ThemeFragmentRow } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import { logger } from "@/shared/lib/logging";
+import type { ThemeFragmentRow } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 
 export function mapSupabaseToThemeFragment(
   row: ThemeFragmentRow,

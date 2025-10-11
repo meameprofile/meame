@@ -2,89 +2,146 @@
 /**
  * @file route.ts
  * @description Endpoint de Ingesta del Protocolo Heimdall (El Puente Bifröst).
- *              v2.0.0 (DB Contract Alignment & Elite Observability): Se alinea
- *              el payload de inserción con el contrato de la tabla de la base de
- *              datos, resolviendo un error crítico de "columna no encontrada".
- * @version 2.0.0
+ *              v3.1.0 (Infrastructure Synchronized): Alineado y con seguridad de
+ *              tipos garantizada contra el esquema de base de datos nivelado.
+ * @version 3.1.0
  * @author RaZ Podestá - MetaShark Tech
  */
 import { NextResponse, type NextRequest } from "next/server";
-import { createServerClient } from "@/shared/lib/supabase/server";
-import { logger } from "@/shared/lib/logging";
-import { HeimdallIngestPayloadSchema } from "@/shared/lib/telemetry/heimdall.contracts";
-import type { HeimdallEvent } from "@/shared/lib/telemetry/heimdall.contracts";
+
 import type { Json } from "@/shared/lib/supabase/database.types";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import {
+  HeimdallIngestPayloadSchema,
+  type HeimdallEvent,
+  type HeimdallEventInsert,
+  type TaskHealthSummaryInsert,
+} from "@/shared/lib/telemetry/heimdall.contracts";
+import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
+
+/**
+ * Shaper puro para transformar un evento de aplicación a una fila de heimdall_events.
+ */
+function shapeToHeimdallEventRow(event: HeimdallEvent): HeimdallEventInsert {
+  return {
+    event_id: event.eventId,
+    trace_id: event.traceId,
+    task_id: event.taskId,
+    step_name: event.stepName,
+    event_name: event.title,
+    status: event.status,
+    timestamp: event.timestamp,
+    duration_ms: event.duration,
+    payload: event.payload as Json,
+    context: event.context as Json,
+  };
+}
+
+/**
+ * Shaper puro que filtra y transforma un evento raíz de Tarea a una fila de task_health_summary.
+ * Devuelve null si el evento no es un evento raíz de Tarea.
+ */
+function shapeToTaskHealthSummaryRow(
+  event: HeimdallEvent
+): TaskHealthSummaryInsert | null {
+  if (
+    event.taskId &&
+    event.traceId === event.taskId &&
+    (event.status === "SUCCESS" || event.status === "FAILURE")
+  ) {
+    return {
+      task_id: event.taskId,
+      task_name: event.title,
+      status: event.status,
+      duration_ms: event.duration,
+      timestamp: event.timestamp,
+      user_id: event.context.user,
+      context: {
+        path: event.context.path,
+        runtime: event.context.runtime,
+        payload: event.payload,
+      } as Json,
+    };
+  }
+  return null;
+}
 
 export async function POST(request: NextRequest) {
-  const traceId = logger.startTrace("heimdall.ingestEndpoint_v2.0");
-  const groupId = logger.startGroup(
-    `[Heimdall Ingest] Procesando lote de eventos...`,
-    traceId
+  const taskId = logger.startTask(
+    { domain: "HEIMDALL_INGEST", entity: "TELEMETRY_BATCH", action: "PROCESS" },
+    "Processing Telemetry Batch"
   );
+  let finalStatus: "SUCCESS" | "FAILURE" = "SUCCESS";
 
   try {
-    const body = await request.json();
-    logger.traceEvent(traceId, "Payload JSON recibido y parseado.");
+    const supabase = createServerClient();
 
+    logger.taskStep(taskId, "VALIDATE_PAYLOAD", "IN_PROGRESS");
+    const body = await request.json();
     const validation = HeimdallIngestPayloadSchema.safeParse(body);
 
     if (!validation.success) {
-      logger.warn("[Heimdall Ingest] Payload de ingestión inválido.", {
-        traceId,
+      logger.taskStep(taskId, "VALIDATE_PAYLOAD", "FAILURE", {
         errors: validation.error.flatten(),
       });
       return new NextResponse("Bad Request: Invalid payload", { status: 400 });
     }
-    logger.traceEvent(traceId, "Payload de entrada validado contra schema.");
-
     const { events } = validation.data;
+    logger.taskStep(taskId, "VALIDATE_PAYLOAD", "SUCCESS", {
+      eventCount: events.length,
+    });
+
     if (events.length === 0) {
-      logger.traceEvent(traceId, "Lote de eventos vacío, finalizando.");
       return new NextResponse("Payload accepted (empty)", { status: 202 });
     }
 
-    const supabase = createServerClient();
-    // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v2.0.0] ---
-    // El payload ahora cumple con el schema de la tabla 'heimdall_events'.
-    const recordsToInsert = events.map((event: HeimdallEvent) => ({
-      event_id: event.eventId,
-      trace_id: event.traceId,
-      event_name: event.eventName,
-      status: event.status,
-      timestamp: event.timestamp,
-      duration_ms: event.duration,
-      payload: event.payload as Json,
-      context: event.context as Json, // 'path' está contenido aquí.
-    }));
-    // --- [FIN DE REFACTORIZACIÓN DE CONTRATO v2.0.0] ---
-    logger.traceEvent(
-      traceId,
-      `Payload de Supabase generado para ${recordsToInsert.length} eventos.`
-    );
+    logger.taskStep(taskId, "TRANSFORM_EVENTS", "IN_PROGRESS");
+    const heimdallEventsToInsert: HeimdallEventInsert[] = [];
+    const taskSummariesToInsert: TaskHealthSummaryInsert[] = [];
 
-    const { error } = await supabase
-      .from("heimdall_events")
-      .insert(recordsToInsert);
-
-    if (error) {
-      throw new Error(`Error de Supabase: ${error.message}`);
+    for (const event of events) {
+      heimdallEventsToInsert.push(shapeToHeimdallEventRow(event));
+      const summary = shapeToTaskHealthSummaryRow(event);
+      if (summary) {
+        taskSummariesToInsert.push(summary);
+      }
     }
+    logger.taskStep(taskId, "TRANSFORM_EVENTS", "SUCCESS", {
+      forensicCount: heimdallEventsToInsert.length,
+      summaryCount: taskSummariesToInsert.length,
+    });
 
-    logger.success(
-      `[Heimdall Ingest] Lote de ${events.length} eventos persistido con éxito.`,
-      { traceId }
-    );
+    logger.taskStep(taskId, "PERSIST_DATA", "IN_PROGRESS");
+    const [summaryResult, eventsResult] = await Promise.all([
+      taskSummariesToInsert.length > 0
+        ? supabase.from("task_health_summary").insert(taskSummariesToInsert)
+        : Promise.resolve({ error: null }),
+      supabase.from("heimdall_events").insert(heimdallEventsToInsert),
+    ]);
+
+    if (summaryResult.error || eventsResult.error) {
+      const errors = {
+        summaryError: summaryResult.error?.message,
+        eventsError: eventsResult.error?.message,
+      };
+      logger.taskStep(taskId, "PERSIST_DATA", "FAILURE", { errors });
+      throw new Error(
+        `Error de Supabase: ${summaryResult.error?.message || eventsResult.error?.message}`
+      );
+    }
+    logger.taskStep(taskId, "PERSIST_DATA", "SUCCESS");
+
     return new NextResponse("Payload accepted", { status: 202 });
   } catch (error) {
+    finalStatus = "FAILURE";
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[Heimdall Ingest] Fallo crítico en el endpoint.", {
-      error: errorMessage,
-      traceId,
-    });
+    logger.error(
+      "[Heimdall Ingest] Fallo crítico en el endpoint de ingestión.",
+      { error: errorMessage, taskId }
+    );
     return new NextResponse("Internal Server Error", { status: 500 });
   } finally {
-    logger.endGroup(groupId);
-    logger.endTrace(traceId);
+    logger.endTask(taskId, finalStatus);
   }
 }

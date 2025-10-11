@@ -9,11 +9,13 @@
  */
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/shared/lib/utils";
-import type { LoadedFragments } from "../types";
+import React from "react";
+
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import { cn } from "@/shared/lib/utils";
+
+import type { LoadedFragments } from "../types";
 
 // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
 interface ContentProps {

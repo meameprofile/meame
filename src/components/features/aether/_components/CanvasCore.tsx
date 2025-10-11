@@ -9,11 +9,13 @@
  */
 "use client";
 
-import React, { useRef, useEffect } from "react";
 import { useVideoTexture, PositionalAudio } from "@react-three/drei";
-import { VideoPlane } from "./VideoPlane";
+import React, { useRef, useEffect } from "react";
 import type { PositionalAudio as PositionalAudioImpl } from "three";
+
 import { logger } from "@/shared/lib/logging";
+
+import { VideoPlane } from "./VideoPlane";
 
 interface CanvasCoreProps {
   src: string;

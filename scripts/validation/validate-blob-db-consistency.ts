@@ -7,12 +7,14 @@
  * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { list } from "@vercel/blob";
 import { promises as fs } from "fs";
 import path from "path";
-import { createScriptClient } from "../_utils/supabaseClient";
+
+import { list } from "@vercel/blob";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger as logger } from "../_utils/logger";
+import { createScriptClient } from "../_utils/supabaseClient";
 
 async function validateBlobDbConsistency() {
   const traceId = logger.startTrace("validateBlobDbConsistency_v1.1");

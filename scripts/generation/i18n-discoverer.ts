@@ -9,6 +9,7 @@
  */
 import * as fs from "fs/promises";
 import * as path from "path";
+
 import chalk from "chalk";
 
 const CONTENT_ROOT_DIR = path.resolve(process.cwd(), "src");
@@ -17,12 +18,12 @@ const DEV_CONTENT_PATHS_TO_IGNORE = [
   path.join("messages", "pages", "dev"),
 ];
 
-export type I18nFileContent = { [key: string]: Record<string, unknown> };
+export type I18nFileContent = Record<string, Record<string, unknown>>;
 
-export type DiscoveryResult = {
+export interface DiscoveryResult {
   files: string[];
   contents: I18nFileContent[];
-};
+}
 
 export async function discoverAndReadI18nFiles(options?: {
   excludeDevContent?: boolean;

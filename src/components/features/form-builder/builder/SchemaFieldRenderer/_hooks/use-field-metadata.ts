@@ -6,8 +6,10 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { useMemo } from "react";
-import { z } from "zod";
+import type { z } from "zod";
+
 import { logger } from "@/shared/lib/logging";
+
 import type { FieldMetadata } from "../_types/field.types";
 
 export function useFieldMetadata(

@@ -9,7 +9,8 @@
  * @version 4.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest, NextResponse } from "next/server";
+
 import { logger } from "@/shared/lib/logging";
 
 export type MiddlewareHandler = (

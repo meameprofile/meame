@@ -1,12 +1,13 @@
 // RUTA: src/components/features/auth/components/LastSignInInfo.tsx
 "use client";
-import React, { useMemo, useEffect } from "react";
 import { motion, type Variants } from "framer-motion";
+import React, { useMemo, useEffect } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { logger } from "@/shared/lib/logging";
 import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 type LastSignInContent = NonNullable<
   NonNullable<Dictionary["devLoginPage"]>["lastSignIn"]
 >;

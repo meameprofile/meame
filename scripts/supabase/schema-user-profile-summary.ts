@@ -6,6 +6,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { scriptLogger as logger } from "../_utils/logger";
+
 import { runTableAudit } from "./_utils/runTableAudit";
 
 const TARGET_TABLE = "user_profile_summary";

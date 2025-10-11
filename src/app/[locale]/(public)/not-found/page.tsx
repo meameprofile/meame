@@ -7,13 +7,15 @@
  * @version 1.0.1
  * @author RaZ Podestá - MetaShark Tech
  */
+import { notFound } from "next/navigation";
 import React from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
+
 import { NotFoundClient } from "./NotFoundClient";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { notFound } from "next/navigation";
 
 interface NotFoundPageProps {
   params: { locale: Locale };

@@ -9,13 +9,15 @@
  * @version 9.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import Link from "next/link";
+import React from "react";
+
+import { loadComponentAndProps } from "@/shared/lib/dev/ComponentLoader";
 import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
 import { ComponentCanvasHeader } from "./ComponentCanvasHeader";
 import { ComponentMetadataPanel } from "./ComponentMetadataPanel";
-import { loadComponentAndProps } from "@/shared/lib/dev/ComponentLoader";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { DeveloperErrorDisplay } from "./DeveloperErrorDisplay";
 
 type CanvasContent = NonNullable<Dictionary["componentCanvas"]>;

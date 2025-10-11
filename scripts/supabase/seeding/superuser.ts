@@ -6,10 +6,11 @@
  * @version 6.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { createScriptClient } from "../../_utils/supabaseClient";
-import { scriptLogger as logger } from "../../_utils/logger";
-import type { ScriptActionResult as ActionResult } from "../../_utils/types";
 import type { User } from "@supabase/supabase-js";
+
+import { scriptLogger as logger } from "../../_utils/logger";
+import { createScriptClient } from "../../_utils/supabaseClient";
+import type { ScriptActionResult as ActionResult } from "../../_utils/types";
 
 export default async function createSuperUser(): Promise<
   ActionResult<{ userId: string }>

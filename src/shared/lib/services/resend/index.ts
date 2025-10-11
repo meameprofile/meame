@@ -8,10 +8,11 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
+import type React from "react";
 import { Resend } from "resend";
+
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-import type React from "react";
 
 // --- Pilar VI: Guardia de Configuración a Nivel de Módulo ---
 if (!process.env.RESEND_API_KEY) {

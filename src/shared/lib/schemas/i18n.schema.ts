@@ -8,6 +8,16 @@
 import { z } from "zod";
 
 // [DOMINIO GLOBAL Y PORTAL]
+import { BaviUploaderLocaleSchema } from "./bavi/bavi-uploader.i18n.schema";
+import { ProfileFormLocaleSchema } from "./components/account/profile-form.schema";
+import { AlertDialogLocaleSchema } from "./components/alert-dialog.schema";
+import { AlertLocaleSchema } from "./components/alert.schema";
+import { OAuthButtonsLocaleSchema } from "./components/auth/oauth-buttons.schema";
+import { UserNavLocaleSchema } from "./components/auth/user-nav.schema";
+import { CartLocaleSchema } from "./components/cart.schema";
+import { CookieConsentBannerLocaleSchema } from "./components/cookie-consent-banner.schema";
+import { FooterLocaleSchema } from "./components/footer.schema";
+import { HeaderLocaleSchema } from "./components/header.schema";
 import { GlobalsLocaleSchema } from "./globals.schema";
 import { StorePageLocaleSchema } from "./pages/store-page.schema";
 import { TextPageContentSchema } from "./pages/text-page.schema";
@@ -31,27 +41,18 @@ import { UserIntelligenceLocaleSchema } from "./pages/dev-user-intelligence.i18n
 import { UserIntelligenceDetailLocaleSchema } from "./pages/dev-user-intelligence-detail.i18n.schema";
 
 // [DOMINIO LAYOUT Y UI ATÓMICOS]
-import { HeaderLocaleSchema } from "./components/header.schema";
-import { FooterLocaleSchema } from "./components/footer.schema";
-import { CookieConsentBannerLocaleSchema } from "./components/cookie-consent-banner.schema";
 import { DevHeaderLocaleSchema } from "./components/dev/dev-header.schema";
 import { DevHomepageHeaderLocaleSchema } from "./components/dev/dev-homepage-header.schema";
 import { DevRouteMenuLocaleSchema } from "./components/dev/dev-route-menu.schema";
 import { ToggleThemeLocaleSchema } from "./components/toggle-theme.schema";
 import { LanguageSwitcherLocaleSchema } from "./components/language-switcher.schema";
 import { PageHeaderLocaleSchema } from "./components/page-header.schema";
-import { CartLocaleSchema } from "./components/cart.schema";
-import { UserNavLocaleSchema } from "./components/auth/user-nav.schema";
-import { OAuthButtonsLocaleSchema } from "./components/auth/oauth-buttons.schema";
 import { NotificationBellLocaleSchema } from "./components/notifications.schema";
 import { ValidationErrorLocaleSchema } from "./components/validation-error.schema";
 import { SuiteStyleComposerLocaleSchema } from "./components/dev/suite-style-composer.schema";
 import { ComponentCanvasHeaderLocaleSchema } from "./components/dev/component-canvas-header.schema";
 import { ComponentCanvasLocaleSchema } from "./components/dev/component-canvas.schema";
 import { ShareButtonLocaleSchema } from "./components/share-button.schema";
-import { AlertLocaleSchema } from "./components/alert.schema";
-import { AlertDialogLocaleSchema } from "./components/alert-dialog.schema";
-import { ProfileFormLocaleSchema } from "./components/account/profile-form.schema";
 
 // [DOMINIO SECCIONES]
 import { BenefitsSectionLocaleSchema } from "./components/benefits-section.schema";
@@ -80,7 +81,6 @@ import { ThumbnailCarouselLocaleSchema } from "./components/thumbnail-carousel.s
 import { CommentSectionLocaleSchema } from "./components/comment-section.schema";
 
 // [DOMINIO ECOSISTEMAS ADICIONALES]
-import { BaviUploaderLocaleSchema } from "./bavi/bavi-uploader.i18n.schema";
 import { PromptCreatorLocaleSchema } from "./raz-prompts/prompt-creator.i18n.schema";
 import { PromptVaultLocaleSchema } from "./raz-prompts/prompt-vault.i18n.schema";
 import { OrderConfirmationEmailLocaleSchema } from "./emails/order-confirmation-email.schema";

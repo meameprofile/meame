@@ -10,6 +10,8 @@
 "use client";
 
 import React, { useMemo, useEffect } from "react";
+import type { z } from "zod";
+
 import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { Input } from "@/components/ui/Input";
@@ -20,10 +22,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
-import type { z } from "zod";
 import { logger } from "@/shared/lib/logging";
 import type { BaviHeaderContentSchema } from "@/shared/lib/schemas/pages/dev/bavi/bavi-header.i18n.schema";
+import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import type { PromptCreatorContentSchema } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
 
 type SesaOptions = z.infer<typeof PromptCreatorContentSchema>["sesaOptions"];

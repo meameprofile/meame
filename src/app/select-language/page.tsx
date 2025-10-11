@@ -4,15 +4,17 @@
  * @description Página de selección de idioma, ahora blindada con un guardián de
  *              contrato de datos y configurada para renderizado dinámico obligatorio.
  * @version 5.0.0 (Dynamic Rendering Enforcement)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
-import { logger } from "@/shared/lib/logging";
-import { LanguageSelectorClient } from "./_components/LanguageSelectorClient";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import { SelectLanguagePageContentSchema } from "@/shared/lib/schemas/pages/select-language.schema";
+
+import { LanguageSelectorClient } from "./_components/LanguageSelectorClient";
 
 // --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA DE BUILD v5.0.0] ---
 // Esta directiva es la SSoT que instruye a Next.js para que esta ruta

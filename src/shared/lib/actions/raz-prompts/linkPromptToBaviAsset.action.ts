@@ -8,10 +8,10 @@
 "use server";
 
 import "server-only";
-import { createServerClient } from "@/shared/lib/supabase/server";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { logger } from "@/shared/lib/logging";
 import type { RazPromptsEntryUpdate } from "@/shared/lib/schemas/raz-prompts/raz-prompts.contracts";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 interface LinkPromptInput {
   promptId: string;

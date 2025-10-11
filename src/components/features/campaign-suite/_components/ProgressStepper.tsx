@@ -8,12 +8,14 @@
  */
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
 import { cva, type VariantProps } from "class-variance-authority";
+import { motion } from "framer-motion";
+import React from "react";
+
+import { DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
-import { DynamicIcon } from "@/components/ui";
+
 import type { ProgressStep } from "../_context/ProgressContext";
 
 const stepVariants = cva(

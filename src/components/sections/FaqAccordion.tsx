@@ -8,8 +8,10 @@
  */
 "use client";
 
-import React, { forwardRef } from "react";
 import { motion, type Variants } from "framer-motion";
+import React, { forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import {
   Accordion,
   AccordionContent,
@@ -18,10 +20,9 @@ import {
 } from "@/components/ui/Accordion";
 import { Container } from "@/components/ui/Container";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { FaqItem } from "@/shared/lib/schemas/components/faq-accordion.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface FaqAccordionProps extends SectionProps<"faqAccordion"> {
   isFocused?: boolean;

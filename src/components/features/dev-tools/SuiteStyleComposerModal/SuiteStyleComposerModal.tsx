@@ -8,17 +8,10 @@
  */
 "use client";
 
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Dialog,
-  DialogContent,
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from "@/components/ui";
-import { useSuiteStyleComposer } from "@/components/features/dev-tools/SuiteStyleComposer/use-suite-style-composer";
+import React from "react";
+import type { z } from "zod";
+
 import {
   ComposerHeader,
   ComposerFooter,
@@ -30,9 +23,17 @@ import type {
   SuiteThemeConfig,
   LoadedFragments,
 } from "@/components/features/dev-tools/SuiteStyleComposer/types";
-import { SuiteStyleComposerContentSchema } from "@/shared/lib/schemas/components/dev/suite-style-composer.schema";
-import type { z } from "zod";
+import { useSuiteStyleComposer } from "@/components/features/dev-tools/SuiteStyleComposer/use-suite-style-composer";
+import {
+  Dialog,
+  DialogContent,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
+import type { SuiteStyleComposerContentSchema } from "@/shared/lib/schemas/components/dev/suite-style-composer.schema";
 
 type ComposerContent = z.infer<typeof SuiteStyleComposerContentSchema>;
 

@@ -10,10 +10,15 @@
  */
 "use client";
 
-import React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
+import React from "react";
+
+import {
+  type RouteGroup,
+  type RouteItem,
+} from "@/components/features/dev-tools/utils/route-menu.generator";
 import { DynamicIcon } from "@/components/ui";
+import { Button } from "@/components/ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,10 +28,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
-import {
-  type RouteGroup,
-  type RouteItem,
-} from "@/components/features/dev-tools/utils/route-menu.generator";
 import { logger } from "@/shared/lib/logging";
 
 interface DevRouteMenuProps {

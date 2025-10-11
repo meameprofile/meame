@@ -8,7 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import * as React from "react";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
 import { logger } from "@/shared/lib/logging";
 import {
   BaviAssetSchema,
@@ -16,6 +16,7 @@ import {
   type BaviManifest,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
+import { createServerClient } from "@/shared/lib/supabase/server";
 
 /**
  * @interface SupabaseBaviVariant

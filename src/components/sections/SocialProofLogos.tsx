@@ -8,26 +8,28 @@
  */
 import "server-only";
 import React from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getBaviManifest } from "@/shared/lib/bavi";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { SocialProofLogosClient } from "./SocialProofLogosClient";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type {
   BaviAsset,
   BaviVariant,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+
+import { SocialProofLogosClient } from "./SocialProofLogosClient";
 
 interface SocialProofLogosProps extends SectionProps<"socialProofLogos"> {
   isFocused?: boolean;
 }
 
-type ResolvedLogo = {
+interface ResolvedLogo {
   alt: string;
   publicId: string;
   width: number;
   height: number;
-};
+}
 
 export async function SocialProofLogos({
   content,

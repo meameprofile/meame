@@ -8,9 +8,12 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
 import { CldImage } from "next-cloudinary";
+import React from "react";
+
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -19,8 +22,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { TiltCard } from "@/components/ui/TiltCard";
 import type { EnrichedRaZPromptsEntry } from "@/shared/lib/actions/raz-prompts";

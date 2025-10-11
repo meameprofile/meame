@@ -9,9 +9,10 @@
  *@author RaZ Podestá - MetaShark Tech
  */
 import * as fs from "fs";
-import * as path from "path";
-import chalk from "chalk";
 import { createRequire } from "module";
+import * as path from "path";
+
+import chalk from "chalk";
 
 // --- [INICIO DE CORRECCIÓN DE INTEGRIDAD DE MÓDULO] ---
 // Se renombra 'require' a 'customRequire' para evitar colisión con

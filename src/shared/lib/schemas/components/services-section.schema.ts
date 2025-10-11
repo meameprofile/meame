@@ -8,6 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { logger } from "@/shared/lib/logging";
 
 logger.trace("[Schema] Definiendo contrato para [ServicesSection]");

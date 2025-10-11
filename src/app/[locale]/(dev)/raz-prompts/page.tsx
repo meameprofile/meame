@@ -8,12 +8,13 @@
  */
 import "server-only";
 import React from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { PromptCreator, PromptVault } from "@/components/features/raz-prompts";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { PromptCreator, PromptVault } from "@/components/features/raz-prompts";
 
 interface RaZPromptsHomePageProps {
   params: { locale: Locale };

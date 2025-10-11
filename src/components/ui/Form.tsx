@@ -1,9 +1,9 @@
 // RUTA: src/components/ui/Form.tsx
 "use client";
 
-import * as React from "react";
-import * as LabelPrimitive from "@radix-ui/react-label";
+import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
+import * as React from "react";
 import {
   Controller,
   type ControllerProps,
@@ -13,20 +13,20 @@ import {
   useFormContext,
 } from "react-hook-form";
 
-import { cn } from "@/shared/lib/utils/cn";
 // --- [INICIO DE REFACTORIZACIÓN DE NIVELACIÓN] ---
 // Se corrige la importación para cumplir con la convención de nomenclatura PascalCase.
 import { Label } from "@/components/ui/Label";
+import { cn } from "@/shared/lib/utils/cn";
 // --- [FIN DE REFACTORIZACIÓN DE NIVELACIÓN] ---
 
 const Form = FormProvider;
 
-type FormFieldContextValue<
+interface FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = {
+> {
   name: TName;
-};
+}
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
   {} as FormFieldContextValue
@@ -68,9 +68,9 @@ const useFormField = () => {
   };
 };
 
-type FormItemContextValue = {
+interface FormItemContextValue {
   id: string;
-};
+}
 
 const FormItemContext = React.createContext<FormItemContextValue>(
   {} as FormItemContextValue

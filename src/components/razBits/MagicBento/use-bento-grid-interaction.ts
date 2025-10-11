@@ -7,10 +7,12 @@
  */
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
-import { logger } from "@/shared/lib/logging";
+import { useRef, useEffect, useCallback } from "react";
 import type { z } from "zod";
+
+import { logger } from "@/shared/lib/logging";
+
 import type { MagicBentoConfigSchema } from "./magic-bento.schema";
 
 type BentoConfig = z.infer<typeof MagicBentoConfigSchema>;

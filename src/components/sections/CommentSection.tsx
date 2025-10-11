@@ -8,13 +8,15 @@
  */
 import "server-only";
 import React from "react";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { Container, Separator } from "@/components/ui";
 import { getCommentsByArticleIdAction } from "@/shared/lib/actions/cogniread";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { Container, Separator } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { createServerClient } from "@/shared/lib/supabase/server";
+
 import { CommentSectionClient } from "./comments/CommentSectionClient";
 
 interface CommentSectionProps {

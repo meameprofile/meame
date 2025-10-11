@@ -9,19 +9,21 @@
 "use client";
 
 import React, { useCallback, useMemo, useEffect } from "react";
-import type { z } from "zod";
 import { toast } from "sonner";
-import { logger } from "@/shared/lib/logging";
-import { Step1Form } from "./Step1Form";
+import type { z } from "zod";
+
 import { useWizard } from "@/components/features/campaign-suite/_context/WizardContext";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
+import { logger } from "@/shared/lib/logging";
+import type { Step1ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step1.schema";
 import type {
   HeaderConfig,
   FooterConfig,
 } from "@/shared/lib/types/campaigns/draft.types";
-import type { Step1ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step1.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+
 import { validateStep1 } from "./step1.validator";
+import { Step1Form } from "./Step1Form";
 
 type Step1Content = z.infer<typeof Step1ContentSchema>;
 

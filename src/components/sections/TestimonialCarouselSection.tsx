@@ -7,8 +7,12 @@
  */
 "use client";
 
-import React, { forwardRef } from "react";
 import Image from "next/image";
+import React, { forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { DynamicIcon } from "@/components/ui";
+import { Card, CardContent } from "@/components/ui/Card";
 import {
   Carousel,
   CarouselContent,
@@ -16,14 +20,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/Carousel";
-import { Card, CardContent } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
-import { DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { ReviewItem } from "@/shared/lib/schemas/components/testimonial-carousel-section.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface TestimonialCarouselSectionProps
   extends SectionProps<"testimonialCarouselSection"> {

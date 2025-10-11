@@ -9,9 +9,10 @@
 
 import React from "react";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import type { StrategicCombo } from "@/shared/lib/config/strategic-combos.config";
-import { Button } from "@/components/ui/Button";
 import { logger } from "@/shared/lib/logging";
 
 interface ComboToastProps {

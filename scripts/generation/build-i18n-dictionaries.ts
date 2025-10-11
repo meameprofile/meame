@@ -5,14 +5,17 @@
  * @version 8.0.0 (Definitive Routing Contract Alignment)
  * @author RaZ Podestá - MetaShark Tech
  */
+import { readFileSync } from "fs";
 import * as fs from "fs/promises";
 import * as path from "path";
+
 import chalk from "chalk";
 import hash from "object-hash";
 import { register } from "tsconfig-paths";
-import { readFileSync } from "fs";
-import { i18nSchema } from "@/shared/lib/schemas/i18n.schema";
+
 import { ROUTING_LOCALES } from "@/shared/lib/i18n/i18n.config";
+import { i18nSchema } from "@/shared/lib/schemas/i18n.schema";
+
 import {
   discoverAndReadI18nFiles,
   type I18nFileContent,

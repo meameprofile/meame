@@ -6,12 +6,12 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
+import { logger } from "@/shared/lib/logging";
 import {
   RaZPromptsEntrySchema,
   type RaZPromptsEntry,
 } from "@/shared/lib/schemas/raz-prompts/entry.schema";
 import type { RazPromptsEntryRow } from "@/shared/lib/schemas/raz-prompts/raz-prompts.contracts";
-import { logger } from "@/shared/lib/logging";
 
 /**
  * @function mapSupabaseToCamelCase

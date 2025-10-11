@@ -11,12 +11,14 @@
 
 import React, { useRef } from "react";
 import { twMerge } from "tailwind-merge";
+
 // --- [INICIO DE CORRECCIÓN DE RUTA] ---
 import { useLightRays } from "@/components/razBits/LightRays/use-light-rays";
 // --- [FIN DE CORRECCIÓN DE RUTA] ---
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { LightRaysConfigSchema } from "./light-rays.schema";
 import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+import { LightRaysConfigSchema } from "./light-rays.schema";
 
 interface LightRaysProps {
   config: Dictionary["lightRays"];

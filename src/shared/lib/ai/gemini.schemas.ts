@@ -11,6 +11,7 @@
 // --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
 
 import { z } from "zod";
+
 import { GEMINI_MODELS } from "./models.config";
 
 const modelIds = GEMINI_MODELS.map((m) => m.id) as [string, ...string[]];

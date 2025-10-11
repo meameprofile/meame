@@ -9,12 +9,13 @@
  *@author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import { logger } from "@/shared/lib/logging";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { getShopifyProducts, getShopifyProduct } from "@/shared/lib/shopify";
-import { getLocalProducts } from "./catalog";
-import { getCart as getCartData } from "./cart";
+import { logger } from "@/shared/lib/logging";
 import type { Product } from "@/shared/lib/schemas/entities/product.schema";
+import { getShopifyProducts, getShopifyProduct } from "@/shared/lib/shopify";
+
+import { getCart as getCartData } from "./cart";
+import { getLocalProducts } from "./catalog";
 
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 // Re-exportamos todo desde el shaper consolidado.

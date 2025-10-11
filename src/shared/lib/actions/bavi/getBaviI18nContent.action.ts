@@ -10,19 +10,19 @@
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 // --- [INICIO DE NIVELACIÓN DE CONTRATO v4.0.0] ---
 // El contrato ahora es holístico e incluye todas las piezas de contenido requeridas.
-export type BaviI18nContent = {
+export interface BaviI18nContent {
   baviHomePage: NonNullable<Dictionary["baviHomePage"]>;
   baviUploader: NonNullable<Dictionary["baviUploader"]>;
   assetExplorer: NonNullable<Dictionary["assetExplorer"]>;
   promptCreator: NonNullable<Dictionary["promptCreator"]>;
   baviHeader: NonNullable<Dictionary["baviHeader"]>; // Propiedad añadida
   sesaOptions: NonNullable<Dictionary["promptCreator"]>["sesaOptions"];
-};
+}
 // --- [FIN DE NIVELACIÓN DE CONTRATO v4.0.0] ---
 
 export async function getBaviI18nContentAction(

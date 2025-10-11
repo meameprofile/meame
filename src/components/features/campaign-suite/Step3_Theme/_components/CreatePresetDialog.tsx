@@ -3,11 +3,13 @@
  * @file CreatePresetDialog.tsx
  * @description Aparato de UI atómico para el diálogo de creación de presets.
  * @version 2.0.0 (Fully Internationalized)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React, { useState } from "react";
+import type { z } from "zod";
+
 import {
   Button,
   Dialog,
@@ -21,7 +23,6 @@ import {
   Label,
   DynamicIcon,
 } from "@/components/ui";
-import type { z } from "zod";
 import type { Step3ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
 
 type CreateDialogContent = NonNullable<

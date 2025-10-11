@@ -6,16 +6,18 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import { type NextRequest } from "next/server";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { type NextRequest } from "next/server";
+
+import { logger } from "../logging";
+
+import { LANGUAGE_MANIFEST } from "./global.i18n.manifest";
 import {
   ROUTING_LOCALES as supportedLocales,
   defaultLocale,
   type Locale,
 } from "./i18n.config";
-import { LANGUAGE_MANIFEST } from "./global.i18n.manifest";
-import { logger } from "../logging";
 
 const allPossibleLocales = LANGUAGE_MANIFEST.map((lang) => lang.code);
 

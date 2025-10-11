@@ -6,18 +6,20 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import React from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import React from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { getBaviManifest } from "@/shared/lib/bavi";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { getBaviManifest } from "@/shared/lib/bavi";
 import type {
   BaviAsset,
   BaviVariant,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+
 import { LoginClientOrchestrator } from "./_components/LoginClientOrchestrator";
 
 interface DevLoginPageProps {

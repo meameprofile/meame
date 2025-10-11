@@ -8,14 +8,16 @@
  */
 "use client";
 
-import React, { useCallback } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { VariantContext } from "./product-variant.context";
+import React, { useCallback } from "react";
+
+import { logger } from "@/shared/lib/logging";
 import type {
   ProductOption,
   ProductVariant,
 } from "@/shared/lib/schemas/entities/product.schema";
-import { logger } from "@/shared/lib/logging";
+
+import { VariantContext } from "./product-variant.context";
 
 interface VariantSelectorProviderProps {
   children: React.ReactNode;

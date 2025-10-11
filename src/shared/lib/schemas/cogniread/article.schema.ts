@@ -6,6 +6,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { ROUTING_LOCALES } from "@/shared/lib/i18n/i18n.config";
 
 export const ArticleTranslationSchema = z.object({

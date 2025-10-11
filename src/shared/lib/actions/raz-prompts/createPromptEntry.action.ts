@@ -9,23 +9,24 @@
 
 import "server-only";
 import { createId } from "@paralleldrive/cuid2";
-import { z } from "zod";
-import { createServerClient } from "@/shared/lib/supabase/server";
+import type { z } from "zod";
+
+import { IDEOGRAM_PARAMETERS_CONFIG } from "@/shared/lib/config/raz-prompts/parameters.config";
+import { logger } from "@/shared/lib/logging";
+import type {
+  PromptParametersSchema,
+  RaZPromptsSesaTagsSchema,
+} from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import {
   RaZPromptsEntrySchema,
   type RaZPromptsEntry,
 } from "@/shared/lib/schemas/raz-prompts/entry.schema";
-import {
-  PromptParametersSchema,
-  RaZPromptsSesaTagsSchema,
-} from "@/shared/lib/schemas/raz-prompts/atomic.schema";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
-import { logger } from "@/shared/lib/logging";
-import { IDEOGRAM_PARAMETERS_CONFIG } from "@/shared/lib/config/raz-prompts/parameters.config";
-import type { Json } from "@/shared/lib/supabase/database.types";
 import type { RazPromptsEntryInsert } from "@/shared/lib/schemas/raz-prompts/raz-prompts.contracts";
+import type { Json } from "@/shared/lib/supabase/database.types";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
-type CreatePromptInput = {
+interface CreatePromptInput {
   title: string;
   basePromptText: string;
   aiService: string;
@@ -33,7 +34,7 @@ type CreatePromptInput = {
   tags: z.infer<typeof RaZPromptsSesaTagsSchema>;
   keywords: string[];
   workspaceId: string;
-};
+}
 
 function assembleFullPrompt(
   baseText: string,

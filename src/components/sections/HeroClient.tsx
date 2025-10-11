@@ -7,12 +7,13 @@
  */
 "use client";
 
-import React, { forwardRef } from "react";
 import { motion, type Variants } from "framer-motion";
+import React, { forwardRef } from "react";
+
 import { Container } from "@/components/ui/Container";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface HeroClientProps extends SectionProps<"hero"> {
   backgroundImageUrl: string;

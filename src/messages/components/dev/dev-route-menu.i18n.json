@@ -17,9 +17,17 @@
       "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campagna (ID 12157)",
       "devDashboard": "Dashboard Sviluppo",
       "devLogin": "Pagina di Login",
-      "devTestPage": "Pagina di Test",
-      "devComponentShowcase": "Vetrina Componenti",
-      "devCampaignSuiteCreate": "Suite di Progettazione"
+      "componentShowcase": "Vetrina Componenti",
+      "creatorCampaignSuiteWithStepId": "Suite di Progettazione",
+      "bavi": "BAVI - Biblioteca Asset",
+      "razPrompts": "RaZPrompts - Bóveda",
+      "cogniReadDashboard": "CogniRead - Dashboard",
+      "cogniReadEditor": "CogniRead - Editor",
+      "nos3": "Nos3 - Session Replay",
+      "analytics": "Aura - Analytics",
+      "userIntelligence": "Temeo - User Intelligence",
+      "heimdallObservatory": "Heimdall - Osservatorio",
+      "heimdallObservatorySystemHealth": "Sismografo di Salute"
     }
   },
   "es-ES": {
@@ -40,9 +48,17 @@
       "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campaña (ID 12157)",
       "devDashboard": "Dashboard Desarrollo",
       "devLogin": "Página de Login",
-      "devTestPage": "Página de Prueba",
-      "devComponentShowcase": "Vitrina de Componentes",
-      "devCampaignSuiteCreate": "Suite de Diseño"
+      "componentShowcase": "Vitrina de Componentes",
+      "creatorCampaignSuiteWithStepId": "Suite de Diseño",
+      "bavi": "BAVI - Biblioteca Activos",
+      "razPrompts": "RaZPrompts - Bóveda",
+      "cogniReadDashboard": "CogniRead - Dashboard",
+      "cogniReadEditor": "CogniRead - Editor",
+      "nos3": "Nos3 - Session Replay",
+      "analytics": "Aura - Analytics",
+      "userIntelligence": "Temeo - User Intelligence",
+      "heimdallObservatory": "Heimdall - Observatorio",
+      "heimdallObservatorySystemHealth": "Sismógrafo de Salud"
     }
   },
   "en-US": {
@@ -63,9 +79,17 @@
       "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campaign (ID 12157)",
       "devDashboard": "Dev Dashboard",
       "devLogin": "Login Page",
-      "devTestPage": "Test Page",
-      "devComponentShowcase": "Component Showcase",
-      "devCampaignSuiteCreate": "Design Suite"
+      "componentShowcase": "Component Showcase",
+      "creatorCampaignSuiteWithStepId": "Design Suite",
+      "bavi": "BAVI - Asset Library",
+      "razPrompts": "RaZPrompts - Vault",
+      "cogniReadDashboard": "CogniRead - Dashboard",
+      "cogniReadEditor": "CogniRead - Editor",
+      "nos3": "Nos3 - Session Replay",
+      "analytics": "Aura - Analytics",
+      "userIntelligence": "Temeo - User Intelligence",
+      "heimdallObservatory": "Heimdall - Observatory",
+      "heimdallObservatorySystemHealth": "System Health Seismograph"
     }
   },
   "pt-BR": {
@@ -86,9 +110,17 @@
       "cByCampaignIdByVariantSlugBySeoKeywordSlug": "Campanha (ID 12157)",
       "devDashboard": "Dashboard de Desenvolvimento",
       "devLogin": "Página de Login",
-      "devTestPage": "Página de Teste",
-      "devComponentShowcase": "Mostruário de Componentes",
-      "devCampaignSuiteCreate": "Suite de Design"
+      "componentShowcase": "Mostruário de Componentes",
+      "creatorCampaignSuiteWithStepId": "Suíte de Design",
+      "bavi": "BAVI - Biblioteca de Ativos",
+      "razPrompts": "RaZPrompts - Cofre",
+      "cogniReadDashboard": "CogniRead - Dashboard",
+      "cogniReadEditor": "CogniRead - Editor",
+      "nos3": "Nos3 - Session Replay",
+      "analytics": "Aura - Analytics",
+      "userIntelligence": "Temeo - User Intelligence",
+      "heimdallObservatory": "Heimdall - Observatório",
+      "heimdallObservatorySystemHealth": "Sismógrafo de Saúde"
     }
   }
 }

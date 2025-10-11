@@ -7,19 +7,20 @@
  */
 "use client";
 
-import React, { forwardRef } from "react";
+import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
-import { motion, type Variants } from "framer-motion";
+import React, { forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { Container, DynamicIcon } from "@/components/ui";
+import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
-import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v9.1.0] ---
 // Se realiza una importación quirúrgica para erradicar el riesgo de contaminación por "barrel files".
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v9.1.0] ---
 
 interface NewsGridProps extends SectionProps<"newsGrid"> {

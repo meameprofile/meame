@@ -12,10 +12,12 @@
  */
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
+import React from "react";
+
 import { logger } from "@/shared/lib/logging";
+
 import { DynamicIcon } from "./DynamicIcon";
 import { TiltCard } from "./TiltCard";
 

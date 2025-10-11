@@ -10,11 +10,12 @@
 
 import React, { useTransition, useMemo, useEffect } from "react";
 import { toast } from "sonner";
+import type { z } from "zod";
+
 import { Button, DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
-import { createClient } from "@/shared/lib/supabase/client";
-import type { z } from "zod";
 import type { OAuthButtonsContentSchema } from "@/shared/lib/schemas/components/auth/oauth-buttons.schema";
+import { createClient } from "@/shared/lib/supabase/client";
 
 type Content = z.infer<typeof OAuthButtonsContentSchema>;
 

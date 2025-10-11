@@ -6,16 +6,17 @@
  * @version 3.0.0 (Definitive Build Fix)
  * @author RaZ Podestá - MetaShark Tech
  */
+import { notFound } from "next/navigation";
 import React from "react";
-import { PageHeader } from "@/components/layout/PageHeader";
+
 import { StoreClient } from "@/components/features/commerce/StoreClient";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { SectionAnimator } from "@/components/layout/SectionAnimator";
 import { getProducts } from "@/shared/lib/commerce";
+import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { notFound } from "next/navigation";
-import { SectionAnimator } from "@/components/layout/SectionAnimator";
 
 interface StorePageProps {
   params: { locale: Locale };

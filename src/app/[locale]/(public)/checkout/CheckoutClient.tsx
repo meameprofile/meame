@@ -8,11 +8,12 @@
  */
 "use client";
 
-import React from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { CheckoutForm } from "@/components/features/commerce/CheckoutForm";
+import React from "react";
 import type { z } from "zod";
+
+import { CheckoutForm } from "@/components/features/commerce/CheckoutForm";
 import type { CheckoutFormContentSchema } from "@/shared/lib/schemas/components/commerce/checkout-form.schema";
 
 type Content = z.infer<typeof CheckoutFormContentSchema>;

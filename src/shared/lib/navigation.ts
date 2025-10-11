@@ -2,11 +2,10 @@
 /**
  * @file navigation.ts
  * @description Manifiesto y SSoT para la definición de rutas del ecosistema.
- *              v22.0.0 (Isomorphic Purity Restoration): Se elimina la directiva 'server-only'
- *              para restaurar la naturaleza isomórfica del módulo, permitiendo su
- *              consumo seguro tanto en componentes de servidor como de cliente.
- * @version 22.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              ESTE ARCHIVO ES GENERADO AUTOMÁTICAMENTE. NO LO EDITE MANUALMENTE.
+ *              Ejecute 'pnpm gen:routes' para actualizarlo.
+ * @version 2025-10-10T18:35:52.372Z
+ * @author Script de Generación Automática de Élite
  */
 import { defaultLocale, type Locale } from "./i18n/i18n.config";
 
@@ -17,10 +16,10 @@ export const RouteType = {
 
 export type RouteType = (typeof RouteType)[keyof typeof RouteType];
 
-export type RouteParams = {
+export interface RouteParams {
   locale?: Locale;
   [key: string]: string | number | string[] | undefined;
-};
+}
 
 const buildPath = (
   locale: Locale | undefined,
@@ -35,14 +34,17 @@ const buildPath = (
         const stringValue = Array.isArray(value)
           ? value.join("/")
           : String(value);
+        // --- [INICIO DE REFACTORIZACIÓN QUIRÚRGICA v9.1.0] ---
+        // Se corrige la construcción de la RegExp para que las barras invertidas se escapen correctamente,
+        // generando un código final sintácticamente válido y sin advertencias de ESLint.
         const placeholderRegex = new RegExp(
-          `\\[\\[?\\.\\.\\.${key}\\]\\]?|\\[${key}\\]`
+          `\\[\\[\\.\\.\\.${key}\\]\\]\\?|\\[${key}\\]`
         );
+        // --- [FIN DE REFACTORIZACIÓN QUIRÚRGICA v9.1.0] ---
         path = path.replace(placeholderRegex, stringValue);
       }
     }
   }
-  // Limpieza de placeholders opcionales no resueltos y barras duplicadas
   path = path.replace(/\/\[\[\.\.\..*?\]\]/g, "");
   path = path.replace(/\/+/g, "/");
   if (path !== "/" && path.endsWith("/")) {
@@ -52,65 +54,39 @@ const buildPath = (
 };
 
 export const routes = {
-  // --- Rutas Públicas ---
-  home: {
-    path: (params: RouteParams) => buildPath(params.locale, "/"),
-    template: "/",
-    type: RouteType.Public,
-  },
-  store: {
-    path: (params: RouteParams) => buildPath(params.locale, "/store"),
-    template: "/store",
-    type: RouteType.Public,
-  },
-  storeBySlug: {
-    path: (params: RouteParams & { slug: string }) =>
-      buildPath(params.locale, "/store/[slug]", params),
-    template: "/store/[slug]",
-    type: RouteType.Public,
-  },
-  news: {
-    path: (params: RouteParams) => buildPath(params.locale, "/news"),
-    template: "/news",
-    type: RouteType.Public,
-  },
-  newsBySlug: {
-    path: (params: RouteParams & { slug: string }) =>
-      buildPath(params.locale, "/news/[slug]", params),
-    template: "/news/[slug]",
-    type: RouteType.Public,
-  },
   about: {
-    path: (params: RouteParams) => buildPath(params.locale, "/about"),
+    path: (params: RouteParams) => buildPath(params.locale, "/about", params),
     template: "/about",
     type: RouteType.Public,
   },
-  terms: {
-    path: (params: RouteParams) => buildPath(params.locale, "/terms"),
-    template: "/terms",
+  account: {
+    path: (params: RouteParams) => buildPath(params.locale, "/account", params),
+    template: "/account",
     type: RouteType.Public,
   },
-  privacy: {
-    path: (params: RouteParams) => buildPath(params.locale, "/privacy"),
-    template: "/privacy",
-    type: RouteType.Public,
+  analytics: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/analytics", params),
+    template: "/analytics",
+    type: RouteType.DevOnly,
   },
-  cookies: {
-    path: (params: RouteParams) => buildPath(params.locale, "/cookies"),
-    template: "/cookies",
-    type: RouteType.Public,
+  analyticsByVariantId: {
+    path: (params: RouteParams & { variantId: string | number | string[] }) =>
+      buildPath(params.locale, "/analytics/[variantId]", params),
+    template: "/analytics/[variantId]",
+    type: RouteType.DevOnly,
   },
-  checkout: {
-    path: (params: RouteParams) => buildPath(params.locale, "/checkout"),
-    template: "/checkout",
-    type: RouteType.Public,
+  bavi: {
+    path: (params: RouteParams) => buildPath(params.locale, "/bavi", params),
+    template: "/bavi",
+    type: RouteType.DevOnly,
   },
   cByCampaignIdByVariantSlugBySeoKeywordSlug: {
     path: (
       params: RouteParams & {
-        campaignId: string;
-        variantSlug: string;
-        seoKeywordSlug: string;
+        campaignId: string | number | string[];
+        variantSlug: string | number | string[];
+        seoKeywordSlug: string | number | string[];
       }
     ) =>
       buildPath(
@@ -121,114 +97,145 @@ export const routes = {
     template: "/c/[campaignId]/[variantSlug]/[seoKeywordSlug]",
     type: RouteType.Public,
   },
-  login: {
-    path: (params: RouteParams) => buildPath(params.locale, "/login"),
-    template: "/login",
-    type: RouteType.Public,
-  },
-  account: {
-    path: (params: RouteParams) => buildPath(params.locale, "/account"),
-    template: "/account",
-    type: RouteType.Public,
-  },
-  notifications: {
-    path: (params: RouteParams) => buildPath(params.locale, "/notifications"),
-    template: "/notifications",
-    type: RouteType.Public,
-  },
-  selectLanguage: {
-    path: () => "/select-language",
-    template: "/select-language",
-    type: RouteType.Public,
-  },
-  notFound: {
-    path: (params: RouteParams) => buildPath(params.locale, "/not-found"),
-    template: "/not-found",
-    type: RouteType.Public,
-  },
-
-  // --- Rutas del DCC (ahora con rutas correctas) ---
-  devDashboard: {
-    path: (params: RouteParams) => buildPath(params.locale, "/dev"),
-    template: "/dev",
-    type: RouteType.DevOnly,
-  },
-  devComponentShowcase: {
+  checkout: {
     path: (params: RouteParams) =>
-      buildPath(params.locale, "/component-showcase"),
-    template: "/component-showcase",
-    type: RouteType.DevOnly,
+      buildPath(params.locale, "/checkout", params),
+    template: "/checkout",
+    type: RouteType.Public,
   },
-  devCinematicDemo: {
-    path: (params: RouteParams) => buildPath(params.locale, "/cinematic-demo"),
+  cinematicDemo: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/cinematic-demo", params),
     template: "/cinematic-demo",
     type: RouteType.DevOnly,
   },
-  creatorCampaignSuite: {
-    path: (params: RouteParams & { stepId?: string[] }) =>
+  cogniread: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/cogniread", params),
+    template: "/cogniread",
+    type: RouteType.DevOnly,
+  },
+  cognireadEditor: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/cogniread/editor", params),
+    template: "/cogniread/editor",
+    type: RouteType.DevOnly,
+  },
+  componentShowcase: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/component-showcase", params),
+    template: "/component-showcase",
+    type: RouteType.DevOnly,
+  },
+  cookies: {
+    path: (params: RouteParams) => buildPath(params.locale, "/cookies", params),
+    template: "/cookies",
+    type: RouteType.Public,
+  },
+  creatorCampaignSuiteWithStepId: {
+    path: (params: RouteParams & { stepId: string | number | string[] }) =>
       buildPath(params.locale, "/creator/campaign-suite/[[...stepId]]", params),
     template: "/creator/campaign-suite/[[...stepId]]",
     type: RouteType.DevOnly,
   },
-  analytics: {
-    path: (params: RouteParams) => buildPath(params.locale, "/analytics"),
-    template: "/analytics",
-    type: RouteType.DevOnly,
-  },
-  analyticsByVariant: {
-    path: (params: RouteParams & { variantId: string }) =>
-      buildPath(params.locale, "/analytics/[variantId]", params),
-    template: "/analytics/[variantId]",
-    type: RouteType.DevOnly,
-  },
-  bavi: {
-    path: (params: RouteParams) => buildPath(params.locale, "/bavi"),
-    template: "/bavi",
-    type: RouteType.DevOnly,
-  },
-  razPrompts: {
-    path: (params: RouteParams) => buildPath(params.locale, "/raz-prompts"),
-    template: "/raz-prompts",
-    type: RouteType.DevOnly,
-  },
-  cogniReadDashboard: {
-    path: (params: RouteParams) => buildPath(params.locale, "/cogniread"),
-    template: "/cogniread",
-    type: RouteType.DevOnly,
-  },
-  cogniReadEditor: {
-    path: (params: RouteParams) =>
-      buildPath(params.locale, "/cogniread/editor"),
-    template: "/cogniread/editor",
-    type: RouteType.DevOnly,
-  },
-  nos3Dashboard: {
-    path: (params: RouteParams) => buildPath(params.locale, "/nos3"),
-    template: "/nos3",
-    type: RouteType.DevOnly,
-  },
-  nos3SessionPlayer: {
-    path: (params: RouteParams & { sessionId: string }) =>
-      buildPath(params.locale, "/nos3/[sessionId]", params),
-    template: "/nos3/[sessionId]",
-    type: RouteType.DevOnly,
-  },
-  userIntelligence: {
-    path: (params: RouteParams) =>
-      buildPath(params.locale, "/user-intelligence"),
-    template: "/user-intelligence",
-    type: RouteType.DevOnly,
-  },
-  userIntelligenceDetail: {
-    path: (params: RouteParams & { sessionId: string }) =>
-      buildPath(params.locale, "/user-intelligence/[sessionId]", params),
-    template: "/user-intelligence/[sessionId]",
+  devDashboard: {
+    path: (params: RouteParams) => buildPath(params.locale, "/dev", params),
+    template: "/dev",
     type: RouteType.DevOnly,
   },
   heimdallObservatory: {
     path: (params: RouteParams) =>
-      buildPath(params.locale, "/heimdall-observatory"),
+      buildPath(params.locale, "/heimdall-observatory", params),
     template: "/heimdall-observatory",
+    type: RouteType.DevOnly,
+  },
+  heimdallObservatorySystemHealth: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/heimdall-observatory/system-health", params),
+    template: "/heimdall-observatory/system-health",
+    type: RouteType.DevOnly,
+  },
+  home: {
+    path: (params: RouteParams) => buildPath(params.locale, "/", params),
+    template: "/",
+    type: RouteType.Public,
+  },
+  login: {
+    path: (params: RouteParams) => buildPath(params.locale, "/login", params),
+    template: "/login",
+    type: RouteType.Public,
+  },
+  news: {
+    path: (params: RouteParams) => buildPath(params.locale, "/news", params),
+    template: "/news",
+    type: RouteType.Public,
+  },
+  newsBySlug: {
+    path: (params: RouteParams & { slug: string | number | string[] }) =>
+      buildPath(params.locale, "/news/[slug]", params),
+    template: "/news/[slug]",
+    type: RouteType.Public,
+  },
+  nos3: {
+    path: (params: RouteParams) => buildPath(params.locale, "/nos3", params),
+    template: "/nos3",
+    type: RouteType.DevOnly,
+  },
+  nos3BySessionId: {
+    path: (params: RouteParams & { sessionId: string | number | string[] }) =>
+      buildPath(params.locale, "/nos3/[sessionId]", params),
+    template: "/nos3/[sessionId]",
+    type: RouteType.DevOnly,
+  },
+  notFound: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/not-found", params),
+    template: "/not-found",
+    type: RouteType.Public,
+  },
+  notifications: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/notifications", params),
+    template: "/notifications",
+    type: RouteType.Public,
+  },
+  privacy: {
+    path: (params: RouteParams) => buildPath(params.locale, "/privacy", params),
+    template: "/privacy",
+    type: RouteType.Public,
+  },
+  razPrompts: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/raz-prompts", params),
+    template: "/raz-prompts",
+    type: RouteType.DevOnly,
+  },
+  store: {
+    path: (params: RouteParams) => buildPath(params.locale, "/store", params),
+    template: "/store",
+    type: RouteType.Public,
+  },
+  storeBySlug: {
+    path: (params: RouteParams & { slug: string | number | string[] }) =>
+      buildPath(params.locale, "/store/[slug]", params),
+    template: "/store/[slug]",
+    type: RouteType.Public,
+  },
+  terms: {
+    path: (params: RouteParams) => buildPath(params.locale, "/terms", params),
+    template: "/terms",
+    type: RouteType.Public,
+  },
+  userIntelligence: {
+    path: (params: RouteParams) =>
+      buildPath(params.locale, "/user-intelligence", params),
+    template: "/user-intelligence",
+    type: RouteType.DevOnly,
+  },
+  userIntelligenceBySessionId: {
+    path: (params: RouteParams & { sessionId: string | number | string[] }) =>
+      buildPath(params.locale, "/user-intelligence/[sessionId]", params),
+    template: "/user-intelligence/[sessionId]",
     type: RouteType.DevOnly,
   },
 } as const;

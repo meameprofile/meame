@@ -7,16 +7,19 @@
  */
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/Button";
 import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/Dialog";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import {
   Form,
   FormControl,
@@ -26,15 +29,13 @@ import {
   FormMessage,
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
-import { DynamicIcon } from "@/components/ui/DynamicIcon";
+import { sendPasswordResetAction } from "@/shared/lib/actions/auth/auth.actions";
 import { logger } from "@/shared/lib/logging";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import {
   ForgotPasswordSchema,
   type ForgotPasswordFormData,
 } from "@/shared/lib/schemas/auth/forgot-password.schema";
-import { sendPasswordResetAction } from "@/shared/lib/actions/auth/auth.actions";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 type ForgotPasswordContent = NonNullable<
   NonNullable<Dictionary["devLoginPage"]>["forgotPassword"]

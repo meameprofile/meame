@@ -10,9 +10,10 @@
 "use client";
 
 import React from "react";
-import { logger } from "@/shared/lib/logging";
-import type { RouteGroup } from "@/components/features/dev-tools/utils/route-menu.generator";
+
 import { DevRouteMenu } from "@/components/features/dev-tools/DevRouteMenu";
+import type { RouteGroup } from "@/components/features/dev-tools/utils/route-menu.generator";
+import { logger } from "@/shared/lib/logging";
 
 interface DevToolsDropdownProps {
   routeGroups: RouteGroup[];

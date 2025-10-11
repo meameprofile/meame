@@ -9,15 +9,16 @@
  */
 "use client";
 
-import React, { forwardRef, useMemo } from "react";
 import { motion, type Variants } from "framer-motion";
-import { Container } from "@/components/ui/Container";
+import React, { forwardRef, useMemo } from "react";
+
 import { OrderForm } from "@/components/features/commerce/OrderForm"; // <-- IMPORTACIÓN SOBERANA
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { Container } from "@/components/ui/Container";
 import { PriceDisplay } from "@/components/ui/PriceDisplay";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface OrderSectionProps extends SectionProps<"orderSection"> {
   isFocused?: boolean;

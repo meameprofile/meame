@@ -5,12 +5,14 @@
  *              schema y renderiza el campo de formulario atómico apropiado
  *              dentro de un FormItem contextualizado.
  * @version 8.0.0 (Architectural Integrity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React from "react";
 import type { FieldValues } from "react-hook-form";
+
+import { useFocusStore } from "@/components/features/campaign-suite/_context/FocusContext";
 import {
   FormItem,
   FormLabel,
@@ -19,10 +21,10 @@ import {
   FormMessage,
 } from "@/components/ui/Form";
 import { logger } from "@/shared/lib/logging";
-import type { FieldComponentProps } from "../_types/field.types";
-import { useFieldMetadata } from "../_hooks/use-field-metadata";
-import { useFocusStore } from "@/components/features/campaign-suite/_context/FocusContext";
 import { cn } from "@/shared/lib/utils/cn";
+
+import { useFieldMetadata } from "../_hooks/use-field-metadata";
+import type { FieldComponentProps } from "../_types/field.types";
 
 // Importaciones directas a los componentes de campo atómicos
 import { BooleanField } from "./fields/BooleanField";

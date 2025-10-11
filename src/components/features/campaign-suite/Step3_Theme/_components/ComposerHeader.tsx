@@ -3,11 +3,12 @@
  * @file ComposerHeader.tsx
  * @description Aparato de presentación puro y atómico para el encabezado del Compositor.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React, { forwardRef, useMemo, useEffect } from "react";
+
 import {
   DialogHeader,
   DialogTitle,

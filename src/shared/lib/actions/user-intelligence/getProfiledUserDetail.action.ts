@@ -7,11 +7,12 @@
  */
 "use server";
 
-import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
-import { decryptServerData } from "@/shared/lib/utils/server-encryption";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { VisitorCampaignEventRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
+import { decryptServerData } from "@/shared/lib/utils/server-encryption";
+
 import {
   UaParserResultSchema,
   type ProfiledUserDetail,

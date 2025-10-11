@@ -8,13 +8,14 @@
  */
 import "server-only";
 import { type ZodError } from "zod";
-import { type Locale } from "@/shared/lib/i18n/i18n.config";
-import { i18nSchema, type Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { logger } from "@/shared/lib/logging";
+
 import {
   discoverAndReadI18nFiles,
   type I18nFileContent,
 } from "@/shared/lib/dev/i18n-discoverer";
+import { type Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import { i18nSchema, type Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v5.0.0] ---
 // Se establece una caché a nivel de módulo. Esta persistirá mientras el proceso

@@ -3,7 +3,7 @@
  * @file useStep3Logic.ts
  * @description Hook "cerebro" soberano para toda la lógica del Paso 3 de la SDC.
  * @version 4.1.0 (State Unification & Hygiene Fix)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
@@ -15,27 +15,28 @@ import {
   useTransition,
 } from "react";
 import { toast } from "sonner";
+
 import { useWizard } from "@/components/features/campaign-suite/_context/WizardContext";
+import { validateStep3 } from "@/components/features/campaign-suite/Step3_Theme/step3.validator";
 import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
-import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
+import { useThemeComposer } from "@/shared/hooks/campaign-suite/useThemeComposer";
 import {
   getThemePresetsAction,
   createThemePresetAction,
   deleteThemePresetAction,
   updateThemePresetAction,
 } from "@/shared/lib/actions/theme-presets";
-import { useThemeComposer } from "@/shared/hooks/campaign-suite/useThemeComposer";
 import { logger } from "@/shared/lib/logging";
-import { validateStep3 } from "@/components/features/campaign-suite/Step3_Theme/step3.validator";
-import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
+import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
+import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
 
-export type CategorizedPresets = {
+export interface CategorizedPresets {
   global: ThemePreset[];
   workspace: ThemePreset[];
-};
+}
 
 export function useStep3Logic(loadedFragments: LoadedFragments) {
   const traceId = useMemo(() => logger.startTrace("useStep3Logic_v4.1"), []);

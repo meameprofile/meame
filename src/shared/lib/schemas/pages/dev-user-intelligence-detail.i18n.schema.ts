@@ -1,5 +1,6 @@
 // RUTA: src/shared/lib/schemas/pages/dev-user-intelligence-detail.i18n.schema.ts
 import { z } from "zod";
+
 import { PageHeaderContentSchema } from "@/shared/lib/schemas/components/page-header.schema";
 
 export const UserIntelligenceDetailContentSchema = z.object({

@@ -10,12 +10,14 @@
 "use client";
 
 import React, { useEffect, useMemo } from "react";
-import { logger } from "@/shared/lib/logging";
-import { Step1Client } from "./Step1Client";
-import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
-import type { Step1ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step1.schema";
 import type { z } from "zod";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { logger } from "@/shared/lib/logging";
+import type { Step1ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step1.schema";
+import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
+
+import { Step1Client } from "./Step1Client";
 
 type Content = z.infer<typeof Step1ContentSchema>;
 

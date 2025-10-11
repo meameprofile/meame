@@ -9,19 +9,20 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { Container } from "@/components/ui";
-import { useProductFilters } from "@/shared/hooks/use-product-filters";
-import type { Product } from "@/shared/lib/schemas/entities/product.schema";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
-// --- [INICIO] REFACTORIZACIÓN POR ERRADICACIÓN DE BARREL FILE ---
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { CommunitySection } from "@/components/sections/CommunitySection";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { ProductFilters } from "@/components/sections/ProductFilters";
 import { ProductGrid } from "@/components/sections/ProductGrid";
-import { FaqAccordion } from "@/components/sections/FaqAccordion";
-import { CommunitySection } from "@/components/sections/CommunitySection";
+import { Container } from "@/components/ui";
+import { useProductFilters } from "@/shared/hooks/use-product-filters";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { Product } from "@/shared/lib/schemas/entities/product.schema";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+// --- [INICIO] REFACTORIZACIÓN POR ERRADICACIÓN DE BARREL FILE ---
 // --- [FIN] REFACTORIZACIÓN POR ERRADICACIÓN DE BARREL FILE ---
 
 interface StoreClientProps {

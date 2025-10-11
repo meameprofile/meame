@@ -9,6 +9,7 @@
 
 import React, { useState, useTransition } from "react";
 import { toast } from "sonner";
+
 import {
   Card,
   CardContent,
@@ -25,8 +26,8 @@ import {
   Label,
   DynamicIcon,
 } from "@/components/ui";
-import { GEMINI_MODELS } from "@/shared/lib/ai/models.config";
 import { extractStudyDnaAction } from "@/shared/lib/actions/cogniread/extractStudyDna.action";
+import { GEMINI_MODELS } from "@/shared/lib/ai/models.config";
 import type { StudyDna } from "@/shared/lib/schemas/cogniread/article.schema";
 
 interface StudyDnaExtractorProps {

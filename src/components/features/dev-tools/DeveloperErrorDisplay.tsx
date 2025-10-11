@@ -8,6 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
 import { Container, DynamicIcon } from "@/components/ui";
 
 interface DeveloperErrorDisplayProps {

@@ -8,13 +8,14 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import {
   UpdateProfileSchema,
   UpdatePasswordSchema,
 } from "@/shared/lib/schemas/account/account-forms.schema";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 export async function updateUserProfileAction(
   formData: FormData

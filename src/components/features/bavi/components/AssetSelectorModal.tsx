@@ -8,6 +8,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -16,14 +17,15 @@ import {
   DialogDescription,
   Skeleton,
 } from "@/components/ui";
-import { AssetExplorer } from "./AssetExplorer";
-import { logger } from "@/shared/lib/logging";
-import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import {
   getBaviI18nContentAction,
   type BaviI18nContent,
 } from "@/shared/lib/actions/bavi/getBaviI18nContent.action";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+
+import { AssetExplorer } from "./AssetExplorer";
 
 // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v2.0.0] ---
 interface AssetSelectorModalProps {

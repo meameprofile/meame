@@ -7,12 +7,14 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
-import { scriptLogger } from "./logger";
+
+import type { Database } from "../../src/shared/lib/supabase/database.types";
+
 import { loadEnvironment } from "./env";
+import { scriptLogger } from "./logger";
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 // Se reemplaza el alias '@/' por una ruta relativa para resolver el error TS2307
 // en el contexto de ejecución de los scripts.
-import type { Database } from "../../src/shared/lib/supabase/database.types";
 // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
 loadEnvironment(["NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY"]);

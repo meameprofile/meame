@@ -11,14 +11,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { DynamicIcon, Button } from "@/components/ui";
-import { logger } from "@/shared/lib/logging";
-import { SuiteStyleComposerModal } from "./SuiteStyleComposerModal/SuiteStyleComposerModal";
-import { useDevThemeManager } from "@/components/features/dev-tools/SuiteStyleComposer/use-dev-theme-manager";
+
 import type {
   SuiteThemeConfig,
   LoadedFragments,
 } from "@/components/features/dev-tools/SuiteStyleComposer/types";
+import { useDevThemeManager } from "@/components/features/dev-tools/SuiteStyleComposer/use-dev-theme-manager";
+import { DynamicIcon, Button } from "@/components/ui";
+import { logger } from "@/shared/lib/logging";
+
+import { SuiteStyleComposerModal } from "./SuiteStyleComposerModal/SuiteStyleComposerModal";
 
 interface DevThemeSwitcherProps {
   allThemeFragments: LoadedFragments;

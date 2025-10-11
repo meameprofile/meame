@@ -7,22 +7,23 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import React, { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { createServerClient } from "@/shared/lib/supabase/server";
-import { logger } from "@/shared/lib/logging";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { getCurrentUserProfile_Action } from "@/shared/lib/actions/account/get-current-user-profile.action";
-import { getWorkspacesForUserAction } from "@/shared/lib/actions/workspaces/getWorkspacesForUser.action";
-import type { HeaderClientProps } from "@/components/layout/HeaderClient";
-import Header from "@/components/layout/Header";
-import { DevSidebar } from "@/components/layout/DevSidebar";
+import React, { Suspense } from "react";
+
 import Loading from "./loading";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { generateDevRoutes } from "@/components/features/dev-tools/utils/route-menu.generator";
+import { DevSidebar } from "@/components/layout/DevSidebar";
 import { GlobalLoader } from "@/components/layout/GlobalLoader";
+import Header from "@/components/layout/Header";
+import type { HeaderClientProps } from "@/components/layout/HeaderClient";
+import { getCurrentUserProfile_Action } from "@/shared/lib/actions/account/get-current-user-profile.action";
+import { getWorkspacesForUserAction } from "@/shared/lib/actions/workspaces/getWorkspacesForUser.action";
+import { getDictionary } from "@/shared/lib/i18n/i18n";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { createServerClient } from "@/shared/lib/supabase/server";
 import "@/components/features/aether/Aether";
 
 async function DevLayoutDataOrchestrator({

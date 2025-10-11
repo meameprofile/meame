@@ -8,15 +8,16 @@
 "use server";
 
 import React, { Suspense } from "react";
-import { type Locale } from "@/shared/lib/i18n/i18n.config";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
-import { logger } from "@/shared/lib/logging";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { UserIntelligenceClient } from "@/components/features/user-intelligence/UserIntelligenceClient";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Skeleton } from "@/components/ui/Skeleton";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getProfiledUsersAction } from "@/shared/lib/actions/user-intelligence/getProfiledUsers.action";
-import { UserIntelligenceClient } from "@/components/features/user-intelligence/UserIntelligenceClient";
+import { getDictionary } from "@/shared/lib/i18n/i18n";
+import { type Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import {
   UserIntelligenceContentSchema,
   type UserIntelligenceContent,
@@ -24,7 +25,7 @@ import {
 
 interface UserIntelligencePageProps {
   params: { locale: Locale };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 async function UserIntelligenceDataLoader({

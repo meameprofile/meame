@@ -5,16 +5,17 @@
  * @version 2.0.0 (Holistic Elite Leveling & i18n Contract Sync)
  * @author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import { redirect, notFound } from "next/navigation";
+import React from "react";
+
+import { DeleteAccountZone } from "@/components/features/account/DeleteAccountZone";
+import { PasswordForm } from "@/components/features/account/PasswordForm";
+import { ProfileForm } from "@/components/features/account/ProfileForm";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
-import { createServerClient } from "@/shared/lib/supabase/server";
-import { ProfileForm } from "@/components/features/account/ProfileForm";
-import { PasswordForm } from "@/components/features/account/PasswordForm";
-import { DeleteAccountZone } from "@/components/features/account/DeleteAccountZone";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { createServerClient } from "@/shared/lib/supabase/server";
 
 interface AccountPageProps {
   params: { locale: Locale };

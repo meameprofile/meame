@@ -9,10 +9,12 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
-import { cn } from "@/shared/lib/utils/cn";
+import React from "react";
+
 import { logger } from "@/shared/lib/logging";
+import { cn } from "@/shared/lib/utils/cn";
+
 import { Price } from "./Price"; // Consume nuestro componente de precio de élite
 
 interface ProductBadgeProps {

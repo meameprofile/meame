@@ -7,12 +7,13 @@
  */
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
-import { Container } from "@/components/ui/Container";
+import Link from "next/link";
+import React from "react";
+
 import { NewsletterForm } from "@/components/features/contact/NewsletterForm";
 import { DynamicIcon } from "@/components/ui";
+import { Container } from "@/components/ui/Container";
 import { Separator } from "@/components/ui/Separator";
 import {
   Tooltip,
@@ -21,12 +22,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
 import { logger } from "@/shared/lib/logging";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type {
   LinkColumn,
   LinkType,
   SocialLink,
 } from "@/shared/lib/schemas/components/footer.schema";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 type FooterContent = NonNullable<Dictionary["footer"]>;
 

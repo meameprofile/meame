@@ -9,16 +9,16 @@
  */
 "use client";
 
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { type User } from "@supabase/supabase-js";
+import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type User } from "@supabase/supabase-js";
-import { motion, type Variants } from "framer-motion";
-import { logger } from "@/shared/lib/logging";
-import { type Locale } from "@/shared/lib/i18n/i18n.config";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+
+import { UserNavClient } from "@/components/features/auth/components/UserNavClient";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { NotificationBell } from "@/components/features/notifications/NotificationBell/NotificationBell";
 import { Container, Button } from "@/components/ui";
 import {
   NavigationMenu,
@@ -27,15 +27,18 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/NavigationMenu";
-import { LanguageSwitcher } from "./LanguageSwitcher";
-import { CartTrigger } from "./CartTrigger";
-import { CartSheet } from "./CartSheet";
-import { UserNavClient } from "@/components/features/auth/components/UserNavClient";
-import { NotificationBell } from "@/components/features/notifications/NotificationBell/NotificationBell";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { useCartStore, type CartItem } from "@/shared/lib/stores/useCartStore";
+import { type Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
 import type { NavLink } from "@/shared/lib/schemas/components/header.schema";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { useCartStore, type CartItem } from "@/shared/lib/stores/useCartStore";
+
 import { ToggleTheme } from "../ui/ToggleTheme";
+
+import { CartSheet } from "./CartSheet";
+import { CartTrigger } from "./CartTrigger";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export interface HeaderClientProps {
   user: User | null;

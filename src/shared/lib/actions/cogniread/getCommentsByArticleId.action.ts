@@ -10,15 +10,17 @@
 
 import "server-only";
 import { z } from "zod";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
+import { logger } from "@/shared/lib/logging";
+import type { CommunityCommentRow } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
 import {
   CommentSchema,
   type Comment,
 } from "@/shared/lib/schemas/community/comment.schema";
+import { createServerClient } from "@/shared/lib/supabase/server";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-import { logger } from "@/shared/lib/logging";
+
 import { mapSupabaseToComment } from "./_shapers/cogniread.shapers";
-import type { CommunityCommentRow } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
 
 export async function getCommentsByArticleIdAction(
   articleId: string

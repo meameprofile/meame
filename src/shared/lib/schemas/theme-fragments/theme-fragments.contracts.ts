@@ -5,9 +5,10 @@
  *              Este aparato soberano centraliza los tipos para garantizar la
  *              integridad y el cumplimiento del principio DRY en todo el ecosistema.
  * @version 1.1.0 (Dependency Integrity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod"; // <-- DEPENDENCIA SOBERANA RESTAURADA
+
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import type {
   Tables,
@@ -35,16 +36,16 @@ export const ThemeFragmentSchema = z.object({
 export type ThemeFragment = z.infer<typeof ThemeFragmentSchema>;
 
 // Contrato para los fragmentos descubiertos en el sistema de archivos
-export type DiscoveredFragments = {
+export interface DiscoveredFragments {
   colors: string[];
   fonts: string[];
   radii: string[];
-};
+}
 
 // Contrato para los fragmentos cargados en memoria
-export type LoadedFragments = {
+export interface LoadedFragments {
   base: Partial<AssembledTheme>;
   colors: Record<string, Partial<AssembledTheme>>;
   fonts: Record<string, Partial<AssembledTheme>>;
   radii: Record<string, Partial<AssembledTheme>>;
-};
+}

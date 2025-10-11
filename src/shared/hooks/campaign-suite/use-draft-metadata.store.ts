@@ -6,10 +6,11 @@
  *              contrato de datos con la SSoT de CampaignDraft, corrigiendo
  *              los tipos de `campaignName` y `seoKeywords`.
  * @version 5.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+
 import { logger } from "@/shared/lib/logging";
 import { generateDraftId } from "@/shared/lib/utils/campaign-suite/draft.utils";
 

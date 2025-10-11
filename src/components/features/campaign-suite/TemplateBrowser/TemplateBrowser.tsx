@@ -1,30 +1,30 @@
 // RUTA: src/components/features/campaign-suite/TemplateBrowser/TemplateBrowser.tsx
 /**
  * @file TemplateBrowser.tsx
- * @description Interfaz para seleccionar una plantilla o empezar de cero, ahora
- *              con importaciones soberanas para garantizar la integridad del build.
- * @version 7.1.0 (Build Integrity Restoration)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Interfaz para seleccionar una plantilla o empezar de cero.
+ * @version 7.2.0 (Routing Contract Restoration): Se corrige la clave de ruta
+ *              utilizada al iniciar desde cero, alineándola con la SSoT de 'navigation.ts'.
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
-import { useRouter, usePathname } from "next/navigation";
 import { motion, type Variants } from "framer-motion";
+import { useRouter, usePathname } from "next/navigation";
+import React, { useState, useEffect, useMemo } from "react";
 import { toast } from "sonner";
-import { Button, Separator, Skeleton } from "@/components/ui";
-import { useCampaignDraftStore } from "@/shared/lib/stores/campaign-draft.store";
-import { useTemplateLoader } from "@/shared/hooks/campaign-suite/use-template-loader";
-import { logger } from "@/shared/lib/logging";
-import { TemplateCard } from "./_components/TemplateCard";
-import { routes } from "@/shared/lib/navigation";
-import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
-import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v7.1.0] ---
-import { getCampaignTemplatesAction } from "@/shared/lib/actions/campaign-suite/getCampaignTemplates.action";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v7.1.0] ---
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { Button, Separator, Skeleton } from "@/components/ui";
+import { useTemplateLoader } from "@/shared/hooks/campaign-suite/use-template-loader";
+import { getCampaignTemplatesAction } from "@/shared/lib/actions/campaign-suite/getCampaignTemplates.action";
+import { logger } from "@/shared/lib/logging";
+import { routes } from "@/shared/lib/navigation";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { useCampaignDraftStore } from "@/shared/lib/stores/campaign-draft.store";
+import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
+import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
+
+import { TemplateCard } from "./_components/TemplateCard";
 
 type TemplateBrowserContent = NonNullable<Dictionary["campaignSuitePage"]>;
 
@@ -44,11 +44,11 @@ const itemVariants: Variants = {
 
 export function TemplateBrowser({ content }: TemplateBrowserProps) {
   const traceId = useMemo(
-    () => logger.startTrace("TemplateBrowser_Lifecycle_v7.1"),
+    () => logger.startTrace("TemplateBrowser_Lifecycle_v7.2"),
     []
   );
   useEffect(() => {
-    logger.info("[TemplateBrowser] Componente montado (v7.1).", { traceId });
+    logger.info("[TemplateBrowser] Componente montado (v7.2).", { traceId });
     return () => logger.endTrace(traceId);
   }, [traceId]);
 
@@ -118,7 +118,12 @@ export function TemplateBrowser({ content }: TemplateBrowserProps) {
   const handleStartFromScratch = () => {
     logger.traceEvent(traceId, "Acción: Iniciar desde cero.");
     resetDraft();
-    router.push(routes.creatorCampaignSuite.path({ locale, stepId: ["0"] }));
+    // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RUTA v23.1.0] ---
+    // Se utiliza la clave correcta 'creatorCampaignSuiteWithStepId' desde la SSoT.
+    router.push(
+      routes.creatorCampaignSuiteWithStepId.path({ locale, stepId: ["0"] })
+    );
+    // --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RUTA v23.1.0] ---
   };
 
   const handleTemplateSelect = (templateId: string) => {

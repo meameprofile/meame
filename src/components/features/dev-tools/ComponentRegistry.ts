@@ -91,7 +91,7 @@ export function getComponentByName(
  *              ideal para poblar menús de selección en la UI.
  * @returns {Array<{ key: string; name: string }>}
  */
-export function getComponentList(): Array<{ key: string; name: string }> {
+export function getComponentList(): { key: string; name: string }[] {
   return Object.entries(componentRegistry).map(([key, value]) => ({
     key,
     name: value.name,

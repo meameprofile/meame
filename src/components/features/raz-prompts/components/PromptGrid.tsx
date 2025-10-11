@@ -8,13 +8,15 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
+import React from "react";
+
 import { DynamicIcon, Skeleton } from "@/components/ui";
-import { PromptCard } from "./PromptCard";
-import { logger } from "@/shared/lib/logging";
 import type { EnrichedRaZPromptsEntry } from "@/shared/lib/actions/raz-prompts";
+import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+import { PromptCard } from "./PromptCard";
 
 type VaultContent = NonNullable<Dictionary["promptVault"]>;
 type SesaOptions = NonNullable<Dictionary["promptCreator"]>["sesaOptions"];

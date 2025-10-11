@@ -2,25 +2,26 @@
 /**
  * @file use-template-loader.ts
  * @description Hook de élite para orquestar la carga de plantillas.
- *              v9.3.0 (Absolute Type Safety): Implementa una lógica de
- *              transformación explícita y resiliente para `seoKeywords`,
- *              erradicando el error de tipo 'never' de forma definitiva.
- * @version 9.3.0
+ * @version 9.4.0 (Routing Contract Restoration): Se corrige la clave de ruta
+ *              utilizada en la redirección post-carga, alineándola con la
+ *              SSoT de 'navigation.ts' y resolviendo un error crítico de build.
  * @author L.I.A. Legacy
  */
 "use client";
 
-import { useTransition } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { useTransition } from "react";
 import { toast } from "sonner";
+
 import { loadTemplateAction } from "@/shared/lib/actions/campaign-suite/loadTemplate.action";
-import { logger } from "@/shared/lib/logging";
-import { useCampaignDraftStore } from "./use-campaign-draft.store";
-import { routes } from "@/shared/lib/navigation";
-import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
 import { stepsDataConfig } from "@/shared/lib/config/campaign-suite/wizard.data.config";
-import { generateDraftId } from "@/shared/lib/utils/campaign-suite/draft.utils";
+import { logger } from "@/shared/lib/logging";
+import { routes } from "@/shared/lib/navigation";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+import { generateDraftId } from "@/shared/lib/utils/campaign-suite/draft.utils";
+import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
+
+import { useCampaignDraftStore } from "./use-campaign-draft.store";
 
 export function useTemplateLoader(onLoadComplete?: () => void) {
   const [isPending, startTransition] = useTransition();
@@ -31,7 +32,7 @@ export function useTemplateLoader(onLoadComplete?: () => void) {
   const setDraft = useCampaignDraftStore((state) => state.setDraft);
 
   const loadTemplate = (templateId: string, copySuffix: string) => {
-    const traceId = logger.startTrace(`loadTemplate:${templateId}_v9.3`);
+    const traceId = logger.startTrace(`loadTemplate:${templateId}_v9.4`);
     const groupId = logger.startGroup(`[TemplateLoader] Orquestando carga...`);
 
     startTransition(async () => {
@@ -51,12 +52,9 @@ export function useTemplateLoader(onLoadComplete?: () => void) {
           campaignOrigin: "template",
           templateId: templateId,
           campaignName: `${draftData.campaignName}${copySuffix}`,
-          // --- [INICIO DE REFACTORIZACIÓN DE TIPO v9.3.0] ---
-          // Se comprueba explícitamente si es un array; de lo contrario, se usa un fallback seguro.
           seoKeywords: Array.isArray(draftData.seoKeywords)
             ? draftData.seoKeywords
             : [],
-          // --- [FIN DE REFACTORIZACIÓN DE TIPO v9.3.0] ---
           completedSteps: [],
           updatedAt: new Date().toISOString(),
         };
@@ -68,12 +66,16 @@ export function useTemplateLoader(onLoadComplete?: () => void) {
         });
         toast.success("Plantilla cargada con éxito.");
 
+        // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RUTA v9.4.0] ---
+        // Se utiliza la clave correcta 'creatorCampaignSuiteWithStepId' y se
+        // proporciona el 'stepId' requerido para navegar al inicio del wizard.
         router.push(
-          routes.creatorCampaignSuite.path({
+          routes.creatorCampaignSuiteWithStepId.path({
             locale,
             stepId: [String(firstStepId)],
           })
         );
+        // --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RUTA v9.4.0] ---
         if (onLoadComplete) onLoadComplete();
       } catch (error) {
         const errorMessage =

@@ -3,13 +3,14 @@
  * @file WizardSidebar.tsx
  * @description Barra lateral de navegación soberana para la SDC, inspirada en Canva.
  * @version 1.1.0 (Absolute Type Safety)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
+
 import {
   Button,
   DynamicIcon,
@@ -18,9 +19,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui";
+import type { LucideIconName } from "@/shared/lib/config/lucide-icon-names";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
-import type { LucideIconName } from "@/shared/lib/config/lucide-icon-names";
 
 // --- [INICIO DE REFACTORIZACIÓN DE SEGURIDAD DE TIPOS v1.1.0] ---
 // Se define un contrato de datos estricto para los ítems de la barra lateral.

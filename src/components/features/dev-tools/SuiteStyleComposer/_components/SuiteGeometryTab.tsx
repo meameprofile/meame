@@ -8,8 +8,10 @@
  */
 "use client";
 
-import React, { useMemo } from "react";
 import { motion, type Variants } from "framer-motion";
+import React, { useMemo } from "react";
+
+import { Label } from "@/components/ui/Label";
 import {
   Select,
   SelectContent,
@@ -17,12 +19,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-import { Label } from "@/components/ui/Label";
 import { logger } from "@/shared/lib/logging";
+
+import type { LoadedFragments } from "../types";
+
 import { GranularInputControl } from "./GranularInputControl";
 // --- [INICIO DE REFACTORIZACIÓN DE ÉLITE] ---
 // Se elimina la importación del tipo 'SuiteThemeConfig' no utilizado.
-import type { LoadedFragments } from "../types";
 // --- [FIN DE REFACTORIZACIÓN DE ÉLITE] ---
 
 interface SuiteGeometryTabProps {

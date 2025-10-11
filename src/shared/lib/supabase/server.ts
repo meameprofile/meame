@@ -12,10 +12,12 @@ import {
   createServerClient as supabaseCreateServerClient,
   type CookieOptions,
 } from "@supabase/ssr";
-import { cookies } from "next/headers";
-import { logger } from "@/shared/lib/logging";
-import type { Database } from "./database.types";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
+
+import { logger } from "@/shared/lib/logging";
+
+import type { Database } from "./database.types";
 
 export function createServerClient(): SupabaseClient<Database> {
   // <--- TIPO DE RETORNO EXPLÍCITO

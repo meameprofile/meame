@@ -2,16 +2,19 @@
 /**
  * @file ArticleList.tsx
  * @description Componente de cliente de élite para mostrar una tabla de artículos de CogniRead.
- *              Inyectado con MEA/UX a través de animaciones de entrada en cascada
- *              y construido para cumplir con los 7 Pilares de Calidad.
- * @version 4.0.0 (Elite Forging & MEA Injection)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 4.1.0 (Routing Contract Restoration): Se corrige la violación de
+ *              contrato al llamar a la ruta soberana 'cognireadEditor'.
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
+import Link from "next/link";
+import React from "react";
+
+import { DynamicIcon } from "@/components/ui";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
 import {
   Table,
   TableCell,
@@ -19,13 +22,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
-import { DynamicIcon } from "@/components/ui";
-import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
-import { routes } from "@/shared/lib/navigation";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
+import { routes } from "@/shared/lib/navigation";
+import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
 
 interface ArticleListProps {
   articles: CogniReadArticle[];
@@ -37,7 +37,7 @@ const tableVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05, // Anima la entrada de cada fila con un ligero retraso
+      staggerChildren: 0.05,
     },
   },
 };
@@ -55,7 +55,7 @@ export function ArticleList({
   articles,
   locale,
 }: ArticleListProps): React.ReactElement {
-  logger.info("[ArticleList] Renderizando v4.0 (Elite Forging).");
+  logger.info("[ArticleList] Renderizando v4.1 (Routing Contract Restored).");
 
   const getStatusVariant = (status: CogniReadArticle["status"]) => {
     switch (status) {
@@ -108,9 +108,11 @@ export function ArticleList({
             </TableCell>
             <TableCell className="text-right">
               <Button asChild variant="ghost" size="sm">
+                {/* --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RUTA v4.1.0] --- */}
                 <Link
-                  href={`${routes.cogniReadEditor.path({ locale })}?id=${article.articleId}`}
+                  href={`${routes.cognireadEditor.path({ locale })}?id=${article.articleId}`}
                 >
+                  {/* --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RUTA v4.1.0] --- */}
                   <DynamicIcon name="Pencil" className="mr-2 h-4 w-4" />
                   Editar
                 </Link>
@@ -122,4 +124,3 @@ export function ArticleList({
     </Table>
   );
 }
-// RUTA: src/components/features/cogniread/_components/ArticleList.tsx

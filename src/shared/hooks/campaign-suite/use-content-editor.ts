@@ -8,13 +8,14 @@
  */
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import type { z } from "zod";
+
 import { defaultLocale, type Locale } from "@/shared/lib/i18n/i18n.config";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import { logger } from "@/shared/lib/logging";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 interface UseContentEditorProps {
   sectionName: string;

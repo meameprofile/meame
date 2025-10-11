@@ -11,6 +11,7 @@
 import "server-only"; // <-- ¡DIRECTIVA ARQUITECTÓNICA DE ÉLITE!
 
 import { MongoClient } from "mongodb";
+
 import { logger } from "@/shared/lib/logging";
 
 const MONGODB_URI = process.env.MONGODB_URI;

@@ -7,11 +7,12 @@
  */
 "use client";
 
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion } from "framer-motion";
-import { cn } from "@/shared/lib/utils/cn";
+import * as React from "react";
+
 import { logger } from "@/shared/lib/logging";
+import { cn } from "@/shared/lib/utils/cn";
 
 const alertVariants = cva(
   "relative w-full rounded-lg border p-4 pl-14 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",

@@ -9,18 +9,20 @@
  */
 import "server-only";
 import React from "react";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getCurrentUserProfile_Action } from "@/shared/lib/actions/account/get-current-user-profile.action";
 import { getBaviManifest } from "@/shared/lib/bavi";
 import { getCart } from "@/shared/lib/commerce";
 import { reshapeCartForStore } from "@/shared/lib/commerce/shapers";
 import { logger } from "@/shared/lib/logging";
-import HeaderClient, { type HeaderClientProps } from "./HeaderClient";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import type {
   BaviAsset,
   BaviVariant,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import { createServerClient } from "@/shared/lib/supabase/server";
+
+import HeaderClient, { type HeaderClientProps } from "./HeaderClient";
 
 type HeaderShellProps = Omit<
   HeaderClientProps,

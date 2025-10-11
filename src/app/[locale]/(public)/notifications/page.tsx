@@ -5,17 +5,18 @@
  * @version 2.1.0 (Architectural Import Fix)
  * @author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import { redirect } from "next/navigation";
+import React from "react";
+
+import { PageHeader } from "@/components/layout";
+import { Card, CardContent, Container, DynamicIcon } from "@/components/ui";
+import { getNotificationsAction } from "@/shared/lib/actions/notifications/getNotifications.action";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
-import { createServerClient } from "@/shared/lib/supabase/server";
-import { getNotificationsAction } from "@/shared/lib/actions/notifications/getNotifications.action";
 import { logger } from "@/shared/lib/logging";
-import { Card, CardContent, Container, DynamicIcon } from "@/components/ui";
+import { createServerClient } from "@/shared/lib/supabase/server";
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
 // La importación ahora apunta a la SSoT correcta en la capa de layout.
-import { PageHeader } from "@/components/layout";
 // --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
 
 interface NotificationsPageProps {

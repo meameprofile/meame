@@ -9,6 +9,9 @@
 "use client";
 
 import React from "react";
+import type { z } from "zod";
+
+import { WizardNavigation } from "@/components/features/campaign-suite/_components/WizardNavigation";
 import {
   Card,
   CardContent,
@@ -17,15 +20,15 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui";
-import { logger } from "@/shared/lib/logging";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
-import { WizardNavigation } from "@/components/features/campaign-suite/_components/WizardNavigation";
-import { SectionList } from "./_components/SectionList";
-import { EditorOrchestrator } from "./_components/EditorOrchestrator";
-import type { Step4ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step4.schema";
-import type { z } from "zod";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { Step4ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step4.schema";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+
 import { DeveloperErrorDisplay } from "../../dev-tools";
+
+import { EditorOrchestrator } from "./_components/EditorOrchestrator";
+import { SectionList } from "./_components/SectionList";
 
 type Content = z.infer<typeof Step4ContentSchema>;
 

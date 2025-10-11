@@ -8,8 +8,9 @@
  * @version 3.1.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import { LayoutGrid } from "lucide-react";
+import React from "react";
+
 import { logger } from "@/shared/lib/logging";
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 // Se corrige el error tipográfico en la ruta de importación.

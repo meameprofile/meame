@@ -10,16 +10,17 @@
 "use server";
 
 import React from "react";
+
 import { OrderConfirmationEmail } from "@/shared/emails/OrderConfirmationEmail";
-import { logger } from "@/shared/lib/logging";
 import { getEmailStyles } from "@/shared/emails/utils/email-styling";
-import { sendEmail } from "@/shared/lib/services/resend";
+import { getDictionary } from "@/shared/lib/i18n/i18n";
+import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import {
   OrderConfirmationPayloadSchema,
   type OrderConfirmationPayload,
 } from "@/shared/lib/schemas/notifications/transactional.schema";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
-import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
+import { sendEmail } from "@/shared/lib/services/resend";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 export async function sendOrderConfirmationEmailAction(

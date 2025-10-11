@@ -8,12 +8,14 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
+
 import { Button, FlagIcon } from "@/components/ui";
-import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { LANGUAGE_MANIFEST } from "@/shared/lib/i18n/global.i18n.manifest";
+import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { LanguageSelectorModal } from "./LanguageSelectorModal";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+import { LanguageSelectorModal } from "./LanguageSelectorModal";
 
 // --- [INICIO DE REFACTORIZACIÓN DE API v8.0.0] ---
 // La prop `supportedLocales` se elimina, ya que este componente

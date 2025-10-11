@@ -2,15 +2,17 @@
 /**
  * @file generate-navigation-manifest.ts
  * @description Script de élite para descubrir y generar automáticamente el manifiesto
- *              de rutas `navigation.ts`. Corregido para manejar correctamente los Grupos de Rutas.
- * @version 6.0.0 (Route Group Integrity)
- * @author L.I.A. Legacy
+ *              de rutas `navigation.ts`, ahora con una construcción de RegExp robusta
+ *              y observabilidad de ciclo de vida completo.
+ * @version 9.1.0 (Regex Integrity & Elite Compliance)
+ * @author RaZ Podestá - MetaShark Tech
  */
 import * as fs from "fs";
 import * as path from "path";
+
 import chalk from "chalk";
-import { type Locale, defaultLocale } from "@/shared/lib/i18n/i18n.config";
-import { routes as routeDefinitions, RouteType } from "@/shared/lib/navigation";
+
+import { logger } from "@/shared/lib/logging";
 
 const APP_ROOT_DIR = path.resolve(process.cwd(), "src", "app");
 const OUTPUT_FILE = path.resolve(
@@ -37,8 +39,10 @@ const IGNORED_ENTITIES = new Set([
   "global-error.tsx",
   "not-found.tsx",
   "api",
-  "auth", // Ignorar la carpeta auth a nivel raíz
+  "auth",
 ]);
+
+const PROTECTED_ROOT_DIRS = new Set(["(dev)", "creator"]);
 
 interface RouteInfo {
   key: string;
@@ -52,33 +56,34 @@ function toCamelCase(str: string): string {
 }
 
 function generateKeyFromSegments(segments: string[]): string {
-  const relevantSegments =
-    segments[0] === "[locale]" ? segments.slice(1) : segments;
-  if (relevantSegments.length === 0) return "home";
+  const relevantSegments = segments
+    .slice(1)
+    .filter((segment) => !/^\(.*\)$/.test(segment));
 
-  const keyParts = relevantSegments
-    .filter((segment) => !/^\(.*\)$/.test(segment)) // No incluir grupos en la clave
-    .map((segment) =>
-      segment
-        .replace(
-          /\[\[\.\.\.([^\]]+)\]\]/g, // Manejar catch-all opcional
-          (_, param) => `With${param.charAt(0).toUpperCase() + param.slice(1)}`
-        )
-        .replace(
-          /\[([^\]]+)\]/g, // Manejar segmentos dinámicos
-          (_, param) => `By${param.charAt(0).toUpperCase() + param.slice(1)}`
-        )
-        .replace(/^./, (c) => c.toUpperCase())
-    );
+  if (relevantSegments.length === 0) {
+    return "home";
+  }
+
+  const keyParts = relevantSegments.map((segment) =>
+    segment
+      .replace(
+        /\[\[\.\.\.([^\]]+)\]\]/g,
+        (_, param) => `With${param.charAt(0).toUpperCase() + param.slice(1)}`
+      )
+      .replace(
+        /\[([^\]]+)\]/g,
+        (_, param) => `By${param.charAt(0).toUpperCase() + param.slice(1)}`
+      )
+      .replace(/^./, (c) => c.toUpperCase())
+  );
 
   const baseKey = keyParts.join("");
   const finalKey = toCamelCase(
     baseKey.charAt(0).toLowerCase() + baseKey.slice(1)
   );
 
-  // Mapeos especiales para rutas raíz
   if (finalKey === "dev") return "devDashboard";
-  if (finalKey === "login") return "login"; // Asumimos que /login es público
+  if (finalKey === "login") return "login";
 
   return finalKey;
 }
@@ -86,29 +91,23 @@ function generateKeyFromSegments(segments: string[]): string {
 function discoverRoutes(
   currentDir: string,
   relativePathSegments: string[] = [],
-  isDevZone: boolean = false
+  isDevZone = false
 ): RouteInfo[] {
   const routes: RouteInfo[] = [];
   let entries: fs.Dirent[];
 
   try {
     entries = fs.readdirSync(currentDir, { withFileTypes: true });
-  } catch (error) {
-    // Ignorar directorios que no existen o no se pueden leer (ej. symlinks rotos)
+  } catch {
     return [];
   }
 
-  const hasPageFile = entries.some(
-    (e) => e.isFile() && e.name === "page.tsx"
-  );
+  const hasPageFile = entries.some((e) => e.isFile() && e.name === "page.tsx");
 
-  // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v6.0.0] ---
-  // Se filtran los segmentos que son grupos de rutas ANTES de construir la plantilla.
   const finalPathSegments = relativePathSegments
-    .slice(1) // Siempre omitir el primer segmento `[locale]`
+    .slice(1)
     .filter((segment) => !/^\(.*\)$/.test(segment));
   const pathTemplate = "/" + finalPathSegments.join("/");
-  // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v6.0.0] ---
 
   if (hasPageFile) {
     const key = generateKeyFromSegments(relativePathSegments);
@@ -119,7 +118,9 @@ function discoverRoutes(
 
     console.log(
       chalk.gray(
-        `   Discovered: ${chalk.green(key)} -> ${chalk.yellow(pathTemplate)} (${type})`
+        `   Descubierta: ${chalk.green(key)} -> ${chalk.yellow(
+          pathTemplate
+        )} (Tipo: ${type})`
       )
     );
     routes.push({
@@ -133,8 +134,7 @@ function discoverRoutes(
   for (const entry of entries) {
     if (entry.isDirectory() && !IGNORED_ENTITIES.has(entry.name)) {
       const nextRelativePathSegments = [...relativePathSegments, entry.name];
-      const nextIsDevZone = isDevZone || entry.name === "(dev)";
-
+      const nextIsDevZone = isDevZone || PROTECTED_ROOT_DIRS.has(entry.name);
       routes.push(
         ...discoverRoutes(
           path.join(currentDir, entry.name),
@@ -152,7 +152,6 @@ function generateNavigationFileContent(routes: RouteInfo[]): string {
   const routesObjectContent = routes
     .map((route) => {
       const hasParams = route.params.length > 0;
-      // Genera el tipo para los parámetros de la ruta de forma dinámica
       const paramsType = hasParams
         ? `RouteParams & { ${route.params
             .map((p) => `${toCamelCase(p)}: string | number | string[]`)
@@ -202,7 +201,11 @@ const buildPath = (
       if (key !== "locale" && params[key] !== undefined) {
         const value = params[key];
         const stringValue = Array.isArray(value) ? value.join("/") : String(value);
-        const placeholderRegex = new RegExp(\`\\[\\[?\\.\\.\\.\${key}\\]\\]?|\\[\${key}\\]\`);
+        // --- [INICIO DE REFACTORIZACIÓN QUIRÚRGICA v9.1.0] ---
+        // Se corrige la construcción de la RegExp para que las barras invertidas se escapen correctamente,
+        // generando un código final sintácticamente válido y sin advertencias de ESLint.
+        const placeholderRegex = new RegExp(\`\\\\[\\\\[\\\\.\\\\.\\\\.\${key}\\\\]\\\\]\\\\?|\\\\[\${key}\\\\]\`);
+        // --- [FIN DE REFACTORIZACIÓN QUIRÚRGICA v9.1.0] ---
         path = path.replace(placeholderRegex, stringValue);
       }
     }
@@ -221,16 +224,19 @@ export const routes = {${routesObjectContent}
 }
 
 function main() {
+  const traceId = logger.startTrace("generate-navigation-manifest_v9.1");
+  const groupId = logger.startGroup(
+    "[Generador de Rutas] Iniciando ejecución..."
+  );
   console.log(
     chalk.blue.bold(
-      "🚀 Iniciando Generador de Manifiesto de Rutas de Élite v6.0..."
+      "🚀 Iniciando Generador de Manifiesto de Rutas de Élite v9.1..."
     )
   );
   try {
     const appPath = path.join(APP_ROOT_DIR);
     console.log(chalk.gray(`   Escaneando directorio base: ${appPath}`));
 
-    // El descubrimiento comienza desde dentro de 'src/app/[locale]'
     const localeDir = path.join(appPath, "[locale]");
     const discoveredRoutes = discoverRoutes(localeDir, ["[locale]"]);
 
@@ -259,12 +265,20 @@ function main() {
         `   Total de ${discoveredRoutes.length} rutas descubiertas y registradas.`
       )
     );
-  } catch (error) {
+  } catch (e: unknown) {
+    const errorMessage = e instanceof Error ? e.message : String(e);
     console.error(
       chalk.red.bold("🔥 Error crítico durante la generación del manifiesto:"),
-      error
+      errorMessage
     );
+    logger.error("[Generador de Rutas] Fallo crítico.", {
+      error: errorMessage,
+      traceId,
+    });
     process.exit(1);
+  } finally {
+    logger.endGroup(groupId);
+    logger.endTrace(traceId);
   }
 }
 

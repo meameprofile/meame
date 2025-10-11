@@ -8,17 +8,18 @@
  */
 "use client";
 
-import React, { useState, useEffect, useCallback, forwardRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState, useEffect, useCallback, forwardRef } from "react";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+import { logger } from "@/shared/lib/logging";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface FeaturedArticlesCarouselProps
   extends SectionProps<"featuredArticlesCarousel"> {

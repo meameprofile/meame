@@ -7,18 +7,19 @@
  */
 "use client";
 
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CldImage } from "next-cloudinary";
+import React from "react";
+
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import { Separator } from "@/components/ui/Separator";
-import { Badge } from "@/components/ui/Badge";
 import { ScrollArea } from "@/components/ui/ScrollArea";
+import { Separator } from "@/components/ui/Separator";
 import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import type { SesaOption } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 type SesaOptions = NonNullable<Dictionary["promptCreator"]>["sesaOptions"];
 

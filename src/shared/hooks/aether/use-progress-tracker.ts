@@ -10,6 +10,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 export interface ProgressState {

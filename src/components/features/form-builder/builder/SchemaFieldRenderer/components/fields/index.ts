@@ -3,7 +3,7 @@
  * @file index.ts (Barrel File)
  * @description Fachada pública para los micro-componentes de campo atómicos.
  * @version 1.5.0 (Architectural Integrity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 export * from "./BooleanField";
 export * from "./NumberField";

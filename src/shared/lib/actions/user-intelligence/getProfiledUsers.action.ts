@@ -8,10 +8,12 @@
 "use server";
 
 import { z } from "zod";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { UserProfileSummaryRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
+
 import {
   ProfiledUserSchema,
   type ProfiledUser,
@@ -24,11 +26,11 @@ const GetProfiledUsersInputSchema = z.object({
 
 type GetProfiledUsersInput = z.infer<typeof GetProfiledUsersInputSchema>;
 
-type JoinedRow = {
+interface JoinedRow {
   avatar_url: string | null;
   full_name: string | null;
   user_profile_summary: UserProfileSummaryRow;
-};
+}
 
 function isJoinedRow(row: unknown): row is JoinedRow {
   return (

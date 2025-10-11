@@ -5,13 +5,13 @@
  * @version 2.0.0 (Type Contract Synchronization)
  * @author RaZ Podestá - MetaShark Tech
  */
+import type { SectionName } from "@/shared/lib/config/sections.config";
 import {
   strategicCombos,
   type StrategicCombo,
 } from "@/shared/lib/config/strategic-combos.config";
-import type { SectionName } from "@/shared/lib/config/sections.config";
-import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
 import { logger } from "@/shared/lib/logging";
+import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
 
 /**
  * @function detectStrategicCombos

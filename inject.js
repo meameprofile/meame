@@ -7,11 +7,12 @@
 /* eslint-env node */
 /* globals process, console */
 
-import { createClient } from "@supabase/supabase-js";
-import dotenv from "dotenv";
 import { promises as fs } from "fs";
 import path from "path";
+
 import { createId } from "@paralleldrive/cuid2";
+import { createClient } from "@supabase/supabase-js";
+import dotenv from "dotenv";
 
 const log = (msg) => console.log(`[✅] ${msg}`);
 const error = (msg, details) => console.error(`[❌] ${msg}`, details || "");

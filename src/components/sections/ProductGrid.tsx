@@ -8,14 +8,15 @@
  */
 "use client";
 
-import React, { forwardRef } from "react";
 import { motion, type Variants } from "framer-motion";
+import React, { forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
 import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface ProductGridProps extends SectionProps<"storePage"> {
   products: Product[];

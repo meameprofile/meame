@@ -10,7 +10,9 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+
 import { logger } from "@/shared/lib/logging";
+
 import type { PlaybackEvent, PlaybackEventType } from "./aether.contracts";
 
 export function useAetherTelemetry(

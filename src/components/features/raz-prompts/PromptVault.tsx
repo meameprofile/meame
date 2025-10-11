@@ -8,10 +8,12 @@
 "use client";
 
 import React from "react";
-import { logger } from "@/shared/lib/logging";
+
 import { usePromptVault } from "@/shared/hooks/raz-prompts/use-prompt-vault";
-import { PromptVaultDisplay } from "./components/PromptVaultDisplay"; // <-- RUTA CORREGIDA
+import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+import { PromptVaultDisplay } from "./components/PromptVaultDisplay"; // <-- RUTA CORREGIDA
 
 interface PromptVaultProps {
   content: NonNullable<Dictionary["promptCreator"]>;

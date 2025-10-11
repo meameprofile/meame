@@ -10,8 +10,10 @@
 
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import type { BentoCardData } from "./magic-bento.schema";
+
 import { logger } from "@/shared/lib/logging";
+
+import type { BentoCardData } from "./magic-bento.schema";
 
 interface BentoCardProps {
   card: BentoCardData;

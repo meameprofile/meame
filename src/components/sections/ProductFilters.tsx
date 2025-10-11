@@ -9,15 +9,16 @@
 
 import React from "react";
 import type { z } from "zod";
-import type { StorePageLocaleSchema } from "@/shared/lib/schemas/pages/store-page.schema";
-import { logger } from "@/shared/lib/logging";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { Checkbox } from "@/components/ui/Checkbox";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { Checkbox } from "@/components/ui/Checkbox";
 import { Slider } from "@/components/ui/Slider";
 import { Switch } from "@/components/ui/Switch";
 import type { ProductFiltersState } from "@/shared/hooks/use-product-filters";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { logger } from "@/shared/lib/logging";
+import type { StorePageLocaleSchema } from "@/shared/lib/schemas/pages/store-page.schema";
 
 type FilterData = NonNullable<
   z.infer<typeof StorePageLocaleSchema>["storePage"]

@@ -5,14 +5,15 @@
  * @version 2.0.0 (Storefront Client Integration)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { shopifyStorefrontFetch } from "./storefront-client"; // <-- USAR EL CLIENTE DE STOREFRONT
+import type { Product } from "@/shared/lib/schemas/entities/product.schema";
+
 import { getProductQuery, getProductsQuery } from "./queries/product";
 import { reshapeShopifyProducts, reshapeShopifyProduct } from "./shapers";
+import { shopifyStorefrontFetch } from "./storefront-client"; // <-- USAR EL CLIENTE DE STOREFRONT
 import type {
   ShopifyProductOperation,
   ShopifyProductsOperation,
 } from "./types";
-import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 
 export async function getShopifyProducts(): Promise<Product[]> {
   const res = await shopifyStorefrontFetch<ShopifyProductsOperation>({

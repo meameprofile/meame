@@ -10,15 +10,17 @@
 
 import { promises as fs } from "fs";
 import path from "path";
+
 import { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
+
 import { gemini } from "@/shared/lib/ai";
+import { GEMINI_MODELS } from "@/shared/lib/ai/models.config";
+import { logger } from "@/shared/lib/logging";
 import {
   StudyDnaSchema,
   type StudyDna,
 } from "@/shared/lib/schemas/cogniread/article.schema";
-import { GEMINI_MODELS } from "@/shared/lib/ai/models.config";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 const modelIds = GEMINI_MODELS.map((m) => m.id) as [string, ...string[]];
 

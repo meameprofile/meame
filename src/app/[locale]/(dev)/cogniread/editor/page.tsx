@@ -5,17 +5,18 @@
  * @version 5.0.0 (Holistic & Sovereign Path Restoration)
  * @author RaZ Podestá - MetaShark Tech
  */
+import { notFound } from "next/navigation";
 import React from "react";
+
+import { ArticleEditorClient } from "@/components/features/cogniread/editor/ArticleEditorClient";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { Container } from "@/components/ui";
+import { getArticleByIdAction } from "@/shared/lib/actions/cogniread";
+import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { notFound } from "next/navigation";
-import { Container } from "@/components/ui";
-import { PageHeader } from "@/components/layout/PageHeader";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
-import { getArticleByIdAction } from "@/shared/lib/actions/cogniread";
-import { ArticleEditorClient } from "@/components/features/cogniread/editor/ArticleEditorClient";
 
 interface ArticleEditorPageProps {
   params: { locale: Locale };

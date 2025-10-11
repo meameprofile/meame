@@ -5,11 +5,13 @@
  *              v5.0.0 (Architectural Restoration): Se elimina el componente
  *              FormFieldGroup obsoleto para adherirse al PRU.
  * @version 5.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 import React from "react";
 import type { Control, FieldValues, Path } from "react-hook-form";
+import type { z } from "zod";
+
 import {
   FormField,
   FormItem,
@@ -22,13 +24,12 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui";
+import { logger } from "@/shared/lib/logging";
 import {
   RaZPromptsSesaTagsSchema,
   type RaZPromptsSesaTags,
 } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import type { PromptCreatorContentSchema } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
-import { logger } from "@/shared/lib/logging";
-import type { z } from "zod";
 
 type SesaContent = Pick<
   z.infer<typeof PromptCreatorContentSchema>,

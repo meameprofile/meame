@@ -9,12 +9,13 @@
 
 import React from "react";
 import { type SVGProps } from "react";
+
+import BR from "@/components/icons/flags/BR";
+import ES from "@/components/icons/flags/ES";
+import IT from "@/components/icons/flags/IT";
+import US from "@/components/icons/flags/US";
 import { type Locale, defaultLocale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import IT from "@/components/icons/flags/IT";
-import ES from "@/components/icons/flags/ES";
-import US from "@/components/icons/flags/US";
-import BR from "@/components/icons/flags/BR";
 
 interface FlagIconProps extends SVGProps<SVGSVGElement> {
   locale: Locale;

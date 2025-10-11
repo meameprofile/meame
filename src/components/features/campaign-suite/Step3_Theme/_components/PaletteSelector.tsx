@@ -3,13 +3,13 @@
  * @file PaletteSelector.tsx
  * @description Aparato de UI atómico y de élite para la selección visual de paletas de colores.
  * @version 2.0.0 (Preset Management UI)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/shared/lib/utils/cn";
+import React from "react";
+
 import {
   DynamicIcon,
   Button,
@@ -20,6 +20,7 @@ import {
 } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface PaletteSelectorProps {
   palettes: ThemePreset[];

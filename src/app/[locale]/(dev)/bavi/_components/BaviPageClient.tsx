@@ -8,16 +8,18 @@
 "use client";
 
 import React, { useState, useMemo, useEffect, useCallback } from "react";
-import { logger } from "@/shared/lib/logging";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { BaviHeader } from "./BaviHeader";
+
 import { AssetExplorerDisplay } from "@/components/features/bavi/components/AssetExplorerDisplay";
 import { useAssetExplorerLogic } from "@/shared/hooks/bavi/use-asset-explorer-logic";
 import type { BaviI18nContent } from "@/shared/lib/actions/bavi/getBaviI18nContent.action";
-import { AssetUploaderModal } from "./AssetUploaderModal";
-import { AssetPreviewPanel } from "./AssetPreviewPanel";
-import { AssetEditorModal } from "./AssetEditorModal";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+
+import { AssetEditorModal } from "./AssetEditorModal";
+import { AssetPreviewPanel } from "./AssetPreviewPanel";
+import { AssetUploaderModal } from "./AssetUploaderModal";
+import { BaviHeader } from "./BaviHeader";
 
 interface BaviPageClientProps {
   locale: Locale;

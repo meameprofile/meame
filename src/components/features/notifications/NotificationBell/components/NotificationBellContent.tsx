@@ -5,19 +5,21 @@
  * @version 2.0.0 (Elite Observability)
  *@author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import Link from "next/link";
+import React from "react";
+import type { z } from "zod";
+
 import {
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/DropdownMenu";
 import { Skeleton } from "@/components/ui/Skeleton";
-import { NotificationItem } from "./NotificationItem";
-import type { Notification } from "@/shared/lib/types/notifications.types";
-import type { z } from "zod";
-import type { NotificationBellContentSchema } from "@/shared/lib/schemas/components/notifications.schema";
 import { logger } from "@/shared/lib/logging";
+import type { NotificationBellContentSchema } from "@/shared/lib/schemas/components/notifications.schema";
+import type { Notification } from "@/shared/lib/types/notifications.types";
+
+import { NotificationItem } from "./NotificationItem";
 
 type Content = z.infer<typeof NotificationBellContentSchema>;
 

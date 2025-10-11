@@ -12,13 +12,14 @@
 "use server";
 
 import { z } from "zod";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import {
   CampaignAnalyticsDataSchema,
   type CampaignAnalyticsData,
 } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 /**
  * @function getCampaignAnalyticsAction

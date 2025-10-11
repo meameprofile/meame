@@ -8,10 +8,12 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "dotenv/config";
-import path from "path";
-import { register } from "tsconfig-paths";
 import { readFileSync } from "fs";
+import path from "path";
 import { pathToFileURL } from "url";
+
+import { register } from "tsconfig-paths";
+
 import { scriptLogger as logger } from "./_utils/logger";
 
 // Carga y parsea el tsconfig.scripts.json para obtener los 'paths'.

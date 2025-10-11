@@ -10,13 +10,15 @@
 
 import React, { useCallback, useMemo, useEffect } from "react";
 import type { z } from "zod";
-import { logger } from "@/shared/lib/logging";
-import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
+
 import { useWizard } from "@/components/features/campaign-suite/_context/WizardContext";
-import { Step2Form } from "./Step2Form";
-import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
-import type { Step2ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step2.schema";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
+import { logger } from "@/shared/lib/logging";
+import type { Step2ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step2.schema";
+import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
+
+import { Step2Form } from "./Step2Form";
 
 type Step2Content = z.infer<typeof Step2ContentSchema>;
 

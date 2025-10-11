@@ -8,13 +8,13 @@
  */
 "use client";
 
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type {
   ContentData,
   LayoutConfigItem,
 } from "@/shared/lib/types/campaigns/draft.types";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { logger } from "@/shared/lib/logging";
 
 /**
  * @function buildPreviewDictionary

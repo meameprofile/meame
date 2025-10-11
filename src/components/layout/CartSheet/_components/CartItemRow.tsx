@@ -5,12 +5,13 @@
  * @version 1.1.0 (Import Integrity Restoration)
  * @author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import React from "react";
+
 import { Button, DynamicIcon, Price } from "@/components/ui"; // <-- AHORA VÁLIDO
-import { useCartStore, type CartItem } from "@/shared/lib/stores/useCartStore";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { useCartStore, type CartItem } from "@/shared/lib/stores/useCartStore";
 
 interface CartItemRowProps {
   item: CartItem;

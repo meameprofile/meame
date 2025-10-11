@@ -7,18 +7,20 @@
  */
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import React, { useState, useMemo, useEffect } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { DynamicIcon } from "@/components/ui";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
 import { TiltCard } from "@/components/ui/TiltCard";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { LoginFormData } from "@/shared/lib/schemas/auth/login.schema";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
 import { LoginForm } from "./components/LoginForm";
 import { SignUpForm } from "./components/SignUpForm";
-import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
-import { DynamicIcon } from "@/components/ui";
-import type { LoginFormData } from "@/shared/lib/schemas/auth/login.schema";
 
 type AuthFormContent = NonNullable<Dictionary["devLoginPage"]>;
 type OAuthButtonsContent = NonNullable<Dictionary["oAuthButtons"]>;

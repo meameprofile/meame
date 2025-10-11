@@ -9,16 +9,17 @@
 "use client";
 
 import React, { forwardRef } from "react";
-import { Container } from "@/components/ui/Container";
-import { DynamicIcon } from "@/components/ui";
+
 import { ContactForm } from "@/components/features/contact/ContactForm";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { DynamicIcon } from "@/components/ui";
+import { Container } from "@/components/ui/Container";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { ContactInfoItem } from "@/shared/lib/schemas/components/contact-section.schema";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 // --- [INICIO DE REFACTORIZACIÓN DE ÉLITE v6.1.0] ---
 // Se realiza la importación quirúrgica para erradicar la contaminación del barrel file.
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 // --- [FIN DE REFACTORIZACIÓN DE ÉLITE v6.1.0] ---
 
 interface ContactSectionProps extends SectionProps<"contactSection"> {

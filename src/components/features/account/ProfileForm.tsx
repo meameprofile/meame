@@ -7,11 +7,14 @@
  */
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import type { User } from "@supabase/supabase-js";
 import React, { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import type { User } from "@supabase/supabase-js";
+import type { z } from "zod";
+
+import { Button } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -20,9 +23,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { Label } from "@/components/ui/Label";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import {
   Form,
@@ -31,14 +31,15 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/Form";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { updateUserProfileAction } from "@/shared/lib/actions/account/manage-account.action";
+import { logger } from "@/shared/lib/logging";
 import {
   UpdateProfileSchema,
   type UpdateProfileFormData,
 } from "@/shared/lib/schemas/account/account-forms.schema";
-import { updateUserProfileAction } from "@/shared/lib/actions/account/manage-account.action";
-import { logger } from "@/shared/lib/logging";
 import type { ProfileFormContentSchema } from "@/shared/lib/schemas/components/account/profile-form.schema";
-import type { z } from "zod";
 
 type Content = z.infer<typeof ProfileFormContentSchema>;
 

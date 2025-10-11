@@ -9,11 +9,12 @@
  */
 "use client";
 
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion } from "framer-motion";
-import { cn } from "@/shared/lib/utils/cn";
+import * as React from "react";
+
 import { logger } from "@/shared/lib/logging";
+import { cn } from "@/shared/lib/utils/cn";
 
 const badgeVariants = cva(
   "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",

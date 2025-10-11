@@ -8,8 +8,9 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
+import React from "react";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import type { LucideIconName } from "@/shared/lib/config/lucide-icon-names";

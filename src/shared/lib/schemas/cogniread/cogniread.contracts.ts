@@ -1,5 +1,6 @@
 // RUTA: src/shared/lib/schemas/cogniread/cogniread.contracts.ts
 import { z } from "zod";
+
 import type {
   Tables,
   TablesInsert,

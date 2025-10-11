@@ -9,9 +9,10 @@
 "use client";
 
 import React from "react";
-import { Switch } from "@/components/ui/Switch";
-import { Label } from "@/components/ui/Label";
+
 import { ComponentGallery } from "@/components/features/campaign-suite/_components/shared/ComponentGallery";
+import { Label } from "@/components/ui/Label";
+import { Switch } from "@/components/ui/Switch";
 import type { GalleryItem } from "@/shared/lib/config/campaign-suite/gallery.config";
 import { logger } from "@/shared/lib/logging";
 
@@ -24,7 +25,7 @@ interface StructuralSectionConfigProps {
   galleryItems: readonly GalleryItem[];
   selectedValue: string | null;
   onSelectionChange: (value: string) => void;
-  descriptions: { [key: string]: string };
+  descriptions: Record<string, string>;
 }
 
 export function StructuralSectionConfig({

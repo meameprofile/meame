@@ -12,10 +12,12 @@
 
 import { promises as fs } from "fs";
 import path from "path";
+
 import * as swc from "@swc/core";
+
+import { sectionsConfig } from "@/shared/lib/config/sections.config";
 import { logger } from "@/shared/lib/logging";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
-import { sectionsConfig } from "@/shared/lib/config/sections.config";
 
 const PROJECT_ROOT = process.cwd();
 const SRC_ROOT = path.join(PROJECT_ROOT, "src");

@@ -5,11 +5,12 @@
  * @version 1.1.0 (Import Integrity Restoration)
  * @author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import { motion } from "framer-motion";
+import React from "react";
+
 import { SheetFooter, SheetClose, Button, Price } from "@/components/ui"; // <-- AHORA VÁLIDO
-import { useCartTotals } from "@/shared/lib/stores/useCartStore";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { useCartTotals } from "@/shared/lib/stores/useCartStore";
 
 interface CartSheetFooterProps {
   locale: Locale;

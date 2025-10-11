@@ -2,18 +2,19 @@
 /**
  * @file CampaignsTable.columns.tsx
  * @description SSoT para la definición de columnas de la tabla de analíticas.
- *              v3.0.0 (Sovereign Routing Compliance): Refactorizado para consumir
- *              la SSoT de enrutamiento 'navigation.ts', resolviendo un error
- *              crítico de 'dynamic href' en el App Router.
- * @version 3.0.0
- * @author RaZ Podestá - MetaShark Tech
+ *              v3.1.0 (Routing Contract Restoration): Se corrige el nombre de la
+ *              ruta a 'analyticsByVariantId' para alinear con la SSoT de 'navigation.ts'.
+ * @version 3.1.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import type { ColumnDef, Row } from "@tanstack/react-table";
-import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
+import Link from "next/link";
+import React from "react";
+import type { z } from "zod";
+
+import { Button } from "@/components/ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,13 +22,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
-import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import type { z } from "zod";
-import type { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
+import type { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
 
 type Content = z.infer<typeof CampaignsTableContentSchema>;
 
@@ -56,11 +56,11 @@ const ActionsCell = ({
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>{content.actionsLabel}</DropdownMenuLabel>
         <DropdownMenuItem asChild>
-          {/* --- [INICIO DE CORRECCIÓN SOBERANA] --- */}
-          <Link href={routes.analyticsByVariant.path({ locale, variantId })}>
+          {/* --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RUTA v3.1.0] --- */}
+          <Link href={routes.analyticsByVariantId.path({ locale, variantId })}>
+            {/* --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RUTA v3.1.0] --- */}
             {content.viewDetailsLabel}
           </Link>
-          {/* --- [FIN DE CORRECCIÓN SOBERANA] --- */}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

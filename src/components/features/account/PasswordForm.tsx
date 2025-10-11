@@ -9,10 +9,12 @@
  */
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -21,9 +23,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { Label } from "@/components/ui/Label";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import {
   Form,
@@ -32,11 +31,13 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/Form";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { updateUserPasswordAction } from "@/shared/lib/actions/account/manage-account.action";
 import {
   UpdatePasswordSchema,
   type UpdatePasswordFormData,
 } from "@/shared/lib/schemas/account/account-forms.schema";
-import { updateUserPasswordAction } from "@/shared/lib/actions/account/manage-account.action";
 
 export function PasswordForm(): React.ReactElement {
   const [isPending, startTransition] = useTransition();

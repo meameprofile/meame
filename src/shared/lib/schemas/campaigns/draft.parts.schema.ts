@@ -6,6 +6,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { ROUTING_LOCALES as supportedLocales } from "@/shared/lib/i18n/i18n.config";
 import { AssembledThemeSchema } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 

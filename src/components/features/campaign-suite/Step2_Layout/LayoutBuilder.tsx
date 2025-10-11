@@ -8,7 +8,6 @@
  */
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
 import {
   DndContext,
   closestCenter,
@@ -21,20 +20,23 @@ import {
   DragOverlay,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates, arrayMove } from "@dnd-kit/sortable";
+import React, { useState, useEffect, useCallback } from "react";
+import type { z } from "zod";
+
+import { DynamicIcon } from "@/components/ui";
+import { showComboToast } from "@/components/ui/ComboToast";
 import {
   sectionsConfig,
   type SectionName,
 } from "@/shared/lib/config/sections.config";
-import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
+import { strategicCombos } from "@/shared/lib/config/strategic-combos.config";
 import { logger } from "@/shared/lib/logging";
+import type { Step2ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step2.schema";
+import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
+import { detectStrategicCombos } from "@/shared/lib/utils/campaign-suite/combo.detector";
+
 import { LayoutCanvas } from "./_components/LayoutCanvas";
 import { SectionLibrary } from "./_components/SectionLibrary";
-import { DynamicIcon } from "@/components/ui";
-import { detectStrategicCombos } from "@/shared/lib/utils/campaign-suite/combo.detector";
-import { showComboToast } from "@/components/ui/ComboToast";
-import { strategicCombos } from "@/shared/lib/config/strategic-combos.config";
-import type { Step2ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step2.schema";
-import type { z } from "zod";
 
 const availableSections = Object.keys(sectionsConfig).map((name) => ({
   id: name,

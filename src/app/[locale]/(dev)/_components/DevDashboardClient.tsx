@@ -9,10 +9,11 @@
  */
 "use client";
 
-import React, { useMemo, useEffect } from "react";
-import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
-import { logger } from "@/shared/lib/logging";
+import Link from "next/link";
+import React, { useMemo, useEffect } from "react";
+import type { z } from "zod";
+
 import {
   Button,
   Card,
@@ -21,8 +22,8 @@ import {
   CardTitle,
   DynamicIcon,
 } from "@/components/ui";
+import { logger } from "@/shared/lib/logging";
 import type { DevDashboardContentSchema } from "@/shared/lib/schemas/pages/dev-dashboard.schema";
-import type { z } from "zod";
 
 type Content = z.infer<typeof DevDashboardContentSchema>;
 

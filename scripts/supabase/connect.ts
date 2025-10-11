@@ -6,9 +6,11 @@
  * @version 2.0.1 (Type Inference Fix)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { createClient } from "@supabase/supabase-js";
 import { promises as fs } from "fs";
 import * as path from "path";
+
+import { createClient } from "@supabase/supabase-js";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";

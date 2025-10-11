@@ -7,12 +7,13 @@
  */
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
+
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import { cn } from "@/shared/lib/utils/cn";
 import type { LucideIconName } from "@/shared/lib/config/lucide-icon-names";
+import { cn } from "@/shared/lib/utils/cn";
 
 const navItems = [
   { href: "/dev/bavi", icon: "LayoutGrid", label: "Assets" },

@@ -7,10 +7,12 @@
  */
 import { promises as fs } from "fs";
 import path from "path";
-import { createScriptClient } from "../_utils/supabaseClient";
-import { scriptLogger as logger } from "../_utils/logger";
-import type { ScriptActionResult } from "../_utils/types";
+
 import type { HeimdallEventRow } from "@/shared/lib/telemetry/heimdall.contracts";
+
+import { scriptLogger as logger } from "../_utils/logger";
+import { createScriptClient } from "../_utils/supabaseClient";
+import type { ScriptActionResult } from "../_utils/types";
 
 // --- [INICIO DE REFACTORIZACIÓN DE TIPO v2.1.0] ---
 interface Report {

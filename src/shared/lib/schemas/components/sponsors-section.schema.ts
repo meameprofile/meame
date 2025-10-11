@@ -8,6 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { LucideIconNameSchema } from "@/shared/lib/config/lucide-icon-names";
 
 const SponsorItemSchema = z.object({

@@ -6,22 +6,24 @@
  * @version 3.0.0 (Elite Observability & Resilience)
  * @author RaZ Podestá - MetaShark Tech
  */
-import React, { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import React, { useMemo } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { CampaignThemeProvider } from "@/components/layout/CampaignThemeProvider";
-import { generateCssVariablesFromTheme } from "@/shared/lib/utils/theming/theme-utils";
 import { livePreviewComponentMap } from "@/shared/lib/dev/live-previews.config";
-import { PreviewSection } from "./PreviewSection";
-import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+import { logger } from "@/shared/lib/logging";
 import type {
   BaviManifest,
   BaviAsset,
   BaviVariant,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+import { generateCssVariablesFromTheme } from "@/shared/lib/utils/theming/theme-utils";
+
+import { PreviewSection } from "./PreviewSection";
 
 interface PreviewRendererProps {
   draft: CampaignDraft;

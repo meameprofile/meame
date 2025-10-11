@@ -3,20 +3,21 @@
  * @file useThemeComposer.ts
  * @description Hook "cerebro" de élite para la lógica del Compositor de Estilos de la SDC.
  * @version 1.1.0 (Type Contract Fix)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+
 import { usePreviewStore } from "@/components/features/campaign-suite/_context/PreviewContext";
-import { deepMerge } from "@/shared/lib/utils";
+import { logger } from "@/shared/lib/logging";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import {
   AssembledThemeSchema,
   type AssembledTheme,
 } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import { logger } from "@/shared/lib/logging";
 import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
-import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
+import { deepMerge } from "@/shared/lib/utils";
 
 interface UseThemeComposerProps {
   initialConfig: ThemeConfig;

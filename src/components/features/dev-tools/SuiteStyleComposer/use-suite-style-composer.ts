@@ -5,19 +5,21 @@
  *              con el nombre de exportación soberano restaurado para garantizar
  *              la integridad del build.
  * @version 6.0.0 (Sovereign Export Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { deepMerge } from "@/shared/lib/utils";
+
+import { usePreviewStore } from "@/components/features/campaign-suite/_context/PreviewContext";
+import { logger } from "@/shared/lib/logging";
 import {
   AssembledThemeSchema,
   type AssembledTheme,
 } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import { deepMerge } from "@/shared/lib/utils";
+
 import type { SuiteThemeConfig, LoadedFragments } from "./types";
-import { logger } from "@/shared/lib/logging";
-import { usePreviewStore } from "@/components/features/campaign-suite/_context/PreviewContext";
 
 interface UseSuiteStyleComposerProps {
   initialConfig: SuiteThemeConfig;

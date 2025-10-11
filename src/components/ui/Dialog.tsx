@@ -4,13 +4,14 @@
  * @description Sistema de componentes de diálogo modal de élite, ahora con
  *              soporte completo para `forwardRef` en todos sus sub-componentes.
  * @version 2.1.0 (Full Ref Forwarding Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { motion } from "framer-motion";
+import * as React from "react";
+
 import { DynamicIcon } from "@/components/ui";
 import { cn } from "@/shared/lib/utils/cn";
 //import { logger } from "@/shared/lib/logging";

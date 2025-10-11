@@ -9,21 +9,22 @@
  */
 "use client";
 
-import React, { useMemo, useEffect, forwardRef } from "react";
 import { useSearchParams } from "next/navigation";
-import { DynamicIcon, Separator } from "@/components/ui";
-import { TextSection } from "@/components/sections/TextSection";
-import { VariantSelectorProvider } from "@/components/features/product-variant-selector/VariantSelectorProvider";
-import { VariantSelector } from "@/components/features/product-variant-selector/VariantSelector";
-import { AddToCartForm } from "@/components/features/commerce/AddToCartForm";
-import { ShareButton } from "@/components/ui/ShareButton";
+import React, { useMemo, useEffect, forwardRef } from "react";
 import type { z } from "zod";
-import type { ProductDetailPageContentSchema } from "@/shared/lib/schemas/pages/product-detail-page.schema";
-import type { Product } from "@/shared/lib/schemas/entities/product.schema";
-import { cn } from "@/shared/lib/utils/cn";
-import { logger } from "@/shared/lib/logging";
+
+import { AddToCartForm } from "@/components/features/commerce/AddToCartForm";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { VariantSelector } from "@/components/features/product-variant-selector/VariantSelector";
+import { VariantSelectorProvider } from "@/components/features/product-variant-selector/VariantSelectorProvider";
+import { TextSection } from "@/components/sections/TextSection";
+import { DynamicIcon, Separator } from "@/components/ui";
+import { ShareButton } from "@/components/ui/ShareButton";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { Product } from "@/shared/lib/schemas/entities/product.schema";
+import type { ProductDetailPageContentSchema } from "@/shared/lib/schemas/pages/product-detail-page.schema";
+import { cn } from "@/shared/lib/utils/cn";
 
 type ProductPageContent = z.infer<typeof ProductDetailPageContentSchema>;
 

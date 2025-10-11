@@ -10,19 +10,20 @@
  */
 "use server";
 
+import { createId } from "@paralleldrive/cuid2";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import { createId } from "@paralleldrive/cuid2";
 import Stripe from "stripe";
-import { logger } from "@/shared/lib/logging";
+
 import { sendOrderConfirmationEmailAction } from "@/shared/lib/actions/notifications/send-order-confirmation.action";
-import { getShopifyCart } from "@/shared/lib/shopify";
-import { createServerClient } from "@/shared/lib/supabase/server";
+import { logger } from "@/shared/lib/logging";
 import {
   OrderSchema,
   type Order,
   type OrderItem,
 } from "@/shared/lib/schemas/entities/order.schema";
+import { getShopifyCart } from "@/shared/lib/shopify";
+import { createServerClient } from "@/shared/lib/supabase/server";
 
 export async function POST(req: Request) {
   const traceId = logger.startTrace("stripeWebhook_v7.0_Resilient");

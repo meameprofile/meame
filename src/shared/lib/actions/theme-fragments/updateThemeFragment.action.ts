@@ -11,16 +11,18 @@
 
 import "server-only";
 import { z } from "zod";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
-import type { Json } from "@/shared/lib/supabase/database.types";
 import {
   type ThemeFragmentUpdate,
   type ThemeFragmentRow,
 } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
-import type { ThemeFragment } from "./getThemeFragments.action";
+import type { Json } from "@/shared/lib/supabase/database.types";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
+
 import { mapSupabaseToThemeFragment } from "./_shapers/theme-fragments.shapers";
+import type { ThemeFragment } from "./getThemeFragments.action";
 
 const UpdateFragmentInputSchema = z.object({
   id: z.string().uuid(),

@@ -6,9 +6,11 @@
  * @version 2.1.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { list } from "@vercel/blob";
 import { promises as fs } from "fs";
 import path from "path";
+
+import { list } from "@vercel/blob";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger as logger } from "../_utils/logger";
 

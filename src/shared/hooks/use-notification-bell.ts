@@ -8,10 +8,11 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+
 import { getNotificationsAction } from "@/shared/lib/actions/notifications/getNotifications.action";
 import { markNotificationsAsReadAction } from "@/shared/lib/actions/notifications/markNotificationsAsRead.action";
-import type { Notification } from "@/shared/lib/types/notifications.types";
 import { logger } from "@/shared/lib/logging";
+import type { Notification } from "@/shared/lib/types/notifications.types";
 
 export function useNotificationBell() {
   const traceId = useMemo(

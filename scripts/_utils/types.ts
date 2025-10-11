@@ -10,13 +10,19 @@
  * @type SuccessResult<T>
  * @description Representa el resultado de una operación de script exitosa.
  */
-export type SuccessResult<T> = { success: true; data: T };
+export interface SuccessResult<T> {
+  success: true;
+  data: T;
+}
 
 /**
  * @type ErrorResult
  * @description Representa el resultado de una operación de script fallida.
  */
-export type ErrorResult = { success: false; error: string };
+export interface ErrorResult {
+  success: false;
+  error: string;
+}
 
 /**
  * @type ScriptActionResult<T>

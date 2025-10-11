@@ -8,6 +8,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 export function usePictureInPicture(videoEl: HTMLVideoElement | null) {

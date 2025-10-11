@@ -6,9 +6,11 @@
  * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { MongoClient } from "mongodb";
 import { promises as fs } from "fs";
 import * as path from "path";
+
+import { MongoClient } from "mongodb";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";

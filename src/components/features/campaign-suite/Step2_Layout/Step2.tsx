@@ -10,12 +10,14 @@
 "use client";
 
 import React from "react";
-import { logger } from "@/shared/lib/logging";
-import { Step2Client } from "./Step2Client";
-import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
-import type { Step2ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step2.schema";
 import type { z } from "zod";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { logger } from "@/shared/lib/logging";
+import type { Step2ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step2.schema";
+import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
+
+import { Step2Client } from "./Step2Client";
 
 type Content = z.infer<typeof Step2ContentSchema>;
 

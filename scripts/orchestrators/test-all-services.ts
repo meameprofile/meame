@@ -7,6 +7,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { exec } from "child_process";
+
 import chalk from "chalk";
 
 const tests = [

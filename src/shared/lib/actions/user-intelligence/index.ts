@@ -3,7 +3,7 @@
  * @file index.ts (Barrel File)
  * @description Fachada pública para las Server Actions del dominio User Intelligence.
  * @version 1.0.0 (Architectural Purity)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

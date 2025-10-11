@@ -15,8 +15,9 @@ import {
   useMemo,
 } from "react";
 import { toast } from "sonner";
-import { logger } from "@/shared/lib/logging";
+
 import { getBaviAssetsAction } from "@/shared/lib/actions/bavi";
+import { logger } from "@/shared/lib/logging";
 import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";

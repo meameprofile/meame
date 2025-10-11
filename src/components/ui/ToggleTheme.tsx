@@ -11,16 +11,17 @@
  */
 "use client";
 
-import React from "react";
 import { useTheme } from "next-themes";
+import React from "react";
+
 import { Button } from "@/components/ui/Button";
-import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 

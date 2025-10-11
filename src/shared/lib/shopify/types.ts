@@ -12,29 +12,29 @@ import type {
   ProductVariant,
 } from "@/shared/lib/schemas/entities/product.schema";
 
-type Connection<T> = {
-  edges: Array<{ node: T }>;
-};
+interface Connection<T> {
+  edges: { node: T }[];
+}
 
-type Money = {
+interface Money {
   amount: string;
   currencyCode: string;
-};
+}
 
-type Image = {
+interface Image {
   url: string;
   altText: string;
   width: number;
   height: number;
-};
+}
 
-type SEO = {
+interface SEO {
   title: string;
   description: string;
-};
+}
 
 // --- Tipos de Producto ---
-export type ShopifyProduct = {
+export interface ShopifyProduct {
   id: string;
   handle: string;
   availableForSale: boolean;
@@ -52,10 +52,10 @@ export type ShopifyProduct = {
   seo: SEO;
   tags: string[];
   updatedAt: string;
-};
+}
 
 // --- Tipos de Carrito ---
-export type CartItem = {
+export interface CartItem {
   id: string;
   quantity: number;
   cost: {
@@ -70,13 +70,13 @@ export type CartItem = {
     }[];
     product: ShopifyProduct;
   };
-};
+}
 
 /**
  * @type ShopifyCart
  * @description Representa la forma de datos CRUDA devuelta por la API de Shopify.
  */
-export type ShopifyCart = {
+export interface ShopifyCart {
   id: string;
   checkoutUrl: string;
   cost: {
@@ -86,7 +86,7 @@ export type ShopifyCart = {
   };
   lines: Connection<CartItem>;
   totalQuantity: number;
-};
+}
 
 /**
  * @type Cart
@@ -100,20 +100,20 @@ export type Cart = Omit<ShopifyCart, "lines"> & {
 // --- Tipos de Operaciones de API ---
 
 // Operaciones de Carrito
-export type ShopifyCartOperation = {
+export interface ShopifyCartOperation {
   data: {
     cart: ShopifyCart;
   };
   variables: {
     cartId: string;
   };
-};
+}
 
-export type ShopifyCreateCartOperation = {
+export interface ShopifyCreateCartOperation {
   data: { cartCreate: { cart: ShopifyCart } };
-};
+}
 
-export type ShopifyAddToCartOperation = {
+export interface ShopifyAddToCartOperation {
   data: {
     cartLinesAdd: {
       cart: ShopifyCart;
@@ -126,9 +126,9 @@ export type ShopifyAddToCartOperation = {
       quantity: number;
     }[];
   };
-};
+}
 
-export type ShopifyRemoveFromCartOperation = {
+export interface ShopifyRemoveFromCartOperation {
   data: {
     cartLinesRemove: {
       cart: ShopifyCart;
@@ -138,9 +138,9 @@ export type ShopifyRemoveFromCartOperation = {
     cartId: string;
     lineIds: string[];
   };
-};
+}
 
-export type ShopifyUpdateCartOperation = {
+export interface ShopifyUpdateCartOperation {
   data: {
     cartLinesUpdate: {
       cart: ShopifyCart;
@@ -154,19 +154,19 @@ export type ShopifyUpdateCartOperation = {
       quantity: number;
     }[];
   };
-};
+}
 
 // Operaciones de Producto
-export type ShopifyProductOperation = {
+export interface ShopifyProductOperation {
   data: { product: ShopifyProduct };
   variables: {
     handle: string;
   };
-};
+}
 
-export type ShopifyProductsOperation = {
+export interface ShopifyProductsOperation {
   data: {
     products: Connection<ShopifyProduct>;
   };
-};
+}
 // shared/lib/shopify/types.ts

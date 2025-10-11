@@ -9,11 +9,12 @@
  */
 "use client";
 
-import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/shared/lib/utils/cn";
+import * as React from "react";
+
 import { logger } from "@/shared/lib/logging";
+import { cn } from "@/shared/lib/utils/cn";
 
 const TooltipProvider = TooltipPrimitive.Provider;
 const Tooltip = TooltipPrimitive.Root;

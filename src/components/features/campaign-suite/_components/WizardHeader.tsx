@@ -7,14 +7,17 @@
  */
 "use client";
 
-import React, { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ProgressContext } from "../_context/ProgressContext";
-import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
-import { ProgressStepper } from "./ProgressStepper";
+import React, { useContext } from "react";
+
 import { DynamicIcon } from "@/components/ui";
+import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
 import { logger } from "@/shared/lib/logging";
+
 import { DeveloperErrorDisplay } from "../../dev-tools";
+import { ProgressContext } from "../_context/ProgressContext";
+
+import { ProgressStepper } from "./ProgressStepper";
 
 const SyncStatusIndicator = () => {
   // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v7.1.0] ---

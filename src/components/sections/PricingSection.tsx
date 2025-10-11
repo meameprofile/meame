@@ -7,9 +7,12 @@
  */
 "use client";
 
-import React, { useMemo, forwardRef } from "react";
 import { motion, type Variants } from "framer-motion";
-import { Container } from "@/components/ui/Container";
+import React, { useMemo, forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { DynamicIcon } from "@/components/ui";
+import { Button } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -17,13 +20,11 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import { DynamicIcon } from "@/components/ui";
+import { Container } from "@/components/ui/Container";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { PricingPlan } from "@/shared/lib/schemas/components/pricing-section.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface PricingSectionProps extends SectionProps<"pricingSection"> {
   isFocused?: boolean;

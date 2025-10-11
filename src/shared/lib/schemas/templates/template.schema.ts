@@ -6,6 +6,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
 // Se corrige la importación para apuntar a la SSoT canónica de los schemas
 // atómicos, resolviendo todos los errores de exportación.

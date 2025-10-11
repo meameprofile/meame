@@ -7,9 +7,10 @@
  */
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
 import Cookies from "js-cookie";
+import { useRouter, usePathname } from "next/navigation";
+import React, { useState, useMemo, useEffect } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -22,10 +23,10 @@ import {
   DynamicIcon,
   FlagIcon,
 } from "@/components/ui";
-import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { LANGUAGE_MANIFEST } from "@/shared/lib/i18n/global.i18n.manifest";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 type LanguageSwitcherContent = NonNullable<Dictionary["languageSwitcher"]>;
 interface LanguageSelectorModalProps {
   isOpen: boolean;

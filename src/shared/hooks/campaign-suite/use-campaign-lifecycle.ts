@@ -2,27 +2,26 @@
 /**
  * @file use-campaign-lifecycle.ts
  * @description Hook "cerebro" para el ciclo de vida final de una campaña.
- *              v7.0.0 (Dependency Inversion & Elite Compliance): Refactorizado para
- *              recibir las Server Actions como argumentos, rompiendo la cadena de
- *              importación tóxica y restaurando la integridad del build.
- * @version 7.0.0
- * @author RaZ Podestá - MetaShark Tech
+ * @version 7.2.0 (Routing Type Contract Restoration): Se alinea la llamada de
+ *              redirección con el contrato de tipo estricto de la SSoT de 'navigation.ts',
+ *              resolviendo un error crítico de tipo TS2345.
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import { useTransition, useMemo, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { useTransition, useMemo, useEffect, useCallback } from "react";
 import { toast } from "sonner";
+
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
 import { useCelebrationStore } from "@/shared/lib/stores/use-celebration.store";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
-import { logger } from "@/shared/lib/logging";
-import { useCampaignDraft } from "./use-campaign-draft.hook";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v7.0.0] ---
-// Se define una interfaz para las acciones que el hook recibirá.
+import { useCampaignDraft } from "./use-campaign-draft.hook";
+
 interface LifecycleActions {
   publish: (
     draft: CampaignDraft
@@ -37,9 +36,8 @@ export function useCampaignLifecycle(
   locale: Locale,
   actions: LifecycleActions
 ) {
-  // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v7.0.0] ---
   const lifecycleTraceId = useMemo(
-    () => logger.startTrace("useCampaignLifecycle_Lifecycle_v7.0"),
+    () => logger.startTrace("useCampaignLifecycle_Lifecycle_v7.2"),
     []
   );
   useEffect(() => {
@@ -103,7 +101,13 @@ export function useCampaignLifecycle(
       if (result.success) {
         resetDraft();
         toast.info("Borrador eliminado permanentemente.");
-        router.push(routes.creatorCampaignSuite.path({ locale }));
+        // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE TIPO v7.2.0] ---
+        // Se añade la propiedad 'stepId' con un array vacío para cumplir
+        // el contrato de tipo y generar la URL base correcta.
+        router.push(
+          routes.creatorCampaignSuiteWithStepId.path({ locale, stepId: [] })
+        );
+        // --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE TIPO v7.2.0] ---
         router.refresh();
       } else {
         toast.error("Error al Eliminar Borrador", {

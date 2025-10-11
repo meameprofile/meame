@@ -8,6 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
 import { PageHeader } from "@/components/layout/PageHeader";
 import {
   Container,
@@ -19,15 +20,8 @@ import {
   AlertTitle,
   AlertDescription,
   Button,
+  DynamicIcon,
 } from "@/components/ui";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/Table";
 import {
   Dialog,
   DialogContent,
@@ -37,7 +31,14 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/Dialog";
-import { DynamicIcon } from "@/components/ui";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/Table";
 
 export default async function ComponentShowcasePage() {
   const invoices = [

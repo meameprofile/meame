@@ -13,6 +13,7 @@
 
 import React from "react";
 import Marquee from "react-fast-marquee";
+
 import { DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";

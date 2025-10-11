@@ -7,9 +7,10 @@
  */
 "use client";
 
+import { CldImage } from "next-cloudinary";
 import React, { forwardRef } from "react";
 import Marquee from "react-fast-marquee";
-import { CldImage } from "next-cloudinary";
+
 import { Container } from "@/components/ui/Container";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";

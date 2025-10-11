@@ -7,12 +7,14 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { Container } from "@/components/ui";
+import { createCheckoutSessionAction } from "@/shared/lib/actions/commerce/checkout.action";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { createCheckoutSessionAction } from "@/shared/lib/actions/commerce/checkout.action";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { CheckoutFormContentSchema } from "@/shared/lib/schemas/components/commerce/checkout-form.schema";
+
 import { CheckoutClient } from "./CheckoutClient";
 
 export default async function CheckoutPage({

@@ -6,9 +6,10 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { list, del } from "@vercel/blob";
-import { createScriptClient } from "../../_utils/supabaseClient";
+
 import { loadEnvironment } from "../../_utils/env";
 import { scriptLogger as logger } from "../../_utils/logger";
+import { createScriptClient } from "../../_utils/supabaseClient";
 
 async function fixOrphanBlobs() {
   const traceId = logger.startTrace("fixOrphanBlobs_v1.1");

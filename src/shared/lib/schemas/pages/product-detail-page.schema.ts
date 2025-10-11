@@ -8,9 +8,11 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { ProductSchema } from "@/shared/lib/schemas/entities/product.schema";
-import { ShareButtonContentSchema } from "../components/share-button.schema";
+
 import { ContentBlocksSchema } from "../components/content-block.schema";
+import { ShareButtonContentSchema } from "../components/share-button.schema";
 
 export const ProductDetailPageContentSchema = z.object({
   productData: ProductSchema,

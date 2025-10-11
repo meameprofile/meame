@@ -3,9 +3,10 @@
  * @file user-intelligence.contracts.ts
  * @description SSoT para los contratos de datos del dominio User Intelligence.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import type { VisitorCampaignEventRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
 
 export const UaParserResultSchema = z

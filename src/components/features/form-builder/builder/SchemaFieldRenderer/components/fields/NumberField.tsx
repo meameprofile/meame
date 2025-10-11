@@ -9,9 +9,11 @@
 
 import React from "react";
 import type { FieldValues } from "react-hook-form";
+
 import { Input } from "@/components/ui/Input";
-import type { FieldComponentProps } from "../../_types/field.types";
 import { logger } from "@/shared/lib/logging";
+
+import type { FieldComponentProps } from "../../_types/field.types";
 
 export function NumberField<TFieldValues extends FieldValues>({
   field,

@@ -5,10 +5,11 @@
  * @version 2.0.0 (Hover Effect)
  *@author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import { motion } from "framer-motion";
-import { DropdownMenuTrigger } from "@/components/ui/DropdownMenu";
+import React from "react";
+
 import { Button } from "@/components/ui/Button";
+import { DropdownMenuTrigger } from "@/components/ui/DropdownMenu";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 
 interface NotificationBellTriggerProps {

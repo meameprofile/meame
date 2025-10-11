@@ -5,15 +5,15 @@
  * @version 2.0.0 (Storefront Client Integration)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { shopifyStorefrontFetch } from "./storefront-client"; // <-- USAR EL CLIENTE DE STOREFRONT
-import { getCartQuery } from "./queries/cart";
 import {
   addToCartMutation,
   createCartMutation,
   editCartItemsMutation,
   removeFromCartMutation,
 } from "./mutations/cart";
+import { getCartQuery } from "./queries/cart";
 import { reshapeCart } from "./shapers";
+import { shopifyStorefrontFetch } from "./storefront-client"; // <-- USAR EL CLIENTE DE STOREFRONT
 import type {
   ShopifyCartOperation,
   ShopifyCreateCartOperation,

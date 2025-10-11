@@ -5,7 +5,7 @@
  *              Actúa como el emisor central del Protocolo Heimdall, orquestando la
  *              captura de eventos de manera isomórfica (cliente/servidor) y resiliente.
  *
- * @version 26.0.0 (Atomic Client-Side Flush & Holistic Refactor)
+ * @version 26.1.0 (Legacy Method Contract Fix)
  * @author RaZ Podestá - MetaShark Tech
  *
  * @architecture_notes
@@ -21,6 +21,7 @@
  *   manejada por otros aparatos, respetando el Principio de Responsabilidad Única.
  */
 import { createId } from "@paralleldrive/cuid2";
+
 import {
   type HeimdallEvent,
   type EventStatus,
@@ -73,9 +74,6 @@ async function flushTelemetryQueue(isUnloading = false): Promise<void> {
     return;
   }
 
-  // --- LÓGICA ATÓMICA DE VACIADO ---
-  // 1. Vaciado Optimista: Se limpia la cola inmediatamente para que ninguna otra
-  //    pestaña o proceso pueda leer y enviar los mismos eventos.
   localStorage.setItem(TELEMETRY_QUEUE_KEY, JSON.stringify([]));
 
   const payload = { events: eventsToFlush };
@@ -85,32 +83,27 @@ async function flushTelemetryQueue(isUnloading = false): Promise<void> {
 
   try {
     if (isUnloading && navigator.sendBeacon) {
-      // 2a. Envío No Bloqueante: Ideal para cuando el usuario abandona la página.
       if (!navigator.sendBeacon("/api/telemetry/ingest", blob)) {
         throw new Error(
           "navigator.sendBeacon devolvió 'false', indicando fallo."
         );
       }
     } else {
-      // 2b. Envío Estándar: Utiliza fetch para envíos durante la sesión activa.
       const response = await fetch("/api/telemetry/ingest", {
         method: "POST",
         body: blob,
-        keepalive: true, // Mantiene la conexión abierta si la página se descarga.
+        keepalive: true,
       });
 
       if (!response.ok) {
         throw new Error(`El servidor respondió con estado ${response.status}`);
       }
     }
-    // Si el envío es exitoso, la cola ya está limpia y no se necesita hacer nada más.
   } catch (error) {
     console.warn(
       "[Heimdall Emitter] Fallo al enviar lote. Re-encolando eventos para reintento.",
       { error }
     );
-    // 3. Rollback de Resiliencia: Si el envío falla, los eventos se reinsertan al
-    //    principio de la cola actual para no perder datos.
     const currentQueueJson = localStorage.getItem(TELEMETRY_QUEUE_KEY);
     const currentQueue: HeimdallEvent[] = currentQueueJson
       ? JSON.parse(currentQueueJson)
@@ -120,7 +113,6 @@ async function flushTelemetryQueue(isUnloading = false): Promise<void> {
   }
 }
 
-// Inicialización del pipeline de telemetría en el cliente.
 if (isBrowser) {
   setInterval(() => flushTelemetryQueue(false), BATCH_INTERVAL_MS);
   window.addEventListener("visibilitychange", () => {
@@ -130,12 +122,6 @@ if (isBrowser) {
   });
 }
 
-/**
- * @function _createAndQueueEvent
- * @description Función interna que crea un evento Heimdall completo y lo encola
- *              para su envío (en el cliente) o simplemente lo prepara (en el servidor).
- * @param {Omit<HeimdallEvent, "eventId" | "timestamp" | "context">} event - El objeto de evento parcial.
- */
 function _createAndQueueEvent(
   event: Omit<HeimdallEvent, "eventId" | "timestamp" | "context">
 ): void {
@@ -166,11 +152,7 @@ function _createAndQueueEvent(
       );
     }
   }
-  // En el servidor, este logger no persiste eventos directamente para mantener
-  // la pureza y el performance. La persistencia es una acción explícita.
 }
-
-// --- API del Logger Soberano ---
 
 const STYLES = {
   hook: "color: #a855f7; font-weight: bold;",
@@ -188,6 +170,7 @@ const STYLES = {
 type LogContext = Record<string, unknown> & { traceId?: string };
 
 interface Logger {
+  /** @deprecated Utiliza `startTask` para telemetría semántica. */
   track: (
     eventName: string,
     data: {
@@ -221,7 +204,18 @@ const getTimestamp = (): string =>
   new Date().toLocaleTimeString("en-US", { hour12: false });
 
 const developmentLogger: Logger = {
-  track: (eventName, data) => _createAndQueueEvent({ eventName, ...data }),
+  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v26.1.0] ---
+  track: (eventName, data) =>
+    _createAndQueueEvent({
+      event: {
+        domain: "LEGACY_TRACK",
+        entity: eventName.toUpperCase().replace(/\s+/g, "_"),
+        action: "EVENT",
+      },
+      title: eventName,
+      ...data,
+    }),
+  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO v26.1.0] ---
   startGroup: (label, style = STYLES.hook) => {
     const groupId = `${label.replace(/\s+/g, "-")}-${Math.random()
       .toString(36)
@@ -403,9 +397,22 @@ const developmentLogger: Logger = {
 };
 
 const productionLogger: Logger = {
-  track: (eventName, data) => _createAndQueueEvent({ eventName, ...data }),
+  // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO v26.1.0] ---
+  track: (eventName, data) =>
+    _createAndQueueEvent({
+      event: {
+        domain: "LEGACY_TRACK",
+        entity: eventName.toUpperCase().replace(/\s+/g, "_"),
+        action: "EVENT",
+      },
+      title: eventName,
+      ...data,
+    }),
+  // --- [FIN DE REFACTORIZACIÓN DE CONTRATO v26.1.0] ---
   startGroup: (label: string) => {
-    const traceId = `prod-group-${label.substring(0, 10)}-${Math.random().toString(36).substring(2, 9)}`;
+    const traceId = `prod-group-${label.substring(0, 10)}-${Math.random()
+      .toString(36)
+      .substring(2, 9)}`;
     productionLogger.track(label, { status: "IN_PROGRESS", traceId });
     return traceId;
   },
@@ -447,11 +454,11 @@ const productionLogger: Logger = {
         payload: context,
       });
   },
-  trace: () => {
-    // El trace es una operación de depuración y no se ejecuta en producción por performance.
-  },
+  trace: () => {},
   startTrace: (traceName) => {
-    const traceId = `prod-trace-${traceName.substring(0, 15)}-${Math.random().toString(36).substring(2, 9)}`;
+    const traceId = `prod-trace-${traceName.substring(0, 15)}-${Math.random()
+      .toString(36)
+      .substring(2, 9)}`;
     productionLogger.track(traceName, { status: "IN_PROGRESS", traceId });
     return traceId;
   },

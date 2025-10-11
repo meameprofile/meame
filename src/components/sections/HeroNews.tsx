@@ -1,15 +1,16 @@
 // RUTA: src/components/sections/HeroNews.tsx
 "use client";
-import React, { forwardRef } from "react";
-import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
+import Link from "next/link";
 import { CldImage } from "next-cloudinary";
+import React, { forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { Container, DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
 import { cn } from "@/shared/lib/utils/cn";
 interface HeroNewsProps extends SectionProps<"heroNews"> {
   article?: CogniReadArticle;

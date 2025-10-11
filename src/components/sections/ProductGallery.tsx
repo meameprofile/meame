@@ -7,14 +7,15 @@
  */
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/shared/lib/utils/cn";
-import { logger } from "@/shared/lib/logging";
+import Image from "next/image";
+import React, { useState } from "react";
 import type { z } from "zod";
-import type { ProductDetailPageContentSchema } from "@/shared/lib/schemas/pages/product-detail-page.schema";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { logger } from "@/shared/lib/logging";
+import type { ProductDetailPageContentSchema } from "@/shared/lib/schemas/pages/product-detail-page.schema";
+import { cn } from "@/shared/lib/utils/cn";
 
 type GalleryImage = z.infer<
   typeof ProductDetailPageContentSchema

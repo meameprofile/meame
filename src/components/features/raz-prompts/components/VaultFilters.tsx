@@ -9,6 +9,7 @@
 "use client";
 
 import React from "react";
+
 import {
   Input,
   Button,
@@ -20,8 +21,8 @@ import {
   SelectValue,
 } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
-import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 
 type SesaOptions = NonNullable<Dictionary["promptCreator"]>["sesaOptions"];
 type VaultContent = NonNullable<Dictionary["promptVault"]>;

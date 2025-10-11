@@ -8,12 +8,12 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
+import { logger } from "@/shared/lib/logging";
 import { type Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import {
   AssembledThemeSchema,
   type AssembledTheme,
 } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import { logger } from "@/shared/lib/logging";
 
 /**
  * @function processCampaignData

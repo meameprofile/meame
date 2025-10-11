@@ -7,15 +7,16 @@
  */
 "use client";
 
-import React, { forwardRef } from "react";
-import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
+import React, { forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { Container } from "@/components/ui/Container";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { Product } from "@/shared/lib/schemas/components/product-showcase.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface ProductShowcaseProps extends SectionProps<"productShowcase"> {
   isFocused?: boolean;

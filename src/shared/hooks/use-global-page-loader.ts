@@ -8,8 +8,9 @@
  */
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 export function useGlobalPageLoader(): { isLoading: boolean } {

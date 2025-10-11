@@ -6,13 +6,15 @@
  *              anti-patrón FormFieldGroup para restaurar la integridad del
  *              contexto de react-hook-form.
  * @version 10.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import React, { useMemo } from "react";
 import type { UseFormReturn } from "react-hook-form";
-import { motion, type Variants } from "framer-motion";
+import type { z } from "zod";
+
 import {
   Form,
   Button,
@@ -24,15 +26,16 @@ import {
   CardDescription,
   FormLabel, // Se importa FormLabel para reemplazar FormFieldGroup
 } from "@/components/ui";
-import { SesaTagsFormGroup } from "./SesaTagsFormGroup";
-import { ParameterSelectorsGroup } from "./ParameterSelectorsGroup";
-import { PromptIdentityGroup } from "./PromptIdentityGroup";
-import { PromptDiscoveryGroup } from "./PromptDiscoveryGroup";
 import type { CreatePromptFormData } from "@/shared/hooks/raz-prompts/use-prompt-creator";
-import type { z } from "zod";
-import type { PromptCreatorContentSchema } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
 import { logger } from "@/shared/lib/logging";
+import type { PromptCreatorContentSchema } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
+
 import { DeveloperErrorDisplay } from "../../dev-tools";
+
+import { ParameterSelectorsGroup } from "./ParameterSelectorsGroup";
+import { PromptDiscoveryGroup } from "./PromptDiscoveryGroup";
+import { PromptIdentityGroup } from "./PromptIdentityGroup";
+import { SesaTagsFormGroup } from "./SesaTagsFormGroup";
 
 type Content = z.infer<typeof PromptCreatorContentSchema>;
 

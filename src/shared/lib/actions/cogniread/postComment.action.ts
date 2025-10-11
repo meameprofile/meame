@@ -9,16 +9,18 @@
 "use server";
 
 import "server-only";
-import { revalidatePath } from "next/cache";
 import { createId } from "@paralleldrive/cuid2";
-import { createServerClient } from "@/shared/lib/supabase/server";
+import { revalidatePath } from "next/cache";
+
+import type { CommunityCommentRow } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
 import {
   CommentSchema,
   type Comment,
 } from "@/shared/lib/schemas/community/comment.schema";
+import { createServerClient } from "@/shared/lib/supabase/server";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
+
 import { mapSupabaseToComment } from "./_shapers/cogniread.shapers";
-import type { CommunityCommentRow } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
 
 interface PostCommentInput {
   articleId: string;

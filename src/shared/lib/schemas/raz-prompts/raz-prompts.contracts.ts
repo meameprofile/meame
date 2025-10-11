@@ -1,5 +1,6 @@
 // RUTA: src/shared/lib/schemas/raz-prompts/raz-prompts.contracts.ts
 import { z } from "zod";
+
 import type {
   Tables,
   TablesInsert,

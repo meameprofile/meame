@@ -9,16 +9,18 @@
 "use client";
 
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import type { z } from "zod";
 import { toast } from "sonner";
-import { logger } from "@/shared/lib/logging";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import type { z } from "zod";
+
 import { useWizard } from "@/components/features/campaign-suite/_context/WizardContext";
-import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
-import { Step4Form } from "./Step4Form";
-import type { Step4ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step4.schema";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { Step4ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step4.schema";
+
 import { validateStep4 } from "./step4.validator";
+import { Step4Form } from "./Step4Form";
 
 type Step4Content = z.infer<typeof Step4ContentSchema>;
 

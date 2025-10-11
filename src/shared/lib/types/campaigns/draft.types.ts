@@ -6,6 +6,9 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import type { z } from "zod";
+
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import type {
   HeaderConfigSchema,
   FooterConfigSchema,
@@ -13,8 +16,6 @@ import type {
   ThemeConfigSchema,
   ContentDataSchema,
 } from "@/shared/lib/schemas/campaigns/draft.parts.schema";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { logger } from "@/shared/lib/logging";
 
 logger.trace(
   "[draft.types.ts] Módulo de tipos de borrador de campaña v7.0 cargado."

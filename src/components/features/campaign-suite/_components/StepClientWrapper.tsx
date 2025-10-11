@@ -10,12 +10,13 @@
  */
 "use client";
 
-import React from "react";
-import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { logger } from "@/shared/lib/logging";
-import { stepsConfig } from "@/shared/lib/config/campaign-suite/wizard.config";
+import { useSearchParams } from "next/navigation";
+import React from "react";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { stepsConfig } from "@/shared/lib/config/campaign-suite/wizard.config";
+import { logger } from "@/shared/lib/logging";
 
 interface StepClientWrapperProps {
   stepContent: unknown; // La prop es 'unknown' para forzar una validación explícita.

@@ -7,11 +7,12 @@
  */
 import { promises as fs } from "fs";
 import path from "path";
-import { createScriptClient } from "../../_utils/supabaseClient";
-import { scriptLogger as logger } from "../../_utils/logger";
-import type { ScriptActionResult as ActionResult } from "../../_utils/types";
+
 import type { RazPromptsEntryInsert } from "../../../src/shared/lib/schemas/raz-prompts/raz-prompts.contracts";
 import type { Json } from "../../../src/shared/lib/supabase/database.types";
+import { scriptLogger as logger } from "../../_utils/logger";
+import { createScriptClient } from "../../_utils/supabaseClient";
+import type { ScriptActionResult as ActionResult } from "../../_utils/types";
 
 const PROMPTS_DIR = path.resolve(process.cwd(), "content/raz-prompts");
 

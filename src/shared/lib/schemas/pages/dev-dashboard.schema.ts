@@ -7,6 +7,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { PageHeaderContentSchema } from "../components/page-header.schema";
 
 const ToolCardContentSchema = z.object({

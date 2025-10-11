@@ -1,8 +1,9 @@
 // components/ui/RadioGroup.tsx
 "use client";
 
-import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
+import * as React from "react";
+
 import { DynamicIcon } from "@/components/ui";
 import { cn } from "@/shared/lib/utils/cn";
 

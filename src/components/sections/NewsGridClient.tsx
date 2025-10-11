@@ -7,16 +7,17 @@
  */
 "use client";
 
-import React, { forwardRef } from "react";
+import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
-import { motion, type Variants } from "framer-motion";
+import React, { forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { Container, DynamicIcon } from "@/components/ui";
+import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
-import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 export interface EnrichedArticle {
   id: string;

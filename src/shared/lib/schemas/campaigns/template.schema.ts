@@ -6,6 +6,7 @@
  *@author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { CampaignDraftDataSchema } from "./draft.schema";
 
 export const CampaignTemplateSchema = z.object({

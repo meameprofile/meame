@@ -10,11 +10,12 @@
 "use server";
 
 import "server-only";
-import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
 import type { ThemePresetRow } from "@/shared/lib/schemas/theme-presets/theme-presets.contracts";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
+
 import { mapSupabaseToThemePreset } from "./_shapers/theme-presets.shapers";
 
 export async function getThemePresetsAction(

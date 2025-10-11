@@ -7,9 +7,11 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import * as React from "react";
-import type { PreviewRenderResult, PreviewRenderer } from "./_types";
+
 import { getEdgeDictionary } from "@/shared/lib/i18n/i18n.edge";
 import { logger } from "@/shared/lib/logging";
+
+import type { PreviewRenderResult, PreviewRenderer } from "./_types";
 import { getStyleFromTheme } from "./_utils";
 // --- [INICIO DE REFACTORIZACIÓN DE HIGIENE] ---
 // Se ha eliminado la importación no utilizada de 'AssembledTheme'.

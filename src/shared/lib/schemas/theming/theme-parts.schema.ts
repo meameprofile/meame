@@ -8,6 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { sectionsConfig } from "@/shared/lib/config/sections.config";
 
 const sectionNamesList = Object.keys(sectionsConfig) as [string, ...string[]];

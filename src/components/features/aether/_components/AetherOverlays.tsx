@@ -8,10 +8,11 @@
  */
 "use client";
 
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FadingLines } from "@/components/ui/Loaders";
+import React from "react";
+
 import { DynamicIcon } from "@/components/ui";
+import { FadingLines } from "@/components/ui/Loaders";
 import type { VideoState } from "@/shared/hooks/aether/use-video-state";
 
 const OverlayWrapper = ({ children }: { children: React.ReactNode }) => (

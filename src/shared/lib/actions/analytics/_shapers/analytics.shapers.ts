@@ -6,12 +6,12 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
+import { logger } from "@/shared/lib/logging";
+import type { VisitorCampaignEventRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
 import {
   AuraEventPayloadSchema,
   type AuraEventPayload,
 } from "@/shared/lib/schemas/analytics/aura.schema";
-import type { VisitorCampaignEventRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
-import { logger } from "@/shared/lib/logging";
 
 /**
  * @function mapSupabaseToAuraEventPayload

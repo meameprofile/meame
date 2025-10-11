@@ -11,9 +11,11 @@
 "use client";
 
 import React from "react";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { MagicBentoConfigSchema } from "./magic-bento.schema";
+
 import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+import { MagicBentoConfigSchema } from "./magic-bento.schema";
 import { MagicBentoGrid } from "./MagicBentoGrid";
 
 interface MagicBentoProps {

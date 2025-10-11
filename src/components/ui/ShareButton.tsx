@@ -12,14 +12,6 @@
 
 import React, { useState } from "react";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/Popover";
-import { Button } from "@/components/ui/Button";
-import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import { toast } from "sonner";
-import {
   EmailShareButton,
   FacebookShareButton,
   TwitterShareButton,
@@ -29,6 +21,15 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
+import { toast } from "sonner";
+
+import { Button } from "@/components/ui/Button";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/Popover";
 import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 

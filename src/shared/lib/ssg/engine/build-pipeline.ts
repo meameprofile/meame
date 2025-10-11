@@ -7,6 +7,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { logger } from "@/shared/lib/logging";
+
 import type { BuildContext, BuildTask } from "./types";
 
 export class BuildPipeline {

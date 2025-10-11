@@ -10,13 +10,15 @@
 
 import React, { useState, useTransition } from "react";
 import { toast } from "sonner";
-import type { Comment } from "@/shared/lib/schemas/community/comment.schema";
+
 import { postCommentAction } from "@/shared/lib/actions/cogniread";
-import { logger } from "@/shared/lib/logging";
-import type { CommentSectionContent } from "@/shared/lib/schemas/components/comment-section.schema";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { CommentList } from "./CommentList";
+import { logger } from "@/shared/lib/logging";
+import type { Comment } from "@/shared/lib/schemas/community/comment.schema";
+import type { CommentSectionContent } from "@/shared/lib/schemas/components/comment-section.schema";
+
 import { CommentForm } from "./CommentForm";
+import { CommentList } from "./CommentList";
 
 interface CommentSectionClientProps {
   initialComments: Comment[];

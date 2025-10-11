@@ -8,11 +8,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input, type InputProps } from "@/components/ui/Input";
-//import { Button } from "@/components/ui/Button";
+
 import { Badge } from "@/components/ui/Badge";
-import { DynamicIcon } from "./DynamicIcon";
+import { Input, type InputProps } from "@/components/ui/Input";
+
+//import { Button } from "@/components/ui/Button";
 import { cn } from "@/shared/lib/utils/cn";
+
+import { DynamicIcon } from "./DynamicIcon";
 
 interface TagInputProps extends Omit<InputProps, "value" | "onChange"> {
   value: string[];

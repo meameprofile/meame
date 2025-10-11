@@ -8,8 +8,9 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import type { Product } from "@/shared/lib/schemas/entities/product.schema";
+
 import { logger } from "@/shared/lib/logging";
+import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 
 export interface ProductFiltersState {
   searchQuery: string;

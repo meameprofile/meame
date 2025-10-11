@@ -7,12 +7,13 @@
  */
 "use server-only";
 
-import { NextResponse } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
-import { type MiddlewareHandler } from "../engine";
+import { NextResponse } from "next/server";
+
 import { logger } from "../../logging";
 import { routes, RouteType } from "../../navigation";
 import { getCurrentLocaleFromPathname } from "../../utils/i18n/i18n.utils";
+import { type MiddlewareHandler } from "../engine";
 
 function isProtectedRoute(pathname: string, locale: string): boolean {
   for (const routeKey in routes) {

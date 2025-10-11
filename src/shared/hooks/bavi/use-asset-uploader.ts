@@ -3,10 +3,12 @@
  * @file use-asset-uploader.ts
  * @description Hook "cerebro" soberano para la lógica de subida de activos a la BAVI.
  * @version 12.0.0 (Holistic Observability, Resilience & Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import type { UploadApiResponse } from "cloudinary";
 import {
   useState,
   useCallback,
@@ -14,19 +16,18 @@ import {
   useTransition,
   useMemo,
 } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useDropzone } from "react-dropzone";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import type { UploadApiResponse } from "cloudinary";
+
 import { uploadAssetAction } from "@/shared/lib/actions/bavi";
+import { logger } from "@/shared/lib/logging";
 import {
   assetUploadMetadataSchema,
   type AssetUploadMetadata,
 } from "@/shared/lib/schemas/bavi/upload.schema";
-import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { logger } from "@/shared/lib/logging";
+import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 
 type UploaderContent = NonNullable<Dictionary["baviUploader"]>;
 type SesaLabels = NonNullable<Dictionary["promptCreator"]>["sesaLabels"];

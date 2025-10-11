@@ -10,15 +10,18 @@
  */
 "use client";
 
+import { usePathname } from "next/navigation";
 import React from "react";
 import type { FieldValues } from "react-hook-form";
-import { usePathname } from "next/navigation";
+
+import { AssetSelectorModal } from "@/components/features/bavi/components";
 import { logger } from "@/shared/lib/logging";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
+
 import type { FieldComponentProps } from "../../../_types/field.types";
-import { useImageField } from "./_hooks/use-image-field";
+
 import { ImagePreview, ImageFieldActions } from "./_components";
-import { AssetSelectorModal } from "@/components/features/bavi/components";
+import { useImageField } from "./_hooks/use-image-field";
 
 export function ImageField<TFieldValues extends FieldValues>({
   field,

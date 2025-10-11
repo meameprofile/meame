@@ -7,8 +7,12 @@
  */
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
+import React from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { DynamicIcon } from "@/components/ui";
+import { Button } from "@/components/ui/Button";
 import {
   Card,
   CardHeader,
@@ -16,12 +20,9 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import { DynamicIcon } from "@/components/ui";
 import { TiltCard } from "@/components/ui/TiltCard";
-import type { CampaignTemplate } from "@/shared/lib/schemas/campaigns/template.schema";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { CampaignTemplate } from "@/shared/lib/schemas/campaigns/template.schema";
 
 interface TemplateCardProps {
   template: CampaignTemplate;

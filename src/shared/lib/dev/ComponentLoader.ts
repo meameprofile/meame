@@ -9,12 +9,13 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import React from "react";
+import type React from "react";
+
+import { getFallbackProps } from "@/components/features/dev-tools/utils/component-props";
 import {
   getComponentByName,
   type ComponentRegistryEntry,
 } from "@/shared/lib/dev/ComponentRegistry";
-import { getFallbackProps } from "@/components/features/dev-tools/utils/component-props";
 import { logger } from "@/shared/lib/logging";
 
 interface ComponentLoadResult {

@@ -8,13 +8,13 @@
  */
 "use server";
 
-import { createServerClient } from "@/shared/lib/supabase/server";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
+import { logger } from "@/shared/lib/logging";
 import {
   CampaignTemplateSchema,
   type CampaignTemplate,
 } from "@/shared/lib/schemas/campaigns/template.schema";
-import { logger } from "@/shared/lib/logging";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 export async function loadTemplateAction(
   templateId: string

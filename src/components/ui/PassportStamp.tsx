@@ -9,8 +9,9 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
-import React from "react";
 import { motion, type Variants } from "framer-motion"; // <-- Se importa el tipo `Variants`
+import React from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 interface PassportStampProps {

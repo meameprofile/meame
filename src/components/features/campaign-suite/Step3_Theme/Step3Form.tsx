@@ -7,8 +7,11 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
+import React from "react";
+import type { z } from "zod";
+
+import { WizardNavigation } from "@/components/features/campaign-suite/_components/WizardNavigation";
 import {
   Card,
   CardContent,
@@ -16,14 +19,13 @@ import {
   CardTitle,
   CardDescription,
   CardFooter,
+  DynamicIcon,
 } from "@/components/ui";
 import { Button } from "@/components/ui/Button";
 import { logger } from "@/shared/lib/logging";
-import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
-import { WizardNavigation } from "@/components/features/campaign-suite/_components/WizardNavigation";
 import type { Step3ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
-import type { z } from "zod";
-import { DynamicIcon } from "@/components/ui";
+import type { ThemeConfig } from "@/shared/lib/types/campaigns/draft.types";
+
 import { DeveloperErrorDisplay } from "../../dev-tools";
 
 type Content = z.infer<typeof Step3ContentSchema>;

@@ -8,7 +8,9 @@
  * @version 1.3.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+
 import { logger } from "@/shared/lib/logging"; // Corregido: ruta relativa a logging
 
 // --- INICIO DE MEJORA: OBSERVABILIDAD DE CARGA DE MÓDULO ---

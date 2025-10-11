@@ -8,6 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { ImageResponse } from "next/og";
+
 import { logger } from "@/shared/lib/logging";
 
 export const runtime = "edge";

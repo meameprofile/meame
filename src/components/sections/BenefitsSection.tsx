@@ -1,7 +1,9 @@
 // RUTA: src/components/sections/BenefitsSection.tsx
 "use client";
-import React, { forwardRef } from "react";
 import { motion, type Variants } from "framer-motion";
+import React, { forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import {
   Card,
   CardContent,
@@ -11,10 +13,9 @@ import {
   DynamicIcon,
 } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type { BenefitItem } from "@/shared/lib/schemas/components/benefits-section.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 interface BenefitsSectionProps extends SectionProps<"benefitsSection"> {
   isFocused?: boolean;
 }

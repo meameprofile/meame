@@ -8,7 +8,8 @@
  * @version 7.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
+import type React from "react";
+
 import {
   getComponentByName,
   type ComponentRegistryEntry,

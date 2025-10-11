@@ -7,6 +7,7 @@
  */
 import "server-only";
 import { z } from "zod";
+
 import { logger } from "@/shared/lib/logging";
 import type { ShopifyAdminProduct } from "@/shared/lib/shopify/types/admin.types";
 

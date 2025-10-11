@@ -7,9 +7,9 @@
  */
 "use server";
 
+import { logger } from "@/shared/lib/logging";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-import { logger } from "@/shared/lib/logging";
 import type { Notification } from "@/shared/lib/types/notifications.types";
 
 export async function getNotificationsAction(): Promise<

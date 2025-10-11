@@ -9,6 +9,8 @@
 
 import React from "react";
 import type { FieldValues } from "react-hook-form";
+import type { z } from "zod";
+
 import {
   Select,
   SelectContent,
@@ -16,9 +18,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-import type { FieldComponentProps } from "../../_types/field.types";
 import { logger } from "@/shared/lib/logging";
-import type { z } from "zod";
+
+import type { FieldComponentProps } from "../../_types/field.types";
 
 interface EnumFieldProps<TFieldValues extends FieldValues>
   extends FieldComponentProps<TFieldValues> {

@@ -5,15 +5,15 @@
  * @version 2.1.0 (Type-Safe Icon Contract)
  * @author RaZ Podestá - MetaShark Tech
  */
-import type { SectionName } from "./sections.config";
 import type { LucideIconName } from "./lucide-icon-names"; // <-- IMPORTACIÓN SOBERANA
+import type { SectionName } from "./sections.config";
 
 export interface StrategicCombo {
   id: string;
   name: string;
   description: string;
   icon: LucideIconName; // <-- CONTRATO DE TIPO REFORZADO
-  sections: ReadonlyArray<SectionName>;
+  sections: readonly SectionName[];
 }
 
 export const strategicCombos: readonly StrategicCombo[] = [

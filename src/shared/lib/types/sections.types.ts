@@ -5,8 +5,8 @@
  * @version 2.0.0 (Elite & Generic Contract)
  * @author RaZ Podestá - MetaShark Tech
  */
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 /**
  * @interface SectionProps

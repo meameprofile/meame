@@ -11,21 +11,24 @@
 
 import React, { useMemo } from "react";
 import { createPortal } from "react-dom";
-import { usePreviewTheme } from "@/shared/hooks/campaign-suite/use-preview-theme";
+
+import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
 import { useIframe } from "@/shared/hooks/campaign-suite/use-iframe";
 import { usePreviewFocus } from "@/shared/hooks/campaign-suite/use-preview-focus";
+import { usePreviewTheme } from "@/shared/hooks/campaign-suite/use-preview-theme";
 import { sectionsConfig } from "@/shared/lib/config/sections.config";
+import { logger } from "@/shared/lib/logging";
+import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import { buildPreviewDictionary } from "@/shared/lib/utils/campaign-suite/preview.utils";
+
+import { DeveloperErrorDisplay } from "../../dev-tools";
+
 import {
   PreviewContent,
   PreviewErrorOverlay,
 } from "./LivePreviewCanvas/_components";
-import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { logger } from "@/shared/lib/logging";
-import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
-import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
-import { DeveloperErrorDisplay } from "../../dev-tools";
 
 interface LivePreviewCanvasProps {
   content: {

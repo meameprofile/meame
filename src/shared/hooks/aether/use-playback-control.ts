@@ -11,8 +11,9 @@
 "use client";
 
 import { useState, useCallback, useEffect, useMemo } from "react";
-import { logger } from "@/shared/lib/logging";
 import type { PositionalAudio as PositionalAudioImpl } from "three";
+
+import { logger } from "@/shared/lib/logging";
 
 interface UsePlaybackControlProps {
   videoEl: HTMLVideoElement | null;

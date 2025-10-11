@@ -7,8 +7,8 @@
  */
 "use client";
 
-import React, { useRef } from "react";
 import { motion } from "framer-motion";
+import React, { useRef } from "react";
 //import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 interface ProgressBarProps {

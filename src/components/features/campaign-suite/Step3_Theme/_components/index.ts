@@ -3,7 +3,7 @@
  * @file index.ts (Barrel File)
  * @description Fachada pública para los micro-componentes del Paso 3.
  * @version 3.0.0 (Full CRUD UI Component Export)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 export * from "./PaletteSelector";
 export * from "./TypographySelector";

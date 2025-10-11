@@ -6,13 +6,13 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+import { sectionsConfig } from "@/shared/lib/config/sections.config";
 import {
   ROUTING_LOCALES as supportedLocales,
   type Locale,
 } from "@/shared/lib/i18n/i18n.config";
-import { sectionsConfig } from "@/shared/lib/config/sections.config";
 import { logger } from "@/shared/lib/logging";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 export function transformDraftToContentObject(
   draft: CampaignDraft

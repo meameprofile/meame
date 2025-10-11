@@ -8,6 +8,7 @@
 "use client";
 
 import { useEffect, useRef, useMemo } from "react";
+
 import { getProducerConfig } from "@/shared/lib/config/producer.config";
 import { logger } from "@/shared/lib/logging";
 

@@ -3,15 +3,16 @@
  * @file page.tsx
  * @description Dashboard principal de CogniRead. UI proactiva para la
  *              gestión de conocimiento científico.
- * @version 9.1.0 (Icon SSoT Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 9.2.0 (Routing Contract Restoration): Se corrige una violación de
+ *              contrato de tipo al llamar a la ruta soberana 'cognireadEditor'.
+ * @author L.I.A. Legacy
  */
-import React, { Suspense } from "react";
 import Link from "next/link";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { logger } from "@/shared/lib/logging";
 import { notFound } from "next/navigation";
+import React, { Suspense } from "react";
+
+import { ArticleList } from "@/components/features/cogniread/_components";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import {
   Card,
   CardContent,
@@ -22,9 +23,10 @@ import {
   DynamicIcon,
   Skeleton,
 } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getAllArticlesAction } from "@/shared/lib/actions/cogniread";
-import { ArticleList } from "@/components/features/cogniread/_components";
+import { getDictionary } from "@/shared/lib/i18n/i18n";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
 
 async function ArticleDataLoader({ locale }: { locale: Locale }) {
@@ -51,7 +53,7 @@ export default async function CogniReadDashboardPage({
   params: { locale: Locale };
 }) {
   logger.info(
-    `[CogniReadDashboardPage] Renderizando v9.1 (Icon SSoT Compliance) para locale: ${locale}`
+    `[CogniReadDashboardPage] Renderizando v9.2 (Routing Contract Restoration) para locale: ${locale}`
   );
 
   const { dictionary, error: dictError } = await getDictionary(locale);
@@ -79,7 +81,9 @@ export default async function CogniReadDashboardPage({
           </p>
         </div>
         <Button asChild size="lg">
-          <Link href={routes.cogniReadEditor.path({ locale })}>
+          {/* --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RUTA v9.2.0] --- */}
+          <Link href={routes.cognireadEditor.path({ locale })}>
+            {/* --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RUTA v9.2.0] --- */}
             <DynamicIcon name="CirclePlus" className="mr-2 h-5 w-5" />
             {pageContent.newArticleButton}
           </Link>

@@ -9,16 +9,18 @@
  */
 "use client";
 
-import { FunctionComponent, memo } from "react";
-import dynamic from "next/dynamic";
-import { LucideProps } from "lucide-react";
+import type { LucideProps } from "lucide-react";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
-import { cn } from "@/shared/lib/utils/cn";
+import dynamic from "next/dynamic";
+import { memo } from "react";
+import type { FunctionComponent } from "react";
+
 // --- [INICIO DE REFACTORIZACIÓN SOBERANA] ---
 // Se importa el tipo desde su SSoT canónica.
 import { type LucideIconName } from "@/shared/lib/config/lucide-icon-names";
 // --- [FIN DE REFACTORIZACIÓN SOBERANA] ---
 import { logger } from "@/shared/lib/logging";
+import { cn } from "@/shared/lib/utils/cn";
 
 const DYNAMIC_ICON_CONFIG = {
   DEFAULT_SIZE: 24,

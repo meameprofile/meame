@@ -2,17 +2,22 @@
 /**
  * @file UserDetailClient.tsx
  * @description Componente de cliente para la vista de detalle del perfil de usuario.
- * @version 2.0.0 (Sovereign Contract Restoration)
+ *              v3.0.0 (Routing Contract Restoration & Elite Observability): Se
+ *              corrige la referencia de ruta para alinearla con la SSoT de
+ *              navigation.ts y se inyecta logging de intención de usuario.
+ * @version 3.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React from "react";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import React from "react";
+import type { z } from "zod";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import {
   Table,
@@ -22,12 +27,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table";
+import type { ProfiledUserDetail } from "@/shared/lib/actions/user-intelligence/user-intelligence.contracts";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
 import type { VisitorCampaignEventRow } from "@/shared/lib/schemas/analytics/analytics.contracts";
-import type { z } from "zod";
 import type { UserIntelligenceDetailContentSchema } from "@/shared/lib/schemas/pages/dev-user-intelligence-detail.i18n.schema";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import type { ProfiledUserDetail } from "@/shared/lib/actions/user-intelligence/user-intelligence.contracts";
 
 type Content = z.infer<typeof UserIntelligenceDetailContentSchema>;
 
@@ -57,6 +62,12 @@ export function UserDetailClient({
   content,
   locale,
 }: UserDetailClientProps) {
+  const handleNos3Click = () => {
+    logger.info(
+      `[UserDetailClient] Intención de usuario: Ver grabación de sesión para ${user.sessionId}`
+    );
+  };
+
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -86,9 +97,15 @@ export function UserDetailClient({
                 {user.userType === "Registered" ? "Registrado" : "Anónimo"}
               </Badge>
             </div>
-            <Button asChild variant="outline" className="w-full">
+            <Button
+              asChild
+              variant="outline"
+              className="w-full"
+              onClick={handleNos3Click}
+            >
+              {/* --- [INICIO DE REFACTORIZACIÓN DE RUTA SOBERANA] --- */}
               <Link
-                href={routes.nos3SessionPlayer.path({
+                href={routes.nos3BySessionId.path({
                   locale,
                   sessionId: user.sessionId,
                 })}
@@ -96,6 +113,7 @@ export function UserDetailClient({
                 <DynamicIcon name="Play" className="mr-2 h-4 w-4" />
                 {content.nos3Button}
               </Link>
+              {/* --- [FIN DE REFACTORIZACIÓN DE RUTA SOBERANA] --- */}
             </Button>
           </CardContent>
         </Card>

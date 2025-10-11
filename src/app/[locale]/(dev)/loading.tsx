@@ -7,6 +7,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
 import { DotsWave } from "@/components/ui/Loaders";
 import { logger } from "@/shared/lib/logging";
 

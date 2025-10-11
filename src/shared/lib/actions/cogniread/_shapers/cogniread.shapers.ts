@@ -14,11 +14,11 @@ import type {
   CogniReadArticle,
   StudyDna,
 } from "@/shared/lib/schemas/cogniread/article.schema";
-import type { Comment } from "@/shared/lib/schemas/community/comment.schema";
 import type {
   CogniReadArticleRow,
   CommunityCommentRow,
 } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
+import type { Comment } from "@/shared/lib/schemas/community/comment.schema";
 
 /**
  * @function mapSupabaseToCogniReadArticle

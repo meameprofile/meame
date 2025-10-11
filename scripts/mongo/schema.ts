@@ -6,9 +6,11 @@
  * @version 1.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { MongoClient, type Document } from "mongodb";
 import { promises as fs } from "fs";
 import * as path from "path";
+
+import { MongoClient, type Document } from "mongodb";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";
@@ -27,10 +29,7 @@ interface Report {
 }
 
 // Función pura y recursiva para inferir el esquema de un documento anidado.
-function inferSchema(
-  doc: Document,
-  keyPath: string = ""
-): Record<string, string> {
+function inferSchema(doc: Document, keyPath = ""): Record<string, string> {
   const schema: Record<string, string> = {};
   for (const key in doc) {
     const newPath = keyPath ? `${keyPath}.${key}` : key;

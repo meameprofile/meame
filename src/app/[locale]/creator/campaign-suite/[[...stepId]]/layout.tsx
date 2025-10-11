@@ -3,21 +3,22 @@
  * @file layout.tsx
  * @description Layout soberano de la SDC, con la nueva arquitectura inspirada en Canva.
  * @version 4.0.0 (Canva-Inspired Architecture)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server-only";
 
-import React from "react";
 import { notFound } from "next/navigation";
+import React from "react";
+
 import { CampaignSuiteWizard } from "@/components/features/campaign-suite";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
-import { type Locale } from "@/shared/lib/i18n/i18n.config";
-import { logger } from "@/shared/lib/logging";
+import { WizardSidebar } from "@/components/features/campaign-suite/_components/WizardSidebar";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { loadAllThemeFragmentsAction } from "@/shared/lib/actions/campaign-suite/getThemeFragments.action";
 import { getBaviManifest } from "@/shared/lib/bavi";
+import { getDictionary } from "@/shared/lib/i18n/i18n";
+import { type Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import { i18nSchema } from "@/shared/lib/schemas/i18n.schema";
-import { WizardSidebar } from "@/components/features/campaign-suite/_components/WizardSidebar";
 
 interface WizardLayoutProps {
   children: React.ReactNode;

@@ -10,6 +10,7 @@
  * @principle Principio de Responsabilidad Única (PRU)
  */
 import React from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 /**

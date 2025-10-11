@@ -8,9 +8,12 @@
  */
 import { promises as fs } from "fs";
 import path from "path";
+
 import { z } from "zod";
-import { scriptLogger as logger } from "../_utils/logger";
+
 import { schemaRegistry } from "@/shared/lib/schemas/_registry";
+
+import { scriptLogger as logger } from "../_utils/logger";
 
 const SchemaColumnSchema = z.object({
   table: z.string(),
@@ -23,7 +26,10 @@ const SchemaReportSchema = z.object({
     schema_columns: z.array(SchemaColumnSchema),
   }),
 });
-type ParsedColumn = { column: string; type: string };
+interface ParsedColumn {
+  column: string;
+  type: string;
+}
 interface MismatchedColumn {
   column: string;
   expected: string;

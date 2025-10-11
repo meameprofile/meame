@@ -29,27 +29,29 @@ import React, {
   useState,
 } from "react";
 import { twMerge } from "tailwind-merge";
-import { z } from "zod";
+import type { z } from "zod";
+
 import { logger } from "@/shared/lib/logging";
+
 import { DockConfigSchema } from "./dock.schema";
 
 // --- SSoT de Contratos de Datos y Props ---
 
-export type DockItemData = {
+export interface DockItemData {
   icon: React.ReactNode;
   label: React.ReactNode;
   onClick: () => void;
   className?: string;
-};
+}
 
-export type DockProps = {
+export interface DockProps {
   items: DockItemData[];
   className?: string;
   config?: z.infer<typeof DockConfigSchema>;
   spring?: SpringOptions;
-};
+}
 
-type DockItemInternalProps = {
+interface DockItemInternalProps {
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -58,7 +60,7 @@ type DockItemInternalProps = {
   distance: number;
   baseItemSize: number;
   magnification: number;
-};
+}
 
 interface CommonDockChildProps {
   isHovered?: MotionValue<number>;

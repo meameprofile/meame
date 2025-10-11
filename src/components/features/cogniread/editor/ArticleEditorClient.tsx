@@ -8,18 +8,20 @@
  */
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import React, { useTransition, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+
+import { createOrUpdateArticleAction } from "@/shared/lib/actions/cogniread";
 import {
   CogniReadArticleSchema,
   type CogniReadArticle,
 } from "@/shared/lib/schemas/cogniread/article.schema";
-import { createOrUpdateArticleAction } from "@/shared/lib/actions/cogniread";
-import { ArticleEditorForm } from "./ArticleEditorForm";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+import { ArticleEditorForm } from "./ArticleEditorForm";
 
 type EditorContent = NonNullable<Dictionary["cogniReadEditor"]>;
 

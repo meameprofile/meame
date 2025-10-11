@@ -8,6 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { LightRaysConfigSchema } from "@/shared/lib/schemas/components/razBits/LightRays/light-rays.schema";
 
 export const PageHeaderContentSchema = z.object({

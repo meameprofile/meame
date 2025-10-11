@@ -8,8 +8,10 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
+import React from "react";
+import type { z } from "zod";
+
 import {
   Card,
   CardContent,
@@ -20,16 +22,16 @@ import {
   Separator,
 } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
+import type { Step5ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step5.schema";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import type { ChecklistItem } from "@/shared/lib/utils/campaign-suite/draft.validator";
+
 import {
   CampaignSummary,
   ManagementActions,
   DeleteDraftDialog,
   LaunchChecklist,
 } from "./_components";
-import type { z } from "zod";
-import type { Step5ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step5.schema";
 
 type Content = z.infer<typeof Step5ContentSchema>;
 

@@ -3,11 +3,13 @@
  * @file DeletePresetDialog.tsx
  * @description Aparato de UI atómico para el diálogo de confirmación de eliminación de presets.
  * @version 2.1.0 (Type-Safe & Decoupled)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React from "react";
+import type { z } from "zod";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,9 +21,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/AlertDialog";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
+import type { DeletePresetDialogSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
 import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
-import type { z } from "zod";
-import { DeletePresetDialogSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
 
 type DeleteDialogContent = z.infer<typeof DeletePresetDialogSchema>;
 

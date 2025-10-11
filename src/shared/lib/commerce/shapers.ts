@@ -9,13 +9,13 @@
  */
 import "server-only";
 import { logger } from "@/shared/lib/logging";
+import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 import type {
   ShopifyProduct,
   ShopifyCart,
   Cart,
   CartItem as ShopifyCartItem,
 } from "@/shared/lib/shopify/types";
-import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 import type { CartItem as StoreCartItem } from "@/shared/lib/stores/useCartStore";
 
 // --- [INICIO DE CONSOLIDACIÓN ARQUITECTÓNICA] ---

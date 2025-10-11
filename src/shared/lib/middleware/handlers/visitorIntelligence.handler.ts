@@ -8,8 +8,10 @@
  */
 import "server-only";
 import { createId } from "@paralleldrive/cuid2";
-import { type MiddlewareHandler } from "../engine";
+
 import { logger } from "../../logging";
+import { type MiddlewareHandler } from "../engine";
+
 import { KNOWN_BOTS } from "./config/known-bots";
 
 const FINGERPRINT_COOKIE = "visitor_fingerprint";

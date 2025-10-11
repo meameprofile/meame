@@ -9,12 +9,15 @@
 "use server";
 
 import { UAParser } from "ua-parser-js";
+
 import { createServerClient } from "@/shared/lib/supabase/server";
-import { getIpIntelligence } from "./ip-intelligence.service";
+
 import { logger } from "../logging";
-import { encryptServerData } from "../utils/server-encryption";
 import type { VisitorSessionInsert } from "../schemas/analytics/analytics.contracts";
 import type { Json } from "../supabase/database.types";
+import { encryptServerData } from "../utils/server-encryption";
+
+import { getIpIntelligence } from "./ip-intelligence.service";
 
 interface VisitorData {
   fingerprint: string;

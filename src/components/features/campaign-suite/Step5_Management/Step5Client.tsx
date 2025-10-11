@@ -9,23 +9,26 @@
 "use client";
 
 import React, { useMemo, useCallback, useEffect } from "react";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import type { z } from "zod";
-import type { Step5ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step5.schema";
+
 import { useWizard } from "@/components/features/campaign-suite/_context/WizardContext";
+import { DigitalConfetti } from "@/components/ui/DigitalConfetti";
+import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
 import { useCampaignLifecycle } from "@/shared/hooks/campaign-suite/use-campaign-lifecycle";
 import { useCampaignTemplates } from "@/shared/hooks/campaign-suite/use-campaign-templates";
-import { useCelebrationStore } from "@/shared/lib/stores/use-celebration.store";
-import { validateDraftForLaunch } from "@/shared/lib/utils/campaign-suite/draft.validator";
-import { Step5Form } from "./Step5Form";
-import { DigitalConfetti } from "@/components/ui/DigitalConfetti";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "../../dev-tools";
+import type { Step5ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step5.schema";
+import { useCelebrationStore } from "@/shared/lib/stores/use-celebration.store";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
-import { ArtifactHistory } from "./_components/ArtifactHistory";
-import { useCampaignDraft } from "@/shared/hooks/campaign-suite/use-campaign-draft.hook";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+import { validateDraftForLaunch } from "@/shared/lib/utils/campaign-suite/draft.validator";
+
+import { DeveloperErrorDisplay } from "../../dev-tools";
+
+import { ArtifactHistory } from "./_components/ArtifactHistory";
+import { Step5Form } from "./Step5Form";
 
 type Content = z.infer<typeof Step5ContentSchema>;
 

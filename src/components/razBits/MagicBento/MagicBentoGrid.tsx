@@ -8,10 +8,14 @@
  */
 "use client";
 
-import React, { useRef } from "react";
 import Link from "next/link";
+import React, { useRef } from "react";
 import { twMerge } from "tailwind-merge";
+import type { z } from "zod";
+
 import { useBentoGridInteraction } from "@/components/razBits/MagicBento/use-bento-grid-interaction";
+import { logger } from "@/shared/lib/logging";
+
 import { BentoCard } from "./BentoCard";
 // --- [INICIO DE REFACTORIZACIÓN DE INTEGRIDAD DE TIPOS v2.0.0] ---
 // Se importa el contrato de datos completo desde la SSoT, incluyendo el 'href' opcional.
@@ -20,8 +24,6 @@ import {
   type MagicBentoConfigSchema,
 } from "./magic-bento.schema";
 // --- [FIN DE REFACTORIZACIÓN DE INTEGRIDAD DE TIPOS v2.0.0] ---
-import type { z } from "zod";
-import { logger } from "@/shared/lib/logging";
 
 // Pilar II: Contratos de Tipo Estrictos
 type BentoConfig = z.infer<typeof MagicBentoConfigSchema>;

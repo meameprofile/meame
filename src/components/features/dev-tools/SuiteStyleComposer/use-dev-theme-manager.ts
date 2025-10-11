@@ -10,15 +10,17 @@
  */
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import { useTheme } from "next-themes";
-import { deepMerge } from "@/shared/lib/utils";
+import { useState, useEffect, useCallback } from "react";
+
+import { logger } from "@/shared/lib/logging";
 import {
   AssembledThemeSchema,
   type AssembledTheme,
 } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import { logger } from "@/shared/lib/logging";
+import { deepMerge } from "@/shared/lib/utils";
 import { generateCssVariablesFromTheme } from "@/shared/lib/utils/theming/theme-utils";
+
 import type { SuiteThemeConfig, LoadedFragments } from "./types";
 
 interface UseDevThemeManagerProps {

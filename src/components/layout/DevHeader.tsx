@@ -5,8 +5,9 @@
  * @version 1.0.0
  *@author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import Link from "next/link";
+import React from "react";
+
 import { Container } from "@/components/ui/Container";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { logger } from "@/shared/lib/logging";

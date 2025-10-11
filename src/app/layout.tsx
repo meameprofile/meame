@@ -7,16 +7,17 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import React from "react";
-import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import React from "react";
 import { Toaster } from "sonner";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import AppProviders from "@/components/layout/AppProviders";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale, defaultLocale } from "@/shared/lib/i18n/i18n.config";
-import { cn } from "@/shared/lib/utils/cn";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { cn } from "@/shared/lib/utils/cn";
 import "./globals.css";
 
 interface RootLayoutProps {

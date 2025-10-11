@@ -8,6 +8,7 @@
 "use server";
 
 import { createClient } from "@supabase/supabase-js";
+
 import { logger } from "@/shared/lib/logging";
 
 // Usamos el cliente de servicio para operaciones de backend seguras.

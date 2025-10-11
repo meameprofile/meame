@@ -10,16 +10,17 @@
  */
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Container } from "@/components/ui/Container";
-import { logger } from "@/shared/lib/logging";
-import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
-import { routes } from "@/shared/lib/navigation";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import React from "react";
+
 import DevToolsDropdown from "@/components/features/dev-tools/DevToolsDropdown";
 import { generateDevRoutes } from "@/components/features/dev-tools/utils/route-menu.generator";
+import { Container } from "@/components/ui/Container";
+import { logger } from "@/shared/lib/logging";
+import { routes } from "@/shared/lib/navigation";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
 
 interface DevHomepageHeaderProps {
   dictionary: NonNullable<Dictionary["devHomepageHeader"]>;

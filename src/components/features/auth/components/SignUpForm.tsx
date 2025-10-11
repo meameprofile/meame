@@ -8,11 +8,13 @@
  */
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { motion, type Variants } from "framer-motion";
 import React, { useTransition, useMemo, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { motion, type Variants } from "framer-motion";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import {
   Card,
   CardContent,
@@ -30,16 +32,16 @@ import {
   DynamicIcon,
   Separator,
 } from "@/components/ui";
-import { logger } from "@/shared/lib/logging";
+import { signUpAction } from "@/shared/lib/actions/auth/auth.actions";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { logger } from "@/shared/lib/logging";
 import {
   SignUpSchema,
   type SignUpFormData,
 } from "@/shared/lib/schemas/auth/signup.schema";
-import { signUpAction } from "@/shared/lib/actions/auth/auth.actions";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
 import { OAuthButtons } from "./OAuthButtons";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type AuthFormContent = NonNullable<Dictionary["devLoginPage"]>;
 type OAuthButtonsContent = NonNullable<Dictionary["oAuthButtons"]>;

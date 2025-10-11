@@ -30,9 +30,9 @@ export interface FieldMetadata {
  * @type FieldComponentProps
  * @description Contrato de props base y genérico para todos los componentes de campo.
  */
-export type FieldComponentProps<TFieldValues extends FieldValues> = {
+export interface FieldComponentProps<TFieldValues extends FieldValues> {
   field: ControllerRenderProps<TFieldValues, Path<TFieldValues>>;
   fieldSchema: z.ZodTypeAny;
   onValueChange: (field: Path<TFieldValues>, value: unknown) => void;
   fieldName: Path<TFieldValues>;
-};
+}

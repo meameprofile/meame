@@ -8,6 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { IMPLEMENTED_LOCALES } from "./implemented-locales.manifest";
 
 export const ROUTING_LOCALES = IMPLEMENTED_LOCALES;

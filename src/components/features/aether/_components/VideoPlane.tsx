@@ -9,9 +9,10 @@
  */
 "use client";
 
-import React, { useRef, useMemo, useEffect } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
-import * as THREE from "three";
+import React, { useRef, useMemo, useEffect } from "react";
+import type * as THREE from "three";
+
 import { logger } from "@/shared/lib/logging";
 
 interface VideoPlaneProps {

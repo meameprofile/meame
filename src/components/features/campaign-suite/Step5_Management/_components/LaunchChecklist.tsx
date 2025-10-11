@@ -6,8 +6,10 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
-import React from "react";
 import { motion, type Variants } from "framer-motion";
+import React from "react";
+
+import { DynamicIcon } from "@/components/ui";
 import {
   Card,
   CardHeader,
@@ -15,16 +17,15 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/Card";
-import { DynamicIcon } from "@/components/ui";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
+import { logger } from "@/shared/lib/logging";
 import type { ChecklistItem } from "@/shared/lib/utils/campaign-suite/draft.validator";
 import { cn } from "@/shared/lib/utils/cn";
-import { logger } from "@/shared/lib/logging";
 
 interface LaunchChecklistProps {
   items: ChecklistItem[];

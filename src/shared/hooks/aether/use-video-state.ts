@@ -8,6 +8,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 export type VideoState = "loading" | "ready" | "error";

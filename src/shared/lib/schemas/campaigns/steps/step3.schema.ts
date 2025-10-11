@@ -3,7 +3,7 @@
  * @file step3.schema.ts
  * @description SSoT para el contrato de datos del contenido i18n del Paso 3 de la SDC.
  * @version 3.4.0 (Sovereign Dialog Schemas)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
 

@@ -7,10 +7,10 @@
  */
 "use server";
 
+import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/telemetry/heimdall.emitter"; // Importación actualizada
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
 
 export async function getCurrentUserProfile_Action(): Promise<
   ActionResult<ProfilesRow | null>

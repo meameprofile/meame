@@ -6,8 +6,9 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
-import { useCampaignDraftStore } from "./use-campaign-draft.store";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+
+import { useCampaignDraftStore } from "./use-campaign-draft.store";
 
 interface UseCampaignDraftReturn {
   draft: CampaignDraft;

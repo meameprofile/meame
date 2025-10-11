@@ -9,17 +9,18 @@
  */
 "use client";
 
-import React, { useState } from "react";
 import {
   PaymentElement,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
 import { motion } from "framer-motion";
+import React, { useState } from "react";
+import type { z } from "zod";
+
 import { Button } from "@/components/ui/Button";
 import { DotsWave } from "@/components/ui/Loaders/DotsWave";
 import { logger } from "@/shared/lib/logging";
-import type { z } from "zod";
 import type { CheckoutFormContentSchema } from "@/shared/lib/schemas/components/commerce/checkout-form.schema";
 
 // --- [INICIO DE REFACTORIZACIÓN DE ÉLITE: CONTRATO SOBERANO] ---

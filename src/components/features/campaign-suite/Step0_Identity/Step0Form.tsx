@@ -6,12 +6,14 @@
  *              componente obsoleto FormFieldGroup, alineándose con el patrón
  *              de composición soberano de react-hook-form.
  * @version 3.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React from "react";
 import type { UseFormReturn } from "react-hook-form";
+import type { z } from "zod";
+
 import {
   CardContent,
   CardHeader,
@@ -33,15 +35,15 @@ import {
   FormDescription,
   FormMessage,
 } from "@/components/ui";
-import { CampaignSelectField, VariantInputField } from "../_components/shared";
 import { TagInput } from "@/components/ui/TagInput";
-import type { z } from "zod";
+import { producersConfig } from "@/shared/lib/config/campaign-suite/producers.config";
 import type {
   Step0ContentSchema,
   Step0Data,
 } from "@/shared/lib/schemas/campaigns/steps/step0.schema";
 import type { CampaignTemplate } from "@/shared/lib/schemas/campaigns/template.schema";
-import { producersConfig } from "@/shared/lib/config/campaign-suite/producers.config";
+
+import { CampaignSelectField, VariantInputField } from "../_components/shared";
 
 type Step0Content = z.infer<typeof Step0ContentSchema>;
 

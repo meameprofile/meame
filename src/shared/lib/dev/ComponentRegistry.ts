@@ -66,7 +66,7 @@ export function getComponentByName(
   return componentRegistry[name];
 }
 
-export function getComponentList(): Array<{ key: string; name: string }> {
+export function getComponentList(): { key: string; name: string }[] {
   return Object.entries(componentRegistry).map(([key, value]) => ({
     key,
     name: value.name,

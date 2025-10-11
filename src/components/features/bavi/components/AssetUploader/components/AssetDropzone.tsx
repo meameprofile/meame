@@ -4,13 +4,14 @@
  * @description Componente de presentación puro para la zona de arrastre de archivos.
  *              Forjado con observabilidad de élite y MEA/UX.
  * @version 3.0.0 (MEA/UX Injected & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import React from "react";
+
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 

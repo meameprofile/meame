@@ -10,21 +10,22 @@
  */
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { motion, type Variants } from "framer-motion";
 import React, { useRef, useMemo } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { motion, type Variants } from "framer-motion";
+
+import { HiddenFormFields } from "@/components/features/commerce/HiddenFormFields";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { Button, DynamicIcon } from "@/components/ui";
+import { FormInput } from "@/components/ui/FormInput";
 import { getProducerConfig } from "@/shared/lib/config/producer.config";
 import { logger } from "@/shared/lib/logging";
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 // Se elimina la importación del hook obsoleto que causaba el error de build.
 // import { useProducerLogic } from "@/shared/hooks/use-producer-logic";
 // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
-import { HiddenFormFields } from "@/components/features/commerce/HiddenFormFields";
-import { FormInput } from "@/components/ui/FormInput";
-import { Button, DynamicIcon } from "@/components/ui";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 // --- SSoT de Contratos y Animaciones ---
 

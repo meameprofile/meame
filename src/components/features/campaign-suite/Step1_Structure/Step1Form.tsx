@@ -8,9 +8,11 @@
  */
 "use client";
 
-import React from "react";
-import { z } from "zod";
 import { motion, type Variants } from "framer-motion";
+import React from "react";
+import type { z } from "zod";
+
+import { WizardNavigation } from "@/components/features/campaign-suite/_components/WizardNavigation";
 import {
   Card,
   CardContent,
@@ -19,15 +21,15 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/Card";
+import { galleryConfig } from "@/shared/lib/config/campaign-suite/gallery.config";
 import { logger } from "@/shared/lib/logging";
+import type { Step1ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step1.schema";
 import type {
   HeaderConfig,
   FooterConfig,
 } from "@/shared/lib/types/campaigns/draft.types";
-import { WizardNavigation } from "@/components/features/campaign-suite/_components/WizardNavigation";
-import { galleryConfig } from "@/shared/lib/config/campaign-suite/gallery.config";
+
 import { StructuralSectionConfig } from "./_components";
-import { Step1ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step1.schema";
 
 type Step1Content = z.infer<typeof Step1ContentSchema>;
 

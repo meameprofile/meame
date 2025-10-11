@@ -4,15 +4,17 @@
  * @version 2.1.0 (Elite Observability & Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { createScriptClient } from "../../_utils/supabaseClient";
+import path from "path";
+
+import type { TablesInsert, Json } from "@/shared/lib/supabase/database.types";
+
 import { scriptLogger as logger } from "../../_utils/logger";
+import { createScriptClient } from "../../_utils/supabaseClient";
+import type { ScriptActionResult as ActionResult } from "../../_utils/types";
 import {
   discoverAndReadI18nFiles,
   type I18nFileContent,
 } from "../../generation/i18n-discoverer";
-import path from "path";
-import type { ScriptActionResult as ActionResult } from "../../_utils/types";
-import type { TablesInsert, Json } from "@/shared/lib/supabase/database.types";
 
 export default async function seedI18nContent(): Promise<
   ActionResult<{ syncedEntries: number }>

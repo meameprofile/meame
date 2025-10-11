@@ -489,6 +489,8 @@ export type Database = {
           event_name: string;
           payload: Json | null;
           status: string;
+          step_name: string | null;
+          task_id: string | null;
           timestamp: string;
           trace_id: string;
         };
@@ -500,6 +502,8 @@ export type Database = {
           event_name: string;
           payload?: Json | null;
           status: string;
+          step_name?: string | null;
+          task_id?: string | null;
           timestamp?: string;
           trace_id: string;
         };
@@ -511,6 +515,8 @@ export type Database = {
           event_name?: string;
           payload?: Json | null;
           status?: string;
+          step_name?: string | null;
+          task_id?: string | null;
           timestamp?: string;
           trace_id?: string;
         };
@@ -696,6 +702,50 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "razprompts_entries_workspace_id_fkey";
+            columns: ["workspace_id"];
+            isOneToOne: false;
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      task_health_summary: {
+        Row: {
+          context: Json | null;
+          created_at: string;
+          duration_ms: number | null;
+          status: Database["public"]["Enums"]["task_status"];
+          task_id: string;
+          task_name: string;
+          timestamp: string;
+          user_id: string | null;
+          workspace_id: string | null;
+        };
+        Insert: {
+          context?: Json | null;
+          created_at?: string;
+          duration_ms?: number | null;
+          status: Database["public"]["Enums"]["task_status"];
+          task_id: string;
+          task_name: string;
+          timestamp: string;
+          user_id?: string | null;
+          workspace_id?: string | null;
+        };
+        Update: {
+          context?: Json | null;
+          created_at?: string;
+          duration_ms?: number | null;
+          status?: Database["public"]["Enums"]["task_status"];
+          task_id?: string;
+          task_name?: string;
+          timestamp?: string;
+          user_id?: string | null;
+          workspace_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "task_health_summary_workspace_id_fkey";
             columns: ["workspace_id"];
             isOneToOne: false;
             referencedRelation: "workspaces";
@@ -1103,6 +1153,18 @@ export type Database = {
         Args: Record<PropertyKey, never>;
         Returns: Json;
       };
+      get_task_health_summaries: {
+        Args: { p_limit?: number };
+        Returns: {
+          duration_ms: number;
+          task_id: string;
+          task_name: string;
+          task_status: string;
+          task_timestamp: string;
+          user_id: string;
+          workspace_id: string;
+        }[];
+      };
       get_user_role_in_workspace: {
         Args: { workspace_id_to_check: string };
         Returns: string;
@@ -1129,6 +1191,7 @@ export type Database = {
       insight_severity: "low" | "medium" | "high" | "critical";
       invitation_status: "pending" | "accepted" | "declined";
       notification_type: "info" | "success" | "warning" | "error";
+      task_status: "SUCCESS" | "FAILURE";
     };
     CompositeTypes: {
       [_ in never]: never;
@@ -1263,6 +1326,7 @@ export const Constants = {
       insight_severity: ["low", "medium", "high", "critical"],
       invitation_status: ["pending", "accepted", "declined"],
       notification_type: ["info", "success", "warning", "error"],
+      task_status: ["SUCCESS", "FAILURE"],
     },
   },
 } as const;

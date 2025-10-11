@@ -8,11 +8,11 @@
  */
 "use client";
 
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import Cookies from "js-cookie";
 import { motion } from "framer-motion";
-import { defaultLocale, type Locale } from "@/shared/lib/i18n/i18n.config";
+import Cookies from "js-cookie";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+
 import { Button } from "@/components/ui/Button";
 import {
   Card,
@@ -21,6 +21,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/Card";
+import { defaultLocale, type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 import type { SelectLanguagePageContent } from "@/shared/lib/schemas/pages/select-language.schema";
 

@@ -10,6 +10,8 @@
 
 import React from "react";
 import type { UseFormReturn } from "react-hook-form";
+
+import { SchemaFieldRenderer } from "@/components/features/form-builder/builder/SchemaFieldRenderer";
 import {
   Form,
   Accordion,
@@ -18,15 +20,15 @@ import {
   AccordionTrigger,
   Separator,
 } from "@/components/ui";
-import { SchemaFieldRenderer } from "@/components/features/form-builder/builder/SchemaFieldRenderer";
+import { logger } from "@/shared/lib/logging";
 import {
   StudyDnaSchema,
   type CogniReadArticle,
   type StudyDna,
 } from "@/shared/lib/schemas/cogniread/article.schema";
-import { logger } from "@/shared/lib/logging";
-import { StudyDnaExtractor } from "./StudyDnaExtractor";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+import { StudyDnaExtractor } from "./StudyDnaExtractor";
 
 type StudyDnaTabContent = NonNullable<
   Dictionary["cogniReadEditor"]

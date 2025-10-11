@@ -7,9 +7,10 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
 import { livePreviewComponentMap } from "@/components/features/dev-tools/config/live-previews.config";
-import { sectionsConfig } from "@/shared/lib/config/sections.config";
 import { ValidationError } from "@/components/ui/ValidationError";
+import { sectionsConfig } from "@/shared/lib/config/sections.config";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
 

@@ -7,17 +7,18 @@
  */
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { createId } from "@paralleldrive/cuid2";
-import { createServerClient as createNextServerClient } from "@/shared/lib/supabase/server";
 import { type SupabaseClient } from "@supabase/supabase-js";
+import { revalidatePath } from "next/cache";
+
+import { ROUTING_LOCALES } from "@/shared/lib/i18n/i18n.config"; // <-- CONTRATO CORREGIDO
+import { logger } from "@/shared/lib/logging";
 import {
   CogniReadArticleSchema,
   type CogniReadArticle,
 } from "@/shared/lib/schemas/cogniread/article.schema";
+import { createServerClient as createNextServerClient } from "@/shared/lib/supabase/server";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
-import { logger } from "@/shared/lib/logging";
-import { ROUTING_LOCALES } from "@/shared/lib/i18n/i18n.config"; // <-- CONTRATO CORREGIDO
 
 type ArticleInput = Omit<
   CogniReadArticle,

@@ -3,20 +3,23 @@
  * @file WizardClientLayout.tsx
  * @description Layout orquestador de cliente para la SDC, con una frontera Cliente-Servidor blindada.
  * @version 18.0.0 (Client-Mounted Rendering Guard)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React, { useState, useEffect } from "react"; // Se añaden useState y useEffect
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
+import React, { useState, useEffect } from "react"; // Se añaden useState y useEffect
+
 import { DynamicIcon, Skeleton } from "@/components/ui";
-import { LivePreviewCanvas } from "./LivePreviewCanvas";
 import { logger } from "@/shared/lib/logging";
-import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
+
 import { DeveloperErrorDisplay } from "../../dev-tools";
+
+import { LivePreviewCanvas } from "./LivePreviewCanvas";
 
 // La importación dinámica se mantiene como una buena práctica.
 const Aether = dynamic(

@@ -6,6 +6,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
 import { cn } from "@/shared/lib/utils/cn";
 
 export function FadingLines({

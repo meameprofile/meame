@@ -6,6 +6,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { RaZPromptsSesaTagsSchema } from "../raz-prompts/atomic.schema";
 
 const BaviVariantSchema = z.object({

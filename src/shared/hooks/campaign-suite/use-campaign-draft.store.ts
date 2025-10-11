@@ -6,16 +6,18 @@
  *              sincronización con el `useDraftMetadataStore` para usar
  *              `campaignName` y `seoKeywords` con los tipos correctos.
  * @version 3.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+
+import { initialCampaignDraftState } from "@/shared/lib/config/campaign-suite/draft.initial-state";
 import { logger } from "@/shared/lib/logging";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
-import { initialCampaignDraftState } from "@/shared/lib/config/campaign-suite/draft.initial-state";
 import { deepMerge } from "@/shared/lib/utils";
+
 import { useDraftMetadataStore } from "./use-draft-metadata.store";
 
 interface CampaignDraftState {

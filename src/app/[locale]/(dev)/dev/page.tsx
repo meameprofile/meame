@@ -9,14 +9,16 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server-only";
+import { notFound } from "next/navigation";
 import React from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { DevDashboardClient } from "../_components/DevDashboardClient";
-import { notFound } from "next/navigation";
 import { DevDashboardContentSchema } from "@/shared/lib/schemas/pages/dev-dashboard.schema";
+
+import { DevDashboardClient } from "../_components/DevDashboardClient";
 
 interface DevDashboardPageProps {
   params: { locale: Locale };

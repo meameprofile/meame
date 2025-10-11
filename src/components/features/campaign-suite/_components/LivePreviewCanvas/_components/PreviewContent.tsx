@@ -6,11 +6,13 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
-import { PreviewRenderer } from "./PreviewRenderer";
-import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+
 import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+
+import { PreviewRenderer } from "./PreviewRenderer";
 
 // El contrato de props ahora es 100% data-driven.
 interface PreviewContentProps {

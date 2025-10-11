@@ -13,10 +13,11 @@
 "use client";
 
 // --- [INICIO DE CORRECCIÓN DE ERROR TS1259] ---
-import * as React from "react";
 // --- [FIN DE CORRECCIÓN DE ERROR TS1259] ---
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { type ThemeProviderProps } from "next-themes/dist/types";
+import * as React from "react";
+
 // --- [INICIO DE CORRECCIÓN DE ERRORES TS2307] ---
 import { logger } from "@/shared/lib/logging";
 // --- [FIN DE CORRECCIÓN DE ERRORES TS2307] ---

@@ -8,8 +8,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
 import { logger } from "@/shared/lib/logging";
+import { createServerClient } from "@/shared/lib/supabase/server";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 export async function markNotificationsAsReadAction(): Promise<

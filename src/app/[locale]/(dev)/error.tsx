@@ -1,9 +1,10 @@
 // RUTA: src/app/[locale]/(dev)/error.tsx
 "use client";
 import React, { useEffect } from "react";
-import { logger } from "@/shared/lib/logging";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { Button } from "@/components/ui";
+import { logger } from "@/shared/lib/logging";
 interface DevErrorProps {
   error: Error & { digest?: string };
   reset: () => void;

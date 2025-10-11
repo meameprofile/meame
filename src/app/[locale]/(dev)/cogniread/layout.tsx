@@ -6,6 +6,7 @@
  *@author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 export default function PlaceholderLayout({

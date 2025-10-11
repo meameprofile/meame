@@ -7,8 +7,8 @@
  */
 import "server-only";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 /**
  * @function loadEdgeJsonAsset

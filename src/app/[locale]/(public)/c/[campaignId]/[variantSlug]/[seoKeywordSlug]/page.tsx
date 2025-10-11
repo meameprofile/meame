@@ -7,22 +7,23 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import React from "react";
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { logger } from "@/shared/lib/logging";
-import { getCampaignData } from "@/shared/lib/i18n/campaign.i18n";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { notFound } from "next/navigation";
+import React from "react";
+
+import { AuraTrackerInitializer } from "@/components/features/analytics/AuraTrackerInitializer";
 import { CampaignThemeProvider } from "@/components/layout/CampaignThemeProvider";
 import { SectionAnimator } from "@/components/layout/SectionAnimator";
-import { AuraTrackerInitializer } from "@/components/features/analytics/AuraTrackerInitializer";
+import { ValidationError } from "@/components/ui/ValidationError";
 import {
   sectionsConfig,
   type SectionName,
 } from "@/shared/lib/config/sections.config";
-import { ValidationError } from "@/components/ui/ValidationError";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { getCampaignData } from "@/shared/lib/i18n/campaign.i18n";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
 
 type AnySectionComponent = React.ComponentType<SectionProps<keyof Dictionary>>;
 

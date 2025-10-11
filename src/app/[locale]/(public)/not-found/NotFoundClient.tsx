@@ -7,15 +7,16 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import React from "react";
+
 import { LightRays } from "@/components/razBits/LightRays/LightRays";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 type NotFoundContent = NonNullable<Dictionary["notFoundPage"]>;
 

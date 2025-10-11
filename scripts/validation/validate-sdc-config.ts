@@ -7,7 +7,9 @@
  */
 import { promises as fs } from "fs";
 import * as path from "path";
+
 import chalk from "chalk";
+
 // --- [INICIO DE REFACTORIZACIÓN DE RUTA] ---
 // Se corrige la ruta relativa para que apunte correctamente a la SSoT
 // desde el directorio de ejecución del script.

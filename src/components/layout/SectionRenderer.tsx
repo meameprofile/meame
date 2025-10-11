@@ -8,8 +8,8 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
+import React from "react";
 
 interface SectionAnimatorProps {
   children: React.ReactNode;

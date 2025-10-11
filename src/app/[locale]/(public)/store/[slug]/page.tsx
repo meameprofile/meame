@@ -7,17 +7,18 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import React from "react";
 import { notFound } from "next/navigation";
+import React from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { ProductGallery } from "@/components/sections/ProductGallery";
+import { ProductGrid } from "@/components/sections/ProductGrid";
+import { ProductInfo } from "@/components/sections/ProductInfo";
+import { Container } from "@/components/ui";
+import { getProductBySlug, getProducts } from "@/shared/lib/commerce";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { getProductBySlug, getProducts } from "@/shared/lib/commerce";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { Container } from "@/components/ui";
-import { ProductGallery } from "@/components/sections/ProductGallery";
-import { ProductInfo } from "@/components/sections/ProductInfo";
-import { ProductGrid } from "@/components/sections/ProductGrid";
 import {
   ProductDetailPageContentSchema,
   type ProductDetailPageContent,

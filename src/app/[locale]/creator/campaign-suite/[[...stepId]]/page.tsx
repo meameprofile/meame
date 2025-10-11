@@ -7,13 +7,14 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { logger } from "@/shared/lib/logging";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import React, { Suspense } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { stepsConfig } from "@/shared/lib/config/campaign-suite/wizard.config";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 
 interface StepPageProps {
   params: { locale: Locale; stepId?: string[] };

@@ -8,7 +8,6 @@
  */
 "use client";
 
-import React from "react";
 import {
   SortableContext,
   useSortable,
@@ -16,9 +15,11 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { motion, AnimatePresence } from "framer-motion";
-import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
+import React from "react";
+
 import { Button, DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
+import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
 import { cn } from "@/shared/lib/utils/cn";
 
 /**

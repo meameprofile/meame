@@ -10,8 +10,9 @@
  */
 import "server-only";
 import { z } from "zod";
-import { OrderItemSchema } from "@/shared/lib/schemas/entities/order.schema";
+
 import { logger } from "@/shared/lib/logging";
+import { OrderItemSchema } from "@/shared/lib/schemas/entities/order.schema";
 
 logger.trace(
   "[Schema] Definiendo contrato para payloads de emails transaccionales."

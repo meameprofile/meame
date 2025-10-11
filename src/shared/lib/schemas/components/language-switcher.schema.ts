@@ -8,6 +8,7 @@
  * @author L.I.A Legacy - Asistente de Refactorización
  */
 import { z } from "zod";
+
 // --- [INICIO DE RESTAURACIÓN DE INTEGRIDAD DE BUILD v6.1.0] ---
 // Se importa la constante correcta (`ROUTING_LOCALES`) desde la SSoT de configuración
 // para resolver la dependencia rota que causaba el fallo de build.

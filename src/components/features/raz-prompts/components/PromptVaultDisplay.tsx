@@ -8,8 +8,9 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
+import React from "react";
+
 import {
   Card,
   CardHeader,
@@ -17,12 +18,13 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui";
+import type { usePromptVault } from "@/shared/hooks/raz-prompts/use-prompt-vault";
+import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
 import { PromptGrid } from "./PromptGrid";
 import { VaultFilters } from "./VaultFilters";
 import { VaultPagination } from "./VaultPagination";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import type { usePromptVault } from "@/shared/hooks/raz-prompts/use-prompt-vault";
-import { logger } from "@/shared/lib/logging";
 
 type HookState = ReturnType<typeof usePromptVault>;
 interface PromptVaultDisplayProps extends HookState {

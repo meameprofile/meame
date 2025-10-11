@@ -1,52 +1,44 @@
 // RUTA: src/shared/lib/telemetry/heimdall.emitter.ts
 /**
  * @file heimdall.emitter.ts
- * @description Aparato SSoT para la emisión de telemetría.
- *              v27.1.0 (Production Logger Integrity Fix): Restaura la pureza arquitectónica
- *              al desacoplar el logger del servidor de la persistencia directa, resolviendo
- *              la violación de la frontera Cliente-Servidor.
- * @version 27.1.0
- * @author RaZ Podestá - MetaShark Tech
+ * @description SSoT para el Logger Soberano del Protocolo Heimdall (El Emisor).
+ *              v33.0.1 (Module Export Contract Restoration): Se restaura la
+ *              exportación de `flushTelemetryQueue` para cumplir con el contrato
+ *              de la arquitectura de hooks desacoplada.
+ * @version 33.0.1
+ * @author L.I.A. Legacy
  */
 import { createId } from "@paralleldrive/cuid2";
-import {
-  type HeimdallEvent,
-  type EventStatus,
-} from "@/shared/lib/telemetry/heimdall.contracts";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v27.1.0] ---
-// Se elimina la importación del módulo de servidor para romper la dependencia ilegal.
-// import { persistHeimdallEvent } from "@/shared/lib/telemetry/heimdall.server";
-// --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v27.1.0] ---
 
-// --- Constantes Soberanas del Módulo ---
-const IS_BROWSER = typeof window !== "undefined";
-const BATCH_INTERVAL_MS = 30000;
+import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
+import type {
+  HeimdallEvent,
+  EventStatus,
+  EventIdentifier,
+} from "./heimdall.contracts";
+
+const isBrowser = typeof window !== "undefined";
+const BATCH_INTERVAL_MS = 15000;
 const MAX_BATCH_SIZE = 50;
-const TELEMETRY_QUEUE_KEY = "heimdall_queue_v2";
+const TELEMETRY_QUEUE_KEY = "heimdall_queue_v1";
 
-// --- Funciones de Utilidad Puras ---
+const tasks = new Map<
+  string,
+  { name: string; startTime: number; event: EventIdentifier }
+>();
+const groups = new Map<string, { name: string; startTime: number }>();
+
 const getCurrentPath = (): string | undefined => {
-  if (IS_BROWSER) return window.location.pathname;
+  if (isBrowser) return window.location.pathname;
   return undefined;
 };
 
-const createHeimdallEvent = (
-  baseEvent: Omit<HeimdallEvent, "eventId" | "timestamp" | "context">
-): HeimdallEvent => ({
-  ...baseEvent,
-  eventId: createId(),
-  timestamp: new Date().toISOString(),
-  context: {
-    runtime: IS_BROWSER ? "browser" : "server",
-    path: getCurrentPath(),
-  },
-});
+export async function flushTelemetryQueue(isUnloading = false): Promise<void> {
+  if (!isBrowser) return;
 
-// --- Pipeline de Telemetría del Cliente ---
-async function flushTelemetryQueue(isUnloading = false): Promise<void> {
-  if (!IS_BROWSER) return;
   const queueJson = localStorage.getItem(TELEMETRY_QUEUE_KEY);
   if (!queueJson) return;
+
   let eventsToFlush: HeimdallEvent[] = [];
   try {
     eventsToFlush = JSON.parse(queueJson);
@@ -59,30 +51,37 @@ async function flushTelemetryQueue(isUnloading = false): Promise<void> {
     localStorage.removeItem(TELEMETRY_QUEUE_KEY);
     return;
   }
+
   localStorage.setItem(TELEMETRY_QUEUE_KEY, JSON.stringify([]));
+
   const payload = { events: eventsToFlush };
   const blob = new Blob([JSON.stringify(payload)], {
     type: "application/json",
   });
+
   try {
-    const ingestUrl = "/api/telemetry/ingest";
     if (isUnloading && navigator.sendBeacon) {
-      if (!navigator.sendBeacon(ingestUrl, blob)) {
+      if (!navigator.sendBeacon("/api/telemetry/ingest", blob))
         throw new Error("navigator.sendBeacon devolvió 'false'.");
-      }
     } else {
-      const response = await fetch(ingestUrl, {
+      const workspaceId = useWorkspaceStore.getState().activeWorkspaceId;
+      const response = await fetch("/api/telemetry/ingest", {
         method: "POST",
-        body: blob,
+        headers: {
+          "Content-Type": "application/json",
+          "x-workspace-id": workspaceId || "",
+        },
+        body: JSON.stringify(payload),
         keepalive: true,
       });
-      if (!response.ok) {
-        throw new Error(`El servidor respondió con estado ${response.status}`);
-      }
+      if (!response.ok)
+        throw new Error(
+          `El servidor de telemetría respondió con estado ${response.status}`
+        );
     }
   } catch (error) {
     console.warn(
-      "[Heimdall Emitter] Fallo al enviar lote. Re-encolando eventos.",
+      "[Heimdall Emitter] Fallo al enviar lote. Re-encolando eventos para reintento.",
       { error }
     );
     const currentQueueJson = localStorage.getItem(TELEMETRY_QUEUE_KEY);
@@ -94,26 +93,10 @@ async function flushTelemetryQueue(isUnloading = false): Promise<void> {
   }
 }
 
-function queueClientEvent(event: HeimdallEvent): void {
-  if (!IS_BROWSER) return;
-  try {
-    const queueJson = localStorage.getItem(TELEMETRY_QUEUE_KEY);
-    const queue: HeimdallEvent[] = queueJson ? JSON.parse(queueJson) : [];
-    queue.push(event);
-    localStorage.setItem(TELEMETRY_QUEUE_KEY, JSON.stringify(queue));
-    if (queue.length >= MAX_BATCH_SIZE) {
-      flushTelemetryQueue(false);
-    }
-  } catch (error) {
-    console.warn(
-      "[Heimdall Emitter] Fallo al escribir en la cola de localStorage.",
-      { error }
-    );
-  }
-}
-
-if (IS_BROWSER) {
-  setInterval(() => flushTelemetryQueue(false), BATCH_INTERVAL_MS);
+if (isBrowser) {
+  setInterval(() => {
+    flushTelemetryQueue(false);
+  }, BATCH_INTERVAL_MS);
   window.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") {
       flushTelemetryQueue(true);
@@ -121,7 +104,38 @@ if (IS_BROWSER) {
   });
 }
 
-// --- API del Logger Soberano ---
+function _createAndQueueEvent(
+  event: Omit<HeimdallEvent, "eventId" | "timestamp" | "context">
+): void {
+  const fullEvent: HeimdallEvent = {
+    ...event,
+    eventId: createId(),
+    timestamp: new Date().toISOString(),
+    context: {
+      runtime: isBrowser ? "browser" : "server",
+      path: getCurrentPath(),
+    },
+  };
+
+  if (isBrowser) {
+    try {
+      const queueJson = localStorage.getItem(TELEMETRY_QUEUE_KEY);
+      const queue: HeimdallEvent[] = queueJson ? JSON.parse(queueJson) : [];
+      queue.push(fullEvent);
+      localStorage.setItem(TELEMETRY_QUEUE_KEY, JSON.stringify(queue));
+
+      if (queue.length >= MAX_BATCH_SIZE) {
+        flushTelemetryQueue(false);
+      }
+    } catch (error) {
+      console.warn(
+        "[Heimdall Emitter] Fallo al escribir en la cola de localStorage.",
+        { error }
+      );
+    }
+  }
+}
+
 const STYLES = {
   hook: "color: #a855f7; font-weight: bold;",
   action: "color: #2563eb; font-weight: bold;",
@@ -138,27 +152,30 @@ const STYLES = {
 type LogContext = Record<string, unknown> & { traceId?: string };
 
 interface Logger {
-  track: (
-    eventName: string,
-    data: {
-      status: EventStatus;
-      payload?: Record<string, unknown>;
-      duration?: number;
-      traceId: string;
-    }
+  startTask: (
+    event: EventIdentifier,
+    title: string,
+    context?: Record<string, unknown>
+  ) => string;
+  taskStep: (
+    taskId: string,
+    stepName: string,
+    status: EventStatus,
+    payload?: Record<string, unknown> | null
   ) => void;
-  startGroup: (label: string, style?: string) => string;
+  endTask: (taskId: string, finalStatus: "SUCCESS" | "FAILURE") => void;
+  startGroup: (label: string, context?: Record<string, unknown>) => string;
   endGroup: (groupId: string) => void;
   success: (message: string, context?: LogContext) => void;
   info: (message: string, context?: LogContext) => void;
   warn: (message: string, context?: LogContext) => void;
   error: (message: string, context?: LogContext) => void;
   trace: (message: string, context?: LogContext) => void;
-  startTrace: (traceName: string) => string;
+  startTrace: (traceName: string, context?: Record<string, unknown>) => string;
   traceEvent: (
     traceId: string,
     eventName: string,
-    context?: Record<string, unknown>
+    payload?: Record<string, unknown>
   ) => void;
   endTrace: (
     traceId: string,
@@ -166,211 +183,234 @@ interface Logger {
   ) => void;
 }
 
-const traces = new Map<string, { name: string; startTime: number }>();
 const getTimestamp = (): string =>
   new Date().toLocaleTimeString("en-US", { hour12: false });
 
-const baseLogger: Omit<Logger, "track"> = {
-  startGroup: (label, style = STYLES.hook) => {
-    const groupId = `${label.replace(/\s+/g, "-")}-${Math.random().toString(36).substring(2, 9)}`;
-    traces.set(groupId, { name: label, startTime: performance.now() });
-    if (IS_BROWSER)
-      console.groupCollapsed(
-        `%c[${getTimestamp()}] %c▶ G-START [${groupId}] (${label})`,
-        STYLES.timestamp,
-        style
-      );
-    else
-      console.log(`\n[${getTimestamp()}] ▶ G-START [${groupId}] (${label})`);
+const createEvent = (
+  event: EventIdentifier,
+  title: string,
+  status: EventStatus,
+  context: Record<string, unknown> = {},
+  payload?: Record<string, unknown> | null,
+  duration?: number
+): HeimdallEvent => ({
+  event,
+  title,
+  traceId: context.traceId as string,
+  taskId: context.taskId as string,
+  stepName: context.stepName as string,
+  status,
+  eventId: createId(),
+  timestamp: new Date().toISOString(),
+  context: { ...context, runtime: isBrowser ? "browser" : "server" },
+  payload: payload || undefined,
+  duration,
+});
+
+const developmentLogger: Logger = {
+  startTask: (event, title, context): string => {
+    const taskId = `task-${createId()}`;
+    tasks.set(taskId, { name: title, startTime: performance.now(), event });
+    const taskEvent = createEvent(
+      event,
+      title,
+      "IN_PROGRESS",
+      { ...context, taskId, traceId: taskId },
+      undefined
+    );
+    _createAndQueueEvent(taskEvent);
+    return taskId;
+  },
+  taskStep: (taskId, stepName, status, payload): void => {
+    const task = tasks.get(taskId);
+    if (!task) return;
+    const stepEventIdentifier: EventIdentifier = {
+      ...task.event,
+      action: `STEP:${stepName}`,
+    };
+    const stepEvent = createEvent(
+      stepEventIdentifier,
+      stepName,
+      status,
+      { taskId, traceId: taskId, stepName },
+      payload
+    );
+    _createAndQueueEvent(stepEvent);
+  },
+  endTask: (taskId, finalStatus): void => {
+    const task = tasks.get(taskId);
+    if (!task) return;
+    const duration = performance.now() - task.startTime;
+    const endEvent = createEvent(
+      task.event,
+      task.name,
+      finalStatus,
+      { taskId, traceId: taskId },
+      undefined,
+      duration
+    );
+    _createAndQueueEvent(endEvent);
+    tasks.delete(taskId);
+  },
+  startGroup: (label, context): string => {
+    const groupId = `group-${createId()}`;
+    groups.set(groupId, { name: label, startTime: performance.now() });
+    console.groupCollapsed(`▶ ${label}`, context || "");
     return groupId;
   },
   endGroup: (groupId) => {
-    const trace = traces.get(groupId);
-    if (trace) {
-      const duration = (performance.now() - trace.startTime).toFixed(2);
-      if (IS_BROWSER) {
-        console.log(
-          `%c[${getTimestamp()}] %c◀ G-END [${groupId}] (${trace.name}) - Duración: ${duration}ms`,
-          STYLES.timestamp,
-          STYLES.success
-        );
-        console.groupEnd();
-      } else
-        console.log(
-          `[${getTimestamp()}] ◀ G-END [${groupId}] (${trace.name}) - Duración: ${duration}ms\n`
-        );
-      traces.delete(groupId);
-    } else if (IS_BROWSER) console.groupEnd();
+    const group = groups.get(groupId);
+    if (group) {
+      const duration = (performance.now() - group.startTime).toFixed(2);
+      console.log(`Duración del Grupo: ${duration}ms`);
+      groups.delete(groupId);
+    }
+    console.groupEnd();
   },
   success: (message, context) => {
-    if (context?.traceId)
-      logger.track(message, {
-        status: "SUCCESS",
-        traceId: context.traceId,
-        payload: context,
-      });
-    if (IS_BROWSER)
-      console.log(
-        `%c[${getTimestamp()}] %c✅ ${message}`,
-        STYLES.timestamp,
-        STYLES.success,
-        context || ""
-      );
-    else console.log(`[${getTimestamp()}] ✅ ${message}`, context || "");
+    console.log(
+      `%c[${getTimestamp()}] %c✅ ${message}`,
+      STYLES.timestamp,
+      STYLES.success,
+      context || ""
+    );
   },
   info: (message, context) => {
-    if (context?.traceId)
-      logger.track(message, {
-        status: "IN_PROGRESS",
-        traceId: context.traceId,
-        payload: context,
-      });
-    if (IS_BROWSER)
-      console.info(
-        `%c[${getTimestamp()}] %cℹ️ ${message}`,
-        STYLES.timestamp,
-        STYLES.info,
-        context || ""
-      );
-    else console.info(`[${getTimestamp()}] ℹ️ ${message}`, context || "");
+    console.info(
+      `%c[${getTimestamp()}] %cℹ️ ${message}`,
+      STYLES.timestamp,
+      STYLES.info,
+      context || ""
+    );
   },
   warn: (message, context) => {
-    if (context?.traceId)
-      logger.track(message, {
-        status: "FAILURE",
-        traceId: context.traceId,
-        payload: context,
-      });
-    if (IS_BROWSER)
-      console.warn(
-        `%c[${getTimestamp()}] %c⚠️ ${message}`,
-        STYLES.timestamp,
-        STYLES.warn,
-        context || ""
-      );
-    else console.warn(`[${getTimestamp()}] ⚠️ ${message}`, context || "");
+    console.warn(
+      `%c[${getTimestamp()}] %c⚠️ ${message}`,
+      STYLES.timestamp,
+      STYLES.warn,
+      context || ""
+    );
   },
   error: (message, context) => {
-    if (context?.traceId)
-      logger.track(message, {
-        status: "FAILURE",
-        traceId: context.traceId,
-        payload: context,
-      });
-    if (IS_BROWSER)
-      console.error(
-        `%c[${getTimestamp()}] %c❌ ${message}`,
-        STYLES.timestamp,
-        STYLES.error,
-        context || ""
-      );
-    else console.error(`[${getTimestamp()}] ❌ ${message}`, context || "");
+    console.error(
+      `%c[${getTimestamp()}] %c❌ ${message}`,
+      STYLES.timestamp,
+      STYLES.error,
+      context || ""
+    );
   },
   trace: (message, context) => {
-    if (IS_BROWSER)
-      console.log(
-        `%c[${getTimestamp()}] %c• ${message}`,
-        STYLES.timestamp,
-        STYLES.trace,
-        context || ""
-      );
-    else console.log(`[${getTimestamp()}] • ${message}`, context || "");
+    console.log(
+      `%c[${getTimestamp()}] %c• ${message}`,
+      STYLES.timestamp,
+      STYLES.trace,
+      context || ""
+    );
   },
-  startTrace: (traceName) => {
-    const traceId = `${traceName.replace(/\s+/g, "-")}-${Math.random().toString(36).substring(2, 9)}`;
-    traces.set(traceId, { name: traceName, startTime: performance.now() });
-    logger.track(traceName, { status: "IN_PROGRESS", traceId });
-    if (IS_BROWSER)
-      console.info(
-        `%c[${getTimestamp()}] %c🔗 T-START [${traceId}] (${traceName})`,
-        STYLES.timestamp,
-        STYLES.info
-      );
-    else
-      console.info(
-        `[${getTimestamp()}] 🔗 T-START [${traceId}] (${traceName})`
-      );
-    return traceId;
-  },
-  traceEvent: (traceId, eventName, context) => {
-    logger.track(eventName, {
-      status: "IN_PROGRESS",
-      traceId,
-      payload: context,
-    });
-    if (IS_BROWSER)
-      console.log(
-        `%c[${getTimestamp()}] %c  ➡️ [${traceId}] ${eventName}`,
-        STYLES.timestamp,
-        STYLES.trace,
-        context || ""
-      );
-    else
-      console.log(
-        `[${getTimestamp()}]   ➡️ [${traceId}] ${eventName}`,
-        context || ""
-      );
-  },
+  startTrace: (traceName, context) =>
+    developmentLogger.startTask(
+      { domain: "TRACE", entity: traceName, action: "EXECUTION" },
+      traceName,
+      context
+    ),
+  traceEvent: (traceId, eventName, payload) =>
+    developmentLogger.taskStep(traceId, eventName, "IN_PROGRESS", payload),
   endTrace: (traceId, context) => {
-    const trace = traces.get(traceId);
-    if (trace) {
-      const duration = performance.now() - trace.startTime;
+    const task = tasks.get(traceId);
+    if (task) {
+      const duration = performance.now() - task.startTime;
       const status: EventStatus = context?.error ? "FAILURE" : "SUCCESS";
-      logger.track(trace.name, { status, traceId, duration, payload: context });
-      if (IS_BROWSER)
-        console.log(
-          `%c[${getTimestamp()}] %c🏁 T-END [${traceId}] (${
-            trace.name
-          }) - Duración: ${duration.toFixed(2)}ms`,
-          STYLES.timestamp,
-          STYLES.success,
-          context || ""
-        );
-      else
-        console.log(
-          `[${getTimestamp()}] 🏁 T-END [${traceId}] (${
-            trace.name
-          }) - Duración: ${duration.toFixed(2)}ms`,
-          context || ""
-        );
-      traces.delete(traceId);
-    }
-  },
-};
-
-const developmentLogger: Logger = {
-  ...baseLogger,
-  track: (eventName, data) => {
-    const event = createHeimdallEvent({ eventName, ...data });
-    if (IS_BROWSER) {
-      queueClientEvent(event);
-    } else {
-      // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v27.1.0] ---
-      // En el servidor, en modo desarrollo, simplemente se imprime el evento
-      // en formato JSON para una observabilidad inmediata. NO se persiste.
-      console.log(`[Heimdall Server Event]: ${JSON.stringify(event, null, 2)}`);
-      // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v27.1.0] ---
+      const endEvent = createEvent(
+        task.event,
+        task.name,
+        status,
+        { taskId: traceId, traceId: traceId },
+        context,
+        duration
+      );
+      _createAndQueueEvent(endEvent);
+      tasks.delete(traceId);
     }
   },
 };
 
 const productionLogger: Logger = {
-  ...baseLogger,
-  track: (eventName, data) => {
-    const event = createHeimdallEvent({ eventName, ...data });
-    if (IS_BROWSER) {
-      queueClientEvent(event);
-    } else {
-      // --- [INICIO DE REFACTORIZACIÓN DE INTEGRIDAD LÓGICA v27.1.0] ---
-      // En producción, en el servidor, simplemente se loguea el evento como JSON.
-      // Un servicio externo (como un colector de logs de Vercel) será responsable
-      // de capturar este stdout y persistirlo, manteniendo este módulo puro.
-      console.log(JSON.stringify(event));
-      // --- [FIN DE REFACTORIZACIÓN DE INTEGRIDAD LÓGICA v27.1.0] ---
+  startTask: (event, title, context): string => {
+    const taskId = `task-${createId()}`;
+    tasks.set(taskId, { name: title, startTime: Date.now(), event });
+    const taskEvent = createEvent(
+      event,
+      title,
+      "IN_PROGRESS",
+      { ...context, taskId, traceId: taskId },
+      undefined
+    );
+    _createAndQueueEvent(taskEvent);
+    return taskId;
+  },
+  taskStep: (taskId, stepName, status, payload): void => {
+    const task = tasks.get(taskId);
+    if (!task) return;
+    const stepEventIdentifier: EventIdentifier = {
+      ...task.event,
+      action: `STEP:${stepName}`,
+    };
+    const stepEvent = createEvent(
+      stepEventIdentifier,
+      stepName,
+      status,
+      { taskId, traceId: taskId, stepName },
+      payload
+    );
+    _createAndQueueEvent(stepEvent);
+  },
+  endTask: (taskId, finalStatus): void => {
+    const task = tasks.get(taskId);
+    if (!task) return;
+    const duration = Date.now() - task.startTime;
+    const endEvent = createEvent(
+      task.event,
+      task.name,
+      finalStatus,
+      { taskId, traceId: taskId },
+      undefined,
+      duration
+    );
+    _createAndQueueEvent(endEvent);
+    tasks.delete(taskId);
+  },
+  startGroup: (): string => "",
+  endGroup: (): void => {},
+  success: (): void => {},
+  info: (): void => {},
+  warn: (): void => {},
+  error: (): void => {},
+  trace: (): void => {},
+  startTrace: (traceName, context) =>
+    productionLogger.startTask(
+      { domain: "TRACE", entity: traceName, action: "EXECUTION" },
+      traceName,
+      context
+    ),
+  traceEvent: (traceId, eventName, payload) =>
+    productionLogger.taskStep(traceId, eventName, "IN_PROGRESS", payload),
+  endTrace: (traceId, context) => {
+    const task = tasks.get(traceId);
+    if (task) {
+      const duration = Date.now() - task.startTime;
+      const status: EventStatus = context?.error ? "FAILURE" : "SUCCESS";
+      const endEvent = createEvent(
+        task.event,
+        task.name,
+        status,
+        { taskId: traceId, traceId: traceId },
+        context,
+        duration
+      );
+      _createAndQueueEvent(endEvent);
+      tasks.delete(traceId);
     }
   },
-  // Se desactivan los logs de `trace` en producción por performance.
-  trace: () => {},
 };
 
 export const logger =

@@ -6,8 +6,10 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
-import React, { useState } from "react";
-import type { HeimdallEventRow } from "@/shared/lib/telemetry/heimdall.contracts";
+
+import React, { useState, useTransition } from "react";
+import type { z } from "zod";
+
 import {
   Button,
   Card,
@@ -17,77 +19,100 @@ import {
   Textarea,
 } from "@/components/ui";
 import { getHeimdallInsightAction } from "@/shared/lib/actions/telemetry/getHeimdallInsight.action";
+import type { HeimdallObservatoryContentSchema } from "@/shared/lib/schemas/pages/dev/heimdall-observatory.i18n.schema";
+import type { HeimdallEventRow } from "@/shared/lib/telemetry/heimdall.contracts";
+
+type Content = z.infer<typeof HeimdallObservatoryContentSchema>;
 
 interface HeimdallObservatoryClientProps {
   initialEvents: HeimdallEventRow[];
+  content: Content;
 }
 
 export function HeimdallObservatoryClient({
   initialEvents,
+  content,
 }: HeimdallObservatoryClientProps) {
   const [selectedEvent, setSelectedEvent] = useState<HeimdallEventRow | null>(
     null
   );
   const [analysis, setAnalysis] = useState<string | null>(null);
-  const [isThinking, setIsThinking] = useState(false);
+  const [isThinking, startTransition] = useTransition();
 
-  const handleAnalyze = async () => {
+  const handleAnalyze = () => {
     if (!selectedEvent) return;
-    setIsThinking(true);
-    setAnalysis(null);
-    const result = await getHeimdallInsightAction({
-      eventId: selectedEvent.event_id,
+    startTransition(async () => {
+      setAnalysis(null);
+      const result = await getHeimdallInsightAction({
+        eventId: selectedEvent.event_id,
+      });
+      if (result.success) {
+        setAnalysis(JSON.stringify(JSON.parse(result.data), null, 2));
+      } else {
+        setAnalysis(`Error en el análisis: ${result.error}`);
+      }
     });
-    if (result.success) {
-      setAnalysis(result.data);
-    } else {
-      setAnalysis(`Error en el análisis: ${result.error}`);
-    }
-    setIsThinking(false);
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4 h-screen">
-      <div className="col-span-1 flex flex-col gap-2 overflow-y-auto">
-        <h2 className="text-lg font-bold">Eventos Recientes</h2>
-        {initialEvents.map((event) => (
-          <Button
-            key={event.event_id}
-            variant="outline"
-            onClick={() => setSelectedEvent(event)}
-          >
-            {event.event_name} -{" "}
-            {new Date(event.timestamp).toLocaleTimeString()}
-          </Button>
-        ))}
-      </div>
-      <div className="col-span-2 flex flex-col gap-4">
-        <Card className="flex-grow">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-12rem)]">
+      <Card className="lg:col-span-1 flex flex-col">
+        <CardHeader>
+          <CardTitle>{content.recentsPanel.title}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex-grow overflow-y-auto">
+          <div className="space-y-2">
+            {initialEvents.map((event) => (
+              <Button
+                key={event.event_id}
+                variant={
+                  selectedEvent?.event_id === event.event_id
+                    ? "secondary"
+                    : "outline"
+                }
+                className="w-full justify-start text-left h-auto py-2"
+                onClick={() => setSelectedEvent(event)}
+              >
+                <div className="flex flex-col">
+                  <span className="font-semibold">{event.event_name}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {new Date(event.timestamp).toLocaleString()}
+                  </span>
+                </div>
+              </Button>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+      <div className="lg:col-span-2 flex flex-col gap-6">
+        <Card className="flex-1">
           <CardHeader>
-            <CardTitle>Detalle del Evento</CardTitle>
+            <CardTitle>{content.detailPanel.title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <pre className="text-xs whitespace-pre-wrap">
+            <pre className="text-xs whitespace-pre-wrap overflow-auto max-h-48 bg-muted p-2 rounded-md">
               {JSON.stringify(selectedEvent, null, 2)}
             </pre>
           </CardContent>
         </Card>
-        <Card className="flex-grow">
+        <Card className="flex-1 flex flex-col">
           <CardHeader>
-            <CardTitle>Análisis de IA (Mimir)</CardTitle>
+            <CardTitle>{content.mimirPanel.title}</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-2">
+          <CardContent className="flex flex-col gap-4 flex-grow">
             <Button
               onClick={handleAnalyze}
               disabled={!selectedEvent || isThinking}
             >
-              {isThinking ? "Analizando..." : "Analizar con Temeo"}
+              {isThinking
+                ? content.mimirPanel.thinkingButton
+                : content.mimirPanel.analyzeButton}
             </Button>
             <Textarea
               value={analysis || ""}
               readOnly
-              className="h-full"
-              placeholder="El análisis de la IA aparecerá aquí..."
+              className="h-full flex-grow font-mono text-xs"
+              placeholder={content.mimirPanel.placeholder}
             />
           </CardContent>
         </Card>

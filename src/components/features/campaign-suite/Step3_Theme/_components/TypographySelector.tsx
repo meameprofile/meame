@@ -3,13 +3,13 @@
  * @file TypographySelector.tsx
  * @description Aparato de UI de élite para la selección visual de tipografías.
  * @version 3.0.0 (Preset Management UI)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
-import { cn } from "@/shared/lib/utils/cn";
+import React from "react";
+
 import {
   DynamicIcon,
   Button,
@@ -20,6 +20,7 @@ import {
 } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface TypographySelectorProps {
   typographies: ThemePreset[];

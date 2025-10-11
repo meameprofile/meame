@@ -8,6 +8,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { createBrowserClient } from "@supabase/ssr";
+
 import { logger } from "@/shared/lib/logging";
 
 // Inyección de Observabilidad: Se registra la creación del cliente Singleton.

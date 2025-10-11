@@ -6,13 +6,15 @@
  *              separar la lógica (hook) de la presentación (componente puro) y
  *              restaurar la integridad de las rutas de importación.
  * @version 4.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React from "react";
+
 import { useAssetUploader } from "@/shared/hooks/bavi/use-asset-uploader";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v4.0.0] ---
 // Se importa el componente de presentación desde su ruta relativa interna
 // para romper la dependencia circular que causaba el fallo de build.
@@ -20,10 +22,10 @@ import { AssetUploaderForm } from "./AssetUploader/components/AssetUploaderForm"
 // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v4.0.0] ---
 
 type UploaderContent = NonNullable<Dictionary["baviUploader"]>;
-type SesaContent = {
+interface SesaContent {
   sesaLabels: NonNullable<Dictionary["promptCreator"]>["sesaLabels"];
   sesaOptions: NonNullable<Dictionary["promptCreator"]>["sesaOptions"];
-};
+}
 
 interface AssetUploaderProps {
   content: UploaderContent;

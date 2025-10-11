@@ -9,12 +9,12 @@
 "use client";
 
 import React from "react";
+
 import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/Input";
-import { Slider } from "@/components/ui/Slider";
-import { Switch } from "@/components/ui/Switch";
+import { Label } from "@/components/ui/Label";
+import { ScrollArea } from "@/components/ui/ScrollArea";
 import {
   Select,
   SelectContent,
@@ -22,8 +22,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-import { ScrollArea } from "@/components/ui/ScrollArea";
 import { Separator } from "@/components/ui/Separator";
+import { Slider } from "@/components/ui/Slider";
+import { Switch } from "@/components/ui/Switch";
 import type { AssetTransformations } from "@/shared/hooks/bavi/useAssetEditor";
 
 interface AssetEditorControlsProps {
@@ -158,7 +159,7 @@ export function AssetEditorControls({
       </ScrollArea>
       <footer className="p-4 border-t flex justify-end gap-2 flex-shrink-0 mt-auto">
         <Button asChild variant="secondary">
-          <a href={downloadUrl} target="_blank" download>
+          <a href={downloadUrl} target="_blank" download rel="noreferrer">
             <DynamicIcon name="Download" className="mr-2 h-4 w-4" /> Descargar
           </a>
         </Button>

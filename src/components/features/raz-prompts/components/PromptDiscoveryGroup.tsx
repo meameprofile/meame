@@ -7,9 +7,11 @@
  */
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import React from "react";
 import type { Control } from "react-hook-form";
-import { motion, type Variants } from "framer-motion";
+import type { z } from "zod";
+
 import {
   FormField,
   FormItem,
@@ -20,7 +22,6 @@ import {
   Input,
 } from "@/components/ui";
 import type { CreatePromptFormData } from "@/shared/hooks/raz-prompts/use-prompt-creator";
-import type { z } from "zod";
 import type { PromptCreatorContentSchema } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
 
 type Content = z.infer<typeof PromptCreatorContentSchema>;

@@ -8,6 +8,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 const CONSENT_STORAGE_KEY = "cookie_consent_status";

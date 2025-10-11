@@ -28,12 +28,13 @@ import {
   useMemo,
 } from "react";
 import { toast } from "sonner";
-import { logger } from "@/shared/lib/logging";
+
 import {
   getPromptsAction,
   type GetPromptsInput,
   type EnrichedRaZPromptsEntry,
 } from "@/shared/lib/actions/raz-prompts";
+import { logger } from "@/shared/lib/logging";
 import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
 import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 

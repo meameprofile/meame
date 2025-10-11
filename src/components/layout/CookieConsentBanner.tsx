@@ -8,12 +8,13 @@
  */
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useCookieConsent } from "@/shared/hooks/use-cookie-consent"; // <-- ¡RUTA CORREGIDA!
+import Link from "next/link";
+import React from "react";
+
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { useCookieConsent } from "@/shared/hooks/use-cookie-consent"; // <-- ¡RUTA CORREGIDA!
 import { logger } from "@/shared/lib/logging";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 

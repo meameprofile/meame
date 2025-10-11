@@ -8,19 +8,22 @@
 "use client";
 
 import { useState } from "react";
-import { logger } from "@/shared/lib/logging";
-import { getProducerConfig } from "@/shared/lib/config/producer.config";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { useCookieConsent } from "@/shared/hooks/use-cookie-consent";
-import { useUtmTracker } from "@/shared/hooks/use-utm-tracker";
-import { useYandexMetrika } from "@/shared/hooks/use-yandex-metrika";
 import { useGoogleAnalytics } from "@/shared/hooks/use-google-analytics";
-import { useTrufflePixel } from "@/shared/hooks/use-truffle-pixel";
-import { useWebvorkGuid } from "@/shared/hooks/use-webvork-guid";
 import { useNos3Tracker } from "@/shared/hooks/use-nos3-tracker";
+import { useTrufflePixel } from "@/shared/hooks/use-truffle-pixel";
+import { useUtmTracker } from "@/shared/hooks/use-utm-tracker";
+import { useWebvorkGuid } from "@/shared/hooks/use-webvork-guid";
+import { useYandexMetrika } from "@/shared/hooks/use-yandex-metrika";
+import { getProducerConfig } from "@/shared/lib/config/producer.config";
+import { logger } from "@/shared/lib/logging";
+
 import { useExecutionGuard } from "./useExecutionGuard";
+
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 // Se importa DeveloperErrorDisplay directamente desde su archivo soberano.
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
 export function ProducerLogicWrapper(): React.ReactElement | null {

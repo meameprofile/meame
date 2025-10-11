@@ -7,6 +7,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
 import { BaviSidebar } from "./_components/BaviSidebar"; // Componente que crearemos a continuación
 
 export default function BaviLayout({

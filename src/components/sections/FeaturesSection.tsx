@@ -8,13 +8,14 @@
 "use client";
 
 import React, { forwardRef } from "react";
-import { Container } from "@/components/ui/Container";
-import { DynamicIcon } from "@/components/ui";
-import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
-import type { FeatureItem } from "@/shared/lib/schemas/components/features-section.schema";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { DynamicIcon } from "@/components/ui";
+import { Container } from "@/components/ui/Container";
+import { logger } from "@/shared/lib/logging";
+import type { FeatureItem } from "@/shared/lib/schemas/components/features-section.schema";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface FeaturesSectionProps extends SectionProps<"featuresSection"> {
   isFocused?: boolean;

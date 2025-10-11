@@ -9,15 +9,17 @@
 "use client";
 
 import React from "react";
-import { z } from "zod";
-import { PlayPauseButton } from "./PlayPauseButton";
-import { VolumeControl } from "./VolumeControl";
-import { FullscreenButton } from "./FullscreenButton";
-import { ProgressBar } from "./ProgressBar";
-import { ExpandButton } from "./ExpandButton";
-import { PictureInPictureButton } from "./PictureInPictureButton";
+import type { z } from "zod";
+
 import type { AetherOrchestratorHook } from "@/shared/hooks/aether/aether.contracts";
-import { AetherControlsContentSchema } from "@/shared/lib/schemas/aether/aether.schema";
+import type { AetherControlsContentSchema } from "@/shared/lib/schemas/aether/aether.schema";
+
+import { ExpandButton } from "./ExpandButton";
+import { FullscreenButton } from "./FullscreenButton";
+import { PictureInPictureButton } from "./PictureInPictureButton";
+import { PlayPauseButton } from "./PlayPauseButton";
+import { ProgressBar } from "./ProgressBar";
+import { VolumeControl } from "./VolumeControl";
 
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 // Se infiere el tipo directamente desde el schema soberano del componente.

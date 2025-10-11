@@ -6,14 +6,16 @@
  *              solo se preocupa por generar el JSX y sus dimensiones, delegando
  *              la creación de ImageResponse al orquestador.
  * @version 5.1.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import * as React from "react";
-import type { PreviewRenderResult, PreviewRenderer } from "./_types";
+
 import { getEdgeDictionary } from "@/shared/lib/i18n/i18n.edge";
 import { logger } from "@/shared/lib/logging";
-import { getStyleFromTheme } from "./_utils";
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+
+import type { PreviewRenderResult, PreviewRenderer } from "./_types";
+import { getStyleFromTheme } from "./_utils";
 
 export const StandardHeaderPreview: PreviewRenderer = async (
   locale,

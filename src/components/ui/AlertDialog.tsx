@@ -1,10 +1,10 @@
 // Ruta correcta: src/components/ui/AlertDialog.tsx
 
-import * as React from "react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
+import * as React from "react";
 
-import { cn } from "@/shared/lib/utils";
 import { buttonVariants } from "@/components/ui/Button";
+import { cn } from "@/shared/lib/utils";
 
 const AlertDialog = AlertDialogPrimitive.Root;
 const AlertDialogTrigger = AlertDialogPrimitive.Trigger;

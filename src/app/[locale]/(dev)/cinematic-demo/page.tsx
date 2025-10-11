@@ -8,16 +8,17 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server-only";
-import React from "react";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+import React from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { Container } from "@/components/ui";
+import { Skeleton } from "@/components/ui/Skeleton";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { Container } from "@/components/ui";
-import { PageHeader } from "@/components/layout/PageHeader";
-import { Skeleton } from "@/components/ui/Skeleton";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v8.0.0] ---
 // Se utiliza `next/dynamic` con `ssr: false` para crear un límite explícito

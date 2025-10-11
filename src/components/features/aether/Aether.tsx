@@ -8,18 +8,20 @@
  */
 "use client";
 
-import React, { useRef, Suspense, useMemo, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { z } from "zod";
-import { cn } from "@/shared/lib/utils/cn";
-import { Frame, BrandLogo, ControlsBar } from "./_components/controls";
+import React, { useRef, Suspense, useMemo, useEffect, useState } from "react";
+import type { z } from "zod";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { useAetherOrchestrator } from "@/shared/hooks/aether/use-aether-orchestrator";
 import { useVideoState } from "@/shared/hooks/aether/use-video-state";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { AetherControlsContentSchema } from "@/shared/lib/schemas/aether/aether.schema";
-import { CanvasCore } from "./_components/CanvasCore";
+import type { AetherControlsContentSchema } from "@/shared/lib/schemas/aether/aether.schema";
+import { cn } from "@/shared/lib/utils/cn";
+
 import { AetherOverlays } from "./_components/AetherOverlays";
+import { CanvasCore } from "./_components/CanvasCore";
+import { Frame, BrandLogo, ControlsBar } from "./_components/controls";
 
 type AetherControlsContent = z.infer<typeof AetherControlsContentSchema>;
 

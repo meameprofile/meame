@@ -9,11 +9,12 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import type { ComponentType } from "react";
-import { logger } from "@/shared/lib/logging";
-import { sectionsConfig } from "@/shared/lib/config/sections.config";
-import HeaderClient from "@/components/layout/HeaderClient";
+
 import { Footer } from "@/components/layout/Footer";
+import HeaderClient from "@/components/layout/HeaderClient";
 import { CommentSectionClient } from "@/components/sections/comments/CommentSectionClient";
+import { sectionsConfig } from "@/shared/lib/config/sections.config";
+import { logger } from "@/shared/lib/logging";
 
 type PreviewableComponent = ComponentType<Record<string, unknown>>;
 

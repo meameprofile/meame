@@ -8,10 +8,11 @@
  */
 import "server-only";
 import React from "react";
-import { getCampaignAnalyticsAction } from "@/shared/lib/actions/analytics";
+
 import { KPICharts } from "@/components/features/analytics/KPICharts";
 import { StatCard } from "@/components/features/analytics/StatCard";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { getCampaignAnalyticsAction } from "@/shared/lib/actions/analytics";
 import { logger } from "@/shared/lib/logging";
 
 interface AnalyticsDetailPageProps {

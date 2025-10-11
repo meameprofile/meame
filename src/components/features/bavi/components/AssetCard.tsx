@@ -7,8 +7,12 @@
  */
 "use client";
 
-import React from "react";
 import { CldImage } from "next-cloudinary";
+import React from "react";
+import type { z } from "zod";
+
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -17,15 +21,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
-import { logger } from "@/shared/lib/logging";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import type { PromptCreatorContentSchema } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
-import type { z } from "zod";
+import { logger } from "@/shared/lib/logging";
+import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
+import type { PromptCreatorContentSchema } from "@/shared/lib/schemas/raz-prompts/prompt-creator.i18n.schema";
 
 type CreatorContent = z.infer<typeof PromptCreatorContentSchema>;
 type SesaOptions = CreatorContent["sesaOptions"];

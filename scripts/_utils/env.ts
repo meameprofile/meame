@@ -5,9 +5,10 @@
  * @version 1.0.0 (Sovereign & Elite)
  * @author RaZ Podestá - MetaShark Tech
  */
+import * as path from "path";
+
 import chalk from "chalk";
 import * as dotenv from "dotenv";
-import * as path from "path";
 
 /**
  * @function loadEnvironment

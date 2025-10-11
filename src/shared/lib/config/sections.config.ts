@@ -8,21 +8,15 @@
  * @version 33.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import { z } from "zod";
 import type { ComponentType } from "react";
-import { logger } from "@/shared/lib/logging";
-import * as Schemas from "@/shared/lib/schemas/components";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { z } from "zod";
 
 // --- [INICIO DE REFACTORIZACIÓN DEFINITIVA] ---
 // Se importan las contrapartes de CLIENTE para los componentes que tienen
 // una arquitectura dividida (Server Shell + Client Core).
-import { HeroClient } from "@/components/sections/HeroClient";
-import { SocialProofLogosClient } from "@/components/sections/SocialProofLogosClient";
+import { BenefitsSection } from "@/components/sections/BenefitsSection";
 import { CommentSectionClient } from "@/components/sections/comments/CommentSectionClient";
 // Se importan los componentes que son seguros para el cliente o puros.
-import { BenefitsSection } from "@/components/sections/BenefitsSection";
 import { CommunitySection } from "@/components/sections/CommunitySection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { DoubleScrollingBanner } from "@/components/sections/DoubleScrollingBanner";
@@ -30,6 +24,7 @@ import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { FeaturedArticlesCarousel } from "@/components/sections/FeaturedArticlesCarousel";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { GuaranteeSection } from "@/components/sections/GuaranteeSection";
+import { HeroClient } from "@/components/sections/HeroClient";
 import { HeroNews } from "@/components/sections/HeroNews";
 import { IngredientAnalysis } from "@/components/sections/IngredientAnalysis";
 import { NewsGridClient } from "@/components/sections/NewsGridClient";
@@ -38,12 +33,17 @@ import { PricingSection } from "@/components/sections/PricingSection";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { ScrollingBanner } from "@/components/sections/ScrollingBanner";
 import { ServicesSection } from "@/components/sections/ServicesSection";
+import { SocialProofLogosClient } from "@/components/sections/SocialProofLogosClient";
 import { SponsorsSection } from "@/components/sections/SponsorsSection";
 import { TeamSection } from "@/components/sections/TeamSection";
 import { TestimonialCarouselSection } from "@/components/sections/TestimonialCarouselSection";
 import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { TextSection } from "@/components/sections/TextSection";
 import { ThumbnailCarousel } from "@/components/sections/ThumbnailCarousel";
+import { logger } from "@/shared/lib/logging";
+import * as Schemas from "@/shared/lib/schemas/components";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
 // --- [FIN DE REFACTORIZACIÓN DEFINITIVA] ---
 
 logger.trace(

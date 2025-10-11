@@ -10,6 +10,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 // --- Constantes y Tipos ---
@@ -29,7 +30,7 @@ const getParamFromUrl = (name: string): string | null => {
   return params.get(name);
 };
 
-const setCookie = (name: string, value: string, days: number = 30): void => {
+const setCookie = (name: string, value: string, days = 30): void => {
   let expires = "";
   if (days) {
     const date = new Date();

@@ -8,10 +8,10 @@
  */
 "use server";
 
-import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { CampaignArtifactRow } from "@/shared/lib/schemas/campaigns/campaign-suite.contracts";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 export interface ArtifactMetadata {
   id: string;

@@ -10,14 +10,15 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { logger } from "@/shared/lib/logging";
+
 import type { PreviewRenderer } from "./_types";
 
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
 // Importaciones directas a los renderizadores atómicos.
-import { StandardHeaderPreview } from "./StandardHeader.preview";
+import { BenefitsSectionPreview } from "./BenefitsSection.preview";
 import { MinimalHeaderPreview } from "./MinimalHeader.preview";
 import { StandardFooterPreview } from "./StandardFooter.preview";
-import { BenefitsSectionPreview } from "./BenefitsSection.preview";
+import { StandardHeaderPreview } from "./StandardHeader.preview";
 // --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
 
 logger.trace(

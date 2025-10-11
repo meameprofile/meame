@@ -8,9 +8,10 @@
  */
 import "server-only";
 import { cookies } from "next/headers";
+
+import { logger } from "@/shared/lib/logging";
 import { getShopifyCart } from "@/shared/lib/shopify";
 import type { Cart } from "@/shared/lib/shopify/types";
-import { logger } from "@/shared/lib/logging";
 
 /**
  * @function getCart

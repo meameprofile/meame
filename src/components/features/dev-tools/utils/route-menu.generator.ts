@@ -2,18 +2,14 @@
 /**
  * @file route-menu.generator.ts
  * @description Motor de generación de menú anti-frágil.
- *              v6.2.0 (Definitive Type Safety - No `any`): Se refactoriza la
- *              invocación de la función `path` para eliminar por completo el
- *              uso de `any`, logrando una seguridad de tipos absoluta y un
- *              cumplimiento de élite con las reglas de linting.
- * @version 6.2.0
+ * @version 7.1.0 (Holistic Restoration & System Health Seismograph Integration)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { routes, RouteType, type RouteParams } from "@/shared/lib/navigation";
 import { type LucideIconName } from "@/shared/lib/config/lucide-icon-names";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
-import { type Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { logger } from "@/shared/lib/logging";
+import { routes, RouteType, type RouteParams } from "@/shared/lib/navigation";
+import { type Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 export interface RouteItem {
   name: string;
@@ -40,13 +36,17 @@ const iconMap: Record<string, LucideIconName> = {
   cByCampaignIdByVariantSlugBySeoKeywordSlug: "Rocket",
   devDashboard: "LayoutDashboard",
   devLogin: "LogIn",
-  devTestPage: "TestTube",
-  devComponentShowcase: "Component",
-  devCampaignSuiteCreate: "LayoutTemplate",
+  componentShowcase: "Component",
+  creatorCampaignSuiteWithStepId: "LayoutTemplate",
   bavi: "LibraryBig",
   razPrompts: "BrainCircuit",
   cogniReadDashboard: "BookOpenCheck",
   cogniReadEditor: "FilePenLine",
+  nos3: "ScreenShare",
+  analytics: "AreaChart",
+  userIntelligence: "Users",
+  heimdallObservatory: "ShieldCheck",
+  heimdallObservatorySystemHealth: "HeartPulse",
 };
 
 const getMockParams = (key: string, locale: Locale): RouteParams => {
@@ -61,6 +61,12 @@ const getMockParams = (key: string, locale: Locale): RouteParams => {
   if (key.includes("BySlug")) {
     return { locale, slug: "ejemplo-de-slug" };
   }
+  if (key === "analyticsByVariantId") {
+    return { locale, variantId: "01" };
+  }
+  if (key === "nos3BySessionId" || key === "userIntelligenceBySessionId") {
+    return { locale, sessionId: "mock-session-id" };
+  }
   return { locale };
 };
 
@@ -68,8 +74,9 @@ export function generateDevRoutes(
   dictionary: Dictionary["devRouteMenu"],
   locale: Locale
 ): RouteGroup[] {
+  const traceId = logger.startTrace("generateDevRoutes_v7.1");
   logger.info(
-    "[route-menu.generator] Generando estructura de menú dinámica v6.2..."
+    "[route-menu.generator] Generando estructura de menú dinámica..."
   );
 
   if (!dictionary) {
@@ -103,10 +110,7 @@ export function generateDevRoutes(
       const label = dictionary[key as keyof typeof dictionary] || key;
       const params = getMockParams(key, locale);
 
-      // --- [INICIO DE REFACTORIZACIÓN DE SEGURIDAD DE TIPOS v6.2.0] ---
-      // Se utiliza una aserción de tipo explícita y segura para invocar la función `path`.
       const path = (route.path as (p: RouteParams) => string)(params);
-      // --- [FIN DE REFACTORIZACIÓN DE SEGURIDAD DE TIPOS v6.2.0] ---
 
       groups[groupKey].push({
         name: String(label),
@@ -115,6 +119,8 @@ export function generateDevRoutes(
       });
     }
   }
+
+  logger.endTrace(traceId);
 
   return [
     {

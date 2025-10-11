@@ -1,6 +1,6 @@
 // shared/manifests/achievements.manifest.ts
 
-import { Achievement } from "@/shared/lib/schemas/achievement.schema";
+import type { Achievement } from "@/shared/lib/schemas/achievement.schema";
 
 export const ACHIEVEMENTS_MANIFEST: Achievement[] = [
   {

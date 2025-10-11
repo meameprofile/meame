@@ -2,22 +2,22 @@
 /**
  * @file AppProviders.tsx
  * @description Orquestador de proveedores del lado del cliente.
- *              v8.0.0 (Client Boundary Enforcement): Se añade la directiva "use client"
- *              para declarar explícitamente este componente como un límite de cliente,
- *              resolviendo la violación de las Reglas de los Hooks.
- * @version 8.0.0
+ * @version 8.1.0 (Heimdall Telemetry Integration)
  * @author RaZ Podestá - MetaShark Tech
  */
-"use client"; // <-- DIRECTIVA SOBERANA DE FRONTERA CLIENTE-SERVIDOR
+"use client";
 
 import React, { useEffect } from "react";
+
+import { HeimdallInitializer } from "@/components/features/analytics/HeimdallInitializer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { ProducerLogicWrapper } from "@/shared/hooks/producer-logic";
 import { useUserPreferences } from "@/shared/hooks/use-user-preferences";
-import { CookieConsentBanner } from "./CookieConsentBanner";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { defaultLocale, type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+import { CookieConsentBanner } from "./CookieConsentBanner";
 
 interface AppProvidersProps {
   children: React.ReactNode;
@@ -30,7 +30,7 @@ export default function AppProviders({
   locale,
   cookieConsentContent,
 }: AppProvidersProps): React.ReactElement {
-  logger.info("[AppProviders] Inicializando proveedores de cliente (v8.0).");
+  logger.info("[AppProviders] Inicializando proveedores de cliente (v8.1).");
 
   const { preferences, setPreference } = useUserPreferences();
   const safeLocale = locale || defaultLocale;
@@ -48,6 +48,7 @@ export default function AppProviders({
       enableSystem
       disableTransitionOnChange
     >
+      <HeimdallInitializer />
       <ProducerLogicWrapper />
       {children}
       {cookieConsentContent && (

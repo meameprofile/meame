@@ -8,13 +8,16 @@
  */
 import * as fs from "fs/promises";
 import * as path from "path";
-import { z } from "zod";
+
 import { createId } from "@paralleldrive/cuid2";
+import { z } from "zod";
+
+import type { CogniReadArticleInsert } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
+import type { Json } from "@/shared/lib/supabase/database.types";
+
 import { scriptLogger as logger } from "../../_utils/logger";
 import { createScriptClient } from "../../_utils/supabaseClient";
 import type { ScriptActionResult as ActionResult } from "../../_utils/types";
-import type { CogniReadArticleInsert } from "@/shared/lib/schemas/cogniread/cogniread.contracts";
-import type { Json } from "@/shared/lib/supabase/database.types";
 
 const FIXTURES_DIR = path.resolve(process.cwd(), "content/cogniread/fixtures");
 

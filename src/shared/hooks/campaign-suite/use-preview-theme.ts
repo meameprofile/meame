@@ -9,12 +9,14 @@
 "use client";
 
 import { useMemo } from "react";
+
 import { usePreviewStore } from "@/components/features/campaign-suite/_context/PreviewContext";
-import { deepMerge } from "@/shared/lib/utils";
+import { logger } from "@/shared/lib/logging";
+import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import { AssembledThemeSchema } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
-import { logger } from "@/shared/lib/logging";
+import { deepMerge } from "@/shared/lib/utils";
+
 import { useCampaignDraft } from "./use-campaign-draft.hook"; // <-- ARQUITECTURA SOBERANA
 
 interface UsePreviewThemeReturn {

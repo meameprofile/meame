@@ -8,10 +8,12 @@
  */
 "use client";
 
-import { useRef, useEffect } from "react";
 import { Renderer, Program, Triangle, Mesh } from "ogl";
-import { logger } from "@/shared/lib/logging";
+import { useRef, useEffect } from "react";
 import type { z } from "zod";
+
+import { logger } from "@/shared/lib/logging";
+
 import type {
   LightRaysConfigSchema,
   RaysOriginSchema,

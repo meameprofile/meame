@@ -8,16 +8,19 @@
  */
 import { promises as fs } from "fs";
 import * as path from "path";
-import { z } from "zod";
-import { createScriptClient } from "../../_utils/supabaseClient";
-import { scriptLogger as logger } from "../../_utils/logger";
-import type { ScriptActionResult as ActionResult } from "../../_utils/types";
+
 import type { User } from "@supabase/supabase-js";
+import { z } from "zod";
+
+import type { Json } from "@/shared/lib/supabase/database.types";
+
 import type {
   BaviAssetInsert,
   BaviVariantInsert,
 } from "../../../src/shared/lib/schemas/bavi/bavi.contracts";
-import type { Json } from "@/shared/lib/supabase/database.types";
+import { scriptLogger as logger } from "../../_utils/logger";
+import { createScriptClient } from "../../_utils/supabaseClient";
+import type { ScriptActionResult as ActionResult } from "../../_utils/types";
 
 const BaviVariantSchema = z.object({
   versionId: z.string(),

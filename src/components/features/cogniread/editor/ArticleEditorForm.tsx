@@ -9,6 +9,7 @@
 
 import React from "react";
 import type { UseFormReturn } from "react-hook-form";
+
 import {
   Button,
   DynamicIcon,
@@ -20,8 +21,9 @@ import {
   TabsTrigger,
 } from "@/components/ui";
 import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
-import { StudyDnaTab, ContentTab, EcosystemTab } from "./tabs";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
+import { StudyDnaTab, ContentTab, EcosystemTab } from "./tabs";
 
 type EditorContent = NonNullable<Dictionary["cogniReadEditor"]>;
 

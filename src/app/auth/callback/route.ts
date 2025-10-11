@@ -6,12 +6,13 @@
  * @version 3.0.0 (Observability Contract v20+ Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
+import { type CookieOptions, createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { type CookieOptions, createServerClient } from "@supabase/ssr";
+
+import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
-import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
 
 export async function GET(request: Request) {
   const traceId = logger.startTrace("authCallbackRoute_v3.0");

@@ -7,9 +7,9 @@
  * @version 1.0.0 (Forged & Elite)
  * @author RaZ Podestá - MetaShark Tech
  */
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
-import { logger } from "@/shared/lib/logging";
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 /**
  * @function validateStep4

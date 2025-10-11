@@ -26,9 +26,9 @@ logger.trace(
  *              la librería y garantizar la seguridad de tipos. Cualquier consumidor
  *              de este dato deberá realizar una validación o aserción de tipo explícita.
  */
-export type eventWithTime = {
+export interface eventWithTime {
   type: number;
   data: unknown;
   timestamp: number;
   delay?: number;
-};
+}

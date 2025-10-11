@@ -5,7 +5,7 @@
  *              Importa las Server Actions y las pasa como props a su hijo
  *              de cliente, restaurando la integridad de la frontera arquitectónica.
  * @version 9.1.0 (Server Component Identity Restoration)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 
 // --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA v9.1.0] ---
@@ -16,15 +16,17 @@
 // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA v9.1.0] ---
 
 import React from "react";
-import { logger } from "@/shared/lib/logging";
-import { Step5Client } from "./Step5Client";
-import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
-import type { Step5ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step5.schema";
 import { type z } from "zod";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { publishCampaignAction } from "@/shared/lib/actions/campaign-suite/publishCampaign.action";
-import { packageCampaignAction } from "@/shared/lib/actions/campaign-suite/packageCampaign.action";
 import { deleteDraftAction } from "@/shared/lib/actions/campaign-suite/deleteDraft.action";
+import { packageCampaignAction } from "@/shared/lib/actions/campaign-suite/packageCampaign.action";
+import { publishCampaignAction } from "@/shared/lib/actions/campaign-suite/publishCampaign.action";
+import { logger } from "@/shared/lib/logging";
+import type { Step5ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step5.schema";
+import type { StepProps } from "@/shared/lib/types/campaigns/step.types";
+
+import { Step5Client } from "./Step5Client";
 
 type Content = z.infer<typeof Step5ContentSchema>;
 

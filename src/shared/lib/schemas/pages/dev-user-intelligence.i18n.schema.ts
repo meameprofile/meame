@@ -7,6 +7,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { PageHeaderContentSchema } from "@/shared/lib/schemas/components/page-header.schema";
 
 export const UserIntelligenceContentSchema = z.object({

@@ -7,12 +7,13 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { NextResponse, type NextRequest } from "next/server";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
 import { logger } from "@/shared/lib/logging";
-import { AuraIngestPayloadSchema } from "@/shared/lib/schemas/analytics/aura.schema";
-import { encryptServerData } from "@/shared/lib/utils/server-encryption";
-import type { Json } from "@/shared/lib/supabase/database.types";
 import type { AnonymousCampaignEventInsert } from "@/shared/lib/schemas/analytics/analytics.contracts";
+import { AuraIngestPayloadSchema } from "@/shared/lib/schemas/analytics/aura.schema";
+import type { Json } from "@/shared/lib/supabase/database.types";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import { encryptServerData } from "@/shared/lib/utils/server-encryption";
 
 export async function POST(request: NextRequest) {
   // Pilar III: Observabilidad de Élite con Tracing Holístico

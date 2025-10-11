@@ -10,10 +10,10 @@
  */
 "use server";
 
-import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import { getCart } from "@/shared/lib/commerce/cart";
+import { logger } from "@/shared/lib/logging";
 import { createPaymentIntent } from "@/shared/lib/services/stripe";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 interface CheckoutSessionPayload {
   clientSecret: string | null;

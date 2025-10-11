@@ -9,9 +9,11 @@
 
 import React from "react";
 import type { FieldValues } from "react-hook-form";
+
 import { Textarea } from "@/components/ui/Textarea";
-import type { FieldComponentProps } from "../../_types/field.types";
 import { logger } from "@/shared/lib/logging";
+
+import type { FieldComponentProps } from "../../_types/field.types";
 
 interface StringFieldProps<TFieldValues extends FieldValues>
   extends FieldComponentProps<TFieldValues> {

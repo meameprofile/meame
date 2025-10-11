@@ -8,11 +8,14 @@
  */
 "use client";
 
-import React, { useState, useMemo, useEffect, useCallback } from "react";
-import { CldImage } from "next-cloudinary";
-import type { UseFormReturn } from "react-hook-form";
 import { usePathname } from "next/navigation";
+import { CldImage } from "next-cloudinary";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
+import type { UseFormReturn } from "react-hook-form";
 import { toast } from "sonner";
+
+import { AssetSelectorModal } from "@/components/features/bavi/components";
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import {
   Button,
   DynamicIcon,
@@ -22,13 +25,11 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui";
-import { AssetSelectorModal } from "@/components/features/bavi/components";
-import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
-import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import { logger } from "@/shared/lib/logging";
+import type { BaviAsset } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 type EcosystemTabContent = NonNullable<
   Dictionary["cogniReadEditor"]

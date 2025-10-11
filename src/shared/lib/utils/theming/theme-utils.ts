@@ -9,8 +9,8 @@
  * @version 2.1.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import { logger } from "@/shared/lib/logging";
+import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 
 /**
  * @function generateCssVariablesFromTheme

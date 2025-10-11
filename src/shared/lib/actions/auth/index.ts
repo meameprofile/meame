@@ -6,7 +6,7 @@
  *              importaciones y exportaciones explícitas, resolviendo el error crítico de build
  *              "Only async functions are allowed to be exported in a 'use server' file".
  * @version 2.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 

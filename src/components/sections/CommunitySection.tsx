@@ -7,16 +7,17 @@
  */
 "use client";
 
-import React, { forwardRef } from "react";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { DynamicIcon } from "@/components/ui";
-import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
-// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
+import React, { forwardRef } from "react";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { DynamicIcon } from "@/components/ui";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+import { logger } from "@/shared/lib/logging";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
+// --- [INICIO DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 // --- [FIN DE REFACTORIZACIÓN ARQUITECTÓNICA] ---
 
 interface CommunitySectionProps extends SectionProps<"communitySection"> {

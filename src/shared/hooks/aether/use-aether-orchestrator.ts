@@ -10,13 +10,15 @@
 
 import { useRef, useCallback, useMemo, useEffect, useState } from "react";
 import type { PositionalAudio as PositionalAudioImpl } from "three";
+
+import { logger } from "@/shared/lib/logging";
+
+import type { AetherOrchestratorProps } from "./aether.contracts";
+import { useAetherTelemetry } from "./use-aether-telemetry";
+import { useFullscreenManager } from "./use-fullscreen-manager";
+import { usePipWithDetachFallback } from "./use-pip-with-detach-fallback";
 import { usePlaybackControl } from "./use-playback-control";
 import { useProgressTracker } from "./use-progress-tracker";
-import { useFullscreenManager } from "./use-fullscreen-manager";
-import { useAetherTelemetry } from "./use-aether-telemetry";
-import { usePipWithDetachFallback } from "./use-pip-with-detach-fallback";
-import { logger } from "@/shared/lib/logging";
-import type { AetherOrchestratorProps } from "./aether.contracts";
 
 export function useAetherOrchestrator({
   audioSrc,

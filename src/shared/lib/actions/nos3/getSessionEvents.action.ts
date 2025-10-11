@@ -11,9 +11,10 @@
 "use server";
 
 import { list } from "@vercel/blob";
-import type { eventWithTime } from "@/shared/lib/types/rrweb.types";
+
 import { logger } from "@/shared/lib/logging";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
+import type { eventWithTime } from "@/shared/lib/types/rrweb.types";
 
 export async function getSessionEventsAction(
   sessionId: string

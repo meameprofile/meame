@@ -7,14 +7,15 @@
  */
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import React, { forwardRef } from "react";
 import Marquee from "react-fast-marquee";
-import { motion, type Variants } from "framer-motion";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { DynamicIcon, Container } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
 import type { SectionProps } from "@/shared/lib/types/sections.types";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface ScrollingBannerProps extends SectionProps<"scrollingBanner"> {
   isFocused?: boolean;

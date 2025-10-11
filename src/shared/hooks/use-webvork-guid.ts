@@ -2,31 +2,24 @@
 /**
  * @file use-webvork-guid.ts
  * @description Hook Atómico de Efecto para obtener el GUID de Webvork, ahora
- *              nivelado para cumplir con el contrato de observabilidad de élite (v20+).
- * @version 5.0.0 (Holistic Observability & Contract Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ *              con seguridad de tipos absoluta mediante doble aserción,
+ *              resolviendo el error TS2352.
+ * @version 7.1.0 (Absolute Type Safety)
+ * @author L.I.A. Legacy
  */
 "use client";
 
 import { useEffect, useRef } from "react";
+
 import { getProducerConfig } from "@/shared/lib/config/producer.config";
 import { logger } from "@/shared/lib/logging";
 
-// --- SSoT de Tipos y Contratos ---
-type JsonpCallback = () => void;
-
-declare global {
-  interface Window {
-    [key: string]: JsonpCallback | unknown;
-  }
+// La interfaz permanece sin cambios, es correcta.
+interface WindowWithJsonp extends Window {
+  [key: string]: unknown;
 }
 
-/**
- * @function setCookie
- * @description Helper puro para establecer una cookie en el navegador.
- * @private
- */
-const setCookie = (name: string, value: string, days: number = 30): void => {
+const setCookie = (name: string, value: string, days = 30): void => {
   let expires = "";
   if (days) {
     const date = new Date();
@@ -36,7 +29,6 @@ const setCookie = (name: string, value: string, days: number = 30): void => {
   document.cookie = `${name}=${value || ""}${expires}; path=/`;
 };
 
-// --- Componente de Élite ---
 export function useWebvorkGuid(enabled: boolean): void {
   const hasExecuted = useRef(false);
 
@@ -65,7 +57,10 @@ export function useWebvorkGuid(enabled: boolean): void {
         "jsonp_callback_" + Math.round(100000 * Math.random());
       const scriptTagId = `script_${callbackName}`;
 
-      window[callbackName] = () => {
+      // --- [INICIO DE REFACTORIZACIÓN DE TIPO v7.1.0] ---
+      // Se aplica la doble aserción recomendada por el compilador.
+      (window as unknown as WindowWithJsonp)[callbackName] = () => {
+        // --- [FIN DE REFACTORIZACIÓN DE TIPO v7.1.0] ---
         const callbackGroupId = logger.startGroup(
           "Callback: Webvork GUID Recibido"
         );
@@ -85,7 +80,10 @@ export function useWebvorkGuid(enabled: boolean): void {
         } catch (error) {
           logger.error("Error procesando callback de GUID.", { error });
         } finally {
-          delete window[callbackName];
+          // --- [INICIO DE REFACTORIZACIÓN DE TIPO v7.1.0] ---
+          // Se aplica la doble aserción aquí también.
+          delete (window as unknown as WindowWithJsonp)[callbackName];
+          // --- [FIN DE REFACTORIZACIÓN DE TIPO v7.1.0] ---
           const scriptElement = document.getElementById(scriptTagId);
           scriptElement?.remove();
           logger.endGroup(callbackGroupId);

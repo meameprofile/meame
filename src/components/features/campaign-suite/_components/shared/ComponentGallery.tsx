@@ -7,23 +7,22 @@
  */
 "use client";
 
-import React from "react";
 import Image from "next/image";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/RadioGroup";
+import React from "react";
+
 import { Label } from "@/components/ui/Label";
-import { cn } from "@/shared/lib/utils/cn";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/RadioGroup";
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
 import type { GalleryItem } from "@/shared/lib/config/campaign-suite/gallery.config";
 import { logger } from "@/shared/lib/logging";
+import { cn } from "@/shared/lib/utils/cn";
 // --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
 
 interface ComponentGalleryProps {
   items: readonly GalleryItem[];
   selectedValue: string | null;
   onValueChange: (value: string) => void;
-  descriptions: {
-    [key: string]: string;
-  };
+  descriptions: Record<string, string>;
 }
 
 export function ComponentGallery({

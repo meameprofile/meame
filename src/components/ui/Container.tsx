@@ -13,10 +13,11 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
-import { cn } from "@/shared/lib/utils/cn";
+import React from "react";
+
 import { logger } from "@/shared/lib/logging";
+import { cn } from "@/shared/lib/utils/cn";
 
 /**
  * @interface ContainerProps

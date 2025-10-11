@@ -8,16 +8,18 @@
  */
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-import { z } from "zod";
+import React from "react";
+import type { z } from "zod";
+
+import { useContentEditor } from "@/shared/hooks/campaign-suite/use-content-editor";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import { logger } from "@/shared/lib/logging";
-import { ContentEditorHeader } from "./ContentEditorHeader";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+
 import { ContentEditorBody } from "./ContentEditorBody";
 import { ContentEditorFooter } from "./ContentEditorFooter";
-import { useContentEditor } from "@/shared/hooks/campaign-suite/use-content-editor";
+import { ContentEditorHeader } from "./ContentEditorHeader";
 
 interface ContentEditorProps {
   sectionName: string;

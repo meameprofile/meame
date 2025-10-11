@@ -9,9 +9,10 @@
 // Se ha eliminado la directiva "use client". Las rutas de API son exclusivamente
 // de servidor y no pueden ser Componentes de Cliente.
 // --- [FIN DE RESTAURACIÓN ARQUITECTÓNICA] ---
-import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
+import { NextResponse } from "next/server";
 import { z } from "zod";
+
 import { logger } from "@/shared/lib/logging";
 
 export const runtime = "edge";

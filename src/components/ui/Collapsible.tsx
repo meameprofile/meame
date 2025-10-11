@@ -9,9 +9,10 @@
  */
 "use client";
 
-import * as React from "react";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { motion, AnimatePresence } from "framer-motion";
+import * as React from "react";
+
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
 

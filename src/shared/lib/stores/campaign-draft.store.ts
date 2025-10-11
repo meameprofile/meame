@@ -6,9 +6,10 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { create } from "zustand";
+
+import { initialCampaignDraftState } from "@/shared/lib/config/campaign-suite/draft.initial-state";
 import { logger } from "@/shared/lib/logging";
 import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
-import { initialCampaignDraftState } from "@/shared/lib/config/campaign-suite/draft.initial-state";
 
 // Se define la interfaz del estado y las acciones para un contrato claro.
 interface CampaignDraftState {

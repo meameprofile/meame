@@ -8,24 +8,23 @@
  */
 "use client";
 
-import React, { useEffect, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React, { useEffect, useMemo, useCallback } from "react";
+
 import { UserNavClient } from "@/components/features/auth/components/UserNavClient";
-import type { HeaderClientProps } from "@/components/layout/HeaderClient";
-import { logger } from "@/shared/lib/logging";
-import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 import {
   type RouteGroup,
   type RouteItem,
 } from "@/components/features/dev-tools/utils/route-menu.generator";
-import type { Workspace } from "@/shared/lib/schemas/entities/workspace.schema";
+import type { HeaderClientProps } from "@/components/layout/HeaderClient";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/Accordion";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { Separator } from "@/components/ui/Separator";
@@ -35,8 +34,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
-import { Badge } from "@/components/ui/Badge";
+import { logger } from "@/shared/lib/logging";
+import type { Workspace } from "@/shared/lib/schemas/entities/workspace.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 
 type DevSidebarProps = Omit<
   HeaderClientProps,

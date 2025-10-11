@@ -7,6 +7,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { create } from "zustand";
+
 import { logger } from "@/shared/lib/logging";
 
 logger.trace("[FocusContext] Módulo de estado de foco cargado.");

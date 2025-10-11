@@ -5,8 +5,9 @@
  * @version 1.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import { motion } from "framer-motion";
+import React from "react";
+
 import { Button, DynamicIcon } from "@/components/ui";
 
 interface CartEmptyStateProps {

@@ -1,16 +1,20 @@
-// RUTA: src/components/features/nos3/_components/SessionListClient.tsx
+// RUTA: src/components/features/nos3/components/SessionListClient.tsx
 /**
  * @file SessionListClient.tsx
- * @description Componente de cliente de élite para mostrar la lista de sesiones
- *              grabadas, ahora con MEA/UX y arquitectura soberana.
- * @version 3.0.0 (Holistic Elite Leveling & MEA/UX)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Componente de cliente de élite para la lista de sesiones grabadas.
+ *              v3.1.0 (Routing Contract Restoration): Se corrige el nombre de la
+ *              ruta a 'nos3BySessionId' para alinear con la SSoT de 'navigation.ts'.
+ * @version 3.1.0
+ * @author L.I.A. Legacy
  */
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
+import Link from "next/link";
+import React from "react";
+
+import { Button } from "@/components/ui/Button";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import {
   Table,
   TableCell,
@@ -18,16 +22,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table";
-import { Button } from "@/components/ui/Button";
-import { DynamicIcon } from "@/components/ui/DynamicIcon";
-// --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
-// Se importa el tipo y la acción desde la SSoT soberana.
 import type { SessionMetadata } from "@/shared/lib/actions/nos3/list-sessions.action";
-// --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
-import { logger } from "@/shared/lib/logging";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 type SessionListContent = NonNullable<Dictionary["nos3Dashboard"]>;
 
@@ -67,7 +66,9 @@ export function SessionListClient({
   content,
   locale,
 }: SessionListClientProps): React.ReactElement {
-  logger.info("[SessionListClient] Renderizando v3.0 (Elite & MEA).");
+  logger.info(
+    "[SessionListClient] Renderizando v3.1 (Routing Contract Restored)."
+  );
 
   if (sessions.length === 0) {
     return (
@@ -108,9 +109,9 @@ export function SessionListClient({
             </TableCell>
             <TableCell className="text-right">
               <Button asChild variant="outline" size="sm">
-                <Link
-                  href={routes.nos3SessionPlayer.path({ locale, sessionId })}
-                >
+                {/* --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RUTA v3.1.0] --- */}
+                <Link href={routes.nos3BySessionId.path({ locale, sessionId })}>
+                  {/* --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RUTA v3.1.0] --- */}
                   <DynamicIcon name="Play" className="mr-2 h-4 w-4" />
                   {content.reproduceButton}
                 </Link>
@@ -122,4 +123,3 @@ export function SessionListClient({
     </Table>
   );
 }
-// RUTA: src/components/features/nos3/_components/SessionListClient.tsx

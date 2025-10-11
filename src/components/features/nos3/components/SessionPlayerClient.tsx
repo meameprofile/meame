@@ -9,13 +9,14 @@
 
 import React, { useEffect, useRef } from "react";
 import rrwebPlayer from "rrweb-player";
+
 import "rrweb-player/dist/style.css";
 // --- [INICIO DE CORRECCIÓN ARQUITECTÓNICA] ---
 // La importación ahora apunta a la SSoT de tipos global.
-import type { eventWithTime } from "@/shared/lib/types/rrweb.types";
 // --- [FIN DE CORRECCIÓN ARQUITECTÓNICA] ---
 import { Card, CardContent } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
+import type { eventWithTime } from "@/shared/lib/types/rrweb.types";
 
 interface SessionPlayerClientProps {
   events: eventWithTime[];

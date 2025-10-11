@@ -8,7 +8,9 @@
 import { exec } from "child_process";
 import { promises as fs } from "fs";
 import path from "path";
+
 import chalk from "chalk";
+
 import { scriptLogger as logger } from "../_utils/logger";
 
 const audits = [

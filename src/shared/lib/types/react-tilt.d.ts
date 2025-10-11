@@ -8,8 +8,10 @@
  * @version 1.1.0
  * @author RaZ Podestá - MetaShark Tech
  */
+import type { HTMLProps } from "react";
+import { Component } from "react";
+
 import { logger } from "@/shared/lib/logging"; // Importa el logger
-import { Component, HTMLProps } from "react";
 
 // --- INICIO DE MEJORA: OBSERVABILIDAD DE CARGA DE MÓDULO ---
 logger.trace(

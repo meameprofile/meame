@@ -9,6 +9,9 @@
 "use client";
 
 import React from "react";
+import type { z } from "zod";
+
+import { WizardNavigation } from "@/components/features/campaign-suite/_components/WizardNavigation";
 import {
   Card,
   CardContent,
@@ -18,11 +21,10 @@ import {
   CardFooter,
 } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
+import type { Step2ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step2.schema";
 import type { LayoutConfigItem } from "@/shared/lib/types/campaigns/draft.types";
+
 import { LayoutBuilder } from "./LayoutBuilder";
-import { WizardNavigation } from "@/components/features/campaign-suite/_components/WizardNavigation";
-import { z } from "zod";
-import { Step2ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step2.schema";
 
 type Step2Content = z.infer<typeof Step2ContentSchema>;
 

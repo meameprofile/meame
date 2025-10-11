@@ -8,19 +8,21 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/Button";
+import type { z } from "zod";
+
 import { AlertDialogTrigger } from "@/components/ui/AlertDialog";
-import { logger } from "@/shared/lib/logging";
-import { SaveAsTemplateDialog } from "./SaveAsTemplateDialog";
+import { Button } from "@/components/ui/Button";
+import { FadingLines, DotsWave } from "@/components/ui/Loaders";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
-import { FadingLines, DotsWave } from "@/components/ui/Loaders";
-import type { z } from "zod";
+import { logger } from "@/shared/lib/logging";
 import type { Step5ContentSchema } from "@/shared/lib/schemas/campaigns/steps/step5.schema";
+
+import { SaveAsTemplateDialog } from "./SaveAsTemplateDialog";
 
 type Content = z.infer<typeof Step5ContentSchema>;
 

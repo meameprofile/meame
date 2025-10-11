@@ -8,7 +8,9 @@
  */
 import { promises as fs } from "fs";
 import path from "path";
+
 import { z } from "zod";
+
 import { scriptLogger as logger } from "../_utils/logger";
 
 // --- SSoT de Contratos de Datos ---
@@ -24,7 +26,10 @@ const SchemaReportSchema = z.object({
   }),
 });
 
-type ParsedColumn = { name: string; type: string };
+interface ParsedColumn {
+  name: string;
+  type: string;
+}
 
 interface MismatchedColumn {
   name: string;

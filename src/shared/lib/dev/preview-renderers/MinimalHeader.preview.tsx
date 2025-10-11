@@ -8,10 +8,12 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import * as React from "react";
-import type { PreviewRenderResult, PreviewRenderer } from "./_types";
+
 import { logger } from "@/shared/lib/logging";
-import { getStyleFromTheme } from "./_utils";
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+
+import type { PreviewRenderResult, PreviewRenderer } from "./_types";
+import { getStyleFromTheme } from "./_utils";
 
 export const MinimalHeaderPreview: PreviewRenderer = async (
   locale,

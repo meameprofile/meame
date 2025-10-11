@@ -6,6 +6,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { WorkspaceSwitcherContentSchema } from "./workspace-switcher.schema"; // <-- NUEVA IMPORTACIÓN
 
 export const UserNavContentSchema = z.object({

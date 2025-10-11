@@ -9,6 +9,7 @@
 
 import React from "react";
 import type { UseFormReturn } from "react-hook-form";
+
 import {
   Form,
   FormControl,
@@ -29,8 +30,8 @@ import {
   type Locale,
 } from "@/shared/lib/i18n/i18n.config";
 // --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
-import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
 import { logger } from "@/shared/lib/logging";
+import type { CogniReadArticle } from "@/shared/lib/schemas/cogniread/article.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 type ContentTabContent = NonNullable<

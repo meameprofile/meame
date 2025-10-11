@@ -3,13 +3,14 @@
  * @file ComposerFooter.tsx
  * @description Aparato de presentación puro y atómico para el pie de página del Compositor.
  * @version 1.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React, { forwardRef, useMemo, useEffect } from "react";
-import { DialogFooter } from "@/components/ui/Dialog";
+
 import { Button } from "@/components/ui/Button";
+import { DialogFooter } from "@/components/ui/Dialog";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";

@@ -8,8 +8,10 @@
  */
 "use client";
 
-import React, { useMemo } from "react";
 import { motion, type Variants } from "framer-motion";
+import React, { useMemo } from "react";
+
+import { Label } from "@/components/ui/Label";
 import {
   Select,
   SelectContent,
@@ -17,10 +19,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-import { Label } from "@/components/ui/Label";
 import { logger } from "@/shared/lib/logging";
-import { GranularInputControl } from "./GranularInputControl";
+
 import type { LoadedFragments } from "../types";
+
+import { GranularInputControl } from "./GranularInputControl";
 interface SuiteTypographyTabProps {
   allThemeFragments: LoadedFragments;
   selectedFontPreset: string;

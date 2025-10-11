@@ -7,9 +7,10 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
+import { DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
 import { cn } from "@/shared/lib/utils/cn";
-import { DynamicIcon } from "@/components/ui";
 
 interface AssetBlueprintProps {
   width: number;

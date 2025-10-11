@@ -6,12 +6,13 @@
  * @version 1.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import { z } from "zod";
+import type { z } from "zod";
+
 import {
   stepSchemas,
   type StepSchemas,
 } from "@/shared/lib/schemas/campaigns/steps";
-import { StepperTitlesSchema } from "@/shared/lib/schemas/pages/dev-campaign-suite.schema";
+import type { StepperTitlesSchema } from "@/shared/lib/schemas/pages/dev-campaign-suite.schema";
 
 export interface StepDataConfig {
   readonly id: number;

@@ -6,9 +6,11 @@
  * @version 1.0.2 (Holistic & Type-Safe Delivery)
  * @author RaZ Podestá - MetaShark Tech
  */
-import Stripe from "stripe";
 import { promises as fs } from "fs";
 import * as path from "path";
+
+import Stripe from "stripe";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger } from "../_utils/logger";
 import type { ScriptActionResult } from "../_utils/types";

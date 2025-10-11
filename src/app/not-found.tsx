@@ -7,9 +7,10 @@
  */
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
-import { logger } from "@/shared/lib/logging";
+
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
 
 export default function NotFound() {
   // --- [INICIO DE REFACTORIZACIÓN DE RESILIENCIA] ---

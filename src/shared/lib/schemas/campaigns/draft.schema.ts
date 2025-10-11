@@ -6,9 +6,10 @@
  *              con el contrato de CampaignDraft v7.0+, incorporando las propiedades
  *              `campaignOrigin`, `templateId`, `campaignName` y `seoKeywords` correctas.
  * @version 5.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import {
   HeaderConfigSchema,
   FooterConfigSchema,

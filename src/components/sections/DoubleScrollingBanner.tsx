@@ -7,18 +7,19 @@
  */
 "use client";
 
-import React, { forwardRef } from "react";
 import Image from "next/image";
+import React, { forwardRef } from "react";
 import Marquee from "react-fast-marquee";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { DynamicIcon } from "@/components/ui";
 import { logger } from "@/shared/lib/logging";
-import { cn } from "@/shared/lib/utils/cn";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
 import type {
   TestimonialItem as Testimonial,
   LogoItem as Logo,
 } from "@/shared/lib/schemas/components/double-scrolling-banner.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface DoubleScrollingBannerProps
   extends SectionProps<"doubleScrollingBanner"> {

@@ -8,6 +8,7 @@
 "use client";
 
 import { useCallback } from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 export const useSound = (soundPath: string, volume = 0.5) => {

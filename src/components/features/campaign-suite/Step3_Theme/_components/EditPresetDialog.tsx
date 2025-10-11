@@ -3,11 +3,13 @@
  * @file EditPresetDialog.tsx
  * @description Aparato de UI atómico para el diálogo de edición de presets.
  * @version 1.1.0 (Type-Safe & Decoupled)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React, { useState, useEffect } from "react";
+import type { z } from "zod";
+
 import {
   Button,
   Dialog,
@@ -21,9 +23,8 @@ import {
   Label,
   DynamicIcon,
 } from "@/components/ui";
+import type { EditPresetDialogSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
 import type { ThemePreset } from "@/shared/lib/schemas/theme-preset.schema";
-import type { z } from "zod";
-import { EditPresetDialogSchema } from "@/shared/lib/schemas/campaigns/steps/step3.schema";
 
 type EditDialogContent = z.infer<typeof EditPresetDialogSchema>;
 

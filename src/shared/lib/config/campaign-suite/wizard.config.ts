@@ -6,7 +6,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import type { ComponentType } from "react";
-import { stepsDataConfig, type StepDataConfig } from "./wizard.data.config";
+
 import {
   Step0,
   Step1,
@@ -15,6 +15,8 @@ import {
   Step4,
   Step5,
 } from "@/components/features/campaign-suite/steps";
+
+import { stepsDataConfig, type StepDataConfig } from "./wizard.data.config";
 
 export interface StepConfig extends StepDataConfig {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

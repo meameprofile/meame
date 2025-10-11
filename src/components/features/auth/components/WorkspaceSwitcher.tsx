@@ -11,12 +11,7 @@
 
 import React, { useEffect, useState, useTransition, useMemo } from "react";
 import { toast } from "sonner";
-import {
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-} from "@/components/ui/DropdownMenu";
+
 import {
   DynamicIcon,
   Skeleton,
@@ -24,10 +19,16 @@ import {
   AlertTitle,
   AlertDescription,
 } from "@/components/ui";
-import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
+import {
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from "@/components/ui/DropdownMenu";
 import { getWorkspacesForUserAction } from "@/shared/lib/actions/workspaces/getWorkspacesForUser.action";
 import { logger } from "@/shared/lib/logging";
 import type { WorkspaceSwitcherContent } from "@/shared/lib/schemas/components/auth/workspace-switcher.schema";
+import { useWorkspaceStore } from "@/shared/lib/stores/use-workspace.store";
 
 interface WorkspaceSwitcherProps {
   content: WorkspaceSwitcherContent;

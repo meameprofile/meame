@@ -7,15 +7,16 @@
  */
 "use client";
 
-import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 // --- [INICIO DE CORRECCIÓN DE HIGIENE] ---
 // Se elimina la importación no utilizada de 'AnimatePresence'.
 import { motion } from "framer-motion";
+import * as React from "react";
+
 // --- [FIN DE CORRECCIÓN DE HIGIENE] ---
 import { DynamicIcon } from "@/components/ui";
-import { cn } from "@/shared/lib/utils/cn";
 import { logger } from "@/shared/lib/logging";
+import { cn } from "@/shared/lib/utils/cn";
 
 const Accordion = AccordionPrimitive.Root;
 

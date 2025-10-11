@@ -7,15 +7,17 @@
  */
 import "server-only";
 import React from "react";
-import { logger } from "@/shared/lib/logging";
-import { getBaviManifest } from "@/shared/lib/bavi";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import { HeroClient } from "./HeroClient";
-import type { SectionProps } from "@/shared/lib/types/sections.types";
+import { getBaviManifest } from "@/shared/lib/bavi";
+import { logger } from "@/shared/lib/logging";
 import type {
   BaviAsset,
   BaviVariant,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import type { SectionProps } from "@/shared/lib/types/sections.types";
+
+import { HeroClient } from "./HeroClient";
 
 interface HeroProps extends SectionProps<"hero"> {
   isFocused?: boolean;

@@ -4,10 +4,13 @@
  * @description Componente de presentación puro para el formulario de metadatos de BAVI,
  *              con MEA/UX inyectada.
  * @version 7.0.0 (Holistic & MEA/UX Injected)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
+import { motion } from "framer-motion";
 import React from "react";
+import type { Control } from "react-hook-form";
+
 import {
   FormControl,
   FormField,
@@ -17,11 +20,9 @@ import {
   Input,
   Textarea,
 } from "@/components/ui";
-import type { Control } from "react-hook-form";
+import { logger } from "@/shared/lib/logging";
 import type { AssetUploadMetadata } from "@/shared/lib/schemas/bavi/upload.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { logger } from "@/shared/lib/logging";
-import { motion } from "framer-motion";
 
 type UploaderContent = NonNullable<Dictionary["baviUploader"]>;
 

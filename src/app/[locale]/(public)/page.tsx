@@ -2,37 +2,52 @@
 /**
  * @file page.tsx
  * @description Homepage del portal, actuando como un "Ensamblador de Servidor"
- *              de élite. No requiere modificaciones.
- * @version 16.1.0 (Logger v20+ Contract Compliance)
+ *              de élite, ahora con instrumentación de Tareas de Heimdall para
+ *              el Sismógrafo de Salud del Ecosistema.
+ * @version 29.0.0 (Semantic Telemetry Instrumentation)
  * @author RaZ Podestá - MetaShark Tech
  */
+import "server-only";
+
 import React from "react";
-import { getDictionary } from "@/shared/lib/i18n/i18n";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { logger } from "@/shared/lib/logging";
+
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { SectionAnimator } from "@/components/layout/SectionAnimator";
-import { SocialProofLogos } from "@/components/sections/SocialProofLogos";
 import { CommunitySection } from "@/components/sections/CommunitySection";
 import { ScrollingBanner } from "@/components/sections/ScrollingBanner";
-import { HomePageClient } from "../HomePageClient";
+import { SocialProofLogos } from "@/components/sections/SocialProofLogos";
+import { getDictionary } from "@/shared/lib/i18n/i18n";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
+
+import { HomePageClient } from "../HomePageClient";
 
 interface HomePageProps {
   params: { locale: Locale };
 }
 
 export default async function HomePage({ params: { locale } }: HomePageProps) {
-  const traceId = logger.startTrace("HomePage_Render_v16.1");
-  const groupId = logger.startGroup(
-    `[HomePage Shell] Renderizando v16.1 para locale: ${locale}`
+  const taskId = logger.startTask(
+    { domain: "HOMEPAGE_RENDER", entity: "PAGE_SHELL", action: "EXECUTION" },
+    `Render HomePage Shell for locale: ${locale}`
   );
+  let finalStatus: "SUCCESS" | "FAILURE" = "SUCCESS";
 
   try {
+    // --- PASO 1: OBTENER DICCIONARIO ---
+    logger.taskStep(taskId, "GET_DICTIONARY", "IN_PROGRESS");
     const { dictionary, error: dictError } = await getDictionary(locale);
+    if (dictError) {
+      logger.taskStep(taskId, "GET_DICTIONARY", "FAILURE", {
+        error: dictError.message,
+      });
+      throw new Error("Fallo al cargar el diccionario i18n.");
+    }
+    logger.taskStep(taskId, "GET_DICTIONARY", "SUCCESS");
 
-    // --- ¡AQUÍ ESTÁ EL GUARDIÁN QUE PROVOCA EL ERROR! ---
-    // Exige que estas claves existan en el diccionario que recibe.
+    // --- PASO 2: VALIDAR CONTRATO DE CONTENIDO ---
+    logger.taskStep(taskId, "VALIDATE_CONTENT", "IN_PROGRESS");
     const {
       socialProofLogos,
       communitySection,
@@ -42,14 +57,12 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
     } = dictionary;
 
     if (
-      dictError ||
       !socialProofLogos ||
       !communitySection ||
       !scrollingBanner ||
       !heroNews ||
       !newsGrid
     ) {
-      // Si alguna clave falta, lanza el error que estás viendo.
       const missingKeys = [
         !socialProofLogos && "socialProofLogos",
         !communitySection && "communitySection",
@@ -60,36 +73,44 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
         .filter(Boolean)
         .join(", ");
 
+      logger.taskStep(taskId, "VALIDATE_CONTENT", "FAILURE", { missingKeys });
       throw new Error(
-        `Faltan una o más claves de i18n esenciales. Claves ausentes: ${missingKeys}`
+        `Faltan claves de i18n esenciales. Claves ausentes: ${missingKeys}`
       );
     }
+    logger.taskStep(taskId, "VALIDATE_CONTENT", "SUCCESS");
 
+    // --- PASO 3: DELEGAR A CLIENTE Y RENDERIZAR ---
+    logger.taskStep(taskId, "DELEGATE_TO_CLIENT", "IN_PROGRESS");
     const fullDictionary = dictionary as Dictionary;
-    logger.success(
-      "[HomePage Shell] Datos obtenidos. Delegando a HomePageClient...",
-      { traceId }
-    );
 
-    return (
+    const renderedJsx = (
       <SectionAnimator>
-        {/* COMPONENTE 1: Usa la clave 'scrollingBanner' */}
-        <ScrollingBanner content={scrollingBanner} locale={locale} />
-
-        {/* COMPONENTE 2: Usa la clave 'socialProofLogos' */}
-        <SocialProofLogos content={socialProofLogos} locale={locale} />
-
-        {/* DELEGACIÓN A CLIENTE: Pasa el diccionario completo, incluyendo 'heroNews' y 'newsGrid' */}
+        <ScrollingBanner
+          content={fullDictionary.scrollingBanner!}
+          locale={locale}
+        />
+        <SocialProofLogos
+          content={fullDictionary.socialProofLogos!}
+          locale={locale}
+        />
         <HomePageClient locale={locale} dictionary={fullDictionary} />
-
-        {/* COMPONENTE 3: Usa la clave 'communitySection' */}
-        <CommunitySection content={communitySection} locale={locale} />
+        <CommunitySection
+          content={fullDictionary.communitySection!}
+          locale={locale}
+        />
       </SectionAnimator>
     );
+    logger.taskStep(taskId, "DELEGATE_TO_CLIENT", "SUCCESS");
+    return renderedJsx;
   } catch (error) {
+    finalStatus = "FAILURE";
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
-    logger.error(`[HomePage Shell] ${errorMessage}`, { error: error, traceId });
+    logger.error(`[HomePage Shell] Fallo crítico durante el renderizado.`, {
+      error: errorMessage,
+      taskId,
+    });
     return (
       <DeveloperErrorDisplay
         context="HomePage Server Shell"
@@ -98,7 +119,6 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
       />
     );
   } finally {
-    logger.endGroup(groupId);
-    logger.endTrace(traceId);
+    logger.endTask(taskId, finalStatus);
   }
 }

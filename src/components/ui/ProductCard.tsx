@@ -8,16 +8,17 @@
  */
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { TiltCard } from "@/components/ui/TiltCard";
+import React from "react";
+
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import { routes } from "@/shared/lib/navigation";
+import { TiltCard } from "@/components/ui/TiltCard";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import { cn } from "@/shared/lib/utils/cn";
+import { routes } from "@/shared/lib/navigation";
 import type { Product } from "@/shared/lib/schemas/entities/product.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { cn } from "@/shared/lib/utils/cn";
 
 type StorePageContent = NonNullable<Dictionary["storePage"]>;
 

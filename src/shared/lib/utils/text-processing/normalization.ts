@@ -2,13 +2,15 @@
 /**
  * @file normalization.ts
  * @description SSoT y motor de utilidades puras para la normalización y sanitización de texto.
- * @version 1.0.0 (Sovereign & Elite)
+ * @version 2.0.0 (Resilient Algorithm)
  * @author RaZ Podestá - MetaShark Tech
- * @see _docs/supabase/008_MANIFIESTO_NORMALIZACION_Y_SANITIZACION.md
+ * @see _docs/PROTOCOLO DE NORMALIZACION_Y_SANITIZACION_DE_DATOS.md
  */
 import { logger } from "@/shared/lib/logging";
 
-logger.trace("[normalization.ts] Módulo de normalización de texto cargado.");
+logger.trace(
+  "[normalization.ts] Módulo de normalización de texto cargado (v2.0)."
+);
 
 /**
  * @function normalizeStringForId
@@ -21,11 +23,15 @@ export function normalizeStringForId(input: string | undefined | null): string {
     return "";
   }
 
-  return input
-    .toLowerCase() // 1. Convertir a minúsculas
-    .trim() // Eliminar espacios al inicio y final
-    .replace(/[\s_]+/g, "-") // 2. Reemplazar espacios y guiones bajos por guiones
-    .replace(/[^a-z0-9-]/g, "") // 2. Sanitizar: eliminar caracteres no seguros
-    .replace(/-+/g, "-") // 3. Colapsar guiones múltiples
-    .replace(/^-+|-+$/g, ""); // 4. Recortar guiones en los extremos
+  // --- [INICIO DE REFACTORIZACIÓN DE ALGORITMO v2.0.0] ---
+  return (
+    input
+      .toLowerCase() // 1. Convertir a minúsculas
+      .trim() // Eliminar espacios al inicio y final
+      // 2. Reemplazar cualquier secuencia de uno o más caracteres no alfanuméricos por un único guion.
+      .replace(/[^a-z0-9]+/g, "-")
+      // 3. Recortar guiones que puedan haber quedado en los extremos.
+      .replace(/^-+|-+$/g, "")
+  );
+  // --- [FIN DE REFACTORIZACIÓN DE ALGORITMO v2.0.0] ---
 }

@@ -1,5 +1,6 @@
 // RUTA: src/shared/lib/schemas/campaigns/campaign-suite.contracts.ts
 import { z } from "zod";
+
 import type {
   Tables,
   TablesInsert,

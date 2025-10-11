@@ -9,6 +9,7 @@
  *@author RaZ Podestá - MetaShark Tech
  */
 import type { ComponentType } from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 logger.trace(
@@ -17,16 +18,6 @@ logger.trace(
 
 // --- Pilar V (Arquitectura): Importaciones quirúrgicas SÓLO a componentes de CLIENTE ---
 import { Footer } from "@/components/layout/Footer";
-import { BenefitsSection } from "@/components/sections/BenefitsSection";
-import { CommunitySection } from "@/components/sections/CommunitySection";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { DoubleScrollingBanner } from "@/components/sections/DoubleScrollingBanner";
-import { FaqAccordion } from "@/components/sections/FaqAccordion";
-import { FeaturedArticlesCarousel } from "@/components/sections/FeaturedArticlesCarousel";
-import { FeaturesSection } from "@/components/sections/FeaturesSection";
-import { GuaranteeSection } from "@/components/sections/GuaranteeSection";
-import { HeroClient } from "@/components/sections/HeroClient";
-import { HeroNews } from "@/components/sections/HeroNews";
 import { IngredientAnalysis } from "@/components/sections/IngredientAnalysis";
 import { NewsGrid } from "@/components/sections/NewsGrid";
 import { OrderSection } from "@/components/sections/OrderSection";
@@ -43,7 +34,17 @@ import { ThumbnailCarousel } from "@/components/sections/ThumbnailCarousel";
 // --- [INICIO DE REFACTORIZACIÓN DE FRONTERA] ---
 // Se importa el Header y CommentSection en su versión de CLIENTE para el canvas.
 import HeaderClient from "@/components/layout/HeaderClient";
+import { BenefitsSection } from "@/components/sections/BenefitsSection";
 import { CommentSectionClient } from "@/components/sections/comments/CommentSectionClient";
+import { CommunitySection } from "@/components/sections/CommunitySection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { DoubleScrollingBanner } from "@/components/sections/DoubleScrollingBanner";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { FeaturedArticlesCarousel } from "@/components/sections/FeaturedArticlesCarousel";
+import { FeaturesSection } from "@/components/sections/FeaturesSection";
+import { GuaranteeSection } from "@/components/sections/GuaranteeSection";
+import { HeroClient } from "@/components/sections/HeroClient";
+import { HeroNews } from "@/components/sections/HeroNews";
 // --- [FIN DE REFACTORIZACIÓN DE FRONTERA] ---
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,72 +1,80 @@
 // RUTA: src/shared/lib/actions/auth/auth.actions.ts
 /**
  * @file auth.actions.ts
- * @description SSoT para las Server Actions de autenticación.
- * @version 13.1.0 (Holistic Observability & Contract Integrity)
+ * @description SSoT para las Server Actions de autenticación, ahora con
+ *              instrumentación de Tareas de Heimdall para el Sismógrafo de Salud.
+ * @version 14.0.0 (Heimdall Task Instrumentation)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
 
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
-import { logger } from "@/shared/lib/logging";
-import { createServerClient } from "@/shared/lib/supabase/server";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
+
 import {
-  SignUpSchema,
-  type SignUpFormData,
-} from "@/shared/lib/schemas/auth/signup.schema";
+  ForgotPasswordSchema,
+  type ForgotPasswordFormData,
+} from "@/shared/lib/schemas/auth/forgot-password.schema";
 import {
   LoginSchema,
   type LoginFormData,
 } from "@/shared/lib/schemas/auth/login.schema";
 import {
-  ForgotPasswordSchema,
-  type ForgotPasswordFormData,
-} from "@/shared/lib/schemas/auth/forgot-password.schema";
+  SignUpSchema,
+  type SignUpFormData,
+} from "@/shared/lib/schemas/auth/signup.schema";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 export async function loginWithPasswordAction(
   data: LoginFormData
 ): Promise<ActionResult<null>> {
-  const traceId = logger.startTrace("loginWithPasswordAction_v13.1");
-  const groupId = logger.startGroup(
-    "[AuthAction] Iniciando flujo de login...",
-    traceId
+  const taskId = logger.startTask(
+    { domain: "AUTH", entity: "USER_SESSION", action: "LOGIN_PASSWORD" },
+    `Login attempt for ${data.email}`
   );
+  let finalStatus: "SUCCESS" | "FAILURE" = "SUCCESS";
 
   try {
+    logger.taskStep(taskId, "VALIDATE_PAYLOAD", "IN_PROGRESS");
     const validation = LoginSchema.safeParse(data);
     if (!validation.success) {
       const firstError = validation.error.errors[0].message;
-      logger.warn("[AuthAction] Validación de login fallida.", {
+      logger.taskStep(taskId, "VALIDATE_PAYLOAD", "FAILURE", {
         error: firstError,
-        traceId,
       });
-      return { success: false, error: firstError };
+      throw new Error(firstError);
     }
-    logger.traceEvent(traceId, "Payload de login validado.");
-
+    logger.taskStep(taskId, "VALIDATE_PAYLOAD", "SUCCESS");
     const { email, password } = validation.data;
+
+    logger.taskStep(taskId, "AUTHENTICATE_USER", "IN_PROGRESS");
     const supabase = createServerClient();
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+    if (error) {
+      logger.taskStep(taskId, "AUTHENTICATE_USER", "FAILURE", {
+        error: error.message,
+      });
+      throw error;
+    }
+    logger.taskStep(taskId, "AUTHENTICATE_USER", "SUCCESS");
 
-    if (error) throw error;
-    logger.traceEvent(traceId, "signInWithPassword exitoso.");
-
+    logger.taskStep(taskId, "REVALIDATE_PATH", "IN_PROGRESS");
     revalidatePath("/", "layout");
-    logger.success("[AuthAction] Flujo de login completado con éxito.", {
-      traceId,
-    });
+    logger.taskStep(taskId, "REVALIDATE_PATH", "SUCCESS");
+
     return { success: true, data: null };
   } catch (error) {
+    finalStatus = "FAILURE";
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[AuthAction] Fallo en el flujo de login.", {
+    logger.error("[loginWithPasswordAction] Fallo en el flujo de login.", {
       error: errorMessage,
-      traceId,
+      taskId,
     });
     return {
       success: false,
@@ -74,120 +82,123 @@ export async function loginWithPasswordAction(
         "Credenciales inválidas. Por favor, verifica tu email y contraseña.",
     };
   } finally {
-    logger.endGroup(groupId);
-    logger.endTrace(traceId);
+    logger.endTask(taskId, finalStatus);
   }
 }
 
 export async function signUpAction(
   data: SignUpFormData
 ): Promise<ActionResult<{ success: true }>> {
-  const traceId = logger.startTrace("signUpAction_v13.1");
-  const groupId = logger.startGroup(
-    "[AuthAction] Iniciando flujo de registro de nuevo usuario...",
-    traceId
+  const taskId = logger.startTask(
+    { domain: "AUTH", entity: "USER_ACCOUNT", action: "CREATE" },
+    `Sign-up attempt for ${data.email}`
   );
+  let finalStatus: "SUCCESS" | "FAILURE" = "SUCCESS";
 
   try {
+    logger.taskStep(taskId, "VALIDATE_PAYLOAD", "IN_PROGRESS");
     const validation = SignUpSchema.safeParse(data);
     if (!validation.success) {
       const firstError = validation.error.errors[0].message;
-      logger.warn("[AuthAction] Validación de registro fallida.", {
+      logger.taskStep(taskId, "VALIDATE_PAYLOAD", "FAILURE", {
         error: firstError,
-        traceId,
       });
-      return { success: false, error: firstError };
+      throw new Error(firstError);
     }
-    logger.traceEvent(traceId, "Payload de registro validado.");
+    logger.taskStep(taskId, "VALIDATE_PAYLOAD", "SUCCESS");
 
     const { email, password, fullName } = validation.data;
     const supabase = createServerClient();
     const origin = headers().get("origin");
 
+    logger.taskStep(taskId, "CREATE_USER", "IN_PROGRESS");
     const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: {
-          full_name: fullName,
-        },
+        data: { full_name: fullName },
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
-
-    if (error) throw error;
-    logger.traceEvent(traceId, "signUp en Supabase exitoso.");
+    if (error) {
+      logger.taskStep(taskId, "CREATE_USER", "FAILURE", {
+        error: error.message,
+      });
+      throw error;
+    }
+    logger.taskStep(taskId, "CREATE_USER", "SUCCESS");
 
     revalidatePath("/", "layout");
-    logger.success("[AuthAction] Flujo de registro completado con éxito.", {
-      traceId,
-    });
     return { success: true, data: { success: true } };
   } catch (error) {
+    finalStatus = "FAILURE";
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[AuthAction] Fallo en el flujo de registro.", {
+    logger.error("[signUpAction] Fallo en el flujo de registro.", {
       error: errorMessage,
-      traceId,
+      taskId,
     });
     return { success: false, error: "No se pudo registrar el usuario." };
   } finally {
-    logger.endGroup(groupId);
-    logger.endTrace(traceId);
+    logger.endTask(taskId, finalStatus);
   }
 }
 
 export async function sendPasswordResetAction(
   data: ForgotPasswordFormData
 ): Promise<ActionResult<null>> {
-  const traceId = logger.startTrace("sendPasswordResetAction_v13.1");
-  const groupId = logger.startGroup(
-    "[AuthAction] Iniciando flujo de reseteo de contraseña...",
-    traceId
+  const taskId = logger.startTask(
+    {
+      domain: "AUTH",
+      entity: "USER_ACCOUNT",
+      action: "PASSWORD_RESET_REQUEST",
+    },
+    `Password reset request for ${data.email}`
   );
+  let finalStatus: "SUCCESS" | "FAILURE" = "SUCCESS";
 
   try {
+    logger.taskStep(taskId, "VALIDATE_PAYLOAD", "IN_PROGRESS");
     const validation = ForgotPasswordSchema.safeParse(data);
     if (!validation.success) {
       const firstError = validation.error.errors[0].message;
-      logger.warn("[AuthAction] Validación de reseteo fallida.", {
+      logger.taskStep(taskId, "VALIDATE_PAYLOAD", "FAILURE", {
         error: firstError,
-        traceId,
       });
-      return { success: false, error: firstError };
+      throw new Error(firstError);
     }
-    logger.traceEvent(traceId, "Payload de reseteo validado.");
+    logger.taskStep(taskId, "VALIDATE_PAYLOAD", "SUCCESS");
 
     const { email } = validation.data;
     const supabase = createServerClient();
     const origin = headers().get("origin");
 
+    logger.taskStep(taskId, "SEND_RESET_EMAIL", "IN_PROGRESS");
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${origin}/auth/callback?next=/account/update-password`,
     });
+    if (error) {
+      logger.taskStep(taskId, "SEND_RESET_EMAIL", "FAILURE", {
+        error: error.message,
+      });
+      throw error;
+    }
+    logger.taskStep(taskId, "SEND_RESET_EMAIL", "SUCCESS");
 
-    if (error) throw error;
-    logger.traceEvent(traceId, "resetPasswordForEmail exitoso.");
-
-    logger.success(
-      "[AuthAction] Flujo de reseteo de contraseña completado con éxito.",
-      { traceId }
-    );
     return { success: true, data: null };
   } catch (error) {
+    finalStatus = "FAILURE";
     const errorMessage =
       error instanceof Error ? error.message : "Error desconocido.";
-    logger.error("[AuthAction] Fallo en el flujo de reseteo de contraseña.", {
+    logger.error("[sendPasswordResetAction] Fallo en el flujo de reseteo.", {
       error: errorMessage,
-      traceId,
+      taskId,
     });
     return {
       success: false,
-      error:
-        "No se pudo enviar el email de recuperación. Por favor, verifica el email e inténtalo de nuevo.",
+      error: "No se pudo enviar el email de recuperación.",
     };
   } finally {
-    logger.endGroup(groupId);
-    logger.endTrace(traceId);
+    logger.endTask(taskId, finalStatus);
   }
 }

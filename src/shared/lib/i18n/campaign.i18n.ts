@@ -6,6 +6,10 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
+import type { ZodError } from "zod";
+
+import { netTracePrefixToPathMap } from "@/shared/lib/config/theming.config";
+import { getDictionary as getGlobalDictionary } from "@/shared/lib/i18n/i18n";
 import {
   // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
   ROUTING_LOCALES as supportedLocales,
@@ -13,21 +17,19 @@ import {
   defaultLocale,
   type Locale,
 } from "@/shared/lib/i18n/i18n.config";
-import { getDictionary as getGlobalDictionary } from "@/shared/lib/i18n/i18n";
-import { loadJsonAsset } from "./campaign.data.loader";
-import { processCampaignData } from "./campaign.data.processor";
-import { deepMerge } from "@/shared/lib/utils";
-import { parseThemeNetString } from "@/shared/lib/utils/theming/theme-utils";
-import { netTracePrefixToPathMap } from "@/shared/lib/config/theming.config";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import { type AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import { logger } from "@/shared/lib/logging";
 import {
   CampaignMapSchema,
   type CampaignMap,
   type CampaignVariantMap,
 } from "@/shared/lib/schemas/campaigns/campaign-map.schema";
-import { logger } from "@/shared/lib/logging";
-import { ZodError } from "zod";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { type AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import { deepMerge } from "@/shared/lib/utils";
+import { parseThemeNetString } from "@/shared/lib/utils/theming/theme-utils";
+
+import { loadJsonAsset } from "./campaign.data.loader";
+import { processCampaignData } from "./campaign.data.processor";
 
 export async function resolveCampaignVariant(
   campaignId: string,
@@ -73,10 +75,10 @@ export async function resolveCampaignVariant(
   }
 }
 
-export type CampaignData = {
+export interface CampaignData {
   dictionary: Dictionary;
   theme: AssembledTheme;
-};
+}
 
 export const getCampaignData = async (
   campaignId: string,
@@ -95,10 +97,10 @@ export const getCampaignData = async (
     const themePlan = parseThemeNetString(variant.theme);
 
     type CampaignContentFile = Partial<Record<Locale, Record<string, unknown>>>;
-    type GlobalDictionaryResult = {
+    interface GlobalDictionaryResult {
       dictionary: Partial<Dictionary>;
       error: ZodError | Error | null;
-    };
+    }
 
     const promises = [
       loadJsonAsset<Partial<AssembledTheme>>(

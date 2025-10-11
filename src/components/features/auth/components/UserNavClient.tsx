@@ -1,10 +1,15 @@
 // RUTA: src/components/features/auth/components/UserNavClient.tsx
 "use client";
-import React, { useState, useMemo, useEffect, useCallback } from "react";
+import type { User } from "@supabase/supabase-js";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { toast } from "sonner";
-import { motion, AnimatePresence } from "framer-motion";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import { Button } from "@/components/ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,17 +18,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
-import { Button } from "@/components/ui/Button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
-import { createClient } from "@/shared/lib/supabase/client";
-import { LastSignInInfo } from "./LastSignInInfo";
-import { WorkspaceSwitcher } from "./WorkspaceSwitcher";
-import type { User } from "@supabase/supabase-js";
-import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { createClient } from "@/shared/lib/supabase/client";
+
+import { LastSignInInfo } from "./LastSignInInfo";
+import { WorkspaceSwitcher } from "./WorkspaceSwitcher";
 type NavContent = NonNullable<Dictionary["userNav"]>;
 type LoginContent = NonNullable<Dictionary["devLoginPage"]>;
 

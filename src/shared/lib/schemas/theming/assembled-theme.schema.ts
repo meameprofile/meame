@@ -9,7 +9,9 @@
  *@author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 import { logger } from "@/shared/lib/logging";
+
 import { ColorsFragmentSchema } from "./fragments/colors.schema";
 import { FontsFragmentSchema } from "./fragments/fonts.schema";
 import { GeometryFragmentSchema } from "./fragments/geometry.schema";

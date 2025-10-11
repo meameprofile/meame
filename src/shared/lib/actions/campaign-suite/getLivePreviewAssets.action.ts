@@ -12,14 +12,14 @@ import { getBaviManifest } from "@/shared/lib/bavi";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
-type LivePreviewAssets = {
+interface LivePreviewAssets {
   baviManifest: BaviManifest;
   dictionary: Dictionary;
-};
+}
 
 export async function getLivePreviewAssetsAction(): Promise<
   ActionResult<LivePreviewAssets>

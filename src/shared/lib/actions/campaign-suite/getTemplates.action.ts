@@ -9,10 +9,11 @@
 
 import { promises as fs } from "fs";
 import path from "path";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
+
+import { logger } from "@/shared/lib/logging";
 import type { TemplateMetadata } from "@/shared/lib/schemas/templates/template.schema";
 import { TemplatesManifestSchema } from "@/shared/lib/schemas/templates/template.schema";
-import { logger } from "@/shared/lib/logging";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 export async function getTemplatesAction(): Promise<
   ActionResult<TemplateMetadata[]>

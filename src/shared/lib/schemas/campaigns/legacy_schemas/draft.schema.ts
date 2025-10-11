@@ -6,6 +6,7 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import { z } from "zod";
+
 // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
 import { ROUTING_LOCALES as supportedLocales } from "@/shared/lib/i18n/i18n.config";
 // --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---

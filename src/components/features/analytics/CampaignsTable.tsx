@@ -7,13 +7,16 @@
  */
 "use client";
 
-import React from "react";
 import {
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import React from "react";
+import type { z } from "zod";
+
+import { Button } from "@/components/ui/Button";
 import {
   Table,
   TableBody,
@@ -22,13 +25,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table";
-import { Button } from "@/components/ui/Button";
-import { getAnalyticsColumns } from "./CampaignsTable.columns";
-import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
-import { logger } from "@/shared/lib/logging";
-import type { z } from "zod";
-import type { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { CampaignAnalyticsData } from "@/shared/lib/schemas/analytics/campaign-analytics.schema";
+import type { CampaignsTableContentSchema } from "@/shared/lib/schemas/components/analytics/campaigns-table.schema";
+
+import { getAnalyticsColumns } from "./CampaignsTable.columns";
 
 type Content = z.infer<typeof CampaignsTableContentSchema>;
 

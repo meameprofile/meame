@@ -9,7 +9,9 @@
 import "server-only";
 import * as fs from "fs/promises";
 import * as path from "path";
+
 import chalk from "chalk";
+
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
 
@@ -20,12 +22,12 @@ const DEV_CONTENT_PATHS_TO_IGNORE = [
   path.join("messages", "pages", "dev"),
 ];
 
-export type I18nFileContent = { [key in Locale]?: Record<string, unknown> };
+export type I18nFileContent = Partial<Record<Locale, Record<string, unknown>>>;
 
-export type DiscoveryResult = {
+export interface DiscoveryResult {
   files: string[];
   contents: I18nFileContent[];
-};
+}
 
 export async function discoverAndReadI18nFiles(options?: {
   excludeDevContent?: boolean;

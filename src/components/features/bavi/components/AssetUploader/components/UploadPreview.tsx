@@ -3,13 +3,14 @@
  * @file UploadPreview.tsx
  * @description Componente de presentación puro para mostrar el resultado de la subida.
  * @version 2.0.0 (MEA/UX Injected & Elite Compliance)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React from "react";
 import type { UploadApiResponse } from "cloudinary";
 import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+
 import { logger } from "@/shared/lib/logging";
 
 interface UploadPreviewProps {

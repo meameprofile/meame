@@ -8,14 +8,15 @@
  */
 "use client";
 
-import React from "react";
 import { motion, type Variants } from "framer-motion";
-import { Container } from "@/components/ui/Container";
-import { LightRays } from "@/components/razBits/LightRays/LightRays";
-import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
-import type { PageHeaderContentSchema } from "@/shared/lib/schemas/components/page-header.schema";
+import React from "react";
 import type { z } from "zod";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { LightRays } from "@/components/razBits/LightRays/LightRays";
+import { Container } from "@/components/ui/Container";
+import { logger } from "@/shared/lib/logging";
+import type { PageHeaderContentSchema } from "@/shared/lib/schemas/components/page-header.schema";
 import { cn } from "@/shared/lib/utils/cn";
 
 type PageHeaderContent = z.infer<typeof PageHeaderContentSchema>;

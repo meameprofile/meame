@@ -8,14 +8,15 @@
 "use client";
 
 import React, { forwardRef } from "react";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { Container } from "@/components/ui/Container";
-import { cn } from "@/shared/lib/utils/cn";
 import { logger } from "@/shared/lib/logging";
 import type {
   ContentBlocks,
   ContentBlock,
 } from "@/shared/lib/schemas/components/content-block.schema";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { cn } from "@/shared/lib/utils/cn";
 
 interface TextSectionProps {
   content: ContentBlocks;

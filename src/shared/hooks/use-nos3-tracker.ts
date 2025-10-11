@@ -9,9 +9,10 @@
  */
 "use client";
 
-import { useEffect, useRef, useCallback, useMemo } from "react";
-import { usePathname } from "next/navigation";
 import { createId } from "@paralleldrive/cuid2";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useCallback, useMemo } from "react";
+
 import { logger } from "@/shared/lib/logging";
 import type { eventWithTime } from "@/shared/lib/types/rrweb.types";
 

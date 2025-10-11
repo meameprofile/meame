@@ -8,11 +8,12 @@
 import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
+
+import { logger } from "@/shared/lib/logging";
 import {
   EmailThemeSchema,
   type EmailTheme,
 } from "@/shared/lib/schemas/emails/email-theme.schema";
-import { logger } from "@/shared/lib/logging";
 
 /**
  * @function getEmailStyles
@@ -23,7 +24,7 @@ import { logger } from "@/shared/lib/logging";
  * @throws {Error} Si el archivo de tema no se encuentra o no es válido.
  */
 export async function getEmailStyles(
-  themeName: string = "default"
+  themeName = "default"
 ): Promise<EmailTheme> {
   const filePath = path.join(
     process.cwd(),

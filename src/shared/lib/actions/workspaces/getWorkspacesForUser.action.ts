@@ -10,20 +10,21 @@
 
 import "server-only";
 import { z } from "zod";
-import { createServerClient } from "@/shared/lib/supabase/server";
+
 import { logger } from "@/shared/lib/logging";
-import type { ActionResult } from "@/shared/lib/types/actions.types";
 import {
   WorkspaceSchema,
   type Workspace,
 } from "@/shared/lib/schemas/entities/workspace.schema";
 import type { WorkspaceRow } from "@/shared/lib/schemas/workspaces/workspaces.contracts";
+import { createServerClient } from "@/shared/lib/supabase/server";
+import type { ActionResult } from "@/shared/lib/types/actions.types";
 
 // --- [INICIO DE REFACTORIZACIÓN DE TIPO v3.1.0] ---
 // Se define un tipo explícito para la forma de los datos que devuelve la consulta anidada.
-type WorkspaceMemberWithWorkspace = {
+interface WorkspaceMemberWithWorkspace {
   workspaces: WorkspaceRow | null;
-};
+}
 // --- [FIN DE REFACTORIZACIÓN DE TIPO v3.1.0] ---
 
 function mapSupabaseToWorkspace(row: WorkspaceRow): Workspace {

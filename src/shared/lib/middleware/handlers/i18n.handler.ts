@@ -1,32 +1,35 @@
 // RUTA: src/shared/lib/middleware/handlers/i18n.handler.ts
 /**
  * @file i18n.handler.ts
- * @description Manejador de middleware i18n, ahora con consumo de la SSoT de rutas.
- * @version 12.2.0 (Observability Contract Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @description Manejador de middleware i18n, con consumo de la SSoT de rutas restaurado.
+ * @version 12.3.0 (Routing Contract Restoration & Elite Compliance)
+ * @author L.I.A. Legacy
  */
-import "server-only";
+"use server-only";
+import { match as matchLocale } from "@formatjs/intl-localematcher";
+import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
+
+import { getLocaleFromCountry } from "../../i18n/country-locale-map";
+import { LANGUAGE_MANIFEST } from "../../i18n/global.i18n.manifest";
 import {
   ROUTING_LOCALES,
   defaultLocale,
   type Locale,
 } from "../../i18n/i18n.config";
-import { LANGUAGE_MANIFEST } from "../../i18n/global.i18n.manifest";
-import { getLocaleFromCountry } from "../../i18n/country-locale-map";
-import { match as matchLocale } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator";
-import { type MiddlewareHandler } from "../engine";
-import { routes } from "../../navigation";
 import { logger } from "../../logging";
+import { type MiddlewareHandler } from "../engine";
 
 const PUBLIC_FILE = /\.(.*)$/;
+// --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RUTA v12.3.0] ---
+// La ruta '/select-language' se gestiona aquí como una ruta libre de locale.
 const LOCALE_FREE_PATHS = ["/select-language", "/api", "/auth"];
+// --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RUTA v12.3.0] ---
 
 const allPossibleLocales = LANGUAGE_MANIFEST.map((lang) => lang.code);
 
 export const i18nHandler: MiddlewareHandler = (req, res) => {
-  const traceId = logger.startTrace("i18nHandler_v12.2");
+  const traceId = logger.startTrace("i18nHandler_v12.3");
   const { pathname } = req.nextUrl;
   const groupId = logger.startGroup(
     `[i18nHandler] Procesando ruta: ${pathname}`
@@ -37,6 +40,10 @@ export const i18nHandler: MiddlewareHandler = (req, res) => {
       PUBLIC_FILE.test(pathname) ||
       LOCALE_FREE_PATHS.some((p) => pathname.startsWith(p))
     ) {
+      logger.trace(
+        `[i18nHandler] Ruta ${pathname} es libre de locale. Omitiendo.`,
+        { traceId }
+      );
       return res;
     }
 
@@ -45,11 +52,15 @@ export const i18nHandler: MiddlewareHandler = (req, res) => {
         pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
     if (pathnameHasImplementedLocale) {
+      logger.trace(
+        `[i18nHandler] Ruta ${pathname} ya contiene un locale válido. Omitiendo.`,
+        { traceId }
+      );
       return res;
     }
 
     let targetLocale: Locale | null = null;
-    let detectionSource: string = "unknown";
+    let detectionSource = "unknown";
 
     const preferredLocale = req.cookies.get("NEXT_LOCALE")?.value as
       | Locale
@@ -106,7 +117,7 @@ export const i18nHandler: MiddlewareHandler = (req, res) => {
       "[i18nHandler] Fallo crítico no controlado. Redirigiendo a selector de idioma.",
       { error: errorMessage, pathname, traceId }
     );
-    const selectLangUrl = new URL(routes.selectLanguage.path(), req.url);
+    const selectLangUrl = new URL("/select-language", req.url);
     selectLangUrl.searchParams.set("returnUrl", pathname);
     return NextResponse.redirect(selectLangUrl);
   } finally {

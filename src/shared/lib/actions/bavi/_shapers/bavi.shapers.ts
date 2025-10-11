@@ -6,16 +6,16 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
+import { logger } from "@/shared/lib/logging";
+import type {
+  BaviAssetRow,
+  BaviVariantRow,
+} from "@/shared/lib/schemas/bavi/bavi.contracts";
 import {
   BaviAssetSchema,
   type BaviAsset,
 } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
 import type { RaZPromptsSesaTags } from "@/shared/lib/schemas/raz-prompts/atomic.schema";
-import type {
-  BaviAssetRow,
-  BaviVariantRow,
-} from "@/shared/lib/schemas/bavi/bavi.contracts";
-import { logger } from "@/shared/lib/logging";
 
 // --- [INICIO DE REFACTORIZACIÓN DE TIPO SOBERANO] ---
 // Contrato explícito para la fila de variante anidada.

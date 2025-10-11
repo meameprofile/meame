@@ -7,12 +7,13 @@
  */
 "use client";
 
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import React from "react";
+
 import { DynamicIcon } from "@/components/ui";
-import type { Comment } from "@/shared/lib/schemas/community/comment.schema";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { logger } from "@/shared/lib/logging";
+import type { Comment } from "@/shared/lib/schemas/community/comment.schema";
 
 // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
 interface CommentListProps {

@@ -8,9 +8,10 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
+import { logger } from "@/shared/lib/logging";
 import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import { generateCssVariablesFromTheme } from "@/shared/lib/utils/theming/theme-utils";
-import { logger } from "@/shared/lib/logging";
 
 interface CampaignThemeProviderProps {
   theme: AssembledTheme;

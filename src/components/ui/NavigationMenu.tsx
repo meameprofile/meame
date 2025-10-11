@@ -1,14 +1,14 @@
 // components/ui/NavigationMenu.tsx
 "use client"; // <-- ¡CORRECCIÓN APLICADA AQUÍ!
 
-import * as React from "react";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
+import * as React from "react";
+
 // import { ChevronDown } from "lucide-react"; // <-- ELIMINADO: Se usará DynamicIcon
 import { DynamicIcon } from "@/components/ui"; // <-- AÑADIDO: Importación de DynamicIcon
-
-import { cn } from "@/shared/lib/utils/cn";
 import { logger } from "@/shared/lib/logging"; // <-- AÑADIDO: Para observabilidad
+import { cn } from "@/shared/lib/utils/cn";
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,

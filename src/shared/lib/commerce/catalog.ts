@@ -6,14 +6,15 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
-import { logger } from "@/shared/lib/logging";
+import type { z } from "zod";
+
 import { loadJsonAsset } from "@/shared/lib/i18n/campaign.data.loader";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import {
   ProductCatalogSchema,
   type Product,
 } from "@/shared/lib/schemas/entities/product.schema";
-import type { z } from "zod";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
 
 type ProductCatalogI18n = Partial<
   Record<Locale, z.infer<typeof ProductCatalogSchema>>

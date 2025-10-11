@@ -7,29 +7,32 @@
  *              ambigüedad de tipo 'ArrayBufferLike' y garantizando la seguridad
  *              de tipos absoluta en todos los entornos.
  * @version 4.4.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
+
 import { ImageResponse } from "@vercel/og";
-import { previewRenderers } from "@/shared/lib/dev/preview-renderers";
-import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
-import { deepMerge } from "@/shared/lib/utils";
-import { loadJsonAsset } from "@/shared/lib/i18n/campaign.data.loader";
-import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import { AssembledThemeSchema } from "@/shared/lib/schemas/theming/assembled-theme.schema";
-import { logger } from "@/shared/lib/logging";
-import { ErrorPreview } from "@/components/features/dev-tools/ErrorPreview";
-import type { PreviewRenderResult } from "./preview-renderers/_types";
 import React from "react";
 
-type FontData = {
+import { ErrorPreview } from "@/components/features/dev-tools/ErrorPreview";
+import { previewRenderers } from "@/shared/lib/dev/preview-renderers";
+import { loadJsonAsset } from "@/shared/lib/i18n/campaign.data.loader";
+import { defaultLocale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import { AssembledThemeSchema } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import { deepMerge } from "@/shared/lib/utils";
+
+import type { PreviewRenderResult } from "./preview-renderers/_types";
+
+interface FontData {
   name: string;
   data: ArrayBuffer;
   weight: 400;
   style: "normal";
-};
+}
 
 let themeCache: AssembledTheme | null = null;
 let fontCache: FontData | null = null;

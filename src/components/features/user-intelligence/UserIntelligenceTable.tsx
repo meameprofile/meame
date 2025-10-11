@@ -7,13 +7,16 @@
  */
 "use client";
 
-import React from "react";
 import {
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import React from "react";
+import type { z } from "zod";
+
+import { Button } from "@/components/ui/Button";
 import {
   Table,
   TableBody,
@@ -22,13 +25,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table";
-import { Button } from "@/components/ui/Button";
-import { logger } from "@/shared/lib/logging";
-import { getUserIntelligenceColumns } from "./UserIntelligenceTable.columns";
-import type { UserIntelligenceContentSchema } from "@/shared/lib/schemas/pages/dev-user-intelligence.i18n.schema";
-import type { z } from "zod";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
 import type { ProfiledUser } from "@/shared/lib/actions/user-intelligence/user-intelligence.contracts";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
+import type { UserIntelligenceContentSchema } from "@/shared/lib/schemas/pages/dev-user-intelligence.i18n.schema";
+
+import { getUserIntelligenceColumns } from "./UserIntelligenceTable.columns";
 
 type Content = z.infer<typeof UserIntelligenceContentSchema>;
 

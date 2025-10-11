@@ -22,10 +22,10 @@ logger.trace(
  * @property {true} success - Indicador de éxito.
  * @property {T} data - El payload de datos de la operación.
  */
-export type SuccessResult<T> = {
+export interface SuccessResult<T> {
   success: true;
   data: T;
-};
+}
 
 /**
  * @type ErrorResult
@@ -33,10 +33,10 @@ export type SuccessResult<T> = {
  * @property {false} success - Indicador de fallo.
  * @property {string} error - Un mensaje de error o una clave i18n.
  */
-export type ErrorResult = {
+export interface ErrorResult {
   success: false;
   error: string;
-};
+}
 
 /**
  * @type ActionResult<T>

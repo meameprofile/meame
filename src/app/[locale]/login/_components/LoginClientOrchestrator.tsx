@@ -6,10 +6,12 @@
  *              temporizador de inactividad de 2 minutos y una notificación interactiva.
  *              Refuerza la lógica de redirección post-login para una UX sin interrupciones.
  * @version 3.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
+import Cookies from "js-cookie";
+import { useSearchParams, useRouter } from "next/navigation";
 import React, {
   useEffect,
   useMemo,
@@ -17,20 +19,19 @@ import React, {
   useRef,
   useTransition,
 } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
+
 import { AuthForm } from "@/components/features/auth/AuthForm";
-import { logger } from "@/shared/lib/logging";
-import type { Locale } from "@/shared/lib/i18n/i18n.config";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
+import { Button } from "@/components/ui/Button";
 import {
   loginWithPasswordAction,
   linkAnonymousSessionToUserAction,
 } from "@/shared/lib/actions/auth";
-import type { LoginFormData } from "@/shared/lib/schemas/auth/login.schema";
-import Cookies from "js-cookie";
+import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
-import { Button } from "@/components/ui/Button";
+import type { LoginFormData } from "@/shared/lib/schemas/auth/login.schema";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 
 type AuthFormContent = NonNullable<Dictionary["devLoginPage"]>;
 type OAuthButtonsContent = NonNullable<Dictionary["oAuthButtons"]>;

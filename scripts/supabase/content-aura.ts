@@ -8,9 +8,11 @@
  */
 import { promises as fs } from "fs";
 import * as path from "path";
-import { createScriptClient } from "../_utils/supabaseClient";
-import { scriptLogger as logger } from "../_utils/logger";
+
 import type { Database } from "@/shared/lib/supabase/database.types";
+
+import { scriptLogger as logger } from "../_utils/logger";
+import { createScriptClient } from "../_utils/supabaseClient";
 
 type AuraTables = Extract<
   keyof Database["public"]["Tables"],

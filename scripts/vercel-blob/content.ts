@@ -5,13 +5,16 @@
  * @version 1.2.0 (Logger v20+ Contract Compliance)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { list } from "@vercel/blob";
 import { promises as fs } from "fs";
 import path from "path";
+
+import { list } from "@vercel/blob";
 import { z } from "zod";
+
+import { RrwebEventSchema } from "@/shared/lib/schemas/analytics/rrweb.schema";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger as logger } from "../_utils/logger";
-import { RrwebEventSchema } from "@/shared/lib/schemas/analytics/rrweb.schema";
 
 async function diagnoseBlobContent() {
   const traceId = logger.startTrace("diagnoseBlobContent_v1.2");

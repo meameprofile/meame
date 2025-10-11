@@ -9,10 +9,11 @@
  */
 "use client";
 
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useGlobalPageLoader } from "@/shared/hooks/use-global-page-loader";
+import React from "react";
+
 import Loading from "@/app/[locale]/(dev)/loading";
+import { useGlobalPageLoader } from "@/shared/hooks/use-global-page-loader";
 
 export function GlobalLoader() {
   const { isLoading } = useGlobalPageLoader();

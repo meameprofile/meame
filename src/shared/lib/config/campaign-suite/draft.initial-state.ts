@@ -5,8 +5,8 @@
  * @version 7.0.0 (Sovereign Origin Flow Contract)
  * @author RaZ Podestá - MetaShark Tech
  */
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import { logger } from "@/shared/lib/logging";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 logger.trace(
   "[draft.initial-state.ts] Módulo de estado inicial de borrador v7.0 cargado."

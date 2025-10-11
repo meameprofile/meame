@@ -3,27 +3,30 @@
  * @file CampaignSuiteWizard.tsx
  * @description Orquestador de cliente y "Layout Shell" para la SDC,
  *              alineado con la nueva arquitectura zonal inspirada en Canva.
- * @version 23.0.0 (Zoned Layout Architecture)
+ * @version 23.1.0 (Routing Contract Restoration): Se corrige la clave de ruta
+ *              utilizada para la navegación, alineándola con la SSoT de 'navigation.ts'.
  * @author L.I.A. Legacy
  */
 "use client";
 
-import React, { useMemo, useCallback, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { logger } from "@/shared/lib/logging";
-import { stepsDataConfig } from "@/shared/lib/config/campaign-suite/wizard.data.config";
-import { useCampaignDraftStore } from "@/shared/hooks/campaign-suite/use-campaign-draft.store";
-import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
-import { WizardProvider } from "./_context/WizardContext";
-import { ProgressContext, type ProgressStep } from "./_context/ProgressContext";
-import { WizardHeader } from "./_components/WizardHeader";
-import { WizardClientLayout } from "./_components/WizardClientLayout";
-import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
-import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import React, { useMemo, useCallback, useEffect } from "react";
+
 import type { LoadedFragments } from "@/shared/lib/schemas/theme-fragments/theme-fragments.contracts";
 import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
+import { useCampaignDraftStore } from "@/shared/hooks/campaign-suite/use-campaign-draft.store";
+import { useDraftMetadataStore } from "@/shared/hooks/campaign-suite/use-draft-metadata.store";
+import { stepsDataConfig } from "@/shared/lib/config/campaign-suite/wizard.data.config";
+import { logger } from "@/shared/lib/logging";
 import { routes } from "@/shared/lib/navigation";
+import type { BaviManifest } from "@/shared/lib/schemas/bavi/bavi.manifest.schema";
+import type { Dictionary } from "@/shared/lib/schemas/i18n.schema";
 import { getCurrentLocaleFromPathname } from "@/shared/lib/utils/i18n/i18n.utils";
+
+import { WizardClientLayout } from "./_components/WizardClientLayout";
+import { WizardHeader } from "./_components/WizardHeader";
+import { ProgressContext, type ProgressStep } from "./_context/ProgressContext";
+import { WizardProvider } from "./_context/WizardContext";
 
 interface CampaignSuiteWizardProps {
   children: React.ReactNode;
@@ -41,7 +44,7 @@ export function CampaignSuiteWizard({
   dictionary,
 }: CampaignSuiteWizardProps) {
   const traceId = useMemo(
-    () => logger.startTrace("CampaignSuiteWizard_v23.0"),
+    () => logger.startTrace("CampaignSuiteWizard_v23.1"),
     []
   );
   useEffect(() => {
@@ -66,12 +69,15 @@ export function CampaignSuiteWizard({
 
   const handleNavigation = useCallback(
     (newStepId: number) => {
+      // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO DE RUTA v23.1.0] ---
+      // Se utiliza la clave correcta 'creatorCampaignSuiteWithStepId' desde la SSoT.
       router.push(
-        routes.creatorCampaignSuite.path({
+        routes.creatorCampaignSuiteWithStepId.path({
           locale,
           stepId: [String(newStepId)],
         })
       );
+      // --- [FIN DE REFACTORIZACIÓN DE CONTRATO DE RUTA v23.1.0] ---
     },
     [router, locale]
   );

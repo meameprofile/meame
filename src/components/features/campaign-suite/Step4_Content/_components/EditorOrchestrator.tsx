@@ -6,11 +6,13 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
-import React from "react";
 import { AnimatePresence } from "framer-motion";
+import React from "react";
+
 import { sectionsConfig } from "@/shared/lib/config/sections.config";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 import type { Locale } from "@/shared/lib/i18n/i18n.config";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+
 import { ContentEditor } from "../ContentEditor";
 
 interface EditorOrchestratorProps {

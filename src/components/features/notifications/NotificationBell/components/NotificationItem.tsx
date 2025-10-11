@@ -6,11 +6,12 @@
  *@author RaZ Podestá - MetaShark Tech
  */
 import React from "react";
+
 import { DropdownMenuItem } from "@/components/ui/DropdownMenu";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
-import type { Notification } from "@/shared/lib/types/notifications.types";
 import type { LucideIconName } from "@/shared/lib/config/lucide-icon-names";
 import { logger } from "@/shared/lib/logging";
+import type { Notification } from "@/shared/lib/types/notifications.types";
 
 const iconMap: Record<Notification["type"], LucideIconName> = {
   info: "Info",

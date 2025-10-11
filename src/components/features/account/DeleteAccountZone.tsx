@@ -7,16 +7,10 @@
  */
 "use client";
 
-import React, { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import React, { useState, useTransition } from "react";
 import { toast } from "sonner";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/Card";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,9 +23,16 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/AlertDialog";
 import { Button } from "@/components/ui/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/Card";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { DynamicIcon } from "@/components/ui/DynamicIcon";
 import { deleteUserAccountAction } from "@/shared/lib/actions/account/manage-account.action";
 import { logger } from "@/shared/lib/logging";
 

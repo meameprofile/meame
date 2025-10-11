@@ -6,9 +6,11 @@
  * @version 4.1.0 (Type Contract Restoration)
  * @author RaZ Podestá - MetaShark Tech
  */
-import { v2 as cloudinary } from "cloudinary";
 import { promises as fs } from "fs";
 import * as path from "path";
+
+import { v2 as cloudinary } from "cloudinary";
+
 import { loadEnvironment } from "../_utils/env";
 import { scriptLogger as logger } from "../_utils/logger";
 

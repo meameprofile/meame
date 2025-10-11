@@ -3,22 +3,24 @@
  * @file i18n.ts
  * @description Orquestador de i18n "isomórfico", con lógica de ensamblaje de producción reparada.
  * @version 23.0.0 (Production Assembly Logic Fix & Strict Contract)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 import "server-only";
 import { cache } from "react";
 import { type ZodError } from "zod";
-import { i18nSchema, type Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
 import {
   ROUTING_LOCALES,
   defaultLocale,
   type Locale,
 } from "@/shared/lib/i18n/i18n.config";
-import { logger } from "@/shared/lib/logging";
 import { getDevDictionary } from "@/shared/lib/i18n/i18n.dev";
-import { createServerClient } from "../supabase/server";
+import { logger } from "@/shared/lib/logging";
+import { i18nSchema, type Dictionary } from "@/shared/lib/schemas/i18n.schema";
+
 import type { I18nFileContent } from "../dev/i18n-discoverer";
 import type { Tables } from "../supabase/database.types";
+import { createServerClient } from "../supabase/server";
 
 type I18nEntry = Pick<
   Tables<"i18n_content_entries">,

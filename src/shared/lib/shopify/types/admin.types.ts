@@ -6,34 +6,34 @@
  * @author RaZ Podestá - MetaShark Tech
  */
 
-type Connection<T> = {
-  edges: Array<{ node: T }>;
+interface Connection<T> {
+  edges: { node: T }[];
   pageInfo: {
     hasNextPage: boolean;
     endCursor: string;
   };
-};
+}
 
-type Money = {
+interface Money {
   amount: string;
   currencyCode: string;
-};
+}
 
 // --- Tipos de Inventario ---
-export type ShopifyAdminInventoryItem = {
+export interface ShopifyAdminInventoryItem {
   tracked: boolean;
   unitCost: Money;
-};
+}
 
 // --- Tipos de Variantes ---
-export type ShopifyAdminProductVariant = {
+export interface ShopifyAdminProductVariant {
   price: Money;
   inventoryItem: ShopifyAdminInventoryItem;
   inventoryQuantity: number;
-};
+}
 
 // --- Tipos de Producto (Admin) ---
-export type ShopifyAdminProduct = {
+export interface ShopifyAdminProduct {
   id: string; // Global ID (ej. "gid://shopify/Product/12345")
   title: string;
   handle: string;
@@ -41,10 +41,10 @@ export type ShopifyAdminProduct = {
   createdAt: string;
   updatedAt: string;
   variants: Connection<ShopifyAdminProductVariant>;
-};
+}
 
 // --- Tipos de Operaciones de API (Admin) ---
-export type ShopifyAdminProductsOperation = {
+export interface ShopifyAdminProductsOperation {
   data: {
     products: Connection<ShopifyAdminProduct>;
   };
@@ -52,13 +52,13 @@ export type ShopifyAdminProductsOperation = {
     first: number;
     after?: string;
   };
-};
+}
 
-export type ShopifyAdminProductOperation = {
+export interface ShopifyAdminProductOperation {
   data: {
     product: ShopifyAdminProduct;
   };
   variables: {
     id: string;
   };
-};
+}

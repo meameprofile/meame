@@ -10,9 +10,10 @@
 
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+
 import { logger } from "@/shared/lib/logging";
-import type { Workspace } from "@/shared/lib/schemas/entities/workspace.schema";
 import type { CampaignTemplate } from "@/shared/lib/schemas/campaigns/template.schema";
+import type { Workspace } from "@/shared/lib/schemas/entities/workspace.schema";
 
 interface WorkspaceState {
   activeWorkspaceId: string | null;

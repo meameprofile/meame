@@ -1,5 +1,6 @@
 // RUTA: src/shared/lib/schemas/bavi/bavi.contracts.ts
 import { z } from "zod";
+
 import type {
   Tables,
   TablesInsert,

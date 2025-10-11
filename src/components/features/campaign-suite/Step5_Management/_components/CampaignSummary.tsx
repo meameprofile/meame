@@ -3,14 +3,14 @@
  * @file CampaignSummary.tsx
  * @description Aparato atómico para la vista de resumen, alineado con el contrato de CampaignDraft v7.0+.
  * @version 2.1.0 (CampaignDraft v7.0 Contract Alignment)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-import { logger } from "@/shared/lib/logging";
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
+import React from "react";
+
+import { DynamicIcon } from "@/components/ui";
 import {
   Card,
   CardContent,
@@ -18,7 +18,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { DynamicIcon } from "@/components/ui";
+import { logger } from "@/shared/lib/logging";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 interface CampaignSummaryProps {
   draft: CampaignDraft;

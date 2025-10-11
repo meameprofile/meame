@@ -7,14 +7,15 @@
  */
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import type { User } from "@supabase/supabase-js";
 import Cookies from "js-cookie";
-import { createClient } from "@/shared/lib/supabase/client";
+import { useState, useEffect, useMemo, useCallback } from "react";
+
 import { getCurrentUserProfile_Action } from "@/shared/lib/actions/account/get-current-user-profile.action";
 import { linkAnonymousSessionToUserAction } from "@/shared/lib/actions/auth/linkAnonymousSessionToUser.action";
-import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
-import type { User } from "@supabase/supabase-js";
 import { logger } from "@/shared/lib/logging";
+import type { ProfilesRow } from "@/shared/lib/schemas/account/account.contracts";
+import { createClient } from "@/shared/lib/supabase/client";
 
 const FINGERPRINT_COOKIE = "visitor_fingerprint";
 

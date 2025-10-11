@@ -8,7 +8,6 @@
  * @version 3.0.0
  * @author RaZ Podestá - MetaShark Tech
  */
-import React from "react";
 import {
   Body,
   Container,
@@ -21,10 +20,12 @@ import {
   Section,
   Text,
 } from "@react-email/components";
+import React from "react";
+
 import { logger } from "@/shared/lib/logging";
-import type { OrderItem } from "@/shared/lib/schemas/entities/order.schema";
-import type { OrderConfirmationEmailContent } from "@/shared/lib/schemas/emails/order-confirmation-email.schema";
 import type { EmailTheme } from "@/shared/lib/schemas/emails/email-theme.schema";
+import type { OrderConfirmationEmailContent } from "@/shared/lib/schemas/emails/order-confirmation-email.schema";
+import type { OrderItem } from "@/shared/lib/schemas/entities/order.schema";
 
 interface OrderConfirmationEmailProps {
   content: OrderConfirmationEmailContent;

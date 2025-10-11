@@ -2,20 +2,19 @@
 /**
  * @file use-aura-tracker.ts
  * @description Hook de cliente soberano para el sistema de analíticas "Aura".
- *              v7.0.0 (Resilient & Standardized): Simplificado para consumir la
- *              lógica de persistencia resiliente del logger soberano.
- * @version 7.0.0
- *@author RaZ Podestá - MetaShark Tech
+ *              v8.0.0 (Heimdall Task Alignment): Nivelado para utilizar el
+ *              paradigma de Tareas del emisor Heimdall en lugar de la función
+ *              'track' obsoleta, cumpliendo con la arquitectura de observabilidad soberana.
+ * @version 8.0.0
+ *@author L.I.A. Legacy
  */
 "use client";
 
-import { useEffect, useCallback, useState, useMemo } from "react";
-import { usePathname } from "next/navigation";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
-import { logger } from "@/shared/lib/logging";
+import { usePathname } from "next/navigation";
+import { useEffect, useCallback, useState, useMemo } from "react";
 
-// Los KEYS y la lógica de cryptoEngine han sido eliminados.
-// El hook ya no tiene la responsabilidad de la persistencia.
+import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
 
 type AuraScope = "user" | "visitor";
 
@@ -33,7 +32,7 @@ export function useAuraTracker({
   enabled,
 }: AuraTrackerProps) {
   const traceId = useMemo(
-    () => logger.startTrace(`auraTracker_v7.0:${scope}`),
+    () => logger.startTrace(`auraTracker_v8.0:${scope}`),
     [scope]
   );
   const [fingerprintId, setFingerprintId] = useState<string | null>(null);
@@ -61,8 +60,6 @@ export function useAuraTracker({
     }
   }, [scope, fingerprintId, enabled, traceId]);
 
-  // La lógica de `sendBatch` ha sido eliminada y centralizada en `logging.ts`.
-
   const trackEvent = useCallback(
     async (eventType: string, payload: Record<string, unknown> = {}) => {
       if (!enabled) return;
@@ -76,16 +73,20 @@ export function useAuraTracker({
         scope: scope,
       };
 
-      // Se delega la creación del evento, encolado y envío al logger soberano.
-      // Creamos una traza atómica para este evento específico.
-      const eventTraceId = logger.startTrace(`auraEvent:${eventType}`);
-      logger.track(eventType, {
-        status: "IN_PROGRESS",
-        traceId: eventTraceId,
-        payload: eventPayload,
-      });
-      // El logger manejará la persistencia de forma asíncrona.
-      logger.endTrace(eventTraceId);
+      // --- [INICIO DE REFACTORIZACIÓN A TAREAS DE HEIMDALL] ---
+      // Cada evento de Aura ahora se registra como una Tarea atómica en Heimdall.
+      const taskId = logger.startTask(
+        {
+          domain: "AURA_EVENT",
+          entity: scope.toUpperCase(),
+          action: eventType.toUpperCase(),
+        },
+        `Aura Event: ${eventType}`,
+        eventPayload
+      );
+      // La tarea se finaliza inmediatamente, ya que es un evento puntual.
+      logger.endTask(taskId, "SUCCESS");
+      // --- [FIN DE REFACTORIZACIÓN A TAREAS DE HEIMDALL] ---
     },
     [enabled, scope, fingerprintId, campaignId, variantId, pathname]
   );
@@ -96,9 +97,6 @@ export function useAuraTracker({
     logger.info(`[AuraTracker] Tracker activado para scope: ${scope}.`, {
       traceId,
     });
-
-    // Se elimina la lógica de intervalo y de 'beforeunload'.
-    // El logger soberano ahora gestiona el ciclo de vida de la persistencia de forma global.
 
     return () => {
       logger.info(`[AuraTracker] Hook desmontado para scope: ${scope}.`, {

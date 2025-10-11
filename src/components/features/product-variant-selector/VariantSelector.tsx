@@ -8,9 +8,11 @@
 "use client";
 
 import React from "react";
-import { cn } from "@/shared/lib/utils/cn";
-import { useVariantSelector } from "./product-variant.context";
+
 import { Button } from "@/components/ui/Button";
+import { cn } from "@/shared/lib/utils/cn";
+
+import { useVariantSelector } from "./product-variant.context";
 
 export function VariantSelector(): React.ReactElement {
   const { options, variants, selectedOptions, updateOption } =

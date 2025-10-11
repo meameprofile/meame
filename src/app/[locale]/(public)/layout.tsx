@@ -8,12 +8,13 @@
  */
 import "server-only";
 import React from "react";
-import Header from "@/components/layout/Header";
+
+import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 import { Footer } from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 import { getDictionary } from "@/shared/lib/i18n/i18n";
 import { type Locale } from "@/shared/lib/i18n/i18n.config";
 import { logger } from "@/shared/lib/logging";
-import { DeveloperErrorDisplay } from "@/components/features/dev-tools/DeveloperErrorDisplay";
 
 interface PublicLayoutProps {
   children: React.ReactNode;

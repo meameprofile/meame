@@ -5,11 +5,11 @@
  *              v2.0.0 (Theming Sovereignty): Se enriquece el BuildContext para
  *              incluir el tema ya ensamblado, centralizando la lógica de theming.
  * @version 2.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
-import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
-import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
 import { logger } from "@/shared/lib/logging";
+import type { AssembledTheme } from "@/shared/lib/schemas/theming/assembled-theme.schema";
+import type { CampaignDraft } from "@/shared/lib/types/campaigns/draft.types";
 
 logger.trace(
   "[ssg/engine/types.ts] Módulo de tipos del motor SSG v2.0 cargado."

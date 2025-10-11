@@ -7,12 +7,13 @@
  */
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
-import ReactConfetti from "react-confetti";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { useTheme } from "next-themes";
-import { logger } from "@/shared/lib/logging";
+import React, { useState, useEffect, useMemo } from "react";
+import ReactConfetti from "react-confetti";
+
 import { useSound } from "@/shared/hooks/use-sound";
+import { logger } from "@/shared/lib/logging";
 
 interface DigitalConfettiProps {
   isActive: boolean;

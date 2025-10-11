@@ -5,12 +5,13 @@
  *              v4.0.0 (CampaignDraft v7.0 Contract Alignment): Se alinea con
  *              el nuevo contrato de `CampaignDraft`, usando `campaignName`.
  * @version 4.0.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use server-only";
 
 import { promises as fs } from "fs";
 import path from "path";
+
 import { logger } from "@/shared/lib/logging";
 import type { BuildContext } from "@/shared/lib/ssg/engine/types";
 

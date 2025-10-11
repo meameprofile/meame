@@ -3,11 +3,13 @@
  * @file AssetUploaderModal.tsx
  * @description Modal soberano para la ingesta de nuevos activos en la BAVI.
  * @version 8.0.0 (Sovereign API Consumption)
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React from "react";
+
+import { AssetUploader } from "@/components/features/bavi/components/AssetUploader";
 import {
   Dialog,
   DialogContent,
@@ -15,7 +17,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/Dialog";
-import { AssetUploader } from "@/components/features/bavi/components/AssetUploader";
 import type { BaviI18nContent } from "@/shared/lib/actions/bavi/getBaviI18nContent.action";
 import { logger } from "@/shared/lib/logging";
 

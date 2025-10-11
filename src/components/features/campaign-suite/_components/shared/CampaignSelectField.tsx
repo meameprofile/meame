@@ -6,12 +6,13 @@
  *              de la función para pasar correctamente el tipo genérico a las props,
  *              resolviendo un error crítico de TypeScript (TS2314).
  * @version 5.1.0
- * @author L.I.A. Legacy
+ * @author RaZ Podestá - MetaShark Tech
  */
 "use client";
 
 import React from "react";
 import type { Control, FieldValues, Path } from "react-hook-form";
+
 import {
   FormControl,
   FormField,
