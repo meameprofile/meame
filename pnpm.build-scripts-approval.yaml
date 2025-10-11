@@ -1,0 +1,5 @@
+# RUTA: pnpm.build-scripts-approval.yaml
+# Este archivo es la SSoT para los permisos de ejecución de scripts de dependencias.
+# Fue generado por el comando `pnpm approve-builds`.
+allow-build:
+  - "@swc/cor
