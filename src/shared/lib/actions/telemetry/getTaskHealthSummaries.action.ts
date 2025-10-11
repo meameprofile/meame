@@ -3,7 +3,7 @@
  * @file getTaskHealthSummaries.action.ts
  * @description Server Action para obtener los resúmenes de salud de las tareas
  *              desde el Sismógrafo del Observatorio Heimdall.
- * @version 1.1.0 (SQL Integrity Alignment)
+ * @version 2.0.0 (Build Integrity Restoration)
  * @author RaZ Podestá - MetaShark Tech
  */
 "use server";
@@ -14,18 +14,10 @@ import { createServerClient } from "@/shared/lib/supabase/server";
 import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
 import type { ActionResult } from "@/shared/lib/types/actions.types";
 
-// Contrato de datos SSoT, alineado con la salida de la RPC v1.1
-export const TaskHealthSummarySchema = z.object({
-  task_id: z.string(),
-  task_name: z.string(),
-  task_status: z.enum(["SUCCESS", "FAILURE"]), // <-- CAMPO ACTUALIZADO
-  duration_ms: z.number().nullable(),
-  task_timestamp: z.string().datetime(), // <-- CAMPO ACTUALIZADO
-  user_id: z.string().uuid().nullable(),
-  workspace_id: z.string().uuid().nullable(),
-});
-
-export type TaskHealthSummary = z.infer<typeof TaskHealthSummarySchema>;
+import {
+  TaskHealthSummarySchema,
+  type TaskHealthSummary,
+} from "./telemetry.contracts";
 
 export async function getTaskHealthSummariesAction(): Promise<
   ActionResult<TaskHealthSummary[]>

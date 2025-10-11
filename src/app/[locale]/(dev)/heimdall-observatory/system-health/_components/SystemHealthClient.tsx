@@ -2,9 +2,9 @@
 /**
  * @file SystemHealthClient.tsx
  * @description Componente de cliente ("Client Core") para el Sismógrafo de Salud.
- *              v2.0.0 (Heimdall Contract v30+ Alignment): Se alinea la llamada a
- *              traceEvent con la nueva firma soberana del emisor de telemetría.
- * @version 2.0.0
+ *              v2.1.0 (Build Integrity Restoration): Se alinea la importación de
+ *              tipos con la nueva SSoT de contratos para restaurar el build.
+ * @version 2.1.0
  * @author L.I.A. Legacy
  */
 "use client";
@@ -23,7 +23,7 @@ import {
   Badge,
   ScrollArea,
 } from "@/components/ui";
-import type { TaskHealthSummary } from "@/shared/lib/actions/telemetry/getTaskHealthSummaries.action";
+import type { TaskHealthSummary } from "@/shared/lib/actions/telemetry/telemetry.contracts";
 import { logger } from "@/shared/lib/telemetry/heimdall.emitter";
 import { cn } from "@/shared/lib/utils/cn";
 
@@ -43,7 +43,7 @@ const TaskStatusIndicator = ({ status }: { status: "SUCCESS" | "FAILURE" }) => (
 
 export function SystemHealthClient({ initialData }: SystemHealthClientProps) {
   const traceId = useMemo(
-    () => logger.startTrace("SystemHealthClient_Lifecycle_v2.0"),
+    () => logger.startTrace("SystemHealthClient_Lifecycle_v2.1"),
     []
   );
   const [selectedTask, setSelectedTask] = useState<TaskHealthSummary | null>(
@@ -61,10 +61,7 @@ export function SystemHealthClient({ initialData }: SystemHealthClientProps) {
   }, [traceId]);
 
   const handleSelectTask = (task: TaskHealthSummary) => {
-    // --- [INICIO DE REFACTORIZACIÓN DE CONTRATO] ---
-    // La llamada ahora cumple con la firma: traceEvent(traceId, eventName, payload)
     logger.traceEvent(traceId, "SELECT_TASK", { taskId: task.task_id });
-    // --- [FIN DE REFACTORIZACIÓN DE CONTRATO] ---
     setSelectedTask(task);
   };
 
