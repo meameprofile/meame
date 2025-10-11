@@ -2,10 +2,8 @@
 /**
  * @file content-i18n.ts
  * @description Guardián de Diagnóstico para el contenido de i18n en Supabase.
- *              Realiza un censo de las entradas de traducción y valida la
- *              integridad básica de la migración.
- * @version 2.0.0 (Type-Safe & Elite Compliance)
- * @author RaZ Podestá - MetaShark Tech
+ * @version 1.0.0
+ * @author L.I.A. Legacy
  */
 import { promises as fs } from "fs";
 import path from "path";
@@ -32,7 +30,7 @@ interface Report {
 export default async function diagnoseI18nContent(): Promise<
   ActionResult<{ count: number }>
 > {
-  const traceId = logger.startTrace("diagnoseI18nContent_v2.0");
+  const traceId = logger.startTrace("diagnoseI18nContent_v1.0");
   const groupId = logger.startGroup(
     `[i18n Guardián] Auditando tabla 'i18n_content_entries'...`
   );
@@ -43,13 +41,12 @@ export default async function diagnoseI18nContent(): Promise<
   const report: Report = {
     reportMetadata: {
       script: "scripts/supabase/content-i18n.ts",
-      purpose:
-        "Censo de todas las entradas de contenido i18n en la base de datos.",
+      purpose: "Censo de todas las entradas de contenido i18n en la base de datos.",
       generatedAt: new Date().toISOString(),
     },
     instructionsForAI: [
       "Este informe detalla el estado de la tabla de contenido i18n.",
-      "Verifica 'census.totalEntries' para asegurar que el número de entradas coincide con la cantidad de archivos .i18n.json migrados.",
+      "Verifica 'census.totalEntries' para asegurar que el número de entradas es mayor que cero. Un valor de 0 es la causa probable del fallo de renderizado.",
       "Revisa 'census.entryKeys' para confirmar que las claves (rutas de archivo) se han almacenado correctamente.",
     ],
     auditStatus: "FAILED",
